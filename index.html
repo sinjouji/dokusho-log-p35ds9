@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Reading Log</title>
+</head>
+<body>
+
+<h1>読書ログ</h1>
+
+<button onclick="loadData()">読み込み</button>
+<button onclick="saveData()">保存（GitHub）</button>
+
+<hr>
+
+<h2>登場人物</h2>
+
+<input id="searchChar" placeholder="検索">
+<select id="sortChar">
+  <option value="name_asc">名前↑</option>
+  <option value="name_desc">名前↓</option>
+  <option value="series_asc">シリーズ↑</option>
+  <option value="series_desc">シリーズ↓</option>
+</select>
+
+<div id="characterList"></div>
+
+<hr>
+
+<h3>追加</h3>
+<input id="charName" placeholder="名前">
+<input id="charMemo" placeholder="メモ">
+<input id="seriesInput" placeholder="シリーズ名">
+
+<button onclick="addCharacterUI()">追加</button>
+
+<script src="app.js"></script>
+</body>
+</html>
