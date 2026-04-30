@@ -22,8 +22,10 @@ async function loadData() {
   const json = await res.json();
   sha = json.sha;
 
-  const content = JSON.parse(atob(json.content));
+  const content = JSON.parse(decodeURIComponent(escape(atob(json.content))));
   data = content;
+
+  if (!data.characters) data.characters = [];
 
   renderCharacters();
 }
@@ -45,40 +47,63 @@ async function saveData() {
     })
   });
 
-  alert("保存完了");
+  alert("保存しました");
 }
 
 // ===== UID =====
-function uid() {
-  return "c_" + Date.now();
+function uid(prefix="id") {
+  return prefix + "_" + Date.now();
 }
 
 // ===== キャラ追加 =====
-function addCharacterUI() {
-  const name = document.getElementById("charName").value;
-  const memo = document.getElementById("charMemo").value;
-  const seriesName = document.getElementById("seriesInput").value;
-
-  if (!name) return alert("名前必須");
-
-  let s = data.series.find(s => s.name === seriesName);
-
-  if (!s) {
-    s = { id: "s_" + Date.now(), name: seriesName, bookIds: [], characterIds: [] };
-    data.series.push(s);
-  }
-
+function addCharacter({ name, memo, aliases, seriesIds }) {
   const c = {
-    id: uid(),
+    id: uid("c"),
     name,
     memo,
-    seriesIds: [s.id]
+    aliases: aliases || [],
+    seriesIds: seriesIds || []
   };
 
   data.characters.push(c);
 
-  if (!s.characterIds) s.characterIds = [];
-  s.characterIds.push(c.id);
+  // 双方向リンク
+  data.series.forEach(s => {
+    if (c.seriesIds.includes(s.id)) {
+      if (!s.characterIds) s.characterIds = [];
+      if (!s.characterIds.includes(c.id)) {
+        s.characterIds.push(c.id);
+      }
+    }
+  });
+}
+
+// ===== UI追加用 =====
+function addCharacterUI() {
+  const name = document.getElementById("charName").value;
+  const memo = document.getElementById("charMemo").value;
+  const aliases = document.getElementById("charAlias").value.split(",").map(v => v.trim()).filter(v => v);
+
+  const seriesName = document.getElementById("seriesInput").value;
+
+  let s = data.series.find(s => s.name === seriesName);
+
+  if (!s && seriesName) {
+    s = {
+      id: uid("s"),
+      name: seriesName,
+      bookIds: [],
+      characterIds: []
+    };
+    data.series.push(s);
+  }
+
+  addCharacter({
+    name,
+    memo,
+    aliases,
+    seriesIds: s ? [s.id] : []
+  });
 
   renderCharacters();
 }
@@ -87,13 +112,14 @@ function addCharacterUI() {
 function renderCharacters() {
   let list = [...data.characters];
 
-  const keyword = document.getElementById("searchChar").value.toLowerCase();
-  const sort = document.getElementById("sortChar").value;
+  const keyword = document.getElementById("searchChar")?.value?.toLowerCase() || "";
+  const sort = document.getElementById("sortChar")?.value || "name_asc";
 
   if (keyword) {
     list = list.filter(c =>
       c.name.toLowerCase().includes(keyword) ||
-      (c.memo || "").toLowerCase().includes(keyword)
+      (c.memo || "").toLowerCase().includes(keyword) ||
+      (c.aliases || []).some(a => a.toLowerCase().includes(keyword))
     );
   }
 
@@ -111,8 +137,9 @@ function renderCharacters() {
 
   document.getElementById("characterList").innerHTML =
     list.map(c => `
-      <div>
+      <div class="char-card">
         <b>${c.name}</b>（${getSeriesName(c)}）<br>
+        ${c.aliases.length ? "別名: " + c.aliases.join(", ") + "<br>" : ""}
         ${c.memo || ""}
       </div>
     `).join("");
