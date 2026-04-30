@@ -1,5 +1,13 @@
 {
   "books": [],
   "series": [],
-  "characters": []
+  "characters": [
+    {
+      "id": "c_1",
+      "name": "サンプルキャラ",
+      "aliases": [],
+      "memo": "",
+      "seriesIds": []
+    }
+  ]
 }
