@@ -191,10 +191,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Helvetica Neu
 // ============================================================
 function getCfg(){
   return{
-    OWNER: localStorage.getItem('sinjouji')||'',
-    REPO:  localStorage.getItem('dokusho-log-p35ds9')||'',
-    PATH:  localStorage.getItem('https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json')||'data.json',
-    TOKEN: localStorage.getItem('gh_token')||'',
+    OWNER: localStorage.getItem('gh_owner') || '',
+    REPO:  localStorage.getItem('gh_repo')  || '',
+    PATH:  localStorage.getItem('gh_path')  || 'data.json',
+    TOKEN: localStorage.getItem('gh_token') || '',
   };
 }
 // ============================================================
