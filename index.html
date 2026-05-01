@@ -1,332 +1,102 @@
-// ★ あなたのJSON URL
-const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>読書ログ</title>
 
-let books = [];
-let series = [];
+<style>
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:#f5f5f5;
+}
 
+header{
+  background:#4CAF50;
+  color:white;
+  padding:16px;
+  font-size:20px;
+}
 
+main{
+  padding:16px;
+}
 
+button{
+  background:#4CAF50;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:12px;
+}
 
+.card{
+  background:white;
+  padding:14px;
+  margin-bottom:10px;
+  border-radius:10px;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+}
 
+#loading{
+  position:fixed;
+  inset:0;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
 
+.page{
+  padding:12px;
+}
 
-function go(name){
-  console.log("clicked", name);
-
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.add('hidden');
-  });
-
-  const target = document.getElementById('page-' + name);
-  console.log("target:", target); // ★これ追加
-
-  if(target){
-    target.classList.remove('hidden');
-  }
-  
-    // ★ここ追加
-
-  if(name === 'series'){
-    renderSeries();
-  }
+.hidden{
+  display:none;
 }
 
 
-//ホーム表示
-function renderHome(){
-  const el = document.getElementById('page-home');
-  el.innerHTML = "";
-
-  books.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.innerHTML = `
-  <div style="font-weight:bold">${b.title}</div>
-  <div style="font-size:12px;color:gray">
-    ${b.dates?.[0] || ""}
-  </div>
-`;
-
-    d.onclick = ()=> openDetail(b); // ★追加
-
-    el.appendChild(d);
-  });
+/* ★これ重要（今回の勝因） */
+#loading.hidden{
+  display:none;
 }
+</style>
 
+</head>
 
-//シリーズ一覧
-function renderSeries(){
-  const el = document.getElementById('page-series');
-  el.innerHTML = "";
+<body>
 
-  series.forEach(s=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = s.name;
+<div id="loading">読み込み中…</div>
 
-    d.onclick = ()=> openSeries(s);
+<header>📚 読書ログ</header>
 
-    el.appendChild(d);
-  });
-}
 
+<nav>
+  <button onclick="go('home')">ホーム</button>
+  <button onclick="go('series')">シリーズ</button>
+  <button onclick="go('characters')">人物</button>
+  <button onclick="go('stats')">統計</button>
+  <button onclick="go('settings')">設定</button>
+  <button onclick="loadData()">更新</button>
+</nav>
 
-//本詳細ページ
-function openDetail(book){
-  go('detail');
+<div id="page-home" class="page"></div>
+<div id="page-series" class="page hidden"></div>
+<div id="page-characters" class="page hidden"></div>
+<div id="page-stats" class="page hidden"></div>
+<div id="page-settings" class="page hidden"></div>
+<div id="page-detail" class="page hidden"></div>
 
-  const el = document.getElementById('page-detail');
 
- el.innerHTML = `
-  <h2>${book.title}</h2>
+<main>
+  <div id="list"></div>
+</main>
 
-  <div>⭐ ${book.fav || 0}</div>
 
-  <div>
-    読了日: ${book.dates?.[0] || "未読"}
-  </div>
 
-  <div style="margin-top:10px;">
-    ${book.memo || ""}
-  </div>
-
-  <button onclick="go('home')">戻る</button>
-`;
-}
-
-
-//シリーズ詳細
-function openSeries(s){
-  go('detail');
-
-  const el = document.getElementById('page-detail');
-
-  // このシリーズの本を取得
-const relatedBooks = books.filter(b=>{
-  return s.bookIds.includes(b.id);
-});
-
-// ★ あなたのJSON URL
-const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
-
-let books = [];
-let series = [];
-
-
-
-
-
-
-
-function go(name){
-  console.log("clicked", name);
-
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.add('hidden');
-  });
-
-  const target = document.getElementById('page-' + name);
-  console.log("target:", target); // ★これ追加
-
-  if(target){
-    target.classList.remove('hidden');
-  }
-  
-    // ★ここ追加
-
-  if(name === 'series'){
-    renderSeries();
-  }
-}
-
-
-//ホーム表示
-function renderHome(){
-  const el = document.getElementById('page-home');
-  el.innerHTML = "";
-
-  books.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.innerHTML = `
-  <div style="font-weight:bold">${b.title}</div>
-  <div style="font-size:12px;color:gray">
-    ${b.dates?.[0] || ""}
-  </div>
-`;
-
-    d.onclick = ()=> openDetail(b); // ★追加
-
-    el.appendChild(d);
-  });
-}
-
-
-//シリーズ一覧
-function renderSeries(){
-  const el = document.getElementById('page-series');
-  el.innerHTML = "";
-
-  series.forEach(s=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = s.name;
-
-    d.onclick = ()=> openSeries(s);
-
-    el.appendChild(d);
-  });
-}
-
-
-//本詳細ページ
-function openDetail(book){
-  go('detail');
-
-  const el = document.getElementById('page-detail');
-
- el.innerHTML = `
-  <h2>${book.title}</h2>
-
-  <div>⭐ ${book.fav || 0}</div>
-
-  <div>
-    読了日: ${book.dates?.[0] || "未読"}
-  </div>
-
-  <div style="margin-top:10px;">
-    ${book.memo || ""}
-  </div>
-
-  <button onclick="go('home')">戻る</button>
-`;
-}
-
-
-//シリーズ詳細
-function openSeries(s){
-  go('detail');
-
-  const el = document.getElementById('page-detail');
-
-  // このシリーズの本を取得
-  const relatedBooks = books.filter(b=>{
-  return s.bookIds.includes(b.id);
-});
-
-console.log("series:", s);
-console.log("books sample:", books[0]);
-
-  el.innerHTML = `
-    <h2>${s.name}</h2>
-
-    <div>冊数: ${relatedBooks.length}</div>
-
-    <hr>
-
-    <div id="series-books"></div>
-
-    <button onclick="go('series')">戻る</button>
-  `;
-
-  const list = document.getElementById('series-books');
-
-  relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
-
-    d.onclick = ()=> openDetail(b);
-
-    list.appendChild(d);
-  });
-}
-
-
-async function loadData(){
-  try{
-    const res = await fetch(DATA_URL + "?t=" + Date.now());
-    const text = await res.text();
-    const data = JSON.parse(text);
-
-    books = data.books || [];
-    series = data.series || [];
-
-    renderHome();
-
-  }catch(e){
-    console.error(e);
-    alert("読み込み失敗: " + e.message);
-  }
-
-  // ★ここに入れる（中に戻す）
-  go('home');
-
-  const l = document.getElementById('loading');
-  if(l) l.classList.add('hidden');
-}
-
-
-
-// 初回ロード
-
-loadData();
-
-
-
-  el.innerHTML = `
-    <h2>${s.name}</h2>
-
-    <div>冊数: ${relatedBooks.length}</div>
-
-    <hr>
-
-    <div id="series-books"></div>
-
-    <button onclick="go('series')">戻る</button>
-  `;
-
-  const list = document.getElementById('series-books');
-
-  relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
-
-    d.onclick = ()=> openDetail(b);
-
-    list.appendChild(d);
-  });
-}
-
-
-async function loadData(){
-  try{
-    const res = await fetch(DATA_URL + "?t=" + Date.now());
-    const text = await res.text();
-    const data = JSON.parse(text);
-
-    books = data.books || [];
-    series = data.series || [];
-
-    renderHome();
-
-  }catch(e){
-    console.error(e);
-    alert("読み込み失敗: " + e.message);
-  }
-
-  // ★ここに入れる（中に戻す）
-  go('home');
-
-  const l = document.getElementById('loading');
-  if(l) l.classList.add('hidden');
-}
-
-
-
-// 初回ロード
-
-loadData();
-
-
+<script src="app.js"></script>
+</body>
+</html>
