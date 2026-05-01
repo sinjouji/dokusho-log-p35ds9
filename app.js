@@ -43,7 +43,6 @@ function renderHome(){
     d.innerHTML = `
   <div style="font-weight:bold">${b.title}</div>
   <div style="font-size:12px;color:gray">
-  	${book.fav || 0}
     ${b.dates?.[0] || ""}
   </div>
 `;
