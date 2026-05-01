@@ -75,6 +75,14 @@ async function loadData(){
   go('home');
 }
 
+  // ★絶対最後に実行
+
+  const l = document.getElementById('loading');
+
+  if(l) l.classList.add('hidden');
+
+}
+
 function render(){
 
   el.innerHTML = "";
