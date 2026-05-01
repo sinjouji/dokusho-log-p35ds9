@@ -9,7 +9,7 @@
   GitHub版 設定メモ：
   CONFIG.OWNER   = sinjouji
   CONFIG.REPO    = dokusho-log-p35ds9
-  CONFIG.PATH    = data.json
+  CONFIG.PATH    = data.json のパス（例: data/data.json）
   CONFIG.TOKEN   = GitHub Personal Access Token（repo権限）
   ※ Tokenはgithub.com→Settings→Developer settings→Personal access tokens で発行
 ============================================================ */
@@ -237,47 +237,35 @@ function ghApiBase(){const c=getCfg();return`https://api.github.com/repos/${c.OW
 function ghHeaders(){return{'Authorization':`token ${getCfg().TOKEN}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};}
 
 async function loadData(){
-  const c=getCfg();
-  if(!c.OWNER||!c.REPO||!c.TOKEN){
-    features=defFeats();setSS('error','設定未完了');
-    document.getElementById('cfg-banner').classList.add('show');
-    return;
-  }
   try{
-    const r=await fetch(ghApiBase()+'?t='+Date.now(),{headers:ghHeaders()});
-    if(r.status===404){
-      // ファイルが存在しない → 初期データを作成
-      features=defFeats();
-      await doSave();return;
-    }
-    if(!r.ok)throw new Error('HTTP '+r.status);
-    const meta=await r.json();
-    ghFileSha=meta.sha;
-    const d=JSON.parse(atob(meta.content.replace(/\n/g,'')));
-    books=d.books||[];tagMaster=d.tagMaster||[];series=d.series||[];characters=d.characters||[];features=d.features||defFeats();
+    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/refs/heads/main/data.json?t=" + Date.now();
+    const r = await fetch(url);
+
+    if(!r.ok) throw new Error("HTTP " + r.status);
+
+    const d = await r.json();
+
+    books       = d.books       || [];
+    tagMaster   = d.tagMaster   || [];
+    series      = d.series      || [];
+    characters  = d.characters  || [];
+    features    = d.features    || defFeats();
+
     setSS('ok','✓ 同期済み');
   }catch(e){
-    books=[];tagMaster=[];series=[];characters=[];features=defFeats();
+    console.error(e);
     setSS('error','⚠ 読込失敗');
-    alert('GitHub からの読み込みに失敗しました。\nOwner/Repo/Tokenを確認してください。\n'+e.message);
+    alert("データの読み込みに失敗しました。\n" + e.message);
   }
 }
 
-function scheduleSave(){clearTimeout(saveTimer);setSS('saving','⟳ 保存中...');saveTimer=setTimeout(doSave,1200);}
-async function doSave(){
-  const c=getCfg();
-  if(!c.OWNER||!c.REPO||!c.TOKEN){setSS('error','設定未完了');return;}
-  try{
-    const content=btoa(unescape(encodeURIComponent(JSON.stringify({books,tagMaster,series,characters,features},null,2))));
-    const body={message:'update data.json',content};
-    if(ghFileSha)body.sha=ghFileSha;
-    const r=await fetch(ghApiBase(),{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)});
-    if(!r.ok){const e=await r.json();throw new Error(e.message||'PUT failed');}
-    const j=await r.json();ghFileSha=j.content.sha;
-    setSS('ok','✓ 同期済み');
-  }catch(e){setSS('error','⚠ 保存失敗');}
+async function manualSync(){
+  setSS('saving','⟳ 再読み込み中...');
+  await loadData();
+  renderShelf();
 }
-async function manualSync(){setSS('saving','⟳ 再読み込み中...');await loadData();renderShelf();}
+
+
 
 function defFeats(){return[{id:'fav',name:'お気に入り度',desc:'4段階で評価を記録',on:true},{id:'tags',name:'タグ付け',desc:'本にタグを付けて分類',on:true},{id:'series',name:'シリーズ管理',desc:'続刊・シリーズをまとめる',on:true},{id:'characters',name:'登場人物',desc:'人物一覧と関連付けを管理',on:true},{id:'readlog',name:'読了ログ',desc:'読んだ日付・回数を記録',on:true},{id:'stats_tag',name:'タグ別統計',desc:'タグ別グラフを表示',on:true},{id:'stats_month',name:'月別読了数',desc:'月ごとの統計を表示',on:true},{id:'wishlist',name:'ウィッシュリスト',desc:'読みたい本を管理',on:true},{id:'memo',name:'メモ欄',desc:'各ページにメモ欄を表示',on:false}];}
 
