@@ -21,9 +21,6 @@ function go(name){
 
 //ホーム表示
 function renderHome(){
-
-typeof go
-  
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
