@@ -236,7 +236,7 @@ function setSS(s,m){const el=document.getElementById('sync-status');el.className
 
 async function loadData(){
   try{
-    const url = getCfg().RAW_URL + "?t=" + Date.now();
+    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json?t=" + Date.now();
 
     const r = await fetch(url);
     if(!r.ok) throw new Error("HTTP " + r.status);
@@ -249,12 +249,8 @@ async function loadData(){
     characters  = d.characters  || [];
     features    = d.features    || defFeats();
 
-    setSS('ok','✓ 読み込み済み（手動）');
+    setSS('ok','✓ 同期済み');
   }catch(e){
-    console.error(e);
-    setSS('error','⚠ 読込失敗');
-  }
-}catch(e){
     console.error(e);
     setSS('error','⚠ 読込失敗');
     alert("データの読み込みに失敗しました。\n" + e.message);
