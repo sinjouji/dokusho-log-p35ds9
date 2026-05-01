@@ -33,11 +33,12 @@ const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main
 async function loadData(){
   try{
     const res = await fetch(DATA_URL + "?t=" + Date.now());
-    if(!res.ok) throw new Error("HTTP " + res.status);
+    const text = await res.text();
 
-    const data = await res.json();
+    console.log(text); // ★ここ重要
 
-    // ★ここがポイント
+    const data = JSON.parse(text);
+
     if(Array.isArray(data)){
       books = data;
     }else{
@@ -45,15 +46,13 @@ async function loadData(){
     }
 
     render();
-
     document.getElementById('loading').classList.add('hidden');
 
   }catch(e){
-  console.error(e);
-  alert("読み込み失敗: " + e.message);
-
-  // ★これ絶対必要
-  document.getElementById('loading').classList.add('hidden');
+    console.error(e);
+    alert("読み込み失敗: " + e.message);
+    document.getElementById('loading').classList.add('hidden');
+ 
   const text = await res.text();
 console.log(text);
 const data = JSON.parse(text);
