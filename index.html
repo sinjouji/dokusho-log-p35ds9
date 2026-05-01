@@ -52,11 +52,7 @@ async function loadData(){
     console.error(e);
     alert("読み込み失敗: " + e.message);
     document.getElementById('loading').classList.add('hidden');
- 
-  const text = await res.text();
-console.log(text);
-const data = JSON.parse(text);
-}
+ }
 }
 
 function render(){
