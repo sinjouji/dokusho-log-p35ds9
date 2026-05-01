@@ -31,8 +31,6 @@ function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
-books.sort((a,b)=>b.id-a.id);
-
   books.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
