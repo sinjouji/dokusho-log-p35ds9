@@ -11,6 +11,10 @@ let books = [];
 
 
 function go(name){
+
+console.log("clicked")
+
+
   document.querySelectorAll('.page').forEach(p=>{
     p.classList.add('hidden');
   });
@@ -48,6 +52,7 @@ function openDetail(book){
     <button onclick="go('home')">戻る</button>
   `;
 }
+
 
 
 async function loadData(){
