@@ -57,23 +57,26 @@ function openDetail(book){
 
 
 async function loadData(){
+
   try{
+
     const res = await fetch(DATA_URL + "?t=" + Date.now());
+
     const text = await res.text();
+
     const data = JSON.parse(text);
 
     books = data.books || [];
 
-    renderHome(); // ★ここに変更
+    render();
 
   }catch(e){
-    console.error(e);
-    alert("読み込み失敗: " + e.message);
-  }
 
-  // ★最後に必ず
-  go('home');
-}
+    console.error(e);
+
+    alert("読み込み失敗: " + e.message);
+
+  }
 
   // ★絶対最後に実行
 
