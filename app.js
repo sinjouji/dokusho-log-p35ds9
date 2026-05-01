@@ -67,6 +67,38 @@ function go(name){
   document.getElementById('page-' + name).classList.remove('hidden');
 }
 
+
+//ホーム表示
+function renderHome(){
+  const el = document.getElementById('page-home');
+  el.innerHTML = "";
+
+  books.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = b.title;
+
+    d.onclick = ()=> openDetail(b);
+
+    el.appendChild(d);
+  });
+}
+
+//詳細ページ
+function openDetail(book){
+  go('detail');
+
+  const el = document.getElementById('page-detail');
+
+  el.innerHTML = `
+    <h2>${book.title}</h2>
+    <div>お気に入り: ${book.fav}</div>
+    <div>${book.memo || ""}</div>
+    <button onclick="go('home')">戻る</button>
+  `;
+}
+
+
 // 初回ロード
 
 loadData();
