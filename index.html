@@ -35,15 +35,12 @@ async function loadData(){
     const res = await fetch(DATA_URL + "?t=" + Date.now());
     const text = await res.text();
 
-    console.log("books:",books); // ★ここ重要
+    const clean = text.replace(/^\uFEFF/, '');
+    const data = JSON.parse(clean);
 
-    const data = JSON.parse(text);
+    console.log("data:", data);
 
-    if(Array.isArray(data)){
-      books = data;
-    }else{
-      books = data.books || [];
-    }
+    books = Array.isArray(data.books) ? data.books : [];
 
     render();
     document.getElementById('loading').classList.add('hidden');
@@ -52,7 +49,7 @@ async function loadData(){
     console.error(e);
     alert("読み込み失敗: " + e.message);
     document.getElementById('loading').classList.add('hidden');
- }
+  }
 }
 
 function render(){
