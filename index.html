@@ -10,8 +10,8 @@
   CONFIG.OWNER   = sinjouji
   CONFIG.REPO    = dokusho-log-p35ds9
   CONFIG.PATH    = https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json
-  CONFIG.TOKEN   = GitHub Personal Access Token（repo権限）
-  ※ Tokenはgithub.com→Settings→Developer settings→Personal access tokens で発行※手動更新、トークン使わない
+  CONFIG = GitHub raw URLのみ使用（トークン不要）
+  ※ データ更新はGitHub上で手動編集
 ============================================================ */
 :root{--accent:#1D9E75;--accent-dark:#0F6E56;--accent-bg:#E1F5EE;--accent-text:#085041}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -130,7 +130,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Helvetica Neu
 <div class="topbar">
   <div class="logo">📚 読書ログ</div>
   <div class="nav-area" id="nav-area"></div>
-  <span id="sync-status" class="ok" onclick="manualSync()" title="タップで手動同期">✓ 同期済み</span>
+  <span id="sync-status" class="ok" onclick="manualSync()" title="タップで手動同期">✓ 読み込み済み（手動）</span>
 </div>
 <div id="pages">
   <div id="pg-shelf" class="pg on"></div>
@@ -191,11 +191,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Helvetica Neu
 // ============================================================
 function getCfg(){
   return{
-    OWNER: localStorage.getItem('gh_owner') || '',
-    REPO:  localStorage.getItem('gh_repo')  || '',
-    PATH:  localStorage.getItem('gh_path')  || 'data.json',
-    TOKEN: localStorage.getItem('gh_token') || '',
+    RAW_URL: localStorage.getItem('gh_raw_url') || ''
   };
+};
 }
 // ============================================================
 
@@ -226,20 +224,19 @@ let mST=[],mSF=0,mNP=0;
 let curDet=null,curSer=null,prevPg='shelf',saBooks=[],statsYr=new Date().getFullYear();
 let tagEditPalMap={},addPalIdx=0,saveTimer=null;
 let calYr=new Date().getFullYear(),calMo=new Date().getMonth()+1,calFromDate=null;
-let ghFileSha=''; // GitHub blob SHA（更新に必要）
+ // GitHub blob SHA（更新に必要）
 
 try{const s=JSON.parse(localStorage.getItem('filters')||'{}');tagFilterModes=s.tagFilterModes||{};aTy=s.aTy||'';aFv=s.aFv||0;sK=s.sK||'date';sD=s.sD||'desc';}catch(e){}
 function saveFilterState(){try{localStorage.setItem('filters',JSON.stringify({tagFilterModes,aTy,aFv,sK,sD}));}catch(e){}}
 
 // ---------- GitHub同期 ----------
 function setSS(s,m){const el=document.getElementById('sync-status');el.className=s;el.textContent=m;}
-function ghApiBase(){const c=getCfg();return`https://api.github.com/repos/${c.OWNER}/${c.REPO}/contents/${c.PATH}`;}
-function ghHeaders(){return{'Authorization':`token ${getCfg().TOKEN}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};}
+/${c.REPO}/contents/${c.PATH}`;}
+`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};}
 
 async function loadData(){
   try{
-    // ★ 正しい raw URL（refs/heads は使わない）
-    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json?t=" + Date.now();
+    const url = getCfg().RAW_URL + "?t=" + Date.now();
 
     const r = await fetch(url);
     if(!r.ok) throw new Error("HTTP " + r.status);
@@ -252,8 +249,12 @@ async function loadData(){
     characters  = d.characters  || [];
     features    = d.features    || defFeats();
 
-    setSS('ok','✓ 同期済み');
+    setSS('ok','✓ 読み込み済み（手動）');
   }catch(e){
+    console.error(e);
+    setSS('error','⚠ 読込失敗');
+  }
+}catch(e){
     console.error(e);
     setSS('error','⚠ 読込失敗');
     alert("データの読み込みに失敗しました。\n" + e.message);
