@@ -492,8 +492,9 @@ async function init(){
     return;
   }
   await loadData();
-  document.getElementById('loading-overlay').style.display='none';
-  renderNav();document.getElementById('nb-shelf')?.classList.add('act');renderShelf();
+document.getElementById('loading-overlay').style.display = 'none';
+renderNav();
+goPage('shelf');
 }
 init();
 </script>
