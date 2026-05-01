@@ -104,6 +104,10 @@ function openSeries(s){
   // このシリーズの本を取得
   const relatedBooks = books.filter(b=>{
   return b.seriesId == s.id || b.series == s.id;
+  
+  console.log("series:", s);
+console.log("books sample:", books[0]);
+  
 });
 // ★ あなたのJSON URL
 const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
