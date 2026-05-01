@@ -233,12 +233,12 @@ function saveFilterState(){try{localStorage.setItem('filters',JSON.stringify({ta
 
 // ---------- GitHub同期 ----------
 function setSS(s,m){const el=document.getElementById('sync-status');el.className=s;el.textContent=m;}
-function ghApiBase(){const c=getCfg();return`https://api.github.com/repos/${c.OWNER}/${c.REPO}/contents/${c.PATH}`;}
+function ghApiBase(){const c=getCfg();return`https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/refs/heads/main/data.json`;}
 function ghHeaders(){return{'Authorization':`token ${getCfg().TOKEN}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};}
 
 async function loadData(){
   try{
-    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/refs/heads/main/data.json?t=" + Date.now();
+    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/refs/heads/main/data.json" + Date.now();
     const r = await fetch(url);
 
     if(!r.ok) throw new Error("HTTP " + r.status);
