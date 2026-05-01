@@ -59,6 +59,14 @@ function render(){
 
 }
 
+function go(name){
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.add('hidden');
+  });
+
+  document.getElementById('page-' + name).classList.remove('hidden');
+}
+
 // 初回ロード
 
 loadData();
