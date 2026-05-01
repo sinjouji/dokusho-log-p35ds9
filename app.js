@@ -15,14 +15,15 @@ function go(name){
     p.classList.add('hidden');
   });
 
-typeof go
-
   document.getElementById('page-' + name).classList.remove('hidden');
 }
 
 
 //ホーム表示
 function renderHome(){
+
+typeof go
+  
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
