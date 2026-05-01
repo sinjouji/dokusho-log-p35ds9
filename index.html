@@ -9,9 +9,9 @@
   GitHub版 設定メモ：
   CONFIG.OWNER   = sinjouji
   CONFIG.REPO    = dokusho-log-p35ds9
-  CONFIG.PATH    = data.json のパス（例: data/data.json）
+  CONFIG.PATH    = https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json
   CONFIG.TOKEN   = GitHub Personal Access Token（repo権限）
-  ※ Tokenはgithub.com→Settings→Developer settings→Personal access tokens で発行
+  ※ Tokenはgithub.com→Settings→Developer settings→Personal access tokens で発行※手動更新、トークン使わない
 ============================================================ */
 :root{--accent:#1D9E75;--accent-dark:#0F6E56;--accent-bg:#E1F5EE;--accent-text:#085041}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -191,9 +191,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Helvetica Neu
 // ============================================================
 function getCfg(){
   return{
-    OWNER: localStorage.getItem('gh_owner')||'',
-    REPO:  localStorage.getItem('gh_repo')||'',
-    PATH:  localStorage.getItem('gh_path')||'data.json',
+    OWNER: localStorage.getItem('sinjouji')||'',
+    REPO:  localStorage.getItem('dokusho-log-p35ds9')||'',
+    PATH:  localStorage.getItem('https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json')||'data.json',
     TOKEN: localStorage.getItem('gh_token')||'',
   };
 }
@@ -233,16 +233,15 @@ function saveFilterState(){try{localStorage.setItem('filters',JSON.stringify({ta
 
 // ---------- GitHub同期 ----------
 function setSS(s,m){const el=document.getElementById('sync-status');el.className=s;el.textContent=m;}
-function ghApiBase(){const c=getCfg();return`https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json
-`;}
+function ghApiBase(){const c=getCfg();return`https://api.github.com/repos/${c.OWNER}/${c.REPO}/contents/${c.PATH}`;}
 function ghHeaders(){return{'Authorization':`token ${getCfg().TOKEN}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};}
 
 async function loadData(){
   try{
-    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json
-" + Date.now();
-    const r = await fetch(url);
+    // ★ 正しい raw URL（refs/heads は使わない）
+    const url = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json?t=" + Date.now();
 
+    const r = await fetch(url);
     if(!r.ok) throw new Error("HTTP " + r.status);
 
     const d = await r.json();
@@ -260,6 +259,7 @@ async function loadData(){
     alert("データの読み込みに失敗しました。\n" + e.message);
   }
 }
+
 
 async function manualSync(){
   setSS('saving','⟳ 再読み込み中...');
