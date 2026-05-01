@@ -31,10 +31,17 @@ function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
+books.sort((a,b)=>b.id-a.id);
+
   books.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
-    d.textContent = b.title;
+    d.innerHTML = `
+  <div style="font-weight:bold">${b.title}</div>
+  <div style="font-size:12px;color:gray">
+    ${b.dates?.[0] || ""}
+  </div>
+`;
 
     d.onclick = ()=> openDetail(b); // ★追加
 
@@ -48,12 +55,21 @@ function openDetail(book){
 
   const el = document.getElementById('page-detail');
 
-  el.innerHTML = `
-    <h2>${book.title}</h2>
-    <div>お気に入り: ${book.fav}</div>
-    <div>${book.memo || ""}</div>
-    <button onclick="go('home')">戻る</button>
-  `;
+ el.innerHTML = `
+  <h2>${book.title}</h2>
+
+  <div>⭐ ${book.fav || 0}</div>
+
+  <div>
+    読了日: ${book.dates?.[0] || "未読"}
+  </div>
+
+  <div style="margin-top:10px;">
+    ${book.memo || ""}
+  </div>
+
+  <button onclick="go('home')">戻る</button>
+`;
 }
 
 
