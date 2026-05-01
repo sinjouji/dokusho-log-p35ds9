@@ -102,8 +102,8 @@ function openSeries(s){
   const el = document.getElementById('page-detail');
 
   // このシリーズの本を取得
-  const relatedBooks = books.filter(b=>{
-  return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
+const relatedBooks = books.filter(b=>{
+  return s.bookIds.includes(b.id);
 });
 
 // ★ あなたのJSON URL
@@ -211,7 +211,7 @@ function openSeries(s){
 
   // このシリーズの本を取得
   const relatedBooks = books.filter(b=>{
-  return b.seriesId == s.id || b.series == s.id;
+  return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
 });
 
 console.log("series:", s);
