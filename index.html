@@ -38,12 +38,25 @@ async function loadData(){
     const clean = text.replace(/^\uFEFF/, '');
     const data = JSON.parse(clean);
 
-    console.log("data:", data);
+    console.log("① after parse", data.books.length);
+
+books = data.books;
+
+console.log("② after assign", books.length);
+
+render();
+
+console.log("③ after render", books.length);
 
     books = Array.isArray(data.books) ? data.books : [];
 
-    render();
-    document.getElementById('loading').classList.add('hidden');
+   try{
+  render();
+}catch(e){
+  console.error("render error", e);
+}
+
+document.getElementById('loading').classList.add('hidden');
 
   }catch(e){
     console.error(e);
@@ -56,25 +69,23 @@ function render(){
   const el = document.getElementById('list');
   el.innerHTML = "";
 
-  if(!Array.isArray(books) || books.length===0){
+  console.log("render books:", books);
+
+  if(!books || books.length === 0){
     el.innerHTML = "<div class='card'>データがありません</div>";
     return;
   }
 
-  books.forEach(b=>{
-    if(!b || typeof b !== 'object') return; // ★防御
+  for(let i=0;i<books.length;i++){
+    const b = books[i];
+    if(!b) continue;
 
     const d = document.createElement('div');
     d.className = "card";
-
-    const title = (b.title && typeof b.title === 'string')
-      ? b.title
-      : "（タイトルなし）";
-
-    d.textContent = title;
+    d.textContent = b.title || "（タイトルなし）";
 
     el.appendChild(d);
-  });
+  }
 }
 
 // 初期化
