@@ -50,6 +50,15 @@ button{
   z-index:999;
 }
 
+.page{
+  padding:16px;
+}
+
+.hidden{
+  display:none;
+}
+
+
 /* ★これ重要（今回の勝因） */
 #loading.hidden{
   display:none;
@@ -70,5 +79,22 @@ button{
 </main>
 
 <script src="app.js"></script>
+
+
+<nav>
+  <button onclick="go('home')">ホーム</button>
+  <button onclick="go('series')">シリーズ</button>
+  <button onclick="go('characters')">人物</button>
+  <button onclick="go('stats')">統計</button>
+  <button onclick="go('settings')">設定</button>
+</nav>
+
+<div id="page-home" class="page"></div>
+<div id="page-series" class="page hidden"></div>
+<div id="page-characters" class="page hidden"></div>
+<div id="page-stats" class="page hidden"></div>
+<div id="page-settings" class="page hidden"></div>
+<div id="page-detail" class="page hidden"></div>
+
 </body>
 </html>
