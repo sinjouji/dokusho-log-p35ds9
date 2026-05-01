@@ -36,8 +36,6 @@ function renderHome(){
     d.className = "card";
     d.textContent = b.title;
 
-    d.onclick = ()=> openDetail(b);
-
     el.appendChild(d);
   });
 }
@@ -59,38 +57,25 @@ function openDetail(book){
 
 
 async function loadData(){
-
   try{
-
     const res = await fetch(DATA_URL + "?t=" + Date.now());
-
     const text = await res.text();
-
     const data = JSON.parse(text);
 
     books = data.books || [];
 
-    render();
+    renderHome(); // ★ここに変更
 
   }catch(e){
-
     console.error(e);
-
     alert("読み込み失敗: " + e.message);
-
   }
 
-  // ★絶対最後に実行
-
-  const l = document.getElementById('loading');
-
-  if(l) l.classList.add('hidden');
-
+  // ★最後に必ず
+  go('home');
 }
 
 function render(){
-
-  const el = document.getElementById('list');
 
   el.innerHTML = "";
 
