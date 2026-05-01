@@ -11,15 +11,18 @@ let books = [];
 
 
 function go(name){
-
-console.log("clicked")
-
+  console.log("clicked", name);
 
   document.querySelectorAll('.page').forEach(p=>{
     p.classList.add('hidden');
   });
 
-  document.getElementById('page-' + name).classList.remove('hidden');
+  const target = document.getElementById('page-' + name);
+  console.log("target:", target); // ★これ追加
+
+  if(target){
+    target.classList.remove('hidden');
+  }
 }
 
 
