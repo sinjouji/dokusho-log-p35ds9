@@ -27,10 +27,9 @@ function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
-  // 検索
   const keyword = document.getElementById('search')?.value || "";
+  console.log("keyword:", keyword);
 
-  console.log("keyword:",keyword);
   const filtered = books.filter(b =>{
     const matchTitle = b.title.includes(keyword);
 
@@ -40,7 +39,6 @@ function renderHome(){
     return matchTitle && matchTag;
   });
 
-  // 表示
   filtered.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -55,7 +53,6 @@ function renderHome(){
     el.appendChild(d);
   });
 }
-
 // 本詳細
 function openDetail(book){
   go('detail');
