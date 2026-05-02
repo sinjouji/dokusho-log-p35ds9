@@ -134,11 +134,19 @@ function renderTagFilter(){
   const all = document.createElement('button');
   all.textContent = "すべて"; 
   
-  if(selectedTagId === null){
-    		all.style.borderRadius = "6px";
-    		all.style.padding = "4px 8px";
-    		all.style.margin = "3px";
-    }
+  all.style.margin = "3px";
+all.style.padding = "2px 8px";
+all.style.fontSize = "12px";
+all.style.borderRadius = "999px";
+all.style.cursor = "pointer";
+all.style.border = "1px solid #999";
+all.style.background = "transparent";
+all.style.color = "#666";
+  
+ if(selectedTagId === null){
+  all.style.background = "#666";
+  all.style.color = "#fff";
+}
   
   all.onclick = ()=>{
     selectedTagId = null;
@@ -156,21 +164,20 @@ function renderTagFilter(){
     const btn = document.createElement('button');
     btn.textContent = t.name;
     
-    btn.style.margin = "3px";
-    btn.style.border = "none";
-    btn.style.borderRadius = "6px";
-    btn.style.padding = "4px 8px";
-   
-   //タグ色
-   btn.style.background = t.color;
-   btn.style.color = "#fff";
-    
+   btn.style.margin = "3px";
+   btn.style.padding = "2px 8px";
+   btn.style.fontSize = "12px";
+   btn.style.borderRadius = "999px"; // ★丸くする
+   btn.style.cursor = "pointer";
+   btn.style.border = `1px solid ${t.color}`;
+   btn.style.background = "transparent";
+   btn.style.color = t.color;
+       
     //選択中の見た目
-    if(t.id === selectedTagId){
-    		btn.style.outline = "2px solid #000";
-    		btn.style.transform = "scale(1.05)";
-    	}
-
+   if(t.id === selectedTagId){
+  btn.style.background = t.color;
+  btn.style.color = "#fff";
+}
 
     btn.onclick = ()=>{
       selectedTagId = t.id;
