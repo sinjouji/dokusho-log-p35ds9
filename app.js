@@ -147,7 +147,7 @@ function openSeries(s){
     return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
   });
   	
- 	 //シリーズ→人物
+ 	 //シリーズ→人物★完了
   const relatedCharacters = characters.filter(c=>{
   return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
@@ -235,6 +235,19 @@ function openCharacter(c){
   );
 });
 
+
+//人物→本
+const relatedSeries = series.filter(s=>{
+  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+});
+
+const relatedBooks = books.filter(b=>{
+  return relatedSeries.some(s =>
+    Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+  );
+});
+
+//人物→シリーズHTML表示
   el.innerHTML = `
     <h2>${c.name}</h2>
 
@@ -250,6 +263,15 @@ function openCharacter(c){
     <button onclick="go('characters')">戻る</button>
   `;
 
+//人物→本HTML表示
+el.innerHTML += `
+  <hr>
+  <div>登場作品:</div>
+  <div id="char-books"></div>
+`;
+
+
+//人物→シリーズ描画
   const list = document.getElementById('char-series');
 
   relatedSeries.forEach(s=>{
@@ -263,6 +285,18 @@ function openCharacter(c){
   });
 }
 
+//人物→本描画
+const list3 = document.getElementById('char-books');
+
+relatedBooks.forEach(b=>{
+  const d = document.createElement('div');
+  d.className = "card";
+  d.textContent = b.title;
+
+  d.onclick = ()=> openDetail(b);
+
+  list3.appendChild(d);
+});
 
 
 // データ読み込み
