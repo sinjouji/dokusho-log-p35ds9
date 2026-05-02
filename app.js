@@ -224,30 +224,19 @@ function openCharacter(c){
 
   const el = document.getElementById('page-detail');
 
-  // 人物→シリーズ★完了
+  // 人物→シリーズ
   const relatedSeries = series.filter(s=>{
     return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
-  
+
+  // 人物→本
   const relatedBooks = books.filter(b=>{
-  return relatedSeries.some(s =>
-    Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-  );
-});
+    return relatedSeries.some(s =>
+      Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+    );
+  });
 
-
-//人物→本
-const relatedSeries = series.filter(s=>{
-  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-});
-
-const relatedBooks = books.filter(b=>{
-  return relatedSeries.some(s =>
-    Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-  );
-});
-
-//人物→シリーズHTML表示
+  // HTML
   el.innerHTML = `
     <h2>${c.name}</h2>
 
@@ -263,15 +252,14 @@ const relatedBooks = books.filter(b=>{
     <button onclick="go('characters')">戻る</button>
   `;
 
-//人物→本HTML表示
-el.innerHTML += `
-  <hr>
-  <div>登場作品:</div>
-  <div id="char-books"></div>
-`;
+  // 本セクション追加
+  el.innerHTML += `
+    <hr>
+    <div>登場作品:</div>
+    <div id="char-books"></div>
+  `;
 
-
-//人物→シリーズ描画
+  // シリーズ描画
   const list = document.getElementById('char-series');
 
   relatedSeries.forEach(s=>{
@@ -284,21 +272,18 @@ el.innerHTML += `
     list.appendChild(d);
   });
 
+  // 本描画
+  const list3 = document.getElementById('char-books');
 
-//人物→本描画
-const list3 = document.getElementById('char-books');
+  relatedBooks.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = b.title;
 
-relatedBooks.forEach(b=>{
-  const d = document.createElement('div');
-  d.className = "card";
-  d.textContent = b.title;
+    d.onclick = ()=> openDetail(b);
 
-  d.onclick = ()=> openDetail(b);
-
-  list3.appendChild(d);
-});
-
-
+    list3.appendChild(d);
+  });
 }
 
 
