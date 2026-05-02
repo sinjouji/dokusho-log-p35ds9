@@ -197,11 +197,12 @@ function renderShelf(el, books){
 
     const fav = document.createElement('div');
     fav.style.height = "18px";
-    fav.style.background = "#f5a623";
+    fav.style.writingMode = "vertical-rl"
+    fav.style.background = "transparent";
     fav.style.display = "flex";
     fav.style.alignItems = "center";
     fav.style.justifyContent = "center";
-    fav.style.fontSize = "10px";
+    fav.style.fontSize = "8px";
     fav.style.color = "#fff";
     fav.textContent = "★".repeat(b.fav || 0);
 
