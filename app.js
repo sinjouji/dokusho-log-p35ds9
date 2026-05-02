@@ -147,7 +147,7 @@ function openSeries(s){
     return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
   });
   	
-  	//シリーズ→人物
+  	//シリーズ→人物★完了
   const relatedCharacters = characters.filter(c=>{
   return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
