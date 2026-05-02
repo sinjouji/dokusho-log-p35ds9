@@ -95,6 +95,10 @@ el.innerHTML += `
 //本→登場人物の描画
 const list = document.getElementById('book-chars');
 
+if(relatedCharacters.length === 0){
+  list.innerHTML = "<div>（人物なし）</div>";
+}
+
 relatedCharacters.forEach(c=>{
   const d = document.createElement('div');
   d.className = "card";
@@ -104,7 +108,7 @@ relatedCharacters.forEach(c=>{
 
   list.appendChild(d);
 });
-
+}
 
 //本の詳細でシリーズを開く
 function openSeriesById(id){
@@ -205,8 +209,6 @@ function openCharacter(c){
 
     <div>シリーズ:</div>
     <div id="char-series"></div>
-    <div>本</div>
-    <div id=""></div>
 
     <button onclick="go('characters')">戻る</button>
   `;
