@@ -74,7 +74,7 @@ const relatedCharacters = characters.filter(c=>{
   </div>
 
   <hr>
-
+`;
   <div>
     シリーズ:
     ${relatedSeries.map(s=>`
