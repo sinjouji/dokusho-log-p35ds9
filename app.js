@@ -107,7 +107,7 @@ relatedCharacters.forEach(c=>{
   list3.appendChild(d);
 });
 
-}
+
 
 
 //本の詳細でシリーズを開く
