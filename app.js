@@ -4,7 +4,10 @@ const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main
 let books = [];
 let series = [];
 let characters = [];
+let tagMaster = [];
 let selectedTagId = null;
+
+
 
 // ページ切替
 function go(name){
@@ -71,17 +74,27 @@ function renderTagFilter(){
   all.onclick = ()=>{
     selectedTagId = null;
     renderHome();
+    renderTagFilter(); //選択状態更新
   };
+  
   el.appendChild(all);
 
   // タグ一覧
   tagMaster.forEach(t=>{
     const btn = document.createElement('button');
     btn.textContent = t.name;
+    
+    //選択中の見た目
+    if(t.id === selectedTagId){
+    		btn.style.background = "#333";
+    		btn.style.color = "#fff";
+    		btn.style.margin = "4px";
+    	}
 
     btn.onclick = ()=>{
       selectedTagId = t.id;
       renderHome();
+      renderTagFilter(); //見た目更新
     };
 
     el.appendChild(btn);
