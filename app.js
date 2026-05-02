@@ -50,6 +50,12 @@ function openDetail(book){
   return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
 });
 
+const relatedCharacters = characters.filter(c=>{
+  return relatedSeries.some(s =>
+    Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id)
+  );
+});
+
   el.innerHTML = `
   <h2>${book.title}</h2>
 
@@ -75,9 +81,26 @@ function openDetail(book){
     `).join(", ") || "なし"}
   </div>
 
+  <hr>
+  <div>登場人物:</div>
+  <div id="book-chars"></div>
+
   <button onclick="go('home')">戻る</button>
 `;
 }
+
+//本→登場人物の描画
+const list = document.getElementById('book-chars');
+
+relatedCharacters.forEach(c=>{
+  const d = document.createElement('div');
+  d.className = "card";
+  d.textContent = c.name;
+
+  d.onclick = ()=> openCharacter(c);
+
+  list.appendChild(d);
+});
 
 
 //本の詳細でシリーズを開く
