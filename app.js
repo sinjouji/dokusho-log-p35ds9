@@ -143,9 +143,9 @@ function renderShelf(el, books){
   const perRow = 10; //好きに調整OK
   
   for(let i = 0; i < books.length; i += perRow){
-  	const rowBooks = books.slice(i, i + perRow);
-  	
-  	const row = document.createElement('div');
+  const rowBooks = books.slice(i, i + perRow);
+
+  const row = document.createElement('div');
   row.style.display = "flex";
   row.style.alignItems = "flex-end";
 
@@ -201,10 +201,8 @@ function renderShelf(el, books){
 
     const fav = document.createElement('div');
     fav.style.height = "18px";
-    fav.style.writingMode = "vertical-rl";
-    fav.style.alignItems = "flex-end";
-    fav.style.background = "transparent";
     fav.style.display = "flex";
+    fav.style.alignItems = "flex-end";
     fav.style.justifyContent = "center";
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
@@ -216,15 +214,19 @@ function renderShelf(el, books){
 
     d.onclick = ()=> openDetail(b);
 
-    el.appendChild(d);
+    // ❗ここが重要
+    row.appendChild(d);
   });
 
-  // ✅ 棚板
+  // 本の行を追加
+  el.appendChild(row);
+
+  // 棚板
   const shelf = document.createElement('div');
   shelf.style.width = "100%";
   shelf.style.height = "6px";
   shelf.style.background = "#caa46a";
-  shelf.style.margin = "0px 0 12px";
+  shelf.style.margin = "0 0 12px";
   shelf.style.borderRadius = "3px";
 
   el.appendChild(shelf);
