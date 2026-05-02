@@ -51,7 +51,8 @@ function renderHome(){
     const d = document.createElement('div');
     d.className = "card";
     
-    const color = getBookColor(b); //背表紙の色描画
+    const c1 = getTagColor(b.tagIds?.[0]); //背表紙の色描画
+    const c2 = getTagColor(b.tagIds?.[1]) || b.tagIds?.[0]);
     
     d.innerHTML = `
     		<div style="display:flex;align-items:center;">
@@ -59,14 +60,14 @@ function renderHome(){
     			<div style="
     				width:6px;
     				height:40px;
-    				background:${color};
+    				background: linear-gradient(${c1}, ${c2});
     				margin-right:8px;
     				border-radius:2px;
     			"></div>
     			
     			<div>
 		    		<div style="font-weight:bold">${b.title}</div>
-    				<div style="font-size:10px;color:#666666">
+    				<div style="font-size:10px;color:#999999">
     			   	${b.dates?.[0] || ""}
      		 	</div>
      		 </div>
