@@ -24,14 +24,19 @@ main{
 }
 
 button{
-  background:#ffffff;
-  color:black;
+  background:#4caf50;
+  color:white;
   border:none;
   padding:10px 14px;
   border-radius:8px;
   margin-bottom:10px;
 }
 
+.btnme{
+background:ffffff;
+color:black;
+style:bold;
+}
 
 .card{
   background:white;
@@ -59,7 +64,12 @@ button{
   display:none;
 }
 .sear{
-padding:15px;
+border:1px solid #ddd;
+border-radius:8px;
+padding:6px 10px;
+font-size:13px;
+background:#fff;
+color:#333
 }
 
 
@@ -79,12 +89,12 @@ padding:15px;
 
 
 <nav>
-  <button onclick="go('home')">ホーム</button>
-  <button onclick="go('series')">シリーズ</button>
-  <button onclick="go('characters')">人物</button>
-  <button onclick="go('stats')">統計</button>
-  <button onclick="go('settings')">設定</button>
-  <button onclick="loadData()">更新</button>
+  <button class="btnme" onclick="go('home')">ホーム</button>
+  <button class="btnme" onclick="go('series')">シリーズ</button>
+  <button class="btnme" onclick="go('characters')">人物</button>
+  <button class="btnme" onclick="go('stats')">統計</button>
+  <button class="btnme" onclick="go('settings')">設定</button>
+  <button class="btnme" onclick="loadData()">更新</button>
 </nav>
 </header>
 
