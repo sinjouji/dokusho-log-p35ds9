@@ -158,7 +158,6 @@ function openSeries(s){
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
     <div id="series-books"></div>
-    <button onclick="go('series')">戻る</button>
   `;
 
 //シリーズ関連：人物HTML表示
@@ -166,6 +165,7 @@ el.innerHTML += `
   <hr>
   <div>登場人物:</div>
   <div id="series-chars"></div>
+      <button onclick="go('series')">戻る</button>
 `;
 
 //シリーズ関連：本描画
@@ -183,12 +183,14 @@ el.innerHTML += `
   //シリーズ関連：人物描画
   const list2 = document.getElementById('series-chars');
   
-  if(relatedCharacters.length === 0){
-  list.innerHTML = "<div>（人物なし）</div>";
-}
 
 relatedCharacters.forEach(c=>{
   const d = document.createElement('div');
+  
+    if(relatedCharacters.length === 0){
+  list.innerHTML = "<div>（人物なし）</div>";
+}
+  
   d.className = "card";
   d.textContent = c.name;
 
