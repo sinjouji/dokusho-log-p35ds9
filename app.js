@@ -62,7 +62,7 @@ function renderHome(){
     	}
     	
     	if(colorMode === "gradient"){
-    		bg = `linear-gradient(${c1}, ${c2})`;
+    		bg = `linear-gradient(${c1} 80%, ${c2} 20%)`;
     	}
     	
     	if(colorMode === "split"){
