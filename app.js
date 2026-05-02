@@ -3,6 +3,7 @@ const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main
 
 let books = [];
 let series = [];
+let characters = [];
 
 // ページ切替
 function go(name){
@@ -15,9 +16,9 @@ function go(name){
     target.classList.remove('hidden');
   }
 
-  if(name === 'series'){
-    renderSeries();
-  }
+  if(name === 'series') renderSeries();
+  if(name === 'characters') renderCharacters(); // ★追加
+}
 }
 
 // ホーム（本のリスト）
@@ -133,6 +134,64 @@ function openSeries(s){
   });
 }
 
+
+//人物一覧
+function renderCharacters(){
+  const el = document.getElementById('page-characters');
+  el.innerHTML = "";
+
+  characters.forEach(c=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = c.name;
+
+    d.onclick = ()=> openCharacter(c);
+
+    el.appendChild(d);
+  });
+}
+
+//人物詳細
+function openCharacter(c){
+  go('detail');
+
+  const el = document.getElementById('page-detail');
+
+  // この人物のシリーズ
+  const relatedSeries = series.filter(s=>{
+    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  });
+
+  el.innerHTML = `
+    <h2>${c.name}</h2>
+
+    <div style="margin-bottom:10px;">
+      ${c.memo || ""}
+    </div>
+
+    <hr>
+
+    <div>シリーズ:</div>
+    <div id="char-series"></div>
+
+    <button onclick="go('characters')">戻る</button>
+  `;
+
+  const list = document.getElementById('char-series');
+
+  relatedSeries.forEach(s=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = s.name;
+
+    d.onclick = ()=> openSeries(s);
+
+    list.appendChild(d);
+  });
+}
+
+
+
 // データ読み込み
 async function loadData(){
   try{
@@ -142,6 +201,7 @@ async function loadData(){
 
     books = data.books || [];
     series = data.series || [];
+    characters = data.characters || [];
 
     renderHome();
 
