@@ -163,7 +163,6 @@ function renderShelf(el, books){
     }
     if(colorMode === "cau"){
     		d.style.background = `linear-gradient(
-    			to bottom,
     			${c1} 0%,
     			${c1} 10%,
     			${c3} 10%,
@@ -204,9 +203,9 @@ function renderShelf(el, books){
     d.onclick = ()=> openDetail(b);
 
     el.appendChild(d);
-  });
-  
-     // 棚ライン
+
+
+    // 棚ライン
 const shelf = document.createElement('div');
 shelf.style.width = "100%";
 shelf.style.height = "6px";
@@ -215,7 +214,8 @@ shelf.style.margin = "6px 0 12px";
 shelf.style.borderRadius = "3px";
 
 el.appendChild(shelf);
-  
+
+  });  
 }
 
 
