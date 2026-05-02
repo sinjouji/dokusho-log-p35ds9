@@ -27,11 +27,10 @@ function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
-  const keyword = document.getElementById('search')?.value || "";
-  console.log("keyword:", keyword);
+  const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
   const filtered = books.filter(b =>{
-    const matchTitle = b.title.includes(keyword);
+    const matchTitle = (b.title || "").toLowerCase().includes(keyword);
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
@@ -39,6 +38,12 @@ function renderHome(){
     return matchTitle && matchTag;
   });
 
+  // ⭐ここでソート
+  filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
+  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
+  filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
+
+  // 表示
   filtered.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -53,6 +58,40 @@ function renderHome(){
     el.appendChild(d);
   });
 }
+
+
+//タグで絞込み
+function renderTagFilter(){
+  const el = document.getElementById('tag-filter');
+  el.innerHTML = "";
+
+  // 全解除ボタン
+  const all = document.createElement('button');
+  all.textContent = "すべて";
+  all.onclick = ()=>{
+    selectedTagId = null;
+    renderHome();
+  };
+  el.appendChild(all);
+
+  // タグ一覧
+  tagMaster.forEach(t=>{
+    const btn = document.createElement('button');
+    btn.textContent = t.name;
+
+    btn.onclick = ()=>{
+      selectedTagId = t.id;
+      renderHome();
+    };
+
+    el.appendChild(btn);
+  });
+}
+
+
+
+
+
 // 本詳細
 function openDetail(book){
   go('detail');
@@ -122,7 +161,7 @@ relatedCharacters.forEach(c=>{
 });
 }}
 
-//本の詳細でシリーズを開く
+//本詳細でシリーズを開く
 function openSeriesById(id){
   const s = series.find(x=>x.id === id);
   if(s) openSeries(s);
@@ -236,12 +275,12 @@ function openCharacter(c){
 
   const el = document.getElementById('page-detail');
 
-  // 人物→シリーズ
+  // 人物→シリーズ★完了
   const relatedSeries = series.filter(s=>{
     return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
 
-  // 人物→本
+  // 人物→本★完了
   const relatedBooks = books.filter(b=>{
     return relatedSeries.some(s =>
       Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
@@ -310,6 +349,8 @@ async function loadData(){
     books = data.books || [];
     series = data.series || [];
     characters = data.characters || [];
+    tagMaster = data.tagMaster || [];
+    renderTagFilter();
 
     renderHome();
 
@@ -322,6 +363,8 @@ async function loadData(){
 
   const l = document.getElementById('loading');
   if(l) l.classList.add('hidden');
+
+
 }
 
 // 初回ロード
