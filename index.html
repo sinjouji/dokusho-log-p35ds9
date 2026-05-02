@@ -9,11 +9,11 @@
 body{
   margin:0;
   font-family:sans-serif;
-  background:#f5f5f5;
+  background:#f2f2f2;
 }
 
 header{
-  background:#4CAF50;
+  background:#92a578;
   color:white;
   padding:16px;
   font-size:20px;
@@ -24,7 +24,7 @@ main{
 }
 
 button{
-  background:#4caf50;
+  background:#cccccc;
   color:white;
   border:none;
   padding:10px 14px;
@@ -33,17 +33,18 @@ button{
 }
 
 .btnme{
-background:#ffffff;
+background:#babcb1;
 color:black;
 font-weight:bold;
 }
 
 .card{
-  background:white;
+  background:#f5f1f2;
   padding:14px;
   margin-bottom:10px;
   border-radius:10px;
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  border:1px #cccccc;
+  box-shadow:none;
 }
 
 #loading{
@@ -71,7 +72,7 @@ font-weight:bold;
 .sear{
 border:1px solid #ddd;
 border-radius:8px;
-padding:6px 10px;
+padding-left:10px;
 font-size:13px;
 background:#fff;
 color:#333
@@ -90,7 +91,7 @@ color:#333
 
 <div id="loading">読み込み中…</div>
 
-<header>📚 読書ログ
+<header>📙 読書ログ
 
 
 <nav>
@@ -105,8 +106,7 @@ color:#333
 
 <input id="search" class="sear" oninput="renderHome()" placeholder="検索">
 <div id="tag-filter"></div>
-  <div id="color-mode"></div>
-
+<div id="color-mode"></div>
 
 <div id="page-home" class="page"></div>
 <div id="page-series" class="page hidden"></div>
