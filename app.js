@@ -5,8 +5,11 @@ let books = [];
 let series = [];
 let characters = [];
 let tagMaster = [];
-let selectedTagId = null;
-let colorMode = localStorage.getItem("colorMode") || "split"; // 背表紙カラー：single/gradient/split
+let selectedTagId = localStorage.getItem("selectedTagId");
+
+const savedMode = localStorage.getItem("colorMode");
+
+let colorMode = ["single","gradient","sprit"].includes(savedMode): "split"; // 背表紙カラー：single/gradient/split
 
 
 
@@ -149,6 +152,9 @@ function renderTagFilter(){
 
     btn.onclick = ()=>{
       selectedTagId = t.id;
+      
+      localStorage.setItem("selectedTagId", selectedTagId);
+      
       renderHome();
       renderTagFilter(); //見た目更新
     };
