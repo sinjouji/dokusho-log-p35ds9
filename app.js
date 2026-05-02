@@ -24,8 +24,8 @@ function go(name){
 
 // ホーム（本のリスト）
 function renderHome(){
-	console.log("keyword:",keyword);
   const el = document.getElementById('page-home');
+  console.log("keyword:",keyword);
   el.innerHTML = "";
 
   // 検索
