@@ -135,6 +135,14 @@ function renderTagFilter(){
   all.textContent = "すべて";
   all.onclick = ()=>{
     selectedTagId = null;
+    
+    if(selectedTagId === null){
+    		all.style.background = "#333";
+    		all.style.color = "#fff";
+    }
+    
+    localStorage.setItem("selectedTagId", "");
+    
     renderHome();
     renderTagFilter(); //選択状態更新
   };
