@@ -58,9 +58,9 @@ function renderHome(){
     		<div style="display:flex;align-items:center;">
     		
     			<div style="
-    				width:8px;
+    				width:15px;
     				height:40px;
-    				background: linear-gradient(180deg, ${c1}, ${c2});
+    				background: linear-gradient(to bottom, ${c1} 75%, ${c2} 75%);
     				margin-right:8px;
     				border-radius:2px;
     			"></div>
