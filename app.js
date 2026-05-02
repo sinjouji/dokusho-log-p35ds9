@@ -43,16 +43,16 @@ function renderHome(){
 
   // ⭐ここでソート
   filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
-  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
-  filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
+ //  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
+  // filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
 
   // 表示
   filtered.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
     
-    const c1 = getTagColor(b.tagIds?.[0]); //背表紙の色描画
-    const c2 = getTagColor(b.tagIds?.[1]) || b.tagIds?.[0]);
+    const c1 = getTagColor(b.tagIds?.[0] || null); //背表紙の色描画
+    const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0] || null);
     
     d.innerHTML = `
     		<div style="display:flex;align-items:center;">
