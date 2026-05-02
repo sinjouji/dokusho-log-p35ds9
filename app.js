@@ -1,5 +1,3 @@
-console.log("JS start");
-
 // ★ JSON URL
 const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
 
@@ -48,19 +46,9 @@ function openDetail(book){
   go('detail');
 
   const el = document.getElementById('page-detail');
-  
-  // この本が属するシリーズ
-const relatedSeries = series.filter(s=>{
+  const relatedSeries = series.filter(s=>{
   return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
 });
-
-// そのシリーズに属する人物
-const relatedCharacters = characters.filter(c=>{
-  return relatedSeries.some(s =>
-    Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id)
-  );
-});
-  
 
   el.innerHTML = `
   <h2>${book.title}</h2>
@@ -87,26 +75,9 @@ const relatedCharacters = characters.filter(c=>{
     `).join(", ") || "なし"}
   </div>
 
-  <hr>
-  <div>登場人物:</div>
-  <div id="book-chars"></div>
-
   <button onclick="go('home')">戻る</button>
 `;
-
-const list3 = document.getElementById('book-chars');
-
-relatedCharacters.forEach(c=>{
-  const d = document.createElement('div');
-  d.className = "card";
-  d.textContent = c.name;
-
-  d.onclick = ()=> openCharacter(c);
-
-  list3.appendChild(d);
-});
-
-
+}
 
 
 //本の詳細でシリーズを開く
@@ -186,15 +157,16 @@ function openCharacter(c){
 
   const el = document.getElementById('page-detail');
 
+  // この人物のシリーズ
   const relatedSeries = series.filter(s=>{
     return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
   
   const relatedBooks = books.filter(b=>{
-    return relatedSeries.some(s =>
-      Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-    );
-  });
+  return relatedSeries.some(s =>
+    Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+  );
+});
 
   el.innerHTML = `
     <h2>${c.name}</h2>
@@ -207,10 +179,8 @@ function openCharacter(c){
 
     <div>シリーズ:</div>
     <div id="char-series"></div>
-    
-    <hr>
-    <div>登場作品:</div>
-    <div id="char-books"></div>
+    <div>本</div>
+    <div id=""></div>
 
     <button onclick="go('characters')">戻る</button>
   `;
@@ -223,24 +193,10 @@ function openCharacter(c){
     d.textContent = s.name;
 
     d.onclick = ()=> openSeries(s);
+
     list.appendChild(d);
   });
-
-  // ★ここに入れる
-  const list2 = document.getElementById('char-books');
-
-  relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
-
-    d.onclick = ()=> openDetail(b);
-    list2.appendChild(d);
-  });
 }
-
-
-
 
 
 
