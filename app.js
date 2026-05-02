@@ -5,7 +5,8 @@ let books = [];
 let series = [];
 let characters = [];
 let tagMaster = [];
-let selectedTagId = localStorage.getItem("selectedTagId") || null;
+let selectedTagId = localStorage.getItem("selectedTagId");
+if(!selectedTagId) selectedTagId = null;
 
 const savedMode = localStorage.getItem("colorMode");
 
