@@ -95,7 +95,7 @@ el.innerHTML += `
 //本→登場人物の描画★完了
 const list = document.getElementById('book-chars');
 
-if(!relatedCharacters.length){
+if(relatedCharacters.length === 0){
   list.innerHTML = "<div style="color:gray;">（人物なし）</div>";
 } else {
 
@@ -108,8 +108,7 @@ relatedCharacters.forEach(c=>{
 
   list.appendChild(d);
 });
-}
-}
+}}
 
 //本の詳細でシリーズを開く
 function openSeriesById(id){
