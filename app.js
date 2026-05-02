@@ -182,6 +182,10 @@ el.innerHTML += `
   
   //シリーズ関連：人物描画
   const list2 = document.getElementById('series-chars');
+  
+  if(relatedCharacters.length === 0){
+  list.innerHTML = "<div>（人物なし）</div>";
+}
 
 relatedCharacters.forEach(c=>{
   const d = document.createElement('div');
