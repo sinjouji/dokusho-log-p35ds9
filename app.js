@@ -19,7 +19,7 @@ function go(name){
   if(name === 'series') renderSeries();
   if(name === 'characters') renderCharacters(); // ★追加
 }
-}
+
 
 // ホーム（本のリスト）
 function renderHome(){
