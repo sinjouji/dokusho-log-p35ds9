@@ -25,12 +25,12 @@ function go(name){
 // ホーム（本のリスト）
 function renderHome(){
   const el = document.getElementById('page-home');
-  console.log("keyword:",keyword);
   el.innerHTML = "";
 
   // 検索
   const keyword = document.getElementById('search')?.value || "";
 
+  console.log("keyword:",keyword);
   const filtered = books.filter(b =>{
     const matchTitle = b.title.includes(keyword);
 
