@@ -140,7 +140,7 @@ function renderList(el, books){
 function renderShelf(el, books){
   el.innerHTML = "";
   
-  const perRow = 20; //好きに調整OK
+  const perRow = 10; //好きに調整OK
   
   for(let i = 0; i < books.length; i += perRow){
   	const rowBooks = books.slice(i, i + perRow);
@@ -156,7 +156,7 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 100 + Math.floor(Math.random()*60);
+    const h = 100 + Math.floor(Math.random()*40);
 
     d.style.width = "36px";
     d.style.height = h + "px";
