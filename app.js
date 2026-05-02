@@ -11,10 +11,10 @@ if(!selectedTagId) selectedTagId = null;
 const savedMode = localStorage.getItem("colorMode");
 
 let colorMode = ["single","gradient","split","cau"].includes(savedMode)
-let viewMode = "shelf"//localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
-
 ? savedMode
 : "split"; // 背表紙カラー：single/gradient/split/cau
+
+let viewMode = localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
 
 
 
@@ -226,7 +226,7 @@ function renderShelf(el, books){
 
 //本のビュー切り替え
 function setView(mode){
-  viewMode = "shelf";// mode;
+  viewMode = mode;
   localStorage.setItem("viewMode", mode);
   renderHome();
 }
