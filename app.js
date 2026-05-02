@@ -1,3 +1,5 @@
+console.log("JS start");
+
 // ★ JSON URL
 const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
 
