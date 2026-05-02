@@ -20,7 +20,7 @@ function go(name){
   }
 }
 
-// ホーム
+// ホーム（本のリスト）
 function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
@@ -40,6 +40,53 @@ function renderHome(){
   });
 }
 
+// 本詳細
+function openDetail(book){
+  go('detail');
+
+  const el = document.getElementById('page-detail');
+  const relatedSeries = series.filter(s=>{
+  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
+});
+
+  el.innerHTML = `
+  <h2>${book.title}</h2>
+
+  <div>⭐ ${book.fav || 0}</div>
+
+  <div>
+    読了日: ${book.dates?.[0] || "未読"}
+  </div>
+
+  <div style="margin-top:10px;">
+    ${book.memo || ""}
+  </div>
+
+  <hr>
+
+  <div>
+    シリーズ:
+    ${relatedSeries.map(s=>`
+      <span style="color:blue;cursor:pointer"
+        onclick="openSeriesById('${s.id}')">
+        ${s.name}
+      </span>
+    `).join(", ") || "なし"}
+  </div>
+
+  <button onclick="go('home')">戻る</button>
+`;
+}
+
+
+//本の詳細でシリーズを開く
+function openSeriesById(id){
+  const s = series.find(x=>x.id === id);
+  if(s) openSeries(s);
+}
+
+
+
 // シリーズ一覧
 function renderSeries(){
   const el = document.getElementById('page-series');
@@ -55,20 +102,6 @@ function renderSeries(){
   });
 }
 
-// 本詳細
-function openDetail(book){
-  go('detail');
-
-  const el = document.getElementById('page-detail');
-
-  el.innerHTML = `
-    <h2>${book.title}</h2>
-    <div>⭐ ${book.fav || 0}</div>
-    <div>読了日: ${book.dates?.[0] || "未読"}</div>
-    <div style="margin-top:10px;">${book.memo || ""}</div>
-    <button onclick="go('home')">戻る</button>
-  `;
-}
 
 // シリーズ詳細
 function openSeries(s){
