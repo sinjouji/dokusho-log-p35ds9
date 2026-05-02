@@ -75,16 +75,16 @@ button{
 
 
 <nav>
-  <button onclick="go('home')">ホーム</button>
-  <button onclick="go('series')">シリーズ</button>
-  <button onclick="go('characters')">人物</button>
-  <button onclick="go('stats')">統計</button>
-  <button onclick="go('settings')">設定</button>
-  <button onclick="loadData()">更新</button>
+  <div><button onclick="go('home')">ホーム</button></div>
+  <div><button onclick="go('series')">シリーズ</button></div>
+  <div><button onclick="go('characters')">人物</button></div>
+  <div><button onclick="go('stats')">統計</button></div>
+  <div><button onclick="go('settings')">設定</button></div>
+  <div><button onclick="loadData()">更新</button></div>
 </nav>
 </header>
 
-<input id="search" placeholder="検索">
+<div><input id="search" placeholder="検索"></div>
 
 <div id="page-home" class="page"></div>
 <div id="page-series" class="page hidden"></div>
