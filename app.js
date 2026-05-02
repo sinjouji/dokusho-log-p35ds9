@@ -147,10 +147,11 @@ function openSeries(s){
     return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
   });
   	
-  	//シリーズ→人物★完了
+ 	 //シリーズ→人物
   const relatedCharacters = characters.filter(c=>{
   return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
+  
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
@@ -158,6 +159,7 @@ function openSeries(s){
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
     <div id="series-books"></div>
+    <button onclick="go('series')">戻る</button>
   `;
 
 //シリーズ関連：人物HTML表示
@@ -165,7 +167,6 @@ el.innerHTML += `
   <hr>
   <div>登場人物:</div>
   <div id="series-chars"></div>
-      <button onclick="go('series')">戻る</button>
 `;
 
 //シリーズ関連：本描画
