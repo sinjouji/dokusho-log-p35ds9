@@ -6,7 +6,7 @@ let series = [];
 let characters = [];
 let tagMaster = [];
 let selectedTagId = null;
-let colorMode = "split"; // 背表紙カラー：single/gradient/split
+let colorMode = localStorage.getItem("colorMode") || "split"; // 背表紙カラー：single/gradient/split
 
 
 
@@ -180,6 +180,9 @@ function renderColorMode(){
 
     btn.onclick = ()=>{
       colorMode = m.id;
+      
+      localStorage.setItem("colorMode", colorMode);
+      
       renderHome();
       renderColorMode();
     };
