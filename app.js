@@ -109,6 +109,7 @@ relatedCharacters.forEach(c=>{
   list.appendChild(d);
 });
 }
+}
 
 //本の詳細でシリーズを開く
 function openSeriesById(id){
