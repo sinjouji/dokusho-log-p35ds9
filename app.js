@@ -283,7 +283,7 @@ el.innerHTML += `
 
     list.appendChild(d);
   });
-}
+
 
 //人物→本描画
 const list3 = document.getElementById('char-books');
@@ -297,6 +297,10 @@ relatedBooks.forEach(b=>{
 
   list3.appendChild(d);
 });
+
+
+}
+
 
 
 // データ読み込み
