@@ -74,9 +74,9 @@ const relatedCharacters = characters.filter(c=>{
   </div>
 
   <hr>
-`;
+
   <div>
-    シリーズ:
+    シリーズ:`;
     ${relatedSeries.map(s=>`
       <span style="color:blue;cursor:pointer"
         onclick="openSeriesById('${s.id}')">
