@@ -11,7 +11,7 @@ if(!selectedTagId) selectedTagId = null;
 const savedMode = localStorage.getItem("colorMode");
 
 let colorMode = ["single","gradient","split","cau"].includes(savedMode)
-let viewMode = localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
+let viewMode = "shelf";//localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
 
 ? savedMode
 : "split"; // 背表紙カラー：single/gradient/split/cau
