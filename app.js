@@ -155,7 +155,7 @@ function renderTagFilter(){
     btn.onclick = ()=>{
       selectedTagId = t.id;
       
-      localStorage.setItem("selectedTagId", selectedTagId);
+      localStorage.setItem("selectedTagId", selectedTagId || "");
       
       renderHome();
       renderTagFilter(); //見た目更新
