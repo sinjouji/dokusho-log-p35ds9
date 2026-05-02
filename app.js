@@ -135,8 +135,8 @@ function renderTagFilter(){
   all.textContent = "すべて"; 
   
   if(selectedTagId === null){
-    		all.style.background = "#333";
-    		all.style.color = "#fff";
+    		all.style.borderRadius = "6px";
+    		all.style.padding = "4px 8px";
     		all.style.margin = "3px";
     }
   
@@ -156,11 +156,19 @@ function renderTagFilter(){
     const btn = document.createElement('button');
     btn.textContent = t.name;
     
+    btn.style.margin = "3px";
+    btn.style.border = "none";
+    btn.style.borderRadius = "6px";
+    btn.style.padding = "4px 8px";
+   
+   //タグ色
+   btn.style.background = t.color;
+   btn.style.color = "#fff";
+    
     //選択中の見た目
     if(t.id === selectedTagId){
-    		btn.style.background = "#333";
-    		btn.style.color = "#fff";
-    		btn.style.margin = "3px";
+    		btn.style.outline = "2px solid #000";
+    		btn.style.transform = "scale(1.05)";
     	}
 
 
@@ -175,6 +183,11 @@ function renderTagFilter(){
 
     el.appendChild(btn);
   });
+}
+
+//文字色対策
+function getTextColor(bg){
+  return "#fff"; // とりあえず白固定でもOK
 }
 
 
