@@ -133,13 +133,15 @@ function renderTagFilter(){
   // 全解除ボタン
   const all = document.createElement('button');
   all.textContent = "すべて"; 
-  all.onclick = ()=>{
-    selectedTagId = null;
-        
-        if(selectedTagId === null){
+  
+  if(selectedTagId === null){
     		all.style.background = "#333";
     		all.style.color = "#fff";
+    		all.style.margin = "3px";
     }
+  
+  all.onclick = ()=>{
+    selectedTagId = null;
         
     localStorage.setItem("selectedTagId", "");
     
