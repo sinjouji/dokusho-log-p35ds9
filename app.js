@@ -95,9 +95,9 @@ el.innerHTML += `
 //本→登場人物の描画★完了
 const list = document.getElementById('book-chars');
 
-if(relatedCharacters.length === 0){
-  list.innerHTML = "<div>（人物なし）</div>";
-}
+if(!relatedCharacters.length){
+  list.innerHTML = "<div style="color:gray;">（人物なし）</div>";
+} else {
 
 relatedCharacters.forEach(c=>{
   const d = document.createElement('div');
@@ -182,23 +182,20 @@ el.innerHTML += `
   });
   
   //シリーズ関連：人物描画
-  const list2 = document.getElementById('series-chars');
+const list2 = document.getElementById('series-chars');
 
-    if(relatedCharacters.length === 0){
-  list2.innerHTML = "<div>（人物なし）</div>";
-}
-relatedCharacters.forEach(c=>{
-  const d = document.createElement('div');
-    
-  d.className = "card";
-  d.textContent = c.name;
+if(!relatedCharacters.length){
+  list2.innerHTML = "<div style="color:gray;">（人物なし）</div>";
+} else {
+  relatedCharacters.forEach(c=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = c.name;
 
-  d.onclick = ()=> openCharacter(c);
+    d.onclick = ()=> openCharacter(c);
 
-  list2.appendChild(d);
-});
-  
-  
+    list2.appendChild(d);
+  });
 }
 
 
