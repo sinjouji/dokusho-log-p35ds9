@@ -132,14 +132,7 @@ function renderTagFilter(){
 
   // 全解除ボタン
   const all = document.createElement('button');
-  all.textContent = "すべて";
-  
-      if(selectedTagId === null){
-    		all.style.background = "#333";
-    		all.style.color = "#fff";
-    }
-
-  
+  all.textContent = "すべて"; 
   all.onclick = ()=>{
     selectedTagId = null;
         
@@ -162,6 +155,11 @@ function renderTagFilter(){
     		btn.style.color = "#fff";
     		btn.style.margin = "3px";
     	}
+    	      if(selectedTagId === null){
+    		all.style.background = "#333";
+    		all.style.color = "#fff";
+    }
+
 
     btn.onclick = ()=>{
       selectedTagId = t.id;
