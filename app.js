@@ -43,6 +43,10 @@ function renderHome(){
 // 本詳細
 function openDetail(book){
   go('detail');
+  
+  
+console.log("series length:", series.length);
+
 
   const el = document.getElementById('page-detail');
   const relatedSeries = series.filter(s=>{
