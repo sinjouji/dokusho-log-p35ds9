@@ -136,6 +136,7 @@ function renderShelf(el, books){
 
     const c1 = getTagColor(b.tagIds?.[0]);
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
+    const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
     // ★高さランダム（それっぽさ）
     const h = 100 + Math.floor(Math.random()*40);
@@ -198,6 +199,7 @@ function renderShelf(el, books){
 
     d.appendChild(title);
     d.appendChild(fav);
+    d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     d.onclick = ()=> openDetail(b);
     
@@ -209,7 +211,6 @@ shelf.style.height = "6px";
 shelf.style.background = "#caa46a";
 shelf.style.margin = "6px 0 12px";
 shelf.style.borderRadius = "3px";
-d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
 el.appendChild(shelf);
 
