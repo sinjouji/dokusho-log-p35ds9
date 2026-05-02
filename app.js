@@ -80,10 +80,13 @@ const relatedCharacters = characters.filter(c=>{
       </span>
     `).join(", ") || "なし"}
   </div>
-
+  
+  
+  el.innerHTML += `
   <hr>
   <div>登場人物:</div>
   <div id="book-chars"></div>
+`;
 
   <button onclick="go('home')">戻る</button>
 `;
