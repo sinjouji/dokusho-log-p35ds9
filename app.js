@@ -214,15 +214,15 @@ function renderColorMode(){
     btn.textContent = m.label;
     
       btn.style.background = "transparent";
-      btn.style.color = "#333";
+      btn.style.color = "#999";
       btn.style.margin = "3px";
       btn.style.padding = "2px 8px";
       btn.style.fontSize = "12px";
       btn.style.borderRadius = "999px";
-      btn.style.border = "1px solid #333";
+      btn.style.border = "1px solid #999";
 
     if(m.id === colorMode){
-   btn.style.background = "#333";
+   btn.style.background = "#666";
    btn.style.color = "#fff";
     }
 
