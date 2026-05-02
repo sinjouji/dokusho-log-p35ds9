@@ -10,9 +10,9 @@ if(!selectedTagId) selectedTagId = null;
 
 const savedMode = localStorage.getItem("colorMode");
 
-let colorMode = ["single","gradient","split"].includes(savedMode)
+let colorMode = ["single","gradient","split","cau"].includes(savedMode)
 ? savedMode
-: "split"; // 背表紙カラー：single/gradient/split
+: "split"; // 背表紙カラー：single/gradient/split/cau
 
 
 
@@ -60,6 +60,7 @@ function renderHome(){
     
     const c1 = getTagColor(b.tagIds?.[0] || null); //背表紙の色描画
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0] || null);
+    const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0] || null);
     
     let bg = "";
     
@@ -75,6 +76,20 @@ function renderHome(){
     		bg = `linear-gradient(
     			to bottom,
     			${c1} 0%,
+    			${c1} 75%,
+    			${c2} 75%,
+    			${c2} 100%
+    		)`;
+    	}
+    	
+    	if(colorMode === "cau"){
+    		bg = `linear-gradient(
+    			to bottom,
+    			${c1} 0%,
+    			${c1} 10%,
+    			${c3} 10%,
+    			${c3} 15%,
+    			${c1} 15%,
     			${c1} 75%,
     			${c2} 75%,
     			${c2} 100%
@@ -108,6 +123,101 @@ function renderHome(){
 
 
 
+//本棚背表紙モード
+function renderShelf(el, books){
+  el.innerHTML = "";
+
+  el.style.display = "flex";
+  el.style.flexWrap = "wrap";
+  el.style.alignItems = "flex-end"; // ★下揃え（棚っぽく）
+
+  books.forEach(b=>{
+    const d = document.createElement('div');
+
+    const c1 = getTagColor(b.tagIds?.[0]);
+    const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
+
+    // ★高さランダム（それっぽさ）
+    const h = 100 + Math.floor(Math.random()*40);
+
+    d.style.width = "36px";
+    d.style.height = h + "px";
+    d.style.margin = "4px 2px";
+    d.style.borderRadius = "3px";
+    d.style.display = "flex";
+    d.style.flexDirection = "column";
+    d.style.justifyContent = "space-between";
+    d.style.overflow = "hidden";
+    d.style.boxShadow = "0 2px 3px rgba(0,0,0,0.2)";
+
+    // 🎨 背表紙カラー
+    if(colorMode === "single"){
+      d.style.background = c1;
+    }
+    if(colorMode === "gradient"){
+      d.style.background = `linear-gradient(${c1}, ${c2})`;
+    }
+    if(colorMode === "split"){
+      d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%, ${c2} 100%)`;
+    }
+    if(colorMode === "cau"){
+    		d.style.background = `linear-gradient(
+    			to bottom,
+    			${c1} 0%,
+    			${c1} 10%,
+    			${c3} 10%,
+    			${c3} 15%,
+    			${c1} 15%,
+    			${c1} 75%,
+    			${c2} 75%,
+    			${c2} 100%
+    		)`;
+    	}
+
+    // 📕 タイトル（縦書き）
+    const title = document.createElement('div');
+    title.textContent = b.title;
+    title.style.writingMode = "vertical-rl";
+    title.style.fontSize = "10px";
+    title.style.color = "#fff";
+    title.style.padding = "4px 2px";
+    title.style.textAlign = "center";
+
+    // ⭐ 評価バー
+    const fav = document.createElement('div');
+    fav.style.height = "18px";
+    fav.style.background = "#f5a623"; // オレンジ固定でもOK
+    fav.style.display = "flex";
+    fav.style.alignItems = "center";
+    fav.style.justifyContent = "center";
+    fav.style.fontSize = "10px";
+    fav.style.color = "#fff";
+
+    const stars = "★".repeat(b.fav || 0);
+    fav.textContent = stars;
+
+    d.appendChild(title);
+    d.appendChild(fav);
+
+    d.onclick = ()=> openDetail(b);
+    
+    
+    // 棚ライン
+const shelf = document.createElement('div');
+shelf.style.width = "100%";
+shelf.style.height = "6px";
+shelf.style.background = "#caa46a";
+shelf.style.margin = "6px 0 12px";
+shelf.style.borderRadius = "3px";
+d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
+
+el.appendChild(shelf);
+
+    el.appendChild(d);
+  });
+}
+
+
 
 //タグ色
 function getTagColor(tagId){
@@ -138,7 +248,6 @@ function renderTagFilter(){
 all.style.padding = "2px 8px";
 all.style.fontSize = "12px";
 all.style.borderRadius = "999px";
-all.style.cursor = "pointer";
 all.style.border = "1px solid #999";
 all.style.background = "transparent";
 all.style.color = "#666";
@@ -206,7 +315,8 @@ function renderColorMode(){
   const modes = [
     { id: "single", label: "単色" },
     { id: "gradient", label: "グラデ" },
-    { id: "split", label: "分割" }
+    { id: "split", label: "分割" },
+    { id: "cau", label: "目印" }
   ];
 
   modes.forEach(m=>{
