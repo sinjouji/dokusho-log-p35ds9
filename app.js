@@ -58,12 +58,12 @@ function renderHome(){
     		<div style="display:flex;align-items:center;">
     		
     			<div style="
-    				width:15px;
-    				height:40px;
-    				background: linear-gradient(to bottom, ${c1} 50%, ${c2} 50%);
-    				margin-right:8px;
-    				border-radius:2px;
-    			"></div>
+				width:8px;
+  				height:40px;
+  				background: linear-gradient(to bottom, ${c1} 75%, ${c2} 25%);
+  				margin-right:8px;
+  				border-radius:2px;
+			"></div>
     			
     			<div>
 		    		<div style="font-weight:bold">${b.title}</div>
