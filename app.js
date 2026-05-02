@@ -136,6 +136,11 @@ function renderTagFilter(){
   all.onclick = ()=>{
     selectedTagId = null;
         
+        if(selectedTagId === null){
+    		all.style.background = "#333";
+    		all.style.color = "#fff";
+    }
+        
     localStorage.setItem("selectedTagId", "");
     
     renderHome();
@@ -155,10 +160,6 @@ function renderTagFilter(){
     		btn.style.color = "#fff";
     		btn.style.margin = "3px";
     	}
-    	      if(selectedTagId === null){
-    		all.style.background = "#333";
-    		all.style.color = "#fff";
-    }
 
 
     btn.onclick = ()=>{
