@@ -5,11 +5,13 @@ let books = [];
 let series = [];
 let characters = [];
 let tagMaster = [];
-let selectedTagId = localStorage.getItem("selectedTagId");
+let selectedTagId = localStorage.getItem("selectedTagId") || null;
 
 const savedMode = localStorage.getItem("colorMode");
 
-let colorMode = ["single","gradient","sprit"].includes(savedMode): "split"; // 背表紙カラー：single/gradient/split
+let colorMode = ["single","gradient","split"].includes(savedMode)
+? savedMode
+: "split"; // 背表紙カラー：single/gradient/split
 
 
 
