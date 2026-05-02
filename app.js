@@ -10,9 +10,9 @@ if(!selectedTagId) selectedTagId = null;
 
 const savedMode = localStorage.getItem("colorMode");
 
-let colorMode = ["single","gradient","split","cau"].includes(savedMode)
+let colorMode = ["single","gradient","split","stripe"].includes(savedMode)
 ? savedMode
-: "split"; // 背表紙カラー：single/gradient/split/cau
+: "split"; // 背表紙カラー：single/gradient/split/stripe
 
 let viewMode = localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
 
@@ -95,7 +95,7 @@ function renderList(el, books){
     		)`;
     	}
     	
-    	if(colorMode === "cau"){
+    	if(colorMode === "stripe"){
     		bg = `linear-gradient(
     			to bottom,
     			${c1} 0%,
@@ -139,19 +139,24 @@ function renderList(el, books){
 //本棚背表紙モード
 function renderShelf(el, books){
   el.innerHTML = "";
+  
+  const perRow = 20; //好きに調整OK
+  
+  for(let i = 0; i < books.length; i += perRow){
+  	const rowBooks = books.slice(i, i + perRow);
+  	
+  	const row = document.createElement('div');
+  row.style.display = "flex";
+  row.style.alignItems = "flex-end";
 
-  el.style.display = "flex";
-  el.style.flexWrap = "wrap";
-  el.style.alignItems = "flex-end";
-
-  books.forEach(b=>{
+  rowBooks.forEach(b=>{
     const d = document.createElement('div');
 
     const c1 = getTagColor(b.tagIds?.[0]);
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 100 + Math.floor(Math.random()*40);
+    const h = 100 + Math.floor(Math.random()*60);
 
     d.style.width = "36px";
     d.style.height = h + "px";
@@ -159,9 +164,7 @@ function renderShelf(el, books){
     d.style.borderRadius = "3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
-    d.style.justifyContent = "space-between";
     d.style.overflow = "hidden";
-    d.style.boxShadow = "0 2px 3px rgba(0,0,0,0.2)";
     d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     // 🎨 背表紙カラー
@@ -174,7 +177,7 @@ function renderShelf(el, books){
     if(colorMode === "split"){
       d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%, ${c2} 100%)`;
     }
-    if(colorMode === "cau"){
+    if(colorMode === "stripe"){
       d.style.background = `linear-gradient(
         ${c1} 0%,
         ${c1} 10%,
@@ -194,6 +197,7 @@ function renderShelf(el, books){
     title.style.color = "#fff";
     title.style.padding = "4px 2px";
     title.style.textAlign = "center";
+    title.style.flex = "1";
 
     const fav = document.createElement('div');
     fav.style.height = "18px";
@@ -201,10 +205,10 @@ function renderShelf(el, books){
     fav.style.alignItems = "flex-end";
     fav.style.background = "transparent";
     fav.style.display = "flex";
-    fav.style.alignItems = "center";
     fav.style.justifyContent = "center";
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
+    fav.style.flexShrink = "0";
     fav.textContent = "★".repeat(b.fav || 0);
 
     d.appendChild(title);
@@ -215,12 +219,12 @@ function renderShelf(el, books){
     el.appendChild(d);
   });
 
-  // ✅ ここに移動！！
+  // ✅ 棚板
   const shelf = document.createElement('div');
   shelf.style.width = "100%";
   shelf.style.height = "6px";
   shelf.style.background = "#caa46a";
-  shelf.style.margin = "6px 0 12px";
+  shelf.style.margin = "0px 0 12px";
   shelf.style.borderRadius = "3px";
 
   el.appendChild(shelf);
@@ -332,7 +336,7 @@ function renderColorMode(){
     { id: "single", label: "単色" },
     { id: "gradient", label: "グラデ" },
     { id: "split", label: "分割" },
-    { id: "cau", label: "目印" }
+    { id: "stripe", label: "目印" }
   ];
 
   modes.forEach(m=>{
