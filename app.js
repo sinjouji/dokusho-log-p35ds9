@@ -6,6 +6,7 @@ let series = [];
 let characters = [];
 let tagMaster = [];
 let selectedTagId = null;
+let colorMode = "split"; // 背表紙カラー：single/gradient/split
 
 
 
@@ -54,19 +55,33 @@ function renderHome(){
     const c1 = getTagColor(b.tagIds?.[0] || null); //背表紙の色描画
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0] || null);
     
+    let bg = "";
+    
+    if(colorMode === "single"){
+    		bg = c1;
+    	}
+    	
+    	if(colorMode === "gradient"){
+    		bg = `linear-gradient(${c1}, ${c2})`;
+    	}
+    	
+    	if(colorMode === "split"){
+    		bg = `linear-gradient(
+    			to bottom,
+    			${c1} 0%,
+    			${c1} 75%,
+    			${c2} 75%,
+    			${c2} 100%
+    		)`;
+    	}
+    
     d.innerHTML = `
     		<div style="display:flex;align-items:center;">
     		
     			<div style="
-				width:8px;
+				width:15px;
   				height:40px;
-  				background: linear-gradient(
-  				to bottom,
-  				${c1} 0%,
-  				${c1} 75%,
-  				${c2} 75%,
-  				${c2} 100%
-  				);
+  				background: ${bg};
   				margin-right:8px;
   				border-radius:2px;
 			"></div>
@@ -129,7 +144,7 @@ function renderTagFilter(){
     if(t.id === selectedTagId){
     		btn.style.background = "#333";
     		btn.style.color = "#fff";
-    		btn.style.margin = "4px";
+    		btn.style.margin = "3px";
     	}
 
     btn.onclick = ()=>{
@@ -142,6 +157,36 @@ function renderTagFilter(){
   });
 }
 
+
+//背表紙カラーモード変更描画
+function renderColorMode(){
+  const el = document.getElementById('color-mode');
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "single", label: "単色" },
+    { id: "gradient", label: "グラデ" },
+    { id: "split", label: "分割" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+
+    if(m.id === colorMode){
+      btn.style.background = "#333";
+      btn.style.color = "#fff";
+    }
+
+    btn.onclick = ()=>{
+      colorMode = m.id;
+      renderHome();
+      renderColorMode();
+    };
+
+    el.appendChild(btn);
+  });
+}
 
 
 
@@ -405,6 +450,8 @@ async function loadData(){
     characters = data.characters || [];
     tagMaster = data.tagMaster || [];
     renderTagFilter();
+    renderColorMode();
+    
 
     renderHome();
 
