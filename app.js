@@ -185,7 +185,7 @@ el.innerHTML += `
   //シリーズ関連：人物描画
 const list2 = document.getElementById('series-chars');
 
-if(!relatedCharacters.length){
+if(relatedCharacters.length === 0){
   list2.innerHTML = "<div style="color:gray;">（人物なし）</div>";
 } else {
   relatedCharacters.forEach(c=>{
@@ -197,7 +197,7 @@ if(!relatedCharacters.length){
 
     list2.appendChild(d);
   });
-}
+}}
 
 
 
