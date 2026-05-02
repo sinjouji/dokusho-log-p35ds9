@@ -50,17 +50,51 @@ function renderHome(){
   filtered.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
+    
+    const color = getBookColor(b); //背表紙の色描画
+    
     d.innerHTML = `
-      <div style="font-weight:bold">${b.title}</div>
-      <div style="font-size:12px;color:gray">
-        ${b.dates?.[0] || ""}
-      </div>
+    		<div style="display:flex;align-items:center;">
+    		
+    			<div style="
+    				width:6px;
+    				height:40px;
+    				background:${color};
+    				margin-right:8px;
+    				border-radius:2px;
+    			"></div>
+    			
+    			<div>
+		    		<div style="font-weight:bold">${b.title}</div>
+    				<div style="font-size:10px;color:#666666">
+    			   	${b.dates?.[0] || ""}
+     		 	</div>
+     		 </div>
+     	</div>
     `;
 
     d.onclick = ()=> openDetail(b);
     el.appendChild(d);
   });
 }
+
+
+
+
+//タグ色
+function getTagColor(tagId){
+  const t = tagMaster.find(x => x.id === tagId);
+  return t?.color || "#999";
+}
+
+//背表紙（単色）
+function getBookColor(book){
+  if(Array.isArray(book.tagIds) && book.tagIds.length){
+    return getTagColor(book.tagIds[0]);
+  }
+  return "#ccc";
+}
+
 
 
 //タグで絞込み
