@@ -202,9 +202,11 @@ function renderShelf(el, books){
     d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     d.onclick = ()=> openDetail(b);
-    
-    
-    // 棚ライン
+
+    el.appendChild(d);
+  });
+  
+     // 棚ライン
 const shelf = document.createElement('div');
 shelf.style.width = "100%";
 shelf.style.height = "6px";
@@ -213,9 +215,7 @@ shelf.style.margin = "6px 0 12px";
 shelf.style.borderRadius = "3px";
 
 el.appendChild(shelf);
-
-    el.appendChild(d);
-  });
+  
 }
 
 
