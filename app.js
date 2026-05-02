@@ -230,7 +230,7 @@ function renderShelf(el, books){
   shelf.style.borderRadius = "3px";
 
   el.appendChild(shelf);
-}
+}}
 
 //本のビュー切り替え
 function setView(mode){
