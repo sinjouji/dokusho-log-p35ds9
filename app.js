@@ -11,6 +11,8 @@ if(!selectedTagId) selectedTagId = null;
 const savedMode = localStorage.getItem("colorMode");
 
 let colorMode = ["single","gradient","split","cau"].includes(savedMode)
+let viewMode = localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
+
 ? savedMode
 : "split"; // 背表紙カラー：single/gradient/split/cau
 
@@ -53,7 +55,18 @@ function renderHome(){
  //  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
   // filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
 
-  // 表示
+
+	if(viewMode === "list"){
+		renderList(el, filtered);
+		} else {
+		renderShelf(el, filtered);
+		}
+	}
+
+
+
+  // 本棚リスト表示
+function renderList(el, books){
   filtered.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -209,6 +222,13 @@ function renderShelf(el, books){
   shelf.style.borderRadius = "3px";
 
   el.appendChild(shelf);
+}
+
+//本のビュー切り替え
+function setView(mode){
+  viewMode = mode;
+  localStorage.setItem("viewMode", mode);
+  renderHome();
 }
 
 
