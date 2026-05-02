@@ -27,7 +27,20 @@ function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
-  books.forEach(b=>{
+  // 検索
+  const keyword = document.getElementById('search')?.value || "";
+
+  const filtered = books.filter(b =>{
+    const matchTitle = b.title.includes(keyword);
+
+    const matchTag = !selectedTagId ||
+      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+
+    return matchTitle && matchTag;
+  });
+
+  // 表示
+  filtered.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
     d.innerHTML = `
@@ -40,34 +53,6 @@ function renderHome(){
     d.onclick = ()=> openDetail(b);
     el.appendChild(d);
   });
-
-
-//検索
-const keyword = document.getElementById('search')?.value || "";
-
-const filtered = books.filter(b =>{
-	const matchTitle = b.title.includes(keyword);
-	
-	const matchTag = !selectedTagId ||
-		(Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
-		
-	return matchTitle && matchTag;
-	});
-	
-	filtered.forEach(b=>{
-		const d = document.createElement('div');
-		d.className = "card";
-		d.innerHTML = `
-		<div style="font-weight:bold">${b.title}</div>
-		<div style="font-size:12px;color:gray">
-			${b.dates?.[0] || ""}
-		</div>
-	`;
-	
-	d.onclick = ()=> openDetail(b);
-	el.appendChild(d);
-	});
-
 }
 
 // 本詳細
