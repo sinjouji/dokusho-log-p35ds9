@@ -60,7 +60,7 @@ function renderHome(){
     			<div style="
     				width:15px;
     				height:40px;
-    				background: linear-gradient(to bottom, ${c1} 75%, ${c2} 75%);
+    				background: linear-gradient(to bottom, ${c1} 50%, ${c2} 50%);
     				margin-right:8px;
     				border-radius:2px;
     			"></div>
