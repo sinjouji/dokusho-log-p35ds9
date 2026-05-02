@@ -161,6 +161,12 @@ function openCharacter(c){
   const relatedSeries = series.filter(s=>{
     return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
+  
+  const relatedBooks = books.filter(b=>{
+  return relatedSeries.some(s =>
+    Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+  );
+});
 
   el.innerHTML = `
     <h2>${c.name}</h2>
