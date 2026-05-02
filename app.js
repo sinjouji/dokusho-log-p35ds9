@@ -129,7 +129,7 @@ function renderShelf(el, books){
 
   el.style.display = "flex";
   el.style.flexWrap = "wrap";
-  el.style.alignItems = "flex-end"; // ★下揃え（棚っぽく）
+  el.style.alignItems = "flex-end";
 
   books.forEach(b=>{
     const d = document.createElement('div');
@@ -138,7 +138,6 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    // ★高さランダム（それっぽさ）
     const h = 100 + Math.floor(Math.random()*40);
 
     d.style.width = "36px";
@@ -150,6 +149,7 @@ function renderShelf(el, books){
     d.style.justifyContent = "space-between";
     d.style.overflow = "hidden";
     d.style.boxShadow = "0 2px 3px rgba(0,0,0,0.2)";
+    d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
@@ -162,19 +162,18 @@ function renderShelf(el, books){
       d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%, ${c2} 100%)`;
     }
     if(colorMode === "cau"){
-    		d.style.background = `linear-gradient(
-    			${c1} 0%,
-    			${c1} 10%,
-    			${c3} 10%,
-    			${c3} 15%,
-    			${c1} 15%,
-    			${c1} 75%,
-    			${c2} 75%,
-    			${c2} 100%
-    		)`;
-    	}
+      d.style.background = `linear-gradient(
+        ${c1} 0%,
+        ${c1} 10%,
+        ${c3} 10%,
+        ${c3} 15%,
+        ${c1} 15%,
+        ${c1} 75%,
+        ${c2} 75%,
+        ${c2} 100%
+      )`;
+    }
 
-    // 📕 タイトル（縦書き）
     const title = document.createElement('div');
     title.textContent = b.title;
     title.style.writingMode = "vertical-rl";
@@ -183,39 +182,33 @@ function renderShelf(el, books){
     title.style.padding = "4px 2px";
     title.style.textAlign = "center";
 
-    // ⭐ 評価バー
     const fav = document.createElement('div');
     fav.style.height = "18px";
-    fav.style.background = "#f5a623"; // オレンジ固定でもOK
+    fav.style.background = "#f5a623";
     fav.style.display = "flex";
     fav.style.alignItems = "center";
     fav.style.justifyContent = "center";
     fav.style.fontSize = "10px";
     fav.style.color = "#fff";
-
-    const stars = "★".repeat(b.fav || 0);
-    fav.textContent = stars;
+    fav.textContent = "★".repeat(b.fav || 0);
 
     d.appendChild(title);
     d.appendChild(fav);
-    d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     d.onclick = ()=> openDetail(b);
 
     el.appendChild(d);
+  });
 
+  // ✅ ここに移動！！
+  const shelf = document.createElement('div');
+  shelf.style.width = "100%";
+  shelf.style.height = "6px";
+  shelf.style.background = "#caa46a";
+  shelf.style.margin = "6px 0 12px";
+  shelf.style.borderRadius = "3px";
 
-    // 棚ライン
-const shelf = document.createElement('div');
-shelf.style.width = "100%";
-shelf.style.height = "6px";
-shelf.style.background = "#caa46a";
-shelf.style.margin = "6px 0 12px";
-shelf.style.borderRadius = "3px";
-
-el.appendChild(shelf);
-
-  });  
+  el.appendChild(shelf);
 }
 
 
