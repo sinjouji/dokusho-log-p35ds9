@@ -763,6 +763,7 @@ if(!relatedCharacters.length){
     list2.appendChild(d);
   });
 }
+}
 
 
 //★★ここまでシリーズ表示関連
