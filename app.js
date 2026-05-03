@@ -197,7 +197,7 @@ function renderShelf(el, books){
 
 	title.style.fontSize = "9px";
 	title.style.color = "#fff";
-	title.style.padding = "6px 2px 6px 2px";
+	title.style.padding = "4px";
 	title.style.alignItems = "center";
 	title.style.justifyContent = "left";
 	title.style.flex = "1";
