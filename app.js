@@ -151,7 +151,7 @@ function renderShelf(el, books){
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
     const h = 125 + Math.floor(Math.random()*5);
-    const base = 15;
+    const base = 10;
     const extra = Math.min((b.title || "").length * 1.5, 40);
 
     d.style.width = (base + extra +4) + "px";
