@@ -52,9 +52,8 @@ function renderHome(){
   });
 
 
-
   // ⭐ここでソート
-//  filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
+  filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
  //  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
   // filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
 
@@ -64,6 +63,13 @@ function renderHome(){
 		renderShelf(el, filtered);
 		return;
 	}
+	
+	if(viewMode === "shelf"){
+		renderSeriesShelf(el, filtered);
+		return;
+	}
+	
+	
 	
   // 本棚リスト表示
   filtered.forEach(b=>{
@@ -364,6 +370,8 @@ function renderColorMode(){
 
 
 
+
+//★★ここから本表示関連
 // 本詳細
 function openDetail(book){
   go('detail');
@@ -439,8 +447,40 @@ function openSeriesById(id){
   if(s) openSeries(s);
 }
 
+//シリーズで表示をまとめる
+function renderSeriesShelf(el, books){
+  el.innerHTML = "";
+
+  series.forEach(s=>{
+    const relatedBooks = books.filter(b=>{
+      return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
+    });
+
+    if(!relatedBooks.length) return;
+
+    // 📚 タイトル
+    const title = document.createElement('div');
+    title.textContent = s.name;
+    title.style.margin = "12px 4px 4px";
+    title.style.fontWeight = "bold";
+    title.onclick = ()=> openSeries(s);
+
+    el.appendChild(title);
+
+    // 📚 本棚
+    const shelfBox = document.createElement('div');
+    renderShelf(shelfBox, relatedBooks);
+
+    el.appendChild(shelfBox);
+  });
+}
 
 
+//★★ここまで本表示関連
+
+
+
+//★★ここからシリーズ表示関連
 // シリーズ一覧
 function renderSeries(){
   const list = document.getElementById('page-series');
@@ -527,6 +567,8 @@ if(!relatedCharacters.length){
   });
 }}
 
+
+//★★ここまでシリーズ表示関連
 
 
 
