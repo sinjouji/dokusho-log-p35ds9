@@ -203,8 +203,6 @@ function renderShelf(el, books){
 	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
 	title.style.text-orientation = "mixed";
-	title.style.position = "relative";
-	//title.style.flex-shrink = "0";
 
     const fav = document.createElement('div');
     fav.style.height = "30px";
