@@ -180,7 +180,7 @@ function createBookSpine(b){
   title.style.whiteSpace = "nomal";
   title.style.overflow = "visible";
   title.style.wordBreak = "break-all";
-  title.style.paddingLeft = "6px";
+  //title.style.paddingLeft = "6px";
   title.style.padding = "6px 2px 3px 10px";
   //title.style.alignItems = "left";
   title.style.justifyContent = "center";
