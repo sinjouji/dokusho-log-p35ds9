@@ -161,7 +161,7 @@ function renderShelf(el, books){
     d.style.borderRadius = "3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
-    d.style.overflow = "hidden";
+    d.style.overflow = "visible";
     d.style.transform = `rotate(${Math.random()*3 - 1}deg)`;
 
     // 🎨 背表紙カラー
@@ -188,16 +188,18 @@ function renderShelf(el, books){
     }
 
     const title = document.createElement('div');
-    title.textContent = b.title;
-    title.style.writingMode = "vertical-rl";
-    title.style.overflow = "visible";
-    title.style.whiteSpace = "nomal";
-    title.style.wordBreak = "break-all";
-    title.style.fontSize = "8px";
-    title.style.color = "#fff";
-    title.style.padding = "4px 2px";
-    title.style.textAlign = "center";
-    title.style.flex = "1";
+	title.textContent = b.title;
+
+	title.style.writingMode = "vertical-rl";
+	title.style.whiteSpace = "normal";
+	title.style.overflow = "visible";
+	title.style.wordBreak = "break-all";
+
+	title.style.fontSize = "9px";
+	title.style.color = "#fff";
+	title.style.padding = "6px 2px";
+	title.style.textAlign = "center";
+	title.style.flex = "1";
 
     const fav = document.createElement('div');
     fav.style.height = "30px";
