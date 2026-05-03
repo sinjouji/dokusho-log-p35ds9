@@ -596,6 +596,7 @@ favBtn.onclick = ()=>{
 	//saveData();
 	renderHome();
 	};
+	}
 
 	
 function saveData(){
