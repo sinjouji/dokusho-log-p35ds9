@@ -154,10 +154,10 @@ function renderShelf(el, books){
     const base = 10;
     const extra = Math.min((b.title || "").length * 1.5, 40);
 
-    d.style.width = (base + extra) + "px"; //(base + extra + 4)
+    d.style.width = (base + extra +3) + "px"; //(base + extra + 4)
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = "130px"; //h + "px";
-    d.style.margin = "2px";
+    d.style.margin = "1px";
     d.style.borderRadius = "3px 5px 5px 3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
@@ -194,7 +194,7 @@ function renderShelf(el, books){
 	title.style.whiteSpace = "normal";
 	title.style.overflow = "visible";
 	title.style.wordBreak = "break-all";
-	//title.style.paddingLeft = "6px";
+	title.style.paddingLeft = "6px";
 	title.style.fontSize = "8px";
 	title.style.color = "#fff";
 	title.style.padding = "6px 2px 3px 10px";
@@ -214,6 +214,7 @@ function renderShelf(el, books){
     fav.style.color = "#fff";
     fav.style.flexShrink = "0";
     fav.style.writingMode = "vertical-rl";
+    fav.style.paddingBottom = "2px"
     fav.textContent = "★".repeat(b.fav || 0);
 
     d.appendChild(title);
