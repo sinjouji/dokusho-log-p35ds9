@@ -514,12 +514,10 @@ function renderSeriesShelf(el, books){
   el.innerHTML = "";
 
   series.forEach(s=>{
-    const relatedBooks = s.bookIds
+  
+    const relatedBooks = (s.bookIds || [])
     		.map(id => books.find(b => b.id === id))
-    		.filter(boolean);
-//    books.filter(b=>{
-//     return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
-    });
+    		.filter(Boolean);
 
     if(!relatedBooks.length) return;
 
@@ -538,6 +536,7 @@ function renderSeriesShelf(el, books){
     renderShelf(shelfBox, relatedBooks);
 
     el.appendChild(shelfBox);
+  });
   }
 
 
