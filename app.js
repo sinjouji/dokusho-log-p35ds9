@@ -194,13 +194,13 @@ function renderShelf(el, books){
 	title.style.whiteSpace = "normal";
 	title.style.overflow = "visible";
 	title.style.wordBreak = "break-all";
-
+	title.style.paddingLeft = "6px";
 	title.style.fontSize = "9px";
 	title.style.color = "#fff";
-	title.style.padding = "4px 6px 4px 6px";
+	title.style.padding = "4px 2px 4px 6px";
 	title.style.textAlign = "left";
 	title.style.justifyContent = "center";
-	title.style.boxSizing = "border-bod";
+	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
 
     const fav = document.createElement('div');
