@@ -565,6 +565,14 @@ el.innerHTML = `
   <button onclick="go('home')">戻る</button>
 `;
 
+// ② そのあとに追加
+el.innerHTML += `
+  <hr>
+  <div>登場人物:</div>
+  <div id="book-chars"></div>
+`;
+
+
 const favBtn = document.getElementById('fav-btn');
 
 favBtn.style.transition = "transform 0.1s";
@@ -586,14 +594,7 @@ favBtn.onclick = ()=>{
 	
 	//データ保存
 	saveData();
-
-// ② そのあとに追加
-el.innerHTML += `
-  <hr>
-  <div>登場人物:</div>
-  <div id="book-chars"></div>
-`;
-};
+	};
 
 function getFavLabel(val){
 	if(val >= 4) return "👑";
