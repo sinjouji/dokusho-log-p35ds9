@@ -182,7 +182,7 @@ function createBookSpine(b){
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
   title.style.padding = "0 auto";
-  //title.style.alignItems = "left";
+  title.style.alignItems = "center";
   title.style.justifyContent = "center";
   title.style.overflow = "visible";
   //title.style.textAlign = "left";
