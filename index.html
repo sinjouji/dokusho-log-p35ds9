@@ -93,17 +93,13 @@ flex:0 0 auto;
 }
 
 #sort-mode::after,
-#view-mode::after{
+#view-mode::after,
+#color-mode::after{
 content:" / ";
 margin:0 4px;
 color: #999;
 }
 
-#color-mode::before{
-content:" / ";
-margin:4px 0;
-color:#999;
-}
 
 .page{
   padding:12px;
@@ -140,8 +136,7 @@ color:#999;
 </header>
 
 <div id="topbar">
-<input id="search" oninput="renderHome()" placeholder="例：夏目友人帳"><div id= "sort-mode"></div><div id="view-mode"></div><br><button id="toggle-tags">タグ</button><div id="color-mode"></div>
-  <div id="tag-filter"></div>
+<input id="search" oninput="renderHome()" placeholder="例：夏目友人帳"><div id= "sort-mode"></div><div id="view-mode"></div><br><div id="color-mode"></div><button id="toggle-tags">タグ</button><div id="tag-filter"></div>
   </div>
   
 
