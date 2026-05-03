@@ -539,7 +539,7 @@ el.innerHTML = `
   <h2>${book.title}</h2>
 
   <div id="fav-btn" style="cursor:pointer;font-size:18px;">
-  	${getFacLabel(book.fav)}
+  	${getFavLabel(book.fav)}
   </div>
 
   <div>
