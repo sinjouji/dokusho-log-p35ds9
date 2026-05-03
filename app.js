@@ -144,7 +144,7 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 130 + Math.floor(Math.random()*10);
+    const h = 120 + Math.floor(Math.random()*10);
 
     d.style.width = "36px";
     d.style.height = h + "px";
@@ -153,7 +153,7 @@ function renderShelf(el, books){
     d.style.display = "flex";
     d.style.flexDirection = "column";
     d.style.overflow = "hidden";
-    d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
+    d.style.transform = `rotate(${Math.random()*3 - 1}deg)`;
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
