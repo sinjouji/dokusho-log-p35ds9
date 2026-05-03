@@ -588,18 +588,14 @@ favBtn.onclick = ()=>{
 	if(book.fav > 4){
 		book.fav = 1;
 		}
-		};
+		
 	//表示更新
 	favBtn.textContent = getFavLabel(book.fav);
 	
 	//データ保存
-	saveData();
+	//saveData();
+	renderHome();
 	};
-
-function getFavLabel(val){
-	if(val >= 4) return "👑";
-	return "★".repeat(val || 0);
-	}
 
 	
 function saveData(){
