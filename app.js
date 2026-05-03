@@ -578,38 +578,28 @@ const favBtn = document.getElementById('fav-btn');
 favBtn.style.transition = "transform 0.1s";
 
 favBtn.onclick = ()=>{
-	book.fav = (book.fav || 0) + 1;
-	favBtn.style.transform = "scale(1.2)";
-	
-	setTimeout(()=>{
-		favBtn.style.transform = "scale(1)";
-		},100);
-	
-	if(book.fav > 4){
-		book.fav = 1;
-		}
-		
-	//表示更新
-	favBtn.textContent = getFavLabel(book.fav);
-	
-	//データ保存
-	//saveData();
+  book.fav = (book.fav || 0) + 1;
+
+  favBtn.style.transform = "scale(1.2)";
+  setTimeout(()=>{
+    favBtn.style.transform = "scale(1)";
+  },100);
+
+  if(book.fav > 4){
+    book.fav = 1;
+  }
+
+  // ⭐ ここに移動！！
+  favBtn.textContent = getFavLabel(book.fav);
+
+  // ⭐ ここも中！
+//  saveData();
 	renderHome();
 	};
 	}
 
 	
-function saveData(){
-  fetch(DATA_URL, {
-    method: "PUT", // GitHub API使ってるなら別対応必要
-    body: JSON.stringify({
-      books,
-      series,
-      characters,
-      tagMaster
-    })
-  });
-}
+
 
 //本→登場人物の描画★完了
 const list = document.getElementById('book-chars');
@@ -629,6 +619,18 @@ relatedCharacters.forEach(c=>{
 });
 }
 	
+	
+	function saveData(){
+  fetch(DATA_URL, {
+    method: "PUT", // GitHub API使ってるなら別対応必要
+    body: JSON.stringify({
+      books,
+      series,
+      characters,
+      tagMaster
+    })
+  });
+}
 	
 
 //本詳細でシリーズを開く
@@ -769,7 +771,7 @@ if(!relatedCharacters.length){
 
     list2.appendChild(d);
   });
-}}
+}
 
 
 //★★ここまでシリーズ表示関連
