@@ -37,6 +37,12 @@ function go(name){
   if(target){
     target.classList.remove('hidden');
   }
+  
+  //本一覧の検索欄を別の一覧ページでは隠す
+  const top-bar = document.getElementById('top-bar');
+  if(top-bar){
+  	top-bar.style.display = (name === "home") ? "block" : "none";
+  	}
 
   if(name === 'series') renderSeries();
   if(name === 'characters') renderCharacters(); // ★追加
