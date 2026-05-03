@@ -152,17 +152,17 @@ function renderShelf(el, books){
 
     //const h = 125 + Math.floor(Math.random()*5);
     const base = 10;
-    const extra = Math.min((b.title || "").length * 2, 40);
+    const extra = Math.min((b.title || "").length * 2.5, 40);
 
-    d.style.width = (base + extra +4) + "px";
+    d.style.width = (base + extra) + "px"; //(base + extra + 4)
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = "130px"; //h + "px";
     d.style.margin = "2px";
-    d.style.borderRadius = "3px";
+    d.style.borderRadius = "2px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
     d.style.overflow = "visible";
-    d.style.transform = `rotate(${Math.random()*3 - 1}deg)`;
+    d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
@@ -195,9 +195,9 @@ function renderShelf(el, books){
 	title.style.overflow = "visible";
 	title.style.wordBreak = "break-all";
 	title.style.paddingLeft = "6px";
-	title.style.fontSize = "9px";
+	title.style.fontSize = "8px";
 	title.style.color = "#fff";
-	title.style.padding = "4px 2px 4px 6px";
+	title.style.padding = "4px 2px 2px 8px";
 	title.style.textAlign = "left";
 	title.style.justifyContent = "center";
 	title.style.boxSizing = "border-box";
