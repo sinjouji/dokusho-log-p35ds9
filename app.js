@@ -53,16 +53,16 @@ function renderHome(){
 
 
   // ⭐ここでソート
-  filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
+  //filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
  //  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
   // filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
 
 
 //分岐
-	if(viewMode === "shelf"){
-		renderShelf(el, filtered);
-		return;
-	}
+	//if(viewMode === "shelf"){
+	//	renderShelf(el, filtered);
+	//	return;
+	//}
 	
 	if(viewMode === "shelf"){
 		renderSeriesShelf(el, filtered);
