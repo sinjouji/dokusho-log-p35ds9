@@ -713,7 +713,7 @@ function openSeries(s){
   });
   
 
-シリーズ関連：本HTML表示
+//シリーズ関連：本HTML表示
   el.innerHTML = `
     <h2>${s.name}</h2>
     <div>冊数: ${relatedBooks.length}</div>
@@ -722,14 +722,14 @@ function openSeries(s){
     <button onclick="go('series')">戻る</button>
   `;
 
-シリーズ関連：人物HTML表示
+//シリーズ関連：人物HTML表示
 el.innerHTML += `
   <hr>
   <div>登場人物:</div>
   <div id="series-chars"></div>
 `;
 
-シリーズ関連：本描画
+//シリーズ関連：本描画
   const list = document.getElementById('series-books');
 
 //追加
