@@ -574,7 +574,7 @@ function openDetail(book){
   // ⭐ 評価ボタン
   const favBtn = document.getElementById('fav-btn');
 
-  favBtn.style.transition = "transform 0.1s";
+//  favBtn.style.transition = "transform 0.1s";
 
   favBtn.onclick = ()=>{
     book.fav = (book.fav || 0) + 1;
@@ -583,10 +583,10 @@ function openDetail(book){
       book.fav = 1;
     }
 
-    favBtn.style.transform = "scale(1.2)";
-    setTimeout(()=>{
-      favBtn.style.transform = "scale(1)";
-    },100);
+ //   favBtn.style.transform = "scale(1.2)";
+ //  setTimeout(()=>{
+ //     favBtn.style.transform = "scale(1)";
+ //   },100);
 
     favBtn.textContent = getFavLabel(book.fav);
 
