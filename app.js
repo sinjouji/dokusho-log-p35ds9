@@ -158,7 +158,7 @@ function renderShelf(el, books){
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = "130px"; //h + "px";
     d.style.margin = "2px";
-    d.style.borderRadius = "2px";
+    d.style.borderRadius = "3px 5px 5px 3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
     d.style.overflow = "visible";
@@ -166,7 +166,7 @@ function renderShelf(el, books){
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
-      d.style.background = c1;
+      d.style.background = c1;	
     }
     if(colorMode === "gradient"){
       d.style.background = `linear-gradient(${c1}, ${c2})`;
@@ -197,11 +197,14 @@ function renderShelf(el, books){
 	title.style.paddingLeft = "6px";
 	title.style.fontSize = "8px";
 	title.style.color = "#fff";
-	title.style.padding = "4px 2px 2px 8px";
+	title.style.padding = "10px 5px 8px";
 	title.style.textAlign = "left";
-	title.style.justifyContent = "center";
+	title.style.justifyContent = "space-between";
 	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
+	title.style.text-orientation = "mixed";
+	title.style.position = "relative";
+	title.style.flex-shrink = "0";
 
     const fav = document.createElement('div');
     fav.style.height = "30px";
