@@ -223,7 +223,7 @@ function renderShelf(el, sorted){
     
     	fav.textContent = val === 4 ? "👑" :  "★".repeat(val);
     	if(val >= 4){
-    		fav.textcontent = "👑";
+    		fav.textContent = "👑";
     		fav.style.fontSize = "10px";
     	}
 
@@ -626,7 +626,7 @@ relatedCharacters.forEach(c=>{
 
   list.appendChild(d);
 });
-}}
+}
 	
 	
 
@@ -634,7 +634,7 @@ relatedCharacters.forEach(c=>{
 function openSeriesById(id){
   const s = series.find(x=>x.id === id);
   if(s) openSeries(s);
-}}
+}
 
 //シリーズで表示をまとめる
 function renderSeriesShelf(el, books){
