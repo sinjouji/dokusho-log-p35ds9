@@ -19,6 +19,7 @@ let viewMode = localStorage.getItem("viewMode") || "card"; // "card"/"shelf"/"sh
 let sortMode = localStorage.getItem("sortMode") || "title";
 
 let openedSeries = {};
+let showTags = localStorage.getItem("showTags") === "true";
 
 
 //★★ここまで状態設定
@@ -248,6 +249,8 @@ function setView(mode){
 
 
 
+
+//★★タグ関連ここから
 //タグ色
 function getTagColor(tagId){
   const t = tagMaster.find(x => x.id === tagId);
@@ -266,7 +269,7 @@ function getBookColor(book){
 
 //タグで絞込み
 function renderTagFilter(){
-  const el = document.getElementById('tag-filter');
+  const el = document.getElementById('tag-filter').style.display = "none";
   el.innerHTML = "";
 
   // 全解除ボタン
@@ -334,6 +337,22 @@ all.style.color = "#666";
 function getTextColor(bg){
   return "#fff"; // とりあえず白固定でもOK
 }
+
+
+function setupTagToggle(){
+	const btn = document.getElementById('toggle-tags');
+	
+	btn.onclick = ()=>{
+		showTags = !showTags;
+		localStorage.setItem("showTags", showTags);
+		
+		const el = document.getElementById('tag-filter');
+		el.style.display = showTags ? "flex" : "none" ;
+		};
+	}
+
+//★★タグ関連ここまで
+
 
 
 //背表紙カラーモード変更描画
