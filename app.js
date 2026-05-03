@@ -102,7 +102,7 @@ function renderViewMode(){
 
     // 共通スタイル（チップ風）
     btn.style.margin = "3px";
-    btn.style.padding = "2px 8px";
+    btn.style.padding = "2px 8px 2px 8px";
     btn.style.fontSize = "12px";
     btn.style.borderRadius = "999px";
     btn.style.border = "1px solid #333";
