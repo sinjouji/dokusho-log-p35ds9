@@ -18,7 +18,10 @@ let viewMode = localStorage.getItem("viewMode") || "card"; // "card"/"shelf"/"sh
 
 let sortMode = localStorage.getItem("sortMode") || "title";
 
+let openedSeries = {};
 
+
+//★★ここまで状態設定
 
 // ページ切替
 function go(name){
@@ -40,7 +43,6 @@ function go(name){
 // ホーム（本のリスト表示）
 function renderHome(){
   const el = document.getElementById('page-home');
-  console.log("page-home:", el);
   el.innerHTML = "";
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
@@ -151,7 +153,7 @@ function renderShelf(el, sorted){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    //const h = 125 + Math.floor(Math.random()*5);
+    const h = 120 + Math.floor(Math.random()*6);
     const base = 10;
     const extra = Math.min((b.title || "").length * 1.5, 40);
 
@@ -163,7 +165,7 @@ function renderShelf(el, sorted){
     d.style.display = "flex";
     d.style.flexDirection = "column";
     d.style.overflow = "visible";
-    //d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
+    d.style.transform = "transform 0.1s"; //`rotate(${Math.random()*2 - 1}deg)`;
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
@@ -534,19 +536,31 @@ function renderSeriesShelf(el, books){
 
     // タイトル
     const title = document.createElement('div');
-    title.textContent = s.name;
+    title.textContent = `▶︎ ${s.name} (${relatedBooks.length})`;
     title.style.margin = "12px 4px 4px";
     title.style.fontWeight = "bold";
     title.style.cursor = "pointer";
-    title.onclick = ()=> openSeries(s);
+    
+    //開閉状態
+    const isOpen = openedSeries[s.id];
+    
+    if(isOpen){
+    		title.textContent = `▽ ${s.name} (${relatedBooks.length})`;
+    	}
+    	
+    	title.onclick = ()=>{
+    		openedSeries[s.id] = !openedSeries[s.id];
+    		renderHome();
+    	};
 
     el.appendChild(title);
 
-    // 本棚
+    // 本棚 ★開いてる時だけ描画
+    if(isOpen){
     const shelfBox = document.createElement('div');
     renderShelf(shelfBox, relatedBooks);
-
     el.appendChild(shelfBox);
+    }
   });
   }
 
@@ -611,7 +625,7 @@ el.innerHTML += `
   const list = document.getElementById('series-books');
 
 //追加
-if(viewMode === "shelf"){
+if(viewMode.startsWith("shelf")){
 	renderShelf(list, relatedBooks);
 } else {
 	relatedBooks.forEach(b=>{
