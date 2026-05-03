@@ -154,7 +154,7 @@ function renderShelf(el, books){
     const base = 15;
     const extra = Math.min((b.title || "").length * 1.5, 40);
 
-    d.style.width = (base + extra +2) + "px";
+    d.style.width = (base + extra +4) + "px";
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = h + "px";
     d.style.margin = "4px";
