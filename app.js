@@ -152,7 +152,7 @@ function renderShelf(el, books){
 
     //const h = 125 + Math.floor(Math.random()*5);
     const base = 10;
-    const extra = Math.min((b.title || "").length * 2.5, 40);
+    const extra = Math.min((b.title || "").length * 1.5, 40);
 
     d.style.width = (base + extra) + "px"; //(base + extra + 4)
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
@@ -199,10 +199,10 @@ function renderShelf(el, books){
 	title.style.color = "#fff";
 	title.style.padding = "6px 2px 3px 10px";
 	title.style.alignItems = "center";
-	title.style.justifyContent = "flex-startr";//"space-between";
+	title.style.justifyContent = "space-between";//"flex-startr";//"space-between";
 	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
-	title.style.textOrientation = "mixed";
+	title.style.textOrientation = "upright";
 	
     const fav = document.createElement('div');
     fav.style.height = "30px";
