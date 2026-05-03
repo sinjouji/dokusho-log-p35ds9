@@ -187,6 +187,7 @@ function createBookSpine(b){
   title.style.overflow = "visible";
   title.style.textOrientation = "upright";
   title.style.margin = "0 auto";
+  title.style.textAlign = "center";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
