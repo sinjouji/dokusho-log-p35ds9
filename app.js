@@ -190,7 +190,7 @@ function renderShelf(el, books){
     const fav = document.createElement('div');
     fav.style.height = "18px";
     fav.style.display = "flex";
-    fav.style.alignItems = "flex-end";
+    fav.style.alignItems = "right";
     fav.style.justifyContent = "center";
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
@@ -442,20 +442,18 @@ function openSeriesById(id){
 
 // シリーズ一覧
 function renderSeries(){
-  const list = document.getElementById('series-books');
+  const list = document.getElementById('page-series');
+  el.innerHTML = "";
 
-	if(viewMode === "shelf"){
-		renderShelf(list, relatedBooks);
-	} else {
-		relatedBooks.forEach(b=>{
+	series.forEach(s=>{
 			const d = document.createElement('div');
 			d.className = "card";
-			d.textContent = b.title;
+			d.textContent = s.name;
 
-    d.onclick = ()=> openSeries(b);
+    d.onclick = ()=> openSeries(s);
     list.appendChild(d);
   });
-}}
+}
 
 
 
@@ -496,7 +494,11 @@ el.innerHTML += `
 //シリーズ関連：本描画
   const list = document.getElementById('series-books');
 
-  relatedBooks.forEach(b=>{
+//追加
+if(viewMode === "shelf"){
+	renderShelf(list, relatedBooks);
+} else {
+	relatedBooks.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
     d.textContent = b.title;
@@ -504,6 +506,8 @@ el.innerHTML += `
     d.onclick = ()=> openDetail(b);
     list.appendChild(d);
   });
+  }
+  
   
   //シリーズ関連：人物描画
 const list2 = document.getElementById('series-chars');
