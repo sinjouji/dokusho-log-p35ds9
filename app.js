@@ -146,11 +146,13 @@ function renderShelf(el, sorted){
 
   el.innerHTML = "";
   
-  const row = document.createElement('div');
-  row.style.display = "flex";
-  row.style.flexWrap = "wrap"; //画面端で折り返し
-  row.style.alignItems = "flex-end";
-  row.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+  const container = document.createElement('div');
+  container.style.display = "flex";
+  container.style.flexWrap = "wrap"; //画面端で折り返し
+  container.style.alignItems = "flex-end";
+  container.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+  
+  const items = [];
 
   sorted.forEach(b=>{
     const d = document.createElement('div');
@@ -170,8 +172,8 @@ function renderShelf(el, sorted){
     d.style.borderRadius = "3px 5px 5px 3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
-    d.style.overflow = "visible";
-    d.style.transition = "transform 0.1s"; //`rotate(${Math.random()*2 - 1}deg)`;
+//    d.style.overflow = "visible";
+//    d.style.transition = "transform 0.1s"; //`rotate(${Math.random()*2 - 1}deg)`;
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
@@ -239,11 +241,108 @@ function renderShelf(el, sorted){
     d.onclick = ()=> openDetail(b);
 
     // ❗ここが重要
-    row.appendChild(d);
+    container.appendChild(d);
+    items.push(d);
   });
 
   // 本の行を追加
-  el.appendChild(row);
+  el.appendChild(container);
+
+function renderShelf(el, sorted){
+  el.innerHTML = "";
+
+  const container = document.createElement('div');
+  container.style.display = "flex";
+  container.style.flexWrap = "wrap";
+  container.style.alignItems = "flex-end";
+
+  const items = [];
+
+  // ① まず全部並べる
+  sorted.forEach(b=>{
+    const d = document.createElement('div');
+
+    const c1 = getTagColor(b.tagIds?.[0]);
+    const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
+    const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
+
+    const base = 10;
+    const extra = Math.min((b.title || "").length * 1.5, 40);
+
+    d.style.width = (base + extra + 3) + "px";
+    d.style.height = "130px";
+    d.style.margin = "1px";
+    d.style.borderRadius = "3px 5px 5px 3px";
+    d.style.display = "flex";
+    d.style.flexDirection = "column";
+
+    // 🎨 色
+    if(colorMode === "single") d.style.background = c1;
+    if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
+    if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
+    if(colorMode === "stripe"){
+      d.style.background = `linear-gradient(
+        ${c1} 0%, ${c1} 10%,
+        ${c3} 10%, ${c3} 15%,
+        ${c1} 15%, ${c1} 75%,
+        ${c2} 75%, ${c2} 100%
+      )`;
+    }
+
+    const title = document.createElement('div');
+    title.textContent = b.title;
+    title.style.writingMode = "vertical-rl";
+    title.style.fontSize = "8px";
+    title.style.color = "#fff";
+    title.style.flex = "1";
+
+    const fav = document.createElement('div');
+    const val = Math.min(b.fav || 0, 4);
+    fav.textContent = val === 4 ? "👑" : "★".repeat(val);
+    fav.style.fontSize = "8px";
+    fav.style.color = "#fff";
+    fav.style.writingMode = "vertical-rl";
+
+    d.appendChild(title);
+    d.appendChild(fav);
+
+    d.onclick = ()=> openDetail(b);
+
+    container.appendChild(d);
+    items.push(d);
+  });
+
+  el.appendChild(container);
+
+  // ② レイアウト確定後に行を検出
+  requestAnimationFrame(()=>{
+    let currentTop = null;
+
+    items.forEach((item, i)=>{
+      const top = item.offsetTop;
+
+      if(currentTop === null){
+        currentTop = top;
+      }
+
+      // 行が変わった！
+      if(top !== currentTop){
+        currentTop = top;
+
+        // 棚板を挿入
+        const shelf = document.createElement('div');
+        shelf.style.width = "100%";
+        shelf.style.height = "6px";
+        shelf.style.background = "#caa46a";
+        shelf.style.margin = "4px 0 12px";
+        shelf.style.borderRadius = "3px";
+
+        container.insertBefore(shelf, item);
+      }
+    });
+  });
+}
+
 
   // 棚板
   const shelf = document.createElement('div');
