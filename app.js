@@ -570,19 +570,14 @@ el.innerHTML += `
   <div id="book-chars"></div>
 `;
 const favBtn = document.getElementById('fav-btn');
-favBtn.style.transition = "transform 0.1s";
 
 favBtn.onclick = ()=>{
-	favBtn.style.transform = "scale(1.2)";
 	book.fav = (book.fav || 0) + 1;
 	
-	setTimeout(()=>{
-		favBtn.style.transform = "scale(1)";
-		}, 100);
 	if(book.fav > 4){
 		book.fav = 1;
 		}
-	};
+		
 	//表示更新
 	favBtn.textContent = getFavLabel(book.fav);
 	
