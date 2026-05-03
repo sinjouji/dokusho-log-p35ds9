@@ -224,7 +224,7 @@ function renderShelf(el, sorted){
   });
 
   // 本の行を追加
-  //el.appendChild(row);
+  el.appendChild(row);
 
   // 棚板
   const shelf = document.createElement('div');
