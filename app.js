@@ -538,8 +538,7 @@ function renderSeriesShelf(el, books){
     renderShelf(shelfBox, relatedBooks);
 
     el.appendChild(shelfBox);
-  });
-}
+  }
 
 
 //★★ここまで本表示関連
