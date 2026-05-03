@@ -218,7 +218,14 @@ function renderShelf(el, sorted){
     fav.style.flexShrink = "0";
     fav.style.writingMode = "vertical-rl";
     fav.style.paddingBottom = "5px"
-    fav.textContent = "★".repeat(b.fav || 0);
+    
+    const val = Math.min(b.fav || 0, 4);
+    
+    	fav.textContent = val === 4 ? "👑" :  "★".repeat(val);
+    	if(val >= 4){
+    		fav.textcontent = "👑";
+    		fav.style.fontSize = "10px";
+    	}
 
     d.appendChild(title);
     d.appendChild(fav);
