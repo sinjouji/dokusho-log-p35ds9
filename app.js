@@ -14,7 +14,9 @@ let colorMode = ["single","gradient","split","stripe"].includes(savedMode)
 ? savedMode
 : "split"; // 背表紙カラー：single/gradient/split/stripe
 
-let viewMode = localStorage.getItem("viewMode") || "card"; // "list"or "shelf"
+let viewMode = localStorage.getItem("viewMode") || "card"; // "card"/"shelf"/"shelf-series"
+
+let sortMode = localStorage.getItem("sortMode") || "title";
 
 
 
@@ -42,8 +44,9 @@ function renderHome(){
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
-  const filtered = books.filter(b =>{
+  const sorted = books.filter(b =>{
     const matchTitle = (b.title || "").toLowerCase().includes(keyword);
+    const sorted = sortBooks(sorted);
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
@@ -53,26 +56,26 @@ function renderHome(){
 
 
   // ⭐ここでソート
-  //filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
- //  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
-  // filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
+  //sorted.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
+ //  sorted.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
+  // sorted.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
 
 
 //分岐
-	//if(viewMode === "shelf"){
-	//	renderShelf(el, filtered);
-	//	return;
-	//}
-	
 	if(viewMode === "shelf"){
-		renderSeriesShelf(el, filtered);
+		renderShelf(el, sorted);
+		return;
+	}
+	
+	if(viewMode === "shelf-series"){
+		renderSeriesShelf(el, sorted);
 		return;
 	}
 	
 	
 	
   // 本棚リスト表示
-  filtered.forEach(b=>{
+  sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
         
@@ -131,7 +134,7 @@ function renderViewMode(){
 
 
 //本棚背表紙モード
-function renderShelf(el, books){
+function renderShelf(el, sorted){
   el.innerHTML = "";
   
   const perRow = 10; //好きに調整OK
@@ -209,7 +212,7 @@ function renderShelf(el, books){
     fav.style.display = "flex";
     fav.style.alignItems = "center";
     //fav.style.textAlign = "left";
-    fav.style.justifyContent = "right";
+    fav.style.justifyContent = "flex-end";
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
     fav.style.flexShrink = "0";
@@ -380,6 +383,59 @@ function renderColorMode(){
 }
 
 
+//★★ソートここから
+function sortBooks(list){
+  const arr = [...list]; // 元壊さない
+
+  if(sortMode === "title"){
+    arr.sort((a,b)=> (a.title || "").localeCompare(b.title || ""));
+  }
+
+  if(sortMode === "fav"){
+    arr.sort((a,b)=> (b.fav || 0) - (a.fav || 0));
+  }
+
+  if(sortMode === "date"){
+    arr.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || ""));
+  }
+
+  return arr;
+}
+
+
+//ソートUI
+function renderSort(){
+  const el = document.getElementById('sort-mode');
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "title", label: "名前" },
+    { id: "fav", label: "評価" },
+    { id: "date", label: "日付" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+
+    if(m.id === sortMode){
+      btn.style.background = "#333";
+      btn.style.color = "#fff";
+    }
+
+    btn.onclick = ()=>{
+      sortMode = m.id;
+      localStorage.setItem("sortMode", sortMode);
+      renderHome();
+      renderSort();
+    };
+
+    el.appendChild(btn);
+  });
+}
+
+//★★ソートここまで
+
 
 
 
@@ -464,8 +520,11 @@ function renderSeriesShelf(el, books){
   el.innerHTML = "";
 
   series.forEach(s=>{
-    const relatedBooks = books.filter(b=>{
-      return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
+    const relatedBooks = s.bookIds
+    		.map(id => books.find(b => b.id === id))
+    		.filter(boolean);
+//    books.filter(b=>{
+//     return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
     });
 
     if(!relatedBooks.length) return;
@@ -686,6 +745,7 @@ async function loadData(){
     renderTagFilter();
     renderColorMode();
     renderViewMode();
+    renderSort();
     
 
     renderHome();
