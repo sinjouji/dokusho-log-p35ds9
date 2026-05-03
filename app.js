@@ -14,7 +14,7 @@ let colorMode = ["single","gradient","split","stripe"].includes(savedMode)
 ? savedMode
 : "split"; // 背表紙カラー：single/gradient/split/stripe
 
-let viewMode = localStorage.getItem("viewMode") || "shelf"; // "list"or "shelf"
+let viewMode = localStorage.getItem("viewMode") || "card"; // "list"or "shelf"
 
 
 
@@ -65,6 +65,49 @@ function renderHome(){
 
 
 
+function renderViewMode(){
+  const el = document.getElementById('view-mode');
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "card", label: "カード" },
+    { id: "shelf", label: "本棚" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+
+    // 共通スタイル（チップ風）
+    btn.style.margin = "3px";
+    btn.style.padding = "2px 8px";
+    btn.style.fontSize = "12px";
+    btn.style.borderRadius = "999px";
+    btn.style.border = "1px solid #333";
+    btn.style.background = "transparent";
+    btn.style.color = "#333";
+
+    // 選択中
+    if(m.id === viewMode){
+      btn.style.background = "#333";
+      btn.style.color = "#fff";
+    }
+
+    btn.onclick = ()=>{
+      viewMode = m.id;
+      localStorage.setItem("viewMode", viewMode);
+
+      renderHome();
+      renderViewMode(); // 見た目更新
+    };
+
+    el.appendChild(btn);
+  });
+}
+
+
+
+
   // 本棚リスト表示
 function renderList(el, books){
   filtered.forEach(b=>{
@@ -77,57 +120,24 @@ function renderList(el, books){
     
     let bg = "";
     
-    if(colorMode === "single"){
-    		bg = c1;
-    	}
-    	
-    	if(colorMode === "gradient"){
-    		bg = `linear-gradient(180deg, ${c1}, ${c2})`;
-    	}
-    	
-    	if(colorMode === "split"){
-    		bg = `linear-gradient(
-    			to bottom,
-    			${c1} 0%,
-    			${c1} 75%,
-    			${c2} 75%,
-    			${c2} 100%
-    		)`;
-    	}
-    	
-    	if(colorMode === "stripe"){
-    		bg = `linear-gradient(
-    			to bottom,
-    			${c1} 0%,
-    			${c1} 10%,
-    			${c3} 10%,
-    			${c3} 15%,
-    			${c1} 15%,
-    			${c1} 75%,
-    			${c2} 75%,
-    			${c2} 100%
-    		)`;
-    	}
-    
     d.innerHTML = `
     		<div style="display:flex;align-items:center;">
-    		
     			<div style="
-				width:15px;
-  				height:40px;
-  				background: ${bg};
-  				margin-right:8px;
-  				border-radius:2px;
-			"></div>
+    				width:8px;
+    				height:40px;
+    				background: linear-gradient(to bottom, ${c1} 0%, ${c1} 75%, ${c2} 75%, ${c2} 100%);
+    				margin-right:8px;
+    				border-radius:2px;
+    			"></div>
     			
     			<div>
-		    		<div style="font-weight:bold">${b.title}</div>
+    				<div style="font-weight:bold">${b.title}</div>
     				<div style="font-size:10px;color:#999999">
-    			   	${b.dates?.[0] || ""}
-     		 	</div>
-     		 </div>
-     	</div>
-    `;
+    					${b.dates?.[0] || ""}
+    				</div>
+    			</div>
+    		</div>
+    	`;
 
     d.onclick = ()=> openDetail(b);
     el.appendChild(d);
@@ -207,6 +217,7 @@ function renderShelf(el, books){
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
     fav.style.flexShrink = "0";
+    fav.style.writingMode = "vertical-rl";
     fav.textContent = "★".repeat(b.fav || 0);
 
     d.appendChild(title);
@@ -634,6 +645,7 @@ async function loadData(){
     tagMaster = data.tagMaster || [];
     renderTagFilter();
     renderColorMode();
+    renderViewMode();
     
 
     renderHome();
