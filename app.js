@@ -151,7 +151,7 @@ function renderShelf(el, books){
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
     const h = 120 + Math.floor(Math.random()*10);
-    const base = 28;
+    const base = 15;
     const extra = Math.min((b.title || "").length * 1.2, 40);
 
     d.style.width = (base + extra) + "px";
@@ -199,6 +199,7 @@ function renderShelf(el, books){
 	title.style.color = "#fff";
 	title.style.padding = "6px 2px";
 	title.style.alignItems = "center";
+	title.style.justifyContent = "left";
 	title.style.flex = "1";
 
     const fav = document.createElement('div');
