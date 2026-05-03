@@ -340,17 +340,26 @@ function getTextColor(bg){
 
 
 function setupTagToggle(){
-	const btn = document.getElementById('toggle-tags');
-	
-	btn.onclick = ()=>{
-		showTags = !showTags;
-		localStorage.setItem("showTags", showTags);
-		
-		const el = document.getElementById('tag-filter').style.display = "none";
-		el.style.display = showTags ? "flex" : "none" ;
-		};
-	}
+  const btn = document.getElementById('toggle-tags');
+  const el = document.getElementById('tag-filter'); // ★ここで取得
 
+	function update(){
+  // 初期状態反映
+	  el.style.display = showTags ? "flex" : "none";
+	  
+	  btn.style.background = showTags ? "#333" : "transparent";
+	  btn.style.color = showTags ? "#fff" : "#333";
+	  }
+
+	update();
+
+  btn.onclick = ()=>{
+    showTags = !showTags;
+    localStorage.setItem("showTags", showTags);
+
+   update();
+  };
+}
 //★★タグ関連ここまで
 
 
