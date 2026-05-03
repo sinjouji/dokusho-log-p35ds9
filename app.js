@@ -631,29 +631,28 @@ function openSeriesById(id){
 }
 
 //シリーズで表示をまとめる
-function renderSeriesShelf(el, list){
+function renderSeriesShelf(el, books){
   el.innerHTML = "";
 
   series.forEach(s=>{
-  
-    const relatedBooks = list.filter(b =>
+    const relatedBooks = books.filter(b =>
       Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
     );
 
     if(!relatedBooks.length) return;
 
     const title = document.createElement('div');
-    title.textContent = `▶︎ ${s.name} (${relatedBooks.length})`;
+
+    const isOpen = openedSeries[s.id];
+
+    title.textContent = isOpen
+      ? `▽ ${s.name} (${relatedBooks.length})`
+      : `▶︎ ${s.name} (${relatedBooks.length})`;
+
     title.style.margin = "12px 4px 4px";
     title.style.fontWeight = "bold";
     title.style.cursor = "pointer";
-    
-    const isOpen = openedSeries[s.id];
-    
-    if(isOpen){
-      title.textContent = `▽ ${s.name} (${relatedBooks.length})`;
-    }
-    	
+
     title.onclick = ()=>{
       openedSeries[s.id] = !openedSeries[s.id];
       renderHome();
