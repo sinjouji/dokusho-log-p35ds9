@@ -631,7 +631,7 @@ function openSeriesById(id){
 }
 
 //シリーズで表示をまとめる
-function renderSeriesShelf(el, books){
+//function renderSeriesShelf(el, books){
   el.innerHTML = "";
 
   series.forEach(s=>{
@@ -697,7 +697,7 @@ function renderSeries(){
 
 
 // シリーズ詳細
-function openSeries(s){
+//function openSeries(s){
   go('detail');
 
   const el = document.getElementById('page-detail');
@@ -788,7 +788,7 @@ function renderCharacters(){
 }
 
 //人物詳細
-function openCharacter(c){
+//function openCharacter(c){
   go('detail');
 
   const el = document.getElementById('page-detail');
@@ -891,3 +891,4 @@ async function loadData(){
 
 // 初回ロード
 loadData();
+console.log("ここまで読めてる");
