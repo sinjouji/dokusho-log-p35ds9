@@ -151,8 +151,11 @@ function renderShelf(el, books){
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
     const h = 120 + Math.floor(Math.random()*10);
+    const base = 28;
+    const extra = Math.min((b.title || "").length * 1.2, 40);
 
-    d.style.width = "36px";
+    d.style.width = (base + extra) + "px";
+    d.style.borderRight = "3px solid rgba(0,0,0,0.2)";
     d.style.height = h + "px";
     d.style.margin = "4px 2px";
     d.style.borderRadius = "3px";
@@ -186,8 +189,10 @@ function renderShelf(el, books){
 
     const title = document.createElement('div');
     title.textContent = b.title;
-    title.style.writingMode = "vertical-rl";
-    title.style.fontSize = "10px";
+//    title.style.writingMode = "vertical-rl";
+    title.style.overflow = "hidden";
+    title.style.whiteSpace = "nowrap";
+    title.style.fontSize = "9px";
     title.style.color = "#fff";
     title.style.padding = "4px 2px";
     title.style.textAlign = "left";
@@ -458,16 +463,17 @@ function renderSeriesShelf(el, books){
 
     if(!relatedBooks.length) return;
 
-    // 📚 タイトル
+    // タイトル
     const title = document.createElement('div');
     title.textContent = s.name;
     title.style.margin = "12px 4px 4px";
     title.style.fontWeight = "bold";
+    title.style.cursor = "pointer";
     title.onclick = ()=> openSeries(s);
 
     el.appendChild(title);
 
-    // 📚 本棚
+    // 本棚
     const shelfBox = document.createElement('div');
     renderShelf(shelfBox, relatedBooks);
 
