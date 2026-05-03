@@ -150,14 +150,14 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 125 + Math.floor(Math.random()*5);
+    //const h = 125 + Math.floor(Math.random()*5);
     const base = 10;
-    const extra = Math.min((b.title || "").length * 1.5, 40);
+    const extra = Math.min((b.title || "").length * 2, 40);
 
     d.style.width = (base + extra +4) + "px";
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
-    d.style.height = h + "px";
-    d.style.margin = "4px";
+    d.style.height = "130px"; //h + "px";
+    d.style.margin = "2px";
     d.style.borderRadius = "3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
