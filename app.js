@@ -538,7 +538,9 @@ function getFavLabel(val){
 el.innerHTML = `
   <h2>${book.title}</h2>
 
-  <div id="fav-btn" style="cursor:pointer;font-size:18px;">${getFacLabel(book.fav)}</div>
+  <div id="fav-btn" style="cursor:pointer;font-size:18px;">
+  	${getFacLabel(book.fav)}
+  </div>
 
   <div>
     読了日: ${book.dates?.[0] || "未読"}
@@ -563,12 +565,6 @@ el.innerHTML = `
   <button onclick="go('home')">戻る</button>
 `;
 
-// ② そのあとに追加
-el.innerHTML += `
-  <hr>
-  <div>登場人物:</div>
-  <div id="book-chars"></div>
-`;
 const favBtn = document.getElementById('fav-btn');
 
 favBtn.onclick = ()=>{
@@ -584,6 +580,14 @@ favBtn.onclick = ()=>{
 	//データ保存
 	saveData();
 	};
+
+// ② そのあとに追加
+el.innerHTML += `
+  <hr>
+  <div>登場人物:</div>
+  <div id="book-chars"></div>
+`;
+
 	
 	
 //function saveData(){
