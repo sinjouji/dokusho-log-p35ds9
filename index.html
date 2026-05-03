@@ -61,6 +61,23 @@ font-weight:bold;
   margin: 10px 0;
 }
 
+#top-bar{
+display:flex;
+gap:6px;
+align-items:center;
+margin-bottom:8px;
+}
+
+#search{
+flex:1;
+min-width:120px;
+}
+
+#sort-mode, #view-mode{
+display:flex;
+flex-wrap:wrap;
+}
+
 
 .page{
   padding:12px;
@@ -104,14 +121,16 @@ color:#333
   </nav>
 </header>
 
+<div id="top-bar">
 <input id="search" class="sear" oninput="renderHome()" placeholder="検索">
+<div id= "sort-mode"></div> / 
+  <div id="view-mode"></div>
+</div>
 
-<div id="toolbar">
+<button id="toggle-tags">タグ</button>
   <div id="tag-filter"></div>
   <div id="color-mode"></div>
-  <div id="view-mode"></div>
-  <div id= "sort-mode"></div>
-</div>
+
 
 
 <div id="page-home" class="page"></div>
