@@ -144,7 +144,7 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 115 + Math.floor(Math.random()*10);
+    const h = 130 + Math.floor(Math.random()*10);
 
     d.style.width = "36px";
     d.style.height = h + "px";
@@ -190,8 +190,8 @@ function renderShelf(el, books){
     const fav = document.createElement('div');
     fav.style.height = "18px";
     fav.style.display = "flex";
-   // fav.style.alignItems = "center";
-    fav.style.textAlign = "left";
+    fav.style.alignItems = "center";
+   // fav.style.textAlign = "left";
     fav.style.justifyContent = "center";
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
