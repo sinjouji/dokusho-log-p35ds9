@@ -21,6 +21,9 @@ let sortMode = localStorage.getItem("sortMode") || "title";
 let openedSeries = {};
 let showTags = localStorage.getItem("showTags") === "true";
 
+let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
+let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
+
 
 //★★ここまで状態設定
 
@@ -412,22 +415,27 @@ function renderColorMode(){
 
 
 //★★ソートここから
-function sortBooks(list){
-  const arr = [...list]; // 元壊さない
+function sortBooks(arr){
+  const list = [...arr]; // 元壊さない
 
-  if(sortMode === "title"){
-    arr.sort((a,b)=> (a.title || "").localeCompare(b.title || ""));
+	list.sort((a,b)=>{
+		let result = 0;
+
+  if(sortKey === "title"){
+    result = (a.title || "").localeCompare(b.title || "");
   }
 
-  if(sortMode === "fav"){
-    arr.sort((a,b)=> (b.fav || 0) - (a.fav || 0));
+  if(sortKey === "fav"){
+    result = (a.fav || 0) - (b.fav || 0);
   }
 
-  if(sortMode === "date"){
-    arr.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || ""));
+  if(sortKey === "date"){
+    result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
   }
+  return sortOrder === "asc" ? result : -result;
+  });
 
-  return arr;
+  return list;
 }
 
 
@@ -444,7 +452,16 @@ function renderSort(){
 
   modes.forEach(m=>{
     const btn = document.createElement('button');
-    btn.textContent = m.label;
+    
+    //ラベルに矢印つける
+    let arrow = "";
+    if(m.id === sortKey){
+    	arrow = sortOrder === "asc" ? " ↑" : " ↓";
+    	}
+    
+    btn.textContent = m.label + arrow;
+	
+   //見た目 
     btn.style.margin = "3px";
     btn.style.padding = "2px 8px";
     btn.style.fontSize = "12px";
@@ -453,14 +470,24 @@ function renderSort(){
     btn.style.background = "transparent";
     btn.style.color = "#333";
 
-    if(m.id === sortMode){
+    if(m.id === sortKey){
       btn.style.background = "#333";
       btn.style.color = "#fff";
     }
 
     btn.onclick = ()=>{
-      sortMode = m.id;
-      localStorage.setItem("sortMode", sortMode);
+    		if(sortKey === m.id){
+    			//同じボタンを押す→昇降切り替え
+    			sortOrder = (sortOrder === "asc") ? "desc" : "asc";
+    		} else {
+    			//別ボタン→キー変更＋昇降リセット
+    			sortKey = m.id;
+    			sortOrder = "asc";
+    		}
+    
+      localStorage.setItem("sortKey", sortKey);
+      localStorage.setItem("sortOrder", sortOrder);
+      
       renderHome();
       renderSort();
     };
@@ -468,6 +495,9 @@ function renderSort(){
     el.appendChild(btn);
   });
 }
+
+
+
 
 //★★ソートここまで
 
