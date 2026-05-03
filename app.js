@@ -175,6 +175,13 @@ function createBookSpine(b){
   title.style.fontSize = "8px";
   title.style.color = "#fff";
   title.style.flex = "1";
+  title.style.whiteSpace = "nomal";
+  title.style.overflow = "visible";
+  title.style.wordBreak = "break-all";
+  title.style.paddingLeft = "6px";
+  title.style.padding = "6px 2px 3px 10px";
+  title.style.alignItems = "center";
+  title.style.justifyContent = "flex-start";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
@@ -182,6 +189,11 @@ function createBookSpine(b){
   fav.style.fontSize = "8px";
   fav.style.color = "#fff";
   fav.style.writingMode = "vertical-rl";
+  fav.style.height = "30px";
+  fav.style.display = "flex";
+  fav.style.alignItems = "center";
+  fav.style.justifyContent = "flex-end";
+  fav.style.paddingBottom = "5px";
 
   d.appendChild(title);
   d.appendChild(fav);
