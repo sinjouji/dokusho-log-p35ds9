@@ -633,7 +633,7 @@ function openSeriesById(id){
 //シリーズで表示をまとめる
 function renderSeriesShelf(el, list){
   el.innerHTML = "";
-console.log("series:", s.name, relatedBooks.length);
+
   series.forEach(s=>{
   
     const relatedBooks = list.filter(b =>
