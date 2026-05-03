@@ -594,7 +594,203 @@ el.innerHTML += `
   <div>登場人物:</div>
   <div id="book-chars"></div>
 `;
+function getFavLabel(val){
+	if(val >= 4) return "👑";
+	return "★".repeat(val || 0);
+	}
 
+//★★ここから本表示関連
+// 本詳細
+function openDetail(book){
+  go('detail');
+
+  const el = document.getElementById('page-detail');
+  const relatedSeries = series.filter(s=>{
+  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
+});
+
+const relatedCharacters = characters.filter(c=>{
+  return relatedSeries.some(s =>
+    Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id)
+  );
+});
+
+
+
+ // ① まず全部セット
+el.innerHTML = `
+  <h2>${book.title}</h2>
+
+  <div id="fav-btn" style="cursor:pointer;font-size:18px;">
+  	${getFavLabel(book.fav)}
+  </div>
+
+  <div>
+    読了日: ${book.dates?.[0] || "未読"}
+  </div>
+
+  <div style="margin-top:10px;">
+    ${book.memo || ""}
+  </div>
+
+  <hr>
+
+  <div>
+    シリーズ:
+    ${relatedSeries.map(s=>`
+      <span style="color:blue;cursor:pointer"
+        onclick="openSeriesById('${s.id}')">
+        ${s.name}
+      </span>
+    `).join(", ") || "なし"}
+  </div>
+
+  <button onclick="go('home')">戻る</button>
+`;
+
+const favBtn = document.getElementById('fav-btn');
+
+favBtn.style.transition = "transform 0.1s";
+
+favBtn.onclick = ()=>{
+	book.fav = (book.fav || 0) + 1;
+	favBtn.style.transform = "scale(1.2)";
+	
+	setTimeout(()=>{
+		favBtn.style.transform = "scale(1)";
+		},100);
+	
+	if(book.fav > 4){
+		book.fav = 1;
+		}
+		};
+	//表示更新
+	favBtn.textContent = getFavLabel(book.fav);
+	
+	//データ保存
+	saveData();
+	};
+
+// ② そのあとに追加
+el.innerHTML += `
+  <hr>
+  <div>登場人物:</div>
+  <div id="book-chars"></div>
+`;
+function getFavLabel(val){
+	if(val >= 4) return "👑";
+	return "★".repeat(val || 0);
+	}
+
+//★★ここから本表示関連
+// 本詳細
+function openDetail(book){
+  go('detail');
+
+  const el = document.getElementById('page-detail');
+  const relatedSeries = series.filter(s=>{
+  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
+});
+
+const relatedCharacters = characters.filter(c=>{
+  return relatedSeries.some(s =>
+    Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id)
+  );
+});
+
+
+
+ // ① まず全部セット
+el.innerHTML = `
+  <h2>${book.title}</h2>
+
+  <div id="fav-btn" style="cursor:pointer;font-size:18px;">
+  	${getFavLabel(book.fav)}
+  </div>
+
+  <div>
+    読了日: ${book.dates?.[0] || "未読"}
+  </div>
+
+  <div style="margin-top:10px;">
+    ${book.memo || ""}
+  </div>
+
+  <hr>
+
+  <div>
+    シリーズ:
+    ${relatedSeries.map(s=>`
+      <span style="color:blue;cursor:pointer"
+        onclick="openSeriesById('${s.id}')">
+        ${s.name}
+      </span>
+    `).join(", ") || "なし"}
+  </div>
+
+  <button onclick="go('home')">戻る</button>
+`;
+
+const favBtn = document.getElementById('fav-btn');
+
+favBtn.style.transition = "transform 0.1s";
+
+favBtn.onclick = ()=>{
+	book.fav = (book.fav || 0) + 1;
+	favBtn.style.transform = "scale(1.2)";
+	
+	setTimeout(()=>{
+		favBtn.style.transform = "scale(1)";
+		},100);
+	
+	if(book.fav > 4){
+		book.fav = 1;
+		}
+		};
+	//表示更新
+	favBtn.textContent = getFavLabel(book.fav);
+	
+	//データ保存
+	saveData();
+	
+
+// ② そのあとに追加
+el.innerHTML += `
+  <hr>
+  <div>登場人物:</div>
+  <div id="book-chars"></div>
+`;
+};
+	
+function saveData(){
+  fetch(DATA_URL, {
+    method: "PUT", // GitHub API使ってるなら別対応必要
+    body: JSON.stringify({
+      books,
+      series,
+      characters,
+      tagMaster
+    })
+  });
+}
+
+//本→登場人物の描画★完了
+const list = document.getElementById('book-chars');
+
+if(!relatedCharacters.length){
+  list.innerHTML = '<div style="color:gray;">（人物なし）</div>';
+} else {
+
+relatedCharacters.forEach(c=>{
+  const d = document.createElement('div');
+  d.className = "card";
+  d.textContent = c.name;
+
+  d.onclick = ()=> openCharacter(c);
+
+  list.appendChild(d);
+});
+}}
 	
 	
 //function saveData(){
@@ -626,12 +822,43 @@ relatedCharacters.forEach(c=>{
   list.appendChild(d);
 });
 }}
+	
+	
+//function saveData(){
+//  fetch(DATA_URL, {
+//    method: "PUT", // GitHub API使ってるなら別対応必要
+//    body: JSON.stringify({
+//      books,
+//      series,
+//      characters,
+//      tagMaster
+//    })
+//  });
+//}
+
+//本→登場人物の描画★完了
+const list = document.getElementById('book-chars');
+
+if(!relatedCharacters.length){
+  list.innerHTML = '<div style="color:gray;">（人物なし）</div>';
+} else {
+
+relatedCharacters.forEach(c=>{
+  const d = document.createElement('div');
+  d.className = "card";
+  d.textContent = c.name;
+
+  d.onclick = ()=> openCharacter(c);
+
+  list.appendChild(d);
+});
+}
 
 //本詳細でシリーズを開く
 function openSeriesById(id){
   const s = series.find(x=>x.id === id);
   if(s) openSeries(s);
-}
+}}
 
 //シリーズで表示をまとめる
 function renderSeriesShelf(el, books){
