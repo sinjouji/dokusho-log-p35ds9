@@ -631,46 +631,46 @@ function openSeriesById(id){
 }
 
 //シリーズで表示をまとめる
-//function renderSeriesShelf(el, books){
-//  el.innerHTML = "";
+function renderSeriesShelf(el, books){
+  el.innerHTML = "";
 
-//  series.forEach(s=>{
+  series.forEach(s=>{
   
-//    const relatedBooks = books.filter(b =>
-//    		Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-//    		);
+    const relatedBooks = books.filter(b =>
+    		Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+    		);
 
-//    if(!relatedBooks.length) return;
+    if(!relatedBooks.length) return;
 
     // タイトル
-//    const title = document.createElement('div');
-//    title.textContent = `▶︎ ${s.name} (${relatedBooks.length})`;
-//    title.style.margin = "12px 4px 4px";
-//    title.style.fontWeight = "bold";
-//    title.style.cursor = "pointer";
+    const title = document.createElement('div');
+    title.textContent = `▶︎ ${s.name} (${relatedBooks.length})`;
+    title.style.margin = "12px 4px 4px";
+    title.style.fontWeight = "bold";
+    title.style.cursor = "pointer";
     
     //開閉状態
-//    const isOpen = openedSeries[s.id];
+    const isOpen = openedSeries[s.id];
     
-//    if(isOpen){
-//    		title.textContent = `▽ ${s.name} (${relatedBooks.length})`;
-//    	}
+    if(isOpen){
+    		title.textContent = `▽ ${s.name} (${relatedBooks.length})`;
+    	}
     	
-//    	title.onclick = ()=>{
-//    		openedSeries[s.id] = !openedSeries[s.id];
-//    		renderHome();
-//    	};
+    	title.onclick = ()=>{
+    		openedSeries[s.id] = !openedSeries[s.id];
+    		renderHome();
+    	};
 
-//    el.appendChild(title);
+    el.appendChild(title);
 
     // 本棚 ★開いてる時だけ描画
-//    if(isOpen){
-//    const shelfBox = document.createElement('div');
-//    renderShelf(shelfBox, relatedBooks);
-//    el.appendChild(shelfBox);
-//    }
-//  });
-//  }
+    if(isOpen){
+    const shelfBox = document.createElement('div');
+    renderShelf(shelfBox, relatedBooks);
+    el.appendChild(shelfBox);
+    }
+  });
+  }
 
 
 //★★ここまで本表示関連
