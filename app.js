@@ -269,7 +269,7 @@ function getBookColor(book){
 
 //タグで絞込み
 function renderTagFilter(){
-  const el = document.getElementById('tag-filter').style.display = "none";
+  const el = document.getElementById('tag-filter')
   el.innerHTML = "";
 
   // 全解除ボタン
@@ -346,7 +346,7 @@ function setupTagToggle(){
 		showTags = !showTags;
 		localStorage.setItem("showTags", showTags);
 		
-		const el = document.getElementById('tag-filter');
+		const el = document.getElementById('tag-filter').style.display = "none";;
 		el.style.display = showTags ? "flex" : "none" ;
 		};
 	}
