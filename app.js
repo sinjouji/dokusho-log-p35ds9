@@ -418,6 +418,13 @@ function renderSort(){
   modes.forEach(m=>{
     const btn = document.createElement('button');
     btn.textContent = m.label;
+    btn.style.margin = "3px";
+    btn.style.padding = "2px 8px";
+    btn.style.fontSize = "12px";
+    btn.style.borderRadius = "999px";
+    btn.style.border = "1px solid #333";
+    btn.style.background = "transparent";
+    btn.style.color = "#333";
 
     if(m.id === sortMode){
       btn.style.background = "#333";
