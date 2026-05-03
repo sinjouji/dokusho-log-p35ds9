@@ -216,88 +216,14 @@ function renderShelf(el, sorted){
 	title.style.textOrientation = "upright";
 	
     const fav = document.createElement('div');
+    const val = Math.min(b.fav || 0, 4);
     fav.style.height = "30px";
     fav.style.display = "flex";
     fav.style.alignItems = "center";
     //fav.style.textAlign = "left";
     fav.style.justifyContent = "flex-end";
-    fav.style.fontSize = "8px";
-    fav.style.color = "#fff";
     fav.style.flexShrink = "0";
-    fav.style.writingMode = "vertical-rl";
     fav.style.paddingBottom = "5px"
-    
-    const val = Math.min(b.fav || 0, 4);
-    
-    	fav.textContent = val === 4 ? "👑" :  "★".repeat(val);
-    	if(val >= 4){
-    		fav.textContent = "👑";
-    		fav.style.fontSize = "10px";
-    	}
-
-    d.appendChild(title);
-    d.appendChild(fav);
-
-    d.onclick = ()=> openDetail(b);
-
-    // ❗ここが重要
-    container.appendChild(d);
-    items.push(d);
-  });
-
-  // 本の行を追加
-  el.appendChild(container);
-
-function renderShelf(el, sorted){
-  el.innerHTML = "";
-
-  const container = document.createElement('div');
-  container.style.display = "flex";
-  container.style.flexWrap = "wrap";
-  container.style.alignItems = "flex-end";
-
-  const items = [];
-
-  // ① まず全部並べる
-  sorted.forEach(b=>{
-    const d = document.createElement('div');
-
-    const c1 = getTagColor(b.tagIds?.[0]);
-    const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
-    const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
-
-    const base = 10;
-    const extra = Math.min((b.title || "").length * 1.5, 40);
-
-    d.style.width = (base + extra + 3) + "px";
-    d.style.height = "130px";
-    d.style.margin = "1px";
-    d.style.borderRadius = "3px 5px 5px 3px";
-    d.style.display = "flex";
-    d.style.flexDirection = "column";
-
-    // 🎨 色
-    if(colorMode === "single") d.style.background = c1;
-    if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
-    if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
-    if(colorMode === "stripe"){
-      d.style.background = `linear-gradient(
-        ${c1} 0%, ${c1} 10%,
-        ${c3} 10%, ${c3} 15%,
-        ${c1} 15%, ${c1} 75%,
-        ${c2} 75%, ${c2} 100%
-      )`;
-    }
-
-    const title = document.createElement('div');
-    title.textContent = b.title;
-    title.style.writingMode = "vertical-rl";
-    title.style.fontSize = "8px";
-    title.style.color = "#fff";
-    title.style.flex = "1";
-
-    const fav = document.createElement('div');
-    const val = Math.min(b.fav || 0, 4);
     fav.textContent = val === 4 ? "👑" : "★".repeat(val);
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
