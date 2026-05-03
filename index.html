@@ -86,13 +86,6 @@ display:flex;
 flex-wrap:wrap;
 }
 
-.tagbtn{
-margin:3px;
-padding:2px 8px;
-fontSize:12px;
-borderRadius:999px; // ★丸くする
-border:1px solid #333;
-}
 
 .page{
   padding:12px;
@@ -134,10 +127,11 @@ border:1px solid #333;
   <div id="view-mode"></div>
 </div>
 
-<button id="toggle-tags" id="tagbtn">タグ</button>
+<div id="top-bar">
+<button id="toggle-tags">タグ</button> / <div id="color-mode"></div>
   <div id="tag-filter"></div>
-  <div id="color-mode"></div>
-
+  </div>
+  
 
 
 <div id="page-home" class="page"></div>
