@@ -162,7 +162,7 @@ function renderShelf(el, books){
     d.style.display = "flex";
     d.style.flexDirection = "column";
     d.style.overflow = "visible";
-    d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
+    //d.style.transform = `rotate(${Math.random()*2 - 1}deg)`;
 
     // 🎨 背表紙カラー
     if(colorMode === "single"){
@@ -199,7 +199,7 @@ function renderShelf(el, books){
 	title.style.color = "#fff";
 	title.style.padding = "6px 2px 3px 10px";
 	title.style.alignItems = "center";
-	title.style.justifyContent = "space-between";//"flex-startr";//"space-between";
+	title.style.justifyContent = "flex-start"; //"space-between";
 	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
 	title.style.textOrientation = "upright";
