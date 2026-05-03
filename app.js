@@ -543,9 +543,9 @@ function renderSeriesShelf(el, books){
 
   series.forEach(s=>{
   
-    const relatedBooks = (s.bookIds || [])
-    		.map(id => books.find(b => b.id === id))
-    		.filter(Boolean);
+    const relatedBooks = books.filter(b =>
+    		Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+    		);
 
     if(!relatedBooks.length) return;
 
