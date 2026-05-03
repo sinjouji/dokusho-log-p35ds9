@@ -144,7 +144,7 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 100 + Math.floor(Math.random()*40);
+    const h = 100 + Math.floor(Math.random()*60);
 
     d.style.width = "36px";
     d.style.height = h + "px";
@@ -190,7 +190,8 @@ function renderShelf(el, books){
     const fav = document.createElement('div');
     fav.style.height = "18px";
     fav.style.display = "flex";
-    fav.style.alignItems = "right";
+    fav.style.alignItems = "center";
+    fav.style.textAlign = "left";
     fav.style.justifyContent = "center";
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
@@ -443,7 +444,7 @@ function openSeriesById(id){
 // シリーズ一覧
 function renderSeries(){
   const list = document.getElementById('page-series');
-  el.innerHTML = "";
+  list.innerHTML = "";
 
 	series.forEach(s=>{
 			const d = document.createElement('div');
