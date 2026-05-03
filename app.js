@@ -91,7 +91,8 @@ function renderViewMode(){
 
   const modes = [
     { id: "card", label: "カード" },
-    { id: "shelf", label: "本棚" }
+    { id: "shelf", label: "本棚" },
+    { id: "shelf-series", label: "シリーズ" }
   ];
 
   modes.forEach(m=>{
@@ -130,10 +131,6 @@ function renderViewMode(){
 
 //本棚背表紙モード
 function renderShelf(el, sorted){
-	if(!el){
-		console.error("renderShelf; elがnull");
-		return;
-	}
 
   el.innerHTML = "";
   
