@@ -359,6 +359,7 @@ function setupTagToggle(){
 	  
 	  btn.style.background = showTags ? "#333" : "transparent";
 	  btn.style.color = showTags ? "#fff" : "#333";
+	  btn.style.margin = showTags ? "3px" : "3px";
 	  btn.style.padding = showTags? "2px 8px" : "2px 8px";
 	  btn.style.fontSize = showTags? "12px" : "12px";
 	  btn.style.borderRadius = showTags? "999px" : "999px";
@@ -527,11 +528,17 @@ const relatedCharacters = characters.filter(c=>{
   );
 });
 
+
+function getFavLabel(val){
+	if(val >= 4) return "👑";
+	return "★".repeat(val || 0);
+	}
+
  // ① まず全部セット
 el.innerHTML = `
   <h2>${book.title}</h2>
 
-  <div>⭐ ${book.fav || 0}</div>
+  <div id="fav-btn" style="cursor:pointer;font-size:18px;">${getFacLabel(book.fav)}</div>
 
   <div>
     読了日: ${book.dates?.[0] || "未読"}
@@ -562,6 +569,39 @@ el.innerHTML += `
   <div>登場人物:</div>
   <div id="book-chars"></div>
 `;
+const favBtn = document.getElementById('fav-btn');
+favBtn.style.transition = "transform 0.1s";
+
+favBtn.onclick = ()=>{
+	favBtn.style.transform = "scale(1.2)";
+	book.fav = (book.fav || 0) + 1;
+	
+	setTimeout(()=>{
+		favBtn.style.transform = "scale(1)";
+		}, 100);
+	if(book.fav > 4){
+		book.fav = 1;
+		}
+	};
+	//表示更新
+	favBtn.textContent = getFavLabel(book.fav);
+	
+	//データ保存
+	saveData();
+	};
+	
+	
+//function saveData(){
+//  fetch(DATA_URL, {
+//    method: "PUT", // GitHub API使ってるなら別対応必要
+//    body: JSON.stringify({
+//      books,
+//      series,
+//      characters,
+//      tagMaster
+//    })
+//  });
+//}
 
 //本→登場人物の描画★完了
 const list = document.getElementById('book-chars');
