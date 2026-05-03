@@ -778,7 +778,7 @@ async function loadData(){
     renderColorMode();
     renderViewMode();
     renderSort();
-    
+    setupTagToggle();
 
     renderHome();
 
