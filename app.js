@@ -202,8 +202,7 @@ function renderShelf(el, books){
 	title.style.justifyContent = "space-between";
 	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
-	title.style.textOrientation = "mixed";
-
+	
     const fav = document.createElement('div');
     fav.style.height = "30px";
     fav.style.display = "flex";
