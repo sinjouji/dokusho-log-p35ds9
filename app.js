@@ -44,9 +44,9 @@ function renderHome(){
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
+  // ① フィルタ
   const filtered = books.filter(b =>{
     const matchTitle = (b.title || "").toLowerCase().includes(keyword);
-    const sorted = sortBooks(filtered);
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
@@ -54,34 +54,28 @@ function renderHome(){
     return matchTitle && matchTag;
   });
 
+  // ② ソート（ここ！！）
+  const sorted = sortBooks(filtered);
 
-  // ⭐ここでソート
-  //sorted.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
- //  sorted.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
-  // sorted.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
+  // ③ 表示分岐
+  if(viewMode === "shelf"){
+    renderShelf(el, sorted);
+    return;
+  }
 
+  if(viewMode === "shelf-series"){
+    renderSeriesShelf(el, sorted);
+    return;
+  }
 
-//分岐
-	if(viewMode === "shelf"){
-		renderShelf(el, sorted);
-		return;
-	}
-	
-	if(viewMode === "shelf-series"){
-		renderSeriesShelf(el, sorted);
-		return;
-	}
-	
-	
-	
-  // 本棚リスト表示
+  // ④ 通常表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
-        
+
     d.innerHTML = `
-    				<div style="font-weight:bold">${b.title}</div>
-    	`;
+      <div style="font-weight:bold">${b.title}</div>
+    `;
 
     d.onclick = ()=> openDetail(b);
     el.appendChild(d);
