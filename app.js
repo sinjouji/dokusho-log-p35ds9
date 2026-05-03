@@ -144,7 +144,7 @@ function renderShelf(el, books){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 100 + Math.floor(Math.random()*20);
+    const h = 115 + Math.floor(Math.random()*10);
 
     d.style.width = "36px";
     d.style.height = h + "px";
