@@ -697,73 +697,73 @@ function renderSeries(){
 
 
 // シリーズ詳細
-//function openSeries(s){
-//  go('detail');
+function openSeries(s){
+  go('detail');
 
-//  const el = document.getElementById('page-detail');
+  const el = document.getElementById('page-detail');
 
 	//シリーズ→本★完了
-//  const relatedBooks = books.filter(b=>{
-//    return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
-//  });
+  const relatedBooks = books.filter(b=>{
+    return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
+  });
   	
  	 //シリーズ→人物★完了
-//  const relatedCharacters = characters.filter(c=>{
-//  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-//  });
+  const relatedCharacters = characters.filter(c=>{
+  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  });
   
 
-//シリーズ関連：本HTML表示
-//  el.innerHTML = `
-//    <h2>${s.name}</h2>
-//    <div>冊数: ${relatedBooks.length}</div>
-//    <hr>
-//    <div id="series-books"></div>
-//    <button onclick="go('series')">戻る</button>
-//  `;
+シリーズ関連：本HTML表示
+  el.innerHTML = `
+    <h2>${s.name}</h2>
+    <div>冊数: ${relatedBooks.length}</div>
+    <hr>
+    <div id="series-books"></div>
+    <button onclick="go('series')">戻る</button>
+  `;
 
-//シリーズ関連：人物HTML表示
-//el.innerHTML += `
-//  <hr>
-//  <div>登場人物:</div>
-//  <div id="series-chars"></div>
-//`;
+シリーズ関連：人物HTML表示
+el.innerHTML += `
+  <hr>
+  <div>登場人物:</div>
+  <div id="series-chars"></div>
+`;
 
-//シリーズ関連：本描画
-//  const list = document.getElementById('series-books');
+シリーズ関連：本描画
+  const list = document.getElementById('series-books');
 
 //追加
-//if(viewMode.startsWith("shelf")){
-//	renderShelf(list, relatedBooks);
-//} else {
-//	relatedBooks.forEach(b=>{
-//    const d = document.createElement('div');
-//    d.className = "card";
-//    d.textContent = b.title;
+if(viewMode.startsWith("shelf")){
+	renderShelf(list, relatedBooks);
+} else {
+	relatedBooks.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = b.title;
 
-//    d.onclick = ()=> openDetail(b);
-//    list.appendChild(d);
-//  });
-//  }
+    d.onclick = ()=> openDetail(b);
+    list.appendChild(d);
+  });
+  }
   
   
   //シリーズ関連：人物描画
-//const list2 = document.getElementById('series-chars');
+const list2 = document.getElementById('series-chars');
 
-//if(!relatedCharacters.length){
-//  list2.innerHTML = '<div style="color:gray;">（人物なし）</div>';
-//} else {
-//  relatedCharacters.forEach(c=>{
-//    const d = document.createElement('div');
-//    d.className = "card";
-//    d.textContent = c.name;
+if(!relatedCharacters.length){
+  list2.innerHTML = '<div style="color:gray;">（人物なし）</div>';
+} else {
+  relatedCharacters.forEach(c=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = c.name;
 
-//    d.onclick = ()=> openCharacter(c);
+    d.onclick = ()=> openCharacter(c);
 
-//    list2.appendChild(d);
-//  });
-//}
-//}
+    list2.appendChild(d);
+  });
+}
+}
 
 
 //★★ここまでシリーズ表示関連
