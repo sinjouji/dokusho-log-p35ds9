@@ -143,17 +143,16 @@ function renderViewMode(){
 
 //本棚背表紙モード
 function renderShelf(el, sorted){
-
   el.innerHTML = "";
-  
+
   const container = document.createElement('div');
   container.style.display = "flex";
-  container.style.flexWrap = "wrap"; //画面端で折り返し
+  container.style.flexWrap = "wrap";
   container.style.alignItems = "flex-end";
-  container.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
-  
+
   const items = [];
 
+  // ① まず全部並べる
   sorted.forEach(b=>{
     const d = document.createElement('div');
 
@@ -161,69 +160,38 @@ function renderShelf(el, sorted){
     const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
     const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
 
-    const h = 120 + Math.floor(Math.random()*6);
     const base = 10;
     const extra = Math.min((b.title || "").length * 1.5, 40);
 
-    d.style.width = (base + extra +3) + "px"; //(base + extra + 4)
-    d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
-    d.style.height = "130px"; //h + "px";
+    d.style.width = (base + extra + 3) + "px";
+    d.style.height = "130px";
     d.style.margin = "1px";
     d.style.borderRadius = "3px 5px 5px 3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
-//    d.style.overflow = "visible";
-//    d.style.transition = "transform 0.1s"; //`rotate(${Math.random()*2 - 1}deg)`;
 
-    // 🎨 背表紙カラー
-    if(colorMode === "single"){
-      d.style.background = c1;	
-    }
-    if(colorMode === "gradient"){
-      d.style.background = `linear-gradient(${c1}, ${c2})`;
-    }
-    if(colorMode === "split"){
-      d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%, ${c2} 100%)`;
-    }
+    // 🎨 色
+    if(colorMode === "single") d.style.background = c1;
+    if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
+    if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
     if(colorMode === "stripe"){
       d.style.background = `linear-gradient(
-        ${c1} 0%,
-        ${c1} 10%,
-        ${c3} 10%,
-        ${c3} 15%,
-        ${c1} 15%,
-        ${c1} 75%,
-        ${c2} 75%,
-        ${c2} 100%
+        ${c1} 0%, ${c1} 10%,
+        ${c3} 10%, ${c3} 15%,
+        ${c1} 15%, ${c1} 75%,
+        ${c2} 75%, ${c2} 100%
       )`;
     }
 
     const title = document.createElement('div');
-	title.textContent = b.title;
+    title.textContent = b.title;
+    title.style.writingMode = "vertical-rl";
+    title.style.fontSize = "8px";
+    title.style.color = "#fff";
+    title.style.flex = "1";
 
-	title.style.writingMode = "vertical-rl";
-	title.style.whiteSpace = "normal";
-	title.style.overflow = "visible";
-	title.style.wordBreak = "break-all";
-	title.style.paddingLeft = "6px";
-	title.style.fontSize = "8px";
-	title.style.color = "#fff";
-	title.style.padding = "6px 2px 3px 10px";
-	title.style.alignItems = "center";
-	title.style.justifyContent = "flex-start"; //"space-between";
-	title.style.boxSizing = "border-box";
-	title.style.flex = "1";
-	title.style.textOrientation = "upright";
-	
     const fav = document.createElement('div');
     const val = Math.min(b.fav || 0, 4);
-    fav.style.height = "30px";
-    fav.style.display = "flex";
-    fav.style.alignItems = "center";
-    //fav.style.textAlign = "left";
-    fav.style.justifyContent = "flex-end";
-    fav.style.flexShrink = "0";
-    fav.style.paddingBottom = "5px"
     fav.textContent = val === 4 ? "👑" : "★".repeat(val);
     fav.style.fontSize = "8px";
     fav.style.color = "#fff";
@@ -268,19 +236,6 @@ function renderShelf(el, sorted){
     });
   });
 }
-
-
-  // 棚板
-  const shelf = document.createElement('div');
-  shelf.style.width = "100%";
-  shelf.style.height = "6px";
-  shelf.style.background = "#caa46a";
-  shelf.style.margin = "4px 0 12px";
-  shelf.style.borderRadius = "3px";
-
-  el.appendChild(shelf);
-}
-
 //本のビュー切り替え
 function setView(mode){
   viewMode = mode;
