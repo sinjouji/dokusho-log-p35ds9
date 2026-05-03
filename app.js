@@ -199,7 +199,7 @@ function renderShelf(el, books){
 	title.style.color = "#fff";
 	title.style.padding = "10px 5px 8px";
 	title.style.textAlign = "left";
-	title.style.justifyContent = "space-between";
+	title.style.justifyContent = "center";//"space-between";
 	title.style.boxSizing = "border-box";
 	title.style.flex = "1";
 	
