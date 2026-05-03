@@ -39,9 +39,9 @@ function go(name){
   }
   
   //本一覧の検索欄を別の一覧ページでは隠す
-  const top-bar = document.getElementById('top-bar');
-  if(top-bar){
-  	top-bar.style.display = (name === "home") ? "block" : "none";
+  const topbar = document.getElementById('topbar');
+  if(topbar){
+  	topbar.style.display = (name === "home") ? "block" : "none";
   	}
 
   if(name === 'series') renderSeries();
