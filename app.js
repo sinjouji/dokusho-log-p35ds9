@@ -155,7 +155,7 @@ function renderShelf(el, books){
     const extra = Math.min((b.title || "").length * 1.2, 40);
 
     d.style.width = (base + extra) + "px";
-    d.style.borderRight = "3px solid rgba(0,0,0,0.2)";
+    d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = h + "px";
     d.style.margin = "4px 2px";
     d.style.borderRadius = "3px";
@@ -189,13 +189,14 @@ function renderShelf(el, books){
 
     const title = document.createElement('div');
     title.textContent = b.title;
-//    title.style.writingMode = "vertical-rl";
-    title.style.overflow = "hidden";
-    title.style.whiteSpace = "nowrap";
-    title.style.fontSize = "9px";
+    title.style.writingMode = "vertical-rl";
+    title.style.overflow = "visible";
+    title.style.whiteSpace = "nomal";
+    title.style.wordBreak = "break-all";
+    title.style.fontSize = "8px";
     title.style.color = "#fff";
     title.style.padding = "4px 2px";
-    title.style.textAlign = "left";
+    title.style.textAlign = "center";
     title.style.flex = "1";
 
     const fav = document.createElement('div');
