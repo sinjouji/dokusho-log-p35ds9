@@ -139,6 +139,60 @@ function renderViewMode(){
 }
 
 
+//本生成の関数
+function createBookSpine(b){
+  const d = document.createElement('div');
+
+  const c1 = getTagColor(b.tagIds?.[0]);
+  const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
+  const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
+
+  const base = 10;
+  const extra = Math.min((b.title || "").length * 1.5, 40);
+
+  d.style.width = (base + extra + 3) + "px";
+  d.style.height = "130px";
+  d.style.margin = "1px";
+  d.style.borderRadius = "3px 5px 5px 3px";
+  d.style.display = "flex";
+  d.style.flexDirection = "column";
+
+  if(colorMode === "single") d.style.background = c1;
+  if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
+  if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
+  if(colorMode === "stripe"){
+    d.style.background = `linear-gradient(
+      ${c1} 0%, ${c1} 10%,
+      ${c3} 10%, ${c3} 15%,
+      ${c1} 15%, ${c1} 75%,
+      ${c2} 75%, ${c2} 100%
+    )`;
+  }
+
+  const title = document.createElement('div');
+  title.textContent = b.title;
+  title.style.writingMode = "vertical-rl";
+  title.style.fontSize = "8px";
+  title.style.color = "#fff";
+  title.style.flex = "1";
+
+  const fav = document.createElement('div');
+  const val = Math.min(b.fav || 0, 4);
+  fav.textContent = val === 4 ? "👑" : "★".repeat(val);
+  fav.style.fontSize = "8px";
+  fav.style.color = "#fff";
+  fav.style.writingMode = "vertical-rl";
+
+  d.appendChild(title);
+  d.appendChild(fav);
+
+  d.onclick = ()=> openDetail(b);
+
+  return d;
+}
+
+
+
 
 
 //本棚背表紙モード
@@ -211,58 +265,6 @@ function renderShelf(el, sorted){
       container.appendChild(shelf);
     });
   });
-}
-
-//本生成の関数
-function createBookSpine(b){
-  const d = document.createElement('div');
-
-  const c1 = getTagColor(b.tagIds?.[0]);
-  const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
-  const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
-
-  const base = 10;
-  const extra = Math.min((b.title || "").length * 1.5, 40);
-
-  d.style.width = (base + extra + 3) + "px";
-  d.style.height = "130px";
-  d.style.margin = "1px";
-  d.style.borderRadius = "3px 5px 5px 3px";
-  d.style.display = "flex";
-  d.style.flexDirection = "column";
-
-  if(colorMode === "single") d.style.background = c1;
-  if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
-  if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
-  if(colorMode === "stripe"){
-    d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 10%,
-      ${c3} 10%, ${c3} 15%,
-      ${c1} 15%, ${c1} 75%,
-      ${c2} 75%, ${c2} 100%
-    )`;
-  }
-
-  const title = document.createElement('div');
-  title.textContent = b.title;
-  title.style.writingMode = "vertical-rl";
-  title.style.fontSize = "8px";
-  title.style.color = "#fff";
-  title.style.flex = "1";
-
-  const fav = document.createElement('div');
-  const val = Math.min(b.fav || 0, 4);
-  fav.textContent = val === 4 ? "👑" : "★".repeat(val);
-  fav.style.fontSize = "8px";
-  fav.style.color = "#fff";
-  fav.style.writingMode = "vertical-rl";
-
-  d.appendChild(title);
-  d.appendChild(fav);
-
-  d.onclick = ()=> openDetail(b);
-
-  return d;
 }
 
 
