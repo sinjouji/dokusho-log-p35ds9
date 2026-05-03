@@ -146,13 +146,16 @@ function renderShelf(el, sorted){
   el.innerHTML = "";
 
   const container = document.createElement('div');
-  container.style.display = "flex";
-  container.style.flexWrap = "wrap";
-  container.style.alignItems = "flex-end";
+  el.appendChild(container);
 
   const items = [];
 
-  // ① まず全部並べる
+  // ① 仮コンテナ（flex）で並べる
+  const temp = document.createElement('div');
+  temp.style.display = "flex";
+  temp.style.flexWrap = "wrap";
+  temp.style.alignItems = "flex-end";
+
   sorted.forEach(b=>{
     const d = document.createElement('div');
 
@@ -166,11 +169,9 @@ function renderShelf(el, sorted){
     d.style.width = (base + extra + 3) + "px";
     d.style.height = "130px";
     d.style.margin = "1px";
-    d.style.borderRadius = "3px 5px 5px 3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
 
-    // 🎨 色
     if(colorMode === "single") d.style.background = c1;
     if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
     if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
@@ -199,43 +200,65 @@ function renderShelf(el, sorted){
 
     d.appendChild(title);
     d.appendChild(fav);
-
     d.onclick = ()=> openDetail(b);
 
-    container.appendChild(d);
+    temp.appendChild(d);
     items.push(d);
   });
 
-  el.appendChild(container);
+  el.appendChild(temp);
 
-  // ② レイアウト確定後に行を検出
+  // ② 行ごとに分解
   requestAnimationFrame(()=>{
+    let rows = [];
     let currentTop = null;
+    let currentRow = [];
 
-    items.forEach((item, i)=>{
+    items.forEach(item=>{
       const top = item.offsetTop;
 
       if(currentTop === null){
         currentTop = top;
       }
 
-      // 行が変わった！
       if(top !== currentTop){
+        rows.push(currentRow);
+        currentRow = [];
         currentTop = top;
-
-        // 棚板を挿入
-        const shelf = document.createElement('div');
-        shelf.style.width = "100%";
-        shelf.style.height = "6px";
-        shelf.style.background = "#caa46a";
-        shelf.style.margin = "4px 0 12px";
-        shelf.style.borderRadius = "3px";
-
-        container.insertBefore(shelf, item);
       }
+
+      currentRow.push(item);
     });
+
+    if(currentRow.length) rows.push(currentRow);
+
+    // ③ 描画し直し
+    container.innerHTML = "";
+
+    rows.forEach(row=>{
+      const rowDiv = document.createElement('div');
+      rowDiv.style.display = "flex";
+      rowDiv.style.alignItems = "flex-end";
+
+      row.forEach(item=>{
+        rowDiv.appendChild(item);
+      });
+
+      const shelf = document.createElement('div');
+      shelf.style.width = "100%";
+      shelf.style.height = "6px";
+      shelf.style.background = "#caa46a";
+      shelf.style.margin = "4px 0 12px";
+
+      container.appendChild(rowDiv);
+      container.appendChild(shelf);
+    });
+
+    temp.remove(); // 仮コンテナ削除
   });
 }
+
+
 //本のビュー切り替え
 function setView(mode){
   viewMode = mode;
