@@ -102,7 +102,7 @@ function renderViewMode(){
 
     // 共通スタイル（チップ風）
     btn.style.margin = "3px";
-    btn.style.padding = "2px 8px 2px 8px";
+    btn.style.padding = "2px 8px";
     btn.style.fontSize = "12px";
     btn.style.borderRadius = "999px";
     btn.style.border = "1px solid #333";
@@ -157,7 +157,7 @@ function renderShelf(el, books){
     d.style.width = (base + extra) + "px";
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = h + "px";
-    d.style.margin = "4px 2px";
+    d.style.margin = "4px 2px 4px 2px";
     d.style.borderRadius = "3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
