@@ -34,7 +34,8 @@ function go(name){
 }
 
 
-// ホーム（本のリスト）
+
+// ホーム（本のリスト表示）
 function renderHome(){
   const el = document.getElementById('page-home');
   el.innerHTML = "";
@@ -183,7 +184,7 @@ function renderShelf(el, books){
     title.style.fontSize = "10px";
     title.style.color = "#fff";
     title.style.padding = "4px 2px";
-    title.style.textAlign = "center";
+    title.style.textAlign = "left";
     title.style.flex = "1";
 
     const fav = document.createElement('div');
@@ -441,18 +442,20 @@ function openSeriesById(id){
 
 // シリーズ一覧
 function renderSeries(){
-  const el = document.getElementById('page-series');
-  el.innerHTML = "";
+  const list = document.getElementById('series-books');
 
-  series.forEach(s=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = s.name;
+	if(viewMode === "shelf"){
+		renderShelf(list, relatedBooks);
+	} else {
+		relatedBooks.forEach(b=>{
+			const d = document.createElement('div');
+			d.className = "card";
+			d.textContent = b.title;
 
-    d.onclick = ()=> openSeries(s);
-    el.appendChild(d);
+    d.onclick = ()=> openSeries(b);
+    list.appendChild(d);
   });
-}
+}}
 
 
 
