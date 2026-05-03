@@ -50,18 +50,33 @@ function renderHome(){
     return matchTitle && matchTag;
   });
 
+
+
   // ⭐ここでソート
-  filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
+//  filtered.sort((a,b)=> (b.fav || 0) - (a.fav || 0)); //評価順
  //  filtered.sort((a,b)=> (b.dates?.[0] || "").localeCompare(a.dates?.[0] || "")); //日付順
   // filtered.sort((a,b)=> a.title.localeCompare(b.title)); //タイトル順
 
 
-	if(viewMode === "list"){
-		renderList(el, filtered);
-		} else {
+//分岐
+	if(viewMode === "shelf"){
 		renderShelf(el, filtered);
-		}
+		return;
 	}
+	
+  // 本棚リスト表示
+  filtered.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "card";
+        
+    d.innerHTML = `
+    				<div style="font-weight:bold">${b.title}</div>
+    	`;
+
+    d.onclick = ()=> openDetail(b);
+    el.appendChild(d);
+  });
+}
 
 
 
@@ -105,44 +120,6 @@ function renderViewMode(){
   });
 }
 
-
-
-
-  // 本棚リスト表示
-function renderList(el, books){
-  filtered.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    
-    const c1 = getTagColor(b.tagIds?.[0] || null); //背表紙の色描画
-    const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0] || null);
-    const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0] || null);
-    
-    let bg = "";
-    
-    d.innerHTML = `
-    		<div style="display:flex;align-items:center;">
-    			<div style="
-    				width:8px;
-    				height:40px;
-    				background: linear-gradient(to bottom, ${c1} 0%, ${c1} 75%, ${c2} 75%, ${c2} 100%);
-    				margin-right:8px;
-    				border-radius:2px;
-    			"></div>
-    			
-    			<div>
-    				<div style="font-weight:bold">${b.title}</div>
-    				<div style="font-size:10px;color:#999999">
-    					${b.dates?.[0] || ""}
-    				</div>
-    			</div>
-    		</div>
-    	`;
-
-    d.onclick = ()=> openDetail(b);
-    el.appendChild(d);
-  });
-}
 
 
 
