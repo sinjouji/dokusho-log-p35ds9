@@ -136,17 +136,13 @@ function renderShelf(el, sorted){
 
   el.innerHTML = "";
   
-  const perRow = 10; //好きに調整OK
-  
-  for(let i = 0; i < sorted.length; i += perRow){
-  const rowBooks = sorted.slice(i, i + perRow);
-
   const row = document.createElement('div');
   row.style.display = "flex";
+  row.style.flexWrap = "wrap"; //画面端で折り返し
   row.style.alignItems = "flex-end";
   row.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 
-  rowBooks.forEach(b=>{
+  books.forEach(b=>{
     const d = document.createElement('div');
 
     const c1 = getTagColor(b.tagIds?.[0]);
@@ -237,7 +233,7 @@ function renderShelf(el, sorted){
   shelf.style.width = "100%";
   shelf.style.height = "6px";
   shelf.style.background = "#caa46a";
-  shelf.style.margin = "0 0 12px";
+  shelf.style.margin = "4px 0 12px";
   shelf.style.borderRadius = "3px";
 
   el.appendChild(shelf);
