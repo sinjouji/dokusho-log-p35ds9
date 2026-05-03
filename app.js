@@ -629,66 +629,6 @@ relatedCharacters.forEach(c=>{
 }}
 	
 	
-//function saveData(){
-//  fetch(DATA_URL, {
-//    method: "PUT", // GitHub API使ってるなら別対応必要
-//    body: JSON.stringify({
-//      books,
-//      series,
-//      characters,
-//      tagMaster
-//    })
-//  });
-//}
-
-//本→登場人物の描画★完了
-const list = document.getElementById('book-chars');
-
-if(!relatedCharacters.length){
-  list.innerHTML = '<div style="color:gray;">（人物なし）</div>';
-} else {
-
-relatedCharacters.forEach(c=>{
-  const d = document.createElement('div');
-  d.className = "card";
-  d.textContent = c.name;
-
-  d.onclick = ()=> openCharacter(c);
-
-  list.appendChild(d);
-});
-}}
-	
-	
-//function saveData(){
-//  fetch(DATA_URL, {
-//    method: "PUT", // GitHub API使ってるなら別対応必要
-//    body: JSON.stringify({
-//      books,
-//      series,
-//      characters,
-//      tagMaster
-//    })
-//  });
-//}
-
-//本→登場人物の描画★完了
-const list = document.getElementById('book-chars');
-
-if(!relatedCharacters.length){
-  list.innerHTML = '<div style="color:gray;">（人物なし）</div>';
-} else {
-
-relatedCharacters.forEach(c=>{
-  const d = document.createElement('div');
-  d.className = "card";
-  d.textContent = c.name;
-
-  d.onclick = ()=> openCharacter(c);
-
-  list.appendChild(d);
-});
-}
 
 //本詳細でシリーズを開く
 function openSeriesById(id){
