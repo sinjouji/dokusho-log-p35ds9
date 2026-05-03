@@ -44,9 +44,9 @@ function renderHome(){
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
-  const sorted = books.filter(b =>{
+  const filtered = books.filter(b =>{
     const matchTitle = (b.title || "").toLowerCase().includes(keyword);
-    const sorted = sortBooks(sorted);
+    const sorted = sortBooks(filtered);
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
@@ -230,7 +230,7 @@ function renderShelf(el, sorted){
   });
 
   // 本の行を追加
-  el.appendChild(row);
+  //el.appendChild(row);
 
   // 棚板
   const shelf = document.createElement('div');
