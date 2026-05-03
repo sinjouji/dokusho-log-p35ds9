@@ -157,7 +157,7 @@ function renderShelf(el, books){
     d.style.width = (base + extra) + "px";
     d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
     d.style.height = h + "px";
-    d.style.margin = "4px 2px 4px 2px";
+    d.style.margin = "4px 2px";
     d.style.borderRadius = "3px";
     d.style.display = "flex";
     d.style.flexDirection = "column";
@@ -197,7 +197,7 @@ function renderShelf(el, books){
 
 	title.style.fontSize = "9px";
 	title.style.color = "#fff";
-	title.style.padding = "6px 2px";
+	title.style.padding = "6px 2px 6px 2px";
 	title.style.alignItems = "center";
 	title.style.justifyContent = "left";
 	title.style.flex = "1";
