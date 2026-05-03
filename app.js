@@ -40,6 +40,7 @@ function go(name){
 // ホーム（本のリスト表示）
 function renderHome(){
   const el = document.getElementById('page-home');
+  console.log("page-home:", el);
   el.innerHTML = "";
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
@@ -129,6 +130,11 @@ function renderViewMode(){
 
 //本棚背表紙モード
 function renderShelf(el, sorted){
+	if(!el){
+		console.error("renderShelf; elがnull");
+		return;
+	}
+
   el.innerHTML = "";
   
   const perRow = 10; //好きに調整OK
@@ -212,7 +218,7 @@ function renderShelf(el, sorted){
     fav.style.color = "#fff";
     fav.style.flexShrink = "0";
     fav.style.writingMode = "vertical-rl";
-    fav.style.paddingBottom = "2px"
+    fav.style.paddingBottom = "5px"
     fav.textContent = "★".repeat(b.fav || 0);
 
     d.appendChild(title);
