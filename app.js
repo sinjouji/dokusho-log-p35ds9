@@ -511,6 +511,10 @@ function renderSort(){
 
 
 
+function getFavLabel(val){
+	if(val >= 4) return "👑";
+	return "★".repeat(val || 0);
+	}
 
 //★★ここから本表示関連
 // 本詳細
@@ -529,10 +533,6 @@ const relatedCharacters = characters.filter(c=>{
 });
 
 
-function getFavLabel(val){
-	if(val >= 4) return "👑";
-	return "★".repeat(val || 0);
-	}
 
  // ① まず全部セット
 el.innerHTML = `
