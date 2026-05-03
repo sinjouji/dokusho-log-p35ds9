@@ -59,6 +59,7 @@ font-weight:bold;
 
 #tag-filter {
   margin: 10px 0;
+  flexWrap:wrap;
 }
 
 #top-bar{
@@ -72,6 +73,12 @@ margin-bottom:8px;
 #search{
 flex:1;
 min-width:120px;
+border:1px solid #ddd;
+border-radius:8px;
+padding-left:10px;
+font-size:13px;
+background:#fff;
+color:#333;
 }
 
 #sort-mode, #view-mode{
@@ -86,14 +93,6 @@ flex-wrap:wrap;
 
 .hidden{
   display:none;
-}
-.sear{
-border:1px solid #ddd;
-border-radius:8px;
-padding-left:10px;
-font-size:13px;
-background:#fff;
-color:#333
 }
 
 
@@ -123,7 +122,7 @@ color:#333
 </header>
 
 <div id="top-bar">
-<input id="search" class="sear" oninput="renderHome()" placeholder="検索">
+<input id="search" oninput="renderHome()" placeholder="検索">
 <div id= "sort-mode"></div> / 
   <div id="view-mode"></div>
 </div>
