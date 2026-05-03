@@ -788,72 +788,72 @@ function renderCharacters(){
 }
 
 //人物詳細
-//function openCharacter(c){
-//  go('detail');
+function openCharacter(c){
+  go('detail');
 
-//  const el = document.getElementById('page-detail');
+  const el = document.getElementById('page-detail');
 
-  // 人物→シリーズ★完了
-//  const relatedSeries = series.filter(s=>{
-//    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-//  });
+ // 人物→シリーズ★完了
+  const relatedSeries = series.filter(s=>{
+    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  });
 
   // 人物→本★完了
-//  const relatedBooks = books.filter(b=>{
-//    return relatedSeries.some(s =>
- //     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
- //   );
-//  });
+  const relatedBooks = books.filter(b=>{
+    return relatedSeries.some(s =>
+     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+   );
+  });
 
   // HTML
-//  el.innerHTML = `
-//    <h2>${c.name}</h2>
+  el.innerHTML = `
+    <h2>${c.name}</h2>
 
-//    <div style="margin-bottom:10px;">
-//      ${c.memo || ""}
-//    </div>
+    <div style="margin-bottom:10px;">
+      ${c.memo || ""}
+    </div>
 
- //   <hr>
+   <hr>
 
-//    <div>シリーズ:</div>
-//    <div id="char-series"></div>
+    <div>シリーズ:</div>
+    <div id="char-series"></div>
 
-//    <button onclick="go('characters')">戻る</button>
-//  `;
+    <button onclick="go('characters')">戻る</button>
+  `;
 
   // 本セクション追加
-//  el.innerHTML += `
-//    <hr>
-//    <div>登場作品:</div>
-//    <div id="char-books"></div>
-//  `;
+  el.innerHTML += `
+    <hr>
+    <div>登場作品:</div>
+    <div id="char-books"></div>
+  `;
 
   // シリーズ描画
-//  const list = document.getElementById('char-series');
+  const list = document.getElementById('char-series');
 
-//  relatedSeries.forEach(s=>{
-//    const d = document.createElement('div');
-//    d.className = "card";
-//    d.textContent = s.name;
+  relatedSeries.forEach(s=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = s.name;
 
-//    d.onclick = ()=> openSeries(s);
+    d.onclick = ()=> openSeries(s);
 
-//    list.appendChild(d);
-//  });
+    list.appendChild(d);
+  });
 
   // 本描画
-//  const list3 = document.getElementById('char-books');
+  const list3 = document.getElementById('char-books');
 
-//  relatedBooks.forEach(b=>{
-//    const d = document.createElement('div');
-//    d.className = "card";
-//    d.textContent = b.title;
+  relatedBooks.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = b.title;
 
-//    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openDetail(b);
 
-//    list3.appendChild(d);
-//  });
-//}
+    list3.appendChild(d);
+  });
+}
 
 
 
