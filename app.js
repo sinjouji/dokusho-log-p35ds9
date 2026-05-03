@@ -133,12 +133,13 @@ function renderShelf(el, sorted){
   
   const perRow = 10; //好きに調整OK
   
-  for(let i = 0; i < books.length; i += perRow){
-  const rowBooks = books.slice(i, i + perRow);
+  for(let i = 0; i < sorted.length; i += perRow){
+  const rowBooks = sorted.slice(i, i + perRow);
 
   const row = document.createElement('div');
   row.style.display = "flex";
   row.style.alignItems = "flex-end";
+  row.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 
   rowBooks.forEach(b=>{
     const d = document.createElement('div');
