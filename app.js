@@ -567,13 +567,20 @@ el.innerHTML = `
 
 const favBtn = document.getElementById('fav-btn');
 
+favBtn.style.transition = "transform 0.1s";
+
 favBtn.onclick = ()=>{
 	book.fav = (book.fav || 0) + 1;
+	favBtn.style.transform = "scale(1.2)";
+	
+	setTimeout(()=>{
+		favBtn.style.transform = "scale(1)";
+		},100);
 	
 	if(book.fav > 4){
 		book.fav = 1;
 		}
-		
+		};
 	//表示更新
 	favBtn.textContent = getFavLabel(book.fav);
 	
