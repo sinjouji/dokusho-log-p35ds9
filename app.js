@@ -349,6 +349,11 @@ function setupTagToggle(){
 	  
 	  btn.style.background = showTags ? "#333" : "transparent";
 	  btn.style.color = showTags ? "#fff" : "#333";
+	  btn.style.padding = showTags? "2px 8px" : "2px 8px";
+	  btn.style.fontSize = showTags? "12px" : "12px";
+	  btn.style.borderRadius = showTags? "999px" : "999px";
+	  btn.style.border = showTags? "none" : "1px solid #333";
+
 	  }
 
 	update();
