@@ -188,7 +188,7 @@ function renderShelf(el, books){
     title.style.flex = "1";
 
     const fav = document.createElement('div');
-    fav.style.height = "25px";
+    fav.style.height = "25%";
     fav.style.display = "flex";
     fav.style.alignItems = "center";
     //fav.style.textAlign = "left";
