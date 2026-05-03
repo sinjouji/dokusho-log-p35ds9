@@ -156,6 +156,8 @@ function createBookSpine(b){
   d.style.borderRadius = "3px 5px 5px 3px";
   d.style.display = "flex";
   d.style.flexDirection = "column";
+  d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
+  d.style.overflow = "visible";
 
   if(colorMode === "single") d.style.background = c1;
   if(colorMode === "gradient") {d.style.background = `linear-gradient(${c1}, ${c2})`;}
@@ -182,6 +184,8 @@ function createBookSpine(b){
   title.style.padding = "6px 2px 3px 10px";
   title.style.alignItems = "center";
   title.style.justifyContent = "flex-start";
+  title.style.overflow = "visible";
+  title.style.textOrientation = "upright";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
