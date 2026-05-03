@@ -346,7 +346,7 @@ function setupTagToggle(){
 		showTags = !showTags;
 		localStorage.setItem("showTags", showTags);
 		
-		const el = document.getElementById('tag-filter').style.display = "none";;
+		const el = document.getElementById('tag-filter').style.display = "none";
 		el.style.display = showTags ? "flex" : "none" ;
 		};
 	}
