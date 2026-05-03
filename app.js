@@ -148,83 +148,37 @@ function renderShelf(el, sorted){
   const container = document.createElement('div');
   el.appendChild(container);
 
+  const tempRow = document.createElement('div');
+  tempRow.style.display = "flex";
+  tempRow.style.flexWrap = "wrap";
+  tempRow.style.alignItems = "flex-end";
+
   const items = [];
 
-  // ① 仮コンテナ（flex）で並べる
-  const temp = document.createElement('div');
-  temp.style.display = "flex";
-  temp.style.flexWrap = "wrap";
-  temp.style.alignItems = "flex-end";
-
+  // ① 一旦全部入れる（行判定用）
   sorted.forEach(b=>{
-    const d = document.createElement('div');
-
-    const c1 = getTagColor(b.tagIds?.[0]);
-    const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
-    const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
-
-    const base = 10;
-    const extra = Math.min((b.title || "").length * 1.5, 40);
-
-    d.style.width = (base + extra + 3) + "px";
-    d.style.height = "130px";
-    d.style.margin = "1px";
-    d.style.display = "flex";
-    d.style.flexDirection = "column";
-
-    if(colorMode === "single") d.style.background = c1;
-    if(colorMode === "gradient") d.style.background = `linear-gradient(${c1}, ${c2})`;
-    if(colorMode === "split") d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;
-    if(colorMode === "stripe"){
-      d.style.background = `linear-gradient(
-        ${c1} 0%, ${c1} 10%,
-        ${c3} 10%, ${c3} 15%,
-        ${c1} 15%, ${c1} 75%,
-        ${c2} 75%, ${c2} 100%
-      )`;
-    }
-
-    const title = document.createElement('div');
-    title.textContent = b.title;
-    title.style.writingMode = "vertical-rl";
-    title.style.fontSize = "8px";
-    title.style.color = "#fff";
-    title.style.flex = "1";
-
-    const fav = document.createElement('div');
-    const val = Math.min(b.fav || 0, 4);
-    fav.textContent = val === 4 ? "👑" : "★".repeat(val);
-    fav.style.fontSize = "8px";
-    fav.style.color = "#fff";
-    fav.style.writingMode = "vertical-rl";
-
-    d.appendChild(title);
-    d.appendChild(fav);
-    d.onclick = ()=> openDetail(b);
-
-    temp.appendChild(d);
+    const d = createBookSpine(b);
+    tempRow.appendChild(d);
     items.push(d);
   });
 
-  el.appendChild(temp);
+  container.appendChild(tempRow);
 
   // ② 行ごとに分解
   requestAnimationFrame(()=>{
     let rows = [];
-    let currentTop = null;
     let currentRow = [];
+    let currentTop = null;
 
     items.forEach(item=>{
-      const top = item.offsetTop;
-
       if(currentTop === null){
-        currentTop = top;
+        currentTop = item.offsetTop;
       }
 
-      if(top !== currentTop){
+      if(item.offsetTop !== currentTop){
         rows.push(currentRow);
         currentRow = [];
-        currentTop = top;
+        currentTop = item.offsetTop;
       }
 
       currentRow.push(item);
@@ -232,29 +186,30 @@ function renderShelf(el, sorted){
 
     if(currentRow.length) rows.push(currentRow);
 
-    // ③ 描画し直し
+    // ③ 再構築
     container.innerHTML = "";
 
-    rows.forEach(row=>{
-      const rowDiv = document.createElement('div');
-      rowDiv.style.display = "flex";
-      rowDiv.style.alignItems = "flex-end";
+    rows.forEach(rowItems=>{
+      const row = document.createElement('div');
+      row.style.display = "flex";
+      row.style.alignItems = "flex-end";
 
-      row.forEach(item=>{
-        rowDiv.appendChild(item);
+      rowItems.forEach(item=>{
+        row.appendChild(item);
       });
 
+      container.appendChild(row);
+
+      // 棚板
       const shelf = document.createElement('div');
       shelf.style.width = "100%";
       shelf.style.height = "6px";
       shelf.style.background = "#caa46a";
       shelf.style.margin = "4px 0 12px";
+      shelf.style.borderRadius = "3px";
 
-      container.appendChild(rowDiv);
       container.appendChild(shelf);
     });
-
-    temp.remove(); // 仮コンテナ削除
   });
 }
 
