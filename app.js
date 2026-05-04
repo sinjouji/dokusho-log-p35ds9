@@ -766,7 +766,6 @@ function openDetail(book){
   
   styleChip(favBtn, true); //評価は強調
   styleChip(addBtn, false); //読了は通常
-  styleChip(badge, false);
 
 //  favBtn.style.transition = "transform 0.1s";
 
