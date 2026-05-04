@@ -206,7 +206,7 @@ window.getDoc = getDoc;
 
 <!-- ② あなたのアプリ本体（こっちが後） -->
 <script>
-async function saveData(){
+window.saveData = async function(){
   const data = {
     books,
     series,
@@ -219,8 +219,8 @@ async function saveData(){
 
   // Firestore（←ここ修正）
 try{
-	await window.setDoc(
-		window.doc(window.db, "app", "data"),
+	await setDoc(
+		doc(db, "app", "data"),
 		data
 		);
     console.log("🔥 保存成功");
