@@ -188,8 +188,8 @@ function createBookSpine(b){
   //title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
   title.style.alignItems = "flex-start"; //!
-  title.style.justifyContent = "left"; //!
-  title.style.textAlign = "center";
+  title.style.justifyContent = "center"; //!
+  title.style.textAlign = "left";
   title.style.textOrientation = "upright";
   title.style.display = "flex"; //!
   title.style.width = "100%";
@@ -641,13 +641,10 @@ function openDetail(book){
       ${getFavLabel(book.fav)}
     </div>
     <br>
-読了回数: ${
-  (book.dates && book.dates.length > 0)
-  ? book.dates.length
-  : `<div>${getReadStatus(book)}</div>`
-}    
+読了回数: ${getReadStatus(book)}    
     <br>
-    <button id="add-date-btn">読了 ＋1</button>
+      book.dates.push(today);
+      <button id="add-date-btn">読了 ＋1</button>
 
 <div>
   読了日:
@@ -723,7 +720,7 @@ addBtn.onclick = ()=>{
     book.dates = [];
   }
 
-  book.dates.push(today);
+  //book.dates.push(today);
 
   openDetail(book); // 再描画
 };
