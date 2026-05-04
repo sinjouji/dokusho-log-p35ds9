@@ -97,13 +97,21 @@ function renderHome(){
 const matchType =
   selectedType === "all" ||
   (b.type || "normal") === selectedType;
-
+  
+  
+if(b.type === "wish"){
+	d.style.opacity = "0.6";
+	}
 
     return matchTitle && matchTag && matchType;
   });
 
   // ② ソート（ここ！！）
   const sorted = sortBooks(filtered);
+  sorted.sort((a,b)=>{
+  	if(a.type === b.type) return 0;
+  	return a.type === "wish" ? -1 : 1;
+  });
 
   // ③ 表示分岐
   if(viewMode === "shelf"){
@@ -201,9 +209,9 @@ function createBookSpine(b){
   if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
   if(colorMode === "stripe"){
     d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 5%,
-      ${c3} 5%, ${c3} 10%,
-      ${c1} 10%, ${c1} 75%,
+      ${c1} 0%, ${c1} 3%,
+      ${c3} 3%, ${c3} 5%,
+      ${c1} 5%, ${c1} 75%,
       ${c2} 75%, ${c2} 100%
     )`;
   }
@@ -429,6 +437,7 @@ function getTextColor(bg){
 }
 
 
+//タグ収納トグル
 function setupTagToggle(){
   const btn = document.getElementById('toggle-tags');
   const el = document.getElementById('tag-filter'); // ★ここで取得
@@ -458,6 +467,13 @@ function setupTagToggle(){
 //★★タグ関連ここまで
 
 
+
+//★★ワンクリックでタイプ切替
+function toggleType(book){
+	book.type = (book.type === "wish") ? "nomal" : "wish";
+	saveData();
+	openDetail(book);
+}
 
 
 //★★タイプフィルター（ウィッシュリスト）
@@ -704,11 +720,12 @@ function editDate(bookId, index){
 
 //読書状態ステータス
 function getReadStatus(book){
-  const count = book.dates?.length || 0;
+	if(book.type === "wish") return "ウィッシュ";
 
-  if(count === 0) return "未読";
-  if(count === 1) return "読了";
-  return `再読 ${count}回`;
+  const count = book.dates?.length || 0;
+  if(count === 0) return "🔖未読";
+  if(count === 1) return "✔️読了";
+  return `🔂再読 ${count}回`;
 }
 
 
@@ -725,11 +742,11 @@ function createReadBadge(book){
   span.style.marginLeft = "6px";
 
   if(count === 0){
-    span.textContent = "未読";
+    span.textContent = "🔖未読";
     span.style.background = "#eee";
     span.style.color = "#666";
   } else if(count === 1){
-    span.textContent = "読了";
+    span.textContent = "✔️読了";
     span.style.background = "#4a8d61";
     span.style.color = "#fff";
   } else {
@@ -759,33 +776,28 @@ function openDetail(book){
     );
   });
 
-  // ① HTML
-  el.innerHTML = `
-  <h2>${book.title}</h2>
-  <div id="action-bar">
-    <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
-    ${book.type === "wish" ? `
-  <button onclick="markAsRead(getBookById('${book.id}'))">
-    読了にする
-  </button>
-` : ""}
-    <button id="add-date-btn">読了 ＋1</button>
-    <span onclick="createReadBadge"></span>
-  </div>
+// ① HTML
+el.innerHTML = `
+	<h2>${book.title}</h2>
+	<div id="action-bar">
+		<button onclick="go('home')">戻る</button>
+		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
+		<span onclick="createReadBadge"></span>
+		<button onclick="toggleType(book)">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
+		<button id="add-date-btn">🔂再読了</button>
+	</div>
 <br>
 
 <div>
-  読了日:
-  ${
-    (book.dates && book.dates.length > 0)
+  読了日:${(book.dates && book.dates.length > 0)
     ? book.dates.map((d,i)=>`
       <div>
         ${d}
-        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">×</span>
+        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">❎</span>
         <span onclick="editDate('${book.id}', ${i})" style="cursor:pointer;">✏️</span>
       </div>
     `).join("")
-    : `<span style="color:gray;">未読</span>`
+    : `<span style="color:gray;">🔖未読</span>`
   }
 </div>
 
@@ -805,14 +817,15 @@ function openDetail(book){
       `).join(", ") || "なし"}
     </div>
 
-    <button onclick="go('home')">戻る</button>
+   
   `;
 
-  // ② 登場人物エリア
-  el.innerHTML += `
-    <hr>
-    <div>登場人物:</div>
-    <div id="book-chars"></div>
+// ② 登場人物エリア
+el.innerHTML += `
+	<hr>
+	<div>登場人物:</div>
+	<div id="book-chars"></div>
+	
   `;
 
 
