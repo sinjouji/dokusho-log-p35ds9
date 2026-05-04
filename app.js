@@ -796,7 +796,7 @@ el.innerHTML = `
 		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
 		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
 		<button id="add-date-btn">
-		${book.dates?.length ? "🔂再読" : "✔️読了"}</button>
+		${book.dates?.length ? "🔂再読" : "✔️読了にする"}</button>
 	</div>
 <br>
 
@@ -829,7 +829,7 @@ el.innerHTML = `
       `).join(", ") || "なし"}
     </div>
 
-   
+ 
   `;
 
 // ② 登場人物エリア
@@ -972,6 +972,37 @@ function renderSeriesShelf(el, sorted){
 }
 
 //★★ここまで本表示関連
+
+
+//★★カレンダー
+
+function getReadingMap(){
+  const map = {};
+
+  books.forEach(b=>{
+    (b.dates || []).forEach(d=>{
+      map[d] = (map[d] || 0) + 1;
+    });
+  });
+
+  return map;
+}
+
+
+function renderCalendar(){
+  const el = document.getElementById("page-calendar");
+  el.innerHTML = "<h3>読書カレンダー</h3>";
+
+  const map = getReadingMap();
+
+  Object.keys(map).sort().forEach(date=>{
+    const d = document.createElement("div");
+    d.textContent = `${date}：${map[date]}冊`;
+    el.appendChild(d);
+  });
+}
+
+//★★ここまでカレンダー
 
 
 
