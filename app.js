@@ -24,7 +24,7 @@ let showTags = localStorage.getItem("showTags") === "true";
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
 
-let selectedType = "all"; // "all" | "nomal" | "wish"※ウィッシュリスト切替
+let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
 
 
 //★★ここまで状態設定
@@ -502,7 +502,7 @@ function setTypeFilter(type){
 
 //★★ワンクリックでタイプ切替
 function toggleType(book){
-	book.type = (book.type === "wish") ? "nomal" : "wish";
+	book.type = (book.type === "wish") ? "normal" : "wish";
 	saveData();
 	openDetail(book);
 }
@@ -782,9 +782,9 @@ el.innerHTML = `
 	<div id="action-bar">
 		<button onclick="go('home')">戻る</button>
 		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
-		<span onclick="createReadBadge"></span>
 		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
-		<button id="add-date-btn">🔂再読了</button>
+		<button id="add-date-btn">
+		${book.dates?.length ? "🔂再読" : "✔️読了"}</button>
 	</div>
 <br>
 
@@ -865,6 +865,7 @@ el.innerHTML += `
     if(book.fav > 4) book.fav = 1;
 
 	saveData();
+	openDetail(book);
     //setTimeout(renderHome, 0);
   };
   
@@ -887,7 +888,7 @@ addBtn.onclick = ()=>{
 typeBtn.onclick = ()=>{
 	pressEffect(typeBtn);
 	
-	book.type = (book.type === "wish") ? "nomal" : "wish";
+	book.type = (book.type === "wish") ? "normal" : "wish";
 	
 	saveData();
 	openDetail(book);
