@@ -364,15 +364,15 @@ function renderTagFilter(){
 
   // 全解除ボタン
   const all = document.createElement('button');
-  all.textContent = "すべて"; 
+	all.textContent = "すべて"; 
   
-  all.style.margin = "3px";
-all.style.padding = "2px 8px";
-all.style.fontSize = "12px";
-all.style.borderRadius = "999px";
-all.style.border = "1px solid #999";
-all.style.background = "transparent";
-all.style.color = "#666";
+	all.style.margin = "3px";
+	all.style.padding = "2px 8px";
+	all.style.fontSize = "12px";
+	all.style.borderRadius = "999px";
+	all.style.border = "1px solid #999";
+	all.style.background = "transparent";
+	all.style.color = "#666";
   
  if(selectedTagId === null){
   all.style.background = "#666";
@@ -467,8 +467,8 @@ function renderTypeFilter(){
 
   el.innerHTML = `
     <button 
-      class="${selectedType==='all' ? 'active' : ''}"
-      onclick="setTypeFilter('all')">
+		class="${selectedType==='all' ? 'active' : ''}"
+		onclick="setTypeFilter('all')">
       すべて
     </button>
 
@@ -897,12 +897,11 @@ function openSeriesById(id){
 }
 
 //シリーズで表示をまとめる
-function renderSeriesShelf(el, list){
+function renderSeriesShelf(el, sorted){
   el.innerHTML = "";
 
   series.forEach(s=>{
-  
-    const relatedBooks = list.filter(b =>
+    const relatedBooks = sorted.filter(b =>
       Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
     );
 
