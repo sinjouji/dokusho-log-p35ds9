@@ -208,8 +208,8 @@ function createBookSpine(b){
   title.style.overflow = "visible";
   //title.style.wordBreak = "break-all";
   title.style.paddingTop = "5px";
-  title.style.alignItems = "flex-start"; //!
-  title.style.justifyContent = "center"; //!
+  title.style.alignItems = "center"; //! flex-start
+  title.style.justifyContent = "flex-start"; //! center
   title.style.textAlign = "left";
   title.style.textOrientation = "upright";
   title.style.display = "flex"; //!
@@ -646,6 +646,36 @@ function getReadStatus(book){
 }
 
 
+//読了回数バッジ
+function createReadBadge(book){
+  const count = book.dates?.length || 0;
+
+  const span = document.createElement('span');
+
+  // 共通スタイル
+  span.style.padding = "2px 8px";
+  span.style.fontSize = "12px";
+  span.style.borderRadius = "999px";
+  span.style.marginLeft = "6px";
+
+  if(count === 0){
+    span.textContent = "未読";
+    span.style.background = "#eee";
+    span.style.color = "#666";
+  } else if(count === 1){
+    span.textContent = "読了";
+    span.style.background = "#4a8d61";
+    span.style.color = "#fff";
+  } else {
+    span.textContent = `再読 ${count}回`;
+    span.style.background = "#4c808d";
+    span.style.color = "#fff";
+  }
+
+  return span;
+}
+
+
 //★★ここから本表示関連
 // 本詳細
 function openDetail(book){
@@ -673,8 +703,8 @@ function openDetail(book){
   </div>
 
   <br>
-  読了回数: ${getReadStatus(book)}
-    <br>
+ 
+  <br>
 
 
 <div>
@@ -726,8 +756,15 @@ function openDetail(book){
   //ボタンたち
   const actionBar = document.getElementById('action-bar');
   actionBar.style.display = "flex";
+  actionBar.style.alignItems = "center";
   actionBar.style.gap = "8px";
   actionBar.style.margin = "8px 0";
+  actionBar.style.flexWrap = "wrap";
+  const badge = createReadBadge(book);
+  document.getElementById('action-bar').appendChild(bage);
+  
+  badge.onclick = ()=>{
+  	alert(book.dates?.join("\n") || "未読");
   
   styleChip(favBtn, true); //評価は強調
   styleChip(addBtn, false); //読了は通常
