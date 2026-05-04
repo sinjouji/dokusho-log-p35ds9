@@ -92,13 +92,16 @@ function renderHome(){
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+      
+	const matchUnread = selectedType !== "unread" ||
+	(!b.dates || b.dates.length === 0);
 
 //ウィッシュ・読書済み・全て切替
 const matchType =
   selectedType === "all" ||
   (b.type || "normal") === selectedType;
   
-    return matchTitle && matchTag && matchType;
+    return matchTitle && matchTag && matchType && matchUnread;
   });
 
   // ② ソート（ここ！！）
@@ -484,6 +487,12 @@ function renderTypeFilter(){
       onclick="setTypeFilter('normal')">
       読書
     </button>
+    
+    <button
+      class="${selectedType==='unread' ? 'active' : ''}"
+      onclick="setTypeFilter('unread')">
+      未読
+    </button>
 
     <button 
       class="${selectedType==='wish' ? 'active' : ''}"
@@ -583,6 +592,8 @@ function sortBooks(arr){
     result = (a.title || "").localeCompare(b.title || "");
   }
 
+
+
   if(sortKey === "fav"){
     result = (a.fav || 0) - (b.fav || 0);
   }
@@ -591,6 +602,7 @@ function sortBooks(arr){
     result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
   }
   return sortOrder === "asc" ? result : -result;
+  return a.title.localeCompare(b.title, 'ja', { numeric: true })
   });
 
   return list;
