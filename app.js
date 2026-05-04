@@ -783,7 +783,7 @@ el.innerHTML = `
 		<button onclick="go('home')">戻る</button>
 		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
 		<span onclick="createReadBadge"></span>
-		<button onclick="toggleType('${book.id}')">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
+		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
 		<button id="add-date-btn">🔂再読了</button>
 	</div>
 <br>
@@ -833,6 +833,8 @@ el.innerHTML += `
   const favBtn = document.getElementById('fav-btn');
   //読了ボタン
   const addBtn = document.getElementById('add-date-btn');
+  //ウィッシュ切替ボタン
+  const typeBtn = document.getElementById('type-btn');
   //ボタンたち
   const actionBar = document.getElementById('action-bar');
   actionBar.style.display = "flex";
@@ -881,6 +883,15 @@ addBtn.onclick = ()=>{
   saveData();
   openDetail(book); // 再描画
 };
+
+typeBtn.onclick = ()=>{
+	pressEffect(typeBtn);
+	
+	book.type = (book.type === "wish") ? "nomal" : "wish";
+	
+	saveData();
+	openDetail(book);
+	};
   
   
 
