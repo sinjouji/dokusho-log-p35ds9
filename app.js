@@ -682,9 +682,7 @@ function openDetail(book){
   go('detail');
 
   const el = document.getElementById('page-detail');
-  const badge = createReadBadge(book);
-  document.getElementById('action-bar').appendChild(bage);
-
+ 
 
   const relatedSeries = series.filter(s=>{
     return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
@@ -701,6 +699,7 @@ function openDetail(book){
   <h2>${book.title}</h2>
 
   <div id="action-bar">
+    <button id="badge">履歴</button>
     <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
     <button id="add-date-btn">読了 ＋1</button>
   </div>
@@ -763,6 +762,9 @@ function openDetail(book){
   actionBar.style.gap = "8px";
   actionBar.style.margin = "8px 0";
   actionBar.style.flexWrap = "wrap";
+  
+   const badge = createReadBadge(book);
+  document.getElementById('action-bar').appendChild(bage);
   
   badge.onclick = ()=>{
   	alert(book.dates?.join("\n") || "未読");
