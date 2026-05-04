@@ -24,6 +24,8 @@ let showTags = localStorage.getItem("showTags") === "true";
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
 
+let selectedType = "all"; // "all" | "nomal" | "wish"※ウィッシュリスト切替
+
 
 //★★ここまで状態設定
 
@@ -83,12 +85,19 @@ function renderHome(){
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
+
   // ① フィルタ
   const filtered = books.filter(b =>{
     const matchTitle = (b.title || "").toLowerCase().includes(keyword);
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+
+//ウィッシュ・読書済み・全て切替
+const matchType =
+  selectedType === "all" ||
+  (b.type || "normal") === selectedType;
+
 
     return matchTitle && matchTag;
   });
@@ -447,6 +456,26 @@ function setupTagToggle(){
   };
 }
 //★★タグ関連ここまで
+
+
+
+
+//★★タイプフィルター（ウィッシュリスト）
+function renderTypeFilter(){
+	const el = document.getElementById("type-filter");
+	if(!el) return;
+	
+	el.innerHTML = `
+		<button class="${selectedType==='wish'?'active':''}"></button>
+		`;
+}
+
+function setTypeFilter(type){
+  selectedType = type;
+  renderTypeFilter(); //再描画で色変更
+  renderHome();
+}
+
 
 
 
@@ -1126,12 +1155,13 @@ async function loadData(){
       }
     }
 
-    // UI
+    // UI初期化
     renderTagFilter();
     renderColorMode();
     renderViewMode();
     renderSort();
     setupTagToggle();
+    renderTypeFilter();
 
     renderHome();
 
