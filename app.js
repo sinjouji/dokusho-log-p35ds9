@@ -611,18 +611,19 @@ function openDetail(book){
     <button id="add-date-btn">読了 ＋1</button>
 
     <div>
-      読了日: ${book.dates?.length
-      ? book.dates.map(d=>`<div>${d}</div>`).join("")
-      : "未読"
-      }
-    </div>
-    ${book.dates?.map((d,i)=>`
-  <div>
-    ${d}
-    <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">×</span>
-    <span onclick="editDate('${book.id}', ${i})">✏️</span>
-  </div>
-`).join("")}
+  読了日:
+  ${
+    book.dates?.length
+    ? book.dates.map((d,i)=>`
+      <div>
+        ${d}
+        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">×</span>
+        <span onclick="editDate('${book.id}', ${i})" style="cursor:pointer;">✏️</span>
+      </div>
+    `).join("")
+    : "未読"
+  }
+</div>
 
     <div style="margin-top:10px;">
       ${book.memo || ""}
