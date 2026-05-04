@@ -765,6 +765,7 @@ function openDetail(book){
   
   badge.onclick = ()=>{
   	alert(book.dates?.join("\n") || "未読");
+  };
   
   styleChip(favBtn, true); //評価は強調
   styleChip(addBtn, false); //読了は通常
