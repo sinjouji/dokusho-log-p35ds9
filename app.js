@@ -128,12 +128,6 @@ const matchType =
       <div style="font-weight:bold">${b.title}</div>
     `;
 
-if(b.type === "wish"){
-	d.style.opacity = "0.6";
-	}
-
-
-
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
   });
@@ -216,6 +210,11 @@ function createBookSpine(b){
       ${c2} 75%, ${c2} 100%
     )`;
   }
+  
+  if(b.type === "wish"){
+	d.style.opacity = "0.6";
+	}
+
 
   const title = document.createElement('div');
   title.textContent = b.title;
