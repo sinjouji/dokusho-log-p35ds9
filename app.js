@@ -181,10 +181,9 @@ function createBookSpine(b){
   title.style.overflow = "visible";
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
-  title.style.padding = "0 auto";
+  title.style.margin = "0 auto";
   title.style.justifyContent = "center";
   title.style.overflow = "visible";
-  title.style.textAlign = "center";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
@@ -549,6 +548,27 @@ function getFavLabel(val){
 	if(val >= 4) return "👑";
 	return "★".repeat(val || 0);
 	}
+	
+//日付削除
+function removeDate(bookId, index){
+  const b = books.find(x=>x.id === bookId);
+  if(!b || !b.dates) return;
+
+  b.dates.splice(index,1);
+
+  openDetail(b);
+}
+
+//日付編集
+function editDate(bookId, index){
+  const b = books.find(x=>x.id === bookId);
+  const newDate = prompt("日付を入力（YYYY-MM-DD）", b.dates[index]);
+
+  if(newDate){
+    b.dates[index] = newDate;
+    openDetail(b);
+  }
+}
 
 //★★ここから本表示関連
 // 本詳細
@@ -574,10 +594,24 @@ function openDetail(book){
     <div id="fav-btn" style="cursor:pointer;font-size:18px;">
       ${getFavLabel(book.fav)}
     </div>
+    <br>
+    読了回数: ${book.dates?.length || 0}
+    
+    <br>
+    <button id="add-date-btn">読了 ＋1</button>
 
     <div>
-      読了日: ${book.dates?.[0] || "未読"}
+      読了日: ${book.dates?.length
+      ? book.dates.map(d=>`<div>${d}</div>`).jpin("")
+      : "未読"
+      }
     </div>
+    ${book.dates?.map((d,i)=>`
+  <div>
+    ${d}
+    <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">×</span><span onclick="editDate('${book.id}', ${i})">✏️</span>
+  </div>
+`).join("")}
 
     <div style="margin-top:10px;">
       ${book.memo || ""}
@@ -626,6 +660,24 @@ function openDetail(book){
 
     renderHome();
   };
+  
+  
+  //読了ボタン
+  const addBtn = document.getElementById('add-date-btn');
+
+addBtn.onclick = ()=>{
+  const today = new Date().toISOString().slice(0,10);
+
+  if(!Array.isArray(book.dates)){
+    book.dates = [];
+  }
+
+  book.dates.push(today);
+
+  openDetail(book); // 再描画
+};
+  
+  
 
   // ⭐ 登場人物描画（←ここに入れる！！）
   const list = document.getElementById('book-chars');
