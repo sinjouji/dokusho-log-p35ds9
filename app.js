@@ -62,7 +62,7 @@ function styleChip(btn, active=false){
   btn.style.display = "inline-block";
   btn.style.padding = "4px 10px";
   btn.style.margin = "4px 4px 4px 0";
-  btn.style.fontSize = "12px";
+  btn.style.fontSize = "13px";
   btn.style.borderRadius = "999px";
   btn.style.cursor = "pointer";
   btn.style.border = "1px solid #333";
@@ -204,9 +204,9 @@ function createBookSpine(b){
   if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
   if(colorMode === "stripe"){
     d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 3%,
-      ${c3} 3%, ${c3} 5%,
-      ${c1} 5%, ${c1} 75%,
+      ${c1} 0%, ${c1} 2%,
+      ${c3} 2%, ${c3} 6%,
+      ${c1} 6%, ${c1} 75%,
       ${c2} 75%, ${c2} 100%
     )`;
   }
@@ -467,14 +467,6 @@ function setupTagToggle(){
 
 
 
-//★★ワンクリックでタイプ切替
-function toggleType(book){
-	book.type = (book.type === "wish") ? "nomal" : "wish";
-	saveData();
-	openDetail(book);
-}
-
-
 //★★タイプフィルター（ウィッシュリスト）
 function renderTypeFilter(){
   const el = document.getElementById("type-filter");
@@ -506,6 +498,15 @@ function setTypeFilter(type){
   renderTypeFilter(); //再描画で色変更
   renderHome();
 }
+
+
+//★★ワンクリックでタイプ切替
+function toggleType(book){
+	book.type = (book.type === "wish") ? "nomal" : "wish";
+	saveData();
+	openDetail(book);
+}
+
 
 
 function markAsRead(book){
@@ -792,7 +793,7 @@ el.innerHTML = `
     ? book.dates.map((d,i)=>`
       <div>
         ${d}
-        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">❎</span>
+        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">  ：  ❎  ：  </span>
         <span onclick="editDate('${book.id}', ${i})" style="cursor:pointer;">✏️</span>
       </div>
     `).join("")
