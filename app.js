@@ -779,13 +779,9 @@ function openDetail(book){
     pressEffect(favBtn);
     book.fav = (book.fav || 0) + 1;
 
-    if(book.fav > 4){
-      book.fav = 1;
-    }
+    if(book.fav > 4) book.fav = 1;
 
-    favBtn.textContent = `評価 ${getFavLabel(book.fav)}`;
-    addBtn.textContent = "読了 ＋1";
-
+	saveData();
     //setTimeout(renderHome, 0);
   };
   
@@ -825,18 +821,15 @@ addBtn.onclick = ()=>{
   }
 }	
 	
-	function saveData(){
-		localStorage.setItem("books", JSON.stringify(books));
-	
-    //fetch(DATA_URL, {
-    //method: "PUT", // GitHub API使ってるなら別対応必要
-    //body: JSON.stringify({
-      books,
-      series,
-      characters,
-      tagMaster
-    })
-  });
+function saveData(){
+  const data = {
+    books,
+    series,
+    characters,
+    tagMaster
+  };
+
+  localStorage.setItem("bookAppData", JSON.stringify(data));
 }
 	
 
@@ -1071,19 +1064,32 @@ function openCharacter(c){
 
 // データ読み込み
 async function loadData(){
-	const saved = localStorage.getItem("books");
+  try{
+    const saved = localStorage.getItem("bookAppData");
 
-  if(saved){
-  books = JSON.parse(saved);
-  } else {
-    const res = await fetch(DATA_URL + "?t=" + Date.now());
-    const text = await res.text();
-    const data = await res.json();
+    if(saved){
+      // ★ ローカルにデータがある場合
+      const data = JSON.parse(saved);
 
-    books = data.books || [];
-    series = data.series || [];
-    characters = data.characters || [];
-    tagMaster = data.tagMaster || [];
+      books = data.books || [];
+      series = data.series || [];
+      characters = data.characters || [];
+      tagMaster = data.tagMaster || [];
+
+    } else {
+      // ★ 初回だけGitHubから取得
+      const res = await fetch(DATA_URL + "?t=" + Date.now());
+      const data = await res.json();
+
+      books = data.books || [];
+      series = data.series || [];
+      characters = data.characters || [];
+      tagMaster = data.tagMaster || [];
+
+      // ★ 初回取得を保存
+      saveData();
+    }
+
     renderTagFilter();
     renderColorMode();
     renderViewMode();
@@ -1101,9 +1107,8 @@ async function loadData(){
 
   const l = document.getElementById('loading');
   if(l) l.classList.add('hidden');
-
-
 }
+
 
 // 初回ロード
 loadData();
