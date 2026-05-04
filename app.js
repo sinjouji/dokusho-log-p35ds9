@@ -603,11 +603,12 @@ function getFavLabel(val){
 	
 //日付削除
 function removeDate(bookId, index){
-  const b = books.find(x => String(x.id) === String(bookId));
+  const b = getBookById(bookId);
   if(!b || !b.dates) return;
 
   b.dates.splice(index,1);
 
+  saveData();
   openDetail(b);
 }
 
@@ -623,6 +624,8 @@ function editDate(bookId, index){
   input.onchange = ()=>{
     if(input.value){
       b.dates[index] = input.value;
+      
+      saveData();
       openDetail(b);
     }
   };
@@ -767,7 +770,7 @@ function openDetail(book){
   
   styleChip(favBtn, true); //評価は強調
   styleChip(addBtn, false); //読了は通常
-  styleChip(go, false);
+  
 
 //  favBtn.style.transition = "transform 0.1s";
 
@@ -798,6 +801,7 @@ addBtn.onclick = ()=>{
 
   book.dates.push(today);
 
+  saveData();
   openDetail(book); // 再描画
 };
   
@@ -822,9 +826,11 @@ addBtn.onclick = ()=>{
 }	
 	
 	function saveData(){
-  fetch(DATA_URL, {
-    method: "PUT", // GitHub API使ってるなら別対応必要
-    body: JSON.stringify({
+		localStorage.setItem("books", JSON.stringify(books));
+	
+    //fetch(DATA_URL, {
+    //method: "PUT", // GitHub API使ってるなら別対応必要
+    //body: JSON.stringify({
       books,
       series,
       characters,
@@ -1065,10 +1071,14 @@ function openCharacter(c){
 
 // データ読み込み
 async function loadData(){
-  try{
+	const saved = localStorage.getItem("books");
+
+  if(saved){
+  books = JSON.parse(saved);
+  } else {
     const res = await fetch(DATA_URL + "?t=" + Date.now());
     const text = await res.text();
-    const data = JSON.parse(text);
+    const data = await res.json();
 
     books = data.books || [];
     series = data.series || [];
