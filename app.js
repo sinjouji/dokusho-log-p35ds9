@@ -181,9 +181,12 @@ function createBookSpine(b){
   title.style.overflow = "visible";
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
-  title.style.alignItems = "center";
+  title.style.alignItems = "flex-start";
   title.style.justifyContent = "center";
-  title.style.overflow = "visible";
+  title.style.textOrientation = "upright";
+  title.style.display = "flex";
+  title.style.width = "100%";
+  title.style.height = "100%";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
@@ -282,7 +285,7 @@ function renderShelf(el, sorted){
     });
   });
 });
-
+}
 
 
 //本のビュー切り替え
