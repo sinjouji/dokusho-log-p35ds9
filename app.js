@@ -493,6 +493,24 @@ function setTypeFilter(type){
 }
 
 
+function markAsRead(book){
+  const today = new Date().toISOString().slice(0,10);
+
+  book.type = "normal";
+
+  if(!Array.isArray(book.dates)){
+    book.dates = [];
+  }
+
+  book.dates.push(today);
+
+  saveData();
+  openDetail(book);
+}
+
+
+//★★タイプフィルター
+
 
 
 //背表紙カラーモード変更描画
@@ -746,6 +764,11 @@ function openDetail(book){
   <h2>${book.title}</h2>
   <div id="action-bar">
     <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
+    ${book.type === "wish" ? `
+  <button onclick="markAsRead(getBookById('${book.id}'))">
+    読了にする
+  </button>
+` : ""}
     <button id="add-date-btn">読了 ＋1</button>
     <span onclick="createReadBadge"></span>
   </div>
@@ -866,26 +889,26 @@ addBtn.onclick = ()=>{
   }
 }	
 	
-async function saveData(){
-  const data = {
-    books,
-    series,
-    characters,
-    tagMaster
-  };
+//async function saveData(){
+//  const data = {
+//    books,
+//    series,
+//    characters,
+//    tagMaster
+//  };
 
-  localStorage.setItem("bookAppData", JSON.stringify(data));
+//  localStorage.setItem("bookAppData", JSON.stringify(data));
 
-  try{
-    await window.setDoc(
-    		window.doc(window.db, "app", "data"),
-    		 data
-    		 );
-    console.log("🔥 保存成功");
-  }catch(e){
-    console.error("❌ 保存失敗", e);
-  }
-}
+//  try{
+//    await window.setDoc(
+//    		window.doc(window.db, "app", "data"),
+//    		 data
+//    		 );
+//    console.log("🔥 保存成功");
+//  }catch(e){
+//    console.error("❌ 保存失敗", e);
+//  }
+//}
 	
 
 //本詳細でシリーズを開く
