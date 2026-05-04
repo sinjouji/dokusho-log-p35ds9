@@ -829,13 +829,11 @@ async function saveData(){
     tagMaster
   };
 
-  // ローカル保存
-  //localStorage.setItem("bookAppData", JSON.stringify(data));
+  localStorage.setItem("bookAppData", JSON.stringify(data));
 
-  // Firestore保存
   try{
-    await setDoc(doc(db, "app", "data"), data);
-    console.log("🔥 Firestore保存成功");
+    await window.setDoc(window.doc(window.db, "app", "data"), data);
+    console.log("🔥 保存成功");
   }catch(e){
     console.error("❌ 保存失敗", e);
   }
