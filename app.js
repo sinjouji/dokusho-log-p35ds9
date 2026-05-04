@@ -201,9 +201,9 @@ function createBookSpine(b){
   if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
   if(colorMode === "stripe"){
     d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 5%,
-      ${c3} 5%, ${c3} 8%,
-      ${c1} 8%, ${c1} 75%,
+      ${c1} 0%, ${c1} 3%,
+      ${c3} 3%, ${c3} 5%,
+      ${c1} 5%, ${c1} 75%,
       ${c2} 75%, ${c2} 100%
     )`;
   }
