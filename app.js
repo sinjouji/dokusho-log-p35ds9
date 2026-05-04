@@ -50,11 +50,10 @@ function go(name){
 
 
 function openDetailById(id){
-	const book = books.find(x => x.id === id);
-	if(book){
-		openDetail(book);
-	}
+	const b = getBookById(id);
+	if(b) openDetail(b);
 }
+
 
 
 
@@ -182,11 +181,11 @@ function createBookSpine(b){
   const title = document.createElement('div');
   title.textContent = b.title;
   title.style.writingMode = "vertical-rl"; //!
-  title.style.fontSize = "8px"; //!
+  title.style.fontSize = "9px"; //!
   title.style.color = "#fff"; //!
   title.style.flex = "1";
   title.style.overflow = "visible";
-  title.style.wordBreak = "break-all";
+  //title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
   title.style.alignItems = "flex-start"; //!
   title.style.justifyContent = "left"; //!
@@ -561,6 +560,11 @@ function renderSort(){
 //★★ソートここまで
 
 
+//常に正しい本を取得
+function getBookById(id){
+	return books.find(x => String(x.id) === String(id));
+}
+
 
 function getFavLabel(val){
 	if(val >= 4) return "👑";
@@ -569,7 +573,7 @@ function getFavLabel(val){
 	
 //日付削除
 function removeDate(bookId, index){
-  const b = books.find(x=>x.id === bookId);
+  const b = books.find(x => String(x.id) === String(bookId));
   if(!b || !b.dates) return;
 
   b.dates.splice(index,1);
@@ -694,7 +698,7 @@ addBtn.onclick = ()=>{
 
   book.dates.push(today);
 
-  openDetailById(book.id); // 再描画
+  openDetail(book); // 再描画
 };
   
   
