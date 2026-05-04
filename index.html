@@ -214,20 +214,18 @@ window.saveData = async function(){
     tagMaster
   };
 
-  // ローカル
   localStorage.setItem("bookAppData", JSON.stringify(data));
 
-  // Firestore（←ここ修正）
-try{
-	await setDoc(
-		doc(db, "app", "data"),
-		data
-		);
+  try {
+    await setDoc(
+      doc(db, "app", "data"),
+      data
+    );
     console.log("🔥 保存成功");
-    }catch(e){
+  } catch (e) {
     console.error("❌ 保存失敗", e);
-}
-}
+  }
+};
 </script>
 </body>
 </html>
