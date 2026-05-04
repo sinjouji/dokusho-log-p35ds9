@@ -109,7 +109,6 @@ const matchType =
   sorted.sort((a,b)=>{
   	if(a.type === b.type) return 0;
   	return a.type === "wish" ? -1 : 1;
-  	  return a.title.localeCompare(b.title, 'ja', { numeric: true });
   });
 
   // ③ 表示分岐
@@ -603,6 +602,7 @@ function sortBooks(arr){
     result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
   }
   return sortOrder === "asc" ? result : -result;
+   return a.title.localeCompare(b.title, 'ja', { numeric: true });
   });
 
   return list;
