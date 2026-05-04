@@ -181,7 +181,7 @@ function createBookSpine(b){
   title.style.overflow = "visible";
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
-  title.style.alignItems = "left";
+  title.style.alignItems = "center";
   title.style.justifyContent = "center";
   title.style.overflow = "visible";
 
@@ -234,6 +234,8 @@ function renderShelf(el, sorted){
 
   // ② 行ごとに分解
   requestAnimationFrame(()=>{
+  	requestAnimationFrame(()=>{
+  	
     let rows = [];
     let currentRow = [];
     let currentTop = null;
@@ -256,8 +258,8 @@ function renderShelf(el, sorted){
 
     // ③ 再構築
     container.innerHTML = "";
-
-    rows.forEach(rowItems=>{
+    
+      rows.forEach(rowItems=>{
       const row = document.createElement('div');
       row.style.display = "flex";
       row.style.alignItems = "flex-end";
@@ -279,7 +281,7 @@ function renderShelf(el, sorted){
       container.appendChild(shelf);
     });
   });
-}
+});
 
 
 
@@ -659,7 +661,7 @@ function openDetail(book){
 
     favBtn.textContent = getFavLabel(book.fav);
 
-    renderHome();
+    setTimeout(renderHome, 0);
   };
   
   
