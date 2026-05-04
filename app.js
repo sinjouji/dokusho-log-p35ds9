@@ -583,14 +583,38 @@ function removeDate(bookId, index){
 
 //日付編集
 function editDate(bookId, index){
-  const b = books.find(x=>x.id === bookId);
-  const newDate = prompt("日付を入力（YYYY-MM-DD）", b.dates[index]);
+  const b = books.find(x=> String(x.id) === String(bookId));
+  if(!b || !b.dates) return;
 
-  if(newDate){
-    b.dates[index] = newDate;
-    openDetail(b);
-  }
+  const input = document.createElement('input');
+  input.type = "date";
+  input.value = b.dates[index];
+
+  input.onchange = ()=>{
+    if(input.value){
+      b.dates[index] = input.value;
+      openDetail(b);
+    }
+  };
+
+  input.onblur = ()=>{
+    input.remove();
+  };
+
+  document.body.appendChild(input);
+  input.focus();
 }
+
+
+//読書状態ステータス
+function getReadStatus(book){
+  const count = book.dates?.length || 0;
+
+  if(count === 0) return "未読";
+  if(count === 1) return "読了";
+  return `再読 ${count}回`;
+}
+
 
 //★★ここから本表示関連
 // 本詳細
@@ -617,15 +641,18 @@ function openDetail(book){
       ${getFavLabel(book.fav)}
     </div>
     <br>
-    読了回数: ${book.dates?.length || 0}
-    
+読了回数: ${
+  (book.dates && book.dates.length > 0)
+  ? book.dates.length
+  : `<div>${getReadStatus(book)}</div>`
+}    
     <br>
     <button id="add-date-btn">読了 ＋1</button>
 
-    <div>
+<div>
   読了日:
   ${
-    book.dates?.length
+    (book.dates && book.dates.length > 0)
     ? book.dates.map((d,i)=>`
       <div>
         ${d}
@@ -633,7 +660,7 @@ function openDetail(book){
         <span onclick="editDate('${book.id}', ${i})" style="cursor:pointer;">✏️</span>
       </div>
     `).join("")
-    : "未読"
+    : `<span style="color:gray;">未読</span>`
   }
 </div>
 
