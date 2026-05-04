@@ -173,18 +173,18 @@ function createBookSpine(b){
 
   const title = document.createElement('div');
   title.textContent = b.title;
-  title.style.writingMode = "vertical-rl";
-  title.style.fontSize = "8px";
-  title.style.color = "#fff";
+  title.style.writingMode = "vertical-rl"; //!
+  title.style.fontSize = "8px"; //!
+  title.style.color = "#fff"; //!
   title.style.flex = "1";
-  title.style.whiteSpace = "nomal";
   title.style.overflow = "visible";
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
-  title.style.alignItems = "flex-start";
-  title.style.justifyContent = "center";
+  title.style.alignItems = "flex-start"; //!
+  title.style.justifyContent = "center"; //!
+  title.style.textAlign = "center";
   title.style.textOrientation = "upright";
-  title.style.display = "flex";
+  title.style.display = "flex"; //!
   title.style.width = "100%";
   title.style.height = "100%";
 
@@ -219,9 +219,8 @@ console.log("renderShelf start", sorted.length);
   el.innerHTML = "";
 
   const container = document.createElement('div');
+  container.style.width = "100%";
   el.appendChild(container);
-
-console.log("items", items.length);
 
   const tempRow = document.createElement('div');
   tempRow.style.display = "flex";
@@ -245,7 +244,6 @@ console.log("items", items.length);
 
   // ② 行ごとに分解
   requestAnimationFrame(()=>{
-  	requestAnimationFrame(()=>{
   	
     let rows = [];
     let currentRow = [];
@@ -291,7 +289,6 @@ console.log("items", items.length);
 
       container.appendChild(shelf);
     });
-  });
 });
 }
 
@@ -672,7 +669,7 @@ function openDetail(book){
 
     favBtn.textContent = getFavLabel(book.fav);
 
-    setTimeout(renderHome, 0);
+    //setTimeout(renderHome, 0);
   };
   
   
