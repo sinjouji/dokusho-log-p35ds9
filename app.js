@@ -207,7 +207,7 @@ function createBookSpine(b){
   title.style.flex = "1";
   title.style.overflow = "visible";
   //title.style.wordBreak = "break-all";
-  //title.style.paddingLeft = "6px";
+  title.style.paddingTop = "5px";
   title.style.alignItems = "flex-start"; //!
   title.style.justifyContent = "center"; //!
   title.style.textAlign = "left";
@@ -665,14 +665,15 @@ function openDetail(book){
 
   // ① HTML
   el.innerHTML = `
-    <h2>${book.title}</h2>
+  <h2>${book.title}</h2>
 
-    <br>
-      ${getFavLabel(book.fav)}
-    <br>
-    <div id="action-bar"></div>
-    <br>
-読了回数: ${getReadStatus(book)}    
+  <div id="action-bar">
+    <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
+    <button id="add-date-btn">読了 ＋1</button>
+  </div>
+
+  <br>
+  読了回数: ${getReadStatus(book)}
     <br>
 
 
@@ -724,8 +725,9 @@ function openDetail(book){
   const addBtn = document.getElementById('add-date-btn');
   //ボタンたち
   const actionBar = document.getElementById('action-bar');
-  actionBar.appendChild(favBtn);
-  actionBar.appendChild(addBtn);
+  actionBar.style.display = "flex";
+  actionBar.style.gap = "8px";
+  actionBar.style.margin = "8px 0";
   
   styleChip(favBtn, true); //評価は強調
   styleChip(addBtn, false); //読了は通常
@@ -759,7 +761,7 @@ addBtn.onclick = ()=>{
   const today = new Date().toISOString().slice(0,10);
 
   if(!Array.isArray(book.dates)){
-    book.dates = book.dates.filter(d => d);
+    book.dates = [];
   }
 
   book.dates.push(today);
