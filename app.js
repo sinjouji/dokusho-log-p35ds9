@@ -93,12 +93,10 @@ function renderHome(){
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
       
-	const matchUnread = selectedType !== "unread" ||
-	(!b.dates || b.dates.length === 0);
-
 //ウィッシュ・読書済み・全て切替
 const matchType =
   selectedType === "all" ||
+  selectedType === "unread" ||
   (b.type || "normal") === selectedType;
   
     return matchTitle && matchTag && matchType && matchUnread;
