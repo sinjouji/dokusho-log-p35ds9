@@ -783,7 +783,7 @@ el.innerHTML = `
 		<button onclick="go('home')">戻る</button>
 		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
 		<span onclick="createReadBadge"></span>
-		<button onclick="toggleType(book)">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
+		<button onclick="toggleType('${book.id}')">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
 		<button id="add-date-btn">🔂再読了</button>
 	</div>
 <br>
