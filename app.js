@@ -821,7 +821,7 @@ addBtn.onclick = ()=>{
   }
 }	
 	
-function saveData(){
+async function saveData(){
   const data = {
     books,
     series,
@@ -829,7 +829,16 @@ function saveData(){
     tagMaster
   };
 
-  localStorage.setItem("bookAppData", JSON.stringify(data));
+  // ローカル保存
+  //localStorage.setItem("bookAppData", JSON.stringify(data));
+
+  // Firestore保存
+  try{
+    await setDoc(doc(db, "app", "data"), data);
+    console.log("🔥 Firestore保存成功");
+  }catch(e){
+    console.error("❌ 保存失敗", e);
+  }
 }
 	
 
