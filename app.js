@@ -49,6 +49,14 @@ function go(name){
 }
 
 
+function openDetailById(id){
+	const book = books.find(x => x.id === id);
+	if(book){
+		openDetail(book);
+	}
+}
+
+
 
 // ホーム（本のリスト表示）
 function renderHome(){
@@ -90,7 +98,7 @@ function renderHome(){
       <div style="font-weight:bold">${b.title}</div>
     `;
 
-    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
   });
 }
@@ -181,8 +189,8 @@ function createBookSpine(b){
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
   title.style.alignItems = "flex-start"; //!
-  title.style.justifyContent = "center"; //!
-  title.style.textAlign = "left";
+  title.style.justifyContent = "left"; //!
+  title.style.textAlign = "center";
   title.style.textOrientation = "upright";
   title.style.display = "flex"; //!
   title.style.width = "100%";
@@ -686,7 +694,7 @@ addBtn.onclick = ()=>{
 
   book.dates.push(today);
 
-  openDetail(book); // 再描画
+  openDetailById(book.id); // 再描画
 };
   
   
