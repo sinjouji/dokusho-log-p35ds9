@@ -214,10 +214,14 @@ function createBookSpine(b){
 
 //本棚背表紙モード
 function renderShelf(el, sorted){
+console.log("renderShelf start", sorted.length);
+
   el.innerHTML = "";
 
   const container = document.createElement('div');
   el.appendChild(container);
+
+console.log("items", items.length);
 
   const tempRow = document.createElement('div');
   tempRow.style.display = "flex";
@@ -228,10 +232,14 @@ function renderShelf(el, sorted){
 
   // ① 一旦全部入れる（行判定用）
   sorted.forEach(b=>{
+  try{
     const d = createBookSpine(b);
     tempRow.appendChild(d);
     items.push(d);
-  });
+  }catch(e){
+    console.error("createBookSpine error", b, e);
+  }
+});
 
   container.appendChild(tempRow);
 
