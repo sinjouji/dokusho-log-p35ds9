@@ -699,6 +699,7 @@ function openDetail(book){
   <div id="action-bar">
     <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
     <button id="add-date-btn">読了 ＋1</button>
+    <span onclick="createReadBadge"></span>
   </div>
 <br>
 
