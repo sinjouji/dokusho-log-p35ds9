@@ -198,8 +198,8 @@ function saveData(){
   // ローカル
   localStorage.setItem("bookAppData", JSON.stringify(data));
 
-  // Firestore
-  setDoc(doc(db, "app", "data"), data)
+  // Firestore（←ここ修正）
+  window.setDoc(window.doc(window.db, "app", "data"), data)
     .then(()=> console.log("🔥 保存成功"))
     .catch(e=> console.error("❌ 保存失敗", e));
 }
