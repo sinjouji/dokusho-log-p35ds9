@@ -217,8 +217,8 @@ window.saveData = async function(){
   localStorage.setItem("bookAppData", JSON.stringify(data));
 
   try {
-    await setDoc(
-      doc(db, "app", "data"),
+    await window.setDoc(
+      window.doc(window.db, "app", "data"),
       data
     );
     console.log("🔥 保存成功");
