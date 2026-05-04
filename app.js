@@ -612,7 +612,7 @@ function openDetail(book){
 
     <div>
       読了日: ${book.dates?.length
-      ? book.dates.map(d=>`<div>${d}</div>`).jpin("")
+      ? book.dates.map(d=>`<div>${d}</div>`).join("")
       : "未読"
       }
     </div>
