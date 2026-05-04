@@ -888,28 +888,7 @@ addBtn.onclick = ()=>{
     });
   }
 }	
-	
-//async function saveData(){
-//  const data = {
-//    books,
-//    series,
-//    characters,
-//    tagMaster
-//  };
-
-//  localStorage.setItem("bookAppData", JSON.stringify(data));
-
-//  try{
-//    await window.setDoc(
-//    		window.doc(window.db, "app", "data"),
-//    		 data
-//    		 );
-//    console.log("🔥 保存成功");
-//  }catch(e){
-//    console.error("❌ 保存失敗", e);
-//  }
-//}
-	
+		
 
 //本詳細でシリーズを開く
 function openSeriesById(id){
