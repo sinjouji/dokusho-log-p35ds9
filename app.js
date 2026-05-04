@@ -832,7 +832,10 @@ async function saveData(){
   localStorage.setItem("bookAppData", JSON.stringify(data));
 
   try{
-    await window.setDoc(window.doc(window.db, "app", "data"), data);
+    await window.setDoc(
+    		window.doc(window.db, "app", "data"),
+    		 data
+    		 );
     console.log("🔥 保存成功");
   }catch(e){
     console.error("❌ 保存失敗", e);
@@ -1094,7 +1097,7 @@ async function loadData(){
       tagMaster = data.tagMaster || [];
 
       // ★ 初回取得を保存
-      saveData();
+      //saveData();
     }
 
     renderTagFilter();
