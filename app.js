@@ -181,7 +181,7 @@ function createBookSpine(b){
   title.style.overflow = "visible";
   title.style.wordBreak = "break-all";
   //title.style.paddingLeft = "6px";
-  title.style.margin = "0 auto";
+  title.style.alignItems = "left";
   title.style.justifyContent = "center";
   title.style.overflow = "visible";
 
@@ -609,7 +609,8 @@ function openDetail(book){
     ${book.dates?.map((d,i)=>`
   <div>
     ${d}
-    <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">×</span><span onclick="editDate('${book.id}', ${i})">✏️</span>
+    <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">×</span>
+    <span onclick="editDate('${book.id}', ${i})">✏️</span>
   </div>
 `).join("")}
 
