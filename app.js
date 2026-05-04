@@ -462,12 +462,28 @@ function setupTagToggle(){
 
 //★★タイプフィルター（ウィッシュリスト）
 function renderTypeFilter(){
-	const el = document.getElementById("type-filter");
-	if(!el) return;
-	
-	el.innerHTML = `
-		<button class="${selectedType==='wish'?'active':''}"></button>
-		`;
+  const el = document.getElementById("type-filter");
+  if(!el) return;
+
+  el.innerHTML = `
+    <button 
+      class="${selectedType==='all' ? 'active' : ''}"
+      onclick="setTypeFilter('all')">
+      すべて
+    </button>
+
+    <button 
+      class="${selectedType==='normal' ? 'active' : ''}"
+      onclick="setTypeFilter('normal')">
+      読書
+    </button>
+
+    <button 
+      class="${selectedType==='wish' ? 'active' : ''}"
+      onclick="setTypeFilter('wish')">
+      ウィッシュ
+    </button>
+  `;
 }
 
 function setTypeFilter(type){
