@@ -1255,6 +1255,7 @@ async function loadData(){
     renderSort();
     setupTagToggle();
     renderTypeFilter();
+    renderCalendar();
 
     renderHome();
 
