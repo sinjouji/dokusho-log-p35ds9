@@ -697,9 +697,7 @@ function openDetail(book){
   // ① HTML
   el.innerHTML = `
   <h2>${book.title}</h2>
-
   <div id="action-bar">
-    <button id="badge">履歴</button>
     <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
     <button id="add-date-btn">読了 ＋1</button>
   </div>
@@ -764,7 +762,8 @@ function openDetail(book){
   actionBar.style.flexWrap = "wrap";
   
    const badge = createReadBadge(book);
-  document.getElementById('action-bar').appendChild(bage);
+   badge.style.cursor = "pointer";
+  actionBar.appendChild(badge);
   
   badge.onclick = ()=>{
   	alert(book.dates?.join("\n") || "未読");
