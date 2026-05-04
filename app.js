@@ -13,29 +13,25 @@ const savedMode = localStorage.getItem("colorMode");
 let colorMode = ["single","gradient","split","stripe"].includes(savedMode)
 ? savedMode
 : "split"; // 背表紙カラー：single/gradient/split/stripe
-
 let viewMode = localStorage.getItem("viewMode") || "card"; // "card"/"shelf"/"shelf-series"
-
 let sortMode = localStorage.getItem("sortMode") || "title";
-
 let openedSeries = {};
 let showTags = localStorage.getItem("showTags") === "true";
-
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
-
 let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
 
 
 //★★ここまで状態設定
 
 // ページ切替
-function go(name){
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.add('hidden');
+function go(page){
+  document.querySelectorAll("[id^='page-']").forEach(el=>{
+    el.style.display = "none";
   });
 
-  const target = document.getElementById('page-' + name);
+  document.getElementById("page-" + page).style.display = "block";
+  
   if(target){
     target.classList.remove('hidden');
   }
@@ -76,6 +72,41 @@ function styleChip(btn, active=false){
   }
 }
 
+//モーダル設定
+
+function openDayModal(list){
+  const m = document.createElement("div");
+  m.style.position = "fixed";
+  m.style.top = 0;
+  m.style.left = 0;
+  m.style.right = 0;
+  m.style.bottom = 0;
+  m.style.background = "rgba(0,0,0,0.5)";
+  m.style.display = "flex";
+  m.style.alignItems = "center";
+  m.style.justifyContent = "center";
+
+  const box = document.createElement("div");
+  box.style.background = "#fff";
+  box.style.padding = "20px";
+  box.style.maxHeight = "80%";
+  box.style.overflow = "auto";
+
+  list.forEach(b=>{
+    const d = document.createElement("div");
+    d.textContent = b.title;
+    d.style.cursor = "pointer";
+    d.onclick = ()=> openDetail(b);
+    box.appendChild(d);
+  });
+
+  m.appendChild(box);
+  m.onclick = ()=> m.remove();
+
+  document.body.appendChild(m);
+}
+
+//ここまでモーダル設定
 
 
 // ホーム（本のリスト表示）
@@ -98,6 +129,7 @@ const matchType =
   selectedType === "all" ||
   selectedType === "unread" ||
   (b.type || "normal") === selectedType;
+  (!b.dates || b.dates.length === 0);
   
     return matchTitle && matchTag && matchType && matchUnread;
   });
@@ -987,16 +1019,69 @@ function getReadingMap(){
 
 
 function renderCalendar(){
+  go('calendar');
+
   const el = document.getElementById("page-calendar");
   el.innerHTML = "<h3>読書カレンダー</h3>";
 
-  const map = getReadingMap();
+  const map = {};
 
-  Object.keys(map).sort().forEach(date=>{
-    const d = document.createElement("div");
-    d.textContent = `${date}：${map[date]}冊`;
-    el.appendChild(d);
+  books.forEach(b=>{
+    (b.dates || []).forEach(d=>{
+      map[d] = map[d] || [];
+      map[d].push(b);
+    });
   });
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month+1, 0).getDate();
+
+  const grid = document.createElement("div");
+  grid.style.display = "grid";
+  grid.style.gridTemplateColumns = "repeat(7,1fr)";
+  grid.style.gap = "4px";
+
+  // 空白
+  for(let i=0;i<firstDay;i++){
+    grid.appendChild(document.createElement("div"));
+  }
+
+  for(let d=1; d<=lastDate; d++){
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+
+    const cell = document.createElement("div");
+    cell.style.border = "1px solid #ccc";
+    cell.style.minHeight = "60px";
+    cell.style.padding = "4px";
+    cell.style.cursor = "pointer";
+
+    const count = map[dateStr]?.length || 0;
+
+    cell.innerHTML = `
+      <div style="font-size:12px;">${d}</div>
+      <div style="font-size:12px;color:#666;">
+        ${count ? count + "冊" : ""}
+      </div>
+    `;
+
+    // 👇 クリックで一覧
+    cell.onclick = ()=>{
+  if(!map[dateStr]) return;
+  openDayModal(map[dateStr]);
+};
+      alert(
+        map[dateStr].map(b=>b.title).join("\n")
+      );
+    };
+
+    grid.appendChild(cell);
+  }
+
+  el.appendChild(grid);
 }
 
 //★★ここまでカレンダー
