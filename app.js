@@ -55,6 +55,25 @@ function openDetailById(id){
 }
 
 
+//ボタンの見た目チップ化
+function styleChip(btn, active=false){
+  btn.style.display = "inline-block";
+  btn.style.padding = "4px 10px";
+  btn.style.margin = "4px 4px 4px 0";
+  btn.style.fontSize = "12px";
+  btn.style.borderRadius = "999px";
+  btn.style.cursor = "pointer";
+  btn.style.border = "1px solid #333";
+
+  if(active){
+    btn.style.background = "#333";
+    btn.style.color = "#fff";
+  } else {
+    btn.style.background = "transparent";
+    btn.style.color = "#333";
+  }
+}
+
 
 
 // ホーム（本のリスト表示）
@@ -117,6 +136,8 @@ function renderViewMode(){
   modes.forEach(m=>{
     const btn = document.createElement('button');
     btn.textContent = m.label;
+
+	
 
     // 共通スタイル（チップ風）
     btn.style.margin = "3px";
@@ -560,6 +581,15 @@ function renderSort(){
 //★★ソートここまで
 
 
+//ボタンエフェクト
+function pressEffect(el){
+	el.style.transform = "scale(0.95)";
+	setTimeout(()=>{
+		el.style.transform = "scale(1)";
+	},100);
+}
+
+
 //常に正しい本を取得
 function getBookById(id){
 	return books.find(x => String(x.id) === String(id));
@@ -637,14 +667,14 @@ function openDetail(book){
   el.innerHTML = `
     <h2>${book.title}</h2>
 
-    <div id="fav-btn" style="cursor:pointer;font-size:18px;">
+    <br>
       ${getFavLabel(book.fav)}
-    </div>
+    <br>
+    <div id="action-bar"></div>
     <br>
 読了回数: ${getReadStatus(book)}    
     <br>
-      book.dates.push(today);
-      <button id="add-date-btn">読了 ＋1</button>
+
 
 <div>
   読了日:
@@ -687,12 +717,24 @@ function openDetail(book){
     <div id="book-chars"></div>
   `;
 
+
   // ⭐ 評価ボタン
   const favBtn = document.getElementById('fav-btn');
+  //読了ボタン
+  const addBtn = document.getElementById('add-date-btn');
+  //ボタンたち
+  const actionBar = document.getElementById('action-bar');
+  actionBar.appendChild(favBtn);
+  actionBar.appendChild(addBtn);
+  
+  styleChip(favBtn, true); //評価は強調
+  styleChip(addBtn, false); //読了は通常
 
 //  favBtn.style.transition = "transform 0.1s";
 
+//評価変更
   favBtn.onclick = ()=>{
+    pressEffect(favBtn);
     book.fav = (book.fav || 0) + 1;
 
     if(book.fav > 4){
@@ -704,23 +746,23 @@ function openDetail(book){
  //     favBtn.style.transform = "scale(1)";
  //   },100);
 
-    favBtn.textContent = getFavLabel(book.fav);
+    favBtn.textContent = `評価 ${getFavLabel(book.fav)}`;
+    addBtn.textContent = "読了 ＋1";
 
     //setTimeout(renderHome, 0);
   };
   
   
-  //読了ボタン
-  const addBtn = document.getElementById('add-date-btn');
-
+//読了日追加
 addBtn.onclick = ()=>{
+	pressEffect(addBtn);
   const today = new Date().toISOString().slice(0,10);
 
   if(!Array.isArray(book.dates)){
-    book.dates = [];
+    book.dates = book.dates.filter(d => d);
   }
 
-  //book.dates.push(today);
+  book.dates.push(today);
 
   openDetail(book); // 再描画
 };
