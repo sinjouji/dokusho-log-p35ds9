@@ -201,9 +201,9 @@ function createBookSpine(b){
   if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
   if(colorMode === "stripe"){
     d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 3%,
-      ${c3} 3%, ${c3} 5%,
-      ${c1} 5%, ${c1} 75%,
+      ${c1} 0%, ${c1} 5%,
+      ${c3} 5%, ${c3} 10%,
+      ${c1} 10%, ${c1} 75%,
       ${c2} 75%, ${c2} 100%
     )`;
   }
@@ -220,7 +220,7 @@ function createBookSpine(b){
   title.style.alignItems = "center"; //! flex-start
   title.style.justifyContent = "flex-start"; //! center
   title.style.textAlign = "left";
-  title.style.textOrientation = "upright";
+  title.style.textOrientation = "mixed";
   title.style.display = "flex"; //!
   title.style.width = "100%";
   title.style.height = "100%";
