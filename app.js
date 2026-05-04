@@ -602,7 +602,6 @@ function sortBooks(arr){
     result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
   }
   return sortOrder === "asc" ? result : -result;
-  return a.title.localeCompare(b.title, 'ja', { numeric: true })
   });
 
   return list;
@@ -654,7 +653,7 @@ function renderSort(){
     			sortKey = m.id;
     			sortOrder = "asc";
     		}
-    
+    return a.title.localeCompare(b.title, 'ja', { numeric: true })
       localStorage.setItem("sortKey", sortKey);
       localStorage.setItem("sortOrder", sortOrder);
       
