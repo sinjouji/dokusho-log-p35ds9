@@ -1075,31 +1075,58 @@ function openCharacter(c){
 // データ読み込み
 async function loadData(){
   try{
-    const saved = localStorage.getItem("bookAppData");
 
-    if(saved){
-      // ★ ローカルにデータがある場合
-      const data = JSON.parse(saved);
+    // 🔥 ① Firestoreから取得
+    const snap = await window.getDoc(
+      window.doc(window.db, "app", "data")
+    );
+
+    if(snap.exists()){
+      const data = snap.data();
 
       books = data.books || [];
       series = data.series || [];
       characters = data.characters || [];
       tagMaster = data.tagMaster || [];
+
+      // ローカルにも保存（バックアップ）
+      localStorage.setItem("bookAppData", JSON.stringify(data));
+
+      console.log("🔥 Firestoreから読み込み");
 
     } else {
-      // ★ 初回だけGitHubから取得
-      const res = await fetch(DATA_URL + "?t=" + Date.now());
-      const data = await res.json();
 
-      books = data.books || [];
-      series = data.series || [];
-      characters = data.characters || [];
-      tagMaster = data.tagMaster || [];
+      // 🔸 Firestore空ならローカル
+      const saved = localStorage.getItem("bookAppData");
 
-      // ★ 初回取得を保存
-      //saveData();
+      if(saved){
+        const data = JSON.parse(saved);
+
+        books = data.books || [];
+        series = data.series || [];
+        characters = data.characters || [];
+        tagMaster = data.tagMaster || [];
+
+        console.log("📦 ローカルから読み込み");
+
+      } else {
+
+        // 🔸 初回だけGitHub
+        const res = await fetch(DATA_URL + "?t=" + Date.now());
+        const data = await res.json();
+
+        books = data.books || [];
+        series = data.series || [];
+        characters = data.characters || [];
+        tagMaster = data.tagMaster || [];
+
+        await saveData();
+
+        console.log("🌐 初期データ取得");
+      }
     }
 
+    // UI
     renderTagFilter();
     renderColorMode();
     renderViewMode();
@@ -1118,7 +1145,6 @@ async function loadData(){
   const l = document.getElementById('loading');
   if(l) l.classList.add('hidden');
 }
-
 
 // 初回ロード
 loadData();
