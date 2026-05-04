@@ -212,9 +212,8 @@ function createBookSpine(b){
   }
   
   if(b.type === "wish"){
-	d.style.opacity = "0.6";
+	d.style.opacity = "0.8";
 	}
-
 
   const title = document.createElement('div');
   title.textContent = b.title;
