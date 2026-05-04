@@ -99,7 +99,7 @@ const matchType =
   (b.type || "normal") === selectedType;
 
 
-    return matchTitle && matchTag;
+    return matchTitle && matchTag && matchType;
   });
 
   // ② ソート（ここ！！）
@@ -201,9 +201,9 @@ function createBookSpine(b){
   if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
   if(colorMode === "stripe"){
     d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 10%,
-      ${c3} 10%, ${c3} 15%,
-      ${c1} 15%, ${c1} 75%,
+      ${c1} 0%, ${c1} 5%,
+      ${c3} 5%, ${c3} 8%,
+      ${c1} 8%, ${c1} 75%,
       ${c2} 75%, ${c2} 100%
     )`;
   }
