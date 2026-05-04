@@ -683,7 +683,6 @@ function openDetail(book){
 
   const el = document.getElementById('page-detail');
  
-
   const relatedSeries = series.filter(s=>{
     return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
   });
@@ -701,11 +700,7 @@ function openDetail(book){
     <button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
     <button id="add-date-btn">読了 ＋1</button>
   </div>
-
-  <br>
- 
-  <br>
-
+<br>
 
 <div>
   読了日:
@@ -762,8 +757,8 @@ function openDetail(book){
   actionBar.style.flexWrap = "wrap";
   
    const badge = createReadBadge(book);
-   badge.style.cursor = "pointer";
   actionBar.appendChild(badge);
+  badge.style.cursor = "pointer";
   
   badge.onclick = ()=>{
   	alert(book.dates?.join("\n") || "未読");
@@ -771,6 +766,7 @@ function openDetail(book){
   
   styleChip(favBtn, true); //評価は強調
   styleChip(addBtn, false); //読了は通常
+  styleChip(badge, false);
 
 //  favBtn.style.transition = "transform 0.1s";
 
@@ -782,11 +778,6 @@ function openDetail(book){
     if(book.fav > 4){
       book.fav = 1;
     }
-
- //   favBtn.style.transform = "scale(1.2)";
- //  setTimeout(()=>{
- //     favBtn.style.transform = "scale(1)";
- //   },100);
 
     favBtn.textContent = `評価 ${getFavLabel(book.fav)}`;
     addBtn.textContent = "読了 ＋1";
