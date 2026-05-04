@@ -98,11 +98,6 @@ const matchType =
   selectedType === "all" ||
   (b.type || "normal") === selectedType;
   
-  
-if(b.type === "wish"){
-	d.style.opacity = "0.6";
-	}
-
     return matchTitle && matchTag && matchType;
   });
 
@@ -132,6 +127,12 @@ if(b.type === "wish"){
     d.innerHTML = `
       <div style="font-weight:bold">${b.title}</div>
     `;
+
+if(b.type === "wish"){
+	d.style.opacity = "0.6";
+	}
+
+
 
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
