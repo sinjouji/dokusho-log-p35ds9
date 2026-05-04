@@ -1121,13 +1121,21 @@ function openCharacter(c){
 
 // データ読み込み
 async function loadData(){
-  try{
 
-    // 🔥 ① Firestoreから取得
+  // ⭐ ここに入れる（関数の一番上）
+  if(!window.db || !window.doc || !window.getDoc){
+    console.log("⏳ Firebase待機中...");
+    setTimeout(loadData, 100);
+    return;
+  }
+
+  try{
+    // 🔥 Firestoreから取得
     const snap = await window.getDoc(
       window.doc(window.db, "app", "data")
     );
-
+    
+    
     if(snap.exists()){
       const data = snap.data();
 
@@ -1195,5 +1203,7 @@ async function loadData(){
 }
 
 // 初回ロード
-loadData();
-console.log("ここまで読めてる");
+window.addEventListener("load", ()=>{
+  loadData();
+  console.log("ここまで読めてる");
+});
