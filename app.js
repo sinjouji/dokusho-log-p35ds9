@@ -612,18 +612,20 @@ function renderColorMode(){
 
 
 //★★ソートここから
-function sortBooks(arr){
-  const list = [...arr]; // 元壊さない
-
-	list.sort((a,b)=>{
-		let result = 0;
-		return a.title.localeCompare(b.title, 'ja', { numeric: true });
+function sortBooks(list){
+  return [...list].sort((a,b)=>{
+  	return (a.title || "").localeCompare(
+  		(b.title || ""),
+  		'ja',
+  		{ numeric: true }
+  		);
+  	});
+  }
+  	
 
   if(sortKey === "title"){
     result = (a.title || "").localeCompare(b.title || "");
   }
-
-
 
   if(sortKey === "fav"){
     result = (a.fav || 0) - (b.fav || 0);
