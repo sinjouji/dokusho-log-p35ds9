@@ -332,21 +332,30 @@ color: #999;
 
 .mini-card{
   background:#fff;
-  border-radius:10px;
-  padding:8px;
+  border-radius:12px;
+  padding:10px;
   border:1px solid #eee;
   font-size:12px;
+  min-width:120px; /* ←横スクロール用 */
+  flex-shrink:0;   /* ←縮まない */
+  
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+  margin-left:5px;
+  margin-right:5px;
 }
 
 .mini-title{
   font-weight:bold;
-  font-size:12px;
+  font-size:13px;
+  margin-bottom:4px;
 }
 
+
 .mini-date{
-  font-size:10px;
+  font-size:11px;
   color:#888;
 }
+
 
 /* カルーセル風 */
 .recent-title{
@@ -364,31 +373,6 @@ color: #999;
   scroll-snap-type: x mandatory; /* ← これ */
 }
 
-
-.mini-card{
-  min-width:120px; /* ←横スクロール用 */
-  flex-shrink:0;   /* ←縮まない */
-  
-  background:#fff;
-  border-radius:12px;
-  padding:10px;
-  border:1px solid #eee;
-
-  box-shadow:0 2px 6px rgba(0,0,0,0.05);
-  margin-left:5px;
-  margin-right:5px;
-}
-
-.mini-title{
-  font-weight:bold;
-  font-size:13px;
-  margin-bottom:4px;
-}
-
-.mini-date{
-  font-size:11px;
-  color:#888;
-}
 
 .recent-row::-webkit-scrollbar{
   display:none; /* スクロールバー消す */
@@ -436,7 +420,7 @@ color: #999;
   <input id="search" oninput="renderHome()" placeholder="例：夏目友人帳">
  </div>
   <div id="type-filter"></div>
-  <button id="toggle-tags">タグ</button>
+  <!--button id="toggle-tags">タグ</button-->
   <div id="tag-filter"></div>
 </div>
 
