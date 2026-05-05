@@ -539,6 +539,8 @@ function markAsRead(book){
 
 //背表紙カラーモード変更描画
 function renderColorMode(targetId = 'color-mode'){
+  if(!el) return;
+
   const el = document.getElementById(targetId);
   el.innerHTML = "";
 
