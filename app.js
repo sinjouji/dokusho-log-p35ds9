@@ -88,6 +88,7 @@ function renderHome(){
   el.innerHTML = "";
 
   renderSummary();
+  renderRecent();
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
@@ -989,7 +990,7 @@ function changeMonth(diff){
 
 
 function renderCalendar(){
-  go('calendar');
+ // go('calendar');
 
   const el = document.getElementById("page-calendar");
 
@@ -1124,6 +1125,13 @@ function renderCalendar(){
   el.appendChild(grid);
 }//function renderCalendar()おわり
 
+//カレンダー開くやつ
+function openCalendar(){
+  go('calendar');
+  renderCalendar();
+}
+
+
 function getHeatColor(count){
   if(count === 0) return "";
   if(count === 1) return "#f8d8c6"; //乙女
@@ -1255,6 +1263,52 @@ function renderSummary(){
 
   el.innerHTML = html;
 }
+
+
+//最近読んだ3冊
+function getRecentBooks(limit=3){
+  return [...books]
+    .filter(b => b.dates && b.dates.length)
+    .sort((a,b)=>{
+      const da = a.dates[a.dates.length-1];
+      const db = b.dates[b.dates.length-1];
+      return db.localeCompare(da);
+    })
+    .slice(0, limit);
+}
+
+
+
+
+function renderRecent(){
+  const el = document.getElementById("home-recent");
+  if(!el) return;
+
+  const list = getRecentBooks();
+
+  if(!list.length){
+    el.innerHTML = `<div style="color:#999;">まだ読了なし</div>`;
+    return;
+  }
+
+  el.innerHTML = `
+    <div class="section-title">📖 最近読んだ本</div>
+  `;
+
+  list.forEach(b=>{
+    const d = document.createElement("div");
+    d.className = "card";
+
+    d.innerHTML = `
+      <div class="title">${b.title}</div>
+      <div class="meta">${getLastDate(b)}</div>
+    `;
+
+    d.onclick = ()=> openDetail(b);
+    el.appendChild(d);
+  });
+}
+
 
 
 
@@ -1668,7 +1722,7 @@ async function loadData(){
     renderSort();
     setupTagToggle();
     renderTypeFilter();
-    renderCalendar();
+ //   renderCalendar();
   go('home');
     renderHome();
 
