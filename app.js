@@ -4,7 +4,6 @@ const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main
 let books = [];
 let series = [];
 let characters = [];
-let settings = [];
 let tagMaster = [];
 let selectedTagId = localStorage.getItem("selectedTagId");
 if(!selectedTagId) selectedTagId = null;
@@ -44,7 +43,9 @@ function go(page){
 
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
-  if(page === 'settings') renderSettings();
+  if(page === 'settings') {
+  renderSettings();
+  }
 }//function go()おわり
 
 
@@ -611,6 +612,7 @@ function sortBooks(list){
 //ソートUI
 function renderSort(targetId = 'sort-mode'){
   const el = document.getElementById(targetId);
+  if(!el) return;
   el.innerHTML = "";
 
   const modes = [
