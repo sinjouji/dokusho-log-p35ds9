@@ -74,9 +74,10 @@ function styleChip(btn, active=false){
 //
 // ホーム（本のリスト表示）
 function renderHome(){
-  renderSummary();
   const el = document.getElementById('page-home');
   el.innerHTML = "";
+
+  renderSummary();
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
@@ -1212,7 +1213,7 @@ function renderSummary(){
   const month = getMonthlyCount();
   const year = getYearlyCount();
 
-  el.innerHTML = `
+  let html = `
     <div class="summary-box">
       <div class="summary-item">
         <div class="num">${year}</div>
@@ -1225,7 +1226,25 @@ function renderSummary(){
       </div>
     </div>
   `;
+
+  // 🎯 年間目標
+  if(enableGoal){
+    const rate = yearlyGoal
+      ? Math.min(100, Math.round(year / yearlyGoal * 100))
+      : 0;
+
+    html += `
+  <div class="goal-box">
+    🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
+    <div class="goal-bar">
+      <div class="goal-fill" style="width:${rate}%"></div>
+    </div>
+  </div>
+`;
   }
+
+  el.innerHTML = html;
+}
 
 
 
@@ -1454,18 +1473,6 @@ function renderSettings(){
 
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;
-  
-    if(enableGoal){
-  const rate = yearlyGoal ? Math.min(100, Math.round(year/yearlyGoal*100)) : 0;
-
-  el.innerHTML += `
-    <div class="goal-box">
-      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
-    </div>
-  `;
-  }
-
-
   
 }
 
