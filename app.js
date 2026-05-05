@@ -138,17 +138,6 @@ function renderHome(){
   </div>
 `;
 
-  if(enableGoal){
-  const rate = yearlyGoal ? Math.min(100, Math.round(year/yearlyGoal*100)) : 0;
-
-  el.innerHTML += `
-    <div class="goal-box">
-      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
-    </div>
-  `;
-  }
-
-
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
   });
@@ -1465,6 +1454,19 @@ function renderSettings(){
 
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;
+  
+    if(enableGoal){
+  const rate = yearlyGoal ? Math.min(100, Math.round(year/yearlyGoal*100)) : 0;
+
+  el.innerHTML += `
+    <div class="goal-box">
+      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
+    </div>
+  `;
+  }
+
+
+  
 }
 
 
