@@ -379,6 +379,7 @@ function getBookColor(book){
 //タグで絞込み
 function renderTagFilter(){
   const el = document.getElementById('tag-filter')
+  if(!el) return;
   el.innerHTML = "";
 
   // 全解除ボタン
