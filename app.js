@@ -620,10 +620,7 @@ function sortBooks(list){
   		'ja',
   		{ numeric: true }
   		);
-  	});
-  }
-  	
-
+ 
   if(sortKey === "title"){
     result = (a.title || "").localeCompare(b.title || "");
   }
