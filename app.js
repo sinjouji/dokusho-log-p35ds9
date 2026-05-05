@@ -969,16 +969,6 @@ function renderSeriesShelf(el, sorted){
 //★★カレンダー
 
 
-
-//カレンダー月送り
-
-function changeMonth(diff){
-  currentMonth.setMonth(currentMonth.getMonth() + diff);
-  renderCalendar();
-}
-
-
-
 function getReadingMap(){
   const map = {};
 
@@ -992,8 +982,23 @@ function getReadingMap(){
 }//function getReadingMap()おわり
 
 
+
+//カレンダー月送り
+
+function changeMonth(diff){
+  currentMonth.setMonth(currentMonth.getMonth() + diff);
+  renderCalendar();
+}
+
+
+
+
 function renderCalendar(){
   go('calendar');
+
+  const now = currentMonth;
+  const year = now.getFullYear();
+  const month = now.getMonth();
 
   const el = document.getElementById("page-calendar");
   el.innerHTML = `
@@ -1012,10 +1017,6 @@ function renderCalendar(){
       map[d].push(b);
     });
   });
-
-  const now = currentMonth;
-  const year = now.getFullYear();
-  const month = now.getMonth();
 
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month+1, 0).getDate();
@@ -1064,7 +1065,7 @@ function renderCalendar(){
       </div>
     `;
 
-    cell.onmouseenter = )=>{
+    cell.onmouseenter = ()=>{
       cell.style.transform = "scale(1.05)";
     };
     
