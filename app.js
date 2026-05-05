@@ -44,9 +44,9 @@ function go(page){
     : "none";
 
   // タグ絞込み・タイプ切替の表示制御
-  const showTipsPages = ["home"];
+  const showCbtnsPages = ["home"];
 
-  tips.style.display = showtipsPages.includes(page)
+  cbtns.style.display = showcbtnsPages.includes(page)
     ? "flex"
     : "none";
 
