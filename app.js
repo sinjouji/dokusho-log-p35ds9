@@ -986,7 +986,10 @@ function getReadingMap(){
 //カレンダー月送り
 
 function changeMonth(diff){
-  currentMonth.setMonth(currentMonth.getMonth() + diff);
+  const y = currentMonth.getFullYear();
+  const m = currentMonth.getMonth();
+  
+  currentMonth = new Date(y, , + dicc, 1);
   renderCalendar();
 }
 
@@ -1001,6 +1004,7 @@ function renderCalendar(){
   const month = now.getMonth();
 
   el.innerHTML = `
+  <h3 style="color:#666">📅カレンダー</h3>
   <div style="display:flex;justify-content:space-between;align-items:center;">
     <button onclick="changeMonth(-1)">←</button>
     <h3>${year}年 ${month+1}月</h3>
@@ -1019,11 +1023,33 @@ function renderCalendar(){
 
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month+1, 0).getDate();
+  const days = ["日","月","火","水","木","金","土"];
+  
+  days.forEach((d,i)=>{
+    const head = document.createElement("div");
+    head.textContent = d;
+    head.style.fontSize = "12px";
+    head.style.textAlign = "center";
+    head.style.fontWeight = "bold";
+    
+    //土日色
+    if(i === 0) head.style.color = "#e74c3c"; //日曜
+    if(i === 6) head.style.color = "#3498db"; //土曜
+    
+    grid.appendChild(head);
+  });
 
   const grid = document.createElement("div");
   grid.style.display = "grid";
   grid.style.gridTemplateColumns = "repeat(7,1fr)";
   grid.style.gap = "4px";
+  
+  grid.style.transition = "opacity 0.2s";
+  grid.style.opacity = "0";
+  
+  setTimeout(()=>{
+    grid.style.opacity ="1";
+  },10);
 
   // 空白
   for(let i=0;i<firstDay;i++){
@@ -1041,6 +1067,15 @@ function renderCalendar(){
     cell.style.cursor = "pointer";
     cell.style.borderRadius = "8px";
 
+    const dayOfWeek = new Date(year, month, d).getDay();
+    
+    if(dayOfWeek === 0){
+      cell.style.backgroundColor = "rgba(231,76,60,0.1)";
+    }
+    if(dayOfWeek === 6){
+      cell.style.backgroundColor = "rgba(52,152,219,0.1)";
+    }
+
     const count = map[dateStr]?.length || 0;
 
     //ヒートマップ
@@ -1054,7 +1089,7 @@ function renderCalendar(){
 	//今日を強調
 	const today = new Date().toISOString().slice(0,10);
 	if(dateStr === today){
-  	  cell.style.border = "2px solid #e74c3c";// #ac4f02";
+  	  cell.style.border = "2px solid #ac4f02";
 	}
 
     cell.innerHTML = `
@@ -1109,13 +1144,23 @@ function openDayModal(list){
   box.style.padding = "20px";
   box.style.maxHeight = "80%";
   box.style.overflow = "auto";
-  box.style.borderRadius = "8px";
+  box.style.borderRadius = "12px";
+  box.style.minWidth = "200px";
 
   list.forEach(b=>{
     const d = document.createElement("div");
-    d.textContent = b.title;
-    d.style.cursor = "pointer";
-    d.onclick = ()=> openDetail(b);
+    d.style.padding = "6px 0";
+    d.style.borderBottom = "1px solid #eee";
+    
+    d.innerHTML = `
+      <div style="font-weight:bold">${b.title}</div>
+      <div style="font-size:12px;color:#666">${getReadStatus(b)}</div>`;
+
+    d.onclick = ()=>{
+      m.remove();
+      openDetail(b);
+    };
+    
     box.appendChild(d);
   });
 
