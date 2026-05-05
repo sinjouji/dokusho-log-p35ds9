@@ -1039,6 +1039,13 @@ function renderCalendar(){
   },10);
 
 
+
+  // 空白
+  for(let i=0;i<firstDay;i++){
+    grid.appendChild(document.createElement("div"));
+  }
+
+
     days.forEach((d,i)=>{
     const head = document.createElement("div");
     head.textContent = d;
@@ -1052,13 +1059,6 @@ function renderCalendar(){
     
     grid.appendChild(head);
   });
-
-
-
-  // 空白
-  for(let i=0;i<firstDay;i++){
-    grid.appendChild(document.createElement("div"));
-  }
 
 
   // 日付セル
