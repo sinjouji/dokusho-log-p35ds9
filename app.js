@@ -44,13 +44,13 @@ function go(page){
 
   if(name === 'series') renderSeries();
   if(name === 'characters') renderCharacters(); // ★追加
-}
+}//function go()おわり
 
 
 function openDetailById(id){
 	const b = getBookById(id);
 	if(b) openDetail(b);
-}
+}//function openDetailById()おわり
 
 
 //ボタンの見た目チップ化
@@ -70,7 +70,7 @@ function styleChip(btn, active=false){
     btn.style.background = "transparent";
     btn.style.color = "#333";
   }
-}
+}//function styleChip()おわり
 
 //モーダル設定
 
@@ -104,7 +104,7 @@ function openDayModal(list){
   m.onclick = ()=> m.remove();
 
   document.body.appendChild(m);
-}
+}//openDayModal()おわり
 
 //ここまでモーダル設定
 
@@ -165,11 +165,11 @@ const matchType =
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
   });
-}
+}//function renderHome()おわり
 
 
 
-function renderViewMode(){
+function renderHome(){
   const el = document.getElementById('view-mode');
   el.innerHTML = "";
 
@@ -210,7 +210,7 @@ function renderViewMode(){
 
     el.appendChild(btn);
   });
-}
+}//function renderHome()おわり
 
 
 //本生成の関数
@@ -284,7 +284,7 @@ function createBookSpine(b){
   d.onclick = ()=> openDetail(b);
 
   return d;
-}
+}//function createBookSpine()おわり
 
 
 
@@ -368,7 +368,7 @@ console.log("renderShelf start", sorted.length);
       container.appendChild(shelf);
     });
 });
-}
+}//function renderShelf()おわり
 
 
 //本のビュー切り替え
@@ -376,7 +376,7 @@ function setView(mode){
   viewMode = mode;
   localStorage.setItem("viewMode", mode);
   renderHome();
-}
+}//function setView()おわり
 
 
 
@@ -386,7 +386,7 @@ function setView(mode){
 function getTagColor(tagId){
   const t = tagMaster.find(x => x.id === tagId);
   return t?.color || "#999";
-}
+}//function getTagColor()おわり
 
 //背表紙（単色）
 function getBookColor(book){
@@ -394,7 +394,7 @@ function getBookColor(book){
     return getTagColor(book.tagIds[0]);
   }
   return "#ccc";
-}
+}//function getBookColor()おわり
 
 
 
@@ -462,16 +462,16 @@ function renderTagFilter(){
 
     el.appendChild(btn);
   });
-}
+}//function renderTagFilter()おわり
 
 //文字色対策
 function getTextColor(bg){
   return "#fff"; // とりあえず白固定でもOK
-}
+}//function getTextColor()おわり
 
 
 //タグ収納トグル
-function setupTagToggle(){
+function getTextColor{
   const btn = document.getElementById('toggle-tags');
   const el = document.getElementById('tag-filter'); // ★ここで取得
 
@@ -496,7 +496,7 @@ function setupTagToggle(){
 
    update();
   };
-}
+}//function getTextColor()おわり
 //★★タグ関連ここまで
 
 
@@ -531,13 +531,13 @@ function renderTypeFilter(){
       ウィッシュ
     </button>
   `;
-}
+}//function renderTypeFilter()おわり
 
 function setTypeFilter(type){
   selectedType = type;
   renderTypeFilter(); //再描画で色変更
   renderHome();
-}
+}//function setTypeFilter()おわり
 
 
 //★★ワンクリックでタイプ切替
@@ -545,7 +545,7 @@ function toggleType(book){
 	book.type = (book.type === "wish") ? "normal" : "wish";
 	saveData();
 	openDetail(book);
-}
+}//function toggleTypeおわり
 
 
 
@@ -562,10 +562,10 @@ function markAsRead(book){
 
   saveData();
   openDetail(book);
-}
+}//function markAsRead()おわり
 
 
-//★★タイプフィルター
+//★★タイプフィルターおわり
 
 
 
@@ -609,7 +609,7 @@ function renderColorMode(){
 
     el.appendChild(btn);
   });
-}
+}//function renderColorMode()おわり
 
 
 //★★ソートここから
@@ -636,7 +636,7 @@ function sortBooks(list){
   });
 
   return list;
-}
+}//function sortBooks()おわり
 
 
 //ソートUI
@@ -693,7 +693,7 @@ function renderSort(){
 
     el.appendChild(btn);
   });
-}
+}//function renderSort()おわり
 
 
 
@@ -707,19 +707,19 @@ function pressEffect(el){
 	setTimeout(()=>{
 		el.style.transform = "scale(1)";
 	},100);
-}
+}//function pressEffect()おわり
 
 
 //常に正しい本を取得
 function getBookById(id){
 	return books.find(x => String(x.id) === String(id));
-}
+}//function getBookById()おわり
 
 
 function getFavLabel(val){
 	if(val >= 4) return "👑";
 	return "★".repeat(val || 0);
-	}
+	}//function getFavLabel()おわり
 	
 //日付削除
 function removeDate(bookId, index){
@@ -730,7 +730,7 @@ function removeDate(bookId, index){
 
   saveData();
   openDetail(b);
-}
+}//function removeDate()おわり
 
 //日付編集
 function editDate(bookId, index){
@@ -756,7 +756,7 @@ function editDate(bookId, index){
 
   document.body.appendChild(input);
   input.focus();
-}
+}//function editDate()おわり
 
 
 //読書状態ステータス
@@ -767,7 +767,7 @@ function getReadStatus(book){
   if(count === 0) return "🔖未読";
   if(count === 1) return "✔️読了";
   return `🔂再読 ${count}回`;
-}
+}//function getReadStatus()おわり
 
 
 //読了回数バッジ
@@ -797,7 +797,7 @@ function createReadBadge(book){
   }
 
   return span;
-}
+}//function createReadBadge()おわり
 
 
 //★★ここから本表示関連
@@ -953,14 +953,14 @@ typeBtn.onclick = ()=>{
       list.appendChild(d);
     });
   }
-}	
+}//function openDetail()おわり
 		
 
 //本詳細でシリーズを開く
 function openSeriesById(id){
   const s = series.find(x=>x.id === id);
   if(s) openSeries(s);
-}
+}//function openSeriesById()おわり
 
 //シリーズで表示をまとめる
 function renderSeriesShelf(el, sorted){
@@ -998,7 +998,7 @@ function renderSeriesShelf(el, sorted){
       el.appendChild(shelfBox);
     }
   });
-}
+}//function renderSeriesShelf()おわり
 
 //★★ここまで本表示関連
 
@@ -1015,7 +1015,7 @@ function getReadingMap(){
   });
 
   return map;
-}
+}//function getReadingMap()おわり
 
 
 function renderCalendar(){
@@ -1083,7 +1083,7 @@ function renderCalendar(){
   
 
   el.appendChild(grid);
-}
+}//function renderCalendar()おわり
 
 //★★ここまでカレンダー
 
@@ -1103,7 +1103,7 @@ function renderSeries(){
     d.onclick = ()=> openSeries(s);
     list.appendChild(d);
   });
-}
+}//function renderSeries()おわり
 
 
 
@@ -1175,7 +1175,7 @@ if(!relatedCharacters.length){
     list2.appendChild(d);
   });
 }
-}
+}//function openSeries()おわり
 
 
 //★★ここまでシリーズ表示関連
@@ -1197,7 +1197,7 @@ function renderCharacters(){
 
     el.appendChild(d);
   });
-}
+}//function renderCharacters()おわり
 
 //人物詳細
 function openCharacter(c){
@@ -1265,7 +1265,7 @@ function openCharacter(c){
 
     list3.appendChild(d);
   });
-}
+}//function openCharacter()おわり
 
 
 
@@ -1295,7 +1295,7 @@ async function loadData(){
       tagMaster = data.tagMaster || [];
 
       // ローカルにも保存（バックアップ）
-      localStorage.setItem("bookAppData", JSON.stringify(data));
+      localStorage.setItem("bookAppData",JSON.stringify(data));
 
       console.log("🔥 Firestoreから読み込み");
 
@@ -1351,7 +1351,7 @@ async function loadData(){
 
   const l = document.getElementById('loading');
   if(l) l.classList.add('hidden');
-}
+}//async function loadData()おわり
 
 // 初回ロード
 window.addEventListener("load", ()=>{
