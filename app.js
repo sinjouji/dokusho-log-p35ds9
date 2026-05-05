@@ -993,15 +993,6 @@ function changeMonth(diff){
   renderCalendar();
 }
 
-function getHeatColor(count){
-  if(count === 0) return "";
-  if(count === 1) return "#f8d8c6"; //乙女
-  if(count === 2) return "#f7ed92"; //承和
-  if(count === 3) return "#fddb5d"; //くちなし
-  if(count === 4) return "#aacf53"; //萌葱
-  return "#78ccd2"; //白群
-  }
-
 
 function renderCalendar(){
   go('calendar');
@@ -1139,6 +1130,16 @@ function renderCalendar(){
 
   el.appendChild(grid);
 }//function renderCalendar()おわり
+
+function getHeatColor(count){
+  if(count === 0) return "";
+  if(count === 1) return "#f8d8c6"; //乙女
+  if(count === 2) return "#f7ed92"; //承和
+  if(count === 3) return "#fddb5d"; //くちなし
+  if(count === 4) return "#aacf53"; //萌葱
+  return "#78ccd2"; //白群
+  }
+
 
 
   
