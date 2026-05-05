@@ -1323,24 +1323,30 @@ function renderRecentBooks(){
       const db = b.dates[b.dates.length-1];
       return db.localeCompare(da);
     })
-    .slice(0,10); // 多めにして横スクロール
+    .slice(0,12);
 
   if(!list.length){
     el.innerHTML = `<div style="color:#999;font-size:12px;">まだ読書記録がありません</div>`;
     return;
   }
 
-  el.innerHTML = `
-    <div class="recent-title">📚 最近読んだ本</div>
-    <div class="recent-row">
-      ${list.map(b=>`
-        <div class="mini-card" onclick="openDetailById('${b.id}')">
-          <div class="mini-title">${b.title}</div>
-          <div class="mini-date">${getLastDate(b)}</div>
-        </div>
-      `).join("")}
-    </div>
-  `;
+  el.innerHTML = `<div class="recent-title">📚 最近読んだ本</div>`;
+
+  const row = document.createElement("div");
+  row.className = "recent-row";
+
+  list.forEach(b=>{
+    const spine = createBookSpine(b);
+
+    // 👇カルーセル用にサイズ調整
+    spine.style.height = "100px";
+    spine.style.margin = "0 6px";
+    spine.style.cursor = "pointer";
+
+    row.appendChild(spine);
+  });
+
+  el.appendChild(row);
 }
 
 
