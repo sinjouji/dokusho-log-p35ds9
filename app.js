@@ -1018,13 +1018,14 @@ function renderCalendar(){
     cell.style.minHeight = "60px";
     cell.style.padding = "4px";
     cell.style.cursor = "pointer";
+    cell.style.borderRadius = "8px";
 
     const count = map[dateStr]?.length || 0;
     
 	//今日を強調
 	const today = new Date().toISOString().slice(0,10);
 	if(dateStr === today){
-  	  cell.style.border = "2px solid red";
+  	  cell.style.border = "2px solid #ac4f02";
 	}
 
     cell.innerHTML = `
@@ -1056,6 +1057,7 @@ function renderCalendar(){
 //★★ここまでカレンダー
 
 
+
 //モーダル設定
 
 function openDayModal(list){
@@ -1069,12 +1071,14 @@ function openDayModal(list){
   m.style.display = "flex";
   m.style.alignItems = "center";
   m.style.justifyContent = "center";
+  m.style.borderRadius = "8px";
 
   const box = document.createElement("div");
   box.style.background = "#fff";
   box.style.padding = "20px";
   box.style.maxHeight = "80%";
   box.style.overflow = "auto";
+  box.style.borderRadius = "8px";
 
   list.forEach(b=>{
     const d = document.createElement("div");
