@@ -32,20 +32,16 @@ function go(page){
   });
 
   const target = document.getElementById("page-" + page);
-  if(target){
-    target.style.display = "block";
+  if(target) target.style.display = "block";
+
+  // ⭐ 追加
+  if(page === "settings"){
+    renderSettings();
   }
 
-  const topbar = document.getElementById('topbar');
-  if(topbar){
-    topbar.style.display = (page === "home") ? "flex" : "none";
-  }
-
+  if(page === 'home') renderHome();
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
-  if(page === 'settings') {
-  renderSettings();
-  }
 }//function go()おわり
 
 
@@ -138,9 +134,10 @@ function renderHome(){
 
 
 
-function renderViewMode(targetId = 'view-mode'){
+function renderViewMode(targetId = "view-mode"){
   const el = document.getElementById(targetId);
   if(!el) return;
+
   el.innerHTML = "";
 
   const modes = [
@@ -152,30 +149,18 @@ function renderViewMode(targetId = 'view-mode'){
   modes.forEach(m=>{
     const btn = document.createElement('button');
     btn.textContent = m.label;
+    btn.className = "setting-btn";
 
-	
-
-    // 共通スタイル（チップ風）
-    btn.style.margin = "3px";
-    btn.style.padding = "2px 8px";
-    btn.style.fontSize = "12px";
-    btn.style.borderRadius = "999px";
-    btn.style.border = "1px solid #333";
-    btn.style.background = "transparent";
-    btn.style.color = "#333";
-
-    // 選択中
     if(m.id === viewMode){
-      btn.style.background = "#333";
-      btn.style.color = "#fff";
+      btn.classList.add("active");
     }
 
     btn.onclick = ()=>{
       viewMode = m.id;
       localStorage.setItem("viewMode", viewMode);
 
-      renderHome();
-      renderViewMode(); // 見た目更新
+      renderHome();                 // 🔥 これ必須
+      renderViewMode(targetId);     // 見た目更新
     };
 
     el.appendChild(btn);
@@ -540,9 +525,10 @@ function markAsRead(book){
 
 
 //背表紙カラーモード変更描画
-function renderColorMode(targetId = 'color-mode'){
-   const el = document.getElementById(targetId);
-    if(!el) return;
+function renderColorMode(targetId = "color-mode"){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+
   el.innerHTML = "";
 
   const modes = [
@@ -555,27 +541,18 @@ function renderColorMode(targetId = 'color-mode'){
   modes.forEach(m=>{
     const btn = document.createElement('button');
     btn.textContent = m.label;
-    
-      btn.style.background = "transparent";
-      btn.style.color = "#999";
-      btn.style.margin = "3px";
-      btn.style.padding = "2px 8px";
-      btn.style.fontSize = "12px";
-      btn.style.borderRadius = "999px";
-      btn.style.border = "1px solid #999";
+    btn.className = "setting-btn";
 
     if(m.id === colorMode){
-   btn.style.background = "#666";
-   btn.style.color = "#fff";
+      btn.classList.add("active");
     }
 
     btn.onclick = ()=>{
       colorMode = m.id;
-      
       localStorage.setItem("colorMode", colorMode);
-      
-      renderHome();
-      renderColorMode();
+
+      renderHome();              // 🔥
+      renderColorMode(targetId);
     };
 
     el.appendChild(btn);
@@ -610,9 +587,10 @@ function sortBooks(list){
 
 
 //ソートUI
-function renderSort(targetId = 'sort-mode'){
+function renderSort(targetId = "sort-mode"){
   const el = document.getElementById(targetId);
   if(!el) return;
+
   el.innerHTML = "";
 
   const modes = [
@@ -623,43 +601,32 @@ function renderSort(targetId = 'sort-mode'){
 
   modes.forEach(m=>{
     const btn = document.createElement('button');
-    
-    //ラベルに矢印つける
+
     let arrow = "";
     if(m.id === sortKey){
-    	arrow = sortOrder === "asc" ? " ↑" : " ↓";
-    	}
-    
+      arrow = sortOrder === "asc" ? " ↑" : " ↓";
+    }
+
     btn.textContent = m.label + arrow;
-	
-   //見た目 
-    btn.style.margin = "3px";
-    btn.style.padding = "2px 8px";
-    btn.style.fontSize = "12px";
-    btn.style.borderRadius = "999px";
-    btn.style.border = "1px solid #333";
-    btn.style.background = "transparent";
-    btn.style.color = "#333";
+    btn.className = "setting-btn";
 
     if(m.id === sortKey){
-      btn.style.background = "#333";
-      btn.style.color = "#fff";
+      btn.classList.add("active");
     }
 
     btn.onclick = ()=>{
-    		if(sortKey === m.id){
-    			//同じボタンを押す→昇降切り替え
-    			sortOrder = (sortOrder === "asc") ? "desc" : "asc";
-    		} else {
-    			//別ボタン→キー変更＋昇降リセット
-    			sortKey = m.id;
-    			sortOrder = "asc";
-    		}
+      if(sortKey === m.id){
+        sortOrder = (sortOrder === "asc") ? "desc" : "asc";
+      } else {
+        sortKey = m.id;
+        sortOrder = "asc";
+      }
+
       localStorage.setItem("sortKey", sortKey);
       localStorage.setItem("sortOrder", sortOrder);
-      
-      renderHome();
-      renderSort();
+
+      renderHome();          // 🔥
+      renderSort(targetId);
     };
 
     el.appendChild(btn);
@@ -1388,26 +1355,28 @@ function openCharacter(c){
 function renderSettings(){
   const el = document.getElementById("page-settings");
   if(!el) return;
-  
+
   el.innerHTML = `
-    <h3>設定</h3>
-    
-    <div>
-      <div>表示モード</div>
+    <h2 style="margin-bottom:12px;">⚙️ 設定</h2>
+
+    <div class="setting-section">
+      <div class="setting-title">📚 表示モード</div>
       <div id="settings-view"></div>
     </div>
-    
-    <div>
-      <div>背表紙カラー</div>
+
+    <div class="setting-section">
+      <div class="setting-title">🎨 背表紙カラー</div>
       <div id="settings-color"></div>
     </div>
-    
-    <div>
-      <div>並び順</div>
+
+    <div class="setting-section">
+      <div class="setting-title">🔃 並び順</div>
       <div id="settings-sort"></div>
     </div>
+
+    <button onclick="go('home')" class="back-btn">← 戻る</button>
   `;
-  
+
   renderViewMode("settings-view");
   renderColorMode("settings-color");
   renderSort("settings-sort");
