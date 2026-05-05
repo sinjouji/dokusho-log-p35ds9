@@ -114,20 +114,18 @@ function renderHome(){
 
   // ① フィルタ
   const filtered = books.filter(b =>{
-    const matchTitle = (b.title || "").toLowerCase().includes(keyword);
+  const matchTitle = (b.title || "").toLowerCase().includes(keyword);
 
-    const matchTag = !selectedTagId ||
-      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
-      
-//ウィッシュ・読書済み・全て切替
-const matchType =
-  selectedType === "all" ||
-  selectedType === "unread" || && (!b.dates || b.dates.length === 0) ||
-  (b.type || "normal") === selectedType;
-  
-  
-    return matchTitle && matchTag && matchType;
-  });
+  const matchTag = !selectedTagId ||
+    (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+
+  const matchType =
+    selectedType === "all" ||
+    (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
+    (b.type || "normal") === selectedType;
+
+  return matchTitle && matchTag && matchType;
+});
 
   // ② ソート（ここ！！）
   const sorted = sortBooks(filtered);
