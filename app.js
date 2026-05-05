@@ -20,6 +20,7 @@ let showTags = localStorage.getItem("showTags") === "true";
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
 let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
+let currentMonth = new Date();
 
 
 //★★ここまで状態設定
@@ -981,7 +982,13 @@ function renderCalendar(){
   go('calendar');
 
   const el = document.getElementById("page-calendar");
-  el.innerHTML = "<h3>読書カレンダー</h3>";
+  el.innerHTML = `
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <button onclick="changeMonth(-1)">←</button>
+    <h3>${year}年 ${month+1}月</h3>
+    <button onclick="changeMonth(1)">→</button>
+  </div>
+`;;
 
   const map = {};
 
@@ -992,7 +999,7 @@ function renderCalendar(){
     });
   });
 
-  const now = new Date();
+  const now = currentMonth;
   const year = now.getFullYear();
   const month = now.getMonth();
 
@@ -1025,7 +1032,7 @@ function renderCalendar(){
 	//今日を強調
 	const today = new Date().toISOString().slice(0,10);
 	if(dateStr === today){
-  	  cell.style.border = "2px solid #ac4f02";
+  	  cell.style.border = "2px solid #e74c3c";// #ac4f02";
 	}
 
     cell.innerHTML = `
@@ -1037,14 +1044,23 @@ function renderCalendar(){
 
     //ヒートマップ
     	if(count){
- 	 const alpha = Math.min(count / 5, 1);
+ 	 const alpha = Math.min(count / 5, 1); //最大5冊でMAX色
   	 cell.style.background = `rgba(74,141,97,${alpha})`;
+  	 cell.style.color = "#fff";
 	}
 
 
     cell.onclick = ()=>{
       if(!map[dateStr]) return;
       openDayModal(map[dateStr]);
+    };
+    
+    cell.onmouseenter = )=>{
+      cell.style.transform = "scale(1.05)";
+    };
+    
+    cell.onmouseleave = ()=>{
+      cell.style.transform = "scale(1)";
     };
 
     // ✅ ここが超重要
@@ -1053,6 +1069,15 @@ function renderCalendar(){
 
   el.appendChild(grid);
 }//function renderCalendar()おわり
+
+
+//カレンダー月送り
+
+function changeMonth(diff){
+  currentMonth.setMonth(currentMonth.getMonth() + diff);
+  renderCalendar();
+}
+
 
 //★★ここまでカレンダー
 
