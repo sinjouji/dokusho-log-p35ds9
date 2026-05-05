@@ -42,7 +42,6 @@ function go(page){
 
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
-  if(page === 'calendar') renderCalendar();
 }//function go()おわり
 
 
