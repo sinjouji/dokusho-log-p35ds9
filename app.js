@@ -139,6 +139,7 @@ function renderHome(){
 
 function renderViewMode(targetId = 'view-mode'){
   const el = document.getElementById(targetId);
+  if(!el) return;
   el.innerHTML = "";
 
   const modes = [
@@ -539,9 +540,8 @@ function markAsRead(book){
 
 //背表紙カラーモード変更描画
 function renderColorMode(targetId = 'color-mode'){
-  if(!el) return;
-
-  const el = document.getElementById(targetId);
+   const el = document.getElementById(targetId);
+    if(!el) return;
   el.innerHTML = "";
 
   const modes = [
@@ -1385,6 +1385,7 @@ function openCharacter(c){
 //設定ページ
 function renderSettings(){
   const el = document.getElementById("page-settings");
+  if(!el) return;
   
   el.innerHTML = `
     <h3>設定</h3>
@@ -1407,7 +1408,6 @@ function renderSettings(){
   
   renderViewMode("settings-view");
   renderColorMode("settings-color");
-  renderSort("settings-sort");
 }
 
 
