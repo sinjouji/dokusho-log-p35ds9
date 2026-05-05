@@ -1024,7 +1024,21 @@ function renderCalendar(){
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month+1, 0).getDate();
   const days = ["日","月","火","水","木","金","土"];
+
   
+  const grid = document.createElement("div");
+  grid.style.display = "grid";
+  grid.style.gridTemplateColumns = "repeat(7,1fr)";
+  grid.style.gap = "4px";
+  
+  grid.style.transition = "opacity 0.2s";
+  grid.style.opacity = "0";
+  
+  setTimeout(()=>{
+    grid.style.opacity ="1";
+  },10);
+
+
     days.forEach((d,i)=>{
     const head = document.createElement("div");
     head.textContent = d;
@@ -1039,18 +1053,7 @@ function renderCalendar(){
     grid.appendChild(head);
   });
 
-  
-  const grid = document.createElement("div");
-  grid.style.display = "grid";
-  grid.style.gridTemplateColumns = "repeat(7,1fr)";
-  grid.style.gap = "4px";
-  
-  grid.style.transition = "opacity 0.2s";
-  grid.style.opacity = "0";
-  
-  setTimeout(()=>{
-    grid.style.opacity ="1";
-  },10);
+
 
   // 空白
   for(let i=0;i<firstDay;i++){
