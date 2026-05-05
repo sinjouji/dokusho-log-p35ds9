@@ -70,42 +70,6 @@ function styleChip(btn, active=false){
   }
 }//function styleChip()おわり
 
-//モーダル設定
-
-function openDayModal(list){
-  const m = document.createElement("div");
-  m.style.position = "fixed";
-  m.style.top = 0;
-  m.style.left = 0;
-  m.style.right = 0;
-  m.style.bottom = 0;
-  m.style.background = "rgba(0,0,0,0.5)";
-  m.style.display = "flex";
-  m.style.alignItems = "center";
-  m.style.justifyContent = "center";
-
-  const box = document.createElement("div");
-  box.style.background = "#fff";
-  box.style.padding = "20px";
-  box.style.maxHeight = "80%";
-  box.style.overflow = "auto";
-
-  list.forEach(b=>{
-    const d = document.createElement("div");
-    d.textContent = b.title;
-    d.style.cursor = "pointer";
-    d.onclick = ()=> openDetail(b);
-    box.appendChild(d);
-  });
-
-  m.appendChild(box);
-  m.onclick = ()=> m.remove();
-
-  document.body.appendChild(m);
-}//openDayModal()おわり
-
-//ここまでモーダル設定
-
 
 // ホーム（本のリスト表示）
 function renderHome(){
@@ -1090,6 +1054,43 @@ function renderCalendar(){
 }//function renderCalendar()おわり
 
 //★★ここまでカレンダー
+
+
+//モーダル設定
+
+function openDayModal(list){
+  const m = document.createElement("div");
+  m.style.position = "fixed";
+  m.style.top = 0;
+  m.style.left = 0;
+  m.style.right = 0;
+  m.style.bottom = 0;
+  m.style.background = "rgba(0,0,0,0.5)";
+  m.style.display = "flex";
+  m.style.alignItems = "center";
+  m.style.justifyContent = "center";
+
+  const box = document.createElement("div");
+  box.style.background = "#fff";
+  box.style.padding = "20px";
+  box.style.maxHeight = "80%";
+  box.style.overflow = "auto";
+
+  list.forEach(b=>{
+    const d = document.createElement("div");
+    d.textContent = b.title;
+    d.style.cursor = "pointer";
+    d.onclick = ()=> openDetail(b);
+    box.appendChild(d);
+  });
+
+  m.appendChild(box);
+  m.onclick = ()=> m.remove();
+
+  document.body.appendChild(m);
+}//openDayModal()おわり
+
+//ここまでモーダル設定
 
 
 
