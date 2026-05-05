@@ -31,19 +31,14 @@ function go(page){
   });
 
   document.getElementById("page-" + page).style.display = "block";
-  
-  if(target){
-    target.classList.remove('hidden');
-  }
-  
-  //本一覧の検索欄を別の一覧ページでは隠す
+
   const topbar = document.getElementById('topbar');
   if(topbar){
-  	topbar.style.display = (name === "home") ? "flex" : "none";
-  	}
+    topbar.style.display = (page === "home") ? "flex" : "none";
+  }
 
-  if(name === 'series') renderSeries();
-  if(name === 'characters') renderCharacters(); // ★追加
+  if(page === 'series') renderSeries();
+  if(page === 'characters') renderCharacters();
 }//function go()おわり
 
 
@@ -127,16 +122,16 @@ function renderHome(){
 //ウィッシュ・読書済み・全て切替
 const matchType =
   selectedType === "all" ||
-  selectedType === "unread" ||
+  selectedType === "unread" || && (!b.dates || b.dates.length === 0) ||
   (b.type || "normal") === selectedType;
-  (!b.dates || b.dates.length === 0);
   
-    return matchTitle && matchTag && matchType && matchUnread;
+  
+    return matchTitle && matchTag && matchType;
   });
 
   // ② ソート（ここ！！）
   const sorted = sortBooks(filtered);
-  console.log('sortBooks通ったで')//コンソールおてすと
+
   sorted.sort((a,b)=>{
   	if(a.type === b.type) return 0;
   	return a.type === "wish" ? -1 : 1;
@@ -169,7 +164,7 @@ const matchType =
 
 
 
-function renderHome(){
+function renderViewMode(){
   const el = document.getElementById('view-mode');
   el.innerHTML = "";
 
@@ -210,7 +205,7 @@ function renderHome(){
 
     el.appendChild(btn);
   });
-}//function renderHome()おわり
+}//function renderViewMode()おわり
 
 
 //本生成の関数
@@ -471,7 +466,7 @@ function getTextColor(bg){
 
 
 //タグ収納トグル
-function getTextColor{
+function setupTagToggle(){
   const btn = document.getElementById('toggle-tags');
   const el = document.getElementById('tag-filter'); // ★ここで取得
 
@@ -615,27 +610,26 @@ function renderColorMode(){
 //★★ソートここから
 function sortBooks(list){
   return [...list].sort((a,b)=>{
-  	return (a.title || "").localeCompare(
-  		(b.title || ""),
-  		'ja',
-  		{ numeric: true }
-  		);
- 
-  if(sortKey === "title"){
-    result = (a.title || "").localeCompare(b.title || "");
-  }
+    let result = 0;
 
-  if(sortKey === "fav"){
-    result = (a.fav || 0) - (b.fav || 0);
-  }
+    if(sortKey === "title"){
+      result = (a.title || "").localeCompare(
+        (b.title || ""),
+        'ja',
+        { numeric: true }
+      );
+    }
 
-  if(sortKey === "date"){
-    result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
-  }
-  return sortOrder === "asc" ? result : -result;
+    if(sortKey === "fav"){
+      result = (a.fav || 0) - (b.fav || 0);
+    }
+
+    if(sortKey === "date"){
+      result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
+    }
+
+    return sortOrder === "asc" ? result : -result;
   });
-
-  return list;
 }//function sortBooks()おわり
 
 
@@ -1072,15 +1066,11 @@ function renderCalendar(){
     cell.onclick = ()=>{
   if(!map[dateStr]) return;
   openDayModal(map[dateStr]);
-};
+  };
 
-      alert(
-        map[dateStr].map(b=>b.title).join("\n")
-      );
-    };
+ };
 
     grid.appendChild(cell);
-  
 
   el.appendChild(grid);
 }//function renderCalendar()おわり
