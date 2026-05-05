@@ -1071,6 +1071,7 @@ function renderCalendar(){
     cell.style.padding = "4px";
     cell.style.cursor = "pointer";
     cell.style.borderRadius = "8px";
+    cell.style.fontWeight = "bold";
 
     const dayOfWeek = new Date(year, month, d).getDay();
     
@@ -1084,10 +1085,17 @@ function renderCalendar(){
     const count = map[dateStr]?.length || 0;
 
     //ヒートマップ
+    let textColor = "#333"
+    
     	if(count){
  	 const alpha = Math.min(count / 5, 1); //最大5冊でMAX色
-  	 cell.style.background = `rgba(74,141,97,${alpha})`;
-  	 cell.style.color = "#fff";
+ 	 const color = getHeatColor(count);
+ 	 if(color){
+  	 
+		cell.style.background = color;
+  		cell.style.color = count >= 3 ? "#fff" : "#333";
+  		
+  	 textColor = alpha > 0.4 ? "#fff" : "#333";
 	}
 
     
@@ -1099,7 +1107,7 @@ function renderCalendar(){
 
     cell.innerHTML = `
       <div style="font-size:12px;">${d}</div>
-      <div style="font-size:12px;color:#666;">
+      <div style="font-size:12px;color:${textColor};">
         ${count ? count + "冊" : ""}
       </div>
     `;
@@ -1125,6 +1133,16 @@ function renderCalendar(){
 }//function renderCalendar()おわり
 
 
+function getHeatColor(count){
+  if(count === 0) return "";
+  if(count === 1) return "#d6eadf";
+  if(count === 2) return "#a8d5ba";
+  if(count === 3) return "#74b49b";
+  if(count === 4) return "#4a8d61";
+  return "#2f5d3a"; //5冊以上
+}
+  
+  
 //★★ここまでカレンダー
 
 
