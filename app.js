@@ -1316,7 +1316,6 @@ function renderRecentBooks(){
   const el = document.getElementById("recent-books");
   if(!el) return;
 
-  // 日付でソート（最新順）
   const list = [...books]
     .filter(b => b.dates?.length)
     .sort((a,b)=>{
@@ -1324,10 +1323,16 @@ function renderRecentBooks(){
       const db = b.dates[b.dates.length-1];
       return db.localeCompare(da);
     })
-    .slice(0,6); // 6冊で2〜3カラム
+    .slice(0,10); // 多めにして横スクロール
+
+  if(!list.length){
+    el.innerHTML = `<div style="color:#999;font-size:12px;">まだ読書記録がありません</div>`;
+    return;
+  }
 
   el.innerHTML = `
-    <div class="recent-grid">
+    <div class="recent-title">📚 最近読んだ本</div>
+    <div class="recent-row">
       ${list.map(b=>`
         <div class="mini-card" onclick="openDetailById('${b.id}')">
           <div class="mini-title">${b.title}</div>
