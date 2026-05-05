@@ -1410,6 +1410,7 @@ function renderSettings(){
   
   renderViewMode("settings-view");
   renderColorMode("settings-color");
+  renderSort("settings-sort");
 }
 
 
