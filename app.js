@@ -968,6 +968,17 @@ function renderSeriesShelf(el, sorted){
 
 //★★カレンダー
 
+
+
+//カレンダー月送り
+
+function changeMonth(diff){
+  currentMonth.setMonth(currentMonth.getMonth() + diff);
+  renderCalendar();
+}
+
+
+
 function getReadingMap(){
   const map = {};
 
@@ -979,16 +990,6 @@ function getReadingMap(){
 
   return map;
 }//function getReadingMap()おわり
-
-
-
-//カレンダー月送り
-
-function changeMonth(diff){
-  currentMonth.setMonth(currentMonth.getMonth() + diff);
-  renderCalendar();
-}
-
 
 
 function renderCalendar(){
