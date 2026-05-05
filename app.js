@@ -82,11 +82,12 @@ function styleChip(btn, active=false){
 //
 // ホーム（本のリスト表示）
 function renderHome(){
-renderSummary();
+
   const el = document.getElementById('page-home');
+  if(!el) return;
   el.innerHTML = "";
 
-  //renderSummary();
+  renderSummary();
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
