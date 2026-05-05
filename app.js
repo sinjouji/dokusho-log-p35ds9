@@ -991,16 +991,15 @@ function changeMonth(diff){
 }
 
 
-
-
 function renderCalendar(){
   go('calendar');
+
+  const el = document.getElementById("page-calendar");
 
   const now = currentMonth;
   const year = now.getFullYear();
   const month = now.getMonth();
 
-  const el = document.getElementById("page-calendar");
   el.innerHTML = `
   <div style="display:flex;justify-content:space-between;align-items:center;">
     <button onclick="changeMonth(-1)">←</button>
