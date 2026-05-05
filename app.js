@@ -1095,7 +1095,7 @@ function renderCalendar(){
 		cell.style.background = color;
   		cell.style.color = count >= 3 ? "#fff" : "#333";
   		
-  	 textColor = alpha > 0.4 ? "#fff" : "#333";
+  	 //textColor = alpha > 0.4 ? "#fff" : "#333";
 	}
 
     
