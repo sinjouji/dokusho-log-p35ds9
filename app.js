@@ -993,6 +993,15 @@ function changeMonth(diff){
   renderCalendar();
 }
 
+function getHeatColor(count){
+  if(count === 0) return "";
+  if(count === 1) return "#d6eadf";
+  if(count === 2) return "#a8d5ba";
+  if(count === 3) return "#74b49b";
+  if(count === 4) return "#4a8d61";
+  return "#2f5d3a"; //5冊以上
+}
+
 
 function renderCalendar(){
   go('calendar');
@@ -1094,7 +1103,7 @@ function renderCalendar(){
   	 
 		cell.style.background = color;
   		cell.style.color = count >= 3 ? "#fff" : "#333";
-  		textColor = alpha > 0.4 ? "#fff" : "#333";
+  		//textColor = alpha > 0.4 ? "#fff" : "#333";
 	  }}
 
     
@@ -1132,15 +1141,6 @@ function renderCalendar(){
 }//function renderCalendar()おわり
 
 
-function getHeatColor(count){
-  if(count === 0) return "";
-  if(count === 1) return "#d6eadf";
-  if(count === 2) return "#a8d5ba";
-  if(count === 3) return "#74b49b";
-  if(count === 4) return "#4a8d61";
-  return "#2f5d3a"; //5冊以上
-}
-  
   
 //★★ここまでカレンダー
 
