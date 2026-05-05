@@ -44,11 +44,11 @@ function go(page){
     : "none";
 
   // タグ絞込み・タイプ切替の表示制御
-  const showCbtnsPages = ["home"];
+//  const showCbtnsPages = ["home"];
 
-  cbtns.style.display = showcbtnsPages.includes(page)
-    ? "flex"
-    : "none";
+//  cbtns.style.display = showcbtnsPages.includes(page)
+//    ? "flex"
+//    : "none";
 
 
   if(page === 'settings') renderSettings();
