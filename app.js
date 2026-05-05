@@ -138,16 +138,16 @@ function renderHome(){
   </div>
 `;
 
-  const count = getMonthlyCount();
+  if(enableGoal){
+  const rate = yearlyGoal ? Math.min(100, Math.round(year/yearlyGoal*100)) : 0;
 
-  const header = document.createElement("div");
-  header.style.margin = "10px";
-  header.style.fontSize = "14px";
-  header.style.color = "#666";
+  el.innerHTML += `
+    <div class="goal-box">
+      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
+    </div>
+  `;
+  }
 
-  header.textContent = `📊 今月 ${count}冊`;
-
-  el.appendChild(header);
 
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
@@ -1236,18 +1236,7 @@ function renderSummary(){
       </div>
     </div>
   `;
-  
-  //render Homeか？？
-  if(enableGoal){
-  const rate = yearlyGoal ? Math.min(100, Math.round(year/yearlyGoal*100)) : 0;
-
-  el.innerHTML += `
-    <div class="goal-box">
-      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
-    </div>
-  `;
   }
-}
 
 
 
