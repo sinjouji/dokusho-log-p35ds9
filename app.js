@@ -136,6 +136,7 @@ const matchType =
 
   // ② ソート（ここ！！）
   const sorted = sortBooks(filtered);
+  console.log('sortBooks通ったで')//コンソールおてすと
   sorted.sort((a,b)=>{
   	if(a.type === b.type) return 0;
   	return a.type === "wish" ? -1 : 1;
@@ -1075,13 +1076,14 @@ function renderCalendar(){
   if(!map[dateStr]) return;
   openDayModal(map[dateStr]);
 };
+
       alert(
         map[dateStr].map(b=>b.title).join("\n")
       );
     };
 
     grid.appendChild(cell);
-  }
+  
 
   el.appendChild(grid);
 }
