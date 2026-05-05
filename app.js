@@ -1042,33 +1042,35 @@ function renderCalendar(){
     grid.appendChild(document.createElement("div"));
   }
 
-  for(let d=1; d<=lastDate; d++){
-    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+for(let d=1; d<=lastDate; d++){
+  const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 
-    const cell = document.createElement("div");
-    cell.style.border = "1px solid #ccc";
-    cell.style.minHeight = "60px";
-    cell.style.padding = "4px";
-    cell.style.cursor = "pointer";
+  const cell = document.createElement("div");
+  cell.style.border = "1px solid #ccc";
+  cell.style.minHeight = "60px";
+  cell.style.padding = "4px";
+  cell.style.cursor = "pointer";
 
-    const count = map[dateStr]?.length || 0;
+  const count = map[dateStr]?.length || 0;
 
-    cell.innerHTML = `
-      <div style="font-size:12px;">${d}</div>
-      <div style="font-size:12px;color:#666;">
-        ${count ? count + "冊" : ""}
-      </div>
-    `;
+  cell.innerHTML = `
+    <div style="font-size:12px;">${d}</div>
+    <div style="font-size:12px;color:#666;">
+      ${count ? count + "冊" : ""}
+    </div>
+  `;
 
-    // 👇 クリックで一覧
-    cell.onclick = ()=>{
-  if(!map[dateStr]) return;
-  openDayModal(map[dateStr]);
+  cell.onclick = ()=>{
+    if(!map[dateStr]) return;
+    openDayModal(map[dateStr]);
   };
 
-    grid.appendChild(cell);
- }
-  el.appendChild(grid);
+  // ✅ ここに入れる！！！！
+  grid.appendChild(cell);
+}
+
+// 外はこれだけ
+el.appendChild(grid);
 }//function renderCalendar()おわり
 
 //★★ここまでカレンダー
