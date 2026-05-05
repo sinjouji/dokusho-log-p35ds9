@@ -988,7 +988,7 @@ function renderCalendar(){
     <h3>${year}年 ${month+1}月</h3>
     <button onclick="changeMonth(1)">→</button>
   </div>
-`;;
+`;
 
   const map = {};
 
