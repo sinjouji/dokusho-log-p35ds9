@@ -1039,7 +1039,6 @@ function renderCalendar(){
   },10);
 
 
-
     days.forEach((d,i)=>{
     const head = document.createElement("div");
     head.textContent = d;
