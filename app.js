@@ -30,7 +30,10 @@ function go(page){
     el.style.display = "none";
   });
 
-  document.getElementById("page-" + page).style.display = "block";
+  const target = document.getElementById("page-" + page);
+  if(target){
+    target.style.display = "block";
+  }
 
   const topbar = document.getElementById('topbar');
   if(topbar){
