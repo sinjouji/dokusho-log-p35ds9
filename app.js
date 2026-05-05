@@ -989,7 +989,7 @@ function changeMonth(diff){
   const y = currentMonth.getFullYear();
   const m = currentMonth.getMonth();
   
-  currentMonth = new Date(y, m + dicc, 1);
+  currentMonth = new Date(y, m + diff, 1);
   renderCalendar();
 }
 
