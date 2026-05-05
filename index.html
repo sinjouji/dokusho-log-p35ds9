@@ -345,6 +345,47 @@ color: #999;
   color:#888;
 }
 
+/* カルーセル風 */
+.recent-title{
+  font-size:14px;
+  margin:8px 0 4px;
+  font-weight:bold;
+}
+
+.recent-row{
+  display:flex;
+  gap:10px;
+  overflow-x:auto; /* ←これがカルーセル */
+  padding-bottom:6px;
+}
+
+.mini-card{
+  min-width:120px; /* ←横スクロール用 */
+  flex-shrink:0;   /* ←縮まない */
+  
+  background:#fff;
+  border-radius:12px;
+  padding:10px;
+  border:1px solid #eee;
+
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+.mini-title{
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.mini-date{
+  font-size:11px;
+  color:#888;
+}
+
+.recent-row::-webkit-scrollbar{
+  display:none; /* スクロールバー消す */
+}
+
 /* ★これ重要（今回の勝因） */
 #loading.hidden{
   display:none;
@@ -372,7 +413,7 @@ color: #999;
 </header>
 
 <div id="home-summary"></div>
-<div id="home-recent"></div>
+<div id="recent-books"></div>
 <div id="narabe">
  <div id="topbar">
   <input id="search" oninput="renderHome()" placeholder="例：夏目友人帳">
