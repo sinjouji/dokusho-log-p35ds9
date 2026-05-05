@@ -982,6 +982,15 @@ function getReadingMap(){
 
 
 
+//カレンダー月送り
+
+function changeMonth(diff){
+  currentMonth.setMonth(currentMonth.getMonth() + diff);
+  renderCalendar();
+}
+
+
+
 function renderCalendar(){
   go('calendar');
 
@@ -1073,14 +1082,6 @@ function renderCalendar(){
 
   el.appendChild(grid);
 }//function renderCalendar()おわり
-
-
-//カレンダー月送り
-
-function changeMonth(diff){
-  currentMonth.setMonth(currentMonth.getMonth() + diff);
-  renderCalendar();
-}
 
 
 //★★ここまでカレンダー
