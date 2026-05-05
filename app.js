@@ -21,6 +21,8 @@ let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べる�
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
 let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
 let currentMonth = new Date();
+let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 0;
+let enableGoal = localStorage.getItem("enableGoal") === "true";//年間読破目標設定
 
 
 //★★ここまで状態設定
@@ -72,6 +74,7 @@ function styleChip(btn, active=false){
 //
 // ホーム（本のリスト表示）
 function renderHome(){
+  renderSummary();
   const el = document.getElementById('page-home');
   el.innerHTML = "";
 
@@ -118,9 +121,20 @@ function renderHome(){
     d.className = "card";
 
     d.innerHTML = `
-  <div style="font-weight:bold">${b.title}</div>
-  <div style="font-size:12px;color:#666">
-    ${b.dates?.join(", ") || ""}
+  <div class="title">${b.title}</div>
+
+  <div class="meta">
+    <span class="date">${getLastDate(b)}</span>
+    <span class="fav">${getFavLabel(b.fav)}</span>
+    <span class="count">${(b.dates?.length || 0)}回</span>
+  </div>
+
+  <div class="tags">
+    ${(b.tagIds || []).map(id=>{
+      const t = tagMaster.find(x=>x.id===id);
+      if(!t) return "";
+      return `<span class="tag" style="background:${t.color}">${t.name}</span>`;
+    }).join("")}
   </div>
 `;
 
@@ -695,6 +709,12 @@ function editDate(bookId, index){
   input.focus();
 }//function editDate()おわり
 
+//補助
+function getLastDate(book){
+  if(!book.dates || !book.dates.length) return "未読";
+  return book.dates[book.dates.length-1];
+}
+
 
 //読書状態ステータス
 function getReadStatus(book){
@@ -1168,24 +1188,66 @@ function openDayModal(list){
 //ここまでモーダル設定
 
 
-//今月◯冊表示機能
+//今年・今月◯冊取得
 function getMonthlyCount(){
   const now = new Date();
-  const ym = now.toISOString().slice(0,7); // "2026-05"
+  const ym = now.toISOString().slice(0,7);
 
   let count = 0;
-
   books.forEach(b=>{
     (b.dates || []).forEach(d=>{
-      if(d.startsWith(ym)){
-        count++;
-      }
+      if(d.startsWith(ym)) count++;
     });
   });
-
   return count;
 }
 
+function getYearlyCount(){
+  const now = new Date();
+  const y = now.getFullYear();
+
+  let count = 0;
+  books.forEach(b=>{
+    (b.dates || []).forEach(d=>{
+      if(d.startsWith(String(y))) count++;
+    });
+  });
+  return count;
+}
+
+//今年：今月◯冊の表示
+function renderSummary(){
+  const el = document.getElementById("home-summary");
+  if(!el) return;
+
+  const month = getMonthlyCount();
+  const year = getYearlyCount();
+
+  el.innerHTML = `
+    <div class="summary-box">
+      <div class="summary-item">
+        <div class="num">${year}</div>
+        <div class="label">今年</div>
+      </div>
+
+      <div class="summary-item">
+        <div class="num">${month}</div>
+        <div class="label">今月</div>
+      </div>
+    </div>
+  `;
+  
+  //render Homeか？？
+  if(enableGoal){
+  const rate = yearlyGoal ? Math.min(100, Math.round(year/yearlyGoal*100)) : 0;
+
+  el.innerHTML += `
+    <div class="goal-box">
+      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
+    </div>
+  `;
+  }
+}
 
 
 
