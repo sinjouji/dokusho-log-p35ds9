@@ -1357,33 +1357,156 @@ function renderSettings(){
   if(!el) return;
 
   el.innerHTML = `
-    <h2 style="margin-bottom:12px;">⚙️ 設定</h2>
+    <h2 style="padding:12px;">設定</h2>
 
-    <div class="setting-section">
-      <div class="setting-title">📚 表示モード</div>
-      <div id="settings-view"></div>
+    <div class="settings-group">
+      <div class="settings-header">表示</div>
+      <div class="settings-list">
+        <div class="settings-item" onclick="openSettingSelect('view')">
+          表示モード
+          <div class="settings-value">${getViewLabel()}</div>
+        </div>
+
+        <div class="settings-item" onclick="openSettingSelect('color')">
+          背表紙カラー
+          <div class="settings-value">${getColorLabel()}</div>
+        </div>
+      </div>
     </div>
 
-    <div class="setting-section">
-      <div class="setting-title">🎨 背表紙カラー</div>
-      <div id="settings-color"></div>
+    <div class="settings-group">
+      <div class="settings-header">並び</div>
+      <div class="settings-list">
+        <div class="settings-item" onclick="openSettingSelect('sort')">
+          並び順
+          <div class="settings-value">${getSortLabel()}</div>
+        </div>
+      </div>
     </div>
 
-    <div class="setting-section">
-      <div class="setting-title">🔃 並び順</div>
-      <div id="settings-sort"></div>
+    <div class="settings-group">
+      <div class="settings-header">その他</div>
+      <div class="settings-list">
+        <div class="settings-item">
+          タグ表示
+          <div class="switch ${showTags ? "on" : ""}" onclick="toggleTags(event)"></div>
+        </div>
+      </div>
     </div>
 
-    <button onclick="go('home')" class="back-btn">← 戻る</button>
+    <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;
-
-  renderViewMode("settings-view");
-  renderColorMode("settings-color");
-  renderSort("settings-sort");
 }
 
 
+//トグル動作
+function toggleTags(e){
+  e.stopPropagation(); // 行クリック防止
 
+  showTags = !showTags;
+  localStorage.setItem("showTags", showTags);
+
+  renderSettings();
+  renderHome();
+}
+
+
+//「次の画面」っぽいやつ
+function openSettingSelect(type){
+  const el = document.getElementById("page-settings");
+
+  let list = [];
+
+  if(type === "view"){
+    list = [
+      {id:"card", label:"カード"},
+      {id:"shelf", label:"本棚"},
+      {id:"shelf-series", label:"シリーズ"}
+    ];
+  }
+
+  if(type === "color"){
+    list = [
+      {id:"single", label:"単色"},
+      {id:"gradient", label:"グラデ"},
+      {id:"split", label:"分割"},
+      {id:"stripe", label:"目印"}
+    ];
+  }
+
+  if(type === "sort"){
+    list = [
+      {id:"title", label:"名前"},
+      {id:"fav", label:"評価"},
+      {id:"date", label:"日付"}
+    ];
+  }
+
+  el.innerHTML = `
+    <h2 style="padding:12px;">選択</h2>
+    <div class="settings-list" id="select-list"></div>
+    <button onclick="renderSettings()" style="margin:16px;">← 戻る</button>
+  `;
+
+  const listEl = document.getElementById("select-list");
+
+  list.forEach(item=>{
+    const d = document.createElement("div");
+    d.className = "settings-item";
+
+    const selected =
+      (type==="view" && item.id===viewMode) ||
+      (type==="color" && item.id===colorMode) ||
+      (type==="sort" && item.id===sortKey);
+
+    d.innerHTML = `
+      ${item.label}
+      <div>${selected ? "✔️" : ""}</div>
+    `;
+
+    d.onclick = ()=>{
+      if(type==="view") viewMode = item.id;
+      if(type==="color") colorMode = item.id;
+      if(type==="sort") sortKey = item.id;
+
+      localStorage.setItem("viewMode", viewMode);
+      localStorage.setItem("colorMode", colorMode);
+      localStorage.setItem("sortKey", sortKey);
+
+      renderSettings();
+      renderHome();
+    };
+
+    listEl.appendChild(d);
+  });
+}
+
+
+//ラベル表示
+function getViewLabel(){
+  return {
+    card:"カード",
+    shelf:"本棚",
+    "shelf-series":"シリーズ"
+  }[viewMode];
+}
+
+function getColorLabel(){
+  return {
+    single:"単色",
+    gradient:"グラデ",
+    split:"分割",
+    stripe:"目印"
+  }[colorMode];
+}
+
+function getSortLabel(){
+  return {
+    title:"名前",
+    fav:"評価",
+    date:"日付"
+  }[sortKey];
+}
 
 
 
