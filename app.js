@@ -43,6 +43,14 @@ function go(page){
     ? "flex"
     : "none";
 
+  // タグ絞込み・タイプ切替の表示制御
+  const showTipsPages = ["home"];
+
+  tips.style.display = showtipsPages.includes(page)
+    ? "flex"
+    : "none";
+
+
   if(page === 'settings') renderSettings();
   if(page === 'home') renderHome();
   if(page === 'series') renderSeries();
