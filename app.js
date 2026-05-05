@@ -1025,6 +1025,21 @@ function renderCalendar(){
   const lastDate = new Date(year, month+1, 0).getDate();
   const days = ["日","月","火","水","木","金","土"];
   
+    days.forEach((d,i)=>{
+    const head = document.createElement("div");
+    head.textContent = d;
+    head.style.fontSize = "12px";
+    head.style.textAlign = "center";
+    head.style.fontWeight = "bold";
+    
+    //土日色
+    if(i === 0) head.style.color = "#e74c3c"; //日曜
+    if(i === 6) head.style.color = "#3498db"; //土曜
+    
+    grid.appendChild(head);
+  });
+
+  
   const grid = document.createElement("div");
   grid.style.display = "grid";
   grid.style.gridTemplateColumns = "repeat(7,1fr)";
@@ -1041,20 +1056,6 @@ function renderCalendar(){
   for(let i=0;i<firstDay;i++){
     grid.appendChild(document.createElement("div"));
   }
-
-  days.forEach((d,i)=>{
-    const head = document.createElement("div");
-    head.textContent = d;
-    head.style.fontSize = "12px";
-    head.style.textAlign = "center";
-    head.style.fontWeight = "bold";
-    
-    //土日色
-    if(i === 0) head.style.color = "#e74c3c"; //日曜
-    if(i === 6) head.style.color = "#3498db"; //土曜
-    
-    grid.appendChild(head);
-  });
 
 
   // 日付セル
