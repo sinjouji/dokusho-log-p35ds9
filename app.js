@@ -124,6 +124,17 @@ function renderHome(){
   </div>
 `;
 
+  const count = getMonthlyCount();
+
+  const header = document.createElement("div");
+  header.style.margin = "10px";
+  header.style.fontSize = "14px";
+  header.style.color = "#666";
+
+  header.textContent = `📊 今月 ${count}冊`;
+
+  el.appendChild(header);
+
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
   });
@@ -425,28 +436,19 @@ function getTextColor(bg){
 //タグ収納トグル
 function setupTagToggle(){
   const btn = document.getElementById('toggle-tags');
-  const el = document.getElementById('tag-filter'); // ★ここで取得
+  const el = document.getElementById('tag-filter');
+  if(!btn || !el) return;
 
-	function update(){
-  // 初期状態反映
-	  el.style.display = showTags ? "flex" : "none";
-	  
-	  btn.style.background = showTags ? "#333" : "transparent";
-	  btn.style.color = showTags ? "#fff" : "#333";
-	  btn.style.margin = showTags ? "3px" : "3px";
-	  btn.style.padding = showTags? "2px 8px" : "2px 8px";
-	  btn.style.fontSize = showTags? "12px" : "12px";
-	  btn.style.borderRadius = showTags? "999px" : "999px";
-	  btn.style.border = showTags? "0px" : "1px solid #333";
-	  }
+  function update(){
+    el.style.display = showTags ? "flex" : "none";
+  }
 
-	update();
+  update();
 
   btn.onclick = ()=>{
     showTags = !showTags;
     localStorage.setItem("showTags", showTags);
-
-   update();
+    update();
   };
 }//function getTextColor()おわり
 //★★タグ関連ここまで
@@ -1117,7 +1119,6 @@ function getHeatColor(count){
 //★★ここまでカレンダー
 
 
-
 //モーダル設定
 
 function openDayModal(list){
@@ -1165,6 +1166,26 @@ function openDayModal(list){
 }//openDayModal()おわり
 
 //ここまでモーダル設定
+
+
+//今月◯冊表示機能
+function getMonthlyCount(){
+  const now = new Date();
+  const ym = now.toISOString().slice(0,7); // "2026-05"
+
+  let count = 0;
+
+  books.forEach(b=>{
+    (b.dates || []).forEach(d=>{
+      if(d.startsWith(ym)){
+        count++;
+      }
+    });
+  });
+
+  return count;
+}
+
 
 
 
@@ -1398,11 +1419,12 @@ function renderSettings(){
 
 //トグル動作
 function toggleTags(e){
-  e.stopPropagation(); // 行クリック防止
+  e.stopPropagation();
 
   showTags = !showTags;
   localStorage.setItem("showTags", showTags);
 
+  setupTagToggle(); // ←追加
   renderSettings();
   renderHome();
 }
