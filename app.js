@@ -23,6 +23,12 @@ let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリス�
 let currentMonth = new Date();
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 0;
 let enableGoal = localStorage.getItem("enableGoal") === "true";//年間読破目標設定
+let uiSettings = JSON.parse(localStorage.getItem("uiSettings")) || {
+  showTags: true,
+  showTypeFilter: true,
+  showSummary: true,
+  showRecent: true
+};//表示するページを選ぶやつ
 
 
 //★★ここまで状態設定
@@ -150,6 +156,19 @@ function renderHome(){
   </div>
 `;
 
+document.getElementById("tag-filter").style.display =
+  uiSettings.showTags ? "flex" : "none";
+document.getElementById("type-filter").style.display =
+  uiSettings.showTypeFilter ? "flex" : "none";
+
+if(uiSettings.showSummary){
+  renderSummary();
+}
+
+if(uiSettings.showRecent){
+  renderRecentBooks();
+}
+
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
   });
@@ -212,7 +231,9 @@ function createBookSpine(b){
   d.style.overflow = "visible";
 
   if(colorMode === "single") d.style.background = c1;
-  if(colorMode === "gradient") {d.style.background = `linear-gradient(${c1}, ${c2})`;}
+  if(colorMode === "gradient"){
+  d.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+}
   if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
   if(colorMode === "stripe"){
     d.style.background = `linear-gradient(
@@ -230,12 +251,12 @@ function createBookSpine(b){
   const title = document.createElement('div');
   title.textContent = b.title;
   title.style.writingMode = "vertical-rl"; //!
-  title.style.fontSize = "9px"; //!
+  title.style.fontSize = "8px"; //!
   title.style.color = "#fff"; //!
   title.style.flex = "1";
-  title.style.overflow = "visible";
-  //title.style.wordBreak = "break-all";
-  title.style.paddingTop = "5px";
+  title.style.overflow = "hidden";//visible
+  title.style.wordBreak = "break-all";
+  title.style.paddingTop = "4px";
   title.style.alignItems = "center"; //! flex-start
   title.style.justifyContent = "flex-start"; //! center
   title.style.textAlign = "left";
@@ -243,6 +264,11 @@ function createBookSpine(b){
   title.style.display = "flex"; //!
   title.style.width = "100%";
   title.style.height = "100%";
+  title.style.textOverflow = "ellipsis";
+  title.style.whiteSpace = "nowrap";
+  title.style.lineHeight = "1.2";
+  title.style.paddingBottom = "4px";
+  title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
@@ -260,6 +286,19 @@ function createBookSpine(b){
   d.appendChild(fav);
 
   d.onclick = ()=> openDetail(b);
+
+//評価を背表紙にうっすら表示
+const badge = document.createElement("div");
+badge.textContent = getFavLabel(b.fav);
+badge.style.position = "absolute";
+badge.style.bottom = "2px";
+badge.style.right = "2px";
+badge.style.fontSize = "10px";
+badge.style.opacity = "0.8";
+
+d.style.position = "relative";
+d.appendChild(badge);
+
 
   return d;
 }//function createBookSpine()おわり
@@ -1565,15 +1604,35 @@ function renderSettings(){
     </div>
 
     <div class="settings-group">
-      <div class="settings-header">その他</div>
-      <div class="settings-list">
-        <div class="settings-item">
-          タグ表示
-          <div class="switch ${showTags ? "on" : ""}" onclick="toggleTags(event)"></div>
-        </div>
-      </div>
+  <div class="settings-header">ホーム表示</div>
+  <div class="settings-list">
+
+    <div class="settings-item">
+      タグ
+      <div class="switch ${uiSettings.showTags ? "on":""}"
+        onclick="toggleUI('showTags', event)"></div>
     </div>
 
+    <div class="settings-item">
+      タイプ
+      <div class="switch ${uiSettings.showTypeFilter ? "on":""}"
+        onclick="toggleUI('showTypeFilter', event)"></div>
+    </div>
+
+    <div class="settings-item">
+      累計表示
+      <div class="switch ${uiSettings.showSummary ? "on":""}"
+        onclick="toggleUI('showSummary', event)"></div>
+    </div>
+
+    <div class="settings-item">
+      最近読んだ本
+      <div class="switch ${uiSettings.showRecent ? "on":""}"
+        onclick="toggleUI('showRecent', event)"></div>
+    </div>
+
+  </div>
+</div>
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;
   
@@ -1591,6 +1650,18 @@ function toggleTags(e){
   renderSettings();
   renderHome();
 }
+
+
+function toggleUI(key, e){
+  e.stopPropagation();
+
+  uiSettings[key] = !uiSettings[key];
+  localStorage.setItem("uiSettings", JSON.stringify(uiSettings));
+
+  renderSettings();
+  renderHome();
+}
+
 
 
 //「次の画面」っぽいやつ
