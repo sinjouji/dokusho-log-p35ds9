@@ -42,6 +42,9 @@ font-size:13px;
   padding:10px;
   margin:8px;
   box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  width: calc(50% - 8px);
+  display:inline-block;
+  vertical-align:top;
 }
 
 .title{
@@ -357,7 +360,10 @@ color: #999;
   gap:6px;
   overflow-x:auto; /* ←これがカルーセル */
   padding:6px 2px 10px;
+
+  scroll-snap-type: x mandatory; /* ← これ */
 }
+
 
 .mini-card{
   min-width:120px; /* ←横スクロール用 */
@@ -387,6 +393,13 @@ color: #999;
 .recent-row::-webkit-scrollbar{
   display:none; /* スクロールバー消す */
 }
+
+/* スナップスクロール */
+
+.recent-row > div{
+  scroll-snap-align: start; /* ← これ */
+}
+
 
 /* ★これ重要（今回の勝因） */
 #loading.hidden{
@@ -422,11 +435,9 @@ color: #999;
  <div id="topbar">
   <input id="search" oninput="renderHome()" placeholder="例：夏目友人帳">
  </div>
- <div id="cbtns">
   <div id="type-filter"></div>
   <button id="toggle-tags">タグ</button>
   <div id="tag-filter"></div>
- </div>
 </div>
 
   
