@@ -1056,6 +1056,18 @@ function renderCalendar(){
     cell.style.cursor = "pointer";
 
     const count = map[dateStr]?.length || 0;
+    
+    //ヒートマップ
+    	if(count){
+ 	 const alpha = Math.min(count / 5, 1);
+  	 cell.style.background = `rgba(74,141,97,${alpha})`;
+	}
+
+	//今日を強調
+	const today = new Date().toISOString().slice(0,10);
+	if(dateStr === today){
+  	  cell.style.border = "2px solid red";
+	}
 
     cell.innerHTML = `
       <div style="font-size:12px;">${d}</div>
