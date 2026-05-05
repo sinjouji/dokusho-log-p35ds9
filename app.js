@@ -1669,7 +1669,7 @@ async function loadData(){
     setupTagToggle();
     renderTypeFilter();
     renderCalendar();
-
+  go('home');
     renderHome();
 
   }catch(e){
@@ -1677,7 +1677,7 @@ async function loadData(){
     alert("読み込み失敗: " + e.message);
   }
 
-  go('home');
+
 
   const l = document.getElementById('loading');
   if(l) l.classList.add('hidden');
