@@ -29,6 +29,8 @@ let uiSettings = JSON.parse(localStorage.getItem("uiSettings")) || {
   showSummary: true,
   showRecent: true
 };//表示するページを選ぶやつ
+let uiMode = localStorage.getItem("uiMode") || "on";
+// "on" or "off"
 
 
 //★★ここまで状態設定
@@ -42,20 +44,8 @@ function go(page){
   const target = document.getElementById("page-" + page);
   if(target) target.style.display = "block";
 
-  // 🔍 検索バー制御
-  const showTopbarPages = ["home", "calendar","series","characters"];
-
-  topbar.style.display = showTopbarPages.includes(page)
-    ? "flex"
-    : "none";
-
-  // タグ絞込み・タイプ切替の表示制御
-  //const showCbtnsPages = ["home"];
-
-  //cbtns.style.display = showCbtnsPages.includes(page)
-  //  ? "flex"
-  //  : "none";
-
+  // 🔥 ここ追加
+  applyUIVisibility(page);
 
   if(page === 'settings') renderSettings();
   if(page === 'home') renderHome();
@@ -175,6 +165,49 @@ if(uiSettings.showRecent){
 }//function renderHome()おわり
 
 
+//表示制御
+function applyUIVisibility(page){
+
+  const isOn = uiMode === "on";
+
+  const tag = document.getElementById("tag-filter");
+  const type = document.getElementById("type-filter");
+  const summary = document.getElementById("home-summary");
+  const recent = document.getElementById("recent-books");
+  const search = document.getElementById("topbar"); // 検索バー
+
+  // デフォルト全部非表示
+  [tag, type, summary, recent].forEach(el=>{
+    if(el) el.style.display = "none";
+  });
+
+  // 🔥 OFF → 全部非表示（検索も消すならここで）
+  if(!isOn){
+    if(search) search.style.display = "none";
+    return;
+  }
+
+  // 🔥 ON の場合
+
+  if(page === "home"){
+    if(tag) tag.style.display = "flex";
+    if(type) type.style.display = "flex";
+    if(summary) summary.style.display = "block";
+    if(recent) recent.style.display = "block";
+    if(search) search.style.display = "flex";
+  }
+
+  else if(["series","characters","calendar"].includes(page)){
+    // 検索だけ
+    if(search) search.style.display = "flex";
+  }
+
+  else{
+    // その他ページ
+    if(search) search.style.display = "none";
+  }
+}
+
 
 function renderViewMode(targetId = "view-mode"){
   const el = document.getElementById(targetId);
@@ -250,25 +283,37 @@ function createBookSpine(b){
 
   const title = document.createElement('div');
   title.textContent = b.title;
+  
+  //縦書き
   title.style.writingMode = "vertical-rl"; //!
-  title.style.fontSize = "8px"; //!
-  title.style.color = "#fff"; //!
-  title.style.flex = "1";
-  title.style.overflow = "hidden";//visible
-  title.style.wordBreak = "break-all";
-  title.style.paddingTop = "4px";
-  title.style.alignItems = "center"; //! flex-start
-  title.style.justifyContent = "flex-start"; //! center
-  title.style.textAlign = "left";
   title.style.textOrientation = "mixed";
-  title.style.display = "flex"; //!
+  
+  //レイアウト安定
+  title.style.display = "block"; //!
   title.style.width = "100%";
   title.style.height = "100%";
-  title.style.textOverflow = "ellipsis";
-  title.style.whiteSpace = "nowrap";
+
+  //はみ出し対策
+  title.style.overflow = "hidden";//visible
+  title.style.wordBreak = "break-all";
+  
+  //見た目調整
+  title.style.fontSize = "8px"; //!
   title.style.lineHeight = "1.2";
-  title.style.paddingBottom = "4px";
-  title.style.maxHeight = "100%";
+  title.style.padding = "4px 2px";
+  title.style.letterSpacing = "0.05em";
+  
+  //色
+  title.style.color = "#fff"; //!
+  
+//  title.style.flex = "1";
+//  title.style.alignItems = "center"; //! flex-start
+//  title.style.justifyContent = "flex-start"; //! center
+//  title.style.textAlign = "left";
+//  title.style.textOverflow = "ellipsis";
+//  title.style.whiteSpace = "nowrap";
+//  title.style.paddingBottom = "4px";
+//  title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
@@ -1603,32 +1648,14 @@ function renderSettings(){
       </div>
     </div>
 
-    <div class="settings-group">
-  <div class="settings-header">ホーム表示</div>
+<div class="settings-group">
+  <div class="settings-header">UI表示</div>
   <div class="settings-list">
 
     <div class="settings-item">
-      タグ
-      <div class="switch ${uiSettings.showTags ? "on":""}"
-        onclick="toggleUI('showTags', event)"></div>
-    </div>
-
-    <div class="settings-item">
-      タイプ
-      <div class="switch ${uiSettings.showTypeFilter ? "on":""}"
-        onclick="toggleUI('showTypeFilter', event)"></div>
-    </div>
-
-    <div class="settings-item">
-      累計表示
-      <div class="switch ${uiSettings.showSummary ? "on":""}"
-        onclick="toggleUI('showSummary', event)"></div>
-    </div>
-
-    <div class="settings-item">
-      最近読んだ本
-      <div class="switch ${uiSettings.showRecent ? "on":""}"
-        onclick="toggleUI('showRecent', event)"></div>
+      UI表示モード
+      <div class="switch ${uiMode === "on" ? "on":""}"
+        onclick="toggleUIMode(event)"></div>
     </div>
 
   </div>
@@ -1636,6 +1663,17 @@ function renderSettings(){
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;
   
+}
+
+
+function toggleUIMode(e){
+  e.stopPropagation();
+
+  uiMode = (uiMode === "on") ? "off" : "on";
+  localStorage.setItem("uiMode", uiMode);
+
+  renderSettings();
+  go('home'); // 再適用
 }
 
 
