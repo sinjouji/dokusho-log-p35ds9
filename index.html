@@ -159,6 +159,76 @@ color: #999;
   color:#666;
 }
 
+.settings-group{
+  margin:16px 0;
+}
+
+.settings-header{
+  font-size:12px;
+  color:#888;
+  margin:8px 12px;
+}
+
+.settings-list{
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,0.05);
+}
+
+.settings-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.settings-item:last-child{
+  border-bottom:none;
+}
+
+.settings-value{
+  color:#888;
+  font-size:13px;
+}
+
+.settings-item:active{
+  background:#f2f2f2;
+}
+
+/* トグル */
+.switch{
+  width:40px;
+  height:22px;
+  background:#ccc;
+  border-radius:999px;
+  position:relative;
+  transition:0.2s;
+}
+
+.switch::after{
+  content:"";
+  width:18px;
+  height:18px;
+  background:#fff;
+  border-radius:50%;
+  position:absolute;
+  top:2px;
+  left:2px;
+  transition:0.2s;
+}
+
+.switch.on{
+  background:#34c759;
+}
+
+.switch.on::after{
+  left:20px;
+}
+
 
 /* ★これ重要（今回の勝因） */
 #loading.hidden{
