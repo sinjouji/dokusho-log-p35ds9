@@ -1066,10 +1066,8 @@ function renderCalendar(){
   openDayModal(map[dateStr]);
   };
 
- };
-
     grid.appendChild(cell);
-
+ }
   el.appendChild(grid);
 }//function renderCalendar()おわり
 
