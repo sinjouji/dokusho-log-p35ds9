@@ -34,20 +34,17 @@ function go(page){
   const target = document.getElementById("page-" + page);
   if(target) target.style.display = "block";
 
-  // ⭐ 追加
-  if(page === "settings"){
-    renderSettings();
-  }
+  // 🔍 検索バー制御
+  const showTopbarPages = ["home", "calendar","series","characters"];
 
+  topbar.style.display = showTopbarPages.includes(page)
+    ? "flex"
+    : "none";
+
+  if(page === 'settings') renderSettings();
   if(page === 'home') renderHome();
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
-}//function go()おわり
-
-
-function openDetailById(id){
-	const b = getBookById(id);
-	if(b) openDetail(b);
 }//function openDetailById()おわり
 
 
