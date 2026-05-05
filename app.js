@@ -46,7 +46,7 @@ function go(page){
   // タグ絞込み・タイプ切替の表示制御
   const showCbtnsPages = ["home"];
 
-  cbtns.style.display = showcbtnsPages.includes(page)
+  cbtns.style.display = showCbtnsPages.includes(page)
     ? "flex"
     : "none";
 
@@ -88,7 +88,7 @@ function renderHome(){
   el.innerHTML = "";
 
   renderSummary();
-  renderRecent();
+  renderRecentBooks();
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
@@ -1249,7 +1249,7 @@ function renderSummary(){
   // 🎯 年間目標
   if(enableGoal){
     const rate = yearlyGoal
-      ? Math.min(100, Math.round(year / yearlyGoal * 100))
+      ? Math.min(300, Math.round(year / yearlyGoal * 100))
       : 0;
 
     html += `
@@ -1310,6 +1310,33 @@ function renderRecent(){
   });
 }
 
+
+//小カードで最近読んだ本
+function renderRecentBooks(){
+  const el = document.getElementById("recent-books");
+  if(!el) return;
+
+  // 日付でソート（最新順）
+  const list = [...books]
+    .filter(b => b.dates?.length)
+    .sort((a,b)=>{
+      const da = a.dates[a.dates.length-1];
+      const db = b.dates[b.dates.length-1];
+      return db.localeCompare(da);
+    })
+    .slice(0,6); // 6冊で2〜3カラム
+
+  el.innerHTML = `
+    <div class="recent-grid">
+      ${list.map(b=>`
+        <div class="mini-card" onclick="openDetailById('${b.id}')">
+          <div class="mini-title">${b.title}</div>
+          <div class="mini-date">${getLastDate(b)}</div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
 
 
 
