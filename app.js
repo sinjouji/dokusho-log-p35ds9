@@ -120,8 +120,11 @@ function renderHome(){
     d.className = "card";
 
     d.innerHTML = `
-      <div style="font-weight:bold">${b.title}</div>
-    `;
+  <div style="font-weight:bold">${b.title}</div>
+  <div style="font-size:12px;color:#666">
+    ${b.dates?.join(", ") || ""}
+  </div>
+`;
 
     d.onclick = ()=> openDetailById(b.id);
     el.appendChild(d);
@@ -978,6 +981,15 @@ function getReadingMap(){
 }//function getReadingMap()おわり
 
 
+//カレンダー月送り
+
+function changeMonth(diff){
+  currentMonth.setMonth(currentMonth.getMonth() + diff);
+  renderCalendar();
+}
+
+
+
 function renderCalendar(){
   go('calendar');
 
@@ -1028,6 +1040,14 @@ function renderCalendar(){
     cell.style.borderRadius = "8px";
 
     const count = map[dateStr]?.length || 0;
+
+    //ヒートマップ
+    	if(count){
+ 	 const alpha = Math.min(count / 5, 1); //最大5冊でMAX色
+  	 cell.style.background = `rgba(74,141,97,${alpha})`;
+  	 cell.style.color = "#fff";
+	}
+
     
 	//今日を強調
 	const today = new Date().toISOString().slice(0,10);
@@ -1042,19 +1062,6 @@ function renderCalendar(){
       </div>
     `;
 
-    //ヒートマップ
-    	if(count){
- 	 const alpha = Math.min(count / 5, 1); //最大5冊でMAX色
-  	 cell.style.background = `rgba(74,141,97,${alpha})`;
-  	 cell.style.color = "#fff";
-	}
-
-
-    cell.onclick = ()=>{
-      if(!map[dateStr]) return;
-      openDayModal(map[dateStr]);
-    };
-    
     cell.onmouseenter = )=>{
       cell.style.transform = "scale(1.05)";
     };
@@ -1063,6 +1070,11 @@ function renderCalendar(){
       cell.style.transform = "scale(1)";
     };
 
+    cell.onclick = ()=>{
+      if(!map[dateStr]) return;
+      openDayModal(map[dateStr]);
+    };
+    
     // ✅ ここが超重要
     grid.appendChild(cell);
   }
@@ -1070,13 +1082,6 @@ function renderCalendar(){
   el.appendChild(grid);
 }//function renderCalendar()おわり
 
-
-//カレンダー月送り
-
-function changeMonth(diff){
-  currentMonth.setMonth(currentMonth.getMonth() + diff);
-  renderCalendar();
-}
 
 
 //★★ここまでカレンダー
