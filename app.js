@@ -95,6 +95,7 @@ function styleChip(btn, active=false){
 function renderHome(){
 
   const listEl = document.getElementById("book-list");
+  listEl.innerHTML = "";
   const el = document.getElementById('page-home');
   if(!el) return;
   el.innerHTML = "";
