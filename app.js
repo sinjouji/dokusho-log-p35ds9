@@ -144,36 +144,6 @@ function renderHome(){
     return;
   }
   
-  if(recentViewMode === "spine"){
-  const spine = createBookSpine(b);
-  spine.style.height = "100px";
-  box.appendChild(spine);
-} else {
-  // カード表示（さっきのやつ）◆◆要確認
-  const title = document.createElement('div');
-title.textContent = b.title;
-
-// 縦書き
-spine.style.writingMode = "vertical-rl";
-spine.style.textOrientation = "mixed";
-
-// レイアウト安定
-spine.style.display = "block"; // ← flexやめる（重要）
-spine.style.height = "100%";
-spine.style.width = "100%";
-
-// はみ出し対策
-spine.style.overflow = "hidden";
-spine.style.wordBreak = "break-all";
-
-// 見た目調整
-spine.style.fontSize = "8px";
-spine.style.lineHeight = "1.2";
-spine.style.padding = "4px 2px";
-
-// 色
-spine.style.color = "#fff";
-}
 
   // ④ 通常表示
   sorted.forEach(b=>{
