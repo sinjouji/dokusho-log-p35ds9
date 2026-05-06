@@ -317,9 +317,10 @@ color: #999;
 
 /* 最近読んだ3冊 */
 .section-title{
-  font-size:13px;
+  font-size:14px;
   margin:10px;
-  color:#555;
+  color:#444;
+  font-weight:bold;
 }
 
 /* 小カードかわいいの */
@@ -358,6 +359,32 @@ color: #999;
 
 
 /* カルーセル風 */
+.carousel{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:10px;
+
+scroll-snap-type:x mandatory;
+-webkit-overflow-scrolling:touch;
+}
+
+.carousel::-webkit-scrollbar{
+display:none;
+}
+
+.carousel-item{
+flex:0 0 45%; /*2枚見せ*/
+scroll-snap-align:start;
+
+background:#fff;
+border-radius:12px;
+padding:10px;
+
+box-shadow:0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
 .recent-title{
   font-size:14px;
   margin:8px 0 4px;
@@ -383,6 +410,7 @@ color: #999;
 .recent-row > div{
   scroll-snap-align: start; /* ← これ */
 }
+
 
 
 /* ★これ重要（今回の勝因） */
