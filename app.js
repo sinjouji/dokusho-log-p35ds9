@@ -94,30 +94,19 @@ function styleChip(btn, active=false){
 // ホーム（本のリスト表示）
 function renderHome(){
 
-  const el = document.getElementById('page-home');
   const listEl = document.getElementById("book-list");
-  if(!el || !listEl) return;
-   
-   //‼️page-homeは消さない
-   //‼️book-listだけ更新する
-   
-   //❌全消し禁止
-  // ① 先に土台作る
-  //el.innerHTML = `
-  //  <div id="home-summary"></div>
-  //  <div id="recent-books"></div>
-  //  <div id="book-list"></div>
-  //`;
+  if(!listEl) return;
 
-  // ② ここで初めて取得（重要）
-  if(listEl) listEl.innerHTML = "";
+  // 一覧だけ消す（UIは消さない！）
+  listEl.innerHTML = "";
 
+  // 上部UI（1回だけ）
   if(uiSettings.showSummary) renderSummary();
   if(uiSettings.showRecent) renderRecentBooks();
 
+  // フィルタ
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
-  // フィルタ
   const filtered = books.filter(b =>{
     const matchTitle = (b.title || "").toLowerCase().includes(keyword);
 
@@ -134,6 +123,7 @@ function renderHome(){
 
   const sorted = sortBooks(filtered);
 
+  // wish優先
   sorted.sort((a,b)=>{
     if(a.type === b.type) return 0;
     return a.type === "wish" ? -1 : 1;
@@ -141,74 +131,65 @@ function renderHome(){
 
   // 表示分岐
   if(viewMode === "shelf"){
-  renderShelfGrid(listEl, sorted);   // ← 今の棚
-  return;
-}
-
-  if(viewMode === "list"){
-    renderList(listEl, sorted);
+    renderShelf(listEl, sorted);
     return;
   }
-
-if(viewMode === "shelf-carousel"){
-  renderShelfCarousel(listEl, sorted); // ← 新
-  return;
-}
-  
 
   if(viewMode === "shelf-series"){
     renderSeriesShelf(listEl, sorted);
     return;
   }
 
-  // 通常表示
+  if(viewMode === "list"){
+    renderList(listEl, sorted);
+    return;
+  }
+
+  // 通常カード表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
 
     d.innerHTML = `
       <div class="title">${b.title}</div>
+
       <div class="meta">
-        <span class="date">${getLastDate(b)}</span>
-        <span class="count">${(b.dates?.length || 0)}回</span>
+        <span>${getLastDate(b)}</span>
+        <span>${(b.dates?.length || 0)}回</span>
+      </div>
+
+      <div class="fav">${getFavLabel(b.fav)}</div>
+
+      <div class="tags">
+        ${(b.tagIds || []).map(id=>{
+          const t = tagMaster.find(x=>x.id===id);
+          return t ? `<span class="tag" style="background:${t.color}">${t.name}</span>` : "";
+        }).join("")}
       </div>
     `;
 
+    d.onclick = ()=> openDetail(b);
 
-// リスト用コンテナ
-const listWrap = document.createElement("div");
-listWrap.className = "list-grid";
-el.appendChild(listWrap);
+    listEl.appendChild(d);
+  });
 
-sorted.forEach(b=>{
-  const d = document.createElement('div');
-  d.className = "list-card";
+  // フィルタUI表示制御（最後に1回だけ）
+  const tagEl = document.getElementById("tag-filter");
+  if(tagEl){
+    tagEl.style.display = uiSettings.showTags ? "flex" : "none";
+  }
 
-  d.innerHTML = `
-    <div class="title">${b.title}</div>
-
-    <div class="meta">
-      <span>${getLastDate(b)}</span>
-      <span>${(b.dates?.length || 0)}回</span>
-    </div>
-
-    <div class="fav">${getFavLabel(b.fav)}</div>
-
-    <div class="tags">
-      ${(b.tagIds || []).map(id=>{
-        const t = tagMaster.find(x=>x.id===id);
-        return t ? `<span class="tag" style="background:${t.color}">${t.name}</span>` : "";
-      }).join("")}
-    </div>
-  `;
-
-  // ✔ 詳細開けるように修正
-  d.onclick = ()=> openDetailById(b.id);
-
-  listWrap.appendChild(d);
-});
-});
+  const typeEl = document.getElementById("type-filter");
+  if(typeEl){
+    typeEl.style.display = uiSettings.showTypeFilter ? "flex" : "none";
+  }
 }//function renderHome()おわり
+
+
+function openDetailById(id){
+  const b = books.find(x=>x.id === id);
+  if(b) openDetail(b);
+}
 
 
 function renderList(el, sorted){
@@ -1100,14 +1081,12 @@ function renderSeriesShelf(el, sorted){
     if(!relatedBooks.length) return;
 
     const title = document.createElement('div');
-    title.style.margin = "12px 4px 4px";
-    title.style.fontWeight = "bold";
-    title.style.cursor = "pointer";
-
     const isOpen = openedSeries[s.id];
 
     title.textContent =
       `${isOpen ? "▽" : "▶︎"} ${s.name} (${relatedBooks.length})`;
+
+    title.style.cursor = "pointer";
 
     title.onclick = ()=>{
       openedSeries[s.id] = !openedSeries[s.id];
@@ -1117,12 +1096,9 @@ function renderSeriesShelf(el, sorted){
     el.appendChild(title);
 
     if(isOpen){
-      const shelfBox = document.createElement('div');
-
-      // 👇ここ差し替え可能（カルーセルにもできる）
-      renderShelfCarousel(shelfBox, relatedBooks);
-
-      el.appendChild(shelfBox);
+      const box = document.createElement('div');
+      renderShelf(box, relatedBooks);
+      el.appendChild(box);
     }
   });
 }//function renderSeriesShelf()おわり
