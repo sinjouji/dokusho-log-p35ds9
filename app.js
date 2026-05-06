@@ -25,9 +25,9 @@ let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 0;
 let enableGoal = localStorage.getItem("enableGoal") === "true";//年間読破目標設定
 let uiSettings = JSON.parse(localStorage.getItem("uiSettings") || "{
 if(uiSettings.recent === undefined) uiSettings.recent = true;
-if(!uiSettings.summary) uiSettings.summary = true;
-if(!uiSettings.tags) uiSettings.tags = true;
-if(!uiSettings.type) uiSettings.type = true;
+if(uiSettings.summary === undefined) uiSettings.summary = true;
+if(uiSettings.tags === undefined) uiSettings.tags = true;
+if(uiSettings.type === undefined) uiSettings.type = true;
 }");//表示するページを選ぶやつ
 let uiMode = localStorage.getItem("uiMode") || "on";
 // "on" or "off"
@@ -1640,11 +1640,12 @@ function openCharacter(c){
 }//function openCharacter()おわり
 
 
-
+console.log("ここまでOK");
 //設定ページ
 function renderSettings(){
   const el = document.getElementById("page-settings");
   if(!el) return;
+  el.innerHTML = "test";
 
   el.innerHTML = `
     <h2 style="padding:12px;">設定</h2>
