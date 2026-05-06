@@ -10,10 +10,17 @@ if(!selectedTagId) selectedTagId = null;
 
 const savedMode = localStorage.getItem("colorMode");
 
-let colorMode = ["single","gradient","split","stripe"].includes(savedMode)
-? savedMode
-: "split"; // 背表紙カラー：single/gradient/split/stripe
-let viewMode = localStorage.getItem("viewMode") || "card"; // "card"/"shelf"/"shelf-series"
+let colorMode = localStorage.getItem("colorMode") || "single";
+if(!["single","gradient","stripe"].includes(colorMode)){
+  colorMode = "single";
+} // 背表紙カラー：single/gradient/stripe
+
+let viewMode = localStorage.getItem("viewMode") || "card";
+// 保険（壊れた値対策）
+if(!["card","shelf"].includes(viewMode)){
+  viewMode = "card";
+}
+
 let sortMode = localStorage.getItem("sortMode") || "title";
 let openedSeries = {};
 let showTags = localStorage.getItem("showTags") === "true";
@@ -96,8 +103,11 @@ function renderHome(){
   const el = document.getElementById('page-home');
   if(!el) return;
 
+  // 🔥 UI込みで再構築
   el.innerHTML = `
-    <input id="search" placeholder="検索..." style="width:100%;padding:8px;">
+    <div id="topbar">
+      <input id="search" placeholder="検索..." style="width:100%;padding:8px;">
+    </div>
 
     <div id="home-summary"></div>
     <div id="tag-filter"></div>
@@ -107,19 +117,23 @@ function renderHome(){
     <div id="home-main"></div>
   `;
 
+  // UI描画
   renderSummary();
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
 
+  const main = document.getElementById("home-main");
+
+  // 🔍 検索
   const keyword = (document.getElementById("search").value || "").toLowerCase();
 
-  // フィルタ
+  // ✅ フィルタ
   let filtered = books.filter(b=>{
     const matchTitle = (b.title || "").toLowerCase().includes(keyword);
 
     const matchTag = !selectedTagId ||
-      (b.tagIds || []).includes(selectedTagId);
+      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
 
     const matchType =
       selectedType === "all" ||
@@ -129,17 +143,26 @@ function renderHome(){
     return matchTitle && matchTag && matchType;
   });
 
+  // ✅ ソート
   const sorted = sortBooks(filtered);
 
-  const main = document.getElementById("home-main");
-
-  // 本棚モード
+  // 🔥 表示分岐
   if(viewMode === "shelf"){
     renderShelf(main, sorted);
     return;
   }
 
-  // カードモード
+  if(viewMode === "shelf-series"){
+    renderSeriesShelf(main, sorted);
+    return;
+  }
+
+  if(viewMode === "list"){
+    renderList(main, sorted);
+    return;
+  }
+
+  // ✅ カード表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -152,12 +175,22 @@ function renderHome(){
         <span>${(b.dates?.length || 0)}回</span>
       </div>
 
-      <div>${getFavLabel(b.fav)}</div>
+      <div class="fav">${getFavLabel(b.fav)}</div>
+
+      <div class="tags">
+        ${(b.tagIds || []).map(id=>{
+          const t = tagMaster.find(x=>x.id===id);
+          return t ? `<span class="tag" style="background:${t.color}">${t.name}</span>` : "";
+        }).join("")}
+      </div>
     `;
 
     d.onclick = ()=> openDetail(b);
     main.appendChild(d);
   });
+
+  // 🔥 UI表示制御
+  updateUIVisibility("home");
 }//function renderHome()おわり
 
 
@@ -168,6 +201,30 @@ function openDetailById(id){
   alert(book.title);
 }
 
+
+function renderList(el, sorted){
+  el.innerHTML = "";
+
+  const listWrap = document.createElement("div");
+  listWrap.className = "list-grid";
+
+  sorted.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "list-card";
+
+    d.innerHTML = `
+      <div class="title">${b.title}</div>
+      <div>${getLastDate(b)}</div>
+      <div>${getFavLabel(b.fav)}</div>
+    `;
+
+    d.onclick = ()=> openDetail(b);
+
+    listWrap.appendChild(d);
+  });
+
+  el.appendChild(listWrap);
+}
 
 
 
@@ -360,7 +417,8 @@ function renderShelf(el, list){
   wrap.style.alignItems = "flex-end";
 
   list.forEach(b=>{
-    wrap.appendChild(createBookSpine(b));
+    const spine = createBookSpine(b);
+    wrap.appendChild(spine);
   });
 
   el.appendChild(wrap);
@@ -375,6 +433,21 @@ function setView(mode){
 }//function setView()おわり
 
 
+//カルーセル表示用の本棚
+function renderShelfCarousel(el, sorted){
+
+  el.innerHTML = "";
+
+  const wrap = document.createElement("div");
+  wrap.className = "shelf-scroll";
+
+  sorted.forEach(b=>{
+    const spine = createBookSpine(b);
+    wrap.appendChild(spine);
+  });
+
+  el.appendChild(wrap);
+}
 
 
 
@@ -943,7 +1016,39 @@ function openSeriesById(id){
 
 
 
+//シリーズで表示をまとめる
+function renderSeriesShelf(el, sorted){
+  el.innerHTML = "";
 
+  series.forEach(s=>{
+    const relatedBooks = sorted.filter(b =>
+      Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+    );
+
+    if(!relatedBooks.length) return;
+
+    const title = document.createElement('div');
+    const isOpen = openedSeries[s.id];
+
+    title.textContent =
+      `${isOpen ? "▽" : "▶︎"} ${s.name} (${relatedBooks.length})`;
+
+    title.style.cursor = "pointer";
+
+    title.onclick = ()=>{
+      openedSeries[s.id] = !openedSeries[s.id];
+      renderHome();
+    };
+
+    el.appendChild(title);
+
+    if(isOpen){
+      const box = document.createElement('div');
+      renderShelf(box, relatedBooks);
+      el.appendChild(box);
+    }
+  });
+}//function renderSeriesShelf()おわり
 
 //★★ここまで本表示関連
 
@@ -1527,6 +1632,358 @@ function openCharacter(c){
   });
 }//function openCharacter()おわり
 
+
+console.log("settings直前、ここまでOK");
+//設定ページ
+function renderSettings(){
+  const el = document.getElementById("page-settings");
+  if(!el) return;
+
+  el.innerHTML = `
+    <h2 style="padding:12px;">設定</h2>
+
+    <div class="settings-group">
+      <div class="settings-header">表示</div>
+      <div class="settings-list">
+        <div class="settings-item" onclick="openSettingSelect('view')">
+          表示モード
+          <div class="settings-value">${getViewLabel()}</div>
+        </div>
+
+        <div class="settings-item" onclick="openSettingSelect('color')">
+          背表紙カラー
+          <div class="settings-value">${getColorLabel()}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <div class="settings-header">並び</div>
+      <div class="settings-list">
+        <div class="settings-item" onclick="openSettingSelect('sort')">
+          並び順
+          <div class="settings-value">${getSortLabel()}</div>
+        </div>
+      </div>
+    </div>
+
+<div class="settings-group">
+  <div class="settings-header">ホームUI</div>
+  <div class="settings-list">
+
+    <div class="settings-item">
+      最近の本
+      <div class="switch ${uiSettings.recent ? "on" : ""}" onclick="toggleUIItem(event,'recent')"></div>
+    </div>
+
+    <div class="settings-item">
+      サマリー
+      <div class="switch ${uiSettings.summary ? "on" : ""}" onclick="toggleUIItem(event,'summary')"></div>
+    </div>
+
+    <div class="settings-item">
+      タグ
+      <div class="switch ${uiSettings.tags ? "on" : ""}" onclick="toggleUIItem(event,'tags')"></div>
+    </div>
+
+    <div class="settings-item">
+      タイプ
+      <div class="switch ${uiSettings.type ? "on" : ""}" onclick="toggleUIItem(event,'type')"></div>
+    </div>
+
+  </div>
+</div>
+<div class="settings-group">
+  <div class="settings-header">目標</div>
+  <div class="settings-list">
+
+    <div class="settings-item">
+      年間目標
+      <div class="switch ${enableGoal ? "on" : ""}" onclick="toggleGoal(event)"></div>
+    </div>
+
+    <div class="settings-item">
+      冊数
+      <input 
+        type="number" 
+        value="${yearlyGoal}" 
+        min="1"
+        style="width:80px;"
+        onchange="changeGoal(this.value)"
+      >
+    </div>
+
+  </div>
+</div>
+
+    <button onclick="go('home')" style="margin:16px;">← 戻る</button>
+  `;
+  
+}
+
+//UIの表示制御ベース
+function applyUIVisibility(page){
+  const show = (uiMode === "on");
+
+  // 要素取得
+  const search = document.getElementById("search");
+  const summary = document.getElementById("home-summary");
+  const tags = document.getElementById("tag-filter");
+  const type = document.getElementById("type-filter");
+  const recent = document.getElementById("recent-books");
+
+  // 🔍 検索バー
+  if(search){
+    if(show && ["home","series","characters","calendar"].includes(page)){
+      search.style.display = "block";
+    } else {
+      search.style.display = "none";
+    }
+  }
+
+  // 🏠 ホーム限定UI
+  const homeOnly = (show && page === "home");
+
+  if(summary) summary.style.display = homeOnly ? "block" : "none";
+  if(tags) tags.style.display = homeOnly ? "flex" : "none";
+  if(type) type.style.display = homeOnly ? "flex" : "none";
+  if(recent) recent.style.display = homeOnly ? "block" : "none";
+}
+
+
+function updateUIVisibility(page){
+
+  const showUI = uiSettings; // 略
+
+  const search = document.getElementById("topbar");
+  const summary = document.getElementById("home-summary");
+  const recent = document.getElementById("recent-books");
+  const tags = document.getElementById("tag-filter");
+  const type = document.getElementById("type-filter");
+
+  // 🔴 全OFF
+  if(!showUI.recent && !showUI.summary && !showUI.tags && !showUI.type){
+    if(search) search.style.display = "none";
+    if(summary) summary.style.display = "none";
+    if(recent) recent.style.display = "none";
+    if(tags) tags.style.display = "none";
+    if(type) type.style.display = "none";
+    return;
+  }
+
+  // 🔵 検索バー
+  const showSearchPages = ["home","calendar","series","characters"];
+  if(search){
+    search.style.display =
+      showSearchPages.includes(page) ? "flex" : "none";
+  }
+
+  // 🟢 ホームだけ
+  if(page === "home"){
+    if(summary) summary.style.display = showUI.summary ? "block" : "none";
+    if(recent) recent.style.display = showUI.recent ? "block" : "none";
+    if(tags) tags.style.display = showUI.tags ? "flex" : "none";
+    if(type) type.style.display = showUI.type ? "flex" : "none";
+  } else {
+    // 他ページは全部消す
+    if(summary) summary.style.display = "none";
+    if(recent) recent.style.display = "none";
+    if(tags) tags.style.display = "none";
+    if(type) type.style.display = "none";
+  }
+}
+
+
+
+function toggleUIMode(e){
+  e.stopPropagation();
+
+  uiMode = (uiMode === "on") ? "off" : "on";
+  localStorage.setItem("uiMode", uiMode);
+
+  renderSettings();
+  go('home'); // 再適用
+}
+
+
+//トグル動作
+function toggleTags(e){
+  e.stopPropagation();
+
+  showTags = !showTags;
+  localStorage.setItem("showTags", showTags);
+
+  setupTagToggle(); // ←追加
+  renderSettings();
+  renderHome();
+}
+
+
+function toggleUI(e){
+  e.stopPropagation();
+
+  uiMode = (uiMode === "on") ? "off" : "on";
+  localStorage.setItem("uiMode", uiMode);
+
+  renderSettings();
+  renderHome();
+  applyUIVisibility("home"); // ←即反映
+}
+
+
+function toggleUIItem(e, key){
+  e.stopPropagation();
+
+  uiSettings[key] = !uiSettings[key];
+  localStorage.setItem("uiSettings", JSON.stringify(uiSettings));
+
+  renderSettings();
+  updateUIVisibility("home"); // ←追加
+  renderHome();
+}
+
+
+function toggleGoal(e){
+  e.stopPropagation();
+
+  enableGoal = !enableGoal;
+  localStorage.setItem("enableGoal", enableGoal);
+
+  renderSettings();
+  renderHome(); // 🔥 即反映
+}
+
+function changeGoal(val){
+  yearlyGoal = Number(val) || 0;
+  localStorage.setItem("yearlyGoal", yearlyGoal);
+
+  renderHome(); // 🔥 即反映
+}
+
+
+
+//完全UIOFFフラグ
+function isUIAllOff(){
+  return !uiSettings.recent &&
+         !uiSettings.summary &&
+         !uiSettings.tags &&
+         !uiSettings.type;
+}
+
+
+//「次の画面」っぽいやつ
+function openSettingSelect(type){
+  const el = document.getElementById("page-settings");
+
+  let list = [];
+
+  if(type === "view"){
+    list = [
+      {id:"card", label:"カード"},
+      {id:"shelf", label:"本棚"},
+    ];
+  }
+
+  if(type === "color"){
+    list = [
+      {id:"single", label:"単色"},
+      {id:"gradient", label:"グラデ"},
+      {id:"split", label:"分割"},
+      {id:"stripe", label:"目印"}
+    ];
+  }
+
+  if(type === "sort"){
+    list = [
+      {id:"title", label:"名前"},
+      {id:"fav", label:"評価"},
+      {id:"date", label:"日付"}
+    ];
+  }
+
+  if(type === "recent"){
+    list = [
+      {id:"card", label:"カード"},
+      {id:"spine", label:"背表紙"}
+    ];
+  }
+
+  el.innerHTML = `
+    <h2 style="padding:12px;">選択</h2>
+    <div class="settings-list" id="select-list"></div>
+    <button onclick="renderSettings()" style="margin:16px;">← 戻る</button>
+  `;
+
+  const listEl = document.getElementById("select-list");
+  listEl.innerHTML = "";
+
+  list.forEach(item=>{
+    const d = document.createElement("div");
+    d.className = "settings-item";
+
+    const selected =
+      (type==="view" && item.id===viewMode) ||
+      (type==="color" && item.id===colorMode) ||
+      (type==="sort" && item.id===sortKey) ||
+      (type==="recent" && item.id===recentViewMode);
+
+    d.innerHTML = `
+      ${item.label}
+      <div>${selected ? "✔️" : ""}</div>
+    `;
+
+    d.onclick = ()=>{
+      if(type==="view") viewMode = item.id;
+      if(type==="color") colorMode = item.id;
+      if(type==="sort") sortKey = item.id;
+      if(type==="recent") recentViewMode = item.id;
+
+      localStorage.setItem("viewMode", viewMode);
+      localStorage.setItem("colorMode", colorMode);
+      localStorage.setItem("sortKey", sortKey);
+      localStorage.setItem("recentViewMode", recentViewMode);
+
+      renderSettings();
+      renderHome();
+    };
+
+    listEl.appendChild(d);
+  });
+}
+
+
+//ラベル表示
+function getViewLabel(){
+  return {
+    card:"カード",
+    shelf:"本棚",
+    "shelf-series":"シリーズ"
+  }[viewMode];
+}
+
+function getColorLabel(){
+  return {
+    single:"単色",
+    gradient:"グラデ",
+    split:"分割",
+    stripe:"目印"
+  }[colorMode];
+}
+
+function getSortLabel(){
+  return {
+    title:"名前",
+    fav:"評価",
+    date:"日付"
+  }[sortKey];
+}
+
+function getRecentViewLabel(){
+  return {
+    card:"カード",
+    spine:"背表紙"
+  }[recentViewMode];
+}
 
 
 
