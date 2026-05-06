@@ -95,20 +95,25 @@ function styleChip(btn, active=false){
 function renderHome(){
 
   const el = document.getElementById('page-home');
-  if(!el) return;
-
+  const listEl = document.getElementById("book-list");
+  if(!el || !listEl) return;
+   
+   //‼️page-homeは消さない
+   //‼️book-listだけ更新する
+   
+   //❌全消し禁止
   // ① 先に土台作る
-  el.innerHTML = `
-    <div id="home-summary"></div>
-    <div id="recent-books"></div>
-    <div id="book-list"></div>
-  `;
+  //el.innerHTML = `
+  //  <div id="home-summary"></div>
+  //  <div id="recent-books"></div>
+  //  <div id="book-list"></div>
+  //`;
 
   // ② ここで初めて取得（重要）
-  const listEl = document.getElementById("book-list");
+  if(listEl) listEl.innerHTML = "";
 
-  renderSummary();
-  renderRecentBooks();
+  if(uiSettings.showSummary) renderSummary();
+  if(uiSettings.showRecent) renderRecentBooks();
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
@@ -136,20 +141,19 @@ function renderHome(){
 
   // 表示分岐
   if(viewMode === "shelf"){
-  renderShelfGrid(el, sorted);   // ← 今の棚
+  renderShelfGrid(listEl, sorted);   // ← 今の棚
   return;
 }
 
   if(viewMode === "list"){
-    renderList(el, sorted);
+    renderList(listEl, sorted);
     return;
   }
 
 if(viewMode === "shelf-carousel"){
-  renderShelfCarousel(el, sorted); // ← 新
+  renderShelfCarousel(listEl, sorted); // ← 新
   return;
 }
-  
   
 
   if(viewMode === "shelf-series"){
@@ -627,7 +631,7 @@ function setupTagToggle(){
     localStorage.setItem("showTags", showTags);
     update();
   };
-}//function getTextColor()おわり
+}
 //★★タグ関連ここまで
 
 
