@@ -93,58 +93,30 @@ function styleChip(btn, active=false){
 //
 // ホーム（本のリスト表示）
 function renderHome(){
+  const el = document.getElementById('page-home');
+  if(!el) return;
 
-  const listEl = document.getElementById("book-list");
-  if(!listEl) return;
+  el.innerHTML = `
+    <div id="home-top"></div>
+    <div id="home-main"></div>
+  `;
 
-  // 一覧だけ消す（UIは消さない！）
-  listEl.innerHTML = "";
+  // 上UI
+  renderSummary();
+  renderRecentBooks();
 
-  // 上部UI（1回だけ）
-  if(uiSettings.showSummary) renderSummary();
-  if(uiSettings.showRecent) renderRecentBooks();
+  const main = document.getElementById("home-main");
 
-  // フィルタ
-  const keyword = (document.getElementById('search')?.value || "").toLowerCase();
-
-  const filtered = books.filter(b =>{
-    const matchTitle = (b.title || "").toLowerCase().includes(keyword);
-
-    const matchTag = !selectedTagId ||
-      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
-
-    const matchType =
-      selectedType === "all" ||
-      (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
-      (b.type || "normal") === selectedType;
-
-    return matchTitle && matchTag && matchType;
-  });
-
-  const sorted = sortBooks(filtered);
-
-  // wish優先
-  sorted.sort((a,b)=>{
-    if(a.type === b.type) return 0;
-    return a.type === "wish" ? -1 : 1;
-  });
-
-  // 表示分岐
   if(viewMode === "shelf"){
-    renderShelf(listEl, sorted);
+    renderShelf(main, sorted);
     return;
   }
 
   if(viewMode === "shelf-series"){
-    renderSeriesShelf(listEl, sorted);
+    renderSeriesShelf(main, sorted);
     return;
   }
-
-  if(viewMode === "list"){
-    renderList(listEl, sorted);
-    return;
-  }
-
+  
   // 通常カード表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
@@ -208,7 +180,7 @@ function renderList(el, sorted){
       <div>${getFavLabel(b.fav)}</div>
     `;
 
-    d.onclick = ()=> openDetailById(b.id);
+    d.onclick = ()=> openDetail(b);
 
     listWrap.appendChild(d);
   });
@@ -398,83 +370,32 @@ d.appendChild(badge);
 
 
 //本棚背表紙モード
-function renderShelfGrid(el, sorted){
-console.log("renderShelf start", sorted.length);
+function renderShelf(el, sorted){
+  if(!el) return;
 
   el.innerHTML = "";
 
   const container = document.createElement('div');
-  container.style.width = "100%";
-  el.appendChild(container);
+  container.style.display = "flex";
+  container.style.flexWrap = "wrap";
+  container.style.alignItems = "flex-end";
+  container.style.gap = "4px";
+  container.style.padding = "4px";
 
-  const tempRow = document.createElement('div');
-  tempRow.style.display = "flex";
-  tempRow.style.flexWrap = "wrap";
-  tempRow.style.alignItems = "flex-end";
-
-  const items = [];
-
-  // ① 一旦全部入れる（行判定用）
   sorted.forEach(b=>{
-  try{
-    const d = createBookSpine(b);
-    tempRow.appendChild(d);
-    items.push(d);
-  }catch(e){
-    console.error("createBookSpine error", b, e);
-  }
-});
+    try{
+      const spine = createBookSpine(b);
 
-  container.appendChild(tempRow);
+      // 👇 ここ大事（詳細開けるように）
+      spine.onclick = ()=> openDetail(b);
 
-  // ② 行ごとに分解
-  requestAnimationFrame(()=>{
-  	
-    let rows = [];
-    let currentRow = [];
-    let currentTop = null;
+      container.appendChild(spine);
+    }catch(e){
+      console.error("createBookSpine error", b, e);
+    }
+  });
 
-    items.forEach(item=>{
-      if(currentTop === null){
-        currentTop = item.offsetTop;
-      }
-
-      if(item.offsetTop !== currentTop){
-        rows.push(currentRow);
-        currentRow = [];
-        currentTop = item.offsetTop;
-      }
-
-      currentRow.push(item);
-    });
-
-    if(currentRow.length) rows.push(currentRow);
-
-    // ③ 再構築
-    container.innerHTML = "";
-    
-      rows.forEach(rowItems=>{
-      const row = document.createElement('div');
-      row.style.display = "flex";
-      row.style.alignItems = "flex-end";
-
-      rowItems.forEach(item=>{
-        row.appendChild(item);
-      });
-
-      container.appendChild(row);
-
-      // 棚板
-      const shelf = document.createElement('div');
-      shelf.style.width = "100%";
-      shelf.style.height = "6px";
-      shelf.style.background = "#caa46a";
-      shelf.style.margin = "1px 0 12px";
-      shelf.style.borderRadius = "3px";
-
-      container.appendChild(shelf);
-    });
-});
+  el.appendChild(container);
 }//function renderShelf()おわり
 
 
