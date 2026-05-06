@@ -178,6 +178,7 @@ if(uiSettings.Recent){
 }
 
     d.onclick = ()=> openDetail(b);
+    listEl.appendChild(d);
     el.appendChild(d);
   });
 }//function renderHome()おわり
