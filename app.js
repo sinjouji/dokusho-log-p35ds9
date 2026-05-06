@@ -22,7 +22,13 @@ let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
 let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
 let currentMonth = new Date();
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 12;
-let enableGoal = localStorage.getItem("enableGoal") === "false";//年間読破目標設定
+let enableGoal = localStorage.getItem("enableGoal");
+
+if(enableGoal === null){
+  enableGoal = true;
+} else {
+  enableGoal = enableGoal === "true";
+}//年間読破目標設定
 // UI設定（保存＋初期値）
 let uiSettings = {
   recent: true,
@@ -61,6 +67,7 @@ function go(page){
   if(page === 'home') renderHome();
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
+  if(page === 'calendar') renderCalendar();
 }//function go()おわり
 
 
@@ -1105,12 +1112,10 @@ function changeMonth(diff){
 
 
 function renderCalendar(){
- // go('calendar');
 
   const el = document.getElementById("page-calendar");
   if(!el) return;
-  
-  go('calendar');
+ 
 
   const now = currentMonth;
   const year = now.getFullYear();
@@ -2033,9 +2038,10 @@ async function loadData(){
     renderSort();
     setupTagToggle();
     renderTypeFilter();
- //   renderCalendar();
-  go('home');
+//    renderCalendar();
     renderHome();
+    go('home');
+
 
   }catch(e){
     console.error(e);
