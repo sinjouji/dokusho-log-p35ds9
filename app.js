@@ -175,7 +175,7 @@ if(uiSettings.Recent){
   renderRecentBooks();
 }
 
-    d.onclick = ()=> openDetailById(b.id);
+    d.onclick = ()=> openDetail(b);
     el.appendChild(d);
   });
 }//function renderHome()おわり
@@ -1913,7 +1913,8 @@ function openSettingSelect(type){
     <button onclick="renderSettings()" style="margin:16px;">← 戻る</button>
   `;
 
-  const listEl = document.getElementById("select-list");
+  const listEl = document.getElementById("book-list");
+  listEl.innerHTML = "";
 
   list.forEach(item=>{
     const d = document.createElement("div");
