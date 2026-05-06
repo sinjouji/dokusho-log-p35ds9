@@ -24,14 +24,8 @@ let currentMonth = new Date();
 
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal"));
 if(!yearlyGoal) yearlyGoal = 12; // 初期値（好きに変えてOK）
-let enableGoal = true;
-localStorage.setItem("enableGoal", "true");
-//let enableGoal = localStorage.getItem("enableGoal");
-//if(enableGoal === null){
-//  enableGoal = true; // 初期ON
-//} else {
-//  enableGoal = enableGoal === "true";
-//}//年間読破目標設定
+let enableGoal = localStorage.getItem("enableGoal");
+enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
 
 // UI設定（保存＋初期値）
 let uiSettings = {
@@ -1344,6 +1338,11 @@ function renderSummary(){
     </div>
   `;
 
+const color =
+  rate < 30 ? "#e74c3c" :
+  rate < 70 ? "#f1c40f" :
+              "#2ecc71";
+
   // 🎯 年間目標
   if(enableGoal){
     const rate = yearlyGoal
@@ -1354,7 +1353,7 @@ function renderSummary(){
   <div class="goal-box">
     🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
     <div class="goal-bar">
-      <div class="goal-fill" style="width:${rate}%"></div>
+      <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
     </div>
   </div>
 `;
