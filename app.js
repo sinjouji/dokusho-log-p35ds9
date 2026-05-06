@@ -96,17 +96,50 @@ function renderHome(){
   const el = document.getElementById('page-home');
   if(!el) return;
 
+  // 🔥 UI込みで再構築
   el.innerHTML = `
-    <div id="home-top"></div>
+    <div id="topbar">
+      <input id="search" placeholder="検索..." style="width:100%;padding:8px;">
+    </div>
+
+    <div id="home-summary"></div>
+    <div id="tag-filter"></div>
+    <div id="type-filter"></div>
+    <div id="recent-books"></div>
+
     <div id="home-main"></div>
   `;
 
-  // 上UI
+  // UI描画
   renderSummary();
+  renderTagFilter();
+  renderTypeFilter();
   renderRecentBooks();
 
   const main = document.getElementById("home-main");
 
+  // 🔍 検索
+  const keyword = (document.getElementById("search").value || "").toLowerCase();
+
+  // ✅ フィルタ
+  let filtered = books.filter(b=>{
+    const matchTitle = (b.title || "").toLowerCase().includes(keyword);
+
+    const matchTag = !selectedTagId ||
+      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+
+    const matchType =
+      selectedType === "all" ||
+      (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
+      (b.type || "normal") === selectedType;
+
+    return matchTitle && matchTag && matchType;
+  });
+
+  // ✅ ソート
+  const sorted = sortBooks(filtered);
+
+  // 🔥 表示分岐
   if(viewMode === "shelf"){
     renderShelf(main, sorted);
     return;
@@ -116,8 +149,13 @@ function renderHome(){
     renderSeriesShelf(main, sorted);
     return;
   }
-  
-  // 通常カード表示
+
+  if(viewMode === "list"){
+    renderList(main, sorted);
+    return;
+  }
+
+  // ✅ カード表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -141,26 +179,19 @@ function renderHome(){
     `;
 
     d.onclick = ()=> openDetail(b);
-
-    listEl.appendChild(d);
+    main.appendChild(d);
   });
 
-  // フィルタUI表示制御（最後に1回だけ）
-  const tagEl = document.getElementById("tag-filter");
-  if(tagEl){
-    tagEl.style.display = uiSettings.showTags ? "flex" : "none";
-  }
-
-  const typeEl = document.getElementById("type-filter");
-  if(typeEl){
-    typeEl.style.display = uiSettings.showTypeFilter ? "flex" : "none";
-  }
+  // 🔥 UI表示制御
+  updateUIVisibility("home");
 }//function renderHome()おわり
 
 
 function openDetailById(id){
-  const b = books.find(x=>x.id === id);
-  if(b) openDetail(b);
+  const book = books.find(b=>b.id===id);
+  if(!book) return;
+
+  alert(book.title);
 }
 
 
@@ -370,32 +401,20 @@ d.appendChild(badge);
 
 
 //本棚背表紙モード
-function renderShelf(el, sorted){
-  if(!el) return;
-
+function renderShelf(el, list){
   el.innerHTML = "";
 
-  const container = document.createElement('div');
-  container.style.display = "flex";
-  container.style.flexWrap = "wrap";
-  container.style.alignItems = "flex-end";
-  container.style.gap = "4px";
-  container.style.padding = "4px";
+  const wrap = document.createElement("div");
+  wrap.style.display = "flex";
+  wrap.style.flexWrap = "wrap";
+  wrap.style.alignItems = "flex-end";
 
-  sorted.forEach(b=>{
-    try{
-      const spine = createBookSpine(b);
-
-      // 👇 ここ大事（詳細開けるように）
-      spine.onclick = ()=> openDetail(b);
-
-      container.appendChild(spine);
-    }catch(e){
-      console.error("createBookSpine error", b, e);
-    }
+  list.forEach(b=>{
+    const spine = createBookSpine(b);
+    wrap.appendChild(spine);
   });
 
-  el.appendChild(container);
+  el.appendChild(wrap);
 }//function renderShelf()おわり
 
 
