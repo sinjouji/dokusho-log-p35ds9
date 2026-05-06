@@ -23,12 +23,12 @@ let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリス�
 let currentMonth = new Date();
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 0;
 let enableGoal = localStorage.getItem("enableGoal") === "true";//年間読破目標設定
-let uiSettings = JSON.parse(localStorage.getItem("uiSettings")) || {
-  showTags: true,
-  showTypeFilter: true,
-  showSummary: true,
-  showRecent: true
-};//表示するページを選ぶやつ
+let uiSettings = JSON.parse(localStorage.getItem("uiSettings") || "{
+if(uiSettings.recent === undefined) uiSettings.recent = true;
+if(!uiSettings.summary) uiSettings.summary = true;
+if(!uiSettings.tags) uiSettings.tags = true;
+if(!uiSettings.type) uiSettings.type = true;
+}");//表示するページを選ぶやつ
 let uiMode = localStorage.getItem("uiMode") || "on";
 // "on" or "off"
 let recentViewMode = localStorage.getItem("recentViewMode") || "card";
@@ -200,45 +200,29 @@ if(uiSettings.showRecent){
 
 //表示制御
 function applyUIVisibility(page){
+  const master = (uiMode === "on");
 
-  const isOn = uiMode === "on";
-
-  const tag = document.getElementById("tag-filter");
-  const type = document.getElementById("type-filter");
+  const search = document.getElementById("search");
   const summary = document.getElementById("home-summary");
+  const tags = document.getElementById("tag-filter");
+  const type = document.getElementById("type-filter");
   const recent = document.getElementById("recent-books");
-  const search = document.getElementById("topbar"); // 検索バー
 
-  // デフォルト全部非表示
-  [tag, type, summary, recent].forEach(el=>{
-    if(el) el.style.display = "none";
-  });
-
-  // 🔥 OFF → 全部非表示（検索も消すならここで）
-  if(!isOn){
-    if(search) search.style.display = "none";
-    return;
+  // 🔍 検索
+  if(search){
+    if(master && ["home","series","characters","calendar"].includes(page)){
+      search.style.display = "block";
+    } else {
+      search.style.display = "none";
+    }
   }
 
-  // 🔥 ON の場合
+  const isHome = (page === "home" && master);
 
-  if(page === "home"){
-    if(tag) tag.style.display = "flex";
-    if(type) type.style.display = "flex";
-    if(summary) summary.style.display = "block";
-    if(recent) recent.style.display = "block";
-    if(search) search.style.display = "flex";
-  }
-
-  else if(["series","characters","calendar"].includes(page)){
-    // 検索だけ
-    if(search) search.style.display = "flex";
-  }
-
-  else{
-    // その他ページ
-    if(search) search.style.display = "none";
-  }
+  if(summary) summary.style.display = (isHome && uiSettings.summary) ? "block" : "none";
+  if(tags) tags.style.display = (isHome && uiSettings.tags) ? "flex" : "none";
+  if(type) type.style.display = (isHome && uiSettings.type) ? "flex" : "none";
+  if(recent) recent.style.display = (isHome && uiSettings.recent) ? "block" : "none";
 }
 
 
@@ -333,7 +317,7 @@ function createBookSpine(b){
   //見た目調整
   title.style.fontSize = "9px"; //!
   title.style.lineHeight = "1.2";
-  title.style.padding = "4px 2px";
+  title.style.paddingTop = "8px";
   title.style.letterSpacing = "0.05em";
   
   //色
@@ -1465,9 +1449,9 @@ function renderRecentBooks(){
       <div style="font-size:12px;color:#666;">
         ${getLastDate(b)}
       </div>
-//      <div style="margin-top:4px;">
-//        ${getFavLabel(b.fav)}
-//      </div>
+      <div style="margin-top:4px;">
+        ${getFavLabel(b.fav)}
+      </div>
     `;
 
     d.onclick = ()=> openDetail(b);
@@ -1691,12 +1675,29 @@ function renderSettings(){
     </div>
 
 <div class="settings-group">
-  <div class="settings-header">UI表示</div>
+  <div class="settings-header">ホームUI</div>
   <div class="settings-list">
+
     <div class="settings-item">
-      UIを表示
-      <div class="switch ${uiMode === "on" ? "on" : ""}" onclick="toggleUI(event)"></div>
+      最近の本
+      <div class="switch ${uiSettings.recent ? "on" : ""}" onclick="toggleUIItem(event,'recent')"></div>
     </div>
+
+    <div class="settings-item">
+      サマリー
+      <div class="switch ${uiSettings.summary ? "on" : ""}" onclick="toggleUIItem(event,'summary')"></div>
+    </div>
+
+    <div class="settings-item">
+      タグ
+      <div class="switch ${uiSettings.tags ? "on" : ""}" onclick="toggleUIItem(event,'tags')"></div>
+    </div>
+
+    <div class="settings-item">
+      タイプ
+      <div class="switch ${uiSettings.type ? "on" : ""}" onclick="toggleUIItem(event,'type')"></div>
+    </div>
+
   </div>
 </div>
 
@@ -1769,6 +1770,19 @@ function toggleUI(e){
   renderSettings();
   renderHome();
   applyUIVisibility("home"); // ←即反映
+}
+
+
+function toggleUIItem(e, key){
+  e.stopPropagation();
+
+  uiSettings[key] = !uiSettings[key];
+
+  localStorage.setItem("uiSettings", JSON.stringify(uiSettings));
+
+  renderSettings();
+  renderHome();
+  applyUIVisibility("home");
 }
 
 
