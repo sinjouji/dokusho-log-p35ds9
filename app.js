@@ -1338,6 +1338,7 @@ function renderSummary(){
     </div>
   `;
 
+  // 🎯 年間目標
   if(enableGoal){
     const rate = yearlyGoal
       ? Math.min(100, Math.round(year / yearlyGoal * 100))
@@ -1352,9 +1353,7 @@ function renderSummary(){
       <div class="goal-box">
         🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
         <div class="goal-bar">
-          <div class="goal-fill"
-            style="width:${rate}%; background:${color}">
-          </div>
+          <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
         </div>
       </div>
     `;
