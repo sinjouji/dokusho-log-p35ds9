@@ -94,92 +94,73 @@ function styleChip(btn, active=false){
 // ホーム（本のリスト表示）
 function renderHome(){
 
-  const listEl = document.getElementById("book-list");
-  listEl.innerHTML = "";
   const el = document.getElementById('page-home');
   if(!el) return;
-  el.innerHTML = "";
+
+  // ① 先に土台作る
+  el.innerHTML = `
+    <div id="home-summary"></div>
+    <div id="recent-books"></div>
+    <div id="book-list"></div>
+  `;
+
+  // ② ここで初めて取得（重要）
+  const listEl = document.getElementById("book-list");
 
   renderSummary();
   renderRecentBooks();
 
   const keyword = (document.getElementById('search')?.value || "").toLowerCase();
 
-
-  // ① フィルタ
+  // フィルタ
   const filtered = books.filter(b =>{
-  const matchTitle = (b.title || "").toLowerCase().includes(keyword);
+    const matchTitle = (b.title || "").toLowerCase().includes(keyword);
 
-  const matchTag = !selectedTagId ||
-    (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+    const matchTag = !selectedTagId ||
+      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
 
-  const matchType =
-    selectedType === "all" ||
-    (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
-    (b.type || "normal") === selectedType;
+    const matchType =
+      selectedType === "all" ||
+      (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
+      (b.type || "normal") === selectedType;
 
-  return matchTitle && matchTag && matchType;
-});
+    return matchTitle && matchTag && matchType;
+  });
 
-  // ② ソート（ここ！！）
   const sorted = sortBooks(filtered);
 
   sorted.sort((a,b)=>{
-  	if(a.type === b.type) return 0;
-  	return a.type === "wish" ? -1 : 1;
+    if(a.type === b.type) return 0;
+    return a.type === "wish" ? -1 : 1;
   });
 
-  // ③ 表示分岐
+  // 表示分岐
   if(viewMode === "shelf"){
-    renderShelf(el, sorted);
+    renderShelf(listEl, sorted);
     return;
   }
 
   if(viewMode === "shelf-series"){
-    renderSeriesShelf(el, sorted);
+    renderSeriesShelf(listEl, sorted);
     return;
   }
-  
 
-  // ④ 通常表示
+  // 通常表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
 
     d.innerHTML = `
-  <div class="title">${b.title}</div>
-
-  <div class="meta">
-    <span class="date">${getLastDate(b)}</span>
-//    <span class="fav">${getFavLabel(b.fav)}</span>
-    <span class="count">${(b.dates?.length || 0)}回</span>
-  </div>
-
-  <div class="tags">
-    ${(b.tagIds || []).map(id=>{
-      const t = tagMaster.find(x=>x.id===id);
-      if(!t) return "";
-      return `<span class="tag" style="background:${t.color}">${t.name}</span>`;
-    }).join("")}
-  </div>
-`;
-
-document.getElementById("tag-filter").style.display =
-  uiSettings.Tags ? "flex" : "none";
-document.getElementById("type-filter").style.display =
-  uiSettings.TypeFilter ? "flex" : "none";
-
-if(uiSettings.Summary){
-  renderSummary();
-}
-
-if(uiSettings.Recent){
-  renderRecentBooks();
-}
+      <div class="title">${b.title}</div>
+      <div class="meta">
+        <span class="date">${getLastDate(b)}</span>
+        <span class="count">${(b.dates?.length || 0)}回</span>
+      </div>
+    `;
 
     d.onclick = ()=> openDetail(b);
-    listEl.appendChild(d);
-    el.appendChild(d);
+
+    listEl.appendChild(d); // ← ここだけ！
   });
 }//function renderHome()おわり
 
