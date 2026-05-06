@@ -46,14 +46,14 @@ function go(page){
   const target = document.getElementById("page-" + page);
   if(target) target.style.display = "block";
 
-  // 🔥 ここ追加
+  // 🔥 追加（これが今回のコア）
   applyUIVisibility(page);
 
   if(page === 'settings') renderSettings();
   if(page === 'home') renderHome();
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
-}//function openDetailById()おわり
+}//function go()おわり
 
 
 //ボタンの見た目チップ化
@@ -166,7 +166,7 @@ spine.style.color = "#fff";
 
   <div class="meta">
     <span class="date">${getLastDate(b)}</span>
-    <span class="fav">${getFavLabel(b.fav)}</span>
+//    <span class="fav">${getFavLabel(b.fav)}</span>
     <span class="count">${(b.dates?.length || 0)}回</span>
   </div>
 
@@ -1693,19 +1693,47 @@ function renderSettings(){
 <div class="settings-group">
   <div class="settings-header">UI表示</div>
   <div class="settings-list">
-
     <div class="settings-item">
-      UI表示モード
-      <div class="switch ${uiMode === "on" ? "on":""}"
-        onclick="toggleUIMode(event)"></div>
+      UIを表示
+      <div class="switch ${uiMode === "on" ? "on" : ""}" onclick="toggleUI(event)"></div>
     </div>
-
   </div>
 </div>
+
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;
   
 }
+
+//UIの表示制御ベース
+function applyUIVisibility(page){
+  const show = (uiMode === "on");
+
+  // 要素取得
+  const search = document.getElementById("search");
+  const summary = document.getElementById("home-summary");
+  const tags = document.getElementById("tag-filter");
+  const type = document.getElementById("type-filter");
+  const recent = document.getElementById("recent-books");
+
+  // 🔍 検索バー
+  if(search){
+    if(show && ["home","series","characters","calendar"].includes(page)){
+      search.style.display = "block";
+    } else {
+      search.style.display = "none";
+    }
+  }
+
+  // 🏠 ホーム限定UI
+  const homeOnly = (show && page === "home");
+
+  if(summary) summary.style.display = homeOnly ? "block" : "none";
+  if(tags) tags.style.display = homeOnly ? "flex" : "none";
+  if(type) type.style.display = homeOnly ? "flex" : "none";
+  if(recent) recent.style.display = homeOnly ? "block" : "none";
+}
+
 
 
 function toggleUIMode(e){
@@ -1732,14 +1760,15 @@ function toggleTags(e){
 }
 
 
-function toggleUI(key, e){
+function toggleUI(e){
   e.stopPropagation();
 
-  uiSettings[key] = !uiSettings[key];
-  localStorage.setItem("uiSettings", JSON.stringify(uiSettings));
+  uiMode = (uiMode === "on") ? "off" : "on";
+  localStorage.setItem("uiMode", uiMode);
 
   renderSettings();
   renderHome();
+  applyUIVisibility("home"); // ←即反映
 }
 
 
