@@ -1340,24 +1340,25 @@ function renderSummary(){
 
 
   // 🎯 年間目標
-  if(enableGoal){
-    const rate = yearlyGoal
-      ? Math.min(100, Math.round(year / yearlyGoal * 100))
-      : 0;
-    const color =
-      rate < 30 ? "#e74c3c" :
-      rate < 70 ? "#f1c40f" :
-                  "#2ecc71";
+ if(enableGoal){
+  const rate = yearlyGoal
+    ? Math.min(100, Math.round(year / yearlyGoal * 100))
+    : 0;
 
-    html += `
-  <div class="goal-box">
-    🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
-    <div class="goal-bar">
-      <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
+  const color =
+    rate < 30 ? "#e74c3c" :
+    rate < 70 ? "#f1c40f" :
+                "#2ecc71";
+
+  html += `
+    <div class="goal-box">
+      🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
+      <div class="goal-bar">
+        <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
+      </div>
     </div>
-  </div>
-`;
-  }
+  `;
+}
 
   el.innerHTML = html;
 }
