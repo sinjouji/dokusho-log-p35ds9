@@ -94,6 +94,7 @@ function styleChip(btn, active=false){
 // ホーム（本のリスト表示）
 function renderHome(){
 
+  const listEl = document.getElementById("book-list");
   const el = document.getElementById('page-home');
   if(!el) return;
   el.innerHTML = "";
@@ -1913,7 +1914,7 @@ function openSettingSelect(type){
     <button onclick="renderSettings()" style="margin:16px;">← 戻る</button>
   `;
 
-  const listEl = document.getElementById("book-list");
+  const listEl = document.getElementById("select-list");
   listEl.innerHTML = "";
 
   list.forEach(item=>{
