@@ -25,7 +25,7 @@ let currentMonth = new Date();
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal"));
 if(!yearlyGoal) yearlyGoal = 12; // 初期値（好きに変えてOK）
 let enableGoal = true;
-
+localStorage.setItem("enableGoal", "true");
 //let enableGoal = localStorage.getItem("enableGoal");
 //if(enableGoal === null){
 //  enableGoal = true; // 初期ON
@@ -465,7 +465,7 @@ console.log("renderShelf start", sorted.length);
       shelf.style.width = "100%";
       shelf.style.height = "6px";
       shelf.style.background = "#caa46a";
-      shelf.style.margin = "4px 0 12px";
+      shelf.style.margin = "1px 0 12px";
       shelf.style.borderRadius = "3px";
 
       container.appendChild(shelf);
@@ -1662,7 +1662,7 @@ function openCharacter(c){
 }//function openCharacter()おわり
 
 
-console.log("ここまでOK");
+console.log("settings直前、ここまでOK");
 //設定ページ
 function renderSettings(){
   const el = document.getElementById("page-settings");
