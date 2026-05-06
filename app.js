@@ -31,6 +31,8 @@ let uiSettings = JSON.parse(localStorage.getItem("uiSettings")) || {
 };//表示するページを選ぶやつ
 let uiMode = localStorage.getItem("uiMode") || "on";
 // "on" or "off"
+let recentViewMode = localStorage.getItem("recentViewMode") || "card";
+// "card" or "spine"
 
 
 //★★ここまで状態設定
@@ -122,6 +124,37 @@ function renderHome(){
     renderSeriesShelf(el, sorted);
     return;
   }
+  
+  if(recentViewMode === "spine"){
+  const spine = createBookSpine(b);
+  spine.style.height = "100px";
+  box.appendChild(spine);
+} else {
+  // カード表示（さっきのやつ）◆◆要確認
+  const title = document.createElement('div');
+title.textContent = b.title;
+
+// 縦書き
+spine.style.writingMode = "vertical-rl";
+spine.style.textOrientation = "mixed";
+
+// レイアウト安定
+spine.style.display = "block"; // ← flexやめる（重要）
+spine.style.height = "100%";
+spine.style.width = "100%";
+
+// はみ出し対策
+spine.style.overflow = "hidden";
+spine.style.wordBreak = "break-all";
+
+// 見た目調整
+spine.style.fontSize = "8px";
+spine.style.lineHeight = "1.2";
+spine.style.padding = "4px 2px";
+
+// 色
+spine.style.color = "#fff";
+}
 
   // ④ 通常表示
   sorted.forEach(b=>{
@@ -340,6 +373,11 @@ badge.style.bottom = "2px";
 badge.style.right = "2px";
 badge.style.fontSize = "10px";
 badge.style.opacity = "0.8";
+badge.style.writingMode = "vertical-rl";
+badge.style.height = "30px";
+badge.style.alignItems = "center";
+badge.style.justifyContent = "flex-end";
+badge.style.paddingBottom = "5px";
 
 d.style.position = "relative";
 d.appendChild(badge);
@@ -1377,7 +1415,10 @@ function renderRecent(){
   }
 
   el.innerHTML = `
-    <div class="section-title">📖 最近読んだ本</div>
+    <div class="settings-item" onclick="openSettingSelect('recent')">
+  最近の本表示
+  <div class="settings-value">${recentViewMode === "card" ? "カード" : "背表紙"}</div>
+</div>
   `;
 
   list.forEach(b=>{
@@ -1400,37 +1441,38 @@ function renderRecentBooks(){
   const el = document.getElementById("recent-books");
   if(!el) return;
 
-  const list = [...books]
+  // 日付でソート（新しい順）
+  const sorted = [...books]
     .filter(b => b.dates?.length)
     .sort((a,b)=>{
-      const da = a.dates[a.dates.length-1];
-      const db = b.dates[b.dates.length-1];
-      return db.localeCompare(da);
+      return getLastDate(b).localeCompare(getLastDate(a));
     })
-    .slice(0,12);
+    .slice(0,10);
 
-  if(!list.length){
-    el.innerHTML = `<div style="color:#999;font-size:12px;">まだ読書記録がありません</div>`;
-    return;
-  }
+  el.innerHTML = `
+    <div class="section-title">📚 最近読んだ本</div>
+    <div class="carousel" id="recent-carousel"></div>
+  `;
 
-  el.innerHTML = `<div class="recent-title">📚 最近読んだ本</div>`;
+  const box = document.getElementById("recent-carousel");
 
-  const row = document.createElement("div");
-  row.className = "recent-row";
+  sorted.forEach(b=>{
+    const d = document.createElement("div");
+    d.className = "carousel-item";
 
-  list.forEach(b=>{
-    const spine = createBookSpine(b);
+    d.innerHTML = `
+      <div style="font-weight:bold;">${b.title}</div>
+      <div style="font-size:12px;color:#666;">
+        ${getLastDate(b)}
+      </div>
+//      <div style="margin-top:4px;">
+//        ${getFavLabel(b.fav)}
+//      </div>
+    `;
 
-    // 👇カルーセル用にサイズ調整
-    spine.style.height = "100px";
-    spine.style.margin = "0 6px";
-    spine.style.cursor = "pointer";
-
-    row.appendChild(spine);
+    d.onclick = ()=> openDetail(b);
+    box.appendChild(d);
   });
-
-  el.appendChild(row);
 }
 
 
@@ -1733,6 +1775,13 @@ function openSettingSelect(type){
     ];
   }
 
+  if(type === "recent"){
+    list = [
+      {id:"card", label:"カード"},
+      {id:"spine", label:"背表紙"}
+    ];
+  }
+
   el.innerHTML = `
     <h2 style="padding:12px;">選択</h2>
     <div class="settings-list" id="select-list"></div>
@@ -1748,7 +1797,8 @@ function openSettingSelect(type){
     const selected =
       (type==="view" && item.id===viewMode) ||
       (type==="color" && item.id===colorMode) ||
-      (type==="sort" && item.id===sortKey);
+      (type==="sort" && item.id===sortKey) ||
+      (type==="recent" && item.id===recentViewMode);
 
     d.innerHTML = `
       ${item.label}
@@ -1759,10 +1809,12 @@ function openSettingSelect(type){
       if(type==="view") viewMode = item.id;
       if(type==="color") colorMode = item.id;
       if(type==="sort") sortKey = item.id;
+      if(type==="recent") recentViewMode = item.id;
 
       localStorage.setItem("viewMode", viewMode);
       localStorage.setItem("colorMode", colorMode);
       localStorage.setItem("sortKey", sortKey);
+      localStorage.setItem("recentViewMode", recentViewMode);
 
       renderSettings();
       renderHome();
@@ -1797,6 +1849,13 @@ function getSortLabel(){
     fav:"評価",
     date:"日付"
   }[sortKey];
+}
+
+function getRecentViewLabel(){
+  return {
+    card:"カード",
+    spine:"背表紙"
+  }[recentViewMode];
 }
 
 
