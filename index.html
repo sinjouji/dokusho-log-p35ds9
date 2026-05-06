@@ -251,6 +251,35 @@ color: #999;
   background:#f2f2f2;
 }
 
+.shelf-wrap{
+ display:flex;
+ flex-wrap:wrap; /* これ重要 */
+ gap:8px;
+}
+
+.shelf-scroll{
+ display:flex;
+ overflow-x:auto;
+ gap:8px;
+ padding-bottom:8px;
+ 
+ scroll-snap-type: x mandatory;
+}
+
+.shelf-scroll::-webkit-scrollbar{
+  height: 6px;
+}
+
+.shelf-scroll::-webkit-scrollbar-thumb{
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.spine{
+ flex-shrink:0;
+ scroll-snap-align:start;
+}
+
 /* トグル */
 .switch{
   width:40px;
@@ -429,6 +458,26 @@ box-shadow:0 4px 10px rgba(0, 0, 0, 0.08);
   scroll-snap-align: start; /* ← これ */
 }
 
+/*リスト時に2カラム用*/
+.list-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+}
+
+.list-card{
+ background:#fff;
+ border-radius:10px;
+ padding:10px;
+ box-shadow:0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px){
+  .list-grid{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+
 
 
 /* ★これ重要（今回の勝因） */
@@ -458,16 +507,18 @@ box-shadow:0 4px 10px rgba(0, 0, 0, 0.08);
 </header>
 
 <div id="page-home">
- <div id="home-summary"></div>
- <div id="recent-books"></div>
- <div id="book-list"></div>
-</div>
- <div id="topbar">
-  <input id="search" oninput="renderHome()" placeholder="例：夏目友人帳">
-  
-  <div id="type-filter"></div>
-  <!--<button id="toggle-tags">タグ</button>-->
+
+  <!-- ← ここ固定 -->
+<input id="search" oninput="renderHome()" placeholder="例：夏目友人帳">
+
   <div id="tag-filter"></div>
+  <div id="type-filter"></div>
+
+  <!-- JSで作るエリア -->
+  <div id="home-summary"></div>
+  <div id="recent-books"></div>
+  <div id="book-list"></div>
+
 </div>
 
   
