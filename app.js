@@ -639,6 +639,7 @@ function renderSuggest(){
     suggestEl.innerHTML = "";
   }
 }
+}
 
 //========
 
