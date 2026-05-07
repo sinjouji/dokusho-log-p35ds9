@@ -597,7 +597,7 @@ function renderHome(){
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
-
+  renderSuggest();//いるかな？
   renderBookList();
 }
 //========
@@ -653,7 +653,7 @@ function renderBookList(){
     const matchTitle =
       (b.title || "")
       .toLowerCase()
-      .includes(keyword);
+      .includes(searchKeyword);
     return matchTitle;
   });
   
