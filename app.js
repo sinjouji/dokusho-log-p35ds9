@@ -649,7 +649,7 @@ function renderBookList(){
   if(!main) return;
   main.innerHTML = "";
   
-  //const keyword = searchKeyword;
+  const keyword = searchKeyword;
   
   //フィルタ
   const filtered = books.filter(b=>{
