@@ -584,8 +584,9 @@ function renderHome(){
   const keyword = (document.getElementById("search").value || "").toLowerCase();
 
   // ✅ フィルタ
-  let filtered = books.filter(b=>{
-    const matchTitle = (b.title || "").toLowerCase().includes(keyword);
+  const filtered = books.filter(b=>{
+    return (b.title || "").toLowerCase().includes(keyword);
+    });
 
     const matchTag = !selectedTagId ||
       (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
@@ -596,7 +597,6 @@ function renderHome(){
       (b.type || "normal") === selectedType;
 
     return matchTitle && matchTag && matchType;
-  });
 
   // ✅ ソート
   const sorted = sortBooks(filtered);
