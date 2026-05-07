@@ -598,7 +598,9 @@ function renderHome(){
       (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
       (b.type || "normal") === selectedType;
 
-    return matchTitle && matchTag && matchType;
+    return 
+    //matchTitle && 
+    matchTag && matchType;
 
   //  ソート
   const sorted = sortBooks(filtered);
