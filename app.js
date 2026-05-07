@@ -1910,6 +1910,22 @@ function saveDetail(id){
 }
 //===========================
 
+//====本を削除==================
+function deleteBook(id){
+
+  const ok = confirm("この本を削除しますか？");
+
+  if(!ok) return;
+
+  books = books.filter(b=>b.id !== id);
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+}
+//=============================
 
 
 
@@ -2188,6 +2204,10 @@ function openBookDetailModal(book){
           
           <button onclick="saveDetail('${book.id}')">
             保存
+          </button>
+          <button class="danger-btn"
+            onclick="deleteBook('${book.id}')">
+              🗑 削除
           </button>
         `
         : ""
