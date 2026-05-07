@@ -24,7 +24,7 @@ if(!["card","shelf"].includes(viewMode)){
   viewMode = "card";
 }
 
-let sortMode = localStorage.getItem("sortMode") || "title";
+let sortMode = "date-desc";
 
 let searchKeyword = "";
 
@@ -447,27 +447,39 @@ d.appendChild(badge);
 
 //=====ソートここから
 function sortBooks(list){
-  return [...list].sort((a,b)=>{
-    let result = 0;
 
-    if(sortKey === "title"){
-      result = (a.title || "").localeCompare(
-        (b.title || ""),
-        'ja',
-        { numeric: true }
-      );
-    }
+  const arr = [...list];
 
-    if(sortKey === "fav"){
-      result = (a.fav || 0) - (b.fav || 0);
-    }
+  if(sortMode === "title-asc"){
 
-    if(sortKey === "date"){
-      result = (a.dates?.[0] || "").localeCompare(b.dates?.[0] || "");
-    }
+    arr.sort((a,b)=>
+      (a.title || "")
+      .localeCompare(b.title || "","ja")
+    );
+  }
 
-    return sortOrder === "asc" ? result : -result;
-  });
+  if(sortMode === "fav-desc"){
+
+    arr.sort((a,b)=>
+      (b.fav || 0) - (a.fav || 0)
+    );
+  }
+
+  if(sortMode === "date-asc"){
+
+    arr.sort((a,b)=>
+      getLastDate(a).localeCompare(getLastDate(b))
+    );
+  }
+
+  if(sortMode === "date-desc"){
+
+    arr.sort((a,b)=>
+      getLastDate(b).localeCompare(getLastDate(a))
+    );
+  }
+
+  return arr;
 }
 //========
 
@@ -602,6 +614,27 @@ function renderSearchArea(){
       value="${searchKeyword}"
       oninput="handleSearchInput()"
     >
+    
+      <select id="sort-select"
+        onchange="changeSortMode()">
+
+      <option value="date-desc">
+        最新読了順
+      </option>
+
+      <option value="date-asc">
+        古い読了順
+      </option>
+
+      <option value="title-asc">
+        名前順
+      </option>
+
+      <option value="fav-desc">
+        評価順
+      </option>
+
+    </select>
 
     <div id="suggest"></div>
   `;
@@ -659,6 +692,9 @@ function handleSearchInput(){
   renderBookList();
 }
 //========
+
+
+
 
 
 //======本の一覧だけ表示させる役
@@ -1740,6 +1776,19 @@ function closeModal(){
   document.getElementById("modal")?.remove();
 }
 //========================
+
+
+//====ソートモードの切替え
+function changeSortMode(){
+
+  sortMode =
+    document.getElementById("sort-select").value;
+
+  renderBookList();
+}
+//================
+
+
 
 
 
