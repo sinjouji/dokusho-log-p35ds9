@@ -600,10 +600,20 @@ function renderHome(){
 
   const main = document.getElementById("home-main");
 
-  //🔍 検索
-  const keyword = searchKeyword;
+  renderBookList();
+
+  //  UI表示制御
+  updateUIVisibility("home");
+}
+//========
+
+//====サジェスト
+function renderSuggest(){
 
   // 検索候補
+    //🔍 検索
+  const keyword = searchKeyword;
+
   const suggestEl = document.getElementById("search-suggest");
 
   if(suggestEl){
@@ -630,87 +640,6 @@ function renderHome(){
   }
 }
 
-
-// フィルタ
-const filtered = books.filter(b=>{
-
-  // タイトル検索
-  const matchTitle =
-    (b.title || "")
-      .toLowerCase()
-      .includes(keyword);
-
-  // タグ
-  const matchTag =
-    !selectedTagId ||
-    (Array.isArray(b.tagIds) &&
-     b.tagIds.includes(selectedTagId));
-
-  // タイプ
-  const matchType =
-    selectedType === "all" ||
-    ((b.type || "normal") === selectedType);
-
-  return matchTitle && matchTag && matchType;
-});
-
-  //  ソート
-  const sorted = sortBooks(filtered);
-
-  //  表示分岐
-  if(viewMode === "shelf"){
-    renderShelf(main, sorted);
-    return;
-  }
-
-  if(viewMode === "shelf-series"){
-    renderSeriesShelf(main, sorted);
-    return;
-  }
-
-  if(viewMode === "list"){
-    renderList(main, sorted);
-    return;
-  }
-  
-  renderBookList();
-
-  //  UI表示制御
-  updateUIVisibility("home");
-}
-//========
-
-//====サジェスト
-function renderSuggest(){
-
-//  カード表示
-  sorted.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-
-    d.innerHTML = `
-      <div class="title">${b.title}</div>
-
-      <div class="meta">
-        <span>${getLastDate(b)}</span>
-        <span>${(b.dates?.length || 0)}回</span>
-      </div>
-
-      <div class="fav">${getFavLabel(b.fav)}</div>
-
-      <div class="tags">
-        ${(b.tagIds || []).map(id=>{
-          const t = tagMaster.find(x=>x.id===id);
-          return t ? `<span class="tag" style="background:${t.color}">${t.name}</span>` : "";
-        }).join("")}
-      </div>
-    `;
-
-    d.onclick = ()=> openDetail(b);
-    main.appendChild(d);
-  });
-
-}
 //========
 
 //======
