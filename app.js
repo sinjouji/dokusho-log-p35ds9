@@ -1779,8 +1779,6 @@ function openAddBookModal(){
       <textarea id="add-memo"
         placeholder="メモ"></textarea>
 
-        <button onclick="closeModal()">×</button>
-
         <button onclick="saveNewBook()">
           ＋本棚
         </button>
@@ -1788,7 +1786,9 @@ function openAddBookModal(){
         <button onclick="addBook('wish')">
           ＋WishList
         </button>
-    </div>
+
+        <button onclick="closeModal()">×</button>
+            </div>
   `;
 
   document.body.appendChild(modal);
@@ -1895,7 +1895,7 @@ function saveDetail(id){
     document.getElementById("detail-title").value;
 
   book.memo =
-    document.getElementById("detail-memo").value;
+    document.getElementById("editMemo").value;
 
   book.fav =
     Number(
