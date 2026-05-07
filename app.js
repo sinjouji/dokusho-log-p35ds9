@@ -1589,7 +1589,7 @@ function openAddBookModal(){
   modal.className = "modal-bg";
 
   modal.innerHTML = `
-    <div class="modal">
+    <div class="modal-box">
 
       <h2>本を追加</h2>
 
@@ -1613,7 +1613,7 @@ function openAddBookModal(){
       <textarea id="add-memo"
         placeholder="メモ"></textarea>
 
-      <div class="modal-box">
+      <div class="modal">
         <button onclick="closeModal()">×</button>
 
         <button onclick="saveNewBook()">
