@@ -472,13 +472,6 @@ function sortBooks(list){
 //========
 
 
-//====キーワード検索
-function handleSearchInput(value){
-  searchKeyword = value.toLowerCase();
-  renderBookList();
-  renderSuggest();
-}
-//========
 
 
 //========
@@ -639,6 +632,17 @@ function renderSuggest(){
 
 //========
 
+//====キーワード検索
+function handleSearchInput(){
+
+  searchKeyword =
+    (document.getElementById("search")?.value || "")
+    .toLowerCase();
+
+  renderSuggest();
+  renderBookList();
+}
+//========
 
 
 //======本の一覧だけ表示させる役
