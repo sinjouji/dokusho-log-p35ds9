@@ -581,8 +581,10 @@ function renderHome(){
   const main = document.getElementById("home-main");
 
   //🔍 検索
-  const keyword = (document.getElementById("search").value || "").toLowerCase();
-
+  const keyword =
+  (document.getElementById("search")?.value || "")
+  .toLowerCase();
+  
   // フィルタ
   const filtered = books.filter(b=>{
     return (b.title || "").toLowerCase().includes(keyword);
