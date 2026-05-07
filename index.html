@@ -95,9 +95,30 @@ font-size:13px;
   gap:10px;
 }
 
-#tag-filter {
-  margin: 10px 0;
+#tag-filter{
+  display:flex;
+  gap:8px;
   flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.tag-chip{
+
+  border:none;
+
+  border-radius:999px;
+
+  padding:6px 12px;
+
+  background:#eee;
+
+  cursor:pointer;
+}
+
+.tag-chip.active{
+
+  background:#d46a6a;
+  color:#fff;
 }
 
 #topbar{
@@ -669,6 +690,8 @@ select{
 .spine-title{
   font-size:12px;
 }
+
+
 
 
 /* ★これ重要（今回の勝因） */
