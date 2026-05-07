@@ -475,7 +475,8 @@ function sortBooks(list){
 //====キーワード検索
 function handleSearchInput(value){
   searchKeyword = value.toLowerCase();
-  renderHome();
+  renderBookList();
+  renderSuggest();
 }
 //========
 
@@ -671,8 +672,18 @@ const filtered = books.filter(b=>{
     renderList(main, sorted);
     return;
   }
+  
+  renderBookList();
 
-  //  カード表示
+  //  UI表示制御
+  updateUIVisibility("home");
+}
+//========
+
+//====サジェスト
+function renderSuggest(){
+
+//  カード表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -699,10 +710,51 @@ const filtered = books.filter(b=>{
     main.appendChild(d);
   });
 
-  //  UI表示制御
-  updateUIVisibility("home");
 }
 //========
+
+//======
+function renderBookList(){
+  const main = document.getElementById("home-main");
+  if(!main) return;
+  main.innerHTML = "";
+  
+  const keyword = searchKeyword;
+  
+  //フィルタ
+  const filtered = books.filter(b=>{
+    const matchTitle =
+      (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
+    return matchTitle;
+  });
+  
+  //ソート
+  const sorted = sortBooks(filtered);
+  
+  //表示
+  sorted.forEach(b=>{
+    const d = document.createElement("div");
+    
+    d.className = "card";
+    
+    d.innerHTML = `
+      <div class="title">${b.title}</div>
+      
+      <div class="meta">
+        <span>${getLastDate(b)}</span>
+      </div>
+    `;
+    
+    d.onclick = ()=> openDetail(b);
+    
+    main.appendChild(d);
+  });
+}
+//========
+
+
 
 //本棚背表紙モード
 function renderShelf(el, list){
