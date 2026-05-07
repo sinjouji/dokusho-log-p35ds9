@@ -1883,6 +1883,35 @@ function closeModal(){
 }
 //========================
 
+//====詳細保存================
+function saveDetail(id){
+
+  const book =
+    books.find(b=>b.id===id);
+
+  if(!book) return;
+
+  book.title =
+    document.getElementById("detail-title").value;
+
+  book.memo =
+    document.getElementById("detail-memo").value;
+
+  book.fav =
+    Number(
+      document.getElementById("detail-fav").value
+    );
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+}
+//===========================
+
+
+
 
 //====ソートモードの切替え
 function changeSortMode(){
@@ -2084,11 +2113,40 @@ function openBookDetailModal(book){
         ×
       </button>
 
-      <h2>${book.title}</h2>
+      <input
+        id="detail-title"
+        class="detail-title"
+        value="${book.title}"
+      >
 
-      <div class="detail-row">
-        評価：${getFavLabel(book.fav)}
-      </div>
+      <select id="detail-fav">
+
+      <option value="0"
+        ${book.fav===0?"selected":""}>
+        評価なし
+      </option>
+
+      <option value="1"
+        ${book.fav===1?"selected":""}>
+        ★
+      </option>
+
+      <option value="2"
+        ${book.fav===2?"selected":""}>
+        ★★
+      </option>
+
+      <option value="3"
+        ${book.fav===3?"selected":""}>
+        ★★★
+      </option>
+
+      <option value="4"
+        ${book.fav===4?"selected":""}>
+        👑
+      </option>
+
+    </select>
 
       <div class="detail-row">
         状態：
@@ -2124,9 +2182,13 @@ function openBookDetailModal(book){
       ${
         book.memo
         ? `
-          <div class="detail-memo">
-            ${book.memo}
-          </div>
+          <textarea id="detail-memo">
+           ${book.memo || ""}
+          </textarea>
+          
+          <button onclick="saveDetail('${book.id}')">
+            保存
+          </button>
         `
         : ""
       }
