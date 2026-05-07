@@ -18,11 +18,9 @@ if(!["single","gradient","stripe"].includes(colorMode)){
   colorMode = "single";
 } // 背表紙カラー：single/gradient/stripe
 
-let viewMode = localStorage.getItem("viewMode") || "card";
+let viewMode = "card";
 // 保険（壊れた値対策）
-if(!["card","shelf"].includes(viewMode)){
-  viewMode = "card";
-}
+//if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
 
 let sortMode = "date-desc";
 
@@ -636,6 +634,22 @@ function renderSearchArea(){
 
     </select>
 
+    <div class="view-switch">
+
+      <button onclick="changeViewMode('card')">
+        ■ カード
+      </button>
+
+      <button onclick="changeViewMode('list')">
+        ☰ リスト
+      </button>
+
+      <button onclick="changeViewMode('shelf')">
+        📚 背表紙
+      </button>
+
+    </div>
+
     <div id="suggest"></div>
   `;
 
@@ -717,29 +731,114 @@ function renderBookList(){
   const sorted = sortBooks(filtered);
   
   //表示
-  sorted.forEach(b=>{
-    const d = document.createElement("div");
-    
-    d.className = "card";
-    
-    d.innerHTML = `
-      <div class="title">${b.title}</div>
-      
-      <div class="meta">
-        <span>${getLastDate(b)}</span>
-      </div>
-    `;
-    
-    d.onclick = ()=> openDetail(b);
-    
-    main.appendChild(d);
-  });
+  if(viewMode === "card"){
+    renderCardView(main, sorted);
+    return;
+  }
+
+  if(viewMode === "list"){
+    renderListView(main, sorted);
+    return;
+  }
+
+  if(viewMode === "shelf"){
+    renderShelfView(main, sorted);
+    return;
+  }
+  
+  
 }
 //========
 
 
+//====カードビューモード
+function renderCardView(main, books){
+
+  books.forEach(b=>{
+
+    const d = document.createElement("div");
+
+    d.className = "card";
+
+    d.innerHTML = `
+      <div class="title">${b.title}</div>
+
+      <div class="meta">
+        <span>${getLastDate(b)}</span>
+        <span>${(b.dates?.length || 0)}回</span>
+      </div>
+
+      <div class="fav">
+        ${getFavLabel(b.fav)}
+      </div>
+    `;
+
+    d.onclick = ()=> openDetail(b);
+
+    main.appendChild(d);
+  });
+}
+//=================
 
 
+//====リストビューモード
+function renderListView(main, books){
+
+  books.forEach(b=>{
+
+    const row = document.createElement("div");
+
+    row.className = "list-row";
+
+    row.innerHTML = `
+      <div class="list-title">
+        ${b.title}
+      </div>
+
+      <div class="list-meta">
+        ${getLastDate(b)}
+        ${getFavLabel(b.fav)}
+      </div>
+    `;
+
+    row.onclick = ()=> openDetail(b);
+
+    main.appendChild(row);
+  });
+}
+//=====================
+
+//====背表紙ビューモード❤️
+function renderShelfView(main, books){
+
+  const shelf = document.createElement("div");
+
+  shelf.className = "shelf-view";
+
+  books.forEach(b=>{
+
+    const spine = document.createElement("div");
+
+    spine.className = "spine";
+
+    spine.innerHTML = `
+      <div class="spine-title">
+        ${b.title}
+      </div>
+
+      <div class="spine-fav">
+        ${getFavLabel(b.fav)}
+      </div>
+    `;
+
+    spine.onclick = ()=> openDetail(b);
+
+    shelf.appendChild(spine);
+  });
+
+  main.appendChild(shelf);
+}
+//=================
 
 
 
@@ -1789,7 +1888,14 @@ function changeSortMode(){
 //================
 
 
+//====本棚のビューモード切替え
+function changeViewMode(mode){
 
+  viewMode = mode;
+
+  renderBookList();
+}
+//================
 
 
 // 本詳細
