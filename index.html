@@ -578,7 +578,7 @@ select{
 }
 
 #search{
-  width:100%;
+  width:60%;
   box-sizing:border-box;
 
   padding:12px 14px;
@@ -612,6 +612,55 @@ select{
 
 .search-item:hover{
   background:#f5f5f5;
+}
+
+/* ビューモード用 */
+.view-switch{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.list-row{
+  background:#fff;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:8px;
+}
+
+.shelf-view{
+  display:flex;
+  gap:8px;
+  align-items:flex-end;
+  overflow-x:auto;
+  padding:10px 0;
+}
+
+.spine{
+  width:42px;
+  height:180px;
+
+  background:#d46a6a;
+
+  border-radius:6px;
+
+  color:#fff;
+
+  writing-mode:vertical-rl;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:8px 4px;
+
+  cursor:pointer;
+
+  flex-shrink:0;
+}
+
+.spine-title{
+  font-size:12px;
 }
 
 
