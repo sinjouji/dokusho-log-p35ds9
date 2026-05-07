@@ -863,7 +863,7 @@ function renderShelfView(main, books){
       </div>
     `;
 
-    spine.onclick = ()=> openDetail(b);
+    spine.onclick = ()=> openBookDetailModal(b);
 
     shelf.appendChild(spine);
   });
@@ -2063,7 +2063,82 @@ typeBtn.onclick = ()=>{
     });
   }
 }
-//========		
+//===============
+
+
+//====本詳細モーダル========
+//====本詳細モーダル====================
+function openBookDetailModal(book){
+
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "modal";
+
+  modal.innerHTML = `
+    <div class="modal-box detail-modal">
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+      <h2>${book.title}</h2>
+
+      <div class="detail-row">
+        評価：${getFavLabel(book.fav)}
+      </div>
+
+      <div class="detail-row">
+        状態：
+        ${
+          book.type === "wish"
+          ? "❤️ウィッシュ"
+          : "📚本棚"
+        }
+      </div>
+
+      <div class="detail-row">
+        読了日：
+        ${
+          book.dates?.length
+          ? book.dates.join("<br>")
+          : "未読"
+        }
+      </div>
+
+      <div class="detail-tags">
+        ${(book.tagIds || []).map(id=>{
+
+          const tag =
+            tagMaster.find(t=>t.id===id);
+
+          return tag
+            ? `<span class="tag">${tag.name}</span>`
+            : "";
+
+        }).join("")}
+      </div>
+
+      ${
+        book.memo
+        ? `
+          <div class="detail-memo">
+            ${book.memo}
+          </div>
+        `
+        : ""
+      }
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+//=================================
+
+
 
 //本詳細でシリーズを開く
 function openSeriesById(id){
