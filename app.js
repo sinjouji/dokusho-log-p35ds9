@@ -88,7 +88,7 @@ function go(page){
   const target = document.getElementById("page-" + page);
   if(target) target.style.display = "block";
 
-  // 🔥 ここ追加
+  // ここ追加
   updateUIVisibility(page);
 
   if(page === 'settings') renderSettings();
@@ -328,7 +328,7 @@ function changeGoal(val){
   yearlyGoal = Number(val) || 0;
   localStorage.setItem("yearlyGoal", yearlyGoal);
 
-  renderHome(); // 🔥 即反映
+  renderHome(); // 即反映
 }
 //========
 
@@ -546,7 +546,7 @@ function renderViewMode(targetId = "view-mode"){
       viewMode = m.id;
       localStorage.setItem("viewMode", viewMode);
 
-      renderHome();                 // 🔥 これ必須
+      renderHome();                 // これ必須
       renderViewMode(targetId);     // 見た目更新
     };
 
@@ -556,12 +556,12 @@ function renderViewMode(targetId = "view-mode"){
 //========
 
 
-// 🟧ホーム（本のリスト表示）HOME====
+// ⬛︎ホーム（本のリスト表示）HOME====
 function renderHome(){
   const el = document.getElementById('page-home');
   if(!el) return;
 
-  // 🔥 UI込みで再構築
+  // UI込みで再構築
   el.innerHTML = `
     <div id="home-top">
       <button onclick="openAddBookModal()" class="add-btn">
@@ -580,10 +580,10 @@ function renderHome(){
 
   const main = document.getElementById("home-main");
 
-  🔍 検索
+  //🔍 検索
   const keyword = (document.getElementById("search").value || "").toLowerCase();
 
-  // ✅ フィルタ
+  // フィルタ
   const filtered = books.filter(b=>{
     return (b.title || "").toLowerCase().includes(keyword);
     });
@@ -598,10 +598,10 @@ function renderHome(){
 
     return matchTitle && matchTag && matchType;
 
-  // ✅ ソート
+  //  ソート
   const sorted = sortBooks(filtered);
 
-  // 🔥 表示分岐
+  //  表示分岐
   if(viewMode === "shelf"){
     renderShelf(main, sorted);
     return;
@@ -617,7 +617,7 @@ function renderHome(){
     return;
   }
 
-  // ✅ カード表示
+  //  カード表示
   sorted.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
@@ -644,7 +644,7 @@ function renderHome(){
     main.appendChild(d);
   });
 
-  // 🔥 UI表示制御
+  //  UI表示制御
   updateUIVisibility("home");
 }
 //========
@@ -694,7 +694,7 @@ function renderColorMode(targetId = "color-mode"){
       colorMode = m.id;
       localStorage.setItem("colorMode", colorMode);
 
-      renderHome();              // 🔥
+      renderHome();              // 
       renderColorMode(targetId);
     };
 
@@ -754,7 +754,7 @@ function renderRecentBooks(){
     .slice(0,10);
 
   el.innerHTML = `
-    <div class="section-title">📚 最近読んだ本</div>
+    <div class="section-title">♫最近読んだ本</div>
     <div class="carousel" id="recent-carousel"></div>
   `;
 
@@ -866,7 +866,7 @@ function renderSummary(){
 
     html += `
       <div class="goal-box">
-        🎯 ${year} / ${yearlyGoal}冊 (${rate}%)
+        ★⭐︎★ ${year} / ${yearlyGoal}冊 (${rate}%)
         <div class="goal-bar">
           <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
         </div>
@@ -1026,7 +1026,7 @@ function renderSort(targetId = "sort-mode"){
       localStorage.setItem("sortKey", sortKey);
       localStorage.setItem("sortOrder", sortOrder);
 
-      renderHome();          // 🔥
+      renderHome();          // ！
       renderSort(targetId);
     };
 
@@ -1161,7 +1161,7 @@ function renderCalendar(){
       openDayModal(map[dateStr]);
     };
     
-    // ✅ ここが超重要
+    // ここが超重要
     grid.appendChild(cell);
   }
 
@@ -1245,7 +1245,7 @@ function applyUIVisibility(page){
 
 
 
-//👤====キャラクターページ====
+//====キャラクターページ====
 function renderCharacters(){
   const el = document.getElementById('page-characters');
   el.innerHTML = "";
@@ -1362,7 +1362,7 @@ function applyUIVisibility(page){
   const type = document.getElementById("type-filter");
   const recent = document.getElementById("recent-books");
 
-  // 🔍 検索バー
+  // 検索バー
   if(search){
     if(show && ["home","series","characters","calendar"].includes(page)){
       search.style.display = "block";
@@ -1371,7 +1371,7 @@ function applyUIVisibility(page){
     }
   }
 
-  // 🏠 ホーム限定UI
+  //  ホーム限定UI
   const homeOnly = (show && page === "home");
 
   if(summary) summary.style.display = homeOnly ? "block" : "none";
@@ -1475,7 +1475,7 @@ function openSettingSelect(type){
 
     d.innerHTML = `
       ${item.label}
-      <div>${selected ? "✔️" : ""}</div>
+      <div>${selected ? "読了" : ""}</div>
     `;
 
     d.onclick = ()=>{
@@ -1509,7 +1509,7 @@ function updateUIVisibility(page){
   const tags = document.getElementById("tag-filter");
   const type = document.getElementById("type-filter");
 
-  // 🔴 全OFF
+  // ● 全OFF
   if(!showUI.recent && !showUI.summary && !showUI.tags && !showUI.type){
     if(search) search.style.display = "none";
     if(summary) summary.style.display = "none";
@@ -1519,14 +1519,14 @@ function updateUIVisibility(page){
     return;
   }
 
-  // 🔵 検索バー
+  // ● 検索バー
   const showSearchPages = ["home","calendar","series","characters"];
   if(search){
     search.style.display =
       showSearchPages.includes(page) ? "flex" : "none";
   }
 
-  // 🟢 ホームだけ
+  // ● ホームだけ
   if(page === "home"){
     if(summary) summary.style.display = showUI.summary ? "block" : "none";
     if(recent) recent.style.display = showUI.recent ? "block" : "none";
@@ -1548,10 +1548,10 @@ function updateUIVisibility(page){
 
 
 
-//🟥⑤====イベント・操作系====
+//⬛︎⑤====イベント・操作系====
 //ユーザーの操作・openDetail、Toggle系、set系
 
-//🟥本の追加モーダル
+//⬛︎本の追加モーダル
 function openAddBookModal(){
 
   const modal = document.createElement("div");
@@ -1675,7 +1675,7 @@ el.innerHTML = `
 	<div id="action-bar">
 		<button onclick="go('home')">戻る</button>
 		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
-		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "⭐️ ウィッシュに追加"}</button>
+		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "STAR ウィッシュに追加"}</button>
 		<button id="add-date-btn">
 		${book.dates?.length ? "🔂再読" : "✔️読了にする"}</button>
 	</div>
@@ -1686,8 +1686,8 @@ el.innerHTML = `
     ? book.dates.map((d,i)=>`
       <div>
         ${d}
-        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">  ：  ❎  ：  </span>
-        <span onclick="editDate('${book.id}', ${i})" style="cursor:pointer;">✏️</span>
+        <span onclick="removeDate('${book.id}', ${i})" style="color:red;cursor:pointer;">  ：  削除  ：  </span>
+        <span onclick="editDate('${book.id}', ${i})" style="cursor:pointer;">編集</span>
       </div>
     `).join("")
     : `<span style="color:gray;">🔖未読</span>`
@@ -1722,7 +1722,7 @@ el.innerHTML += `
   `;
 
 
-  // ⭐ 評価ボタン
+  //評価ボタン
   const favBtn = document.getElementById('fav-btn');
   //読了ボタン
   const addBtn = document.getElementById('add-date-btn');
@@ -2082,7 +2082,7 @@ function toggleGoal(e){
   localStorage.setItem("enableGoal", enableGoal);
 
   renderSettings();
-  renderHome(); // 🔥 即反映
+  renderHome(); // 即反映
 }
 //========
 
@@ -2142,10 +2142,10 @@ function editDate(bookId, index){
 //========
 
 
-//⬛️⑥====データ読み込み====
+//⬛︎⑥====データ読み込み====
 async function loadData(){
 
-  // ⭐ ここに入れる（関数の一番上）
+  // ここに入れる（関数の一番上）
   if(!window.db || !window.doc || !window.getDoc){
     console.log("⏳ Firebase待機中...");
     setTimeout(loadData, 100);
@@ -2153,7 +2153,7 @@ async function loadData(){
   }
 
   try{
-    // 🔥 Firestoreから取得
+    // Firestoreから取得
     const snap = await window.getDoc(
       window.doc(window.db, "app", "data")
     );
@@ -2170,11 +2170,11 @@ async function loadData(){
       // ローカルにも保存（バックアップ）
       localStorage.setItem("bookAppData",JSON.stringify(data));
 
-      console.log("🔥 Firestoreから読み込み");
+      console.log("Firestoreから読み込み");
 
     } else {
 
-      // 🔸 Firestore空ならローカル
+      // Firestore空ならローカル
       const saved = localStorage.getItem("bookAppData");
 
       if(saved){
@@ -2185,7 +2185,7 @@ async function loadData(){
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
 
-        console.log("📦 ローカルから読み込み");
+        console.log("◆ローカルから読み込み");
 
       } else {
 
