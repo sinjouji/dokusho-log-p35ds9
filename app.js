@@ -1932,7 +1932,7 @@ el.innerHTML = `
 	<div id="action-bar">
 		<button onclick="go('home')">戻る</button>
 		<button id="fav-btn">評価 ${getFavLabel(book.fav)}</button>
-		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "STAR ウィッシュに追加"}</button>
+		<button id="type-btn">${book.type === "wish" ? "📥 本棚に入れる" : "♥️ ウィッシュに追加"}</button>
 		<button id="add-date-btn">
 		${book.dates?.length ? "🔂再読" : "✔️読了にする"}</button>
 	</div>
