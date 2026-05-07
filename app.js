@@ -2132,7 +2132,7 @@ function openBookDetailModal(book){
       <input
         id="detail-title"
         class="detail-title"
-        value="${book.title}"
+        value="${book.title || ""}"
       >
 
       <select id="detail-fav">
@@ -2198,9 +2198,7 @@ function openBookDetailModal(book){
       ${
         book.memo
         ? `
-          <textarea id="detail-memo">
-           ${book.memo || ""}
-          </textarea>
+          <textarea id="editMemo">${book.memo || ""}</textarea>
           
           <button onclick="saveDetail('${book.id}')">
             保存
