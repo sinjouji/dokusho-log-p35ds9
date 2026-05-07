@@ -571,6 +571,8 @@ function renderHome(){
   const el = document.getElementById('page-home');
   if(!el) return;
 
+ const keyword = searchKeyword;
+
   // UI込みで再構築
   el.innerHTML = `
     <div id="home-top">
@@ -612,8 +614,7 @@ function renderSuggest(){
 
   // 検索候補
     //🔍 検索
-  const keyword = searchKeyword;
-
+ 
   const suggestEl = document.getElementById("search-suggest");
 
   if(suggestEl){
