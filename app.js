@@ -906,12 +906,6 @@ function renderTypeFilter(){
       onclick="setTypeFilter('normal')">
       読書
     </button>
-    
-    <button
-      class="${selectedType==='unread' ? 'active' : ''}"
-      onclick="setTypeFilter('unread')">
-      未読
-    </button>
 
     <button 
       class="${selectedType==='wish' ? 'active' : ''}"
@@ -1576,9 +1570,11 @@ function openAddBookModal(){
         type="text"
         placeholder="タイトル">
 
-      <input id="add-date"
-        type="date">
+      <div class="field">
+        <div class="field-label">読了日</div>
 
+        <input type="date" id="book-date">
+      </div>
       <select id="add-fav">
         <option value="0">評価なし</option>
         <option value="1">★</option>
