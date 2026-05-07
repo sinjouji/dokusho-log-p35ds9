@@ -2122,18 +2122,12 @@ function openBookDetailModal(book){
   modal.innerHTML = `
     <div class="modal-box detail-modal">
 
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
+      <button class="close-btn" onclick="closeModal()">
         ×
       </button>
 
-      <input
-        id="detail-title"
-        class="detail-title"
-        value="${book.title || ""}"
-      >
+      <input id="detail-title" class="detail-title"
+        value="${book.title || ""}">
 
       <select id="detail-fav">
 
@@ -2142,23 +2136,19 @@ function openBookDetailModal(book){
         評価なし
       </option>
 
-      <option value="1"
-        ${book.fav===1?"selected":""}>
+      <option value="1" ${book.fav===1?"selected":""}>
         ★
       </option>
 
-      <option value="2"
-        ${book.fav===2?"selected":""}>
+      <option value="2" ${book.fav===2?"selected":""}>
         ★★
       </option>
 
-      <option value="3"
-        ${book.fav===3?"selected":""}>
+      <option value="3" ${book.fav===3?"selected":""}>
         ★★★
       </option>
 
-      <option value="4"
-        ${book.fav===4?"selected":""}>
+      <option value="4" ${book.fav===4?"selected":""}>
         👑
       </option>
 
@@ -2205,10 +2195,7 @@ function openBookDetailModal(book){
         onclick="deleteBook('${book.id}')">
         🗑 削除
       </button>
-        `
-        : ""
-      }
-
+       
     </div>
   `;
 
