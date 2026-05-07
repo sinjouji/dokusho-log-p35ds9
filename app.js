@@ -1577,7 +1577,9 @@ function updateUIVisibility(page){
 //⬛︎⑤====イベント・操作系====
 //ユーザーの操作・openDetail、Toggle系、set系
 
-//⬛︎本の追加モーダル
+//=============モーダル置き場
+
+//⬛︎本の追加モーダル==========
 function openAddBookModal(){
 
   const modal = document.createElement("div");
@@ -1611,12 +1613,12 @@ function openAddBookModal(){
       <div class="modal-actions">
         <button onclick="closeModal()">キャンセル</button>
 
-        <button onclick="addBook('normal')">
-          本棚に追加
+        <button onclick="saveNewBook()">
+          ＋本棚
         </button>
 
         <button onclick="addBook('wish')">
-          ウィッシュ追加
+          ＋WishList
         </button>
       </div>
 
@@ -1627,59 +1629,50 @@ function openAddBookModal(){
 }
 //========
 
-
-//====本追加モーダルを閉じる
-function closeModal(){
-  document.querySelectorAll(".modal-bg").forEach(el=>{
-    el.remove();
-  });
-}
-//========
-
-
-//====実際に本を追加する動作
-function addBook(type){
+//====本を追加保存=================
+function saveNewBook(){
 
   const title =
     document.getElementById("add-title").value.trim();
 
   if(!title){
-    alert("タイトルを入力してください");
+    alert("タイトルを入力してね！");
     return;
   }
 
   const date =
     document.getElementById("add-date").value;
 
-  const fav =
-    Number(document.getElementById("add-fav").value);
-
   const memo =
     document.getElementById("add-memo").value;
 
-  const newBook = {
+  const book = {
     id: Date.now().toString(),
-
     title,
-    fav,
     memo,
-
-    type,
-
+    fav: 0,
     dates: date ? [date] : [],
-
-    tagIds: []
+    tagIds: [],
+    type: date ? "normal" : "wish"
   };
 
-  books.unshift(newBook);
+  books.unshift(book);
 
   saveData();
 
   closeModal();
 
-  renderHome();
+  renderBookList();
 }
-//========
+//==============================
+
+//====本追加モーダルを閉じる
+function closeModal(){
+  document.getElementById("modal")?.remove();
+}
+//========================
+
+
 
 // 本詳細
 function openDetail(book){
