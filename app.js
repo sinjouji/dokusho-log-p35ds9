@@ -2195,18 +2195,16 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
-      ${
-        book.memo
-        ? `
-          <textarea id="editMemo">${book.memo || ""}</textarea>
-          
-          <button onclick="saveDetail('${book.id}')">
-            保存
-          </button>
-          <button class="danger-btn"
-            onclick="deleteBook('${book.id}')">
-              🗑 削除
-          </button>
+      <textarea id="editMemo">${book.memo || ""}</textarea>
+
+      <button onclick="saveDetail('${book.id}')">
+        保存
+      </button>
+
+      <button class="danger-btn"
+        onclick="deleteBook('${book.id}')">
+        🗑 削除
+      </button>
         `
         : ""
       }
