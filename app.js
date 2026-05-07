@@ -1221,7 +1221,7 @@ function renderList(el, sorted){
 function applyUIVisibility(page){
   const master = (uiMode === "on");
 
-  const search = document.getElementById("search");
+  const search = (document.getElementById("search")?.value || "").toLowerCase();
   const summary = document.getElementById("home-summary");
   const tags = document.getElementById("tag-filter");
   const type = document.getElementById("type-filter");
@@ -1358,7 +1358,7 @@ function applyUIVisibility(page){
   const show = (uiMode === "on");
 
   // 要素取得
-  const search = document.getElementById("search");
+  const search = (document.getElementById("search")?.value || "").toLowerCase();
   const summary = document.getElementById("home-summary");
   const tags = document.getElementById("tag-filter");
   const type = document.getElementById("type-filter");
@@ -1505,7 +1505,7 @@ function updateUIVisibility(page){
 
   const showUI = uiSettings; // 略
 
-  const search = document.getElementById("topbar");
+  const search = (document.getElementById("topbar")?.value || "").toLowerCase();
   const summary = document.getElementById("home-summary");
   const recent = document.getElementById("recent-books");
   const tags = document.getElementById("tag-filter");
