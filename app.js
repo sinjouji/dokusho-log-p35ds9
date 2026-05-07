@@ -838,6 +838,20 @@ function renderShelfView(main, books){
     const spine = document.createElement("div");
 
     spine.className = "spine";
+    
+    const firstTagId =
+      b.tagIds?.[0];
+
+    const tag =
+      tagMaster.find(t=>
+        t.id === firstTagId
+      );
+    
+    if(tag?.color){
+
+      spine.style.background =
+        tag.color;
+    }
 
     spine.innerHTML = `
       <div class="spine-title">
