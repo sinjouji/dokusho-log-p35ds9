@@ -1587,6 +1587,7 @@ function openAddBookModal(){
 
   const modal = document.createElement("div");
   modal.className = "modal-bg";
+  modal.id = "modal";
 
   modal.innerHTML = `
     <div class="modal-box">
@@ -1613,7 +1614,6 @@ function openAddBookModal(){
       <textarea id="add-memo"
         placeholder="メモ"></textarea>
 
-      <div class="modal">
         <button onclick="closeModal()">×</button>
 
         <button onclick="saveNewBook()">
@@ -1623,8 +1623,6 @@ function openAddBookModal(){
         <button onclick="addBook('wish')">
           ＋WishList
         </button>
-      </div>
-
     </div>
   `;
 
@@ -1665,7 +1663,7 @@ function saveNewBook(){
 
   closeModal();
 
-  renderBookList();
+  renderHome();
 }
 //==============================
 
