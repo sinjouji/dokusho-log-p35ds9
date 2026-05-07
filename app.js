@@ -1589,7 +1589,7 @@ function openAddBookModal(){
   modal.className = "modal-bg";
 
   modal.innerHTML = `
-    <div class="modal-box">
+    <div class="modal">
 
       <h2>本を追加</h2>
 
@@ -1600,7 +1600,7 @@ function openAddBookModal(){
       <div class="field">
         <div class="field-label">読了日</div>
 
-        <input type="date" id="book-date">
+        <input type="date" id="add-date">
       </div>
       <select id="add-fav">
         <option value="0">評価なし</option>
@@ -1613,8 +1613,8 @@ function openAddBookModal(){
       <textarea id="add-memo"
         placeholder="メモ"></textarea>
 
-      <div class="modal-actions">
-        <button onclick="closeModal()">キャンセル</button>
+      <div class="modal-box">
+        <button onclick="closeModal()">×</button>
 
         <button onclick="saveNewBook()">
           ＋本棚
