@@ -1669,6 +1669,51 @@ function saveNewBook(){
 }
 //==============================
 
+//======ウィッシュリストに本を追加
+function addBook(type){
+
+  const title =
+    document.getElementById("add-title").value.trim();
+
+  if(!title){
+    alert("タイトルを入力してください");
+    return;
+  }
+
+  const date =
+    document.getElementById("add-date").value;
+
+  const fav =
+    Number(document.getElementById("add-fav").value);
+
+  const memo =
+    document.getElementById("add-memo").value;
+
+  const newBook = {
+    id: Date.now().toString(),
+
+    title,
+    fav,
+    memo,
+
+    type,
+
+    dates: date ? [date] : [],
+
+    tagIds: []
+  };
+
+  books.unshift(newBook);
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+}
+//================
+
+
 //====本追加モーダルを閉じる
 function closeModal(){
   document.getElementById("modal")?.remove();
