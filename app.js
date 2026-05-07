@@ -283,7 +283,7 @@ function getReadingMap(){
 
 
 
-//🟨③====ロジック====
+//🟨③====ロジック、関数====
 //並び替え・フィルタ、計算、sortgetLastDate、データをいじるだけ
 
 //完全UIOFFフラグ====
@@ -564,6 +564,15 @@ function renderHome(){
   // UI込みで再構築
   el.innerHTML = `
     <div id="home-top">
+      <div class="search-area">
+        <input
+          type="text"
+          id="search"
+          placeholder="タイトル検索"
+          oninput="renderHome()"
+        >
+        <div id="search-suggest"></div>
+      </div>
       <button onclick="openAddBookModal()" class="add-btn">
         ＋ 本を追加
       </button>
@@ -584,7 +593,35 @@ function renderHome(){
   const keyword =
   (document.getElementById("search")?.value || "")
   .toLowerCase();
-  
+
+  // 検索候補
+  const suggestEl = document.getElementById("search-suggest");
+
+  if(suggestEl){
+
+  if(keyword){
+
+    const suggestions = books
+  .filter(b =>
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword)
+  )
+  .slice(0,5);
+
+  suggestEl.innerHTML = suggestions.map(b=>`
+    <div class="search-item"
+         onclick="openDetailById('${b.id}')">
+      ${b.title}
+    </div>
+  `).join("");
+
+  }else{
+    suggestEl.innerHTML = "";
+  }
+}
+
+
 // フィルタ
 const filtered = books.filter(b=>{
 
@@ -1479,7 +1516,7 @@ function openSettingSelect(type){
 
     d.innerHTML = `
       ${item.label}
-      <div>${selected ? "読了" : ""}</div>
+      <div>${selected ? "✔️" : ""}</div>
     `;
 
     d.onclick = ()=>{
@@ -1855,10 +1892,19 @@ function openCalendar(){
 
 //========
 function openDetailById(id){
-  const book = books.find(b=>b.id===id);
+
+  const book = books.find(b => b.id === id);
+
   if(!book) return;
 
-  alert(book.title);
+  openDetail(book);
+
+  const suggest =
+    document.getElementById("search-suggest");
+
+  if(suggest){
+    suggest.innerHTML = "";
+  }
 }
 //========
 
