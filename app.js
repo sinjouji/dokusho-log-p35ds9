@@ -602,42 +602,6 @@ function renderHome(){
 }
 //========
 
-//====サジェスト
-//====検索候補のみ表示させる役
-function renderSuggest(){
-
-  // 検索候補
-    //🔍 検索
- 
-  const suggestEl = document.getElementById("search-suggest");
-
-  if(suggestEl){
-
-  if(keyword){
-
-    const suggestions = books
-  .filter(b =>
-    (b.title || "")
-      .toLowerCase()
-      .includes(keyword)
-  )
-  .slice(0,5);
-
-  suggestEl.innerHTML = suggestions.map(b=>`
-    <div class="search-item"
-         onclick="openDetailById('${b.id}')">
-      ${b.title}
-    </div>
-  `).join("");
-
-  }else{
-    suggestEl.innerHTML = "";
-  }
-}
-}
-
-//========
-
 //======本の一覧だけ表示させる役
 function renderBookList(){
   const main = document.getElementById("home-main");
@@ -678,6 +642,45 @@ const keyword = searchKeyword;
   });
 }
 //========
+
+
+
+//====サジェスト
+//====検索候補のみ表示させる役
+function renderSuggest(){
+
+  // 検索候補
+    //🔍 検索
+ 
+  const suggestEl = document.getElementById("search-suggest");
+
+  if(suggestEl){
+
+  if(keyword){
+
+    const suggestions = books
+  .filter(b =>
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword)
+  )
+  .slice(0,5);
+
+  suggestEl.innerHTML = suggestions.map(b=>`
+    <div class="search-item"
+         onclick="openDetailById('${b.id}')">
+      ${b.title}
+    </div>
+  `).join("");
+
+  }else{
+    suggestEl.innerHTML = "";
+  }
+}
+}
+
+//========
+
 
 
 
