@@ -8,8 +8,9 @@ let books = [];
 let series = [];
 let characters = [];
 let tagMaster = [];
-let selectedTagId = localStorage.getItem("selectedTagId");
-if(!selectedTagId) selectedTagId = null;
+
+let selectedTagId = null;
+//if(!selectedTagId) selectedTagId = null;
 
 const savedMode = localStorage.getItem("colorMode");
 
@@ -578,6 +579,7 @@ function renderHome(){
 
   el.innerHTML = `
     <div id="home-top"></div>
+    <div id="tag-filter"></div>
     <div id="home-main"></div>
   `;
 
@@ -733,8 +735,15 @@ function renderBookList(){
       (b.title || "")
       .toLowerCase()
       .includes(searchKeyword);
-    return matchTitle;
-  });
+    
+    const matchTag =
+      !selectedTagId ||
+
+      (b.tagIds || [])
+      .includes(selectedTagId);
+
+    return matchTitle && matchTag;
+    });
   
   //ソート
   const sorted = sortBooks(filtered);
@@ -1114,72 +1123,47 @@ function renderTypeFilter(){
 
 
 
-//タグで絞込み描画
+//====タグフィルター描画
 function renderTagFilter(){
-  const el = document.getElementById('tag-filter')
-  if(!el) return;
-  el.innerHTML = "";
 
-  // 全解除ボタン
-  const all = document.createElement('button');
-	all.textContent = "すべて"; 
-  
-	all.style.margin = "3px";
-	all.style.padding = "2px 8px";
-	all.style.fontSize = "12px";
-	all.style.borderRadius = "999px";
-	all.style.border = "1px solid #999";
-	all.style.background = "transparent";
-	all.style.color = "#666";
-  
- if(selectedTagId === null){
-  all.style.background = "#666";
-  all.style.color = "#fff";
-}
-  
-  all.onclick = ()=>{
-    selectedTagId = null;
-        
-    localStorage.setItem("selectedTagId", "");
-    
-    renderHome();
-    renderTagFilter(); //選択状態更新
-  };
-  
-  el.appendChild(all);
+  const area =
+    document.getElementById("tag-filter");
 
-  // タグ一覧
-  tagMaster.forEach(t=>{
-    const btn = document.createElement('button');
-    btn.textContent = t.name;
-    
-   btn.style.margin = "3px";
-   btn.style.padding = "2px 8px";
-   btn.style.fontSize = "12px";
-   btn.style.borderRadius = "999px"; // ★丸くする
-   btn.style.cursor = "pointer";
-   btn.style.border = `1px solid ${t.color}`;
-   btn.style.background = "transparent";
-   btn.style.color = t.color;
-       
-    //選択中の見た目
-   if(t.id === selectedTagId){
-  btn.style.background = t.color;
-  btn.style.color = "#fff";
-}
+  if(!area) return;
+
+  area.innerHTML = "";
+
+  tagMaster.forEach(tag=>{
+
+    const btn =
+      document.createElement("button");
+
+    btn.className = "tag-chip";
+
+    if(selectedTagId === tag.id){
+      btn.classList.add("active");
+    }
+
+    btn.textContent = tag.name;
 
     btn.onclick = ()=>{
-      selectedTagId = t.id;
-      
-      localStorage.setItem("selectedTagId", selectedTagId || "");
-      
+
+      if(selectedTagId === tag.id){
+
+        selectedTagId = null;
+
+      }else{
+
+        selectedTagId = tag.id;
+      }
+
       renderHome();
-      renderTagFilter(); //見た目更新
     };
 
-    el.appendChild(btn);
+    area.appendChild(btn);
   });
-}//function renderTagFilter()おわり
+}
+//====================
 
 
 
