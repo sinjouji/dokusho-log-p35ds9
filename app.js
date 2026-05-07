@@ -597,7 +597,7 @@ function renderHome(){
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
-  renderSuggest();//いるかな？
+  
   renderBookList();
 }
 //========
