@@ -644,7 +644,7 @@ function renderBookList(){
   if(!main) return;
   main.innerHTML = "";
   
-//renderHomeにもある？  const keyword = searchKeyword;
+const keyword = searchKeyword;
   
   //フィルタ
   const filtered = books.filter(b=>{
