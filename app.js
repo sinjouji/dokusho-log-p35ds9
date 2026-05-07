@@ -585,22 +585,28 @@ function renderHome(){
   (document.getElementById("search")?.value || "")
   .toLowerCase();
   
-  // フィルタ
-  const filtered = books.filter(b=>{
-    return (b.title || "").toLowerCase().includes(keyword);
-    });
+// フィルタ
+const filtered = books.filter(b=>{
 
-    const matchTag = !selectedTagId ||
-      (Array.isArray(b.tagIds) && b.tagIds.includes(selectedTagId));
+  // タイトル検索
+  const matchTitle =
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
 
-    const matchType =
-      selectedType === "all" ||
-      (selectedType === "unread" && (!b.dates || b.dates.length === 0)) ||
-      (b.type || "normal") === selectedType;
+  // タグ
+  const matchTag =
+    !selectedTagId ||
+    (Array.isArray(b.tagIds) &&
+     b.tagIds.includes(selectedTagId));
 
-    return 
-    //matchTitle && 
-    matchTag && matchType;
+  // タイプ
+  const matchType =
+    selectedType === "all" ||
+    ((b.type || "normal") === selectedType);
+
+  return matchTitle && matchTag && matchType;
+});
 
   //  ソート
   const sorted = sortBooks(filtered);
