@@ -636,15 +636,24 @@ function renderSearchArea(){
 
     <div class="view-switch">
 
-      <button onclick="changeViewMode('card')">
+      <button class="${viewMode === 'card'
+      ? 'active'
+      : ''}"
+      onclick="changeViewMode('card')">
         ■ カード
       </button>
 
-      <button onclick="changeViewMode('list')">
+      <button class="${viewMode === 'list'
+      ? 'active'
+      : ''}"
+      onclick="changeViewMode('list')">
         ☰ リスト
       </button>
 
-      <button onclick="changeViewMode('shelf')">
+      <button class="${viewMode === 'shelf'
+      ? 'active'
+      : ''}"
+      onclick="changeViewMode('shelf')">
         📚 背表紙
       </button>
 
@@ -1893,6 +1902,11 @@ function changeViewMode(mode){
 
   viewMode = mode;
 
+  localStorage.setItem(
+    "viewMode",
+    viewMode
+  );
+
   renderBookList();
 }
 //================
@@ -2457,6 +2471,8 @@ async function loadData(){
         console.log("🌐 初期データ取得");
       }
     }
+  viewMode = localStorage.getItem("viewMode") || "card";
+
 
     // UI初期化
     renderTagFilter();
