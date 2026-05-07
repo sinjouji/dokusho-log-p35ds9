@@ -567,49 +567,43 @@ function renderViewMode(targetId = "view-mode"){
 
 
 // ⬛︎ホーム（本のリスト表示）HOME====
+//ホーム画面の「骨組みだけ」にする！
 function renderHome(){
-  const el = document.getElementById('page-home');
+
+  const el = document.getElementById("page-home");
   if(!el) return;
 
- const keyword = searchKeyword;
-
-  // UI込みで再構築
   el.innerHTML = `
     <div id="home-top">
-      <div class="search-area">
-        <input
-          type="text"
-          id="search"
-          placeholder="タイトル検索"
-          value="${searchKeyword}"
-          oninput="handleSearchInput(this.value)"
-        >
-        <div id="search-suggest"></div>
-      </div>
+
       <button onclick="openAddBookModal()" class="add-btn">
         ＋ 本を追加
       </button>
+
+      <input
+        id="search"
+        placeholder="検索..."
+        oninput="handleSearchInput()"
+      >
+
+      <div id="suggest"></div>
+
     </div>
 
     <div id="home-main"></div>
   `;
 
-  // UI描画
   renderSummary();
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
 
-  const main = document.getElementById("home-main");
-
   renderBookList();
-
-  //  UI表示制御
-  updateUIVisibility("home");
 }
 //========
 
 //====サジェスト
+//====検索候補のみ表示させる役
 function renderSuggest(){
 
   // 検索候補
@@ -644,13 +638,13 @@ function renderSuggest(){
 
 //========
 
-//======
+//======本の一覧だけ表示させる役
 function renderBookList(){
   const main = document.getElementById("home-main");
   if(!main) return;
   main.innerHTML = "";
   
-  const keyword = searchKeyword;
+//renderHomeにもある？  const keyword = searchKeyword;
   
   //フィルタ
   const filtered = books.filter(b=>{
