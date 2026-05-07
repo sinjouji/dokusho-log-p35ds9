@@ -567,25 +567,12 @@ function renderHome(){
   if(!el) return;
 
   el.innerHTML = `
-    <div id="home-top">
-
-      <button onclick="openAddBookModal()" class="add-btn">
-        ＋ 本を追加
-      </button>
-
-      <input
-        id="search"
-        placeholder="検索..."
-        oninput="handleSearchInput()"
-      >
-
-      <div id="suggest"></div>
-
-    </div>
-
+    <div id="home-top"></div>
     <div id="home-main"></div>
   `;
 
+  renderSearchArea();
+  
   renderSummary();
   renderTagFilter();
   renderTypeFilter();
@@ -593,7 +580,36 @@ function renderHome(){
   
   renderBookList();
 }
-//========
+//==============================
+
+
+//======🔍検索用エリア===========
+//====検索UIだけの役割
+function renderSearchArea(){
+
+  const top = document.getElementById("home-top");
+
+  if(!top) return;
+
+  top.innerHTML = `
+    <button onclick="openAddBookModal()" class="add-btn">
+      ＋ 本を追加
+    </button>
+
+    <input
+      id="search"
+      placeholder="検索..."
+      value="${searchKeyword}"
+      oninput="handleSearchInput()"
+    >
+
+    <div id="suggest"></div>
+  `;
+
+  renderSuggest();
+}
+
+
 
 //====サジェスト
 //====検索候補のみ表示させる役
