@@ -26,6 +26,7 @@ if(!["card","shelf"].includes(viewMode)){
 
 let sortMode = localStorage.getItem("sortMode") || "title";
 
+let searchKeyword = "";
 
 let openedSeries = {};
 let showTags = localStorage.getItem("showTags") === "true";
@@ -471,6 +472,14 @@ function sortBooks(list){
 //========
 
 
+//====キーワード検索
+function handleSearchInput(value){
+  searchKeyword = value.toLowerCase();
+  renderHome();
+}
+//========
+
+
 //========
 function markAsRead(book){
   const today = new Date().toISOString().slice(0,10);
@@ -569,7 +578,8 @@ function renderHome(){
           type="text"
           id="search"
           placeholder="タイトル検索"
-          oninput="renderHome()"
+          value="${searchKeyword}"
+          oninput="handleSearchInput(this.value)"
         >
         <div id="search-suggest"></div>
       </div>
@@ -590,9 +600,7 @@ function renderHome(){
   const main = document.getElementById("home-main");
 
   //🔍 検索
-  const keyword =
-  (document.getElementById("search")?.value || "")
-  .toLowerCase();
+  const keyword = searchKeyword;
 
   // 検索候補
   const suggestEl = document.getElementById("search-suggest");
