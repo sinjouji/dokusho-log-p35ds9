@@ -360,6 +360,26 @@ function setFav(fav){
 }
 //=================
 
+//====評価1ボタン切替え
+function cycleFav(id){
+
+  const book =
+    books.find(b=>String(b.id)===String(id));
+
+  if(!book) return;
+
+  book.fav = (book.fav + 1) % 5;
+
+  saveData();
+
+  closeModal();
+
+  openBookDetailModal(book);
+
+  renderHome();
+}
+//===============
+
 
 //カレンダー月送り
 function changeMonth(diff){
@@ -2056,44 +2076,17 @@ function openBookDetailModal(book){
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
 
-     <div class="detail-fav-buttons">
+     <div class="detail-fav-wrap">
 
-     <button
-       id="fav-0"
-       class="fav-btn ${book.fav===0?"active":""}"
-       onclick="setFav(0)">
-       0
-     </button>
+       <button
+         class="fav-cycle-btn"
+         onclick="cycleFav('${book.id}')">
+           ${
+              ["0","★","★★","★★★","👑"][book.fav || 0]
+            }
+       </button>
 
-     <button
-       id="fav-1"
-       class="fav-btn ${book.fav===1?"active":""}"
-       onclick="setFav(1)">
-       ★
-     </button>
-
-     <button
-       id="fav-2"
-       class="fav-btn ${book.fav===2?"active":""}"
-       onclick="setFav(2)">
-       ★★
-     </button>
-
-     <button
-       id="fav-3"
-       class="fav-btn ${book.fav===3?"active":""}"
-       onclick="setFav(3)">
-       ★★★
-     </button>
-
-     <button
-       id="fav-4"
-       class="fav-btn ${book.fav===4?"active":""}"
-       onclick="setFav(4)">
-       👑
-     </button>
-
-   </div>
+     </div>
 
       <div class="detail-row">
         状態：
