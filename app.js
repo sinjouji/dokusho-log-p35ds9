@@ -856,11 +856,11 @@ function renderCardView(main, books){
       <div class="title">${b.title}</div>
 
       <div class="book-latest-date">
-        ${getLatestReadDate(books) || "未読"}
+        ${getLatestReadDate(b) || "未読"}
       </div>
       
       <div class="book-read-count">
-        ${books.dates?.length || 0}回
+        ${b.dates?.length || 0}回
       </div>
 
       <div class="fav">
