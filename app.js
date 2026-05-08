@@ -1886,6 +1886,8 @@ function closeModal(){
 //====詳細保存================
 function saveDetail(id){
 
+  console.log("save start", id);
+
   const book =
     books.find(b=>b.id===id);
 
@@ -1906,8 +1908,8 @@ function saveDetail(id){
 
   closeModal();
 
- // renderHome();
- location.reload();
+  renderHome();
+ //location.reload();
 }
 //===========================
 
