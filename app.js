@@ -933,10 +933,6 @@ function renderShelfView(main, books){
   books.forEach(b=>{
 
     const spine = createBookSpine(b);
-
-    spine.className = "spine";
-    spine.style.background =
-      getBookColor(b);
     
     const firstTagId =
       b.tagIds?.[0];
@@ -950,16 +946,7 @@ function renderShelfView(main, books){
 
     }
 
-    spine.innerHTML = `
-      <div class="spine-title">
-        ${b.title}
-      </div>
-      
-      <div class="spine-fav">
-        ${getFavLabel(b.fav)}<br>
-        ${b.dates?.length || 0}回
-      </div>
-    `;
+    spine.innerHTML = "";
 
     spine.onclick = ()=> openBookDetailModal(b);
 
