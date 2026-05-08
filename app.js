@@ -2536,7 +2536,7 @@ function editDate(bookId, index){
 
 
 //====本を追加保存=================
-function saveNewBook(){
+async function saveNewBook(){
 
   const title =
     document.getElementById("add-title").value.trim();
@@ -2564,7 +2564,8 @@ function saveNewBook(){
 
   books.unshift(book);
 
-  saveData();
+  await saveData();
+  showToast(`「${book.title}」を追加しました`);
 
   closeModal();
 
@@ -2573,7 +2574,7 @@ function saveNewBook(){
 //==============================
 
 //======ウィッシュリストに本を追加
-function addBook(type){
+async function addBook(type){
 
   const title =
     document.getElementById("add-title").value.trim();
@@ -2608,7 +2609,8 @@ function addBook(type){
 
   books.unshift(newBook);
 
-  saveData();
+  await saveData();
+  showToast(`「${book.title}」をウィッシュに追加しました`);
 
   closeModal();
 
@@ -2644,11 +2646,42 @@ async function saveDetail(id){
 
   await saveData();
 
+showToast("保存しました！");
+
   closeModal();
 
   renderHome();
 }
 //===========================
+
+
+//====保存通知
+function showToast(message){
+
+  const toast =
+    document.createElement("div");
+
+  toast.className = "toast";
+  toast.textContent = message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(()=>{
+    toast.classList.add("show");
+  },10);
+
+  setTimeout(()=>{
+
+    toast.classList.remove("show");
+
+    setTimeout(()=>{
+      toast.remove();
+    },300);
+
+  },2000);
+}
+//==============
+
 
 //==============
 async function addReadDate(id){
@@ -2683,21 +2716,26 @@ async function addReadDate(id){
 //======================
 
 
-
 //====本を削除==================
-function deleteBook(id){
+async function deleteBook(id){
 
-  const ok = confirm("この本を削除しますか？");
+  const book =
+    books.find(b=>b.id==id);
 
-  if(!ok) return;
+  if(!book) return;
 
-  books = books.filter(b=>b.id !== id);
+  const title = book.title;
 
-  saveData();
+  books =
+    books.filter(b=>b.id!=id);
+
+  await saveData();
 
   closeModal();
 
   renderHome();
+
+  showToast(`「${title}」を削除しました`);
 }
 //=============================
 
