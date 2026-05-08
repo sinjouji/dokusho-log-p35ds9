@@ -454,10 +454,10 @@ function createBookSpine(b){
   title.style.color = "#fff"; //!
   
   title.style.flex = "1";
-//  title.style.alignItems = "center"; //! flex-start
+  title.style.alignItems = "center"; //! flex-start
   title.style.justifyContent = "center"; //! flex-start/center
   title.style.textAlign = "left";
-//  title.style.textOverflow = "ellipsis";
+  title.style.textOverflow = "ellipsis";
   title.style.whiteSpace = "nowrap";
   title.style.paddingBottom = "4px";
   title.style.maxHeight = "100%";
