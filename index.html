@@ -89,11 +89,11 @@ font-size:13px;
   gap:10px;
 }
 
-#book-list{
+/*#book-list{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-}
+}*/
 
 #tag-filter{
   display:flex;
@@ -575,10 +575,10 @@ box-shadow:0 4px 10px rgba(0, 0, 0, 0.08);
 font-size:16px;
 }
 
-#book-title{
+/*#book-title{
 font-size:18px;
 font-weight:600;
-}
+}*/
 
 input[type="date"]{
   width:180px;
@@ -660,36 +660,35 @@ select{
   padding:10px 0;
 }
 
-.spine{
-/*  width:42px;*/
-  /*height:180px;*/
+/*.spine{
+  width:42px;
+  height:180px;
 
   background:#d46a6a;
 
- /* border-radius:6px;*/
+  border-radius:6px;
 
   color:#fff;
 
   writing-mode:vertical-rl;
 
   display:flex;
-  /*align-items:center;*/
-  /*justify-content:space-between;*/
+  align-items:center;
+  justify-content:space-between;
 
- /* padding:8px 4px;*/
+ padding:8px 4px;
 
   cursor:pointer;
 
-  /*flex-shrink:0;*/
+  flex-shrink:0;
+  scroll-snap-align:start;
+}*/
 
-  /*scroll-snap-align:start;*/
 }
 
-}
-
-.spine-title{
+/*.spine-title{
   font-size:12px;
-}
+}*/
 
 
 /* 詳細表示モーダル */
@@ -803,9 +802,9 @@ select{
     translateY(0);
 }
 
-.spine-fav{
+/*.spine-fav{
  font-size:10px;
-}
+}*/
 
 /* ★これ重要（今回の勝因） */
 #loading.hidden{
