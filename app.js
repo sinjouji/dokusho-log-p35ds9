@@ -141,13 +141,6 @@ function getLatestReadDate(book){
 }
 //=================
 
-//補助=======
-//function getLastDate(book){
-//  if(!book.dates || !book.dates.length) return "未読";
-//  return book.dates[book.dates.length-1];
-//}
-//========
-
 
 //タグ色=====
 function getTagColor(tagId){
@@ -333,7 +326,7 @@ function getReadingMap(){
 
 
 //🟨③====ロジック、関数====
-//並び替え・フィルタ、計算、sortgetLastDate、データをいじるだけ
+//並び替え・フィルタ、計算、sortgetLatestReadDate、データをいじるだけ
 
 //完全UIOFFフラグ====
 function isUIAllOff(){
@@ -548,14 +541,14 @@ function sortBooks(list){
   if(sortMode === "date-asc"){
 
     arr.sort((a,b)=>
-      getLastDate(a).localeCompare(getLastDate(b))
+      getLatestReadDate(a).localeCompare(getLatestReadDate(b))
     );
   }
 
   if(sortMode === "date-desc"){
 
     arr.sort((a,b)=>
-      getLastDate(b).localeCompare(getLastDate(a))
+      getLatestReadDate(b).localeCompare(getLatestReadDate(a))
     );
   }
 
@@ -898,7 +891,7 @@ function renderListView(main, books){
       </div>
 
       <div class="list-meta">
-        ${getLastDate(b)}
+        ${getLatestReadDate(b)}
         ${getFavLabel(b.fav)}
       </div>
     `;
@@ -1062,7 +1055,7 @@ function renderRecentBooks(){
   const sorted = [...books]
     .filter(b => b.dates?.length)
     .sort((a,b)=>{
-      return getLastDate(b).localeCompare(getLastDate(a));
+      return getLatestReadDate(b).localeCompare(getLatestReadDate(a));
     })
     .slice(0,10);
 
@@ -1080,7 +1073,7 @@ function renderRecentBooks(){
     d.innerHTML = `
       <div style="font-weight:bold;">${b.title}</div>
       <div style="font-size:12px;color:#666;">
-        ${getLastDate(b)}
+        ${getLatestReadDate(b)}
       </div>
       <div style="margin-top:4px;">
         ${getFavLabel(b.fav)}
@@ -1135,7 +1128,7 @@ function renderRecent(){
 
     d.innerHTML = `
       <div class="title">${b.title}</div>
-      <div class="meta">${getLastDate(b)}</div>
+      <div class="meta">${getLatestReadDate(b)}</div>
     `;
 
     d.onclick = ()=> openDetail(b);
@@ -1484,7 +1477,7 @@ function renderList(el, sorted){
 
     d.innerHTML = `
       <div class="title">${b.title}</div>
-      <div>${getLastDate(b)}</div>
+      <div>${getLatestReadDate(b)}</div>
       <div>${getFavLabel(b.fav)}</div>
     `;
 
