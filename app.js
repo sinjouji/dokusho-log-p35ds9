@@ -2071,7 +2071,16 @@ function openBookDetailModal(book){
         読了日：
         ${
           book.dates?.length
-          ? book.dates.join("<br>")
+          ? book.dates.map((date,index)=>`
+            <div class="date-row">
+              ${date}
+              
+              <button class="mini-delete-btn"
+                onclick="removeReadDate('${book.id}',${index})">
+                ✖️
+              </button>
+            </div>
+          `).join("")
           : "未読"
         }
       </div>
@@ -2416,6 +2425,32 @@ function toggleTags(e){
   renderHome();
 }
 //========
+
+//====モーダル版日付削除処理
+async function removeReadDate(id,index){
+
+  const book =
+    books.find(b=>String(b.id)===String(id));
+
+  if(!book || !book.dates) return;
+
+  book.dates.splice(index,1);
+
+  // 読了日0件ならウィッシュ化
+  if(book.dates.length===0){
+    book.type = "wish";
+  }
+
+  await saveData();
+
+  closeModal();
+
+  openBookDetailModal(book);
+
+  renderHome();
+}
+//======================
+
 
 
 //====日付削除
