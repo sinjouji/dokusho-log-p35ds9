@@ -2624,31 +2624,25 @@ async function addReadDate(id){
   if(!book) return;
 
   const input =
-    document.getElementById("new-date");
+    document.getElementById(`readDate-${id}`);
 
-  const date = input.value;
+  if(!input.value) return;
 
-  if(!date) return;
-
-  // dates配列が無ければ作る
   if(!book.dates){
     book.dates = [];
   }
 
-  // 追加
-  book.dates.push(date);
+  book.dates.unshift(input.value);
 
-  // 重複防止（あとで安心）
-  book.dates = [...new Set(book.dates)];
+  // 本棚へ移動
+  book.type = "normal";
 
-  // 保存
   await saveData();
 
-  // モーダル再描画
   closeModal();
+
   openBookDetailModal(book);
 
-  // ホーム更新
   renderHome();
 }
 //======================
