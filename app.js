@@ -2104,7 +2104,7 @@ function openBookDetailModal(book){
           book.type === "wish"
           ? "❤️ウィッシュ"
           : "📚本棚"
-        }：${b.dates?.length || 0}回
+        }：${book.dates?.length || 0}回
       </div>
 
      <div class="detail-row">
