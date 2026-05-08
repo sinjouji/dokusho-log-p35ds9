@@ -525,7 +525,7 @@ function markAsRead(book){
 
   book.dates.push(today);
 
-  await saveData();
+  saveData();
   openDetail(book);
 }
 //========
@@ -1963,7 +1963,7 @@ el.innerHTML += `
 
     if(book.fav > 4) book.fav = 1;
 
-	await saveData();
+	saveData();
 	openDetail(book);
     //setTimeout(renderHome, 0);
   };
@@ -1980,7 +1980,7 @@ addBtn.onclick = ()=>{
 
   book.dates.push(today);
 
-  await saveData();
+  saveData();
   openDetail(book); // 再描画
 };
 
@@ -1989,7 +1989,7 @@ typeBtn.onclick = ()=>{
 	
 	book.type = (book.type === "wish") ? "normal" : "wish";
 	
-	await saveData();
+	saveData();
 	openDetail(book);
 	};
   
@@ -2243,7 +2243,7 @@ function setTypeFilter(type){
 //★★ワンクリックでタイプ切替
 function toggleType(book){
 	book.type = (book.type === "wish") ? "normal" : "wish";
-	await saveData();
+	saveData();
 	openDetail(book);
 }
 //========
@@ -2425,7 +2425,7 @@ function removeDate(bookId, index){
 
   b.dates.splice(index,1);
 
-  await saveData();
+  saveData();
   openDetail(b);
 }
 //========
@@ -2444,7 +2444,7 @@ function editDate(bookId, index){
     if(input.value){
       b.dates[index] = input.value;
       
-      await saveData();
+      saveData();
       openDetail(b);
     }
   };
@@ -2491,7 +2491,7 @@ function saveNewBook(){
 
   books.unshift(book);
 
-  await saveData();
+  saveData();
 
   closeModal();
 
@@ -2535,7 +2535,7 @@ function addBook(type){
 
   books.unshift(newBook);
 
-  await saveData();
+  saveData();
 
   closeModal();
 
@@ -2629,7 +2629,7 @@ function deleteBook(id){
 
   books = books.filter(b=>b.id !== id);
 
-  await saveData();
+  saveData();
 
   closeModal();
 
