@@ -116,6 +116,7 @@ function saveData(){
     "bookAppData",
     JSON.stringify(data)
   );
+console.log("保存データ", books);
 }
 //================================
 
