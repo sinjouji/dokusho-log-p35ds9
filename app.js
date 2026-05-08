@@ -914,7 +914,7 @@ function renderShelfView(main, books){
 
   books.forEach(b=>{
 
-    const spine = document.createElement("div");
+    const d = document.createElement("div");
 
     spine.className = "spine";
     
@@ -943,7 +943,7 @@ function renderShelfView(main, books){
       </div>
     `;
 
-    spine.onclick = ()=> openBookDetailModal(b);
+    d.onclick = ()=> openBookDetailModal(b);
 
     shelf.appendChild(spine);
   });
