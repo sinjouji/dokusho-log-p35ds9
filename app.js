@@ -935,10 +935,6 @@ function renderShelfView(main, books){
         ${b.title}
       </div>
       
-      <!--<div class="book-read-count">-->
-      <!--${book.dates?.length || 0}回-->
-      <!--</div>-->
-
       <div class="spine-fav">
         ${getFavLabel(b.fav)}
       </div>
