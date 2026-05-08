@@ -508,6 +508,11 @@ console.log(colorMode);
   const c1 = getTagColor(b.tagIds?.[0]);
   const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
   const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
+  d.style.setProperty(
+    "background",
+    `linear-gradient(135deg, red, blue)`,
+    "important"
+  );
   
   if(colorMode === "single") d.style.background = c1;
   if(colorMode === "gradient"){
