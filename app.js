@@ -103,7 +103,7 @@ function go(page){
 //========
 
 //====🔑データの保存処理：超重要！！====
-function saveData(){
+async function saveData(){
 
   const data = {
     books,
@@ -112,11 +112,19 @@ function saveData(){
     tagMaster
   };
 
+  // ローカル保存
   localStorage.setItem(
     "bookAppData",
     JSON.stringify(data)
   );
-console.log("保存データ", books);
+
+  // Firestore保存
+  await window.setDoc(
+    window.doc(window.db, "app", "data"),
+    data
+  );
+
+  console.log("Firestore保存完了");
 }
 //================================
 
@@ -517,7 +525,7 @@ function markAsRead(book){
 
   book.dates.push(today);
 
-  saveData();
+  await saveData();
   openDetail(book);
 }
 //========
@@ -1955,7 +1963,7 @@ el.innerHTML += `
 
     if(book.fav > 4) book.fav = 1;
 
-	saveData();
+	await saveData();
 	openDetail(book);
     //setTimeout(renderHome, 0);
   };
@@ -1972,7 +1980,7 @@ addBtn.onclick = ()=>{
 
   book.dates.push(today);
 
-  saveData();
+  await saveData();
   openDetail(book); // 再描画
 };
 
@@ -1981,7 +1989,7 @@ typeBtn.onclick = ()=>{
 	
 	book.type = (book.type === "wish") ? "normal" : "wish";
 	
-	saveData();
+	await saveData();
 	openDetail(book);
 	};
   
@@ -2235,7 +2243,7 @@ function setTypeFilter(type){
 //★★ワンクリックでタイプ切替
 function toggleType(book){
 	book.type = (book.type === "wish") ? "normal" : "wish";
-	saveData();
+	await saveData();
 	openDetail(book);
 }
 //========
@@ -2417,7 +2425,7 @@ function removeDate(bookId, index){
 
   b.dates.splice(index,1);
 
-  saveData();
+  await saveData();
   openDetail(b);
 }
 //========
@@ -2436,7 +2444,7 @@ function editDate(bookId, index){
     if(input.value){
       b.dates[index] = input.value;
       
-      saveData();
+      await saveData();
       openDetail(b);
     }
   };
@@ -2483,7 +2491,7 @@ function saveNewBook(){
 
   books.unshift(book);
 
-  saveData();
+  await saveData();
 
   closeModal();
 
@@ -2527,7 +2535,7 @@ function addBook(type){
 
   books.unshift(newBook);
 
-  saveData();
+  await saveData();
 
   closeModal();
 
@@ -2536,7 +2544,7 @@ function addBook(type){
 //================
 
 //====詳細保存================
-function saveDetail(id){
+async function saveDetail(id){
 
   console.log("save start", id);
 
@@ -2564,7 +2572,7 @@ function saveDetail(id){
 
   console.log("after edit", book);
 
-  saveData();
+  await saveData();
 
   closeModal();
 
@@ -2573,7 +2581,7 @@ function saveDetail(id){
 //===========================
 
 //==============
-function addReadDate(id){
+async function addReadDate(id){
 
   const book =
     books.find(b=>String(b.id)===String(id));
@@ -2599,7 +2607,7 @@ function addReadDate(id){
   book.dates = [...new Set(book.dates)];
 
   // 保存
-  saveData();
+  await saveData();
 
   // モーダル再描画
   closeModal();
@@ -2621,7 +2629,7 @@ function deleteBook(id){
 
   books = books.filter(b=>b.id !== id);
 
-  saveData();
+  await saveData();
 
   closeModal();
 
