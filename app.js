@@ -920,7 +920,7 @@ function renderShelfView(main, books){
 
   books.forEach(b=>{
 
-    const spine = document.createElement("div");
+    const spine = createBookSpine(b);
 
     spine.className = "spine";
     spine.style.background =
