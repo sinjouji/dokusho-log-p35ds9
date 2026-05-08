@@ -1906,7 +1906,8 @@ function saveDetail(id){
 
   closeModal();
 
-  renderHome();
+ // renderHome();
+ location.reload();
 }
 //===========================
 
