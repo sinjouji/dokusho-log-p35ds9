@@ -892,7 +892,7 @@ function renderListView(main, books){
 
       <div class="list-meta">
         ${getFavLabel(b.fav)}
-        ${getLatestReadDate(b)}
+        ${getLatestReadDate(b)}：
         ${b.dates?.length || 0}回
       </div>
     `;
@@ -937,7 +937,7 @@ function renderShelfView(main, books){
       </div>
       
       <div class="spine-fav">
-        ${getFavLabel(b.fav)}
+        ${getFavLabel(b.fav)}<br>
         ${b.dates?.length || 0}回
       </div>
     `;
