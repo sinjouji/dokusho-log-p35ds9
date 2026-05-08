@@ -2071,15 +2071,18 @@ function openBookDetailModal(book){
         読了日：
         ${
           book.dates?.length
-          ? book.dates.map((date,index)=>`
-            <div class="date-row">
-              ${date}
+          ? [...book.dates]
+              .recerse()
+              .map((date,index)=>`
+                <div class="date-row">
+                  ${date}
               
-              <button class="mini-delete-btn"
-                onclick="removeReadDate('${book.id}',${index})">
-                ✖️
-              </button>
-            </div>
+                  <button class="mini-delete-btn"
+                    onclick="removeReadDate('${book.id}',
+                    ${book.dates.length - 1 - index})">
+                    ✖️
+                  </button>
+                </div>
           `).join("")
           : "未読"
         }
