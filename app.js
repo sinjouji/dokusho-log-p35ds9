@@ -503,28 +503,39 @@ function createBookSpine(b){
 
 //====背表紙のカラー設定
 function applySpineColor(d, b){
-console.log(colorMode);
 
-  const c1 = getTagColor(b.tagIds?.[0]);
-  const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
-  const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
-  d.style.setProperty(
-    "background",
-    `linear-gradient(135deg, red, blue)`,
-    "important"
-  );
-  
-  if(colorMode === "single") d.style.background = c1;
-  if(colorMode === "gradient"){
-  d.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+  const c1 =
+    getTagColor(b.tagIds?.[0]) || "#888";
+
+  const c2 =
+    getTagColor(
+      b.tagIds?.[1]
+      || b.tagIds?.[0]
+    ) || c1;
+
+  const c3 =
+    getTagColor(
+      b.tagIds?.[2]
+      || b.tagIds?.[0]
+    ) || c1;
+
+  if(colorMode === "single"){
+    d.style.background = c1;
   }
+
+  if(colorMode === "gradient"){
+    d.style.background =
+      linear-gradient(         135deg,         ${c1},         ${c2}       );
+  }
+
+  if(colorMode === "split"){
+    d.style.background =
+      linear-gradient(         to bottom,         ${c1} 0%,         ${c1} 75%,         ${c2} 75%,         ${c2} 100%       );
+  }
+
   if(colorMode === "stripe"){
-    d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 3%,
-      ${c3} 3%, ${c3} 6%,
-      ${c1} 6%, ${c1} 75%,
-      ${c2} 75%, ${c2} 100%
-    )`;
+    d.style.background =
+      linear-gradient(         to bottom,          ${c1} 0%,         ${c1} 33%,          ${c2} 33%,         ${c2} 66%,          ${c3} 66%,         ${c3} 100%       );
   }
 }
 //==================
