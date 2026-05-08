@@ -2528,7 +2528,13 @@ function saveDetail(id){
   const book =
     books.find(b=>b.id===id);
 
+  console.log("found book", book);
+
   if(!book) return;
+
+  console.log(
+    document.getElementById("detail-title").value
+  );
 
   book.title =
     document.getElementById("detail-title").value;
@@ -2541,12 +2547,13 @@ function saveDetail(id){
       document.getElementById("detail-fav").value
     );
 
+  console.log("after edit", book);
+
   saveData();
 
   closeModal();
 
   renderHome();
- //location.reload();
 }
 //===========================
 
