@@ -2105,16 +2105,16 @@ function openBookDetailModal(book){
           ? "❤️ウィッシュ"
           : "📚本棚"
         }   
-            ＜${b.dates?.length || 0}回読了＞
+   
       </div>
 
      <div class="detail-row">
   読了日：
 
   ${
-    b.dates?.length
-    ? [...b.dates]
-        .sort((a,b)=>b.localeCompare(a))
+    book.dates?.length
+    ? [...book.dates]
+        .sort((a,b)=>book.localeCompare(a))
         .map(date=>`
 
           <div class="date-tag">
