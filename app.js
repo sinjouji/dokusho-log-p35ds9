@@ -419,8 +419,10 @@ function createBookSpine(b){
   d.style.borderRadius = "3px 5px 5px 3px";
   d.style.display = "flex";
   d.style.flexDirection = "column";
+  d.style.justifyContent = "space-between";
   d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
   d.style.overflow = "visible";
+
   
   applySpineColor(d, b);
 
@@ -438,7 +440,6 @@ function createBookSpine(b){
   //レイアウト安定
   title.style.display = "flex"; //!
   title.style.width = "100%";
-//  title.style.height = "100%";
 
   //はみ出し対策
   title.style.overflow = "visible";//visible:hidden
@@ -457,14 +458,14 @@ function createBookSpine(b){
   title.style.alignItems = "center"; //! flex-start
   title.style.justifyContent = "center"; //! flex-start/center
   title.style.textAlign = "left";
-  title.style.textOverflow = "ellipsis";
+//  title.style.textOverflow = "ellipsis";
   title.style.whiteSpace = "nowrap";
   title.style.paddingBottom = "4px";
   title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
- // fav.textContent = val === 4 ? "👑" : "★".repeat(val);
+  fav.textContent = val === 4 ? "👑" : "★".repeat(val);
   fav.style.fontSize = "8px";
   fav.style.color = "#fff";
   fav.style.writingMode = "vertical-rl";
