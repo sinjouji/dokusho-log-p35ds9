@@ -2059,6 +2059,14 @@ function openBookDetailModal(book){
           : "未読"
         }
       </div>
+      
+      //読了日の追加ボタン
+      <div class="detail-date-add">
+      <input type="date" id="new-date">
+      <button onclick="addReadDate('${book.id}')">
+        ＋読了日追加
+      </button>
+      </div>
 
       <div class="detail-tags">
         ${(book.tagIds || []).map(id=>{
@@ -2556,6 +2564,46 @@ function saveDetail(id){
   renderHome();
 }
 //===========================
+
+//==============
+function addReadDate(id){
+
+  const book =
+    books.find(b=>String(b.id)===String(id));
+
+  if(!book) return;
+
+  const input =
+    document.getElementById("new-date");
+
+  const date = input.value;
+
+  if(!date) return;
+
+  // dates配列が無ければ作る
+  if(!book.dates){
+    book.dates = [];
+  }
+
+  // 追加
+  book.dates.push(date);
+
+  // 重複防止（あとで安心）
+  book.dates = [...new Set(book.dates)];
+
+  // 保存
+  saveData();
+
+  // モーダル再描画
+  closeModal();
+  openBookDetailModal(book);
+
+  // ホーム更新
+  renderHome();
+}
+//======================
+
+
 
 //====本を削除==================
 function deleteBook(id){
