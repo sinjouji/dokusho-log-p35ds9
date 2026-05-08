@@ -2097,28 +2097,33 @@ function openBookDetailModal(book){
         }
       </div>
 
-      <div class="detail-row">
-        読了日：
-        ${[...(book.dates || [])]
-  .sort((a,b)=>b.localeCompare(a))
-  .map(date=>`
+     <div class="detail-row">
+  読了日：
 
-    <div class="date-tag">
+  ${
+    book.dates?.length
+    ? [...book.dates]
+        .sort((a,b)=>b.localeCompare(a))
+        .map(date=>`
 
-      ${date}
+          <div class="date-tag">
 
-      <button
-        class="mini-delete-btn"
-        onclick="removeReadDate('${book.id}','${date}')">
-        ✕
-      </button>
+            ${date}
 
-    </div>
+            <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${date}')"
+            >
+              ✕
+            </button>
 
-`).join("")
-  : "未読"
-}
-      </div>
+          </div>
+
+        `).join("")
+    : "未読"
+  }
+
+</div>
       
       <div class="detail-date-add">
       <input type="date" id="readDate-${book.id}">
