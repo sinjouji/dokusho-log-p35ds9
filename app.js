@@ -2469,7 +2469,7 @@ async function removeReadDate(id,index){
   const book =
     books.find(b=>String(b.id)===String(id));
 
-  if(!book || !book.dates) return;
+  if(!book) return;
 
   book.dates =
     (book.dates || [])
