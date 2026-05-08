@@ -503,6 +503,8 @@ function createBookSpine(b){
 
 //====背表紙のカラー設定
 function applySpineColor(d, b){
+console.log(colorMode);
+
   const c1 = getTagColor(b.tagIds?.[0]);
   const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
   const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
@@ -519,7 +521,6 @@ function applySpineColor(d, b){
       ${c2} 75%, ${c2} 100%
     )`;
   }
-  renderShelfView(main, books);
 }
 //==================
 
