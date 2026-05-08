@@ -65,6 +65,9 @@ let recentViewMode = localStorage.getItem("recentViewMode") || "card";
 //🟩②====データ取得・保存（load・save）====
 //基本的にGet系はここ、go
 
+
+
+
 //最近読んだ3冊====
 function getRecentBooks(limit=3){
   return [...books]
@@ -99,6 +102,15 @@ function go(page){
 }
 //========
 
+//====🔑データの保存処理：超重要！！====
+function saveData(){
+
+  localStorage.setItem(
+    "books",
+    JSON.stringify(books)
+  );
+}
+//================================
 
 //タグ色=====
 function getTagColor(tagId){
@@ -1795,86 +1807,7 @@ function openAddBookModal(){
 }
 //========
 
-//====本を追加保存=================
-function saveNewBook(){
 
-  const title =
-    document.getElementById("add-title").value.trim();
-
-  if(!title){
-    alert("タイトルを入力してね！");
-    return;
-  }
-
-  const date =
-    document.getElementById("add-date").value;
-
-  const memo =
-    document.getElementById("add-memo").value;
-
-  const book = {
-    id: Date.now().toString(),
-    title,
-    memo,
-    fav: 0,
-    dates: date ? [date] : [],
-    tagIds: [],
-    type: date ? "normal" : "wish"
-  };
-
-  books.unshift(book);
-
-  saveData();
-
-  closeModal();
-
-  renderHome();
-}
-//==============================
-
-//======ウィッシュリストに本を追加
-function addBook(type){
-
-  const title =
-    document.getElementById("add-title").value.trim();
-
-  if(!title){
-    alert("タイトルを入力してください");
-    return;
-  }
-
-  const date =
-    document.getElementById("add-date").value;
-
-  const fav =
-    Number(document.getElementById("add-fav").value);
-
-  const memo =
-    document.getElementById("add-memo").value;
-
-  const newBook = {
-    id: Date.now().toString(),
-
-    title,
-    fav,
-    memo,
-
-    type,
-
-    dates: date ? [date] : [],
-
-    tagIds: []
-  };
-
-  books.unshift(newBook);
-
-  saveData();
-
-  closeModal();
-
-  renderHome();
-}
-//================
 
 
 //====本追加モーダルを閉じる
@@ -1882,54 +1815,6 @@ function closeModal(){
   document.getElementById("modal")?.remove();
 }
 //========================
-
-//====詳細保存================
-function saveDetail(id){
-
-  console.log("save start", id);
-
-  const book =
-    books.find(b=>b.id===id);
-
-  if(!book) return;
-
-  book.title =
-    document.getElementById("detail-title").value;
-
-  book.memo =
-    document.getElementById("editMemo").value;
-
-  book.fav =
-    Number(
-      document.getElementById("detail-fav").value
-    );
-
-  saveData();
-
-  closeModal();
-
-  renderHome();
- //location.reload();
-}
-//===========================
-
-//====本を削除==================
-function deleteBook(id){
-
-  const ok = confirm("この本を削除しますか？");
-
-  if(!ok) return;
-
-  books = books.filter(b=>b.id !== id);
-
-  saveData();
-
-  closeModal();
-
-  renderHome();
-}
-//=============================
-
 
 
 //====ソートモードの切替え
@@ -2549,6 +2434,142 @@ function editDate(bookId, index){
   input.focus();
 }
 //========
+
+
+
+
+
+//====本を追加保存=================
+function saveNewBook(){
+
+  const title =
+    document.getElementById("add-title").value.trim();
+
+  if(!title){
+    alert("タイトルを入力してね！");
+    return;
+  }
+
+  const date =
+    document.getElementById("add-date").value;
+
+  const memo =
+    document.getElementById("add-memo").value;
+
+  const book = {
+    id: Date.now().toString(),
+    title,
+    memo,
+    fav: 0,
+    dates: date ? [date] : [],
+    tagIds: [],
+    type: date ? "normal" : "wish"
+  };
+
+  books.unshift(book);
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+}
+//==============================
+
+//======ウィッシュリストに本を追加
+function addBook(type){
+
+  const title =
+    document.getElementById("add-title").value.trim();
+
+  if(!title){
+    alert("タイトルを入力してください");
+    return;
+  }
+
+  const date =
+    document.getElementById("add-date").value;
+
+  const fav =
+    Number(document.getElementById("add-fav").value);
+
+  const memo =
+    document.getElementById("add-memo").value;
+
+  const newBook = {
+    id: Date.now().toString(),
+
+    title,
+    fav,
+    memo,
+
+    type,
+
+    dates: date ? [date] : [],
+
+    tagIds: []
+  };
+
+  books.unshift(newBook);
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+}
+//================
+
+//====詳細保存================
+function saveDetail(id){
+
+  console.log("save start", id);
+
+  const book =
+    books.find(b=>b.id===id);
+
+  if(!book) return;
+
+  book.title =
+    document.getElementById("detail-title").value;
+
+  book.memo =
+    document.getElementById("editMemo").value;
+
+  book.fav =
+    Number(
+      document.getElementById("detail-fav").value
+    );
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+ //location.reload();
+}
+//===========================
+
+//====本を削除==================
+function deleteBook(id){
+
+  const ok = confirm("この本を削除しますか？");
+
+  if(!ok) return;
+
+  books = books.filter(b=>b.id !== id);
+
+  saveData();
+
+  closeModal();
+
+  renderHome();
+}
+//=============================
+
+
+
+
 
 
 //⬛︎⑥====データ読み込み====
