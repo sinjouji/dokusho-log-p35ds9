@@ -535,7 +535,7 @@ function applySpineColor(d, b){
 
   if(colorMode === "stripe"){
     d.style.background =
-      linear-gradient(         to bottom,          ${c1} 0%,         ${c1} 33%,          ${c2} 33%,         ${c2} 66%,          ${c3} 66%,         ${c3} 100%       );
+      `linear-gradient(         to bottom,          ${c1} 0%,         ${c1} 33%,          ${c2} 33%,         ${c2} 66%,          ${c3} 66%,         ${c3} 100%       )`;
   }
 }
 //==================
