@@ -2462,19 +2462,18 @@ function toggleTags(e){
 //========
 
 //====モーダル版日付削除処理
-async function removeReadDate(id,index){
+async function removeReadDate(bookId,date){
 
   const book =
-    books.find(b=>String(b.id)===String(id));
+    books.find(b=>b.id==bookId);
 
   if(!book) return;
 
   book.dates =
     (book.dates || [])
-      .filter(d=d> !== date);
+      .filter(d=>d !== date);
 
-  // 読了日0件ならウィッシュ化
-  if(book.dates.length===0){
+  if(book.dates.length === 0){
     book.type = "wish";
   }
 
@@ -2482,8 +2481,6 @@ async function removeReadDate(id,index){
 
   closeModal();
   openBookDetailModal(book);
-
-  renderHome();
 }
 //======================
 
