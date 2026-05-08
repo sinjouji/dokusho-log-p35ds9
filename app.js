@@ -423,6 +423,12 @@ function createBookSpine(b){
   d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
   d.style.overflow = "visible";
   
+  applySpineColor(d, b);
+
+  if(b.type === "wish"){
+	d.style.opacity = "0.8";
+	}
+
   const title = document.createElement('div');
   title.textContent = b.title;
   
@@ -433,7 +439,7 @@ function createBookSpine(b){
   //レイアウト安定
   title.style.display = "flex"; //!
   title.style.width = "100%";
-  title.style.height = "100%";
+//  title.style.height = "100%";
 
   //はみ出し対策
   title.style.overflow = "visible";//visible:hidden
@@ -472,31 +478,24 @@ function createBookSpine(b){
   d.appendChild(title);
   d.appendChild(fav);
 
-  applySpineColor(d, b);
-
   d.onclick = ()=> openDetail(b);
 
-  if(b.type === "wish"){
-	d.style.opacity = "0.8";
-	}
-
-
 //評価を背表紙にうっすら表示
-const badge = document.createElement("div");
+//const badge = document.createElement("div");
 //badge.textContent = getFavLabel(b.fav);
-badge.style.position = "absolute";
-badge.style.bottom = "2px";
-badge.style.right = "2px";
-badge.style.fontSize = "10px";
-badge.style.opacity = "0.8";
-badge.style.writingMode = "vertical-rl";
-badge.style.height = "30px";
-badge.style.alignItems = "center";
-badge.style.justifyContent = "flex-end";
-badge.style.paddingBottom = "5px";
+//badge.style.position = "absolute";
+//badge.style.bottom = "2px";
+//badge.style.right = "2px";
+//badge.style.fontSize = "10px";
+//badge.style.opacity = "0.8";
+//badge.style.writingMode = "vertical-rl";
+//badge.style.height = "30px";
+//badge.style.alignItems = "center";
+//badge.style.justifyContent = "flex-end";
+//badge.style.paddingBottom = "5px";
 
-d.style.position = "relative";
-d.appendChild(badge);
+//d.style.position = "relative";
+//d.appendChild(badge);
 
 
   return d;
