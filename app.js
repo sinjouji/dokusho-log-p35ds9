@@ -411,10 +411,6 @@ function changeGoal(val){
 function createBookSpine(b){
   const d = document.createElement('div');
 
-  const c1 = getTagColor(b.tagIds?.[0]);
-  const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
-  const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
-
   const base = 15;
   const extra = Math.min((b.title || "").length * 1.5, 40);
 
@@ -426,21 +422,9 @@ function createBookSpine(b){
   d.style.flexDirection = "column";
   d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
   d.style.overflow = "visible";
-
-  if(colorMode === "single") d.style.background = c1;
-  if(colorMode === "gradient"){
-  d.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
-}
-  if(colorMode === "split") {d.style.background = `linear-gradient(${c1} 0%, ${c1} 75%, ${c2} 75%)`;}
-  if(colorMode === "stripe"){
-    d.style.background = `linear-gradient(
-      ${c1} 0%, ${c1} 3%,
-      ${c3} 3%, ${c3} 6%,
-      ${c1} 6%, ${c1} 75%,
-      ${c2} 75%, ${c2} 100%
-    )`;
-  }
   
+  applySpineColor(d, b);
+
   if(b.type === "wish"){
 	d.style.opacity = "0.8";
 	}
@@ -517,6 +501,28 @@ d.appendChild(badge);
   return d;
 }
 //========
+
+//====背表紙のカラー設定
+function applySpineColor(d, b){
+  const c1 = getTagColor(b.tagIds?.[0]);
+  const c2 = getTagColor(b.tagIds?.[1] || b.tagIds?.[0]);
+  const c3 = getTagColor(b.tagIds?.[2] || b.tagIds?.[0]);
+  
+  if(colorMode === "single") d.style.background = c1;
+  if(colorMode === "gradient"){
+  d.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+  }
+  if(colorMode === "stripe"){
+    d.style.background = `linear-gradient(
+      ${c1} 0%, ${c1} 3%,
+      ${c3} 3%, ${c3} 6%,
+      ${c1} 6%, ${c1} 75%,
+      ${c2} 75%, ${c2} 100%
+    )`;
+  }
+}
+//==================
+
 
 
 //=====ソートここから
@@ -917,6 +923,8 @@ function renderShelfView(main, books){
     const spine = document.createElement("div");
 
     spine.className = "spine";
+    spine.style.background =
+      getBookColor(b);
     
     const firstTagId =
       b.tagIds?.[0];
@@ -928,8 +936,6 @@ function renderShelfView(main, books){
     
     if(tag?.color){
 
-      spine.style.background =
-        getBookColor(b);
     }
 
     spine.innerHTML = `
@@ -982,7 +988,6 @@ function renderColorMode(targetId = "color-mode"){
   const modes = [
     { id: "single", label: "単色" },
     { id: "gradient", label: "グラデ" },
-    { id: "split", label: "分割" },
     { id: "stripe", label: "目印" }
   ];
 
