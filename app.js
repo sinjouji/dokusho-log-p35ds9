@@ -2112,8 +2112,8 @@ function openBookDetailModal(book){
   読了日：
 
   ${
-    book.dates?.length
-    ? [...book.dates]
+    b.dates?.length
+    ? [...b.dates]
         .sort((a,b)=>b.localeCompare(a))
         .map(date=>`
 
