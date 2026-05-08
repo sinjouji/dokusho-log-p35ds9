@@ -2104,10 +2104,8 @@ function openBookDetailModal(book){
           book.type === "wish"
           ? "❤️ウィッシュ"
           : "📚本棚"
-        }
-         <div class="book-read-count" style="align:right;">
-          ${b.dates?.length || 0}回読了
-         </div>
+        }   
+            ＜${b.dates?.length || 0}回読了＞
       </div>
 
      <div class="detail-row">
