@@ -2104,14 +2104,15 @@ function openBookDetailModal(book){
              .sort((a,b)=>b.localeCompare(a))
              .map((date,index)=>`
  
-          <div class="date-row">
+          <div class="date-tag">
 
-          ${date}
+          <span>${date}</span>
 
           <button
             class="mini-delete-btn"
-            onclick="removeReadDate('${book.id}',
-              ${book.dates.length - 1 - index})" >
+            onclick="removeReadDate(
+              '${book.id}',
+               ${index})" >
               ✕
           </button>
 
