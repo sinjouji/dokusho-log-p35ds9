@@ -151,11 +151,12 @@ function getTagColor(tagId){
 
 //背表紙（単色）
 function getBookColor(book){
-  if(Array.isArray(book.tagIds) && book.tagIds.length){
-    return getTagColor(book.tagIds[0]);
-  }
-  return "#ccc";
-}//========
+  const firstTagId =
+    book.tagIds?.[0];
+    
+  return getTagColor(firstTagId);
+}
+//========
 
 
 //文字色対策
@@ -927,8 +928,8 @@ function renderShelfView(main, books){
     
     if(tag?.color){
 
-      spine.style.background =
-        tag.color;
+      d.style.background =
+        getBookColor(b);
     }
 
     spine.innerHTML = `
@@ -2104,7 +2105,7 @@ function openBookDetailModal(book){
           book.type === "wish"
           ? "❤️ウィッシュ"
           : "📚本棚"
-        }：${book.dates?.length || 0}回
+        }：${book.dates?.length || 0}回読了
       </div>
 
      <div class="detail-row">
