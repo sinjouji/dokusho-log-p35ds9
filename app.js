@@ -2100,20 +2100,20 @@ function openBookDetailModal(book){
       <div class="detail-row">
         読了日：
         ${book.dates?.length
-          ? [...(book.dates || [])]
+          ? ${[...(book.dates || [])]
              .sort((a,b)=>b.localeCompare(a))
-             .map((date,index)=>`
+             .map((date=>`
  
           <div class="date-tag">
 
-          <span>${date}</span>
+          ${date}
 
           <button
             class="mini-delete-btn"
             onclick="removeReadDate(
               '${book.id}',
-               ${index})" >
-              ✕
+               '${date}')" >
+              ✖️
           </button>
 
         </div>
@@ -2471,7 +2471,9 @@ async function removeReadDate(id,index){
 
   if(!book || !book.dates) return;
 
-  book.dates.splice(index,1);
+  book.dates =
+    (book.dates || [])
+      .filter(d=d> !== date);
 
   // 読了日0件ならウィッシュ化
   if(book.dates.length===0){
@@ -2481,7 +2483,6 @@ async function removeReadDate(id,index){
   await saveData();
 
   closeModal();
-
   openBookDetailModal(book);
 
   renderHome();
