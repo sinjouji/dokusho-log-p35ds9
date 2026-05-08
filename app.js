@@ -27,6 +27,8 @@ let sortMode = "date-desc";
 
 let searchKeyword = "";
 
+let currentDetailFav = 0;
+
 let openedSeries = {};
 let showTags = localStorage.getItem("showTags") === "true";
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
@@ -338,6 +340,25 @@ function getLastDate(book){
   return book.dates[book.dates.length-1];
 }
 //========
+
+
+//====評価切替えボタン
+function setFav(fav){
+
+  currentDetailFav = fav;
+
+  const buttons =
+    document.querySelectorAll(".fav-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  document
+    .getElementById(`fav-${fav}`)
+    ?.classList.add("active");
+}
+//=================
 
 
 //カレンダー月送り
@@ -2019,6 +2040,8 @@ typeBtn.onclick = ()=>{
 //====本詳細モーダル====================
 function openBookDetailModal(book){
 
+  currentDetailFav = book.fav || 0;
+
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "modal";
@@ -2033,30 +2056,44 @@ function openBookDetailModal(book){
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
 
-      <select id="detail-fav">
+     <div class="detail-fav-buttons">
 
-      <option value="0"
-        ${book.fav===0?"selected":""}>
-        評価なし
-      </option>
+     <button
+       id="fav-0"
+       class="fav-btn ${book.fav===0?"active":""}"
+       onclick="setFav(0)">
+       0
+     </button>
 
-      <option value="1" ${book.fav===1?"selected":""}>
-        ★
-      </option>
+     <button
+       id="fav-1"
+       class="fav-btn ${book.fav===1?"active":""}"
+       onclick="setFav(1)">
+       ★
+     </button>
 
-      <option value="2" ${book.fav===2?"selected":""}>
-        ★★
-      </option>
+     <button
+       id="fav-2"
+       class="fav-btn ${book.fav===2?"active":""}"
+       onclick="setFav(2)">
+       ★★
+     </button>
 
-      <option value="3" ${book.fav===3?"selected":""}>
-        ★★★
-      </option>
+     <button
+       id="fav-3"
+       class="fav-btn ${book.fav===3?"active":""}"
+       onclick="setFav(3)">
+       ★★★
+     </button>
 
-      <option value="4" ${book.fav===4?"selected":""}>
-        👑
-      </option>
+     <button
+       id="fav-4"
+       class="fav-btn ${book.fav===4?"active":""}"
+       onclick="setFav(4)">
+       👑
+     </button>
 
-    </select>
+   </div>
 
       <div class="detail-row">
         状態：
@@ -2606,10 +2643,7 @@ async function saveDetail(id){
   book.memo =
     document.getElementById("editMemo").value;
 
-  book.fav =
-    Number(
-      document.getElementById("detail-fav").value
-    );
+  book.fav = currentDetailFav;
 
   console.log("after edit", book);
 
