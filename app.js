@@ -196,7 +196,6 @@ function getColorLabel(){
   return {
     single:"単色",
     gradient:"グラデ",
-    split:"分割",
     stripe:"目印"
   }[colorMode];
 }
@@ -454,9 +453,9 @@ function createBookSpine(b){
   //色
   title.style.color = "#fff"; //!
   
-//  title.style.flex = "1";
-  title.style.alignItems = "center"; //! flex-start
-  title.style.justifyContent = "flex-start"; //! center
+  title.style.flex = "1";
+//  title.style.alignItems = "center"; //! flex-start
+  title.style.justifyContent = "center"; //! flex-start/center
   title.style.textAlign = "left";
 //  title.style.textOverflow = "ellipsis";
 //  title.style.whiteSpace = "nowrap";
@@ -1713,7 +1712,6 @@ function openSettingSelect(type){
     list = [
       {id:"single", label:"単色"},
       {id:"gradient", label:"グラデ"},
-      {id:"split", label:"分割"},
       {id:"stripe", label:"目印"}
     ];
   }
