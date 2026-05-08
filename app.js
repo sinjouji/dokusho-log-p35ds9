@@ -519,7 +519,7 @@ function applySpineColor(d, b){
       ${c2} 75%, ${c2} 100%
     )`;
   }
-  renderHome();
+  renderShelfView(main, books);
 }
 //==================
 
