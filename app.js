@@ -860,7 +860,7 @@ function renderCardView(main, books){
       </div>
       
       <div class="book-read-count">
-        ${b.dates?.length || 0}回
+        ${b.dates?.length || 0}回読了
       </div>
 
       <div class="fav">
@@ -893,7 +893,7 @@ function renderListView(main, books){
       <div class="list-meta">
         ${getFavLabel(b.fav)}
         ${getLatestReadDate(b)}：
-        ${b.dates?.length || 0}回
+        ${b.dates?.length || 0}回読了
       </div>
     `;
 
@@ -2105,6 +2105,9 @@ function openBookDetailModal(book){
           ? "❤️ウィッシュ"
           : "📚本棚"
         }
+         <div class="book-read-count" style="align:right;">
+          ${b.dates?.length || 0}回読了
+         </div>
       </div>
 
      <div class="detail-row">
