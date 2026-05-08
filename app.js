@@ -2526,7 +2526,7 @@ function saveDetail(id){
   console.log("save start", id);
 
   const book =
-    books.find(b=>b.id===id);
+    books.find(b=>String(b.id)===String(id));
 
   console.log("found book", book);
 
