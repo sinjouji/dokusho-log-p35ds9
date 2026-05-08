@@ -142,10 +142,10 @@ function getLatestReadDate(book){
 //=================
 
 //補助=======
-function getLastDate(book){
-  if(!book.dates || !book.dates.length) return "未読";
-  return book.dates[book.dates.length-1];
-}
+//function getLastDate(book){
+//  if(!book.dates || !book.dates.length) return "未読";
+//  return book.dates[book.dates.length-1];
+//}
 //========
 
 
