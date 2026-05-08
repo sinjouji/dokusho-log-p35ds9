@@ -130,6 +130,25 @@ async function saveData(){
 }
 //================================
 
+
+//====最新読了日を取得するやつ
+function getLatestReadDate(book){
+
+  if(!book.dates?.length) return "";
+
+  return [...book.dates]
+    .sort((a,b)=>b.localeCompare(a))[0];
+}
+//=================
+
+//補助=======
+function getLastDate(book){
+  if(!book.dates || !book.dates.length) return "未読";
+  return book.dates[book.dates.length-1];
+}
+//========
+
+
 //タグ色=====
 function getTagColor(tagId){
   const t = tagMaster.find(x => x.id === tagId);
@@ -331,13 +350,6 @@ function pressEffect(el){
 	setTimeout(()=>{
 		el.style.transform = "scale(1)";
 	},100);
-}
-//========
-
-//補助=======
-function getLastDate(book){
-  if(!book.dates || !book.dates.length) return "未読";
-  return book.dates[book.dates.length-1];
 }
 //========
 
@@ -850,9 +862,12 @@ function renderCardView(main, books){
     d.innerHTML = `
       <div class="title">${b.title}</div>
 
-      <div class="meta">
-        <span>${getLastDate(b)}</span>
-        <span>${(b.dates?.length || 0)}回</span>
+      <div class="book-latest-date">
+        ${getLatestReadDate(book) || "未読"}
+      </div>
+      
+      <div class="book-read-count">
+        ${book.dates?.length || 0}回
       </div>
 
       <div class="fav">
@@ -925,6 +940,10 @@ function renderShelfView(main, books){
     spine.innerHTML = `
       <div class="spine-title">
         ${b.title}
+      </div>
+      
+      <div class="book-read-count">
+      ${book.dates?.length || 0}回
       </div>
 
       <div class="spine-fav">
