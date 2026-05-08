@@ -934,22 +934,9 @@ function renderShelfView(main, books){
   books.forEach(b=>{
 
     const spine = createBookSpine(b);
-    
-    const firstTagId =
-      b.tagIds?.[0];
 
-    const tag =
-      tagMaster.find(t=>
-        t.id === firstTagId
-      );
-    
-    if(tag?.color){
-
-    }
-
-    spine.innerHTML = "";
-
-    spine.onclick = ()=> openBookDetailModal(b);
+    spine.onclick =
+      ()=> openBookDetailModal(b);
 
     shelf.appendChild(spine);
   });
