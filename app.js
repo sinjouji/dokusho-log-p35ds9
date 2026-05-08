@@ -105,9 +105,16 @@ function go(page){
 //====🔑データの保存処理：超重要！！====
 function saveData(){
 
+  const data = {
+    books,
+    series,
+    characters,
+    tagMaster
+  };
+
   localStorage.setItem(
-    "books",
-    JSON.stringify(books)
+    "bookAppData",
+    JSON.stringify(data)
   );
 }
 //================================
@@ -2060,7 +2067,6 @@ function openBookDetailModal(book){
         }
       </div>
       
-      //読了日の追加ボタン
       <div class="detail-date-add">
       <input type="date" id="new-date">
       <button onclick="addReadDate('${book.id}')">
