@@ -423,12 +423,6 @@ function createBookSpine(b){
   d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
   d.style.overflow = "visible";
   
-  applySpineColor(d, b);
-
-  if(b.type === "wish"){
-	d.style.opacity = "0.8";
-	}
-
   const title = document.createElement('div');
   title.textContent = b.title;
   
@@ -478,7 +472,14 @@ function createBookSpine(b){
   d.appendChild(title);
   d.appendChild(fav);
 
+  applySpineColor(d, b);
+
   d.onclick = ()=> openDetail(b);
+
+  if(b.type === "wish"){
+	d.style.opacity = "0.8";
+	}
+
 
 //評価を背表紙にうっすら表示
 const badge = document.createElement("div");
