@@ -458,13 +458,13 @@ function createBookSpine(b){
   title.style.justifyContent = "center"; //! flex-start/center
   title.style.textAlign = "left";
 //  title.style.textOverflow = "ellipsis";
-//  title.style.whiteSpace = "nowrap";
+  title.style.whiteSpace = "nowrap";
   title.style.paddingBottom = "4px";
-//  title.style.maxHeight = "100%";
+  title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
-  fav.textContent = val === 4 ? "👑" : "★".repeat(val);
+ // fav.textContent = val === 4 ? "👑" : "★".repeat(val);
   fav.style.fontSize = "8px";
   fav.style.color = "#fff";
   fav.style.writingMode = "vertical-rl";
