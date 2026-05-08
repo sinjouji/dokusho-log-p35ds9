@@ -2080,7 +2080,7 @@ function openBookDetailModal(book){
 
        <button
          class="fav-cycle-btn"
-         onclick="cycleFav('${book.id}')">
+         onclick="cycleFav('${book.id}')">評価：
            ${
               ["0","★","★★","★★★","👑"][book.fav || 0]
             }
