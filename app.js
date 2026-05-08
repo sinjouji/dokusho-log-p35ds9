@@ -914,7 +914,7 @@ function renderShelfView(main, books){
 
   books.forEach(b=>{
 
-    const d = document.createElement("div");
+    const spine = document.createElement("div");
 
     spine.className = "spine";
     
@@ -928,7 +928,7 @@ function renderShelfView(main, books){
     
     if(tag?.color){
 
-      d.style.background =
+      spine.style.background =
         getBookColor(b);
     }
 
@@ -943,7 +943,7 @@ function renderShelfView(main, books){
       </div>
     `;
 
-    d.onclick = ()=> openBookDetailModal(b);
+    spine.onclick = ()=> openBookDetailModal(b);
 
     shelf.appendChild(spine);
   });
