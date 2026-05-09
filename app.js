@@ -1425,7 +1425,7 @@ function renderStats(){
 
   
   //年間目標
-  const yearlyCount = getYearReadCount(year);
+  const yearlyCount = statsYear;
 
 const percent =
   Math.min(
@@ -1463,8 +1463,9 @@ goal.innerHTML = `
   </div>
   `;
   if(enableGoal){
-      renderYearGoal(main, year);
+      main.appendChild(goal);
   }
+  getYearReadCount(year)
   renderSummary(main);
   renderMiniCalendar(main);
   renderMonthlyGraph(main, year);
