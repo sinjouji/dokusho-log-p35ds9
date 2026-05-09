@@ -742,23 +742,7 @@ function renderHome(){
   el.innerHTML = `
  
     <div id="home-top"></div>
-
-       <div style="margin:8px 0;">
-     <button id="toggle-tag-btn">
-       ${showTagFilter
-         ? "タグを隠す▽"
-         : "タグを表示▲"
-       }
-     </button>
-   </div>
-   ${showTagFilter
-     ? `<div id="tag-filter"></div>`
-     : ""
-   }
-       <div id="home-main"></div>
   `;
-  document.getElementById("toggle-tag-btn")
-  .onclick = toggleTagFilter;
 
   renderSearchArea();
   
