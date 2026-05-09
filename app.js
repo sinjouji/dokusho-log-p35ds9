@@ -459,7 +459,7 @@ function createBookSpine(b){
   title.style.justifyContent = "flex-start"; //! flex-start/center
   title.style.textAlign = "left";
   title.style.whiteSpace = "normal";
-  title.style.paddingBottom = "4px";
+  title.style.padding = "8px 4px 4px 6px";
   title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
