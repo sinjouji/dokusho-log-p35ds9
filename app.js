@@ -779,7 +779,7 @@ function renderHome(){
   renderSearchArea();
   
   renderTagFilter();
-  renderTypeFilter();
+//  renderTypeFilter();
   renderRecentBooks();
   
   renderBookList();
