@@ -749,8 +749,7 @@ function renderHome(){
    }
        <div id="home-main"></div>
   `;
-  document.getElementById("toggle-tag-btn")
-  .onclick = toggleTagFilter;
+
 
   renderSearchArea();
   
