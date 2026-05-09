@@ -39,6 +39,13 @@ let showTagFilter = localStorage.getItem("showTagFilter");
 showTagFilter = showTagFilter === null
   ? true
   : showTagFilter === "true";
+  
+//メモ機能のオンオフ切り替え
+let enableMemo = localStorage.getItem("enableMemo");
+ enableMemo =
+  enableMemo === null
+   ? true
+   : enableMemo === "true";
 
 
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
@@ -552,6 +559,23 @@ function createBookSpine(b){
   return d;
 }
 //========
+
+
+//====メモのオンオフ
+function toggleMemo(){
+
+  enableMemo = !enableMemo;
+
+  localStorage.setItem(
+    "enableMemo",
+    enableMemo
+  );
+
+  renderSettings();
+  renderHome();
+}
+//==============
+
 
 //====背表紙のカラー設定
 function applySpineColor(d, b){
@@ -1863,6 +1887,22 @@ function renderSettings(){
   el.innerHTML = `
     <h2 style="padding:12px;">設定</h2>
 
+<div class="setting-card">
+
+  <div class="setting-title">
+    表示設定
+  </div>
+
+  <button onclick="toggleMemo()">
+    ${
+      enableMemo
+        ? "📝 メモ表示：ON"
+        : "📝 メモ表示：OFF"
+    }
+  </button>
+
+</div>
+
     <div class="settings-group">
       <div class="settings-header">表示</div>
       <div class="settings-list">
@@ -2174,8 +2214,9 @@ function openAddBookModal(){
         <option value="4">👑</option>
       </select>
 
+      ${enableMemo ? `
       <textarea id="add-memo"
-        placeholder="メモ"></textarea>
+        placeholder="メモ"></textarea>` : ""}
 
         <button onclick="saveNewBook()">
           ＋本棚
@@ -2474,7 +2515,11 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
-      <textarea id="editMemo">${book.memo || ""}</textarea>
+      ${enablememo ? `
+      <textarea id="editMemo">
+        ${book.memo || ""}
+      </textarea>
+      ` : ""}
 
       <button onclick="saveDetail('${book.id}')">
         保存
