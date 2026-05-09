@@ -1310,6 +1310,7 @@ function renderTagFilter(){
     btn.className = "tag-chip";
     
     btn.textContent = tag.name;
+    btn.style.fontSize = "10px";
 
     btn.style.background = "#fff";
     btn.style.color = tag.color || "#666";
