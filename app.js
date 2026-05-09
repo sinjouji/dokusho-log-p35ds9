@@ -842,14 +842,7 @@ function renderSearchArea(){
       onclick="changeViewMode('shelf')">
         📚 
       </button>
-
-      <button class="tag-chip" onclick="toggleTagFilter()">
-      ${showTagFilter
-        ? "🏷️タグ非表示"
-        : "🏷️タグ表示"
-      }
-      </button> : 
-      <select
+            <select
   id="type-filter"
   onchange="changeTypeFilter()"
 >
@@ -867,6 +860,13 @@ function renderSearchArea(){
   </option>
 
 </select>
+
+      <button class="tag-chip" onclick="toggleTagFilter()">
+      ${showTagFilter
+        ? "🏷️タグ非表示"
+        : "🏷️タグ表示"
+      }
+      </button> : 
     </div>
        ${showTagFilter
      ? `<div id="tag-filter"></div>`
