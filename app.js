@@ -1425,7 +1425,7 @@ function renderStats(){
 
   
   //年間目標
-  const yearlyCount = statsYear;
+  const yearlyCount = getYearReadCount(year);
 
 const percent =
   Math.min(
