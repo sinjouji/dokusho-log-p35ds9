@@ -1384,7 +1384,7 @@ function renderStats(){
   goalBox.innnerHTML = `
     <div>
       ${year}年：
-      ${readCount} / ${yealyGoal}冊
+      ${readCount} / ${yearlyGoal}冊
     </div>
     
     <div class="goal-bar">
