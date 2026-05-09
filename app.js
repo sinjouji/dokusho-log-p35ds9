@@ -149,6 +149,17 @@ function getLatestReadDate(book){
 }
 //=================
 
+//====日付の空白安全対策
+function toDateNum(book){
+
+  const d = getLatestReadDate(book);
+
+  return d
+    ? new Date(d).getTime()
+    : 0;
+}
+//==================
+
 
 //タグ色=====
 function getTagColor(tagId){
@@ -611,14 +622,14 @@ function sortBooks(list){
   if(sortMode === "date-asc"){
 
     arr.sort((a,b)=>
-      getLatestReadDate(a).localeCompare(getLatestReadDate(b))
-    );
+      toDateNum(a) - toDateNum(b)
+      );
   }
 
   if(sortMode === "date-desc"){
 
     arr.sort((a,b)=>
-      getLatestReadDate(b).localeCompare(getLatestReadDate(a))
+      toDateNum(b) - toDateNum(a)
     );
   }
 
