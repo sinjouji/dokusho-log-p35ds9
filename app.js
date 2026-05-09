@@ -40,6 +40,9 @@ showTagFilter = showTagFilter === null
   ? true
   : showTagFilter === "true";
   
+//タイプフィルター
+let typeFilter = localStorage.getItem("typeFilter") || "all";
+  
 //メモ機能のオンオフ切り替え
 let enableMemo = localStorage.getItem("enableMemo");
  enableMemo =
@@ -845,7 +848,25 @@ function renderSearchArea(){
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
       }
-      </button>
+      </button> : 
+      <select
+  id="type-filter"
+  onchange="changeTypeFilter()"
+>
+
+  <option value="all">
+    全部
+  </option>
+
+  <option value="read">
+    本棚
+  </option>
+
+  <option value="wish">
+    ウィッシュ
+  </option>
+
+</select>
     </div>
        ${showTagFilter
      ? `<div id="tag-filter"></div>`
@@ -857,7 +878,26 @@ function renderSearchArea(){
 
   renderSuggest();
 }
+//==================
 
+
+
+//====タイプフィルター切り替え
+function changeTypeFilter(){
+
+  typeFilter =
+    document.getElementById(
+      "type-filter"
+    ).value;
+
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
+
+  renderHome();
+}
+//================
 
 
 //====サジェスト
@@ -1327,29 +1367,25 @@ function renderSummary(main){
 
 
 //========タイプフィルター（ウィッシュリスト）
-function renderTypeFilter(){
+function filterBooks(list){
   const el = document.getElementById("type-filter");
   if(!el) return;
 
-  el.innerHTML = `
-    <button 
-		class="${selectedType==='all' ? 'active' : ''}"
-		onclick="setTypeFilter('all')">
-      すべて
-    </button>
+  if(typeFilter !== "all"){
 
-    <button 
-      class="${selectedType==='normal' ? 'active' : ''}"
-      onclick="setTypeFilter('normal')">
-      読書
-    </button>
+  arr = arr.filter(book => {
 
-    <button 
-      class="${selectedType==='wish' ? 'active' : ''}"
-      onclick="setTypeFilter('wish')">
-      ウィッシュ
-    </button>
-  `;
+    if(typeFilter === "read"){
+      return book.type !== "wish";
+    }
+
+    if(typeFilter === "wish"){
+      return book.type === "wish";
+    }
+
+    return true;
+  });
+ }
 }
 //========
 
