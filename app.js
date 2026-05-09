@@ -1402,27 +1402,27 @@ function renderSort(targetId = "sort-mode"){
 //====カレンダー、統計ページの表示
 function renderStats(){
 
-  const main =
-    document.getElementById("page-stats");
+  const main = document.getElementById("page-stats");
+  main.innerHTML = "";
+
   const year = statsYear;
 
-  if(!main) return;
+  main.innerHTML = `
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    ">
+      <button onclick="changeStatsYear(-1)">←</button>
 
-//年移動表示
-main.innerHTML = `
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:16px;
-  ">
-    <button onclick="changeStatsYear(-1)">←</button>
+      <h2>${year}年 統計</h2>
 
-    <h3>${year}年 統計</h3>
+      <button onclick="changeStatsYear(1)">→</button>
+    </div>
+  `;
 
-    <button onclick="changeStatsYear(1)">→</button>
-  </div>
-`;
+
   
   //年間目標
   const yearlyCount = getYearReadCount(year);
@@ -1463,7 +1463,7 @@ goal.innerHTML = `
   </div>
   `;
   if(enableGoal){
-    main.appendChild(goal, year);
+      renderYearGoal(main, year);
   }
   renderSummary(main);
   renderMiniCalendar(main);
