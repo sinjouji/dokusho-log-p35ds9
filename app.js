@@ -1308,12 +1308,20 @@ function renderTagFilter(){
       document.createElement("button");
 
     btn.className = "tag-chip";
+    
+    btn.textContent = tag.name;
+
+    btn.style.background = "#fff";
+    btn.style.color = tag.color || "#666";
+    
+    btn.style.border = `1px solid ${tag.color || "#ccc"}`;
+    btn.style.borderRadius = "999px";
 
     if(selectedTagId === tag.id){
       btn.classList.add("active");
+      btn.style.background = tag.color;
+      btn.style.color = "#fff";
     }
-
-    btn.textContent = tag.name;
 
     btn.onclick = ()=>{
 
