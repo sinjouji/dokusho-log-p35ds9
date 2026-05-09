@@ -1384,33 +1384,6 @@ function renderMiniCalendar(main){
 
   // ===== カレンダー =====
   
-    const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month+1, 0).getDate();
-  const days = ["日","月","火","水","木","金","土"];
-
-  const grid = document.createElement("div");
-  grid.style.display = "grid";
-  grid.style.gridTemplateColumns = "repeat(7,1fr)";
-  grid.style.gap = "4px";
-  
-  grid.style.transition = "opacity 0.2s";
-  grid.style.opacity = "0";
-  
-  setTimeout(()=>{
-    grid.style.opacity ="1";
-  },10);
-
-    days.forEach((d,i)=>{
-    const head = document.createElement("div");
-    head.textContent = d;
-    head.style.fontSize = "12px";
-    head.style.textAlign = "center";
-    head.style.fontWeight = "bold";
-    
-    //土日色
-    if(i === 0) head.style.color = "#e74c3c"; //日曜
-    if(i === 6) head.style.color = "#3498db"; //土曜
-    
   const firstDay =
     new Date(year, month, 1).getDay();
 
