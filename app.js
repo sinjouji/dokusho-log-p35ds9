@@ -413,7 +413,7 @@ function createBookSpine(b){
   const base = 15;
   const extra = Math.min((b.title || "").length * 2, 55);
 
-  d.style.width = (base + extra) + "px";
+  d.style.width = (base + extra + 4) + "px";
   d.style.height = "130px";
   d.style.margin = "0px";
   d.style.borderRadius = "3px 5px 5px 3px";
