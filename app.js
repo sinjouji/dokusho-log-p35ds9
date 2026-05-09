@@ -410,7 +410,7 @@ function changeGoal(val){
 function createBookSpine(b){
   const d = document.createElement('div');
 
-  const base = 15;
+  const base = 18;
   const extra = Math.min((b.title || "").length * 2, 55);
 
   d.style.width = (base + extra + 4) + "px";
