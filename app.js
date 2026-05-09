@@ -760,16 +760,6 @@ function renderHome(){
   document.getElementById("toggle-tag-btn")
   .onclick = toggleTagFilter;
 
-
-//タグ収納トグル
-//  toggleBtn.textContent =
-//    showTagFilter
-//      ? "タグを隠す▽"
-//      : "タグを表示▲";
-//  toggleBtn.onclick = toggleTagFilter;
-//  main.appendChild(toggleBtn);
-
-
   renderSearchArea();
   
   renderTagFilter();
@@ -786,9 +776,9 @@ function renderHome(){
 function renderSearchArea(){
 
   const top = document.getElementById("home-top");
-
   if(!top) return;
-
+  
+ 
   top.innerHTML = `
     <button onclick="openAddBookModal()" class="add-btn">
       ＋ 本を追加
@@ -837,6 +827,12 @@ function renderSearchArea(){
         📚 
       </button>
 
+      <button class="tag-chip" onclick="toggleTagFilter()">
+      ${showTagFilter
+        ? "🏷️タグ非表示"
+        : "🏷️タグ表示"
+      }
+      </button>
     </div>
 
     <div id="suggest"></div>
