@@ -489,7 +489,7 @@ function createBookSpine(b){
   //レイアウト安定
   title.style.display = "flex"; //!
   title.style.height = "auto";
-  title.style.width = "auto";
+ // title.style.width = "auto";
 
   //はみ出し対策
   title.style.overflow = "visible";//visible:hidden
@@ -740,17 +740,10 @@ function renderHome(){
   if(!el) return;
 
   el.innerHTML = `
-  <div style="display: inline-block;">
-    <div id="home-top"></div>
+ 
+    <div id="home-top"></div> : 
 
-   <div style="margin:8px 0;">
-     <button id="toggle-tag-btn">
-       ${showTagFilter
-         ? "タグを隠す▽"
-         : "タグを表示▲"
-       }
-     </button>
-   </div></div>
+//ここにhome-topに移動したやつあった
    ${showTagFilter
      ? `<div id="tag-filter"></div>`
      : ""
@@ -804,40 +797,50 @@ function renderSearchArea(){
       <select id="sort-select"
         onchange="changeSortMode()">
 
-      <option value="read-desc">最新読了順</option>
-      <option value="read-asc">古い読了順</option>
+      <option value="read-desc">読了日新</option>
+      <option value="read-asc">読了日古</option>
 
-      <option value="title-asc">タイトル昇順</option>
-      <option value="title-desc">タイトル降順</option>
+      <option value="title-asc">タイトル↑</option>
+      <option value="title-desc">タイトル↓</option>
 
-      <option value="rating-desc">評価高い順</option>
-      <option value="rating-asc">評価低い順</option>
+      <option value="rating-desc">評価↑</option>
+      <option value="rating-asc">評価↓</option>
 
       </select>
-
+    <div style="display: inline-block;">
     <div class="view-switch">
 
       <button class="${viewMode === 'card'
       ? 'active'
       : ''}"
       onclick="changeViewMode('card')">
-        ■ カード
+        ■ 
       </button>
 
       <button class="${viewMode === 'list'
       ? 'active'
       : ''}"
       onclick="changeViewMode('list')">
-        ☰ リスト
+        ☰ 
       </button>
 
       <button class="${viewMode === 'shelf'
       ? 'active'
       : ''}"
       onclick="changeViewMode('shelf')">
-        📚 背表紙
+        📚 
       </button>
 
+    </div>
+    //renderhomeから移動させたやつ
+       <div style="margin:8px 0;">
+     <button id="toggle-tag-btn">
+       ${showTagFilter
+         ? "タグを隠す▽"
+         : "タグを表示▲"
+       }
+     </button>
+   </div>
     </div>
 
     <div id="suggest"></div>
