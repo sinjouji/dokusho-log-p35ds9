@@ -742,12 +742,7 @@ function renderHome(){
   el.innerHTML = `
  
     <div id="home-top"></div>
-
-   ${showTagFilter
-     ? `<div id="tag-filter"></div>`
-     : ""
-   }
-       <div id="home-main"></div>
+    <div id="home-main"></div>
   `;
 
 
@@ -824,6 +819,10 @@ function renderSearchArea(){
         : "🏷️タグ表示"
       </button>
     </div>
+       ${showTagFilter
+     ? `<div id="tag-filter"></div>`
+     : ""
+   }
 
     <div id="suggest"></div>
   `;
