@@ -1388,6 +1388,7 @@ function renderStats(){
 
   const main =
     document.getElementById("page-stats");
+  const year = currentMonth.getFullYear();
 
   if(!main) return;
 
