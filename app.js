@@ -975,12 +975,14 @@ function renderBookList(){
 
   
   //フィルタ
-  const filtered = books.filter(b=>{
+  const filtered = filterBooks(
+  books.filter(b=>{
+
     const matchTitle =
       (b.title || "")
       .toLowerCase()
       .includes(searchKeyword);
-    
+
     const matchTag =
       !selectedTagId ||
 
@@ -988,7 +990,8 @@ function renderBookList(){
       .includes(selectedTagId);
 
     return matchTitle && matchTag;
-    });
+  })
+);
   
   //ソート
   const sorted = sortBooks(filtered);
