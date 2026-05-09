@@ -410,7 +410,7 @@ function changeGoal(val){
 function createBookSpine(b){
   const d = document.createElement('div');
 
-  const base = 18;
+  const base = 20;
   const extra = Math.min((b.title || "").length * 2, 55);
 
   d.style.width = (base + extra + 4) + "px";
@@ -440,6 +440,7 @@ function createBookSpine(b){
   //レイアウト安定
   title.style.display = "flex"; //!
   title.style.height = "auto";
+  title.style.width = "auto";
 
   //はみ出し対策
   title.style.overflow = "visible";//visible:hidden
