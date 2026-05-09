@@ -740,6 +740,7 @@ function renderHome(){
   if(!el) return;
 
   el.innerHTML = `
+  <div style="white-space:nowrap;">
     <div id="home-top"></div>
 
    <div style="margin:8px 0;">
@@ -749,7 +750,7 @@ function renderHome(){
          : "タグを表示▲"
        }
      </button>
-   </div>
+   </div></div>
    ${showTagFilter
      ? `<div id="tag-filter"></div>`
      : ""
