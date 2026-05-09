@@ -594,14 +594,14 @@ function sortBooks(list){
     );
   }
 
-  if(sortMode === "fav-desc"){
+  if(sortMode === "rating-desc"){
 
     arr.sort((a,b)=>
       Number(b.fav || 0) - Number(a.fav || 0)
     );
   }
   
-  if(sortMode === "fav-asc"){
+  if(sortMode === "rating-asc"){
     arr.sort((a,b)=>
       Number(a.fav || 0) - Number(b.fav || 0)
     );
