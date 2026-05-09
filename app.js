@@ -705,7 +705,7 @@ function renderHome(){
   
   renderTagFilter();
 //  renderTypeFilter();
-  renderRecentBooks();
+//  renderRecentBooks();
   
   renderBookList();
 }
