@@ -691,7 +691,7 @@ function renderHome(){
 
   renderSearchArea();
   
-  renderSummary(main);
+  renderSummary();
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
