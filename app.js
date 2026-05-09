@@ -980,26 +980,36 @@ function renderMonthlyGraph(main){
       document.createElement("div");
 
     row.style.marginBottom = "8px";
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "8px";
 
     row.innerHTML = `
-      <div style="font-size:12px">
-        ${i+1}月 (${c}冊)
-      </div>
+  <div style="
+    width:70px;
+    font-size:12px;
+    flex-shrink:0;
+  ">
+    ${i+1}月 (${c}冊)
+  </div>
 
-      <div style="
-        height:12px;
-        background:#eee;
-        border-radius:999px;
-        overflow:hidden;
-      ">
-        <div style="
-          width:${c*5}px;
-          height:100%;
-          background:#78ccd2;
-        ">
-        </div>
-      </div>
-    `;
+  <div style="
+    flex:1;
+    height:12px;
+    background:#eee;
+    border-radius:999px;
+    overflow:hidden;
+  ">
+
+    <div style="
+      width:${c*5}px;
+      height:100%;
+      background:#78ccd2;
+    ">
+    </div>
+
+  </div>
+`;
 
     wrap.appendChild(row);
 
