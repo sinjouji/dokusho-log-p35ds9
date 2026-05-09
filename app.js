@@ -464,7 +464,7 @@ function createBookSpine(b){
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
-  fav.textContent = val === 4 ? "👑" : "★".repeat(val);
+  fav.textContent = val === 4 ? "👑" : "★".repeat(val)+"\n"+${book.dates?.length || 0}+"回読了";
   fav.style.fontSize = "8px";
   fav.style.color = "#fff";
   fav.style.writingMode = "vertical-rl";
