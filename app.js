@@ -415,7 +415,7 @@ function createBookSpine(b){
 
   d.style.width = (base + extra) + "px";
   d.style.height = "130px";
-  d.style.margin = "0.5px";
+  d.style.margin = "0px";
   d.style.borderRadius = "3px 5px 5px 3px";
   d.style.display = "flex";
   d.style.flexDirection = "column";
@@ -936,6 +936,7 @@ function renderShelfView(main, books){
   const shelf = document.createElement("div");
 
   shelf.className = "shelf-view";
+  shelf.style.gap = "2px";
 
   books.forEach(b=>{
 
