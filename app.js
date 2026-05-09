@@ -1356,7 +1356,9 @@ function renderMiniCalendar(main){
     renderStats();
   };
 
-  header.append(prev, title, next);
+  header.append(prev);
+  header.append(title);
+  header.append(next);
 
   main.appendChild(header);
 
@@ -1393,8 +1395,11 @@ function renderMiniCalendar(main){
   // 日付
   for(let d=1; d<=lastDate; d++){
 
+    const mm = String(month + 1).padStart(2, "0");
+    const dd = String(d).padStart(2, "0");
+
     const dateStr =
-      `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+      year + "-" + mm + "-" + dd;
 
     const count =
       map[dateStr]?.length || 0;
@@ -1416,10 +1421,9 @@ function renderMiniCalendar(main){
         "2px solid #ac4f02";
     }
 
-    cell.innerHTML = `
-      <div>${d}</div>
-      <div>${count || ""}</div>
-    `;
+    cell.innerHTML =
+      "<div>" + d + "</div>" +
+      "<div>" + (count || "") + "</div>";
 
     cell.onclick = ()=>{
       if(!map[dateStr]) return;
