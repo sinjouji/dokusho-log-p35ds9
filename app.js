@@ -439,7 +439,7 @@ function createBookSpine(b){
   
   //レイアウト安定
   title.style.display = "flex"; //!
-  title.style.width = "100%";
+ // title.style.width = "100%";
 
   //はみ出し対策
   title.style.overflow = "visible";//visible:hidden
@@ -458,8 +458,7 @@ function createBookSpine(b){
   title.style.alignItems = "center"; //! flex-start
   title.style.justifyContent = "center"; //! flex-start/center
   title.style.textAlign = "left";
-//  title.style.textOverflow = "ellipsis";
-  title.style.whiteSpace = "nowrap";
+  title.style.whiteSpace = "normal";
   title.style.paddingBottom = "4px";
   title.style.maxHeight = "100%";
 
