@@ -1292,6 +1292,55 @@ function renderMiniCalendar(main){
 
 
 
+//====ソートUI
+function renderSort(targetId = "sort-mode"){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "title", label: "名前" },
+    { id: "fav", label: "評価" },
+    { id: "date", label: "日付" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+
+    let arrow = "";
+    if(m.id === sortKey){
+      arrow = sortOrder === "asc" ? " ↑" : " ↓";
+    }
+
+    btn.textContent = m.label + arrow;
+    btn.className = "setting-btn";
+
+    if(m.id === sortKey){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = ()=>{
+      if(sortKey === m.id){
+        sortOrder = (sortOrder === "asc") ? "desc" : "asc";
+      } else {
+        sortKey = m.id;
+        sortOrder = "asc";
+      }
+
+      localStorage.setItem("sortKey", sortKey);
+      localStorage.setItem("sortOrder", sortOrder);
+
+      renderHome();          // ！
+      renderSort(targetId);
+    };
+
+    el.appendChild(btn);
+  });
+}
+//========
+
+
 //🔧====設定ページ====
 function renderSettings(){
   const el = document.getElementById("page-settings");
