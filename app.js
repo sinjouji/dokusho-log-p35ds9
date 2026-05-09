@@ -53,11 +53,8 @@ let enableMemo = localStorage.getItem("enableMemo");
 //テーマカラーの設定
 let themeColor = localStorage.getItem("themeColor") || "#f5f5f5";
  document.body.style.background = themeColor;
-
-let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
-let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
-let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
-let currentMonth = new Date();
+ 
+ let currentMonth = new Date();
 
 //====年間目標設定
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
@@ -68,22 +65,6 @@ enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破
 //グラフ年間移動用
 let statsYear = new Date().getFullYear();
 
-// UI設定（保存＋初期値）
-let uiSettings = {
-  recent: true,
-  summary: true,
-  tags: true,
-  type: true,
-  ...JSON.parse(localStorage.getItem("uiSettings") || "{}")
-};
-
-let uiMode = localStorage.getItem("uiMode") || "on";
-// "on" or "off"
-let recentViewMode = localStorage.getItem("recentViewMode") || "card";
-// "card" or "spine"
-
-
-
 
 
 
@@ -92,23 +73,6 @@ let recentViewMode = localStorage.getItem("recentViewMode") || "card";
 
 //🟩②====データ取得・保存（load・save）====
 //基本的にGet系はここ、go
-
-
-
-
-//最近読んだ3冊====
-function getRecentBooks(limit=3){
-  return [...books]
-    .filter(b => b.dates && b.dates.length)
-    .sort((a,b)=>{
-      const da = a.dates[a.dates.length-1];
-      const db = b.dates[b.dates.length-1];
-      return db.localeCompare(da);
-    })
-    .slice(0, limit);
-}
-//========
-
 
 // ページ切替
 function go(page){
@@ -158,6 +122,13 @@ async function saveData(){
 //================================
 
 
+
+
+
+
+
+//getエリア=======================
+
 //====最新読了日を取得するやつ
 function getLatestReadDate(book){
 
@@ -169,17 +140,6 @@ function getLatestReadDate(book){
 }
 //=================
 
-//====日付の空白安全対策
-function toDateNum(book){
-
-  const d = getLatestReadDate(book);
-
-  return d
-    ? new Date(d).getTime()
-    : 0;
-}
-//==================
-
 
 //タグ色=====
 function getTagColor(tagId){
@@ -187,6 +147,7 @@ function getTagColor(tagId){
   return t?.color || "#999";
 }
 //========
+
 
 //背表紙（単色）
 function getBookColor(book){
@@ -198,11 +159,6 @@ function getBookColor(book){
 //========
 
 
-//文字色対策
-function getTextColor(bg){
-  return "#fff"; // とりあえず白固定でもOK
-}
-//========
 
 //====常に正しい本を取得
 function getBookById(id){
@@ -210,66 +166,6 @@ function getBookById(id){
 }
 //========
 
-
-//========
-function getFavLabel(val){
-	if(val >= 4) return "👑";
-	return "★".repeat(val || 0);
-	}
-//========
-
-
-
-//ラベル表示====
-function getViewLabel(){
-  return {
-    card:"カード",
-    shelf:"本棚",
-    "shelf-series":"シリーズ"
-  }[viewMode];
-}
-//========
-
-//========
-function getColorLabel(){
-  return {
-    single:"単色",
-    gradient:"グラデ",
-    stripe:"目印"
-  }[colorMode];
-}
-//========
-
-//========
-function getSortLabel(){
-  return {
-    title:"名前",
-    fav:"評価",
-    date:"日付"
-  }[sortKey];
-}
-//========
-
-//========
-function getRecentViewLabel(){
-  return {
-    card:"カード",
-    spine:"背表紙"
-  }[recentViewMode];
-}
-//========
-
-
-//読書状態ステータス
-function getReadStatus(book){
-	if(book.type === "wish") return "ウィッシュ";
-
-  const count = book.dates?.length || 0;
-  if(count === 0) return "🔖未読";
-  if(count === 1) return "✔️読了";
-  return `🔂再読 ${count}回`;
-}
-//========
 
 
 //========
@@ -318,35 +214,7 @@ function getYearReadCount(year){
 }
 //========
 
-//読了回数バッジ
-function createReadBadge(book){
-  const count = book.dates?.length || 0;
 
-  const span = document.createElement('span');
-
-  // 共通スタイル
-  span.style.padding = "2px 8px";
-  span.style.fontSize = "12px";
-  span.style.borderRadius = "999px";
-  span.style.marginLeft = "6px";
-
-  if(count === 0){
-    span.textContent = "🔖未読";
-    span.style.background = "#eee";
-    span.style.color = "#666";
-  } else if(count === 1){
-    span.textContent = "✔️読了";
-    span.style.background = "#4a8d61";
-    span.style.color = "#fff";
-  } else {
-    span.textContent = `再読 ${count}回`;
-    span.style.background = "#4c808d";
-    span.style.color = "#fff";
-  }
-
-  return span;
-}
-//==========
 
 //========カレンダー
 function getReadingMap(){
@@ -365,47 +233,7 @@ function getReadingMap(){
 
 
 
-
-
-//🟨③====ロジック、関数====
-//並び替え・フィルタ、計算、sortgetLatestReadDate、データをいじるだけ
-
-//完全UIOFFフラグ====
-function isUIAllOff(){
-  return !uiSettings.recent &&
-         !uiSettings.summary &&
-         !uiSettings.tags &&
-         !uiSettings.type;
-}
-//========
-
-//ボタンエフェクト
-function pressEffect(el){
-	el.style.transform = "scale(0.95)";
-	setTimeout(()=>{
-		el.style.transform = "scale(1)";
-	},100);
-}
-//========
-
-
-//====評価切替えボタン
-function setFav(fav){
-
-  currentDetailFav = fav;
-
-  const buttons =
-    document.querySelectorAll(".fav-btn");
-
-  buttons.forEach(btn=>{
-    btn.classList.remove("active");
-  });
-
-  document
-    .getElementById(`fav-${fav}`)
-    ?.classList.add("active");
-}
-//=================
+//====便利機能
 
 //====評価1ボタン切替え
 function cycleFav(id){
@@ -426,6 +254,13 @@ function cycleFav(id){
   renderHome();
 }
 //===============
+
+
+
+
+//=================================
+
+//====changeエリア
 
 
 //カレンダー月送り
@@ -466,6 +301,47 @@ function changeGoal(val){
   renderHome(); // 即反映
 }
 //========
+
+//====タイプフィルター切り替え
+function changeTypeFilter(){
+
+  typeFilter =
+    document.getElementById(
+      "type-filter"
+    ).value;
+
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
+
+  renderHome();
+}
+//================
+
+
+
+//====本棚のビューモード切替え
+function changeViewMode(mode){
+
+  viewMode = mode;
+
+  localStorage.setItem(
+    "viewMode",
+    viewMode
+  );
+
+  renderBookList();
+}
+//================
+
+
+
+//==============================change
+
+
+//====createエリア
+
 
 //本生成の関数====
 function createBookSpine(b){
@@ -567,20 +443,12 @@ function createBookSpine(b){
 //========
 
 
-//====メモのオンオフ
-function toggleMemo(){
 
-  enableMemo = !enableMemo;
 
-  localStorage.setItem(
-    "enableMemo",
-    enableMemo
-  );
+//==========================
 
-  renderSettings();
-  renderHome();
-}
-//==============
+
+//====applyエリア
 
 
 //====背表紙のカラー設定
@@ -622,6 +490,78 @@ function applySpineColor(d, b){
 }
 //==================
 
+
+
+
+
+
+
+
+
+
+
+//====toggleエリア
+
+
+//====メモのオンオフ
+function toggleMemo(){
+
+  enableMemo = !enableMemo;
+
+  localStorage.setItem(
+    "enableMemo",
+    enableMemo
+  );
+
+  renderSettings();
+  renderHome();
+}
+//==============
+
+
+
+//タグ収納トグル
+function setupTagToggle(){
+  const btn = document.getElementById('toggle-tags');
+  const el = document.getElementById('tag-filter');
+  if(!btn || !el) return;
+
+  function update(){
+    el.style.display = showTags ? "flex" : "none";
+  }
+
+  update();
+
+  btn.onclick = ()=>{
+    showTags = !showTags;
+    localStorage.setItem("showTags", showTags);
+    update();
+  };
+}
+//========
+
+
+
+//トグル動作==
+function toggleTagFilter(){
+
+  showTagFilter = !showTagFilter;
+  
+  localStorage.setItem(
+    "showTagFilter",
+    showTagFilter
+  );
+
+  renderHome();
+}
+//========
+
+//=========================toggle
+
+
+
+
+//====sortエリア
 
 
 //=====ソートここから
@@ -675,6 +615,11 @@ function sortBooks(list){
 //========
 
 
+//==========================
+
+
+
+//====他
 
 
 //========
@@ -694,8 +639,7 @@ function markAsRead(book){
 }
 //========
 
-
-
+//==========================
 
 
 
@@ -705,25 +649,7 @@ function markAsRead(book){
 //ページ毎にまとめてOKなエリア
 
 
-//ボタンの見た目チップ化
-function styleChip(btn, active=false){
-  btn.style.display = "inline-block";
-  btn.style.padding = "4px 10px";
-  btn.style.margin = "4px 4px 4px 0";
-  btn.style.fontSize = "13px";
-  btn.style.borderRadius = "999px";
-  btn.style.cursor = "pointer";
-  btn.style.border = "1px solid #333";
-
-  if(active){
-    btn.style.background = "#333";
-    btn.style.color = "#fff";
-  } else {
-    btn.style.background = "transparent";
-    btn.style.color = "#333";
-  }
-}
-//========
+//====renderエリア
 
 //====
 function renderViewMode(targetId = "view-mode"){
@@ -760,7 +686,6 @@ function renderViewMode(targetId = "view-mode"){
   });
 }
 //========
-
 
 // ⬛︎ホーム（本のリスト表示）HOME====
 //ホーム画面の「骨組みだけ」にする！
@@ -894,26 +819,6 @@ function renderSearchArea(){
 }
 //==================
 
-
-
-//====タイプフィルター切り替え
-function changeTypeFilter(){
-
-  typeFilter =
-    document.getElementById(
-      "type-filter"
-    ).value;
-
-  localStorage.setItem(
-    "typeFilter",
-    typeFilter
-  );
-
-  renderHome();
-}
-//================
-
-
 //====サジェスト
 //====検索候補のみ表示させる役
 function renderSuggest(){
@@ -950,20 +855,6 @@ function renderSuggest(){
 }
 
 //========
-
-//====キーワード検索
-function handleSearchInput(){
-
-  searchKeyword =
-    (document.getElementById("search")?.value || "")
-    .toLowerCase();
-
-  renderSuggest();
-  renderBookList();
-}
-//========
-
-
 
 
 
@@ -1011,7 +902,6 @@ function renderBookList(){
     renderShelfView(main, sorted);
     return;
   }
-  
   
 }
 //========
@@ -1153,268 +1043,6 @@ function renderMonthlyGraph(main, year){
 //==================
 
 
-
-//本棚背表紙モード
-function renderShelf(el, list){
-  el.innerHTML = "";
-
-  const wrap = document.createElement("div");
-  wrap.style.display = "flex";
-  wrap.style.flexWrap = "wrap";
-  wrap.style.alignItems = "flex-end";
-
-  list.forEach(b=>{
-    const spine = createBookSpine(b);
-    wrap.appendChild(spine);
-  });
-
-  el.appendChild(wrap);
-}
-//========
-
-//背表紙カラーモード変更描画
-function renderColorMode(targetId = "color-mode"){
-  const el = document.getElementById(targetId);
-  if(!el) return;
-
-  el.innerHTML = "";
-
-  const modes = [
-    { id: "single", label: "単色" },
-    { id: "gradient", label: "グラデ" },
-    { id: "stripe", label: "目印" }
-  ];
-
-  modes.forEach(m=>{
-    const btn = document.createElement('button');
-    btn.textContent = m.label;
-    btn.className = "setting-btn";
-
-    if(m.id === colorMode){
-      btn.classList.add("active");
-    }
-
-    btn.onclick = ()=>{
-      colorMode = m.id;
-      localStorage.setItem("colorMode", colorMode);
-
-      renderHome();              // 
-      renderColorMode(targetId);
-    };
-
-    el.appendChild(btn);
-  });
-}
-//========
-
-
-//シリーズで表示をまとめる
-function renderSeriesShelf(el, sorted){
-  el.innerHTML = "";
-
-  series.forEach(s=>{
-    const relatedBooks = sorted.filter(b =>
-      Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-    );
-
-    if(!relatedBooks.length) return;
-
-    const title = document.createElement('div');
-    const isOpen = openedSeries[s.id];
-
-    title.textContent =
-      `${isOpen ? "▽" : "▶︎"} ${s.name} (${relatedBooks.length})`;
-
-    title.style.cursor = "pointer";
-
-    title.onclick = ()=>{
-      openedSeries[s.id] = !openedSeries[s.id];
-      renderHome();
-    };
-
-    el.appendChild(title);
-
-    if(isOpen){
-      const box = document.createElement('div');
-      renderShelf(box, relatedBooks);
-      el.appendChild(box);
-    }
-  });
-}
-//========
-
-
-//小カードで最近読んだ本====
-function renderRecentBooks(){
-  const el = document.getElementById("recent-books");
-  if(!el) return;
-
-  // 日付でソート（新しい順）
-  const sorted = [...books]
-    .filter(b => b.dates?.length)
-    .sort((a,b)=>{
-      return getLatestReadDate(b).localeCompare(getLatestReadDate(a));
-    })
-    .slice(0,10);
-
-  el.innerHTML = `
-    <div class="section-title">♫最近読んだ本</div>
-    <div class="carousel" id="recent-carousel"></div>
-  `;
-
-  const box = document.getElementById("recent-carousel");
-
-  sorted.forEach(b=>{
-    const d = document.createElement("div");
-    d.className = "carousel-item";
-
-    d.innerHTML = `
-      <div style="font-weight:bold;">${b.title}</div>
-      <div style="font-size:12px;color:#666;">
-        ${getLatestReadDate(b)}
-      </div>
-      <div style="margin-top:4px;">
-        ${getFavLabel(b.fav)}
-      </div>
-    `;
-
-    d.onclick = ()=> openDetail(b);
-    box.appendChild(d);
-  });
-}
-//========
-
-//カルーセル表示用の本棚
-function renderShelfCarousel(el, sorted){
-
-  el.innerHTML = "";
-
-  const wrap = document.createElement("div");
-  wrap.className = "shelf-scroll";
-
-  sorted.forEach(b=>{
-    const spine = createBookSpine(b);
-    wrap.appendChild(spine);
-  });
-
-  el.appendChild(wrap);
-}
-//========
-
-//========
-function renderRecent(){
-  const el = document.getElementById("home-recent");
-  if(!el) return;
-
-  const list = getRecentBooks();
-
-  if(!list.length){
-    el.innerHTML = `<div style="color:#999;">まだ読了なし</div>`;
-    return;
-  }
-
-  el.innerHTML = `
-    <div class="settings-item" onclick="openSettingSelect('recent')">
-  最近の本表示
-  <div class="settings-value">${recentViewMode === "card" ? "カード" : "背表紙"}</div>
-</div>
-  `;
-
-  list.forEach(b=>{
-    const d = document.createElement("div");
-    d.className = "card";
-
-    d.innerHTML = `
-      <div class="title">${b.title}</div>
-      <div class="meta">${getLatestReadDate(b)}</div>
-    `;
-
-    d.onclick = ()=> openDetail(b);
-    el.appendChild(d);
-  });
-}
-//========
-
-//今年：今月◯冊の表示
-function renderSummary(main){
-  const el = document.getElementById("home-summary");
-  if(!el) return;
-
-  const month = getMonthlyCount();
-  const year = getYearlyCount();
-
-  let html = `
-    <div class="summary-box">
-      <div class="summary-item">
-        <div class="num">${year}</div>
-        <div class="label">今年</div>
-      </div>
-
-      <div class="summary-item">
-        <div class="num">${month}</div>
-        <div class="label">今月</div>
-      </div>
-    </div>
-  `;
-
-  // 🎯 年間目標
-  if(enableGoal){
-    const rate = yearlyGoal
-      ? Math.min(100, Math.round(year / yearlyGoal * 100))
-      : 0;
-
-    const color =
-      rate < 30 ? "#e74c3c" :
-      rate < 70 ? "#f1c40f" :
-                  "#2ecc71";
-
-    html += `
-      <div class="goal-box">
-        ★⭐︎★ ${year} / ${yearlyGoal}冊 (${rate}%)
-        <div class="goal-bar">
-          <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
-        </div>
-      </div>
-    `;
-  }
-
-  el.innerHTML = html;
-}
-//========
-
-
-//========タイプフィルター（ウィッシュリスト）
-function filterBooks(list){
-
-  let arr = [...list];
-
-  // タイプ絞り込み
-  if(typeFilter !== "all"){
-
-    arr = arr.filter(book => {
-
-      if(typeFilter === "normal"){
-        return book.type !== "wish";
-      }
-
-      if(typeFilter === "wish"){
-        return book.type === "wish";
-      }
-
-      return true;
-    });
-  }
-
-  return arr;
-}
-//========
-
-
-
-
-
-
-
 //====タグフィルター描画
 function renderTagFilter(){
 
@@ -1466,55 +1094,6 @@ function renderTagFilter(){
 }
 //====================
 
-
-
-//====ソートUI
-function renderSort(targetId = "sort-mode"){
-  const el = document.getElementById(targetId);
-  if(!el) return;
-
-  el.innerHTML = "";
-
-  const modes = [
-    { id: "title", label: "名前" },
-    { id: "fav", label: "評価" },
-    { id: "date", label: "日付" }
-  ];
-
-  modes.forEach(m=>{
-    const btn = document.createElement('button');
-
-    let arrow = "";
-    if(m.id === sortKey){
-      arrow = sortOrder === "asc" ? " ↑" : " ↓";
-    }
-
-    btn.textContent = m.label + arrow;
-    btn.className = "setting-btn";
-
-    if(m.id === sortKey){
-      btn.classList.add("active");
-    }
-
-    btn.onclick = ()=>{
-      if(sortKey === m.id){
-        sortOrder = (sortOrder === "asc") ? "desc" : "asc";
-      } else {
-        sortKey = m.id;
-        sortOrder = "asc";
-      }
-
-      localStorage.setItem("sortKey", sortKey);
-      localStorage.setItem("sortOrder", sortOrder);
-
-      renderHome();          // ！
-      renderSort(targetId);
-    };
-
-    el.appendChild(btn);
-  });
-}
-//========
 
 //====カレンダー、統計ページの表示
 function renderStats(){
@@ -1712,231 +1291,6 @@ function renderMiniCalendar(main){
 //========================
 
 
-//====カレンダー====
-function renderCalendar(){
-
-  const el = document.getElementById("page-calendar");
-  if(!el) return;
-
-  const now = currentMonth;
-  const year = now.getFullYear();
-  const month = now.getMonth();
-
-  el.innerHTML = `
-  <div style="display:flex;justify-content:space-between;align-items:center;">
-    <button onclick="changeMonth(-1)">←</button>
-    <h3>${year}年 ${month+1}月</h3>
-    <button onclick="changeMonth(1)">→</button>
-  </div>
-`;
-
-  const map = {};
-
-  books.forEach(b=>{
-    (b.dates || []).forEach(d=>{
-      map[d] = map[d] || [];
-      map[d].push(b);
-    });
-  });
-
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month+1, 0).getDate();
-  const days = ["日","月","火","水","木","金","土"];
-
-  const grid = document.createElement("div");
-  grid.style.display = "grid";
-  grid.style.gridTemplateColumns = "repeat(7,1fr)";
-  grid.style.gap = "4px";
-  
-  grid.style.transition = "opacity 0.2s";
-  grid.style.opacity = "0";
-  
-  setTimeout(()=>{
-    grid.style.opacity ="1";
-  },10);
-
-    days.forEach((d,i)=>{
-    const head = document.createElement("div");
-    head.textContent = d;
-    head.style.fontSize = "12px";
-    head.style.textAlign = "center";
-    head.style.fontWeight = "bold";
-    
-    //土日色
-    if(i === 0) head.style.color = "#e74c3c"; //日曜
-    if(i === 6) head.style.color = "#3498db"; //土曜
-    
-    grid.appendChild(head);
-    });
-
-  // 空白
-  for(let i=0;i<firstDay;i++){
-    grid.appendChild(document.createElement("div"));
-  }
-
-  // 日付セル
-  for(let d=1; d<=lastDate; d++){
-    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-
-    const cell = document.createElement("div");
-    cell.style.border = "1px solid #ccc";
-    cell.style.minHeight = "60px";
-    cell.style.padding = "4px";
-    cell.style.cursor = "pointer";
-    cell.style.borderRadius = "8px";
-    cell.style.fontWeight = "bold";
-
-    const dayOfWeek = new Date(year, month, d).getDay();
-    
-    if(dayOfWeek === 0){
-      cell.style.backgroundColor = "rgba(231,76,60,0.1)";
-    }
-    if(dayOfWeek === 6){
-      cell.style.backgroundColor = "rgba(52,152,219,0.1)";
-    }
-
-    const count = map[dateStr]?.length || 0;
-
-    //ヒートマップ
-    let textColor = "#333"
-    
-    	if(count){
- 	 const alpha = Math.min(count / 5, 1); //最大5冊でMAX色
- 	 const color = getHeatColor(count);
- 	 if(color){
-  	 
-		cell.style.background = color;
-  		cell.style.color = count >= 3 ? "#fff" : "#333";
-  		//textColor = alpha > 0.4 ? "#fff" : "#333";
-	  }}
-
-    
-	//今日を強調
-	const today = new Date().toISOString().slice(0,10);
-	if(dateStr === today){
-  	  cell.style.border = "2px solid #ac4f02";
-	}
-
-    cell.innerHTML = `
-      <div style="font-size:12px;">${d}</div>
-      <div style="font-size:12px;color:${textColor};">
-        ${count ? count + "冊" : ""}
-      </div>
-    `;
-
-    cell.onmouseenter = ()=>{
-      cell.style.transform = "scale(1.05)";
-    };
-    
-    cell.onmouseleave = ()=>{
-      cell.style.transform = "scale(1)";
-    };
-
-    cell.onclick = ()=>{
-      if(!map[dateStr]) return;
-      openDayModal(map[dateStr]);
-    };
-    
-    // ここが超重要
-    grid.appendChild(cell);
-  }
-
-  el.appendChild(grid);
-}
-//========
-
-
-
-
-// シリーズ一覧
-function renderSeries(){
-  const list = document.getElementById('page-series');
-  list.innerHTML = "";
-
-	series.forEach(s=>{
-			const d = document.createElement('div');
-			d.className = "card";
-			d.textContent = s.name;
-
-    d.onclick = ()=> openSeries(s);
-    list.appendChild(d);
-  });
-}
-//========
-
-
-//========
-function renderList(el, sorted){
-  el.innerHTML = "";
-
-  const listWrap = document.createElement("div");
-  listWrap.className = "list-grid";
-
-  sorted.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "list-card";
-
-    d.innerHTML = `
-      <div class="title">${b.title}</div>
-      <div>${getLatestReadDate(b)}</div>
-      <div>${getFavLabel(b.fav)}</div>
-    `;
-
-    d.onclick = ()=> openDetail(b);
-
-    listWrap.appendChild(d);
-  });
-
-  el.appendChild(listWrap);
-}
-//========
-
-//表示制御====
-function applyUIVisibility(page){
-  const master = (uiMode === "on");
-
-  const search = (document.getElementById("search")?.value || "").toLowerCase();
-  const summary = document.getElementById("home-summary");
-  const tags = document.getElementById("tag-filter");
-  const type = document.getElementById("type-filter");
-  const recent = document.getElementById("recent-books");
-
-  // 🔍 検索
-  if(search){
-    if(master && ["home","series","characters","calendar"].includes(page)){
-      search.style.display = "block";
-    } else {
-      search.style.display = "none";
-    }
-  }
-
-  const isHome = (page === "home" && master);
-
-  if(summary) summary.style.display = (isHome && uiSettings.summary) ? "block" : "none";
-  if(tags) tags.style.display = (isHome && uiSettings.tags) ? "flex" : "none";
-  if(type) type.style.display = (isHome && uiSettings.type) ? "flex" : "none";
-  if(recent) recent.style.display = (isHome && uiSettings.recent) ? "block" : "none";
-}
-//========
-
-
-
-//====キャラクターページ====
-function renderCharacters(){
-  const el = document.getElementById('page-characters');
-  el.innerHTML = "";
-
-  characters.forEach(c=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = c.name;
-
-    d.onclick = ()=> openCharacter(c);
-
-    el.appendChild(d);
-  });
-}
-//===========
 
 //🔧====設定ページ====
 function renderSettings(){
@@ -2042,194 +1396,22 @@ function renderSettings(){
 //==========
 
 
+//============================render
 
-//UIの表示制御ベース
-function applyUIVisibility(page){
-  const show = (uiMode === "on");
 
-  // 要素取得
-  const search = (document.getElementById("search")?.value || "").toLowerCase();
-  const summary = document.getElementById("home-summary");
-  const tags = document.getElementById("tag-filter");
-  const type = document.getElementById("type-filter");
-  const recent = document.getElementById("recent-books");
 
-  // 検索バー
-  if(search){
-    if(show && ["home","series","characters","calendar"].includes(page)){
-      search.style.display = "block";
-    } else {
-      search.style.display = "none";
-    }
-  }
+//====
 
-  //  ホーム限定UI
-  const homeOnly = (show && page === "home");
 
-  if(summary) summary.style.display = homeOnly ? "block" : "none";
-  if(tags) tags.style.display = homeOnly ? "flex" : "none";
-  if(type) type.style.display = homeOnly ? "flex" : "none";
-  if(recent) recent.style.display = homeOnly ? "block" : "none";
-}
-//========
+//====キーワード検索
+function handleSearchInput(){
 
-//========
-function toggleUIMode(e){
-  e.stopPropagation();
+  searchKeyword =
+    (document.getElementById("search")?.value || "")
+    .toLowerCase();
 
-  uiMode = (uiMode === "on") ? "off" : "on";
-  localStorage.setItem("uiMode", uiMode);
-
-  renderSettings();
-  go('home'); // 再適用
-}
-//↑↓同じかも↑↓========
-function toggleUI(e){
-  e.stopPropagation();
-
-  uiMode = (uiMode === "on") ? "off" : "on";
-  localStorage.setItem("uiMode", uiMode);
-
-  renderSettings();
-  renderHome();
-  applyUIVisibility("home"); // ←即反映
-}
-//========
-
-//========
-function toggleUIItem(e, key){
-  e.stopPropagation();
-
-  uiSettings[key] = !uiSettings[key];
-  localStorage.setItem("uiSettings", JSON.stringify(uiSettings));
-
-  renderSettings();
-  updateUIVisibility("home"); // ←追加
-  renderHome();
-}
-//========
-
-//「次の画面」っぽいやつ====
-function openSettingSelect(type){
-  const el = document.getElementById("page-settings");
-
-  let list = [];
-
-  if(type === "view"){
-    list = [
-      {id:"card", label:"カード"},
-      {id:"shelf", label:"本棚"},
-    ];
-  }
-
-  if(type === "color"){
-    list = [
-      {id:"single", label:"単色"},
-      {id:"gradient", label:"グラデ"},
-      {id:"stripe", label:"目印"}
-    ];
-  }
-
-  if(type === "sort"){
-    list = [
-      {id:"title", label:"名前"},
-      {id:"fav", label:"評価"},
-      {id:"date", label:"日付"}
-    ];
-  }
-
-  if(type === "recent"){
-    list = [
-      {id:"card", label:"カード"},
-      {id:"spine", label:"背表紙"}
-    ];
-  }
-
-  el.innerHTML = `
-    <h2 style="padding:12px;">選択</h2>
-    <div class="settings-list" id="select-list"></div>
-    <button onclick="renderSettings()" style="margin:16px;">← 戻る</button>
-  `;
-
-  const listEl = document.getElementById("select-list");
-  listEl.innerHTML = "";
-
-  list.forEach(item=>{
-    const d = document.createElement("div");
-    d.className = "settings-item";
-
-    const selected =
-      (type==="view" && item.id===viewMode) ||
-      (type==="color" && item.id===colorMode) ||
-      (type==="sort" && item.id===sortKey) ||
-      (type==="recent" && item.id===recentViewMode);
-
-    d.innerHTML = `
-      ${item.label}
-      <div>${selected ? "✔️" : ""}</div>
-    `;
-
-    d.onclick = ()=>{
-      if(type==="view") viewMode = item.id;
-      if(type==="color") colorMode = item.id;
-      if(type==="sort") sortKey = item.id;
-      if(type==="recent") recentViewMode = item.id;
-
-      localStorage.setItem("viewMode", viewMode);
-      localStorage.setItem("colorMode", colorMode);
-      localStorage.setItem("sortKey", sortKey);
-      localStorage.setItem("recentViewMode", recentViewMode);
-
-      renderSettings();
-      renderHome();
-    };
-
-    listEl.appendChild(d);
-  });
-}
-//========
-
-//========
-function updateUIVisibility(page){
-
-  const showUI = uiSettings; // 略
-
-  const search = (document.getElementById("topbar")?.value || "").toLowerCase();
-  const summary = document.getElementById("home-summary");
-  const recent = document.getElementById("recent-books");
-  const tags = document.getElementById("tag-filter");
-  const type = document.getElementById("type-filter");
-
-  // ● 全OFF
-  if(!showUI.recent && !showUI.summary && !showUI.tags && !showUI.type){
-    if(search) search.style.display = "none";
-    if(summary) summary.style.display = "none";
-    if(recent) recent.style.display = "none";
-    if(tags) tags.style.display = "none";
-    if(type) type.style.display = "none";
-    return;
-  }
-
-  // ● 検索バー
-  const showSearchPages = ["home","calendar","series","characters"];
-  if(search){
-    search.style.display =
-      showSearchPages.includes(page) ? "flex" : "none";
-  }
-
-  // ● ホームだけ
-  if(page === "home"){
-    if(summary) summary.style.display = showUI.summary ? "block" : "none";
-    if(recent) recent.style.display = showUI.recent ? "block" : "none";
-    if(tags) tags.style.display = showUI.tags ? "flex" : "none";
-    if(type) type.style.display = showUI.type ? "flex" : "none";
-  } else {
-    // 他ページは全部消す
-    if(summary) summary.style.display = "none";
-    if(recent) recent.style.display = "none";
-    if(tags) tags.style.display = "none";
-    if(type) type.style.display = "none";
-  }
+  renderSuggest();
+  renderBookList();
 }
 //========
 
@@ -2237,12 +1419,46 @@ function updateUIVisibility(page){
 
 
 
+//=======================
 
 
-//⬛︎⑤====イベント・操作系====
+
+
+
+//====filterエリア
+
+//========タイプフィルター（ウィッシュリスト）
+function filterBooks(list){
+
+  let arr = [...list];
+
+  // タイプ絞り込み
+  if(typeFilter !== "all"){
+
+    arr = arr.filter(book => {
+
+      if(typeFilter === "normal"){
+        return book.type !== "wish";
+      }
+
+      if(typeFilter === "wish"){
+        return book.type === "wish";
+      }
+
+      return true;
+    });
+  }
+
+  return arr;
+}
+//========
+
+
+
+//🟥⑤====イベント・操作系====
 //ユーザーの操作・openDetail、Toggle系、set系
 
-//=============モーダル置き場
+//====モーダルエリア
 
 //⬛︎本の追加モーダル==========
 function openAddBookModal(){
@@ -2303,30 +1519,202 @@ function closeModal(){
 //========================
 
 
-//====ソートモードの切替え
-function changeSortMode(){
 
-  sortMode =
-    document.getElementById("sort-select").value;
+//====モーダル版日付削除処理
+async function removeReadDate(bookId,date){
 
-  renderBookList();
+  const book =
+    books.find(b=>b.id==bookId);
+
+  if(!book) return;
+
+  book.dates =
+    (book.dates || [])
+      .filter(d=>d !== date);
+
+  if(book.dates.length === 0){
+    book.type = "wish";
+  }
+
+  await saveData();
+
+  closeModal();
+  openBookDetailModal(book);
 }
-//================
+//======================
 
 
-//====本棚のビューモード切替え
-function changeViewMode(mode){
 
-  viewMode = mode;
 
-  localStorage.setItem(
-    "viewMode",
-    viewMode
-  );
 
-  renderBookList();
+//========================modal
+
+
+
+
+//====openエリア=====
+
+//====本詳細モーダル========
+//====本詳細モーダル====================
+function openBookDetailModal(book){
+
+  currentDetailFav = book.fav || 0;
+
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "modal";
+
+  modal.innerHTML = `
+    <div class="modal-box detail-modal">
+
+      <button class="close-btn" onclick="closeModal()">
+        ×
+      </button>
+
+      <input id="detail-title" class="detail-title"
+        value="${book.title || ""}">
+
+     <div class="detail-fav-wrap">
+
+       <button
+         class="fav-cycle-btn"
+         onclick="cycleFav('${book.id}')">評価：
+           ${
+              ["0","★","★★","★★★","👑"][book.fav || 0]
+            }
+       </button>
+
+     </div>
+
+      <div class="detail-row">
+        状態：
+        ${
+          book.type === "wish"
+          ? "❤️ウィッシュ"
+          : "📚本棚"
+        }：${book.dates?.length || 0}回読了
+      </div>
+
+     <div class="detail-row">
+  読了日：
+
+  ${
+    book.dates?.length
+    ? [...book.dates]
+        .sort((a,b)=>b.localeCompare(a))
+        .map(date=>`
+
+          <div class="date-tag">
+
+            ${date}
+
+            <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${date}')"
+            >
+              ✕
+            </button>
+
+          </div>
+
+        `).join("")
+    : "未読"
+  }
+
+</div>
+      
+      <div class="detail-date-add">
+      <input type="date" id="readDate-${book.id}">
+      <button onclick="addReadDate('${book.id}')">
+        ＋読了日追加
+      </button>
+      </div>
+
+      <div class="detail-tags">
+        ${(book.tagIds || []).map(id=>{
+
+          const tag =
+            tagMaster.find(t=>t.id===id);
+
+          return tag
+            ? `<span class="tag">${tag.name}</span>`
+            : "";
+
+        }).join("")}
+      </div>
+
+      ${enableMemo ? `
+      <textarea id="editMemo">
+        ${book.memo || ""}
+      </textarea>
+      ` : ""}
+
+      <button onclick="saveDetail('${book.id}')">
+        保存
+      </button>
+
+      <button class="danger-btn"
+        onclick="deleteBook('${book.id}')">
+        🗑 削除
+      </button>
+       
+    </div>
+  `;
+
+  document.body.appendChild(modal);
 }
-//================
+//=================================
+
+
+
+//モーダル設定====
+function openDayModal(dateStr, list){
+  const m = document.createElement("div");
+  m.style.position = "fixed";
+  m.style.top = 0;
+  m.style.left = 0;
+  m.style.right = 0;
+  m.style.bottom = 0;
+  m.style.background = "rgba(0,0,0,0.5)";
+  m.style.display = "flex";
+  m.style.alignItems = "center";
+  m.style.justifyContent = "center";
+
+  const box = document.createElement("div");
+  box.style.background = "#fff";
+  box.style.padding = "20px";
+  box.style.maxHeight = "80%";
+  box.style.overflow = "auto";
+  box.style.borderRadius = "12px";
+  box.style.minWidth = "200px";
+
+  list.forEach(b=>{
+    const d = document.createElement("div");
+    d.style.padding = "6px 0";
+    d.style.borderBottom = "1px solid #eee";
+    
+    d.innerHTML = `
+      <div style="font-weight:bold">${b.title}</div>`;
+
+    d.onclick = ()=>{
+      m.remove();
+      openDetail(b);
+    };
+    
+    box.appendChild(d);
+  });
+
+  m.appendChild(box);
+  m.onclick = ()=> m.remove();
+  box.onclick = (e)=>{
+    e.stopPropagation();
+  };
+
+  document.body.appendChild(m);
+}
+//========
+
+
 
 
 // 本詳細
@@ -2485,148 +1873,6 @@ typeBtn.onclick = ()=>{
 //===============
 
 
-//====本詳細モーダル========
-//====本詳細モーダル====================
-function openBookDetailModal(book){
-
-  currentDetailFav = book.fav || 0;
-
-  const modal = document.createElement("div");
-  modal.className = "modal-bg";
-  modal.id = "modal";
-
-  modal.innerHTML = `
-    <div class="modal-box detail-modal">
-
-      <button class="close-btn" onclick="closeModal()">
-        ×
-      </button>
-
-      <input id="detail-title" class="detail-title"
-        value="${book.title || ""}">
-
-     <div class="detail-fav-wrap">
-
-       <button
-         class="fav-cycle-btn"
-         onclick="cycleFav('${book.id}')">評価：
-           ${
-              ["0","★","★★","★★★","👑"][book.fav || 0]
-            }
-       </button>
-
-     </div>
-
-      <div class="detail-row">
-        状態：
-        ${
-          book.type === "wish"
-          ? "❤️ウィッシュ"
-          : "📚本棚"
-        }：${book.dates?.length || 0}回読了
-      </div>
-
-     <div class="detail-row">
-  読了日：
-
-  ${
-    book.dates?.length
-    ? [...book.dates]
-        .sort((a,b)=>b.localeCompare(a))
-        .map(date=>`
-
-          <div class="date-tag">
-
-            ${date}
-
-            <button
-              class="mini-delete-btn"
-              onclick="removeReadDate('${book.id}','${date}')"
-            >
-              ✕
-            </button>
-
-          </div>
-
-        `).join("")
-    : "未読"
-  }
-
-</div>
-      
-      <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}">
-      <button onclick="addReadDate('${book.id}')">
-        ＋読了日追加
-      </button>
-      </div>
-
-      <div class="detail-tags">
-        ${(book.tagIds || []).map(id=>{
-
-          const tag =
-            tagMaster.find(t=>t.id===id);
-
-          return tag
-            ? `<span class="tag">${tag.name}</span>`
-            : "";
-
-        }).join("")}
-      </div>
-
-      ${enableMemo ? `
-      <textarea id="editMemo">
-        ${book.memo || ""}
-      </textarea>
-      ` : ""}
-
-      <button onclick="saveDetail('${book.id}')">
-        保存
-      </button>
-
-      <button class="danger-btn"
-        onclick="deleteBook('${book.id}')">
-        🗑 削除
-      </button>
-       
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-}
-//=================================
-
-
-
-//本詳細でシリーズを開く
-function openSeriesById(id){
-  const s = series.find(x=>x.id === id);
-  if(s) openSeries(s);
-}
-//========
-
-
-//タグ収納トグル
-function setupTagToggle(){
-  const btn = document.getElementById('toggle-tags');
-  const el = document.getElementById('tag-filter');
-  if(!btn || !el) return;
-
-  function update(){
-    el.style.display = showTags ? "flex" : "none";
-  }
-
-  update();
-
-  btn.onclick = ()=>{
-    showTags = !showTags;
-    localStorage.setItem("showTags", showTags);
-    update();
-  };
-}
-//========
-
-
 
 
 //カレンダー開くやつ
@@ -2655,53 +1901,11 @@ function openDetailById(id){
 }
 //========
 
-//モーダル設定====
-function openDayModal(dateStr, list){
-  const m = document.createElement("div");
-  m.style.position = "fixed";
-  m.style.top = 0;
-  m.style.left = 0;
-  m.style.right = 0;
-  m.style.bottom = 0;
-  m.style.background = "rgba(0,0,0,0.5)";
-  m.style.display = "flex";
-  m.style.alignItems = "center";
-  m.style.justifyContent = "center";
 
-  const box = document.createElement("div");
-  box.style.background = "#fff";
-  box.style.padding = "20px";
-  box.style.maxHeight = "80%";
-  box.style.overflow = "auto";
-  box.style.borderRadius = "12px";
-  box.style.minWidth = "200px";
+//========================open
 
-  list.forEach(b=>{
-    const d = document.createElement("div");
-    d.style.padding = "6px 0";
-    d.style.borderBottom = "1px solid #eee";
-    
-    d.innerHTML = `
-      <div style="font-weight:bold">${b.title}</div>`;
 
-    d.onclick = ()=>{
-      m.remove();
-      openDetail(b);
-    };
-    
-    box.appendChild(d);
-  });
-
-  m.appendChild(box);
-  m.onclick = ()=> m.remove();
-  box.onclick = (e)=>{
-    e.stopPropagation();
-  };
-
-  document.body.appendChild(m);
-}
-//========
-
+//====set
 
 
 //本のビュー切り替え
@@ -2721,253 +1925,10 @@ function setTypeFilter(type){
 }
 //========
 
+//==========================set
 
 
-//★★ワンクリックでタイプ切替
-function toggleType(book){
-	book.type = (book.type === "wish") ? "normal" : "wish";
-	saveData();
-	openDetail(book);
-}
-//========
-
-
-
-
-// シリーズ詳細====
-function openSeries(s){
-  go('detail');
-
-  const el = document.getElementById('page-detail');
-
-	//シリーズ→本★完了
-  const relatedBooks = books.filter(b=>{
-    return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
-  });
-  	
- 	 //シリーズ→人物★完了
-  const relatedCharacters = characters.filter(c=>{
-  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-  });
-  
-
-//シリーズ関連：本HTML表示
-  el.innerHTML = `
-    <h2>${s.name}</h2>
-    <div>冊数: ${relatedBooks.length}</div>
-    <hr>
-    <div id="series-books"></div>
-    <button onclick="go('series')">戻る</button>
-  `;
-
-//シリーズ関連：人物HTML表示
-el.innerHTML += `
-  <hr>
-  <div>登場人物:</div>
-  <div id="series-chars"></div>
-`;
-
-//シリーズ関連：本描画
-  const list = document.getElementById('series-books');
-
-//追加
-if(viewMode.startsWith("shelf")){
-	renderShelf(list, relatedBooks);
-} else {
-	relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
-
-    d.onclick = ()=> openDetail(b);
-    list.appendChild(d);
-  });
-  }
-  
-  
-  //シリーズ関連：人物描画
-const list2 = document.getElementById('series-chars');
-
-if(!relatedCharacters.length){
-  list2.innerHTML = '<div style="color:gray;">（人物なし）</div>';
-} else {
-  relatedCharacters.forEach(c=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = c.name;
-
-    d.onclick = ()=> openCharacter(c);
-
-    list2.appendChild(d);
-  });
-}
-}
-//========
-
-//人物詳細====
-function openCharacter(c){
-  go('detail');
-
-  const el = document.getElementById('page-detail');
-
- // 人物→シリーズ★完了
-  const relatedSeries = series.filter(s=>{
-    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-  });
-
-  // 人物→本★完了
-  const relatedBooks = books.filter(b=>{
-    return relatedSeries.some(s =>
-     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-   );
-  });
-
-  // HTML
-  el.innerHTML = `
-    <h2>${c.name}</h2>
-
-    <div style="margin-bottom:10px;">
-      ${c.memo || ""}
-    </div>
-
-   <hr>
-
-    <div>シリーズ:</div>
-    <div id="char-series"></div>
-
-    <button onclick="go('characters')">戻る</button>
-  `;
-
-  // 本セクション追加
-  el.innerHTML += `
-    <hr>
-    <div>登場作品:</div>
-    <div id="char-books"></div>
-  `;
-
-  // シリーズ描画
-  const list = document.getElementById('char-series');
-
-  relatedSeries.forEach(s=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = s.name;
-
-    d.onclick = ()=> openSeries(s);
-
-    list.appendChild(d);
-  });
-
-  // 本描画
-  const list3 = document.getElementById('char-books');
-
-  relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
-
-    d.onclick = ()=> openDetail(b);
-
-    list3.appendChild(d);
-  });
-}//function openCharacter()おわり
-//========
-
-
-//========
-function toggleGoal(e){
-  e.stopPropagation();
-
-  enableGoal = !enableGoal;
-  localStorage.setItem("enableGoal", enableGoal);
-
-  renderSettings();
-  renderHome(); // 即反映
-}
-//========
-
-
-//トグル動作==
-function toggleTagFilter(){
-
-  showTagFilter = !showTagFilter;
-  
-  localStorage.setItem(
-    "showTagFilter",
-    showTagFilter
-  );
-
-  renderHome();
-}
-//========
-
-//====モーダル版日付削除処理
-async function removeReadDate(bookId,date){
-
-  const book =
-    books.find(b=>b.id==bookId);
-
-  if(!book) return;
-
-  book.dates =
-    (book.dates || [])
-      .filter(d=>d !== date);
-
-  if(book.dates.length === 0){
-    book.type = "wish";
-  }
-
-  await saveData();
-
-  closeModal();
-  openBookDetailModal(book);
-}
-//======================
-
-
-
-//====日付削除
-function removeDate(bookId, index){
-  const b = getBookById(bookId);
-  if(!b || !b.dates) return;
-
-  b.dates.splice(index,1);
-
-  saveData();
-  openDetail(b);
-}
-//========
-
-
-//====日付編集
-function editDate(bookId, index){
-  const b = books.find(x=> String(x.id) === String(bookId));
-  if(!b || !b.dates) return;
-
-  const input = document.createElement('input');
-  input.type = "date";
-  input.value = b.dates[index];
-
-  input.onchange = ()=>{
-    if(input.value){
-      b.dates[index] = input.value;
-      
-      saveData();
-      openDetail(b);
-    }
-  };
-
-  input.onblur = ()=>{
-    input.remove();
-  };
-
-  document.body.appendChild(input);
-  input.focus();
-}
-//========
-
-
-
+//=========
 
 
 //====本を追加保存=================
@@ -3178,7 +2139,6 @@ async function deleteBook(id){
 
 
 
-
 //⬛︎⑥====データ読み込み====
 async function loadData(){
 
@@ -3271,3 +2231,6 @@ window.addEventListener("load", ()=>{
   loadData();
   console.log("ここまで読めてる");
 });
+
+
+
