@@ -1342,7 +1342,52 @@ function renderMiniCalendar(main){
 }
 //========================
 
+//今年：今月◯冊の表示
+function renderSummary(main){
+  const el = document.getElementById("home-summary");
+  if(!el) return;
 
+  const month = getMonthlyCount();
+  const year = getYearlyCount();
+
+  let html = `
+    <div class="summary-box">
+      <div class="summary-item">
+        <div class="num">${year}</div>
+        <div class="label">今年</div>
+      </div>
+
+      <div class="summary-item">
+        <div class="num">${month}</div>
+        <div class="label">今月</div>
+      </div>
+    </div>
+  `;
+
+  // 🎯 年間目標
+  if(enableGoal){
+    const rate = yearlyGoal
+      ? Math.min(100, Math.round(year / yearlyGoal * 100))
+      : 0;
+
+    const color =
+      rate < 30 ? "#e74c3c" :
+      rate < 70 ? "#f1c40f" :
+                  "#2ecc71";
+
+    html += `
+      <div class="goal-box">
+        ★⭐︎★ ${year} / ${yearlyGoal}冊 (${rate}%)
+        <div class="goal-bar">
+          <div class="goal-fill" style="width:${rate}%; background:${color}"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  el.innerHTML = html;
+}
+//========
 
 //====ソートUI
 function renderSort(targetId = "sort-mode"){
