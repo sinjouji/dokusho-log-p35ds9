@@ -404,6 +404,18 @@ function changeMonth(diff){
 //=========
 
 
+//カレンダー年送り
+function changeYear(diff){
+
+  currentMonth.setFullYear(
+    currentMonth.getFullYear() + diff
+  );
+
+  renderStats();
+}
+//===========
+
+
 //========
 function changeGoal(val){
   yearlyGoal = Number(val) || 0;
@@ -961,10 +973,7 @@ function renderShelfView(main, books){
 //=================
 
 //====月間読書グラフ表示
-function renderMonthlyGraph(main){
-
-  const year =
-    currentMonth.getFullYear();
+function renderMonthlyGraph(main, year){
 
   const counts =
     getMonthlyCounts(year);
@@ -979,7 +988,6 @@ function renderMonthlyGraph(main){
     const row =
       document.createElement("div");
 
-//    row.style.marginBottom = "8px";
     row.style.display = "flex";
     row.style.alignItems = "center";
     row.style.gap = "8px";
@@ -1378,6 +1386,28 @@ function renderSort(targetId = "sort-mode"){
 //====カレンダー、統計ページの表示
 function renderStats(){
 
+//年移動表示
+main.innerHTML = `
+  <div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+  ">
+    <button onclick="changeYear(-1)">
+      ←
+    </button>
+
+    <h3>
+      ${year}年 統計
+    </h3>
+
+    <button onclick="changeYear(1)">
+      →
+    </button>
+  </div>
+`;
+
   const main =
     document.getElementById("page-stats");
 
@@ -1386,31 +1416,50 @@ function renderStats(){
   main.innerHTML = "";
   
   //年間目標
-  const year = currentMonth.getFullYear();
-  const readCount = getYearReadCount(year);
-  const goalBox = document.createElement("div");
-  
-  goalBox.className = "goal-box";
-  goalBox.innnerHTML = `
-    <div>
-      ${year}年：
-      ${readCount} / ${yearlyGoal}冊
+  const yearlyCount =
+  getYearReadCount(year);
+
+const percent =
+  Math.min(
+    yearlyCount / yearlyGoal * 100,
+    100
+  );
+
+const goal = document.createElement("div");
+
+goal.style.margin = "16px 0";
+
+goal.innerHTML = `
+  <div style="
+    font-size:14px;
+    margin-bottom:6px;
+  ">
+    年間目標：
+    ${yearlyCount} / ${yearlyGoal}冊
+  </div>
+
+  <div style="
+    height:14px;
+    background:#eee;
+    border-radius:999px;
+    overflow:hidden;
+  ">
+
+    <div style="
+      width:${percent}%;
+      height:100%;
+      background:#aacf53;
+    ">
     </div>
-    
-    <div class="goal-bar">
-      <div class="goal-fill"
-        style="
-          width:
-          ${Math.min(readCount/yearlyGoal*100,100)}%;
-        ">
-      </div>
-    </div>
-  `;
-  main.appendChild(goalBox);
+
+  </div>
+`;
+
+main.appendChild(goal);
 
   renderSummary(main);
   renderMiniCalendar(main);
-  renderMonthlyGraph(main);
+  renderMonthlyGraph(main, year);
 
 // renderReadingHistory(main);
 }
