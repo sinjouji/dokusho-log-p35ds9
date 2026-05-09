@@ -1416,21 +1416,16 @@ main.innerHTML = `
     align-items:center;
     margin-bottom:16px;
   ">
-    <button onclick="changeYear(-1)">
-      ←
-    </button>
+    <button onclick="changeYear(-1)">←</button>
 
     <h3>${year}年 統計</h3>
 
-    <button onclick="changeYear(1)">
-      →
-    </button>
+    <button onclick="changeYear(1)">→</button>
   </div>
 `;
   
   //年間目標
-  const yearlyCount =
-  getYearReadCount(year);
+  const yearlyCount = getYearReadCount(year);
 
 const percent =
   Math.min(
@@ -1468,7 +1463,7 @@ goal.innerHTML = `
   </div>
   `;
   if(enableGoal){
-    main.appendChild(goal);
+    main.appendChild(goal, year);
   }
   renderSummary(main);
   renderMiniCalendar(main);
