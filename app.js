@@ -255,7 +255,7 @@ function getMonthlyCounts(year){
   
   books.forEach(b=>{
     (b.dates || []).forEach(d=>{
-      if(d.startsWith(String(year)))
+      if(!d.startsWith(String(year)))
         return;
       const month =
         Number(d.slice(5,7)) - 1;
@@ -1503,7 +1503,7 @@ function renderMiniCalendar(main){
 
     if(dateStr === today){
       cell.style.border =
-        "2px solid #f3275c";
+        "2px solid #e94709";
     }
 
     cell.innerHTML =
