@@ -581,7 +581,6 @@ function sortBooks(list){
   const arr = [...list];
 
   if(sortMode === "title-asc"){
-
     arr.sort((a,b)=>
       (a.title || "")
       .localeCompare(b.title || "","ja")
@@ -595,16 +594,16 @@ function sortBooks(list){
     );
   }
 
-  if(sortMode === "fav-asc"){
-    arr.sort((a,b)=>
-      (a.fav || 0) - (b.fav || 0)
-    );
-  }
-
   if(sortMode === "fav-desc"){
 
     arr.sort((a,b)=>
-      (b.fav || 0) - (a.fav || 0)
+      Number(b.fav || 0) - Number(a.fav || 0)
+    );
+  }
+  
+  if(sortMode === "fav-asc"){
+    arr.sort((a,b)=>
+      Number(a.fav || 0) - Number(b.fav || 0)
     );
   }
 
