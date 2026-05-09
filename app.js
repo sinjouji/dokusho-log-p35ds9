@@ -41,9 +41,10 @@ let currentMonth = new Date();
 
 //====年間目標設定
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
-//if(!yearlyGoal) yearlyGoal = 12; // 初期値（好きに変えてOK）
-//let enableGoal = localStorage.getItem("enableGoal");
-//enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
+
+let enableGoal = localStorage.getItem("enableGoal");
+
+enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
 
 // UI設定（保存＋初期値）
 let uiSettings = {
@@ -1452,10 +1453,10 @@ goal.innerHTML = `
     </div>
 
   </div>
-`;
-
-main.appendChild(goal);
-
+  `;
+  if(enableGoal){
+    main.appendChild(goal);
+  }
   renderSummary(main);
   renderMiniCalendar(main);
   renderMonthlyGraph(main, year);
