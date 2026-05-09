@@ -27,6 +27,9 @@ let sortMode = "date-desc";
 
 let searchKeyword = "";
 
+//ミニカレンダーの月移動用設定
+let miniMonth = new Date();
+
 let currentDetailFav = 0;
 
 let openedSeries = {};
@@ -235,7 +238,7 @@ function getReadStatus(book){
 
 //========
 function getHeatColor(count){
-  if(count === 0) return "";
+  if(count === 0) return "#646364"; //燻銀
   if(count === 1) return "#f8d8c6"; //乙女
   if(count === 2) return "#f7ed92"; //承和
   if(count === 3) return "#fddb5d"; //くちなし
@@ -1310,6 +1313,135 @@ function renderSort(targetId = "sort-mode"){
 }
 //========
 
+//====カレンダー、統計ページの表示
+function renderStats(){
+  renderSummary();
+  renderMiniCalendar();
+//  renderReadingHistory();
+}
+//========================
+
+//====小さめ表示のカレンダー（統計ページ用）
+function renderMiniCalendar(main){
+
+  const now = miniMonth;
+  const year = now.getFullYear();
+  const month = now.getMonth();
+
+  // ===== ヘッダー =====
+
+  const header = document.createElement("div");
+  header.style.display = "flex";
+  header.style.justifyContent = "space-between";
+  header.style.alignItems = "center";
+  header.style.marginBottom = "8px";
+
+  const prev = document.createElement("button");
+  prev.textContent = "←";
+
+  prev.onclick = ()=>{
+    miniMonth.setMonth(miniMonth.getMonth() - 1);
+    renderStats();
+  };
+
+  const title = document.createElement("div");
+  title.textContent =
+    `${year}年 ${month+1}月`;
+
+  const next = document.createElement("button");
+  next.textContent = "→";
+
+  next.onclick = ()=>{
+    miniMonth.setMonth(miniMonth.getMonth() + 1);
+    renderStats();
+  };
+
+  header.append(prev, title, next);
+
+  main.appendChild(header);
+
+  // ===== 読書データ =====
+
+  const map = {};
+
+  books.forEach(b=>{
+    (b.dates || []).forEach(date=>{
+      map[date] = map[date] || [];
+      map[date].push(b);
+    });
+  });
+
+  // ===== カレンダー =====
+
+  const firstDay =
+    new Date(year, month, 1).getDay();
+
+  const lastDate =
+    new Date(year, month + 1, 0).getDate();
+
+  const grid = document.createElement("div");
+
+  grid.className = "mini-calendar";
+
+  // 空白
+  for(let i=0; i<firstDay; i++){
+    grid.appendChild(
+      document.createElement("div")
+    );
+  }
+
+  // 日付
+  for(let d=1; d<=lastDate; d++){
+
+    const dateStr =
+      `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+    const count =
+      map[dateStr]?.length || 0;
+
+    const cell =
+      document.createElement("div");
+
+    cell.className = "mini-day";
+
+    cell.style.background =
+      getHeatColor(count);
+
+    // 今日
+    const today =
+      new Date().toISOString().slice(0,10);
+
+    if(dateStr === today){
+      cell.style.border =
+        "2px solid #ac4f02";
+    }
+
+    cell.innerHTML = `
+      <div>${d}</div>
+      <div>${count || ""}</div>
+    `;
+
+    cell.onclick = ()=>{
+      if(!map[dateStr]) return;
+
+      openDayModal(
+        dateStr,
+        map[dateStr]
+      );
+    };
+
+    grid.appendChild(cell);
+  }
+
+  main.appendChild(grid);
+}
+  
+  
+  
+  main.appendChild(wrap);
+}
+//========================
+
 
 //====カレンダー====
 function renderCalendar(){
@@ -2234,7 +2366,7 @@ function openDetailById(id){
 //========
 
 //モーダル設定====
-function openDayModal(list){
+function openDayModal(dateStr, list){
   const m = document.createElement("div");
   m.style.position = "fixed";
   m.style.top = 0;
@@ -2245,7 +2377,6 @@ function openDayModal(list){
   m.style.display = "flex";
   m.style.alignItems = "center";
   m.style.justifyContent = "center";
-  m.style.borderRadius = "8px";
 
   const box = document.createElement("div");
   box.style.background = "#fff";
@@ -2261,8 +2392,7 @@ function openDayModal(list){
     d.style.borderBottom = "1px solid #eee";
     
     d.innerHTML = `
-      <div style="font-weight:bold">${b.title}</div>
-      <div style="font-size:12px;color:#666">${getReadStatus(b)}</div>`;
+      <div style="font-weight:bold">${b.title}</div>`;
 
     d.onclick = ()=>{
       m.remove();
@@ -2274,6 +2404,9 @@ function openDayModal(list){
 
   m.appendChild(box);
   m.onclick = ()=> m.remove();
+  box.onclick = (e)=>{
+    e.stopPropagation();
+  };
 
   document.body.appendChild(m);
 }
