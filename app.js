@@ -2871,7 +2871,8 @@ function openCharacter(c){
 
     list3.appendChild(d);
   });
-}//function openCharacter()おわり
+}
+//function openCharacter()おわり
 //========
 
 
