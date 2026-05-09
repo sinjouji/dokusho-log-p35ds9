@@ -104,7 +104,7 @@ function go(page){
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
   if(page === 'calendar') renderCalendar();
-  if(page === 'stats') renderMiniCalendar(main);
+  if(page === 'stats') renderStats();
 }
 //========
 
@@ -691,7 +691,7 @@ function renderHome(){
 
   renderSearchArea();
   
-  renderSummary();
+  renderSummary(main);
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
@@ -1142,7 +1142,7 @@ function renderRecent(){
 //========
 
 //今年：今月◯冊の表示
-function renderSummary(){
+function renderSummary(main){
   const el = document.getElementById("home-summary");
   if(!el) return;
 
@@ -1316,9 +1316,18 @@ function renderSort(targetId = "sort-mode"){
 
 //====カレンダー、統計ページの表示
 function renderStats(){
-  renderSummary();
+
+  const main =
+    document.getElementById("page-stats");
+
+  if(!main) return;
+
+  main.innerHTML = "";
+
+  renderSummary(main);
   renderMiniCalendar(main);
-//  renderReadingHistory();
+
+// renderReadingHistory(main);
 }
 //========================
 
