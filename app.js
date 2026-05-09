@@ -817,6 +817,7 @@ function renderSearchArea(){
       ${showTagFilter
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
+      }
       </button>
     </div>
        ${showTagFilter
