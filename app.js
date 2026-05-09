@@ -1439,11 +1439,6 @@ function renderMiniCalendar(main){
 
   main.appendChild(grid);
 }
-  
-  
-  
-  main.appendChild(wrap);
-}
 //========================
 
 
