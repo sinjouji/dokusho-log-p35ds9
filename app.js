@@ -407,7 +407,6 @@ function setFav(fav){
 }
 //=================
 
-
 //====評価1ボタン切替え
 function cycleFav(id){
 
@@ -843,39 +842,24 @@ function renderSearchArea(){
       onclick="changeViewMode('shelf')">
         📚 
       </button>
-  <select
+      <select
   id="type-filter"
-  onchange="changeTypeFilter()"
->
+  onchange="changeTypeFilter()">
 
-  <option
-    value="all"
-    ${typeFilter === "all"
-      ? "selected"
-      : ""}
-  >
+  <option value="all">
     全部
   </option>
 
-  <option
-    value="normal"
-    ${typeFilter === "normal"
-      ? "selected"
-      : ""}
-  >
+  <option value="normal">
     本棚
   </option>
 
-  <option
-    value="wish"
-    ${typeFilter === "wish"
-      ? "selected"
-      : ""}
-  >
+  <option value="wish">
     ウィッシュ
   </option>
 
-</select>
+  </select>
+
       <button class="tag-chip" onclick="toggleTagFilter()">
       ${showTagFilter
         ? "🏷️タグ非表示"
@@ -1012,6 +996,7 @@ function renderBookList(){
     renderShelfView(main, sorted);
     return;
   }
+  
   
 }
 //========
@@ -1385,27 +1370,24 @@ function renderSummary(main){
 
 //========タイプフィルター（ウィッシュリスト）
 function filterBooks(list){
+  const el = document.getElementById("type-filter");
+  if(!el) return;
 
-  let arr = [...list];
-
-  // タイプ絞り込み
   if(typeFilter !== "all"){
 
-    arr = arr.filter(book => {
+  arr = arr.filter(book => {
 
-      if(typeFilter === "normal"){
-        return book.type !== "wish";
-      }
+    if(typeFilter === "normal"){
+      return book.type !== "wish";
+    }
 
-      if(typeFilter === "wish"){
-        return book.type === "wish";
-      }
+    if(typeFilter === "wish"){
+      return book.type === "wish";
+    }
 
-      return true;
-    });
-  }
-
-  return arr;
+    return true;
+  });
+ }
 }
 //========
 
@@ -1937,7 +1919,6 @@ function renderCharacters(){
   });
 }
 //===========
-
 
 //🔧====設定ページ====
 function renderSettings(){
@@ -2871,8 +2852,7 @@ function openCharacter(c){
 
     list3.appendChild(d);
   });
-}
-//function openCharacter()おわり
+}//function openCharacter()おわり
 //========
 
 
@@ -2902,7 +2882,6 @@ function toggleTagFilter(){
   renderHome();
 }
 //========
-
 
 //====モーダル版日付削除処理
 async function removeReadDate(bookId,date){
