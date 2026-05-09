@@ -743,8 +743,14 @@ function renderHome(){
  
     <div id="home-top"></div>
 
-    <div id="home-main"></div>
+   ${showTagFilter
+     ? `<div id="tag-filter"></div>`
+     : ""
+   }
+       <div id="home-main"></div>
   `;
+  document.getElementById("toggle-tag-btn")
+  .onclick = toggleTagFilter;
 
   renderSearchArea();
   
@@ -817,7 +823,6 @@ function renderSearchArea(){
       ${showTagFilter
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
-      }
       </button>
     </div>
 
