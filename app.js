@@ -882,20 +882,20 @@ function renderSearchArea(){
 
 
 //====タイプフィルター切り替え
-//function changeTypeFilter(){
+function changeTypeFilter(){
 
-//  typeFilter =
-//    document.getElementById(
-//      "type-filter"
-//    ).value;
+  typeFilter =
+    document.getElementById(
+      "type-filter"
+    ).value;
 
-//  localStorage.setItem(
-//    "typeFilter",
-//    typeFilter
-//  );
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
 
-//  renderHome();
-//}
+  renderHome();
+}
 //================
 
 
