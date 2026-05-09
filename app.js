@@ -141,10 +141,11 @@ async function saveData(){
 //====最新読了日を取得するやつ
 function getLatestReadDate(book){
 
-  if(!book.dates?.length) return "";
-
-  return [...book.dates]
-    .sort((a,b)=>b.localeCompare(a))[0];
+  return (
+  [...(book.dates || [])]
+    .sort()
+    .at(-1)
+  ) || "";
 }
 //=================
 
