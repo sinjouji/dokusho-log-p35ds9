@@ -740,7 +740,7 @@ function renderHome(){
   if(!el) return;
 
   el.innerHTML = `
-  <div style="white-space:nowrap;">
+  <div style="display: inline-block;">
     <div id="home-top"></div>
 
    <div style="margin:8px 0;">
