@@ -427,7 +427,8 @@ function createBookSpine(b){
   applySpineColor(d, b);
 
   if(b.type === "wish"){
-	d.style.opacity = "0.8";
+	d.style.opacity = "0.65";
+	d.style.filter = "grayscale(0.15)";
 	}
 
   const title = document.createElement('div');
