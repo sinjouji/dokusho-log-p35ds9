@@ -47,6 +47,9 @@ let enableMemo = localStorage.getItem("enableMemo");
    ? true
    : enableMemo === "true";
 
+//テーマカラーの設定
+let themeColor = localStorage.getItem("themeColor") || "#f5f5f5";
+ document.body.style.background = themeColor;
 
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
