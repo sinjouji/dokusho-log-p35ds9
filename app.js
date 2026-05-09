@@ -587,6 +587,19 @@ function sortBooks(list){
       .localeCompare(b.title || "","ja")
     );
   }
+  
+  if(sortMode === "title-desc"){
+    arr.sort((a,b)=>
+      (b.title || "")
+      .localeCompare(a.title || "", "ja")
+    );
+  }
+
+  if(sortMode === "fav-asc"){
+    arr.sort((a,b)=>
+      (a.fav || 0) - (b.fav || 0)
+    );
+  }
 
   if(sortMode === "fav-desc"){
 
@@ -748,23 +761,16 @@ function renderSearchArea(){
       <select id="sort-select"
         onchange="changeSortMode()">
 
-      <option value="date-desc">
-        最新読了順
-      </option>
+      <option value="read-desc">最新読了順</option>
+      <option value="read-asc">古い読了順</option>
 
-      <option value="date-asc">
-        古い読了順
-      </option>
+      <option value="title-asc">タイトル昇順</option>
+      <option value="title-desc">タイトル降順</option>
 
-      <option value="title-asc">
-        名前順
-      </option>
+      <option value="rating-desc">評価高い順</option>
+      <option value="rating-asc">評価低い順</option>
 
-      <option value="fav-desc">
-        評価順
-      </option>
-
-    </select>
+      </select>
 
     <div class="view-switch">
 
