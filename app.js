@@ -832,7 +832,7 @@ function renderSearchArea(){
       </button>
 
     </div>
-    //renderhomeから移動させたやつ
+    <!--renderhomeから移動させたやつ-->
        <div style="margin:8px 0;">
      <button id="toggle-tag-btn">
        ${showTagFilter
