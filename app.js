@@ -741,9 +741,9 @@ function renderHome(){
 
   el.innerHTML = `
  
-    <div id="home-top"></div> : 
+    <div id="home-top"></div>
 
-//ここにhome-topに移動したやつあった
+<!--ここにhome-topに移動したやつあった-->
    ${showTagFilter
      ? `<div id="tag-filter"></div>`
      : ""
