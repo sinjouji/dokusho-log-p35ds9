@@ -608,6 +608,21 @@ function toggleTagFilter(){
 }
 //========
 
+
+
+//========
+function toggleUIItem(e, key){
+  e.stopPropagation();
+
+  uiSettings[key] = !uiSettings[key];
+  localStorage.setItem("uiSettings", JSON.stringify(uiSettings));
+
+  renderSettings();
+  updateUIVisibility("home"); // ←追加
+  renderHome();
+}
+//========
+
 //=========================toggle
 
 
