@@ -1317,7 +1317,7 @@ function renderSort(targetId = "sort-mode"){
 //====カレンダー、統計ページの表示
 function renderStats(){
   renderSummary();
-  renderMiniCalendar();
+  renderMiniCalendar(main);
 //  renderReadingHistory();
 }
 //========================
