@@ -979,7 +979,7 @@ function renderMonthlyGraph(main){
     const row =
       document.createElement("div");
 
-    row.style.marginBottom = "8px";
+//    row.style.marginBottom = "8px";
     row.style.display = "flex";
     row.style.alignItems = "center";
     row.style.gap = "8px";
