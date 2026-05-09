@@ -841,11 +841,10 @@ function renderSearchArea(){
       : ''}"
       onclick="changeViewMode('shelf')">
         📚 
-      </button>
-            <select
+      </button> : 
+      <select
   id="type-filter"
-  onchange="changeTypeFilter()"
->
+  onchange="changeTypeFilter()">
 
   <option value="all">
     全部
@@ -859,14 +858,14 @@ function renderSearchArea(){
     ウィッシュ
   </option>
 
-</select>
+  </select>
 
       <button class="tag-chip" onclick="toggleTagFilter()">
       ${showTagFilter
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
       }
-      </button> : 
+      </button>
     </div>
        ${showTagFilter
      ? `<div id="tag-filter"></div>`
