@@ -123,7 +123,49 @@ async function saveData(){
 
 
 
+//========
+function updateUIVisibility(page){
 
+  const showUI = uiSettings; // 略
+
+  const search = (document.getElementById("topbar")?.value || "").toLowerCase();
+  const summary = document.getElementById("home-summary");
+  const recent = document.getElementById("recent-books");
+  const tags = document.getElementById("tag-filter");
+  const type = document.getElementById("type-filter");
+
+  // ● 全OFF
+  if(!showUI.recent && !showUI.summary && !showUI.tags && !showUI.type){
+    if(search) search.style.display = "none";
+    if(summary) summary.style.display = "none";
+    if(recent) recent.style.display = "none";
+    if(tags) tags.style.display = "none";
+    if(type) type.style.display = "none";
+    return;
+  }
+
+  // ● 検索バー
+  const showSearchPages = ["home","calendar","series","characters"];
+  if(search){
+    search.style.display =
+      showSearchPages.includes(page) ? "flex" : "none";
+  }
+
+  // ● ホームだけ
+  if(page === "home"){
+    if(summary) summary.style.display = showUI.summary ? "block" : "none";
+    if(recent) recent.style.display = showUI.recent ? "block" : "none";
+    if(tags) tags.style.display = showUI.tags ? "flex" : "none";
+    if(type) type.style.display = showUI.type ? "flex" : "none";
+  } else {
+    // 他ページは全部消す
+    if(summary) summary.style.display = "none";
+    if(recent) recent.style.display = "none";
+    if(tags) tags.style.display = "none";
+    if(type) type.style.display = "none";
+  }
+}
+//========
 
 
 
