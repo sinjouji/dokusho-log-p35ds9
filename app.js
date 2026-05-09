@@ -1386,6 +1386,11 @@ function renderSort(targetId = "sort-mode"){
 //====カレンダー、統計ページの表示
 function renderStats(){
 
+  const main =
+    document.getElementById("page-stats");
+
+  if(!main) return;
+
 //年移動表示
 main.innerHTML = `
   <div style="
@@ -1407,13 +1412,6 @@ main.innerHTML = `
     </button>
   </div>
 `;
-
-  const main =
-    document.getElementById("page-stats");
-
-  if(!main) return;
-
-  main.innerHTML = "";
   
   //年間目標
   const yearlyCount =
