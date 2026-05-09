@@ -1411,10 +1411,6 @@ function renderMiniCalendar(main){
     if(i === 0) head.style.color = "#e74c3c"; //日曜
     if(i === 6) head.style.color = "#3498db"; //土曜
     
-    grid.appendChild(head);
-    });
-  
-
   const firstDay =
     new Date(year, month, 1).getDay();
 
