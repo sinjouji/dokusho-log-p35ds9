@@ -43,8 +43,10 @@ let currentMonth = new Date();
 let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
 
 let enableGoal = localStorage.getItem("enableGoal");
-
 enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
+
+//グラフ年間移動用
+let statsYear = new Date().getFullYear();
 
 // UI設定（保存＋初期値）
 let uiSettings = {
@@ -415,6 +417,13 @@ function changeYear(diff){
   renderStats();
 }
 //===========
+
+//====グラフ年送り
+function changeStatsYear(diff){
+  statsYear += diff;
+  renderStats();
+}
+//=============
 
 
 //========
@@ -976,18 +985,15 @@ function renderShelfView(main, books){
 //====月間読書グラフ表示
 function renderMonthlyGraph(main, year){
 
-  const counts =
-    getMonthlyCounts(year);
+  const counts = getMonthlyCounts(year);
 
-  const wrap =
-    document.createElement("div");
+  const wrap = document.createElement("div");
 
   wrap.style.marginTop = "20px";
 
   counts.forEach((c,i)=>{
 
-    const row =
-      document.createElement("div");
+    const row = document.createElement("div");
 
     row.style.display = "flex";
     row.style.alignItems = "center";
@@ -1398,7 +1404,7 @@ function renderStats(){
 
   const main =
     document.getElementById("page-stats");
-  const year = currentMonth.getFullYear();
+  const year = statsYear;
 
   if(!main) return;
 
@@ -1408,15 +1414,13 @@ main.innerHTML = `
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:12px;
+    margin-bottom:16px;
   ">
     <button onclick="changeYear(-1)">
       ←
     </button>
 
-    <h3>
-      ${year}年 統計
-    </h3>
+    <h3>${year}年 統計</h3>
 
     <button onclick="changeYear(1)">
       →
@@ -1478,7 +1482,7 @@ goal.innerHTML = `
 function renderMiniCalendar(main){
 
   const now = miniMonth;
-  const year = now.getFullYear();
+  const year = statsYear;
   const month = now.getMonth();
 
   // ===== ヘッダー =====
