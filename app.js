@@ -742,6 +742,8 @@ function renderHome(){
   el.innerHTML = `
  
     <div id="home-top"></div>
+
+    <div id="home-main"></div>
   `;
 
   renderSearchArea();
