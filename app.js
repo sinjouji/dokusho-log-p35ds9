@@ -1465,7 +1465,7 @@ goal.innerHTML = `
   if(enableGoal){
       main.appendChild(goal);
   }
-  getYearReadCount(year)
+  
   renderSummary(main);
   renderMiniCalendar(main);
   renderMonthlyGraph(main, year);
