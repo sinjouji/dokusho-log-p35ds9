@@ -841,7 +841,7 @@ function renderSearchArea(){
       : ''}"
       onclick="changeViewMode('shelf')">
         📚 
-      </button> : 
+      </button>
       <select
   id="type-filter"
   onchange="changeTypeFilter()">
