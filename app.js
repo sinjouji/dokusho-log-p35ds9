@@ -842,24 +842,39 @@ function renderSearchArea(){
       onclick="changeViewMode('shelf')">
         📚 
       </button>
-      <select
+  <select
   id="type-filter"
-  onchange="changeTypeFilter()">
+  onchange="changeTypeFilter()"
+>
 
-  <option value="all">
+  <option
+    value="all"
+    ${typeFilter === "all"
+      ? "selected"
+      : ""}
+  >
     全部
   </option>
 
-  <option value="normal">
+  <option
+    value="normal"
+    ${typeFilter === "normal"
+      ? "selected"
+      : ""}
+  >
     本棚
   </option>
 
-  <option value="wish">
+  <option
+    value="wish"
+    ${typeFilter === "wish"
+      ? "selected"
+      : ""}
+  >
     ウィッシュ
   </option>
 
-  </select>
-
+</select>
       <button class="tag-chip" onclick="toggleTagFilter()">
       ${showTagFilter
         ? "🏷️タグ非表示"
