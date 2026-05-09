@@ -456,7 +456,7 @@ function createBookSpine(b){
   
   title.style.flex = "1";
   title.style.alignItems = "center"; //! flex-start
-  title.style.justifyContent = "center"; //! flex-start/center
+  title.style.justifyContent = "flex-start"; //! flex-start/center
   title.style.textAlign = "left";
   title.style.whiteSpace = "normal";
   title.style.paddingBottom = "4px";
@@ -535,7 +535,7 @@ function applySpineColor(d, b){
                ${c1} 0%, ${c1} 3%,
                ${c3} 3%, ${c3} 6%,
                ${c1} 6%, ${c1} 75%,
-               ${c2} 75%, ${c2} 100%       )`;
+               ${c2} 75%, ${c2} 100%)`;
   }
 }
 //==================
