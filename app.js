@@ -450,6 +450,7 @@ function createBookSpine(b){
   title.style.lineHeight = "1.1";
   title.style.paddingTop = "8px";
   title.style.paddingLeft = "8px";
+  title.style.paddingRight = "6px";
   title.style.letterSpacing = "0.05em";
   
   //色
