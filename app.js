@@ -276,7 +276,7 @@ function getYearReadCount(year){
   let count = 0;
   books.forEach(b=>{
     (b.dates || []).forEach(d=>{
-      if(d.startsWith(String(year))){
+      if(new Date(d).getFullYear() === year){
        count++;
        }
     });
