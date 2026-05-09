@@ -619,14 +619,14 @@ function sortBooks(list){
     );
   }
 
-  if(sortMode === "date-asc"){
+  if(sortMode === "read-asc"){
 
     arr.sort((a,b)=>
       toDateNum(a) - toDateNum(b)
       );
   }
 
-  if(sortMode === "date-desc"){
+  if(sortMode === "read-desc"){
 
     arr.sort((a,b)=>
       toDateNum(b) - toDateNum(a)
