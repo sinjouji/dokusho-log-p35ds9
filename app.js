@@ -850,7 +850,7 @@ function renderSearchArea(){
     全部
   </option>
 
-  <option value="read">
+  <option value="nomal">
     本棚
   </option>
 
@@ -1374,7 +1374,7 @@ function filterBooks(list){
 
   arr = arr.filter(book => {
 
-    if(typeFilter === "read"){
+    if(typeFilter === "nomal"){
       return book.type !== "wish";
     }
 
