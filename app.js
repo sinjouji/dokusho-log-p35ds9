@@ -33,7 +33,14 @@ let miniMonth = new Date();
 let currentDetailFav = 0;
 
 let openedSeries = {};
-let showTags = localStorage.getItem("showTags") === "true";
+
+//絞込み用タグ収納用
+let showTagFilter = localStorage.getItem("showTagFilter");
+showTagFilter = showTagFilter === null
+  ? true
+  : showTagFilter === "true";
+
+
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
 let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
 let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
@@ -734,9 +741,33 @@ function renderHome(){
 
   el.innerHTML = `
     <div id="home-top"></div>
-    <div id="tag-filter"></div>
-    <div id="home-main"></div>
+
+   <div style="margin:8px 0;">
+     <button id="toggle-tag-btn">
+       ${showTagFilter
+         ? "タグを隠す▽"
+         : "タグを表示▲"
+       }
+     </button>
+   </div>
+   ${showTagFilter
+     ? `<div id="tag-filter"></div>`
+     : ""
+   }
+       <div id="home-main"></div>
   `;
+  document.getElementById("toggle-tag-btn")
+  .onclick = toggleTagFilter;
+
+
+//タグ収納トグル
+//  toggleBtn.textContent =
+//    showTagFilter
+//      ? "タグを隠す▽"
+//      : "タグを表示▲";
+//  toggleBtn.onclick = toggleTagFilter;
+//  main.appendChild(toggleBtn);
+
 
   renderSearchArea();
   
@@ -2767,14 +2798,15 @@ function toggleGoal(e){
 
 
 //トグル動作==
-function toggleTags(e){
-  e.stopPropagation();
+function toggleTagFilter(){
 
-  showTags = !showTags;
-  localStorage.setItem("showTags", showTags);
+  showTagFilter = !showTagFilter;
+  
+  localStorage.setItem(
+    "showTagFilter",
+    showTagFilter
+  );
 
-  setupTagToggle(); // ←追加
-  renderSettings();
   renderHome();
 }
 //========
