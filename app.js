@@ -1889,7 +1889,7 @@ function renderSettings(){
 
 <div class="setting-card">
 
-  <div class="setting-title">
+  <div class="setting-card-title">
     表示設定
   </div>
 
@@ -1903,8 +1903,8 @@ function renderSettings(){
 
 </div>
 
-    <div class="settings-group">
-      <div class="settings-header">表示</div>
+    <div class="settings-card">
+      <div class="settings-card-title">表示</div>
       <div class="settings-list">
         <div class="settings-item" onclick="openSettingSelect('view')">
           表示モード
@@ -1918,8 +1918,8 @@ function renderSettings(){
       </div>
     </div>
 
-    <div class="settings-group">
-      <div class="settings-header">並び</div>
+    <div class="settings-card">
+      <div class="settings-card-title">並び</div>
       <div class="settings-list">
         <div class="settings-item" onclick="openSettingSelect('sort')">
           並び順
@@ -1928,8 +1928,8 @@ function renderSettings(){
       </div>
     </div>
 
-<div class="settings-group">
-  <div class="settings-header">ホームUI</div>
+<div class="settings-card">
+  <div class="settings-card-title">ホームUI</div>
   <div class="settings-list">
 
     <div class="settings-item">
@@ -1954,8 +1954,8 @@ function renderSettings(){
 
   </div>
 </div>
-<div class="settings-group">
-  <div class="settings-header">目標</div>
+<div class="settings-card">
+  <div class="settings-title">目標</div>
   <div class="settings-list">
 
     <div class="settings-item">
