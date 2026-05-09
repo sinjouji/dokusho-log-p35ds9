@@ -460,7 +460,8 @@ function createBookSpine(b){
   title.style.textAlign = "left";
   title.style.whiteSpace = "normal";
   title.style.paddingBottom = "2px";
-  title.style.paddingLeft = "4px";
+  title.style.paddingRight= "4px";
+  title.style.paddingLeft = "6px";
   title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
