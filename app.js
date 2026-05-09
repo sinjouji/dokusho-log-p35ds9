@@ -1396,6 +1396,43 @@ function renderSettings(){
 //==========
 
 
+
+//背表紙カラーモード変更描画
+function renderColorMode(targetId = "color-mode"){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "single", label: "単色" },
+    { id: "gradient", label: "グラデ" },
+    { id: "stripe", label: "目印" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+    btn.className = "setting-btn";
+
+    if(m.id === colorMode){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = ()=>{
+      colorMode = m.id;
+      localStorage.setItem("colorMode", colorMode);
+
+      renderHome();              // 
+      renderColorMode(targetId);
+    };
+
+    el.appendChild(btn);
+  });
+}
+//========
+
+
 //============================render
 
 
