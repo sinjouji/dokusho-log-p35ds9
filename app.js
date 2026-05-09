@@ -446,9 +446,9 @@ function createBookSpine(b){
   title.style.wordBreak = "break-all";
   
   //見た目調整
-  title.style.fontSize = "10px"; //!
+  title.style.fontSize = "9px"; //!
   title.style.lineHeight = "1.1";
-//  title.style.paddingTop = "8px";
+  title.style.paddingTop = "8px";
   title.style.letterSpacing = "0.05em";
   
   //色
@@ -459,7 +459,6 @@ function createBookSpine(b){
   title.style.justifyContent = "flex-start"; //! flex-start/center
   title.style.textAlign = "left";
   title.style.whiteSpace = "normal";
-  title.style.padding = "8px 8px 2px 8px";
   title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
