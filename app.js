@@ -418,7 +418,7 @@ function changeYear(diff){
 }
 //===========
 
-//====グラフ年送り
+//====グラフ、年間目標年送り
 function changeStatsYear(diff){
   statsYear += diff;
   renderStats();
@@ -1416,11 +1416,11 @@ main.innerHTML = `
     align-items:center;
     margin-bottom:16px;
   ">
-    <button onclick="changeYear(-1)">←</button>
+    <button onclick="changeStatsYear(-1)">←</button>
 
     <h3>${year}年 統計</h3>
 
-    <button onclick="changeYear(1)">→</button>
+    <button onclick="changeStatsYear(1)">→</button>
   </div>
 `;
   
