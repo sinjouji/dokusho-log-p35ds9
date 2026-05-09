@@ -1382,24 +1382,27 @@ function renderSummary(main){
 
 //========タイプフィルター（ウィッシュリスト）
 function filterBooks(list){
-  const el = document.getElementById("type-filter");
-  if(!el) return;
 
+  let arr = [...list];
+
+  // タイプ絞り込み
   if(typeFilter !== "all"){
 
-  arr = arr.filter(book => {
+    arr = arr.filter(book => {
 
-    if(typeFilter === "normal"){
-      return book.type !== "wish";
-    }
+      if(typeFilter === "normal"){
+        return book.type !== "wish";
+      }
 
-    if(typeFilter === "wish"){
-      return book.type === "wish";
-    }
+      if(typeFilter === "wish"){
+        return book.type === "wish";
+      }
 
-    return true;
-  });
- }
+      return true;
+    });
+  }
+
+  return arr;
 }
 //========
 
