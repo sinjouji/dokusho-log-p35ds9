@@ -2515,7 +2515,7 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
-      ${enablememo ? `
+      ${enableMemo ? `
       <textarea id="editMemo">
         ${book.memo || ""}
       </textarea>
