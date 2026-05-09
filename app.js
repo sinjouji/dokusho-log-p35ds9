@@ -40,10 +40,10 @@ let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリス�
 let currentMonth = new Date();
 
 //====年間目標設定
-let yearlyGoal = Number(localStorage.getItem("yearlyGoal"));
-if(!yearlyGoal) yearlyGoal = 12; // 初期値（好きに変えてOK）
-let enableGoal = localStorage.getItem("enableGoal");
-enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
+let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
+//if(!yearlyGoal) yearlyGoal = 12; // 初期値（好きに変えてOK）
+//let enableGoal = localStorage.getItem("enableGoal");
+//enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
 
 // UI設定（保存＋初期値）
 let uiSettings = {
@@ -250,29 +250,32 @@ function getHeatColor(count){
 
 
 //今年・今月◯冊取得
-function getMonthlyCount(){
-  const now = new Date();
-  const ym = now.toISOString().slice(0,7);
-
-  let count = 0;
+function getMonthlyCounts(year){
+  const arr = Array(12).fill(0);
+  
   books.forEach(b=>{
     (b.dates || []).forEach(d=>{
-      if(d.startsWith(ym)) count++;
+      if(d.startsWith(String(year)))
+        return;
+      const month =
+        Number(d.slice(5,7)) - 1;
+      
+      arr[month]++;
     });
   });
-  return count;
+  return arr;
 }
 //========
 
 //========
-function getYearlyCount(){
-  const now = new Date();
-  const y = now.getFullYear();
+function getYearlyReadCount(year){
 
   let count = 0;
   books.forEach(b=>{
     (b.dates || []).forEach(d=>{
-      if(d.startsWith(String(y))) count++;
+      if(d.startsWith(String(year))){
+       count++;
+       }
     });
   });
 
@@ -957,6 +960,55 @@ function renderShelfView(main, books){
 }
 //=================
 
+//====月間読書グラフ表示
+function renderMonthlyGraph(main){
+
+  const year =
+    currentMonth.getFullYear();
+
+  const counts =
+    getMonthlyCounts(year);
+
+  const wrap =
+    document.createElement("div");
+
+  wrap.style.marginTop = "20px";
+
+  counts.forEach((c,i)=>{
+
+    const row =
+      document.createElement("div");
+
+    row.style.marginBottom = "8px";
+
+    row.innerHTML = `
+      <div style="font-size:12px">
+        ${i+1}月 (${c}冊)
+      </div>
+
+      <div style="
+        height:12px;
+        background:#eee;
+        border-radius:999px;
+        overflow:hidden;
+      ">
+        <div style="
+          width:${c*5}px;
+          height:100%;
+          background:#78ccd2;
+        ">
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(row);
+
+  });
+
+  main.appendChild(wrap);
+}
+//==================
+
 
 
 //本棚背表紙モード
@@ -1322,9 +1374,33 @@ function renderStats(){
   if(!main) return;
 
   main.innerHTML = "";
+  
+  //年間目標
+  const year = currentMonth.getFullYear();
+  const readCount = getYearReadCount(year);
+  const goalBox = document.createElement("div");
+  
+  goalBox.className = "goal-box";
+  goalBox.innnerHTML = `
+    <div>
+      ${year}年：
+      ${readCount} / ${yealyGoal}冊
+    </div>
+    
+    <div class="goal-bar">
+      <div class="goal-fill"
+        style="
+          width:
+          ${Math.min(readCount/yearlyGoal*100,100)}%;
+        ">
+      </div>
+    </div>
+  `;
+  main.appendChild(goalBox);
 
   renderSummary(main);
   renderMiniCalendar(main);
+  renderMonthlyGraph(main);
 
 // renderReadingHistory(main);
 }
@@ -1427,7 +1503,7 @@ function renderMiniCalendar(main){
 
     if(dateStr === today){
       cell.style.border =
-        "2px solid #ac4f02";
+        "2px solid #f3275c";
     }
 
     cell.innerHTML =
