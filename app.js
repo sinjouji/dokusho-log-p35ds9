@@ -691,7 +691,6 @@ function renderHome(){
 
   renderSearchArea();
   
-  renderSummary(main, el);
   renderTagFilter();
   renderTypeFilter();
   renderRecentBooks();
@@ -1142,7 +1141,7 @@ function renderRecent(){
 //========
 
 //今年：今月◯冊の表示
-function renderSummary(main, el){
+function renderSummary(main){
   const el = document.getElementById("home-summary");
   if(!el) return;
 
@@ -1324,7 +1323,7 @@ function renderStats(){
 
   main.innerHTML = "";
 
-  renderSummary(main, el);
+  renderSummary(main);
   renderMiniCalendar(main);
 
 // renderReadingHistory(main);
