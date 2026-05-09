@@ -65,6 +65,16 @@ enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破
 //グラフ年間移動用
 let statsYear = new Date().getFullYear();
 
+// UI設定（保存＋初期値）
+let uiSettings = {
+  recent: true,
+  summary: true,
+  tags: true,
+  type: true,
+  ...JSON.parse(localStorage.getItem("uiSettings") || "{}")
+};
+
+let uiMode = localStorage.getItem("uiMode") || "on";
 
 
 
