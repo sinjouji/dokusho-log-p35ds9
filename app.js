@@ -268,7 +268,7 @@ function getMonthlyCounts(year){
 //========
 
 //========
-function getYearlyReadCount(year){
+function getYearReadCount(year){
 
   let count = 0;
   books.forEach(b=>{
