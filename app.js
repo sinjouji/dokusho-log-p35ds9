@@ -743,7 +743,14 @@ function renderHome(){
  
     <div id="home-top"></div>
 
-<!--ここにhome-topに移動したやつあった-->
+       <div style="margin:8px 0;">
+     <button id="toggle-tag-btn">
+       ${showTagFilter
+         ? "タグを隠す▽"
+         : "タグを表示▲"
+       }
+     </button>
+   </div>
    ${showTagFilter
      ? `<div id="tag-filter"></div>`
      : ""
@@ -807,7 +814,6 @@ function renderSearchArea(){
       <option value="rating-asc">評価↓</option>
 
       </select>
-    <div style="display: inline-block;">
     <div class="view-switch">
 
       <button class="${viewMode === 'card'
@@ -831,16 +837,6 @@ function renderSearchArea(){
         📚 
       </button>
 
-    </div>
-    <!--renderhomeから移動させたやつ-->
-       <div style="margin:8px 0;">
-     <button id="toggle-tag-btn">
-       ${showTagFilter
-         ? "タグを隠す▽"
-         : "タグを表示▲"
-       }
-     </button>
-   </div>
     </div>
 
     <div id="suggest"></div>
