@@ -225,37 +225,37 @@ function getShelfColorModeLabel(){
 function getSortModeLabel(){
 
   if(
-    sortMode === "read-desc"
+    defaultSortMode === "read-desc"
   ){
     return "最新読了順";
   }
 
   if(
-    sortMode === "read-asc"
+    defaultSortMode === "read-asc"
   ){
     return "最古読了順";
   }
 
   if(
-    sortMode === "title-asc"
+    defaultSortMode === "title-asc"
   ){
     return "ABC↓";
   }
   
     if(
-    sortMode === "title-desc"
+    defaultSortMode === "title-desc"
   ){
     return "ZYX↑";
   }
   
     if(
-    sortMode === "rating-desc"
+    defaultSortMode === "rating-desc"
   ){
     return "高評価";
   }
   
     if(
-    sortMode === "rating-asc"
+    defaultSortMode === "rating-asc"
   ){
     return "低評価";
   }
@@ -267,19 +267,19 @@ function getSortModeLabel(){
 //====設定用：表示タイプ
 function getViewModeLabel(){
     if(
-    sortMode === "All"
+    defaultView === "All"
   ){
     return "全部";
   }
   
       if(
-    sortMode === "normal"
+    defaultView === "normal"
   ){
     return "本棚";
   }
 
     if(
-    sortMode === "wish"
+    defaultView === "wish"
   ){
     return "ウィッシュリスト";
   }
@@ -2568,7 +2568,7 @@ function changeShelfColorMode(){
 
 
 //====デフォルト並び順切り替え
-const sortModes = [
+const defaultSortModes = [
   "read-desc",
   "read-asc",
   "title-asc",
@@ -2578,18 +2578,18 @@ const sortModes = [
 ];
 
 function changeDefaultSort(){
-  sortMode =
+  defaultSortMode =
     cycleSetting({
       current:
-        sortMode,
+        defaultSortMode,
       
       list:
-        sortModes
+        defaultSortModes
      });
      
    localStorage.setItem(
-     "sortMode",
-     sortMode
+     "defaultSortMode",
+     defaultSortMode
    );
    
    renderSettings();
