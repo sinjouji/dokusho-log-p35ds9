@@ -2379,7 +2379,7 @@ function renderSettings(){
        "
 
   style="background:${color};"
-  onclick="selectTagColor('${color}') ">
+  onclick="selectTagColor('${color}')">
 </button>
          `).join("")}
       
@@ -2394,7 +2394,7 @@ function renderSettings(){
    </div>  `  : "" }
   </div> `).join("")}
 </div>` : ""}
- </div><!---tags-setting-card->
+ </div>
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
     ${settingSections.datas
