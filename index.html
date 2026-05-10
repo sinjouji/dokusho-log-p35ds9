@@ -593,6 +593,27 @@ setting-btn{margin:4px;padding:4px 10px;font-size:12px;border-radius:999px;borde
   min-width:140px;
 }
 
+/*タグ編集エリア*/
+.tag-color-palette{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+
+.color-dot{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:none;
+}
+
+.color-dot.active{
+  outline:3px solid #333;
+  transform:scale(1.15);
+}
+
+
 /* ★これ重要（今回の勝因） */
 #loading.hidden{
   display:none;
