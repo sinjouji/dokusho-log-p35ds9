@@ -23,7 +23,7 @@ let viewMode = "card";
 // 保険（壊れた値対策）
 //if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
 
-let sortMode = "date-desc";
+let sortMode = "read-desc";
 
 let searchKeyword = "";
 
@@ -200,19 +200,19 @@ function getBookColor(book){
 function getShelfColorModeLabel(){
 
   if(
-    shelfColorMode === "single"
+    colorMode === "single"
   ){
     return "単色";
   }
 
   if(
-    shelfColorMode === "gradient"
+    colorMode === "gradient"
   ){
     return "グラデ";
   }
 
   if(
-    shelfColorMode === "stripe"
+    colorMode === "stripe"
   ){
     return "目印";
   }
@@ -2540,16 +2540,11 @@ const shelfColorModes = [
 
 function changeShelfColorMode(){
 
-//  const index =
-//    shelfColorModes.indexOf(
-//      shelfColorMode
-//    );
-
-  shelfColorMode =
+  colorMode =
     cycleSetting({
 
       current:
-        shelfColorMode,
+        colorMode,
 
       list:
         shelfColorModes
@@ -2557,8 +2552,8 @@ function changeShelfColorMode(){
     });
 
   localStorage.setItem(
-    "shelfColorMode",
-    shelfColorMode
+    "colorMode",
+    colorMode
   );
 
   renderSettings();
