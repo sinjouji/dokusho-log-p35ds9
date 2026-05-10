@@ -2162,7 +2162,7 @@ function renderSettings(){
     : "▶︎"}
     ホーム表示設定</div>
     
-    ${settingsections.home
+    ${settingSections.home
     ? `
     <!--背表紙-->
     <div class="setting-row">
@@ -2227,7 +2227,7 @@ function renderSettings(){
     ${settingSections.input
     ? "▽"
     : "▶︎"}入力設定</div>
-      ${settingsections.input
+      ${settingSections.input
     ? `
     <!--メモエリア-->
     <div class="setting-row">
@@ -2274,7 +2274,7 @@ function renderSettings(){
     ? "▽"
     : "▶︎"}統計設定</div>
   
-      ${settingsections.stats
+      ${settingSections.stats
     ? `
     <!--年間目標-->
     <div class="setting-row">
@@ -2312,7 +2312,7 @@ function renderSettings(){
     ${settingSections.tags
     ? "▽"
     : "▶︎"}タグ設定</div>
-      ${settingsections.tags
+      ${settingSections.tags
     ? `
      <!--タグ設定-->
     <div class="setting-row">
@@ -2329,7 +2329,7 @@ function renderSettings(){
     ? "▽"
     : "▶︎"}データ</div>
     
-      ${settingsections.datas
+      ${settingSections.datas
     ? `
     <!--エクスポート-->
     <div class="setting-row">
