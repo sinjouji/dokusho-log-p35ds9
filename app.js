@@ -2065,11 +2065,6 @@ function renderSettings(){
   const el = document.getElementById("page-settings");
   if(!el) return;
   
-  toggleSettingSection("home")
-  localStorage.setItem(
-  "setting-home-open",
-  true);
-
   el.innerHTML = `
     <h2 style="padding:12px;">設定</h2>
 
@@ -2808,6 +2803,9 @@ function setupTagToggle(){
 }
 //========
 
+//====設定用トグル：表示用設定
+function 
+//=============
 
 
 
