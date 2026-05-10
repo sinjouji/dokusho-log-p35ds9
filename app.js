@@ -2377,11 +2377,11 @@ function renderSettings(){
         <input value="${tag.name}">
         <div class="tag-color-palette">
 
-          ${tagColors.map(color => `
+      
 
          <!--button-->
 
-          `).join("")}
+ 
 
         </div>
 
