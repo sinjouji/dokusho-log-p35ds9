@@ -2353,6 +2353,7 @@ function openAddBookModal(){
 
       <h2>本を追加</h2>
 
+      <div id="title-suggest"></div>
       <input id="add-title"
         type="text"
         placeholder="タイトル"
