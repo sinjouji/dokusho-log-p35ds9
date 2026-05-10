@@ -222,7 +222,7 @@ function getShelfColorModeLabel(){
 //============
 
 //====設定用：並び順
-function getsortModeLabel(){
+function getSortModeLabel(){
 
   if(
     sortMode === "read-desc"
