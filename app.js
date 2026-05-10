@@ -2363,6 +2363,10 @@ function renderSettings(){
       <span>タグの編集</span>
 <!--ここからタグ編集エリア-->
 
+${editingTagId === tag.id
+  ? `
+    <input value="${tag.name}">
+
       <div class="tag-color-palette">
 
 ${tagColors.map(color => `
@@ -2387,6 +2391,13 @@ ${tagColors.map(color => `
 
 </div>
 ``
+
+    <button>保存</button>
+    <button>キャンセル</button>
+  `
+  : ""
+}
+
       
       
       
