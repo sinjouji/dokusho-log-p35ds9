@@ -2162,6 +2162,8 @@ function renderSettings(){
     : "▶︎"}
     ホーム表示設定</div>
     
+    ${settingsections.home
+    ? `
     <!--背表紙-->
     <div class="setting-row">
       <span>背表紙カラー</span>
@@ -2215,7 +2217,8 @@ function renderSettings(){
       <span>予備</span>
       ---
     </div>
-
+`
+: ""}
   </div>
   
   
@@ -2223,8 +2226,9 @@ function renderSettings(){
     <div class="setting-card-title"onclick="toggleSettingSection('input')">
     ${settingSections.input
     ? "▽"
-    : "▶︎"}入力</div>
-  
+    : "▶︎"}入力設定</div>
+      ${settingsections.input
+    ? `
     <!--メモエリア-->
     <div class="setting-row">
       <span>メモエリア</span>
@@ -2260,15 +2264,18 @@ function renderSettings(){
       <span>サジェスト</span>
       ---
     </div>
-
+`
+: ""}
   </div>
 
   <div class="setting-card">
-    <div class="setting-card-title"onclick="toggleSettingSection('stats')">
+    <div class="setting-card-title" onclick="toggleSettingSection('stats')">
     ${settingSections.stats
     ? "▽"
     : "▶︎"}統計設定</div>
   
+      ${settingsections.stats
+    ? `
     <!--年間目標-->
     <div class="setting-row">
       <span>年間目標</span>
@@ -2296,28 +2303,34 @@ function renderSettings(){
       <span>グラフ</span>
       ---
     </div>
-
+`
+: ""}
   </div>
    
      <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('tags')">
     ${settingSections.tags
     ? "▽"
-    : "▶︎"}入力</div>
-  
+    : "▶︎"}タグ設定</div>
+      ${settingsections.tags
+    ? `
      <!--タグ設定-->
     <div class="setting-row">
-      <span>タグ設定</span>
+      <span>タグの編集</span>
       ---
     </div>
-   
+   `
+   : ""}
  </div> 
+ 
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
     ${settingSections.datas
     ? "▽"
     : "▶︎"}データ</div>
-  
+    
+      ${settingsections.datas
+    ? `
     <!--エクスポート-->
     <div class="setting-row">
       <span>インポート</span>
@@ -2341,7 +2354,8 @@ function renderSettings(){
       <span>Firestore同期</span>
       ---
     </div>
-
+`
+: ""}
   </div>
 
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
