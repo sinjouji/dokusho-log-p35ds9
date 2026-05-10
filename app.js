@@ -2373,9 +2373,7 @@ function renderSettings(){
     ${editingTagId === tag.id
       ? `
 
-      <div class="tag-edit-area">
-        <input value="${tag.name}">
-        <div class="tag-color-palette">
+    
 
       
 
@@ -2383,18 +2381,9 @@ function renderSettings(){
 
  
 
-        </div>
-
-             <button>保存</button>
-
-             <button onclick="closeTagEditor()">
-               キャンセル
-             </button>
-
-      </div>
+  
       `
-      : ""
-    }
+      : "" }
 
   </div>
 
