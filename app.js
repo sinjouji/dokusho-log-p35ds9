@@ -126,7 +126,6 @@ function go(page){
   if(page === 'home') renderHome();
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
-  if(page === 'calendar') renderCalendar();
   if(page === 'stats') renderStats();
 }
 //========
