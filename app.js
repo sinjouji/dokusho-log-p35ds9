@@ -935,6 +935,65 @@ function renderSuggest(){
 
 //========
 
+//====タイトル用サジェスト
+function renderTitleSuggest(){
+
+  const el =
+    document.getElementById(
+      "title-suggest"
+    );
+
+  const keyword =
+    document.getElementById(
+      "add-title"
+    ).value
+    .trim()
+    .toLowerCase();
+
+  if(!keyword){
+    el.innerHTML = "";
+    return;
+  }
+
+  const titles =
+    [...new Set(
+      books.map(b=>b.title)
+    )];
+
+  const matched =
+    titles.filter(t=>
+
+      t &&
+      t.toLowerCase()
+      .includes(keyword)
+
+    ).slice(0,5);
+
+  el.innerHTML = "";
+
+  matched.forEach(title=>{
+
+    const d =
+      document.createElement("div");
+
+    d.textContent = title;
+
+    d.onclick = ()=>{
+
+      document.getElementById(
+        "add-title"
+      ).value = title;
+
+      el.innerHTML = "";
+    };
+
+    el.appendChild(d);
+  });
+}
+//===================
+
+
+
 //====キーワード検索
 function handleSearchInput(){
 
@@ -2243,7 +2302,9 @@ function openAddBookModal(){
 
       <input id="add-title"
         type="text"
-        placeholder="タイトル">
+        placeholder="タイトル"
+        oninput="renderTitleSuggest()"
+        >
 
       <div class="field">
         <div class="field-label">読了日</div>
