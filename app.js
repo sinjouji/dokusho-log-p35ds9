@@ -196,6 +196,31 @@ function getBookColor(book){
 }
 //========
 
+//====設定用：背表紙カラー
+function getShelfColorModeLabel(){
+
+  if(
+    shelfColorMode === "solid"
+  ){
+    return "単色";
+  }
+
+  if(
+    shelfColorMode === "gradient"
+  ){
+    return "グラデ";
+  }
+
+  if(
+    shelfColorMode === "marker"
+  ){
+    return "目印";
+  }
+
+  return "";
+}
+//============
+
 
 //文字色対策
 function getTextColor(bg){
@@ -2039,14 +2064,29 @@ function renderCharacters(){
 function renderSettings(){
   const el = document.getElementById("page-settings");
   if(!el) return;
+  
+  toggleSettingSection("home")
+  localStorage.setItem(
+  "setting-home-open",
+  true);
 
   el.innerHTML = `
     <h2 style="padding:12px;">設定</h2>
 
-<div class="setting-card">
+  <div class="setting-card">
+    <div class="setting-card-title">表示設定</div>
+    
+    <button onclick="changeShelfColorMode()">
+      背表紙カラー：${getShelfColorModeLabel()}
+    </button>
+    
+  </div>
+
+
+    <div class="setting-card">
 
   <div class="setting-card-title">
-    表示設定
+    オンオフ設定
   </div>
 
   <button onclick="toggleMemo()">
@@ -2138,6 +2178,24 @@ function renderSettings(){
 }
 //==========
 
+
+//====セッティングの汎用切り替えボタン
+function cycleSetting({
+
+  current,
+  list
+
+}){
+
+  const index =
+    list.indexOf(current);
+
+  const next =
+    (index + 1) % list.length;
+
+  return list[next];
+}
+//==================
 
 
 //UIの表示制御ベース
@@ -2429,6 +2487,29 @@ function changeViewMode(mode){
 }
 //================
 
+//====背表紙カラー切り替え
+function changeShelfColorMode(){
+
+  shelfColorMode =
+    cycleSetting({
+
+      current:
+        shelfColorMode,
+
+      list:
+        shelfColorModes
+
+    });
+
+  localStorage.setItem(
+    "shelfColorMode",
+    shelfColorMode
+  );
+
+  renderSettings();
+  renderHome();
+}
+//===============
 
 // 本詳細
 function openDetail(book){
