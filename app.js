@@ -225,37 +225,37 @@ function getShelfColorModeLabel(){
 function getSortModeLabel(){
 
   if(
-    defaultSortMode === "read-desc"
+    defaultSort === "read-desc"
   ){
     return "最新読了順";
   }
 
   if(
-    defaultSortMode === "read-asc"
+    defaultSort === "read-asc"
   ){
     return "最古読了順";
   }
 
   if(
-    defaultSortMode === "title-asc"
+    defaultSort === "title-asc"
   ){
-    return "ABC↓";
+    return "名前↓";
   }
   
     if(
-    defaultSortMode === "title-desc"
+    defaultSort === "title-desc"
   ){
-    return "ZYX↑";
+    return "名前↑";
   }
   
     if(
-    defaultSortMode === "rating-desc"
+    defaultSort === "rating-desc"
   ){
     return "高評価";
   }
   
     if(
-    defaultSortMode === "rating-asc"
+    defaultSort === "rating-asc"
   ){
     return "低評価";
   }
@@ -265,21 +265,21 @@ function getSortModeLabel(){
 //=============
 
 //====設定用：表示タイプ
-function getViewModeLabel(){
+function getTypeModeLabel(){
     if(
-    defaultView === "All"
+    defaultType === "all"
   ){
     return "全部";
   }
   
       if(
-    defaultView === "normal"
+    defaultType === "normal"
   ){
     return "本棚";
   }
 
     if(
-    defaultView === "wish"
+    defaultType === "wish"
   ){
     return "ウィッシュリスト";
   }
@@ -2167,8 +2167,8 @@ function renderSettings(){
     <!--表示タイプ-->
     <div class="setting-row">
       <span>表示タイプ</span>
-      <button onclick="changeDefaultView()">
-        ${getViewModeLabel()}
+      <button onclick="changeDefaultType()">
+        ${getTypeModeLabel()}
       </button>
     </div>
 
@@ -2568,7 +2568,7 @@ function changeShelfColorMode(){
 
 
 //====デフォルト並び順切り替え
-const defaultSortModes = [
+const defaultSorts = [
   "read-desc",
   "read-asc",
   "title-asc",
@@ -2578,18 +2578,18 @@ const defaultSortModes = [
 ];
 
 function changeDefaultSort(){
-  defaultSortMode =
+  defaultSort =
     cycleSetting({
       current:
-        defaultSortMode,
+        defaultSort,
       
       list:
-        defaultSortModes
+        defaultSorts
      });
      
    localStorage.setItem(
-     "defaultSortMode",
-     defaultSortMode
+     "defaultSort",
+     defaultSort
    );
    
    renderSettings();
@@ -2598,23 +2598,23 @@ function changeDefaultSort(){
 //===============
 
 //====デフォルト表示タイプ切り替え
-const defaultViews = [
-  "card",
-  "list",
-  "shelf"
+const defaultTypes = [
+  "all",
+  "normal",
+  "wish"
 ];
 
-function changeDefaultView(){
-  defaultView =
+function changeDefaultType(){
+  defaultType =
     cycleSetting({
       current:
-        defaultView,
+        defaultType,
       list:
-        defaultViews
+        defaultTypes
       });
     localStorage.setItem(
-      "defaultView",
-      defaultView
+      "defaultType",
+      defaultType
     );
     
     renderSettings();
