@@ -2804,7 +2804,7 @@ function setupTagToggle(){
 //========
 
 //====設定用トグル：表示用設定
-function 
+//function 
 //=============
 
 
