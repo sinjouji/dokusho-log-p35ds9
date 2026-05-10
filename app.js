@@ -2157,7 +2157,7 @@ function renderSettings(){
 
   <div class="setting-card">
     <div class="setting-card-title" onclick="toggleSettingSection('home')">
-    ${settingsSections.home
+    ${settingSections.home
     ? "▽"
     : "▶︎"}
     ホーム表示設定</div>
@@ -2221,7 +2221,7 @@ function renderSettings(){
   
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('input')">
-    ${settingsSections.input
+    ${settingSections.input
     ? "▽"
     : "▶︎"}入力</div>
   
@@ -2265,7 +2265,7 @@ function renderSettings(){
 
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('stats')">
-    ${settingsSections.stats
+    ${settingSections.stats
     ? "▽"
     : "▶︎"}統計設定</div>
   
@@ -2301,7 +2301,7 @@ function renderSettings(){
    
      <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('tags')">
-    ${settingsSections.tags
+    ${settingSections.tags
     ? "▽"
     : "▶︎"}入力</div>
   
@@ -2314,7 +2314,7 @@ function renderSettings(){
  </div> 
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
-    ${settingsSections.datas
+    ${settingSections.datas
     ? "▽"
     : "▶︎"}データ</div>
   
