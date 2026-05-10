@@ -95,6 +95,50 @@ let settingSections = JSON.parse(
 //タグ編集用
 let editingTagId = null;
 
+//タグパレット
+const tagColors = [
+
+  "#7B8D8E", // 青鈍
+  "#6E7F80", // 御召茶
+  "#8F7A66", // 江戸茶
+  "#8C6B4F", // 狐色
+  "#7C5C46", // 路考茶
+
+  "#8B6F70", // 鳩羽鼠
+  "#A16D5D", // 唐茶
+  "#B77B57", // 琥珀色
+  "#A67B5B", // 丁子茶
+
+  "#6D8C74", // 千歳緑
+  "#5F7B6E", // 深緑
+  "#768F72", // 柳煤竹
+
+  "#6F7C8C", // 鉄紺
+  "#5F6A7D", // 紺鼠
+  "#7A89A8", // 藍鼠
+
+  "#9A8C98", // 紫鼠
+  "#8D7A8C", // 葡萄鼠
+
+  "#B4A582", // 利休白茶
+  "#C2B59B", // 灰桜
+  "#D0C2A8",  // 鳥の子
+
+//既存色
+"#3d8a9e",
+"#7da23a",
+"#7a5c35",
+"#4a3b30",
+"#eb6e80",
+"#e8a020",
+"#b52a04",
+"#6b4d8a",
+"#2545a0",
+"#8a7e78",
+"#c4a882",
+"#1e7a4e",
+"#4fa090"
+];
 
 
 
@@ -2303,6 +2347,116 @@ function renderSettings(){
 : ""}
   </div>
    
+   
+   <div class="setting-card">
+
+  <div
+    class="setting-card-title"
+    onclick="toggleSettingSection('tags')"
+  >
+
+    ${settingSections.tags
+      ? "▽"
+      : "▶︎"
+    }
+
+    タグ設定
+
+  </div>
+
+  ${settingSections.tags
+    ? `
+
+    <div class="setting-row">
+
+      <span>タグの編集</span>
+
+    </div>
+
+    ${tagMaster.map(tag => `
+
+      <div class="tag-edit-item">
+
+        <div class="setting-row">
+
+          <span>
+            ${tag.name}
+          </span>
+
+          <button
+            onclick="
+              openTagEditor(${tag.id})
+            "
+          >
+            編集
+          </button>
+
+        </div>
+
+        ${editingTagId === tag.id
+          ? `
+
+          <div class="tag-edit-area">
+
+            <input value="${tag.name}">
+
+            <div class="tag-color-palette">
+
+              ${tagColors.map(color => `
+
+                <button
+
+                  class="
+                    color-dot
+                    ${tag.color === color
+                      ? "active"
+                      : ""
+                    }
+                  "
+
+                  style="
+                    background:${color};
+                  "
+
+                  onclick="
+                    selectTagColor('${color}')
+                  "
+
+                >
+                </button>
+
+              `).join("")}
+
+            </div>
+
+            <button>
+              保存
+            </button>
+
+            <button
+              onclick="
+                closeTagEditor()
+              "
+            >
+              キャンセル
+            </button>
+
+          </div>
+
+          `
+          : ""
+        }
+
+      </div>
+
+    `).join("")}
+
+    `
+    : ""
+  }
+
+</div>
+   
 
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
@@ -2341,7 +2495,7 @@ function renderSettings(){
 
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;  
-}}
+}
 //==========
 
 
@@ -3310,6 +3464,25 @@ function openCharacter(c){
 
 
 
+
+
+//====タグエディタ「編集開く」
+function openTagEditor(id){
+
+  editingTagId = id;
+
+  renderSettings();
+}
+//=====================
+
+//====タグエディタ「閉じる」
+function closeTagEditor(){
+
+  editingTagId = null;
+
+  renderSettings();
+}
+//=====================
 
 
 
