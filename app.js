@@ -20,7 +20,7 @@ if(!["single","gradient","stripe"].includes(colorMode)){
 } // 背表紙カラー：single/gradient/stripe
 
 let viewMode = "card";
-if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
+//if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
 
 let sortMode = "read-desc";
 
