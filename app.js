@@ -200,7 +200,7 @@ function getBookColor(book){
 function getShelfColorModeLabel(){
 
   if(
-    shelfColorMode === "solid"
+    shelfColorMode === "single"
   ){
     return "単色";
   }
@@ -212,7 +212,7 @@ function getShelfColorModeLabel(){
   }
 
   if(
-    shelfColorMode === "marker"
+    shelfColorMode === "stripe"
   ){
     return "目印";
   }
@@ -1221,6 +1221,16 @@ function renderShelfView(main, books){
 }
 //=================
 
+
+//====設定用のカラーモード設定
+let shelfColorMode =
+  localStorage.getItem)
+    "shelfColorMode"
+    ) || "single";
+//====================
+
+
+
 //====月間読書グラフ表示
 function renderMonthlyGraph(main, year){
 
@@ -2065,27 +2075,6 @@ function renderSettings(){
   const el = document.getElementById("page-settings");
   if(!el) return;
   
-  const shelfColorModes = [
-  "solid",
-  "gradient",
-  "marker"
-];
-
-const sortModes = [
-  "read-desc",
-  "read-asc",
-  "title-asc",
-  "title-desc",
-  "rating-desc",
-  "rating-asc"
-];
-
-const defaultViews = [
-  "card",
-  "list",
-  "shelf"
-];
-  
   el.innerHTML = `
     <h2 style="padding:12px;">設定</h2>
 
@@ -2524,8 +2513,21 @@ function changeViewMode(mode){
 }
 //================
 
+
+
 //====背表紙カラー切り替え
+const shelfColorModes = [
+  "single",
+  "gradient",
+  "stripe"
+]
+
 function changeShelfColorMode(){
+
+//  const index =
+//    shelfColorModes.indexOf(
+//      shelfColorMode
+//    );
 
   shelfColorMode =
     cycleSetting({
