@@ -128,17 +128,17 @@ const tagColors = [
 //既存色
   "#3d8a9e",
   "#7da23a",
-  "7a5c35",
-"4a3b30",
-"eb6e80",
-"e8a020",
-"b52a04",
-"6b4d8a",
-"2545a0",
-"8a7e78",
-"c4a882",
-"1e7a4e",
-"4fa090"
+  "#7a5c35",
+"#4a3b30",
+"#eb6e80",
+"#e8a020",
+"#b52a04",
+"#6b4d8a",
+"#2545a0",
+"#8a7e78",
+"#c4a882",
+"#1e7a4e",
+"#4fa090"
 ];
 
 
@@ -2345,6 +2345,115 @@ function renderSettings(){
 : ""}
   </div>
    
+<div class="setting-card">
+
+  <div
+    class="setting-card-title"
+    onclick="toggleSettingSection('tags')"
+  >
+
+    ${settingSections.tags
+      ? "▽"
+      : "▶︎"
+    }
+
+    タグ設定
+
+  </div>
+
+  ${settingSections.tags
+    ? `
+
+    <div class="setting-row">
+
+      <span>タグの編集</span>
+
+    </div>
+
+    ${tagMaster.map(tag => `
+
+      <div class="tag-edit-item">
+
+        <div class="setting-row">
+
+          <span>
+            ${tag.name}
+          </span>
+
+          <button
+            onclick="
+              openTagEditor(${tag.id})
+            "
+          >
+            編集
+          </button>
+
+        </div>
+
+        ${editingTagId === tag.id
+          ? `
+
+          <div class="tag-edit-area">
+
+            <input value="${tag.name}">
+
+            <div class="tag-color-palette">
+
+              ${tagColors.map(color => `
+
+                <button
+
+                  class="
+                    color-dot
+                    ${tag.color === color
+                      ? "active"
+                      : ""
+                    }
+                  "
+
+                  style="
+                    background:${color};
+                  "
+
+                  onclick="
+                    selectTagColor('${color}')
+                  "
+
+                >
+                </button>
+
+              `).join("")}
+
+            </div>
+
+            <button>
+              保存
+            </button>
+
+            <button
+              onclick="
+                closeTagEditor()
+              "
+            >
+              キャンセル
+            </button>
+
+          </div>
+
+          `
+          : ""
+        }
+
+      </div>
+
+    `).join("")}
+
+    `
+    : ""
+  }
+
+</div>
+
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
     ${settingSections.datas
