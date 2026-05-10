@@ -2146,7 +2146,7 @@ function renderSettings(){
     <h2 style="padding:12px;">設定</h2>
 
   <div class="setting-card">
-    <div class="setting-card-title">表示設定</div>
+    <div class="setting-card-title">ホーム表示設定</div>
     
     <!--背表紙-->
     <div class="setting-row">
@@ -2171,49 +2171,142 @@ function renderSettings(){
         ${getTypeModeLabel()}
       </button>
     </div>
+    
+    <!--テーマカラー-->
+    <div class="setting-row">
+      <span>テーマカラー</span>
+      ---
+    </div>
+    
+    <!--フォントサイズ-->
+    <div class="setting-row">
+      <span>フォントサイズ</span>
+      ---
+    </div>
+    
+    <!--最近の本-->
+    <div class="setting-row">
+      <span>最近の本</span>
+      ---
+    </div>
+    
+    <!--サマリー-->
+    <div class="setting-row">
+      <span>サマリー</span>
+      ---
+    </div>
+
+    <!--予備-->
+    <div class="setting-row">
+      <span>予備</span>
+      ---
+    </div>
 
   </div>
-
   
-    <div class="setting-card">
+  
+  <div class="setting-card">
+    <div class="setting-card-title">入力</div>
+  
+    <!--メモエリア-->
+    <div class="setting-row">
+      <span>メモエリア</span>
+      <button onclick="toggleMemo()">
+        ${
+          enableMemo
+            ? "📝 メモ表示：ON"
+            : "📝 メモ表示：OFF"
+          }
+        </button>
+      </div>
+  
+    <!--タグ-->
+    <div class="setting-row">
+      <span>タグ</span>
+      ---
+    </div>
 
-  <div class="setting-card-title">
-    オンオフ設定
+    <!--引用-->
+    <div class="setting-row">
+      <span>引用</span>
+      ---
+    </div>
+
+    <!--再読チェック-->
+    <div class="setting-row">
+      <span>再読チェック</span>
+      ---
+    </div>
+
+    <!--サジェスト-->
+    <div class="setting-row">
+      <span>サジェスト</span>
+      ---
+    </div>
+
   </div>
 
-  <button onclick="toggleMemo()">
-    ${
-      enableMemo
-        ? "📝 メモ表示：ON"
-        : "📝 メモ表示：OFF"
-    }
-  </button>
+  <div class="setting-card">
+    <div class="setting-card-title">統計設定</div>
+  
+    <!--年間目標-->
+    <div class="setting-row">
+      <span>年間目標</span>
+      <div class="switch ${enableGoal ? "on" : ""}"             
+        onclick="toggleGoal(event)"></div>
+      <div class="settings-item">
+        冊数
+        <input 
+          type="number" 
+          value="${yearlyGoal}" 
+          min="1"
+          style="width:80px;"
+          onchange="changeGoal(this.value)">
+       </div>
+    </div>  
 
-</div>
+    <!--カレンダー-->
+    <div class="setting-row">
+      <span>カレンダー</span>
+      ---
+    </div>
 
+    <!--グラフ-->
+    <div class="setting-row">
+      <span>グラフ</span>
+      ---
+    </div>
+
+  </div>
    
-<div class="settings-card">
-  <div class="settings-title">目標</div>
-  <div class="settings-list">
+  <div class="setting-card">
+    <div class="setting-card-title">データ</div>
+  
+    <!--エクスポート-->
+    <div class="setting-row">
+      <span>インポート</span>
+      ---
+    </div>  
 
-    <div class="settings-item">
-      年間目標
-      <div class="switch ${enableGoal ? "on" : ""}" onclick="toggleGoal(event)"></div>
+    <!--インポートー-->
+    <div class="setting-row">
+      <span>インポート</span>
+      ---
     </div>
 
-    <div class="settings-item">
-      冊数
-      <input 
-        type="number" 
-        value="${yearlyGoal}" 
-        min="1"
-        style="width:80px;"
-        onchange="changeGoal(this.value)"
-      >
+    <!--バックアップ-->
+    <div class="setting-row">
+      <span>バックアップ</span>
+      ---
+    </div>
+    
+    <!--同期-->
+    <div class="setting-row">
+      <span>Firestore同期</span>
+      ---
     </div>
 
   </div>
-</div>
 
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;  
