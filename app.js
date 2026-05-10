@@ -2414,7 +2414,7 @@ ${tagMaster.map(tag => `
     }
 
   </div>
-`).join("")}
+`).join("")};
  
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
