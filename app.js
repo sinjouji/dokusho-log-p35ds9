@@ -2255,12 +2255,6 @@ function renderSettings(){
       <span>サマリー</span>
       ---
     </div>
-
-    <!--予備-->
-    <div class="setting-row">
-      <span>予備</span>
-      ---
-    </div>
 `
 : ""}
   </div>
@@ -2425,6 +2419,7 @@ ${tagMaster.map(tag => `
 
   </div>
 `).join("")}
+` : ""}
  
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
