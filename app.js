@@ -3232,8 +3232,8 @@ async function loadData(){
     renderViewMode();
     renderSort();
     setupTagToggle();
-//    renderTypeFilter();
-//    renderCalendar();
+    renderTypeFilter();
+    renderCalendar();
     renderHome();
     go('home');
 
