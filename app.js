@@ -221,6 +221,73 @@ function getShelfColorModeLabel(){
 }
 //============
 
+//====設定用：並び順
+function getsortModeLabel(){
+
+  if(
+    sortMode === "read-desc"
+  ){
+    return "最新読了順";
+  }
+
+  if(
+    sortMode === "read-asc"
+  ){
+    return "最古読了順";
+  }
+
+  if(
+    sortMode === "title-asc"
+  ){
+    return "ABC↓";
+  }
+  
+    if(
+    sortMode === "title-desc"
+  ){
+    return "ZYX↑";
+  }
+  
+    if(
+    sortMode === "rating-desc"
+  ){
+    return "高評価";
+  }
+  
+    if(
+    sortMode === "rating-asc"
+  ){
+    return "低評価";
+  }
+
+  return "";
+}
+//=============
+
+//====設定用：表示タイプ
+function getViewModeLabel(){
+    if(
+    sortMode === "All"
+  ){
+    return "全部";
+  }
+  
+      if(
+    sortMode === "normal"
+  ){
+    return "本棚";
+  }
+
+    if(
+    sortMode === "wish"
+  ){
+    return "ウィッシュリスト";
+  }
+  return "";
+}
+//=============
+
+
 
 //文字色対策
 function getTextColor(bg){
@@ -2469,7 +2536,7 @@ const shelfColorModes = [
   "single",
   "gradient",
   "stripe"
-]
+];
 
 function changeShelfColorMode(){
 
@@ -2499,15 +2566,59 @@ function changeShelfColorMode(){
 }
 //===============
 
-//====デフォルト並び順切り替え
-function changeDefaultSort(){
 
+//====デフォルト並び順切り替え
+const sortModes = [
+  "read-desc",
+  "read-asc",
+  "title-asc",
+  "title-desc",
+  "rating-desc",
+  "rating-asc"
+];
+
+function changeDefaultSort(){
+  sortMode =
+    cycleSetting({
+      current:
+        sortMode,
+      
+      list:
+        sortModes
+     });
+     
+   localStorage.setItem(
+     "sortMode",
+     sortMode
+   );
+   
+   renderSettings();
+   renderHome();
 }
 //===============
 
 //====デフォルト表示タイプ切り替え
-function changeDefaultView(){
+const defaultViews = [
+  "card",
+  "list",
+  "shelf"
+];
 
+function changeDefaultView(){
+  defaultView =
+    cycleSetting({
+      current:
+        defaultView,
+      list:
+        defaultViews
+      });
+    localStorage.setItem(
+      "defaultView",
+      defaultView
+    );
+    
+    renderSettings();
+    renderHome();
 }
 //===============
 
@@ -2810,10 +2921,6 @@ function setupTagToggle(){
   };
 }
 //========
-
-//====設定用トグル：表示用設定
-//function 
-//=============
 
 
 
