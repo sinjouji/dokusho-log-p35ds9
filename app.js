@@ -2352,19 +2352,17 @@ function renderSettings(){
     : "▶︎"}タグ設定</div>
       ${settingSections.tags
     ? `
-     <!--タグ設定-->
+     
     <div class="setting-row">
       <span>タグの編集</span>
-<!--ここからタグ編集エリア-->
 
-${tagMaster.map(tag => `
 
-  <div class="tag-edit-item">
-    <div class="setting-row">
+     ${tagMaster.map(tag => `
 
-      <span>
-        ${tag.name}
-      </span>
+      <div class="tag-edit-item">
+      <div class="setting-row">
+
+      <span>${tag.name}</span>
 
       <button onclick="openTagEditor(${tag.id})">
         編集
@@ -2381,36 +2379,17 @@ ${tagMaster.map(tag => `
 
           ${tagColors.map(color => `
 
-            <button
-
-  class="
-    color-dot
-    ${tag.color === color
-      ? "active"
-      : ""
-    }
-  "
-
-  style="
-    background:${color};
-  "
-
-  onclick="
-    selectTagColor('${color}')
-  "
-
->
-</button>
+         <!--button-->
 
           `).join("")}
 
         </div>
 
-        <button>保存</button>
+             <button>保存</button>
 
-        <button onclick="closeTagEditor()">
-          キャンセル
-        </button>
+             <button onclick="closeTagEditor()">
+               キャンセル
+             </button>
 
       </div>
       `
@@ -2418,7 +2397,10 @@ ${tagMaster.map(tag => `
     }
 
   </div>
+
+
 `).join("")}
+
 ` : ""}
  
   <div class="setting-card">
