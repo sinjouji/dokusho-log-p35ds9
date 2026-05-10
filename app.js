@@ -2357,18 +2357,7 @@ function renderSettings(){
       <span>タグの編集</span>
 
 
-     ${tagMaster.map(tag => `
-
-      <div class="tag-edit-item">
-      <div class="setting-row">
-
-      <span>${tag.name}</span>
-
-      <button onclick="openTagEditor(${tag.id})">
-        編集
-      </button>
-
-    </div>
+  
 
 
     
@@ -2381,11 +2370,6 @@ function renderSettings(){
 
   
   
-
-  </div>
-
-
-`).join("")}
 
 ` : ""}
  
