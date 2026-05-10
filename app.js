@@ -2463,7 +2463,7 @@ ${tagMaster.map(tag => `
 
     <button onclick="go('home')" style="margin:16px;">← 戻る</button>
   `;  
-}
+}}
 //==========
 
 
