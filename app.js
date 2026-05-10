@@ -2370,8 +2370,6 @@ function renderSettings(){
 
     </div>
 
-    ${editingTagId === tag.id
-      ? `
 
     
 
@@ -2382,8 +2380,7 @@ function renderSettings(){
  
 
   
-      `
-      : "" }
+  
 
   </div>
 
