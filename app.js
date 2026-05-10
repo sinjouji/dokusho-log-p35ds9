@@ -2387,10 +2387,12 @@ ${tagMaster.map(tag => `
 
           ${tagColors.map(color => `
 
-            <button class="color-dot
+            <button class="
+                color-dot
                 ${tag.color === color
                   ? "active"
-                  : ""}"
+                  : ""
+                  }"
 
               style="background:${color};"
               onclick="selectTagColor('${color}')">
