@@ -1224,7 +1224,7 @@ function renderShelfView(main, books){
 
 //====設定用のカラーモード設定
 let shelfColorMode =
-  localStorage.getItem)
+  localStorage.getItem(
     "shelfColorMode"
     ) || "single";
 //====================
@@ -2106,7 +2106,6 @@ function renderSettings(){
     </div>
 
   </div>
-
 
   
     <div class="setting-card">
