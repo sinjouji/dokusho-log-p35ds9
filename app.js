@@ -2065,19 +2065,61 @@ function renderSettings(){
   const el = document.getElementById("page-settings");
   if(!el) return;
   
+  const shelfColorModes = [
+  "solid",
+  "gradient",
+  "marker"
+];
+
+const sortModes = [
+  "read-desc",
+  "read-asc",
+  "title-asc",
+  "title-desc",
+  "rating-desc",
+  "rating-asc"
+];
+
+const defaultViews = [
+  "card",
+  "list",
+  "shelf"
+];
+  
   el.innerHTML = `
     <h2 style="padding:12px;">設定</h2>
 
   <div class="setting-card">
     <div class="setting-card-title">表示設定</div>
     
-    <button onclick="changeShelfColorMode()">
-      背表紙カラー：${getShelfColorModeLabel()}
-    </button>
+    <!--背表紙-->
+    <div class="setting-row">
+      <span>背表紙カラー</span>
+      <button onclick="changeShelfColorMode()">
+        背表紙カラー：${getShelfColorModeLabel()}
+      </button>
+    </div>
     
+    <!--並び順-->
+    <div class="setting-row">
+      <span>並び順</span>
+      <button onclick="changeDefaultSort()">
+        ${getSortModeLabel()}
+      </button>
+    </div>
+    
+    <!--表示タイプ-->
+    <div class="setting-row">
+      <span>表示タイプ</span>
+      <button onclick="changeDefaultView()">
+        ${getViewModeLabel()}
+      </button>
+    </div>
+
   </div>
 
 
+  
     <div class="setting-card">
 
   <div class="setting-card-title">
@@ -2505,6 +2547,21 @@ function changeShelfColorMode(){
   renderHome();
 }
 //===============
+
+//====デフォルト並び順切り替え
+function changeDefaultSort(){
+
+}
+//===============
+
+//====デフォルト表示タイプ切り替え
+function changeDefaultView(){
+
+}
+//===============
+
+
+
 
 // 本詳細
 function openDetail(book){
