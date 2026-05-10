@@ -68,7 +68,7 @@ enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破
 //グラフ年間移動用
 let statsYear = new Date().getFullYear();
 
-// UI設定（保存＋初期値）
+// 設定（保存＋初期値）
 let uiSettings = {
   recent: true,
   summary: true,
@@ -82,6 +82,16 @@ let uiMode = localStorage.getItem("uiMode") || "on";
 let recentViewMode = localStorage.getItem("recentViewMode") || "card";
 // "card" or "spine"
 
+//設定のグループ開閉
+let settingSections = JSON.parse(
+  localStorage.getItem("settingSections")
+  ) || {
+    home: true,
+    input: true,
+    stats: true,
+    tags: true,
+    datas: true,
+    };
 
 
 
@@ -291,7 +301,7 @@ function getTypeModeLabel(){
 
 //文字色対策
 function getTextColor(bg){
-  return "#fff"; // とりあえず白固定でもOK
+  return "#fffffc"; // とりあえず白固定でもOK
 }
 //========
 
@@ -428,11 +438,11 @@ function createReadBadge(book){
   } else if(count === 1){
     span.textContent = "✔️読了";
     span.style.background = "#4a8d61";
-    span.style.color = "#fff";
+    span.style.color = "#fffffc";
   } else {
     span.textContent = `再読 ${count}回`;
     span.style.background = "#4c808d";
-    span.style.color = "#fff";
+    span.style.color = "#fffffc";
   }
 
   return span;
@@ -608,7 +618,7 @@ function createBookSpine(b){
   title.style.letterSpacing = "0.05em";
   
   //色
-  title.style.color = "#fff"; //!
+  title.style.color = "#fffffc"; //!
   
   title.style.flex = "1";
   title.style.alignItems = "center"; //! flex-start
@@ -622,7 +632,7 @@ function createBookSpine(b){
   fav.textContent = val === 4 ? "👑" : "★".repeat(val)
 //  +"\n"+${book.dates?.length || 0}+"回読了";
   fav.style.fontSize = "8px";
-  fav.style.color = "#fff";
+  fav.style.color = "#fffffc";
   fav.style.writingMode = "vertical-rl";
   fav.style.height = "30px";
   fav.style.display = "flex";
@@ -808,7 +818,7 @@ function styleChip(btn, active=false){
 
   if(active){
     btn.style.background = "#333";
-    btn.style.color = "#fff";
+    btn.style.color = "#fffffc";
   } else {
     btn.style.background = "transparent";
     btn.style.color = "#333";
@@ -1634,7 +1644,7 @@ function renderTagFilter(){
     btn.textContent = tag.name;
     btn.style.fontSize = "10px";
 
-    btn.style.background = "#fff";
+    btn.style.background = "#fffffc";
     btn.style.color = tag.color || "#666";
     
     btn.style.border = `1px solid ${tag.color || "#ccc"}`;
@@ -1643,7 +1653,7 @@ function renderTagFilter(){
     if(selectedTagId === tag.id){
       btn.classList.add("active");
       btn.style.background = tag.color;
-      btn.style.color = "#fff";
+      btn.style.color = "#fffffc";
     }
 
     btn.onclick = ()=>{
@@ -2005,8 +2015,8 @@ function renderCalendar(){
  	 if(color){
   	 
 		cell.style.background = color;
-  		cell.style.color = count >= 3 ? "#fff" : "#333";
-  		//textColor = alpha > 0.4 ? "#fff" : "#333";
+  		cell.style.color = count >= 3 ? "#fffffc" : "#333";
+  		//textColor = alpha > 0.4 ? "#fffffc" : "#333";
 	  }}
 
     
@@ -2146,7 +2156,11 @@ function renderSettings(){
     <h2 style="padding:12px;">設定</h2>
 
   <div class="setting-card">
-    <div class="setting-card-title">ホーム表示設定</div>
+    <div class="setting-card-title" onclick="toggleSettingSection('home')">
+    ${settingsSections.home
+    ? "▽"
+    : "▶︎"}
+    ホーム表示設定</div>
     
     <!--背表紙-->
     <div class="setting-row">
@@ -2206,7 +2220,10 @@ function renderSettings(){
   
   
   <div class="setting-card">
-    <div class="setting-card-title">入力</div>
+    <div class="setting-card-title"onclick="toggleSettingSection('input')">
+    ${settingsSections.input
+    ? "▽"
+    : "▶︎"}入力</div>
   
     <!--メモエリア-->
     <div class="setting-row">
@@ -2247,7 +2264,10 @@ function renderSettings(){
   </div>
 
   <div class="setting-card">
-    <div class="setting-card-title">統計設定</div>
+    <div class="setting-card-title"onclick="toggleSettingSection('stats')">
+    ${settingsSections.stats
+    ? "▽"
+    : "▶︎"}統計設定</div>
   
     <!--年間目標-->
     <div class="setting-row">
@@ -2255,7 +2275,7 @@ function renderSettings(){
       <div class="switch ${enableGoal ? "on" : ""}"             
         onclick="toggleGoal(event)"></div>
       <div class="settings-item">
-        冊数
+        目標冊数
         <input 
           type="number" 
           value="${yearlyGoal}" 
@@ -2279,8 +2299,24 @@ function renderSettings(){
 
   </div>
    
+     <div class="setting-card">
+    <div class="setting-card-title"onclick="toggleSettingSection('tags')">
+    ${settingsSections.tags
+    ? "▽"
+    : "▶︎"}入力</div>
+  
+     <!--タグ設定-->
+    <div class="setting-row">
+      <span>タグ設定</span>
+      ---
+    </div>
+   
+ </div> 
   <div class="setting-card">
-    <div class="setting-card-title">データ</div>
+    <div class="setting-card-title"onclick="toggleSettingSection('datas')">
+    ${settingsSections.datas
+    ? "▽"
+    : "▶︎"}データ</div>
   
     <!--エクスポート-->
     <div class="setting-row">
@@ -2398,6 +2434,27 @@ function toggleUIItem(e, key){
   renderHome();
 }
 //========
+
+
+//====設定ページエリアトグル開閉設定
+function toggleSettingSection(key){
+
+  settingSections[key] =
+    !settingSections[key];
+
+  localStorage.setItem(
+
+    "settingSections",
+
+    JSON.stringify(
+      settingSections
+    )
+  );
+
+  renderSettings();
+}
+//======================
+
 
 //「次の画面」っぽいやつ====
 function openSettingSelect(type){
@@ -3052,7 +3109,7 @@ function openDayModal(dateStr, list){
   m.style.justifyContent = "center";
 
   const box = document.createElement("div");
-  box.style.background = "#fff";
+  box.style.background = "#fffffc";
   box.style.padding = "20px";
   box.style.maxHeight = "80%";
   box.style.overflow = "auto";
