@@ -2387,12 +2387,12 @@ ${tagMaster.map(tag => `
 
           ${tagColors.map(color => `
 
-            <button class="
-                color-dot
+            <button class=
+                 color-dot
                 ${tag.color === color
                   ? "active"
                   : ""
-                  }"
+                  }
 
               style="background:${color};"
               onclick="selectTagColor('${color}')">
@@ -2414,7 +2414,7 @@ ${tagMaster.map(tag => `
     }
 
   </div>
-`).join("")};
+`).join("")}
  
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
