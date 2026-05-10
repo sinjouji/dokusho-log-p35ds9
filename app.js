@@ -2375,7 +2375,7 @@ function renderSettings(){
     color-dot
     ${tag.color === color
       ? 'active'
-      : "" }
+      : '' }
        "
 
   style="background:${color};"
