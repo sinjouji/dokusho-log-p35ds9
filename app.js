@@ -222,7 +222,7 @@ function getShelfColorModeLabel(){
 //============
 
 //====設定用：並び順
-function getSortModeLabel(){
+function getDefaulfSortLabel(){
 
   if(
     defaultSort === "read-desc"
@@ -2160,7 +2160,7 @@ function renderSettings(){
     <div class="setting-row">
       <span>並び順</span>
       <button onclick="changeDefaultSort()">
-        ${getSortModeLabel()}
+        ${getDefaultSortLabel()}
       </button>
     </div>
     
