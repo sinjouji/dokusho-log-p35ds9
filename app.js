@@ -897,6 +897,70 @@ function changeTypeFilter(){
 }
 //================
 
+//====汎用サジェスト
+function renderSuggestList({
+
+  inputId,
+  suggestId,
+  list,
+  max = 5
+
+}){
+
+  const input =
+    document.getElementById(inputId);
+
+  const suggest =
+    document.getElementById(suggestId);
+
+  if(!input || !suggest) return;
+
+  const keyword =
+    input.value
+      .trim()
+      .toLowerCase();
+
+  if(!keyword){
+
+    suggest.innerHTML = "";
+    return;
+  }
+
+  const matched =
+    [...new Set(list)]
+      .filter(v=>
+
+        v &&
+        v.toLowerCase()
+          .includes(keyword)
+
+      )
+      .slice(0, max);
+
+  suggest.innerHTML = "";
+  
+  matched.forEach(text=>{
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "suggest-item";
+
+    item.textContent = text;
+    
+    item.onclick = ()=>{
+
+      input.value = text;
+
+      suggest.innerHTML = "";
+    };
+
+    suggest.appendChild(item);
+  });
+}
+//===============
+
 
 //====サジェスト
 //====検索候補のみ表示させる役
@@ -938,61 +1002,50 @@ function renderSuggest(){
 //====タイトル用サジェスト
 function renderTitleSuggest(){
 
-  const el =
-    document.getElementById(
-      "title-suggest"
-    );
+  renderSuggestList({
 
-  const keyword =
-    document.getElementById(
-      "add-title"
-    ).value
-    .trim()
-    .toLowerCase();
+    inputId: "add-title",
 
-  if(!keyword){
-    el.innerHTML = "";
-    return;
-  }
+    suggestId: "title-suggest",
 
-  const titles =
-    [...new Set(
+    list:
       books.map(b=>b.title)
-    )];
 
-  const matched =
-    titles.filter(t=>
-
-      t &&
-      t.toLowerCase()
-      .includes(keyword)
-
-    ).slice(0,5);
-
-  el.innerHTML = "";
-
-  matched.forEach(title=>{
-
-    const d =
-      document.createElement("div");
-
-    d.textContent = title;
-
-    d.onclick = ()=>{
-
-      document.getElementById(
-        "add-title"
-      ).value = title;
-
-      el.innerHTML = "";
-    };
-
-    el.appendChild(d);
   });
 }
 //===================
 
+//====シリーズ用サジェスト
+function renderSeriesSuggest(){
 
+  renderSuggestList({
+
+    inputId: "add-series",
+
+    suggestId: "series-suggest",
+
+    list:
+      series.map(s=>s.name)
+
+  });
+}
+//===================
+
+//====キャラクター用サジェスト
+function renderCharacterSuggest(){
+
+  renderSuggestList({
+
+    inputId: "add-character",
+
+    suggestId: "character-suggest",
+
+    list:
+      characters.map(c=>c.name)
+
+  });
+}
+//===================
 
 //====キーワード検索
 function handleSearchInput(){
