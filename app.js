@@ -2363,48 +2363,56 @@ function renderSettings(){
       <span>タグの編集</span>
 <!--ここからタグ編集エリア-->
 
-${editingTagId === tag.id
-  ? `
-    <input value="${tag.name}">
+${tagMaster.map(tag => `
 
-      <div class="tag-color-palette">
+  <div class="tag-edit-item">
+    <div class="setting-row">
 
-${tagColors.map(color => `
+      <span>
+        ${tag.name}
+      </span>
 
-  <button
-    class="color-dot
-      ${editingTagColor === color
-        ? "active"
-        : ""
-      }"
+      <button onclick="openTagEditor(${tag.id})">
+        編集
+      </button>
 
-    style="
-      background:${color};
-    "
-
-    onclick="
-      selectTagColor('${color}')
-    ">
-  </button>
-
-`).join("")}
-
-</div>
-``
-
-    <button>保存</button>
-    <button>キャンセル</button>
-  `
-  : ""
-}
-
-      
-      
-      
     </div>
-   `
-   : ""}
- </div> 
+
+    ${editingTagId === tag.id
+      ? `
+
+      <div class="tag-edit-area">
+        <input value="${tag.name}">
+        <div class="tag-color-palette">
+
+          ${tagColors.map(color => `
+
+            <button class="color-dot
+                ${tag.color === color
+                  ? "active"
+                  : ""}"
+
+              style="background:${color};"
+              onclick="selectTagColor('${color}')">
+            </button>
+
+          `).join("")}
+
+        </div>
+
+        <button>保存</button>
+
+        <button onclick="closeTagEditor()">
+          キャンセル
+        </button>
+
+      </div>
+      `
+      : ""
+    }
+
+  </div>
+`).join("")}
  
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
