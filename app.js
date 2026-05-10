@@ -267,19 +267,19 @@ function getSortModeLabel(){
 //====設定用：表示タイプ
 function getTypeModeLabel(){
     if(
-    typeMode === "all"
+    typeFilter === "all"
   ){
     return "全部";
   }
   
       if(
-    typeMode === "normal"
+    typeFilter === "normal"
   ){
     return "本棚";
   }
 
     if(
-    typeMode === "wish"
+    typeFilter === "wish"
   ){
     return "ウィッシュリスト";
   }
@@ -2605,16 +2605,16 @@ const typeModes = [
 ];
 
 function changeDefaultType(){
-  typeMode =
+  typeFilter =
     cycleSetting({
       current:
-        typeMode,
+        typeFilter,
       list:
         typeModes
       });
     localStorage.setItem(
-      "typeMode",
-      typeMode
+      "typeFilter",
+      typeFilter
     );
     
     renderSettings();
