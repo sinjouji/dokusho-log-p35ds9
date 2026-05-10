@@ -2355,24 +2355,51 @@ function renderSettings(){
      
     <div class="setting-row">
       <span>タグの編集</span>
+       ${tagMaster.map(tag => `
+        <div class="tag-edit-item">
+         <div class="setting-row">
 
+         <span>${tag.name}</span>
 
+      <button onclick="openTagEditor(${tag.id})">
+        編集
+      </button>
+         </div>
+    ${editingTagId === tag.id
+      ? ` <div class="tag-edit-area">
+        <input value="${tag.name}">
+        <div class="tag-color-palette">
   
 
 
     
+    ${tagColors.map(color => `
+  <button class="
+    color-dot
+    ${tag.color === color
+      ? "active"
+      : "" } "
+
+  style="background:${color};"
+  onclick="selectTagColor('${color}') ">
+</button>
+         `).join("")}
+      
 
       
 
-         <!--button-->
-
  
+      </div>
+             <button>保存</button>
 
-  
-  
+             <button onclick="closeTagEditor()">
+               キャンセル
+             </button>
 
-` : ""}
- 
+   </div>  `  : "" }
+  </div> `).join("")}
+</div>` : ""}
+ </div><!---tags-setting-card->
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
     ${settingSections.datas
