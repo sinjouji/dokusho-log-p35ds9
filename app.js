@@ -779,7 +779,7 @@ function renderHome(){
   renderSearchArea();
   
   renderTagFilter();
-//  renderTypeFilter();
+
   renderRecentBooks();
   
   renderBookList();
@@ -2699,7 +2699,7 @@ function setView(mode){
 //========
 function setTypeFilter(type){
   selectedType = type;
- // renderTypeFilter(); //再描画で色変更
+
   renderHome();
 }
 //========
@@ -3232,7 +3232,7 @@ async function loadData(){
     renderViewMode();
     renderSort();
     setupTagToggle();
-    renderTypeFilter();
+
     renderCalendar();
     renderHome();
     go('home');
