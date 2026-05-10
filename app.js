@@ -1370,8 +1370,9 @@ function renderSummary(main){
 
 //========タイプフィルター（ウィッシュリスト）
 function filterBooks(list){
-  const el = document.getElementById("type-filter");
-  if(!el) return;
+  
+  if(!list) return [];
+  let arr = [...list];
 
   if(typeFilter !== "all"){
 
