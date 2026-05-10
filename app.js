@@ -2125,57 +2125,7 @@ function renderSettings(){
 
 </div>
 
-    <div class="settings-card">
-      <div class="settings-card-title">表示</div>
-      <div class="settings-list">
-        <div class="settings-item" onclick="openSettingSelect('view')">
-          表示モード
-          <div class="settings-value">${getViewLabel()}</div>
-        </div>
-
-        <div class="settings-item" onclick="openSettingSelect('color')">
-          背表紙カラー
-          <div class="settings-value">${getColorLabel()}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="settings-card">
-      <div class="settings-card-title">並び</div>
-      <div class="settings-list">
-        <div class="settings-item" onclick="openSettingSelect('sort')">
-          並び順
-          <div class="settings-value">${getSortLabel()}</div>
-        </div>
-      </div>
-    </div>
-
-<div class="settings-card">
-  <div class="settings-card-title">ホームUI</div>
-  <div class="settings-list">
-
-    <div class="settings-item">
-      最近の本
-      <div class="switch ${uiSettings.recent ? "on" : ""}" onclick="toggleUIItem(event,'recent')"></div>
-    </div>
-
-    <div class="settings-item">
-      サマリー
-      <div class="switch ${uiSettings.summary ? "on" : ""}" onclick="toggleUIItem(event,'summary')"></div>
-    </div>
-
-    <div class="settings-item">
-      タグ
-      <div class="switch ${uiSettings.tags ? "on" : ""}" onclick="toggleUIItem(event,'tags')"></div>
-    </div>
-
-    <div class="settings-item">
-      タイプ
-      <div class="switch ${uiSettings.type ? "on" : ""}" onclick="toggleUIItem(event,'type')"></div>
-    </div>
-
-  </div>
-</div>
+   
 <div class="settings-card">
   <div class="settings-title">目標</div>
   <div class="settings-list">
