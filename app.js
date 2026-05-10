@@ -222,40 +222,40 @@ function getShelfColorModeLabel(){
 //============
 
 //====設定用：並び順
-function getDefaulfSortLabel(){
+function getSortModeLabel(){
 
   if(
-    defaultSort === "read-desc"
+    sortMode === "read-desc"
   ){
     return "最新読了順";
   }
 
   if(
-    defaultSort === "read-asc"
+    sortMode === "read-asc"
   ){
     return "最古読了順";
   }
 
   if(
-    defaultSort === "title-asc"
+    sortMode === "title-asc"
   ){
     return "名前↓";
   }
   
     if(
-    defaultSort === "title-desc"
+    sortMode === "title-desc"
   ){
     return "名前↑";
   }
   
     if(
-    defaultSort === "rating-desc"
+    sortMode === "rating-desc"
   ){
     return "高評価";
   }
   
     if(
-    defaultSort === "rating-asc"
+    sortMode === "rating-asc"
   ){
     return "低評価";
   }
@@ -2160,7 +2160,7 @@ function renderSettings(){
     <div class="setting-row">
       <span>並び順</span>
       <button onclick="changeDefaultSort()">
-        ${getDefaultSortLabel()}
+        ${getSortModeLabel()}
       </button>
     </div>
     
@@ -2568,7 +2568,7 @@ function changeShelfColorMode(){
 
 
 //====デフォルト並び順切り替え
-const defaultSorts = [
+const sortModes = [
   "read-desc",
   "read-asc",
   "title-asc",
@@ -2578,18 +2578,18 @@ const defaultSorts = [
 ];
 
 function changeDefaultSort(){
-  defaultSort =
+  sortMode =
     cycleSetting({
       current:
-        defaultSort,
+        sortMode,
       
       list:
-        defaultSorts
+        sortModes
      });
      
    localStorage.setItem(
-     "defaultSort",
-     defaultSort
+     "sortMode",
+     sortMode
    );
    
    renderSettings();
