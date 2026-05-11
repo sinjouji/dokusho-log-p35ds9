@@ -155,6 +155,7 @@ let newTagColor = "#7b8d8e";
 
 //シリーズ関係
 let seriesMaster = [];
+let seriesSearchKeyword = "";
 
 
 
@@ -1318,6 +1319,7 @@ function renderBookList(){
 
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
+console.log("render start");
 
 console.log("seriesMaster", seriesMaster);
 
@@ -1329,6 +1331,8 @@ console.log("seriesMaster", seriesMaster);
 	const filtered =
 		seriesMaster.filter(s =>
 		
+		console.log(filtered);
+		
 			(s.name || "")
 				.toLowerCase()
 				.includes(seriesSearchKeyword)
@@ -1336,6 +1340,9 @@ console.log("seriesMaster", seriesMaster);
 		);
 		
 		filtered.forEach(s=>{
+		
+		console.log(s.name);
+		
 			const d = document.createElement('div');
 			d.className = "card";
 			d.textContent = s.name;
