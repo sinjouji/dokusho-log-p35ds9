@@ -4231,10 +4231,7 @@ async function loadData(){
         books = data.books || [];
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
-        seriesMaster = [
-        ...(data.series || []),
-        ...(data.seriesMaster || [])
-        ];
+        seriesMaster = data.seriesMaster || [];
 
         console.log("◆ローカルから読み込み");
 
@@ -4247,10 +4244,7 @@ async function loadData(){
         books = data.books || [];
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
-        seriesMaster = [
-        ...(data.series || []),
-        ...(data.seriesMaster || [])
-        ];
+        seriesMaster = data.seriesMaster || [];
 
         await saveData();
 
