@@ -2421,7 +2421,9 @@ function renderSettings(){
 
           <div class="tag-edit-area">
 
-            <input value="${tag.name}">
+            <input
+              id="edit-tag-name"
+              value="${tag.name}">
 
             <div class="tag-color-palette">
 
@@ -2452,7 +2454,7 @@ function renderSettings(){
 
             </div>
 
-            <button>
+            <button onclick="saveTagEdit('${tag.id}')">
               保存
             </button>
 
@@ -3844,6 +3846,38 @@ function deleteTag(id){
   renderHome();
 }
 //============================
+
+//====タグ保存処理
+async function saveTagEdit(id){
+
+  const tag =
+    tagMaster.find(
+      t => t.id === id
+    );
+
+  if(!tag) return;
+
+  // 名前
+  const input =
+    document.getElementById(
+      "edit-tag-name"
+    );
+
+  if(input){
+    tag.name = input.value.trim();
+  }
+
+  // 色
+  tag.color = editingTagColor;
+
+  await saveData();
+
+  editingTagId = null;
+
+  renderSettings();
+  renderHome();
+}
+//==========================
 
 
 
