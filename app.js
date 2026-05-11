@@ -4210,10 +4210,11 @@ async function loadData(){
       books = data.books || [];
       characters = data.characters || [];
       tagMaster = data.tagMaster || [];
-      seriesMaster = [
-        ...(data.series || []),
-        ...(data.seriesMaster || [])
-      ];
+      seriesMaster = data.seriesMaster || [];
+//      seriesMaster = [
+//        ...(data.series || []),
+//        ...(data.seriesMaster || [])
+//      ];
 
       // ローカルにも保存（バックアップ）
       localStorage.setItem("bookAppData",JSON.stringify(data));
@@ -4251,7 +4252,10 @@ async function loadData(){
         console.log("🌐 初期データ取得");
       }
     }
-  viewMode = localStorage.getItem("viewMode") || "card";
+    
+    viewMode =
+      localStorage.getItem("viewMode")
+      || "card";
 
 
     // UI初期化
