@@ -155,7 +155,7 @@ let newTagColor = "#7b8d8e";
 
 //シリーズ関係
 let seriesMaster = [];
-let seriesSearchKeyword = "";
+
 
 
 
