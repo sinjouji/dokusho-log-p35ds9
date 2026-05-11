@@ -1324,15 +1324,15 @@ function renderSeriesBookList(){
 	
 	//フィルタ
 	const filtered =
-		series.filter(s =>
+		seriesMaster.filter(s =>
 		
-			(s.name || "")
+			(s.title || "")
 				.toLowerCase()
 				.includes(seriesSearchKeyword)
 				
 		);
 		
-		seriesMaster.forEach(s=>{
+		filtered.forEach(s=>{
 			const d = document.createElement('div');
 			d.className = "card";
 			d.textContent = s.title;
@@ -1563,7 +1563,7 @@ function renderSeriesShelf(el, sorted){
     const isOpen = openedSeries[s.id];
 
     title.textContent =
-      `${isOpen ? "▽" : "▶︎"} ${s.name} (${relatedBooks.length})`;
+      `${isOpen ? "▽" : "▶︎"} ${s.title} (${relatedBooks.length})`;
 
     title.style.cursor = "pointer";
 
@@ -3199,7 +3199,7 @@ el.innerHTML = `
       ${relatedSeries.map(s=>`
         <span style="color:blue;cursor:pointer"
           onclick="openSeriesById('${s.id}')">
-          ${s.name}
+          ${s.title}
         </span>
       `).join(", ") || "なし"}
     </div>
@@ -3570,7 +3570,7 @@ function openSeries(s){
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
-    <h2>${s.name}</h2>
+    <h2>${s.title}</h2>
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
     <div id="series-books"></div>
@@ -3668,7 +3668,7 @@ function openCharacter(c){
   relatedSeries.forEach(s=>{
     const d = document.createElement('div');
     d.className = "card";
-    d.textContent = s.name;
+    d.textContent = s.title;
 
     d.onclick = ()=> openSeries(s);
 
