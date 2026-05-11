@@ -3579,73 +3579,28 @@ function openSeries(s){
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
-    <button onclick="go('series')">戻る</button>
     <h2>${s.name}</h2>
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
-  
- 
- <div class="series-detail-layout">
+    <div id="series-books"></div>
+    <button onclick="go('series')">戻る</button>
+  `;
 
-<div class="series-section">
-
-  <div
-    class="series-section-title"
-    onclick="toggleSeriesSection('books')"
-  >
-    ▼ 関連作品
-  </div>
-
-  ${
-    seriesSections.books
-      ? `
-        <div class="series-section-body">
-          ...
-        </div>
-      `
-      : ""
-  }
-
-</div>
-
-<div class="series-section">
-
-  <div
-    class="series-section-title"
-    onclick="toggleSeriesSection('books')"
-  >
-    ▼ 関連人物
-  </div>
-
-  ${
-    seriesSections.characters
-      ? `
-        <div class="series-section-body">
-          ...
-        </div>
-      `
-      : ""
-  }
-
-</div>
-
-</div>
-
-<hr>
-
-  <div>
-    関連作品エリア
-      <div id="series-books"></div>
-  </div>
-
-  <div>
-    登場人物エリア
-    <div id="series-chars"></div>
-  </div>
-
-
+//シリーズ関連：人物HTML表示
+el.innerHTML += `
+  <hr>
+  <div>登場人物:</div>
+  <div id="series-chars"></div>
 `;
 
+//シリーズ関連：本描画
+  const list = document.getElementById('series-books');
+
+//追加
+if(viewMode.startsWith("shelf")){
+	renderShelf(list, relatedBooks);
+} else {
+	relatedBooks.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
     d.textContent = b.title;
