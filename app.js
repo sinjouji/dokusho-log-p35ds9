@@ -3935,6 +3935,20 @@ console.log("削除前", tagMaster);
 
   if(!ok) return;
 
+tagMaster.forEach(tag => {
+
+  console.log(
+    tag.id,
+    typeof tag.id
+  );
+
+});
+
+console.log(
+  id,
+  typeof id
+);
+
   tagMaster =
     tagMaster.filter(
       tag => tag.id !== id
