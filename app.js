@@ -1317,7 +1317,9 @@ function renderBookList(){
 
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
-console.log("render start");
+console.log("series", series);
+
+console.log("seriesId", seriesId);
 
 console.log("seriesMaster", seriesMaster);
 
