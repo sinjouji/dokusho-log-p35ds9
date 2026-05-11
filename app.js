@@ -4210,11 +4210,12 @@ async function loadData(){
       books = data.books || [];
       characters = data.characters || [];
       tagMaster = data.tagMaster || [];
-      seriesMaster = data.seriesMaster || [];
-//      seriesMaster = [
-//        ...(data.series || []),
-//        ...(data.seriesMaster || [])
-//      ];
+      seriesMaster =
+        (data.series || [])
+          .concat(
+            data.seriesMaster || []
+          );
+
 
       // ローカルにも保存（バックアップ）
       localStorage.setItem("bookAppData",JSON.stringify(data));
