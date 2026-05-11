@@ -4113,6 +4113,16 @@ async function deleteBook(id){
 }
 //=============================
 
+//====シリーズ削除
+async function deleteSeries(id){
+
+	const s
+
+}
+//==============================
+
+
+
 //====タグ削除処理
 async function deleteTag(id){
 
@@ -4200,7 +4210,10 @@ async function loadData(){
       books = data.books || [];
       characters = data.characters || [];
       tagMaster = data.tagMaster || [];
-      seriesMaster = data.seriesMaster || [];
+      seriesMaster = [
+        ...(data.series || []),
+        ...(data.seriesMaster || [])
+      ];
 
       // ローカルにも保存（バックアップ）
       localStorage.setItem("bookAppData",JSON.stringify(data));
@@ -4218,7 +4231,10 @@ async function loadData(){
         books = data.books || [];
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
-        seriesMaster = data.seriesMaster || [];
+        seriesMaster = [
+        ...(data.series || []),
+        ...(data.seriesMaster || [])
+        ];
 
         console.log("◆ローカルから読み込み");
 
@@ -4229,10 +4245,12 @@ async function loadData(){
         const data = await res.json();
 
         books = data.books || [];
- 
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
-        seriesMaster = data.seriesMaster || [];
+        seriesMaster = [
+        ...(data.series || []),
+        ...(data.seriesMaster || [])
+        ];
 
         await saveData();
 
