@@ -2308,9 +2308,9 @@ function renderSettings(){
         </button>
       </div>
   
-    <!--タグ-->
+    <!--タグの使用-->
     <div class="setting-row">
-      <span>タグ</span>
+      <span>タグの使用</span>
       ---
     </div>
 
@@ -2377,7 +2377,29 @@ function renderSettings(){
    
  
    <div class="setting-card">
-   <div class="tag-add-area">
+  <div
+    class="setting-card-title"
+    onclick="toggleSettingSection('tags')"
+  >
+
+    ${settingSections.tags
+      ? "▽"
+      : "▶︎"
+    }
+
+    タグ設定
+
+  </div>
+
+  ${settingSections.tags
+    ? `
+
+    <div class="setting-row">
+
+      <span>タグの編集</span>
+
+    </div>
+       <div class="tag-add-area">
 
   <input
     id="new-tag-name"
@@ -2412,28 +2434,6 @@ function renderSettings(){
   </button>
 
 </div>
-  <div
-    class="setting-card-title"
-    onclick="toggleSettingSection('tags')"
-  >
-
-    ${settingSections.tags
-      ? "▽"
-      : "▶︎"
-    }
-
-    タグ設定
-
-  </div>
-
-  ${settingSections.tags
-    ? `
-
-    <div class="setting-row">
-
-      <span>タグの編集</span>
-
-    </div>
 
     ${tagMaster.map(tag => `
 
