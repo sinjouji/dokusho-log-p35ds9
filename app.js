@@ -222,7 +222,6 @@ async function saveData(){
 
   const data = {
     books,
-    series,
     characters,
     tagMaster,
     seriesMaster
@@ -3164,7 +3163,7 @@ function openDetail(book){
 
   const el = document.getElementById('page-detail');
  
-  const relatedSeries = series.filter(s=>{
+  const relatedSeries = seriesMaster.filter(s=>{
     return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
   });
 
@@ -3429,7 +3428,7 @@ function openBookDetailModal(book){
 
 //本詳細でシリーズを開く
 function openSeriesById(id){
-  const s = series.find(x=>x.id === id);
+  const s = seriesMaster.find(x=>x.id === id);
   if(s) openSeries(s);
 }
 //========
@@ -3639,7 +3638,7 @@ function openCharacter(c){
   const el = document.getElementById('page-detail');
 
  // 人物→シリーズ★完了
-  const relatedSeries = series.filter(s=>{
+  const relatedSeries = seriesMaster.filter(s=>{
     return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
 
@@ -4200,7 +4199,6 @@ async function loadData(){
       const data = snap.data();
 
       books = data.books || [];
-      series = data.series || [];
       characters = data.characters || [];
       tagMaster = data.tagMaster || [];
       seriesMaster = data.seriesMaster || [];
@@ -4219,7 +4217,6 @@ async function loadData(){
         const data = JSON.parse(saved);
 
         books = data.books || [];
-        series = data.series || [];
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
         seriesMaster = data.seriesMaster || [];
@@ -4233,7 +4230,7 @@ async function loadData(){
         const data = await res.json();
 
         books = data.books || [];
-        series = data.series || [];
+ 
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
         seriesMaster = data.seriesMaster || [];
