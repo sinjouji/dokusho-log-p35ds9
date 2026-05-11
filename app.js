@@ -3005,7 +3005,7 @@ function openAddSeriesModal(){
 				<button onclick="">
 					＋
 				</button>
-<!--関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい-->
+
 				<button onclick="saveNewSeries()">＋追加</button>
 				
 				<button onclick="closeModal('add-series-modal')">×</button>
@@ -3013,6 +3013,7 @@ function openAddSeriesModal(){
 			</div>
 `;
 	document.body.appendChild(modal);
+	//関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい
 }
 //==================
 
