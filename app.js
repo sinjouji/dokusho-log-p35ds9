@@ -1331,7 +1331,15 @@ function renderSeriesBookList(){
 				.includes(seriesSearchKeyword)
 				
 		);
-	
+		
+		seriesMaster.forEach(s=>{
+			const d = document.createElement('div');
+			d.className = "card";
+			d.textContent = s.title;
+
+		d.onclick = ()=> openSeries(s);
+		main.appendChild(d);
+	});
 	//ソート
 	//const sorted = sortSeries
 }
@@ -2193,14 +2201,6 @@ function renderSeries(){
 	renderSeriesSearchArea();
 	renderSeriesBookList();
 	
-//	series.forEach(s=>{
-//			const d = document.createElement('div');
-//			d.className = "card";
-//			d.textContent = s.name;
-
-//    d.onclick = ()=> openSeries(s);
-//    list.appendChild(d);
-//  });
 }
 
 
