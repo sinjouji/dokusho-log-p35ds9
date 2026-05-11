@@ -134,7 +134,7 @@ const tagColors = [
 
 //  "#B4A582", // 利休白茶
   "#C2B59B", // 灰桜
-  "#D0C2A8",  // 鳥の子
+//  "#D0C2A8",  // 鳥の子
 
 //カスタム追加
 "#74aea9", //水浅葱
@@ -142,7 +142,7 @@ const tagColors = [
 "#f9ca00", //金
 "#f8a484", //曙
 "#646364", //燻銀
-"#fbf6e8", //尾花
+"#eddece", //惚
 "#b9d08b", //若葉
 "#86964e" //苔
 ];
@@ -2373,7 +2373,6 @@ function renderSettings(){
 `
 : ""}
   </div>
-   <br>
    
  
    <div class="setting-card">
