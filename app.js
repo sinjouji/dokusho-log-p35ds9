@@ -4114,9 +4114,9 @@ async function deleteBook(id){
 //=============================
 
 //====シリーズ削除
-async function deleteSeries(id){
+//async function deleteSeries(id){
 
-	const s
+//	const s
 
 }
 //==============================
