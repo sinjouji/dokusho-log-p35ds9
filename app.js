@@ -3923,10 +3923,13 @@ async function deleteBook(id){
 function deleteTag(id){
 
  const used = books.some(book =>
-  (book.tagIds || []).includes(tag.id)
+  (book.tagIds || []).includes(id)
 );
-
-  const ok = confirm("タグを削除しますか？");
+  if(used){
+    alert("使用中のタグは削除できません");
+    return;
+  }
+     const ok = confirm("タグを削除しますか？");
 
   if(!ok) return;
 
