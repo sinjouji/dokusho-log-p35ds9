@@ -3920,7 +3920,7 @@ async function deleteBook(id){
 //=============================
 
 //====タグ削除処理
-function deleteTag(id){
+async function deleteTag(id){
 
  const used = books.some(book =>
   (book.tagIds || []).includes(id)
