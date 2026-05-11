@@ -1346,7 +1346,7 @@ function renderSeriesBookList(){
 			d.className = "card";
 			d.textContent = s.name;
 
-		d.onclick = ()=> openSeries(s);
+		d.onclick = ()=> renderSeriesDetail(s);
 		main.appendChild(d);
 	});
 	//ソート
@@ -2793,17 +2793,11 @@ function toggleSettingSection(key){
 
 //====シリーズ詳細ページトグル開閉設定
 function toggleSeriesSection(key){
+
   seriesSections[key] =
     !seriesSections[key];
-    
-  localStorage.setItem(
-    "seriesSections",
-    JSON.stringify(
-      seriesSections
-    )
-  );
-  
-  openSeries(s);
+
+  renderSeriesDetail(currentSeriesId);
 }
 //======================
 
@@ -3451,7 +3445,7 @@ function openBookDetailModal(book){
 //本詳細でシリーズを開く
 function openSeriesById(id){
   const s = seriesMaster.find(x=>x.id === id);
-  if(s) openSeries(s);
+  if(s) renderSeriesDetail(s);
 }
 //========
 
@@ -3584,7 +3578,7 @@ function toggleType(book){
 
 
 // シリーズ詳細====
-function openSeries(s){
+function renderSeriesDetail(s, currentSeriesId){
   go('detail');
 
   const el = document.getElementById('page-detail');
@@ -3742,7 +3736,7 @@ function openCharacter(c){
     d.className = "card";
     d.textContent = s.name;
 
-    d.onclick = ()=> openSeries(s);
+    d.onclick = ()=> renderSeriesDetail(s);
 
     list.appendChild(d);
   });
