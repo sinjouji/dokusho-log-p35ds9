@@ -1318,6 +1318,9 @@ function renderBookList(){
 
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
+
+console.log("seriesMaster", seriesMaster);
+
 	const main = document.getElementById("series-main");
 	if(!main) return;
 	main.innerHTML = "";
