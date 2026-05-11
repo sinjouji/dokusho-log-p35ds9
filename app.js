@@ -2379,7 +2379,13 @@ function renderSettings(){
 
         <div class="setting-row">
 
-          <span>
+          <span
+            class="tag-chip"
+            stype="
+              background:${tag.color};
+              color:#fffffc;
+            "
+          >
             ${tag.name}
           </span>
 
@@ -2389,6 +2395,13 @@ function renderSettings(){
             "
           >
             編集
+          </button>
+          
+          <button
+            class="danger-button"
+            onclick="deleteTag('${tag.id}')"
+          >
+            削除
           </button>
 
         </div>
@@ -3794,7 +3807,24 @@ async function deleteBook(id){
 }
 //=============================
 
+//====タグ削除処理
+function deleteTag(id){
 
+  const ok = confirm("タグを削除しますか？");
+
+  if(!ok) return;
+
+  tagMaster =
+    tagMaster.filter(
+      tag => tag.id !== id
+    );
+
+  saveData();
+
+  renderSettings();
+  renderHome();
+}
+//============================
 
 
 
