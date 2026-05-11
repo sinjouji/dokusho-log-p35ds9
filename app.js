@@ -25,6 +25,8 @@ let viewMode = "card";
 let sortMode = "read-desc";
 
 let searchKeyword = "";
+let seriesSearchKeyword = "";
+//let charaSearchKeyword = "";
 
 //ミニカレンダーの月移動用設定
 let miniMonth = new Date();
@@ -150,6 +152,7 @@ const tagColors = [
 //タグ追加
 let newTagName = "";
 let newTagColor = "#7b8d8e";
+
 
 
 
@@ -1220,11 +1223,13 @@ function renderCharacterSuggest(){
 }
 //===================
 
-//====キーワード検索
+//====キーワード検索（ホーム本棚用）
 function handleSearchInput(){
 
   searchKeyword =
-    (document.getElementById("search")?.value || "")
+    (document.getElementById(
+    "search"
+    )?.value || "")
     .toLowerCase();
 
   renderSuggest();
@@ -1232,6 +1237,22 @@ function handleSearchInput(){
 }
 //========
 
+//====キーワード検索（シリーズ一覧用）
+
+
+function handleSeriesSearchInput(){
+
+	seriesSearchKeyword =
+		(
+		document.getElementById(
+			"series-search"
+			)?.value || ""
+			).toLowerCase();
+
+  renderSeriesSuggest();
+  renderSeries();
+}
+//========
 
 
 
@@ -1284,6 +1305,28 @@ function renderBookList(){
   
 }
 //========
+
+//====シリーズ一覧だけを表示する
+function renderSeriesBookList(){
+	const main = document.getElementById("series-main");
+	if(!main) return;
+	main.innerHTML = "";
+	
+	//フィルタ
+	const filtered =
+		series.filter(s =>
+		
+			(s.name || "")
+				.toLowerCase()
+				.includes(seriesSearchKeyword)
+				
+		);
+	
+	//ソート
+	//const sorted = sortSeries
+}
+//====================
+
 
 
 //====カードビューモード
@@ -2128,21 +2171,66 @@ function renderCalendar(){
 
 
 
-// シリーズ一覧
+// ◼️シリーズ一覧表示（骨組みだけ）
 function renderSeries(){
   const list = document.getElementById('page-series');
-  list.innerHTML = "";
+  list.innerHTML = `
+  		
+  		<div id="series-top"></div>
+  		<div id="series-main"></div>
+  `;
+	
+	renderSeriesSearchArea();
+	renderSeriesBookList();
+	
+//	series.forEach(s=>{
+//			const d = document.createElement('div');
+//			d.className = "card";
+//			d.textContent = s.name;
 
-	series.forEach(s=>{
-			const d = document.createElement('div');
-			d.className = "card";
-			d.textContent = s.name;
-
-    d.onclick = ()=> openSeries(s);
-    list.appendChild(d);
-  });
+//    d.onclick = ()=> openSeries(s);
+//    list.appendChild(d);
+//  });
 }
+
+
 //========
+//====シリーズページの検索エリア
+function renderSeriesSearchArea(){
+
+	const top = document.getElementById("series-top");
+	if(!top) return;
+	
+	top.innerHTML = `
+	<button onclick="openAddSeriesModal()"
+		class="add-btn">
+			＋ シリーズ追加
+		</button>
+		
+		<input
+			id="search"
+			placeholder="シリーズ検索..."
+			value="${seriesSearchKeyWord}"
+			oninput="handleSeriesSearchInput()"
+		>
+		
+			<select id="series-sort-select"
+				onchange="changeSeriesSortMode()">
+			
+			<option value="read-desc">読了日新</option>
+			<option value="read-asc">読了日古</option>
+			
+			<option value="title-asc">タイトル↑</option>
+			<option value="title-desc">タイトル↓</option>
+			</select>
+		
+		<div id="suggest"></div>
+	`;
+	renderSuggestList();
+}
+//=======
+
+
 
 
 //========
@@ -2822,7 +2910,7 @@ function openAddBookModal(){
 
   const modal = document.createElement("div");
   modal.className = "modal-bg";
-  modal.id = "modal";
+  modal.id = "add-book-modal";
 
   modal.innerHTML = `
     <div class="modal-box">
@@ -2862,7 +2950,7 @@ function openAddBookModal(){
           ＋WishList
         </button>
 
-        <button onclick="closeModal()">×</button>
+        <button onclick="closeModal('add-book-modal')">×</button>
             </div>
   `;
 
@@ -2870,17 +2958,55 @@ function openAddBookModal(){
 }
 //========
 
+//====シリーズの追加モーダル
+function openAddSeriesModal(){
 
-
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "add-series-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box">
+		
+			<h2>シリーズを追加</h2>
+			
+			<input id="add-series-title"
+				type="text"
+				placeholder="シリーズタイトル"
+				oninput="renderTitleSuggest()">
+			<div id="title-suggest"></div>
+			
+			<div class="field">
+				<div class="field-label">関連対象を登録</diV>
+				<input id=""
+					type="text"
+					placeholder="作品／人物名"
+					oninput="renderSeriesSuggest();
+						renderCharacterSuggest();">
+				<button onclick="">
+					＋
+				</button>
+<!--関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい-->
+				<button onclick="">＋追加</button>
+				
+				<button onclick="closeModal('add-series-modal')">×</button>
+				
+			</div>
+`;
+}
+//==================
 
 //====本追加モーダルを閉じる
-function closeModal(){
-  document.getElementById("modal")?.remove();
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    ?.remove();
 }
 //========================
 
 
-//====ソートモードの切替え
+//====ソートモードの切替え（本）
 function changeSortMode(){
 
   sortMode =
@@ -2889,6 +3015,21 @@ function changeSortMode(){
   renderBookList();
 }
 //================
+
+//====ソートモード切替え（シリーズ）
+function changeSeriesSortMode(){
+
+	sortMode =
+		document.getElementById("series-sort-select").value;
+		
+		renderSeries();
+
+}
+//=================
+
+//====ソートモード切替え（キャラ）
+
+//=================
 
 
 //====本棚のビューモード切替え
@@ -3304,7 +3445,7 @@ function openCalendar(){
 
 
 //========
-function openDetailById(id){
+function openDetailById(id, suggestId){
 
   const book = books.find(b => b.id === id);
 
@@ -3313,7 +3454,7 @@ function openDetailById(id){
   openDetail(book);
 
   const suggest =
-    document.getElementById("search-suggest");
+    document.getElementById(suggestId);
 
   if(suggest){
     suggest.innerHTML = "";
