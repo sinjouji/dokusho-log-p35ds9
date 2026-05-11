@@ -153,6 +153,8 @@ const tagColors = [
 let newTagName = "";
 let newTagColor = "#7b8d8e";
 
+//シリーズ関係
+let seriesMaster = [];
 
 
 
@@ -222,6 +224,7 @@ async function saveData(){
     series,
     characters,
     tagMaster
+    seriesMaster
   };
 
   // ローカル保存
@@ -1201,7 +1204,7 @@ function renderSeriesSuggest(){
     suggestId: "series-suggest",
 
     list:
-      series.map(s=>s.name)
+      seriesMaster.map(s => s.title)
 
   });
 }
@@ -4155,6 +4158,7 @@ async function loadData(){
       series = data.series || [];
       characters = data.characters || [];
       tagMaster = data.tagMaster || [];
+      seriesMaster = data.seriesMaster || [];
 
       // ローカルにも保存（バックアップ）
       localStorage.setItem("bookAppData",JSON.stringify(data));
