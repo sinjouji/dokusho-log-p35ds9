@@ -154,6 +154,10 @@ let newTagColor = "#7b8d8e";
 
 //シリーズ関係
 let seriesMaster = [];
+let seriesSections = {
+  books: true,
+  characters: true
+};
 
 
 
@@ -1318,7 +1322,7 @@ function renderBookList(){
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
 
-console.log("seriesMaster", seriesMaster);
+//console.log("seriesMaster", seriesMaster);
 
 	const main = document.getElementById("series-main");
 	if(!main) return;
@@ -2785,6 +2789,25 @@ function toggleSettingSection(key){
   renderSettings();
 }
 //======================
+
+
+//====シリーズ詳細ページトグル開閉設定
+function toggleSeriesSection(key){
+  seriesSections[key] =
+    !seriesSections[key];
+    
+  localStorage.setItem(
+    "seriesSections",
+    JSON.stringify(
+      seriesSections
+    )
+  );
+  
+  openSeries(s);
+}
+//======================
+
+
 
 
 //「次の画面」っぽいやつ====
