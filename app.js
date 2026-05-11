@@ -5,7 +5,6 @@ const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main
 //初期設定
 
 let books = [];
-let series = [];
 let characters = [];
 let tagMaster = [];
 
@@ -1559,7 +1558,7 @@ function renderColorMode(targetId = "color-mode"){
 function renderSeriesShelf(el, sorted){
   el.innerHTML = "";
 
-  series.forEach(s=>{
+  seriesMaster.forEach(s=>{
     const relatedBooks = sorted.filter(b =>
       Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
     );
