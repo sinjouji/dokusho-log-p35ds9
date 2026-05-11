@@ -3583,8 +3583,55 @@ function openSeries(s){
     <h2>${s.name}</h2>
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
+  
  
  <div class="series-detail-layout">
+
+<div class="series-section">
+
+  <div
+    class="series-section-title"
+    onclick="toggleSeriesSection('books')"
+  >
+    ▼ 関連作品
+  </div>
+
+  ${
+    seriesSections.books
+      ? `
+        <div class="series-section-body">
+          ...
+        </div>
+      `
+      : ""
+  }
+
+</div>
+
+<div class="series-section">
+
+  <div
+    class="series-section-title"
+    onclick="toggleSeriesSection('books')"
+  >
+    ▼ 関連人物
+  </div>
+
+  ${
+    seriesSections.characters
+      ? `
+        <div class="series-section-body">
+          ...
+        </div>
+      `
+      : ""
+  }
+
+</div>
+
+</div>
+
+<hr>
 
   <div>
     関連作品エリア
@@ -3596,19 +3643,9 @@ function openSeries(s){
     <div id="series-chars"></div>
   </div>
 
-</div>
- 
-  `;
 
+`;
 
-//シリーズ関連：本描画
-  const list = document.getElementById('series-books');
-
-//追加
-if(viewMode.startsWith("shelf")){
-	renderShelf(list, relatedBooks);
-} else {
-	relatedBooks.forEach(b=>{
     const d = document.createElement('div');
     d.className = "card";
     d.textContent = b.title;
