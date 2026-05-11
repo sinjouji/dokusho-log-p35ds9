@@ -2205,7 +2205,7 @@ function renderSeries(){
   list.innerHTML = `
   		
   		<div id="series-top"></div>
-  		<div id="series-main"></div>
+  		<div class="series-main" id="series-main"></div>
   `;
 	
 	
