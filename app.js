@@ -2385,7 +2385,7 @@ function renderSettings(){
 
           <button
             onclick="
-              openTagEditor(${tag.id})
+              openTagEditor('${tag.id}')
             "
           >
             編集
