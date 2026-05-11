@@ -1318,7 +1318,7 @@ function renderSeriesBookList(){
 		
 			(s.name || "")
 				.toLowerCase()
-				.includes(seriesSearchKeyword);
+				.includes(seriesSearchKeyword)
 				
 		);
 	
