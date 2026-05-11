@@ -1204,7 +1204,7 @@ function renderSeriesSuggest(){
     suggestId: "series-suggest",
 
     list:
-      seriesMaster.map(s => s.title)
+      seriesMaster.map(s => s.name)
 
   });
 }
@@ -1255,7 +1255,7 @@ function handleSeriesSearchInput(){
 		
 		list:
 			seriesMaster.map(
-				s => s.title
+				s => s.name
 			)
 	});
 
@@ -1326,7 +1326,7 @@ function renderSeriesBookList(){
 	const filtered =
 		seriesMaster.filter(s =>
 		
-			(s.title || "")
+			(s.name || "")
 				.toLowerCase()
 				.includes(seriesSearchKeyword)
 				
@@ -1335,7 +1335,7 @@ function renderSeriesBookList(){
 		filtered.forEach(s=>{
 			const d = document.createElement('div');
 			d.className = "card";
-			d.textContent = s.title;
+			d.textContent = s.name;
 
 		d.onclick = ()=> openSeries(s);
 		main.appendChild(d);
@@ -1563,7 +1563,7 @@ function renderSeriesShelf(el, sorted){
     const isOpen = openedSeries[s.id];
 
     title.textContent =
-      `${isOpen ? "▽" : "▶︎"} ${s.title} (${relatedBooks.length})`;
+      `${isOpen ? "▽" : "▶︎"} ${s.name} (${relatedBooks.length})`;
 
     title.style.cursor = "pointer";
 
@@ -3199,7 +3199,7 @@ el.innerHTML = `
       ${relatedSeries.map(s=>`
         <span style="color:blue;cursor:pointer"
           onclick="openSeriesById('${s.id}')">
-          ${s.title}
+          ${s.name}
         </span>
       `).join(", ") || "なし"}
     </div>
@@ -3570,7 +3570,7 @@ function openSeries(s){
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
-    <h2>${s.title}</h2>
+    <h2>${s.name}</h2>
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
     <div id="series-books"></div>
@@ -3668,7 +3668,7 @@ function openCharacter(c){
   relatedSeries.forEach(s=>{
     const d = document.createElement('div');
     d.className = "card";
-    d.textContent = s.title;
+    d.textContent = s.name;
 
     d.onclick = ()=> openSeries(s);
 
