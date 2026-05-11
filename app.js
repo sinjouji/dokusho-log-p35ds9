@@ -1317,7 +1317,6 @@ function renderBookList(){
 
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
-console.log("series", series);
 
 console.log("seriesId", seriesId);
 
