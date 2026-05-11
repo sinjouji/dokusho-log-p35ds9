@@ -1318,8 +1318,6 @@ function renderBookList(){
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
 
-console.log("seriesId", seriesId);
-
 console.log("seriesMaster", seriesMaster);
 
 	const main = document.getElementById("series-main");
@@ -1349,6 +1347,7 @@ console.log("seriesMaster", seriesMaster);
 	});
 	//ソート
 	//const sorted = sortSeries
+	
 }
 //====================
 
@@ -3482,7 +3481,7 @@ function openDetailById(id, suggestId){
 }
 //========
 
-//モーダル設定====
+//カレンダーの日モーダル設定====
 function openDayModal(dateStr, list){
   const m = document.createElement("div");
   m.style.position = "fixed";
@@ -3567,12 +3566,12 @@ function openSeries(s){
 
   const el = document.getElementById('page-detail');
 
-	//シリーズ→本★完了
+	//シリーズ→本
   const relatedBooks = books.filter(b=>{
     return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
   });
   	
- 	 //シリーズ→人物★完了
+ 	 //シリーズ→人物
   const relatedCharacters = characters.filter(c=>{
   return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
@@ -3637,12 +3636,12 @@ function openCharacter(c){
 
   const el = document.getElementById('page-detail');
 
- // 人物→シリーズ★完了
+ // 人物→シリーズ
   const relatedSeries = seriesMaster.filter(s=>{
     return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
 
-  // 人物→本★完了
+  // 人物→本
   const relatedBooks = books.filter(b=>{
     return relatedSeries.some(s =>
      Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
