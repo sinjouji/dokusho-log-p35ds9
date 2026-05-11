@@ -3012,6 +3012,7 @@ function openAddSeriesModal(){
 				
 			</div>
 `;
+	document.body.appendChild(modal);
 }
 //==================
 
