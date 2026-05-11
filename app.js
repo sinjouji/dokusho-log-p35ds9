@@ -3579,18 +3579,58 @@ function openSeries(s){
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
+    <button onclick="go('series')">戻る</button>
+    
     <h2>${s.name}</h2>
     <div>冊数: ${relatedBooks.length}</div>
     <hr>
-    <div id="series-books"></div>
-    <button onclick="go('series')">戻る</button>
-  `;
 
-//シリーズ関連：人物HTML表示
-el.innerHTML += `
-  <hr>
-  <div>登場人物:</div>
-  <div id="series-chars"></div>
+<div class="series-detail-layout">
+
+<div class="series-section">
+
+  <div
+    class="series-section-title"
+    onclick="toggleSeriesSection('books')"
+  >
+    ▼ 関連作品
+  </div>
+
+  ${
+    seriesSections.books
+      ? `
+        <div class="series-section-body">
+          <div id="series-books"></div>
+        </div>
+      `
+      : ""
+  }
+
+</div>
+
+<div class="series-section">
+
+  <div
+    class="series-section-title"
+    onclick="toggleSeriesSection('books')"
+  >
+    ▼ 関連人物
+  </div>
+
+  ${
+    seriesSections.books
+      ? `
+        <div class="series-section-body">
+           <div id="series-chars"></div>
+        </div>
+      `
+      : ""
+  }
+
+</div>
+
+</div>
+
 `;
 
 //シリーズ関連：本描画
