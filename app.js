@@ -1242,12 +1242,19 @@ function handleSearchInput(){
 
 function handleSeriesSearchInput(){
 
-	seriesSearchKeyword =
-		(
-		document.getElementById(
-			"series-search"
-			)?.value || ""
-			).toLowerCase();
+	renderSuggestList({
+	
+		inputId:
+			"search",
+		
+		suggestId:
+			"suggest",
+		
+		list:
+			seriesMaster.map(
+				s => s.title
+			)
+	});
 
   renderSeriesSuggest();
   renderSeries();
@@ -2226,7 +2233,7 @@ function renderSeriesSearchArea(){
 		
 		<div id="suggest"></div>
 	`;
-	renderSuggestList();
+	
 }
 //=======
 
