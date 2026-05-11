@@ -3774,7 +3774,7 @@ async function addTag(){
 
   tagMaster.push({
 
-    id: Date.now(),
+    id: "t" + Date.now(),
 
     name,
 
@@ -3922,8 +3922,6 @@ async function deleteBook(id){
 //====タグ削除処理
 async function deleteTag(id){
 
-console.log("削除前", tagMaster);
-
  const used = books.some(book =>
   (book.tagIds || []).includes(id)
 );
@@ -3935,26 +3933,13 @@ console.log("削除前", tagMaster);
 
   if(!ok) return;
 
-tagMaster.forEach(tag => {
-
-  console.log(
-    tag.id,
-    typeof tag.id
+tagMaster =
+  tagMaster.filter(
+    tag =>
+      String(tag.id)
+      !==
+      String(id)
   );
-
-});
-
-console.log(
-  id,
-  typeof id
-);
-
-  tagMaster =
-    tagMaster.filter(
-      tag => tag.id !== id
-    );
-    
-    console.log("削除後", tagMaster);
 
   await saveData();
 
