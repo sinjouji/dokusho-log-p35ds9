@@ -1331,14 +1331,12 @@ console.log("seriesMaster", seriesMaster);
 	const filtered =
 		seriesMaster.filter(s =>
 		
-		console.log(filtered);
-		
 			(s.name || "")
 				.toLowerCase()
 				.includes(seriesSearchKeyword)
 				
 		);
-		
+				console.log(filtered);
 		filtered.forEach(s=>{
 		
 		console.log(s.name);
