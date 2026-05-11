@@ -2429,13 +2429,13 @@ function renderSettings(){
 
                 <button
 
-                  class="
+                  class='
                     color-dot
                     ${editingTagColor === color
-                      ? 'active'
-                      : ''
+                      ? "active"
+                      : ""
                     }
-                  "
+                  '
 
                   style="
                     background:${color};
