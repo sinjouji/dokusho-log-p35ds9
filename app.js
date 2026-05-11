@@ -94,6 +94,7 @@ let settingSections = JSON.parse(
 
 //タグ編集用
 let editingTagId = null;
+let editingTagColor = "";
 
 //タグパレット
 const tagColors = [
@@ -147,6 +148,15 @@ const tagColors = [
 //🟩②====データ取得・保存（load・save）====
 //基本的にGet系はここ、go
 
+
+//====タグ編集用：色の処理
+function selectTagColor(color){
+
+  editingTagColor = color;
+  
+  renderSettings();
+}
+//==================
 
 
 
@@ -2421,7 +2431,7 @@ function renderSettings(){
 
                   class="
                     color-dot
-                    ${tag.color === color
+                    ${editingTagColor === color
                       ? "active"
                       : ""
                     }
@@ -3483,6 +3493,15 @@ function openCharacter(c){
 function openTagEditor(id){
 
   editingTagId = id;
+  
+  const tag =
+    tagMaster.find(
+      t => t.id === id
+    );
+  
+  if(tag){
+    editingTagColor = tag.color;
+  }
 
   renderSettings();
 }
