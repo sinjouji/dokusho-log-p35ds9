@@ -3922,6 +3922,8 @@ async function deleteBook(id){
 //====タグ削除処理
 async function deleteTag(id){
 
+console.log("削除前", tagMaster);
+
  const used = books.some(book =>
   (book.tagIds || []).includes(id)
 );
@@ -3937,6 +3939,8 @@ async function deleteTag(id){
     tagMaster.filter(
       tag => tag.id !== id
     );
+    
+    console.log("削除後", tagMaster);
 
   await saveData();
 
