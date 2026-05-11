@@ -2381,13 +2381,13 @@ function renderSettings(){
 
           <span
             class="tag-chip"
-            stype="
-              background:${tag.color};
-              color:#fffffc;
-            "
-          >
-            ${tag.name}
-          </span>
+              style="
+                background:${tag.color};
+                color:white;
+              "
+            >
+              ${tag.name}
+            </span>
 
           <button
             onclick="
