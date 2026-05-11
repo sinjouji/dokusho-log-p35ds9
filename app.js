@@ -3938,7 +3938,7 @@ function deleteTag(id){
       tag => tag.id !== id
     );
 
-  saveData();
+  await saveData();
 
   renderSettings();
   renderHome();
