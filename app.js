@@ -3320,12 +3320,12 @@ function openBookDetailModal(book){
 
   const modal = document.createElement("div");
   modal.className = "modal-bg";
-  modal.id = "modal";
+  modal.id = "open-book-modal";
 
   modal.innerHTML = `
     <div class="modal-box detail-modal">
 
-      <button class="close-btn" onclick="closeModal()">
+      <button class="close-btn" onclick="closeModal(open-book-modal)">
         ×
       </button>
 
