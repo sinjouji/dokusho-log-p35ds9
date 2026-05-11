@@ -2206,6 +2206,7 @@ function renderSeries(){
   		<div id="series-main"></div>
   `;
 	
+	
 	renderSeriesSearchArea();
 	renderSeriesBookList();
 	
@@ -3005,7 +3006,7 @@ function openAddSeriesModal(){
 					＋
 				</button>
 <!--関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい-->
-				<button onclick="">＋追加</button>
+				<button onclick="saveNewSeries()">＋追加</button>
 				
 				<button onclick="closeModal('add-series-modal')">×</button>
 				
@@ -3912,6 +3913,40 @@ async function addBook(type){
   renderHome();
 }
 //================
+
+
+//====新規シリーズ追加処理
+async function saveNewSeries(){
+
+  const title =
+    document.getElementById(
+      "add-series-title"
+    ).value.trim();
+
+  if(!title) return;
+
+  seriesMaster.push({
+
+    id:
+      "s" + Date.now(),
+
+    name:
+      title
+
+  });
+
+  await saveData();
+
+  closeModal(
+    "add-series-modal"
+  );
+
+  renderSeries();
+
+}
+//==================
+
+
 
 
 //====新規タグ追加
