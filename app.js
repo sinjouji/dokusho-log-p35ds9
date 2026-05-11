@@ -142,8 +142,14 @@ const tagColors = [
 "#f9ca00", //金
 "#f8a484", //曙
 "#646364", //燻銀
-"#f6f7f8" //月白
+"#f6f7f8", //月白
+"#b9d08b", //若葉
+"#86964e" //苔
 ];
+
+//タグ追加
+let newTagName = "";
+let newTagColor = "#7b8d8e";
 
 
 
@@ -156,6 +162,15 @@ function selectTagColor(color){
 
   editingTagColor = color;
   
+  renderSettings();
+}
+//==================
+
+//====新規タグ追加用：色の処理
+function selectNewTagColor(color){
+
+  newTagColor = color;
+
   renderSettings();
 }
 //==================
@@ -2358,8 +2373,44 @@ function renderSettings(){
 `
 : ""}
   </div>
+   <br>
    
    
+   <div class="tag-add-area">
+
+  <input
+    id="new-tag-name"
+    placeholder="新しいタグ">
+
+  <div class="tag-color-palette">
+
+    ${tagColors.map(color => `
+
+      <button
+        class="
+          color-dot
+          ${newTagColor === color
+            ? "active"
+            : ""
+          }
+        "
+
+        style="background:${color};"
+
+        onclick="
+          selectNewTagColor('${color}')
+        ">
+      </button>
+
+    `).join("")}
+
+  </div>
+
+  <button onclick="addTag()">
+    ＋タグ追加
+  </button>
+
+</div>
    <div class="setting-card">
 
   <div
@@ -3704,6 +3755,45 @@ async function addBook(type){
 }
 //================
 
+
+//====新規タグ追加
+async function addTag(){
+
+  const input =
+    document.getElementById("new-tag-name");
+
+  if(!input) return;
+
+  const name =
+    input.value.trim();
+
+  if(!name){
+
+    alert("タグ名を入力してください");
+    return;
+  }
+
+  tagMaster.push({
+
+    id: Date.now(),
+
+    name,
+
+    color: newTagColor
+
+  });
+
+  await saveData();
+
+  input.value = "";
+
+  newTagColor = "#7b8d8e";
+
+  renderSettings();
+}
+//================
+
+
 //====詳細保存================
 async function saveDetail(id){
 
@@ -3832,6 +3922,10 @@ async function deleteBook(id){
 
 //====タグ削除処理
 function deleteTag(id){
+
+ const used = books.some(book =>
+  (book.tagIds || []).includes(tag.id)
+);
 
   const ok = confirm("タグを削除しますか？");
 
