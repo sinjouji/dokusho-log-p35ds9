@@ -1318,7 +1318,7 @@ function renderSeriesBookList(){
 		
 			(s.name || "")
 				.toLowerCase()
-				.includes(seriesSearchKeyword)
+				.includes(seriesSearchKeyword);
 				
 		);
 	
@@ -2210,7 +2210,7 @@ function renderSeriesSearchArea(){
 		<input
 			id="search"
 			placeholder="シリーズ検索..."
-			value="${seriesSearchKeyWord}"
+			value="${seriesSearchKeyword}"
 			oninput="handleSeriesSearchInput()"
 		>
 		
