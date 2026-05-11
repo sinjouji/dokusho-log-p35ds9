@@ -2375,7 +2375,8 @@ function renderSettings(){
   </div>
    <br>
    
-   
+ 
+   <div class="setting-card">
    <div class="tag-add-area">
 
   <input
@@ -2411,8 +2412,6 @@ function renderSettings(){
   </button>
 
 </div>
-   <div class="setting-card">
-
   <div
     class="setting-card-title"
     onclick="toggleSettingSection('tags')"
