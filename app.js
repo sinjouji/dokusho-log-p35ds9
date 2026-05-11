@@ -2432,8 +2432,8 @@ function renderSettings(){
                   class="
                     color-dot
                     ${editingTagColor === color
-                      ? "active"
-                      : ""
+                      ? 'active'
+                      : ''
                     }
                   "
 
