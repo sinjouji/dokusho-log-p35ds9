@@ -3617,7 +3617,7 @@ console.log(
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
-    <divclass="seriesp-head">
+    <div class="seriesp-head">
     <button onclick="go('series')">戻る</button>
     <span style="text-align:right;">登録 : ${relatedBooks.length}冊</span>
     </div>
