@@ -1324,7 +1324,6 @@ function renderBookList(){
 function renderSeriesBookList(){
 
 
-
 	const main = document.getElementById("series-main");
 	if(!main) return;
 	main.innerHTML = "";
@@ -3033,6 +3032,7 @@ function openAddSeriesModal(){
 				<button onclick="closeModal('add-series-modal')">×</button>
 				
 			</div>
+		</div>
 `;
 	document.body.appendChild(modal);
 	//関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい
