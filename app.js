@@ -1345,7 +1345,7 @@ function renderSeriesBookList(){
 			d.className = "card";
 			d.textContent = s.name;
 
-		d.onclick = ()=> renderSeriesDetail(s);
+		d.onclick = ()=> openSeries(series);
 		main.appendChild(d);
 	});
 	//ソート
