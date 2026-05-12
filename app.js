@@ -2335,6 +2335,7 @@ function renderSettings(){
  
   
   el.innerHTML = `
+    <button onclick="go('home')" style="margin:16px;">← 戻る</button>
     <h2 style="padding:12px;">設定</h2>
 
   <div class="setting-card">
@@ -2679,7 +2680,7 @@ function renderSettings(){
 : ""}
   </div>
 
-    <button onclick="go('home')" style="margin:16px;">← 戻る</button>
+
   `;  
 }
 //==========
@@ -3610,9 +3611,10 @@ function renderSeriesDetail(s, currentSeriesId){
     class="series-section-title"
     onclick="toggleSeriesSection('books')"
   >
-    ▼ 関連作品
-  </div>
-
+  ${seriesSections.books
+    ? "▽"
+    : "▶︎"
+    関連作品</div>
   ${
     seriesSections.books
       ? `
@@ -3629,13 +3631,15 @@ function renderSeriesDetail(s, currentSeriesId){
 
   <div
     class="series-section-title"
-    onclick="toggleSeriesSection('books')"
+    onclick="toggleSeriesSection('charas')"
   >
-    ▼ 関連人物
-  </div>
+  ${seriesSections.charas
+  ? "▽"
+  : "▶︎"}
+  関連人物</div>
 
   ${
-    seriesSections.books
+    seriesSections.charas
       ? `
         <div class="series-section-body">
            <div id="series-chars"></div>
@@ -3645,7 +3649,6 @@ function renderSeriesDetail(s, currentSeriesId){
   }
 
 </div>
-
 </div>
 
 `;
