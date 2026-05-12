@@ -3697,7 +3697,8 @@ if(list){
         b.title;
 
       d.onclick =
-        ()=> openDetail(b);
+        ()=> openBookDetailModal(b);
+        // openDetail(b);
 
       list.appendChild(d);
 
