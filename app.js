@@ -3594,6 +3594,9 @@ function openSeries(series){
 // シリーズ：詳細画面
 //============================
 function renderSeriesDetail(s){
+console.log(
+"render detail"
+);
 go('detail');
 
   const el = document.getElementById('page-detail');
