@@ -2037,7 +2037,7 @@ function renderMiniCalendar(main){
 
     if(dateStr === today){
       cell.style.border =
-        "2px solid #e94709";
+        "2px solid #954039";
     }
 
     cell.innerHTML =
