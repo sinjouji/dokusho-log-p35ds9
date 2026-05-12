@@ -3617,7 +3617,7 @@ console.log(
   el.innerHTML = `
     <divclass="seriesp-head">
     <button onclick="go('series')">戻る</button>
-    <div>登録: ${relatedBooks.length}冊</div>
+    <span>登録: ${relatedBooks.length}冊</span>
     </div>
     <hr>
    
