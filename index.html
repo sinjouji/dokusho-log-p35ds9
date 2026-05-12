@@ -19,8 +19,12 @@ header{
   color:#60564f;
   padding:16px;
   font-size:20px;
+
+}
+
+.menulist{
   display: flex;
-  justify-content: space-between;
+  text-align:right;
   align-items:flex-end;
 }
 
@@ -737,7 +741,7 @@ border:1px solid #60564f;
 <h2>📚 読書ログ</h2>
 
 
-<nav>
+<nav class="menulist">
   <button class="btnme" onclick="go('home')">ホーム</button>
   <button class="btnme" onclick="go('series')">シリーズ</button>
   <button class="btnme" onclick="go('characters')">人物</button>
