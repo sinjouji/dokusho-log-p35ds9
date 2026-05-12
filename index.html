@@ -39,7 +39,7 @@ button{
 }
 
 #page-stats{
- margin:10px;
+ margin:20px;
 }
 
 
@@ -533,32 +533,34 @@ select{
 
 /*カレンダー表示*/
 .calendar-day{
-  width:28px;
-  height:28px;
-  font-size:11px;
+  width:20px;
+  height:20px;
+  font-size:12px;
 }
 .calendar-grid{
-  gap:2px;
+  gap:3px;
 }
 
 /*ミニカレンダー表示*/
 .mini-calendar{
   display:grid;
   grid-template-columns:repeat(7, 1fr);
-  gap:3px;
+  gap:4px;
+  max-width:800px;
+  max-height:600px;
 }
 
 .mini-day{
   aspect-ratio:1;
   font-size:10px;
+  color:#60564f;
+  font-weight:bold;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-
   border-radius:8px;
-
   background:#eee;
 }
 
@@ -578,7 +580,7 @@ select{
 .setting-card-title{
   font-size:14px;
   font-weight:bold;
-  color:#666;
+  color:#60564f;
   margin-bottom:12px;
 }
 
@@ -590,6 +592,7 @@ select{
   margin:12px 0;
   border-bottom:1px dashed #7f9698;
   font-size:12px;
+  padding-bottom:10px;
 }
 
 .setting-row button{
