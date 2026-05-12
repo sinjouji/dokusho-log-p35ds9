@@ -3615,10 +3615,10 @@ console.log(
 
 //シリーズ関連：本HTML表示
   el.innerHTML = `
-    <span class="seriesp-head">
+    <divclass="seriesp-head">
     <button onclick="go('series')">戻る</button>
     <div>登録: ${relatedBooks.length}冊</div>
-    </span>
+    </div>
     <hr>
    
     <h2 class="stitle">${s.name}</h2>
