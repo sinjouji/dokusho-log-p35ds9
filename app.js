@@ -154,7 +154,9 @@ let newTagColor = "#7b8d8e";
 
 //シリーズ関係
 let seriesMaster = [];
-let seriesSections = {
+let seriesSections = JSON.parse(
+  localStorage.getItem("seriesSections")
+  ) || {
   books: true,
   chars: true
 };
@@ -2797,6 +2799,13 @@ function toggleSeriesSection(key){
 
   seriesSections[key] =
     !seriesSections[key];
+    
+  localStorage.setItem(
+    "seriesSections",
+    JSON.stringify(
+      seriesSections
+    )
+  );
 
   renderSeriesDetail(currentSeriesId);
 }
