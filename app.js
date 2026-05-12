@@ -3018,7 +3018,7 @@ function openAddSeriesModal(){
 			<div id="title-suggest"></div>
 			
 			<div class="field">
-				<div class="field-label">関連対象を登録</diV>
+				<div class="field-label">関連対象を登録</div>
 				<input id=""
 					type="text"
 					placeholder="作品／人物名"
