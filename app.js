@@ -3016,8 +3016,8 @@ function openAddSeriesModal(){
 				oninput="renderTitleSuggest()">
 			<div id="title-suggest"></div>
 			
-			<div class="field">
-				<div class="field-label">関連対象を登録</div>
+			
+				<div>関連対象を登録</div>
 				<input id=""
 					type="text"
 					placeholder="作品／人物名"
@@ -3031,7 +3031,7 @@ function openAddSeriesModal(){
 				
 				<button onclick="closeModal('add-series-modal')">×</button>
 				
-			</div>
+			
 		</div>
 `;
 	document.body.appendChild(modal);
