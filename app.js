@@ -3351,7 +3351,7 @@ function openBookDetailModal(book){
   modal.innerHTML = `
     <div class="modal-box detail-modal">
 
-      <button class="close-btn" onclick="closeModal(open-book-modal)">
+      <button class="close-btn" onclick="closeModal('open-book-modal')">
         ×
       </button>
 
