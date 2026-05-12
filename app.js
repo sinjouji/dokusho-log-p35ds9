@@ -3586,16 +3586,17 @@ function toggleType(book){
 function openSeries(series){
 
   currentSeriesId = series.id;
+  
+  go('detail');
 
   renderSeriesDetail(series);
 
 }
 //============================
-// シリーズ：詳細画面
+// シリーズ：詳細画面の表示
 //============================
 function renderSeriesDetail(s){
 
-go('detail');
 console.log(
 "render detail"
 );
