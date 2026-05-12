@@ -156,7 +156,7 @@ let newTagColor = "#7b8d8e";
 let seriesMaster = [];
 let seriesSections = {
   books: true,
-  characters: true
+  chars: true
 };
 
 
@@ -3600,7 +3600,7 @@ function renderSeriesDetail(s, currentSeriesId){
     <button onclick="go('series')">戻る</button>
     
     <h2>${s.name}</h2>
-    <div>冊数: ${relatedBooks.length}</div>
+    <div>登録: ${relatedBooks.length}冊</div>
     <hr>
 
 <div class="series-detail-layout">
@@ -3631,15 +3631,15 @@ function renderSeriesDetail(s, currentSeriesId){
 
   <div
     class="series-section-title"
-    onclick="toggleSeriesSection('charas')"
+    onclick="toggleSeriesSection('chars')"
   >
-  ${seriesSections.charas
+  ${seriesSections.chars
   ? "▽"
   : "▶︎"}
   関連人物</div>
 
   ${
-    seriesSections.charas
+    seriesSections.chars
       ? `
         <div class="series-section-body">
            <div id="series-chars"></div>
