@@ -3592,8 +3592,7 @@ function openSeries(series){
 }
 //================
 // シリーズ詳細====
-function renderSeriesDetail(s, series){
-  go('detail');
+function renderSeriesDetail(s){
 
   const el = document.getElementById('page-detail');
 
@@ -3665,39 +3664,79 @@ function renderSeriesDetail(s, series){
 
 `;
 
-//シリーズ関連：本描画
-  const list = document.getElementById('series-books');
+  const list =
+  document.getElementById(
+    'series-books'
+  );
 
-//追加
-if(viewMode.startsWith("shelf")){
-	renderShelf(list, relatedBooks);
-} else {
-	relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
+if(list){
 
-    d.onclick = ()=> openDetail(b);
-    list.appendChild(d);
-  });
+  if(viewMode.startsWith("shelf")){
+
+    renderShelf(
+      list,
+      relatedBooks
+    );
+
+  } else {
+
+    relatedBooks.forEach(b=>{
+
+      const d =
+        document.createElement('div');
+
+      d.className = "card";
+
+      d.textContent =
+        b.title;
+
+      d.onclick =
+        ()=> openDetail(b);
+
+      list.appendChild(d);
+
+    });
+
   }
-  
-  
-  //シリーズ関連：人物描画
-const list2 = document.getElementById('series-chars');
 
-if(!relatedCharacters.length){
-  list2.innerHTML = '<div style="color:gray;">（人物なし）</div>';
-} else {
-  relatedCharacters.forEach(c=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = c.name;
+}
 
-    d.onclick = ()=> openCharacter(c);
+  const list2 =
+  document.getElementById(
+    "series-chars"
+  );
 
-    list2.appendChild(d);
-  });
+if(list2){
+
+  if(!relatedCharacters.length){
+
+    list2.innerHTML = `
+      <div style="color:gray;">
+        （人物なし）
+      </div>
+    `;
+
+  } else {
+
+    relatedCharacters.forEach(c=>{
+
+      const d =
+        document.createElement('div');
+
+      d.className = "card";
+
+      d.textContent =
+        c.name;
+
+      d.onclick =
+        ()=> openCharacter(c);
+
+      list2.appendChild(d);
+
+    });
+
+  }
+
 }
 }
 //========
