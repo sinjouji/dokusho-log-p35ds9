@@ -3981,7 +3981,7 @@ async function saveNewBook(){
   await saveData();
   showToast(`「${book.title}」を追加しました`);
 
-  closeModal("open-book-modal");
+  closeModal("add-book-modal");
 
   renderHome();
 }
@@ -4026,7 +4026,7 @@ async function addBook(type){
   await saveData();
   showToast(`「${book.title}」をウィッシュに追加しました`);
 
-  closeModal("open-book-modal");
+  closeModal("add-book-modal");
 
   renderHome();
 }
