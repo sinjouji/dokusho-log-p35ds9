@@ -601,7 +601,7 @@ function cycleFav(id){
 
   saveData();
 
-  closeModal();
+  closeModal("open-book-moda");
 
   openBookDetailModal(book);
 
@@ -3697,7 +3697,7 @@ if(list){
         b.title;
 
       d.onclick =
-        ()=> openBookDetailModal(book);
+        ()=> openBookDetailModal(b);
         // openDetail(b);
 
       list.appendChild(d);
