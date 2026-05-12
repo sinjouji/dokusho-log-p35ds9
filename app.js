@@ -2793,7 +2793,7 @@ function toggleSettingSection(key){
 
 //====シリーズ詳細ページトグル開閉設定
 function toggleSeriesSection(key){
-
+console.log(seriesSections);
   seriesSections[key] =
     !seriesSections[key];
     
@@ -2801,8 +2801,6 @@ function toggleSeriesSection(key){
     seriesMaster.find(
       s => s.id === currentSeriesId
     );
-  
-  console.log(seriesSections);
   
   if(series){
     renderSeriesDetail(series);
