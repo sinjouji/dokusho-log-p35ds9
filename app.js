@@ -3898,7 +3898,7 @@ async function removeReadDate(bookId,date){
 
   await saveData();
 
-  closeModal();
+  closeModal("open-book-modal");
   openBookDetailModal(book);
 }
 //======================
@@ -3981,7 +3981,7 @@ async function saveNewBook(){
   await saveData();
   showToast(`「${book.title}」を追加しました`);
 
-  closeModal();
+  closeModal("open-book-modal");
 
   renderHome();
 }
@@ -4026,7 +4026,7 @@ async function addBook(type){
   await saveData();
   showToast(`「${book.title}」をウィッシュに追加しました`);
 
-  closeModal();
+  closeModal("open-book-modal");
 
   renderHome();
 }
@@ -4140,7 +4140,7 @@ async function saveDetail(id){
 
 showToast("保存しました！");
 
-  closeModal();
+  closeModal("open-book-modal");
 
   renderHome();
 }
@@ -4199,7 +4199,7 @@ async function addReadDate(id){
 
   await saveData();
 
-  closeModal();
+  closeModal("open-book-modal");
 
   openBookDetailModal(book);
 
@@ -4223,7 +4223,7 @@ async function deleteBook(id){
 
   await saveData();
 
-  closeModal();
+  closeModal("open-book-modal");
 
   renderHome();
 
