@@ -158,6 +158,7 @@ let seriesSections = {
   books: true,
   chars: true
 };
+let currentSeriesId = null;
 
 
 
@@ -2797,8 +2798,15 @@ function toggleSeriesSection(key){
 
   seriesSections[key] =
     !seriesSections[key];
-
-  renderSeriesDetail(currentSeriesId);
+    
+  const series =
+    seriesMaster.find(
+      s => s.id === currentSeriesId
+    );
+  
+  if(series){
+    renderSeriesDetail(series);
+  }
 }
 //======================
 
@@ -3576,13 +3584,19 @@ function toggleType(book){
 //========
 
 
+//シリーズ詳細を開く
+function openSeries(series){
 
+  currentSeriesId = series.id;
 
+  renderSeriesDetail(series);
+
+}
+//================
 // シリーズ詳細====
-function renderSeriesDetail(s, currentSeriesId){
+function renderSeriesDetail(s, series){
   go('detail');
 
-  const currentSeriesId = series.id;
   const el = document.getElementById('page-detail');
 
 	//シリーズ→本
