@@ -3613,7 +3613,7 @@ function renderSeriesDetail(s, currentSeriesId){
   >
   ${seriesSections.books
     ? "▽"
-    : "▶︎"
+    : "▶︎"}
     関連作品</div>
   ${
     seriesSections.books
