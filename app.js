@@ -3018,16 +3018,18 @@ function openAddSeriesModal(){
 			
 			
 				<div>関連対象を登録</div>
+				<div>
 				<input id=""
 					type="text"
 					placeholder="作品／人物名"
 					oninput="renderSeriesSuggest();
 						renderCharacterSuggest();">
+				
 				<button onclick="">
 					＋
-				</button><br>
+				</button></div>
 
-				<button onclick="saveNewSeries()">＋追加</button><br>
+				<button onclick="saveNewSeries()">＋追加</button>
 				
 				<button onclick="closeModal('add-series-modal')">×</button>
 				
