@@ -3619,7 +3619,7 @@ console.log(
   el.innerHTML = `
     <div class="seriesp-head">
     <button onclick="go('series')">戻る</button>
-    <span style="text-align:right;">登録 : ${relatedBooks.length}冊</span>
+    <span class="satu">登録 : ${relatedBooks.length}冊</span>
     </div>
    
     <h3 class="stitle">${s.name}</h3>
