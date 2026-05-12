@@ -3590,22 +3590,23 @@ function openSeries(series){
   renderSeriesDetail(series);
 
 }
-//================
-// シリーズ詳細====
+//============================
+// シリーズ：詳細画面
+//============================
 function renderSeriesDetail(s){
 go('detail');
 
   const el = document.getElementById('page-detail');
 
 	//シリーズ→本
-  const relatedBooks = books.filter(b=>{
-    return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
-  });
+//  const relatedBooks = books.filter(b=>{
+//    return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
+//  });
   	
  	 //シリーズ→人物
-  const relatedCharacters = characters.filter(c=>{
-  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-  });
+//  const relatedCharacters = characters.filter(c=>{
+//  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+//  });
   
 
 //シリーズ関連：本HTML表示
