@@ -3951,7 +3951,7 @@ function editDate(bookId, index){
 
 //====本を追加保存=================
 async function saveNewBook(){
-console.log("saveNewBook",);
+
   const title =
     document.getElementById("add-title").value.trim();
 
@@ -3964,12 +3964,12 @@ console.log("saveNewBook",);
     document.getElementById("add-date").value;
 
   const memo =
-    document.getElementById("add-memo").value;
+    document.getElementById("add-memo")?.value || "";
 
   const book = {
     id: Date.now().toString(),
     title,
-    memo,
+    memo: memo,
     fav: 0,
     dates: date ? [date] : [],
     tagIds: [],
