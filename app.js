@@ -3086,6 +3086,8 @@ function changeViewMode(mode){
     "viewMode",
     viewMode
   );
+  
+  renderSearchArea();
 
   renderBookList();
 }
