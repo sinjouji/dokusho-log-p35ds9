@@ -154,9 +154,7 @@ let newTagColor = "#7b8d8e";
 
 //シリーズ関係
 let seriesMaster = [];
-let seriesSections = JSON.parse(
-  localStorage.getItem("seriesSections")
-  ) || {
+let seriesSections = {
   books: true,
   chars: true
 };
@@ -2799,13 +2797,6 @@ function toggleSeriesSection(key){
 
   seriesSections[key] =
     !seriesSections[key];
-    
-  localStorage.setItem(
-    "seriesSections",
-    JSON.stringify(
-      seriesSections
-    )
-  );
 
   renderSeriesDetail(currentSeriesId);
 }
@@ -3591,6 +3582,7 @@ function toggleType(book){
 function renderSeriesDetail(s, currentSeriesId){
   go('detail');
 
+  const currentSeriesId = series.id;
   const el = document.getElementById('page-detail');
 
 	//シリーズ→本
