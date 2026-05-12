@@ -3622,7 +3622,7 @@ console.log(
     <span style="text-align:right;">登録 : ${relatedBooks.length}冊</span>
     </div>
    
-    <h2 class="stitle">${s.name}</h2>
+    <h3 class="stitle">${s.name}</h3>
 
 <div class="series-detail-layout">
  <div class="series-section">
