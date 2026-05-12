@@ -3026,9 +3026,9 @@ function openAddSeriesModal(){
 						renderCharacterSuggest();">
 				<button onclick="">
 					＋
-				</button>
+				</button><br>
 
-				<button onclick="saveNewSeries()">＋追加</button>
+				<button onclick="saveNewSeries()">＋追加</button><br>
 				
 				<button onclick="closeModal('add-series-modal')">×</button>
 				
