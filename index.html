@@ -649,11 +649,14 @@ select{
     0 0 0 2px #333;
 }
 /*本棚：カード表示*/
-@media(min-width:700px){
 
 .honlist{
+grid-template-columns:1fr;
+}
+@media(min-width:700px){
+.honlist{
 grid-template-columns:1fr 1fr;
-  width: calc(60% - 8px);
+/*  width: calc(60% - 8px);*/
 }
 }
 
