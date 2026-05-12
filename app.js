@@ -724,7 +724,7 @@ function createBookSpine(b){
   d.appendChild(title);
   d.appendChild(fav);
 
-  d.onclick = ()=> openDetail(b);
+  d.onclick = ()=> openBookDetailModal(b);
 
 //評価を背表紙にうっすら表示
 //const badge = document.createElement("div");
@@ -1381,7 +1381,7 @@ function renderCardView(main, books){
       </div>
     `;
 
-    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openBookDetailModal(b);
 
     main.appendChild(d);
   });
@@ -1410,7 +1410,7 @@ function renderListView(main, books){
       </div>
     `;
 
-    row.onclick = ()=> openDetail(b);
+    row.onclick = ()=> openBookDetailModal(b);
 
     main.appendChild(row);
   });
@@ -1627,7 +1627,7 @@ function renderRecentBooks(){
       </div>
     `;
 
-    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openBookDetailModal(b);
     box.appendChild(d);
   });
 }
@@ -1678,7 +1678,7 @@ function renderRecent(){
       <div class="meta">${getLatestReadDate(b)}</div>
     `;
 
-    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openBookDetailModal(b);
     el.appendChild(d);
   });
 }
@@ -2270,7 +2270,7 @@ function renderList(el, sorted){
       <div>${getFavLabel(b.fav)}</div>
     `;
 
-    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openBookDetailModal(b);
 
     listWrap.appendChild(d);
   });
@@ -3698,7 +3698,6 @@ if(list){
 
       d.onclick =
         ()=> openBookDetailModal(b);
-        // openDetail(b);
 
       list.appendChild(d);
 
@@ -3810,7 +3809,7 @@ function openCharacter(c){
     d.className = "card";
     d.textContent = b.title;
 
-    d.onclick = ()=> openDetail(b);
+    d.onclick = ()=> openBookDetailModal(b);
 
     list3.appendChild(d);
   });
