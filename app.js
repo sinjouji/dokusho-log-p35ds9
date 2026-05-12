@@ -3593,6 +3593,7 @@ function openSeries(series){
 //================
 // シリーズ詳細====
 function renderSeriesDetail(s){
+go('detail');
 
   const el = document.getElementById('page-detail');
 
