@@ -1323,7 +1323,7 @@ function renderBookList(){
 //====シリーズ一覧だけを表示する
 function renderSeriesBookList(){
 
-//console.log("seriesMaster", seriesMaster);
+
 
 	const main = document.getElementById("series-main");
 	if(!main) return;
@@ -1338,10 +1338,8 @@ function renderSeriesBookList(){
 				.includes(seriesSearchKeyword)
 				
 		);
-				console.log(filtered);
-		filtered.forEach(s=>{
 		
-		console.log(s.name);
+		filtered.forEach(s=>{
 		
 			const d = document.createElement('div');
 			d.className = "card";
@@ -3619,30 +3617,29 @@ function renderSeriesDetail(s, series){
     <hr>
 
 <div class="series-detail-layout">
-
-<div class="series-section">
+ <div class="series-section">
 
   <div
     class="series-section-title"
     onclick="toggleSeriesSection('books')"
   >
-  ${seriesSections.books
-    ? "▽"
-    : "▶︎"}
-    関連作品</div>
-  ${
-    seriesSections.books
-      ? `
+   ${seriesSections.books
+     ? "▽"
+     : "▶︎"}
+     関連作品</div>
+   ${
+     seriesSections.books
+       ? `
         <div class="series-section-body">
           <div id="series-books"></div>
         </div>
-      `
-      : ""
-  }
+       `
+       : ""
+   }
 
-</div>
+ </div>
 
-<div class="series-section">
+ <div class="series-section">
 
   <div
     class="series-section-title"
@@ -3663,7 +3660,7 @@ function renderSeriesDetail(s, series){
       : ""
   }
 
-</div>
+ </div>
 </div>
 
 `;
