@@ -3691,7 +3691,7 @@ if(list){
         b.title;
 
       d.onclick =
-        ()=> renderSeriesDetail(b);
+        ()=> openSeries(b);
 
       list.appendChild(d);
 
