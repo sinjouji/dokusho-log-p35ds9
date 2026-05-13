@@ -862,7 +862,7 @@ function sortBooks(list){
 //====================
 function sortSeries(list){
 
-	const arr = [...list];
+	const arr = [...seriesMaster];
 
 //シリーズ名順	
 	if(seriesSortMode === "stitle-asc"){
@@ -879,10 +879,26 @@ function sortSeries(list){
 		);
 	}
 	
+//読了日順	
+	if(seriesSortMode === "sread-asc"{
+		arr.sort((a,b)=>
+			toDateNum(b) - toDateNum(a)
+		);
+	}
+	
+	if(seriesSortMode === "sread-desc"{
+		arr.sort((a,b)=>
+			toDateNum(a) - toDateNum(b)
+		);
+	}
+	
+	if(seriesSortMode === "sleng-desc"{
+		arr.sort((a,b)=>
+			
+		);
+	}
+	
 	return arr;
-//読了日順
-//登録冊数順
-
 }
 //====================
 //キャラクターソート
@@ -1396,7 +1412,7 @@ function renderCardView(main, books){
 
     const d = document.createElement("div");
 
-    d.className = "honlist";
+    d.className = "card honlist";
 
     d.innerHTML = `
       <div class="title">${b.title}</div>
