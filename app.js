@@ -389,6 +389,25 @@ function getTagColor(tagId){
   return t?.color || "#999";
 }
 
+
+
+//==============================
+//シリーズ名を取得
+//==============================
+function openSeriesById(id){
+
+  const series = seriesMaster.find(
+    s => String(s.id) === String(id)
+  );
+
+  if(!series) return;
+
+  openSeries(series);
+}
+
+
+
+
 //==============================
 //汎用設定
 //==============================
@@ -1026,7 +1045,7 @@ function openBookDetailModal(book){
     <div class="detail-series">
       シリーズ:
       ${relatedSeries.map(s=>`
-        <span onclick="closeModal('open-book-modal'); openSeries('${s.id}');">
+        <span onclick="closeModal('open-book-modal'); openSeriesById('${book.seriesMasterId}');">
           ${s.name}
         </span>
       `).join(", ") || "なし"}
