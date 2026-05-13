@@ -3003,7 +3003,8 @@ function openAddBookModal(){
       <h2>本を追加</h2>
 
 
-      <input id="add-title"
+      <input class="addin"
+       id="add-title"
         type="text"
         placeholder="タイトル"
         oninput="renderTitleSuggest()"
@@ -3055,7 +3056,8 @@ function openAddSeriesModal(){
 		
 			<h2>シリーズを追加</h2>
 			
-			<input id="add-series-title"
+			<input class="addin"
+			 id="add-series-title"
 				type="text"
 				placeholder="シリーズタイトル"
 				oninput="renderTitleSuggest()">
