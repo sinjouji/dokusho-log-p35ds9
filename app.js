@@ -1528,67 +1528,7 @@ function renderViewMode(targetId = "view-mode"){
   });
 }
 
-//==============================
-//===旧タグ収納トグル
-//==============================
-function setupTagToggle(){
-  const btn = document.getElementById('toggle-tags');
-  const el = document.getElementById('tag-filter');
-  if(!btn || !el) return;
 
-  function update(){
-    el.style.display = showTags ? "flex" : "none";
-  }
-
-  update();
-
-  btn.onclick = ()=>{
-    showTags = !showTags;
-    localStorage.setItem("showTags", showTags);
-    update();
-  };
-}
-
-//==============================
-//===旧版日付削除
-//==============================
-function removeDate(bookId, index){
-  const b = getBookById(bookId);
-  if(!b || !b.dates) return;
-
-  b.dates.splice(index,1);
-
-  saveData();
-  openDetail(b);
-}
-
-//=============================
-//==============================
-//おそらく旧ホーム表示（削除予定？）
-//==============================
-function renderList(el, sorted){
-  el.innerHTML = "";
-
-  const listWrap = document.createElement("div");
-  listWrap.className = "list-grid";
-
-  sorted.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "list-card";
-
-    d.innerHTML = `
-      <div class="title">${b.title}</div>
-      <div>${getLatestReadDate(b)}</div>
-      <div>${getFavLabel(b.fav)}</div>
-    `;
-
-    d.onclick = ()=> openBookDetailModal(b);
-
-    listWrap.appendChild(d);
-  });
-
-  el.appendChild(listWrap);
-}
 
 //==============================
 //====サジェスト
