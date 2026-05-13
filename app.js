@@ -862,7 +862,7 @@ function sortBooks(list){
 //====================
 function sortSeries(list){
 
-	const arr = [...seriesMaster];
+	const arr = [...list];
 
 //シリーズ名順	
 	if(seriesSortMode === "stitle-asc"){
