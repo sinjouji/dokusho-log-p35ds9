@@ -3376,7 +3376,7 @@ async function loadData(){
  //   renderColorMode();
  //   renderViewMode();
 //    renderSort();
-    setupTagToggle();
+//    setupTagToggle();
 
 //    renderCalendar();
     renderHome();
