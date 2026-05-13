@@ -185,7 +185,7 @@ function go(page){
   if(target) target.style.display = "block";
 
   // ここ追加
-  updateUIVisibility(page);
+//  updateUIVisibility(page);
 
   if(page === 'settings') renderSettings();
   if(page === 'home') renderHome();
