@@ -1490,6 +1490,44 @@ async function removeReadDate(bookId,date){
 
 
 
+
+//==============================
+//===旧?viewmode
+//==============================
+function renderViewMode(targetId = "view-mode"){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "card", label: "カード" },
+    { id: "list", label: "リスト（２列）"},
+    { id: "shelf", label: "本棚" },
+    { id: "shelf-series", label: "シリーズ" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+    btn.className = "setting-btn";
+
+    if(m.id === viewMode){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = ()=>{
+      viewMode = m.id;
+      localStorage.setItem("viewMode", viewMode);
+
+      renderHome();                 // これ必須
+      renderViewMode(targetId);     // 見た目更新
+    };
+
+    el.appendChild(btn);
+  });
+}
+
 //==============================
 //===旧タグ収納トグル
 //==============================
