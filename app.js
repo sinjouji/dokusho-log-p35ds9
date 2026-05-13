@@ -1381,7 +1381,9 @@ function renderSeriesBookList(){
 				.includes(seriesSearchKeyword)
 				
 		);
-		
+	//ソート
+	const sorted = sortSeries(filtered);
+			
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
@@ -1391,8 +1393,7 @@ function renderSeriesBookList(){
 		d.onclick = ()=> openSeries(s);
 		main.appendChild(d);
 	});
-	//ソート
-	const sorted = sortSeries(filtered);
+
 	
 	
 }
