@@ -273,9 +273,9 @@ function applySpineColor(d, b){
     d.style.background =
       `linear-gradient(
                to bottom,
-               ${c1} 0%, ${c1} 3%,
-               ${c3} 3%, ${c3} 6%,
-               ${c1} 6%, ${c1} 75%,
+               ${c1} 0%, ${c1} 10%,
+               ${c3} 10%, ${c3} 14%,
+               ${c1} 14%, ${c1} 75%,
                ${c2} 75%, ${c2} 100%)`;
   }
 }
@@ -300,7 +300,7 @@ function createBookSpine(b){
   d.style.overflow = "visible";
   
   //しおり用のスペース作成
-  d.style.paddingTop = "10px";
+  d.style.paddingTop = "15px";
 
   
   applySpineColor(d, b);
