@@ -880,23 +880,23 @@ function sortSeries(list){
 	}
 	
 //読了日順	
-	if(seriesSortMode === "sread-asc"{
+	if(seriesSortMode === "sread-asc"){
 		arr.sort((a,b)=>
 			toDateNum(b) - toDateNum(a)
 		);
 	}
 	
-	if(seriesSortMode === "sread-desc"{
+	if(seriesSortMode === "sread-desc"){
 		arr.sort((a,b)=>
 			toDateNum(a) - toDateNum(b)
 		);
 	}
 	
-//	if(seriesSortMode === "sleng-desc"{
-//		arr.sort((a,b)=>
-//			
-//		);
-//	}
+	if(seriesSortMode === "sleng-desc"){
+		arr.sort((a,b)=>
+			
+		);
+	}
 	
 	return arr;
 }
