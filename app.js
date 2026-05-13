@@ -886,17 +886,17 @@ function sortSeries(list){
 	}
 	
 //読了日順	
-	if(seriesSortMode === "read-asc"){
-		arr.sort((a,b)=>
-			toDateNum(b) - toDateNum(a)
-		);
-	}
+//	if(seriesSortMode === "read-asc"){
+//		arr.sort((a,b)=>
+//			toDateNum(b) - toDateNum(a)
+//		);
+//	}
 	
-	if(seriesSortMode === "read-desc"){
-		arr.sort((a,b)=>
-			toDateNum(a) - toDateNum(b)
-		);
-	}
+//	if(seriesSortMode === "read-desc"){
+//		arr.sort((a,b)=>
+//			toDateNum(a) - toDateNum(b)
+//		);
+//	}
 	
 	
 	return arr;
