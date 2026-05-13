@@ -892,11 +892,11 @@ function sortSeries(list){
 		);
 	}
 	
-	if(seriesSortMode === "sleng-desc"{
-		arr.sort((a,b)=>
-			
-		);
-	}
+//	if(seriesSortMode === "sleng-desc"{
+//		arr.sort((a,b)=>
+//			
+//		);
+//	}
 	
 	return arr;
 }
