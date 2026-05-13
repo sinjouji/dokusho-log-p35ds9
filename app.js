@@ -960,9 +960,9 @@ function openBookDetailModal(book){
 
   currentDetailFav = book.fav || 0;
   
-  const relatedSeries = seriesMaster.filter(s=>{
-  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
-  });
+ // const relatedSeries = seriesMaster.filter(s=>{
+ // return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
+ // });
   
   const modal = document.createElement("div");
   modal.className = "modal-bg";
