@@ -1396,7 +1396,7 @@ function renderCardView(main, books){
 
     const d = document.createElement("div");
 
-    d.className = "card";
+    d.className = "card honist";
 
     d.innerHTML = `
       <div class="title">${b.title}</div>
