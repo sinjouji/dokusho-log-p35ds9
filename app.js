@@ -1045,7 +1045,7 @@ function openBookDetailModal(book){
     <div class="detail-series">
       シリーズ:
       ${relatedSeries.map(s=>`
-        <span onclick="openSeriesById('${book.seriesMasterId}'); closeModal('open-book-modal');">
+        <span onclick="closeModal('open-book-modal'); openSeriesById('${relatedSeries[0].id}');">
           ${s.name}
         </span>
       `).join(", ") || "なし"}
