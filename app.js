@@ -22,6 +22,8 @@ let viewMode = "card";
 //if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
 
 let sortMode = "read-desc";
+let seriesSortMode = "stitle-asc";
+let charSortMode = "cname-asc";
 
 let searchKeyword = "";
 let seriesSearchKeyword = "";
@@ -805,8 +807,9 @@ function applySpineColor(d, b){
 //==================
 
 
-
-//=====ソートここから
+//====================
+//本のソートここから
+//====================
 function sortBooks(list){
 
   const arr = [...list];
@@ -854,12 +857,42 @@ function sortBooks(list){
 
   return arr;
 }
-//========
+//====================
+//シリーズソート
+//====================
+function sortSeries(list){
+
+	const arr = [...list];
+
+//シリーズ名順	
+	if(seriesSortMode === "stitle-asc"){
+		arr.sort((a,b)=>
+			(a.name || "")
+			.localeCompare(b.name || "","ja")
+		);
+	}
+	
+	if(seriesSortMode === "stitle-desc"){
+		arr.sort((a,b)=>
+			(b.name || "")
+			.localeCompare(a.name || "","ja")
+		);
+	}
+	
+	return arr;
+//読了日順
+//登録冊数順
+
+}
+//====================
+//キャラクターソート
+//====================
 
 
 
-
-//========
+//====================
+//本のなんか（多分タイプ取得かなにか
+//====================
 function markAsRead(book){
   const today = new Date().toISOString().slice(0,10);
 
@@ -1348,7 +1381,8 @@ function renderSeriesBookList(){
 		main.appendChild(d);
 	});
 	//ソート
-	//const sorted = sortSeries
+	const sorted = sortSeries(filtered);
+	
 	
 }
 //====================
@@ -2037,7 +2071,7 @@ function renderMiniCalendar(main){
 
     if(dateStr === today){
       cell.style.border =
-        "2px solid #e8380d"
+        "2px solid #f8a484"
     }
 
     cell.innerHTML =
@@ -3067,7 +3101,7 @@ function changeSeriesSortMode(){
 	sortMode =
 		document.getElementById("series-sort-select").value;
 		
-		renderSeries();
+		renderSeriesBookList();
 
 }
 //=================
