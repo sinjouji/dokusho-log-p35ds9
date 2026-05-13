@@ -860,9 +860,9 @@ function sortBooks(list){
 //====================
 //シリーズソート
 //====================
-function sortSeries(list){
+function sortSeries(seriesMaster){
 
-	const arr = [...list];
+	const arr = [...seriesMaster];
 
 //シリーズ名順	
 	if(seriesSortMode === "stitle-asc"){
@@ -892,14 +892,9 @@ function sortSeries(list){
 		);
 	}
 	
-	if(seriesSortMode === "sleng-desc"){
-		arr.sort((a,b)=>
-			
-		);
-	}
 	
 	return arr;
-}
+	}
 //====================
 //キャラクターソート
 //====================
