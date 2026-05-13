@@ -865,14 +865,14 @@ function sortSeries(list){
 	const arr = [...list];
 
 //シリーズ名順	
-	if(seriesSortMode === "stitle-asc"){
+	if(seriesSortMode === "title-asc"){
 		arr.sort((a,b)=>
 			(a.name || "")
 			.localeCompare(b.name || "","ja")
 		);
 	}
 	
-	if(seriesSortMode === "stitle-desc"){
+	if(seriesSortMode === "title-desc"){
 		arr.sort((a,b)=>
 			(b.name || "")
 			.localeCompare(a.name || "","ja")
@@ -880,13 +880,13 @@ function sortSeries(list){
 	}
 	
 //読了日順	
-	if(seriesSortMode === "sread-asc"){
+	if(seriesSortMode === "read-asc"){
 		arr.sort((a,b)=>
 			toDateNum(b) - toDateNum(a)
 		);
 	}
 	
-	if(seriesSortMode === "sread-desc"){
+	if(seriesSortMode === "read-desc"){
 		arr.sort((a,b)=>
 			toDateNum(a) - toDateNum(b)
 		);
@@ -3284,7 +3284,7 @@ el.innerHTML = `
       シリーズ:
       ${relatedSeries.map(s=>`
         <span style="color:blue;cursor:pointer"
-          onclick="openSeriesById('${s.id}')">
+          onclick="openSeries('${s.id}')">
           ${s.name}
         </span>
       `).join(", ") || "なし"}
