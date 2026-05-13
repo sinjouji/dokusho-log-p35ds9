@@ -1801,7 +1801,7 @@ function sortSeries(list){
 	const arr = [...list];
 
 //シリーズ名順	
-	if(seriesSortMode === "title-asc"){
+	if(seriesSortMode === "stitle-asc"){
 		arr.sort((a,b)=>
 			(a.name || "")
 			.localeCompare(
@@ -1811,7 +1811,7 @@ function sortSeries(list){
 		);
 	}
 	
-	if(seriesSortMode === "title-desc"){
+	if(seriesSortMode === "stitle-desc"){
 		arr.sort((a,b)=>
 			(b.name || "")
 			.localeCompare(
@@ -1822,13 +1822,13 @@ function sortSeries(list){
 	}
 	
 //読了日順	
-//	if(seriesSortMode === "read-asc"){
+//	if(seriesSortMode === "sread-asc"){
 //		arr.sort((a,b)=>
 //			toDateNum(b) - toDateNum(a)
 //		);
 //	}
 	
-//	if(seriesSortMode === "read-desc"){
+//	if(seriesSortMode === "sread-desc"){
 //		arr.sort((a,b)=>
 //			toDateNum(a) - toDateNum(b)
 //		);
