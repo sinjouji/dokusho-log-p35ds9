@@ -1026,7 +1026,7 @@ function openBookDetailModal(book){
     <div class="detail-series">
       シリーズ:
       ${relatedSeries.map(s=>`
-        <span onclick="openSeries(s)">
+        <span onclick="openSeries(series)">
           ${s.name}
         </span>
       `).join(", ") || "なし"}
