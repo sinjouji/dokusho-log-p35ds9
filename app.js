@@ -300,7 +300,7 @@ function createBookSpine(b){
   d.style.overflow = "visible";
   
   //しおり用のスペース作成
-  d.style.padding-top = "10px";
+  d.style.paddingTop = "10px";
 
   
   applySpineColor(d, b);
