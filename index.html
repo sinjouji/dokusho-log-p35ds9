@@ -7,26 +7,21 @@
 <link rel="icon" href="favicon.png" type="image/png">
 <style>
 body{
-  margin-left:20px;
-  margin-right:20px;
-  font-family:sans-serif;
-  background:#e4e5e6;
+  margin-left:20px;   margin-right:20px;
+  font-family:sans-serif;   background:#e4e5e6;
   touch-action: pan-y;
 }
 
 header{
-  background:#fffffc;
-  color:#60564f;
-  padding:16px;
-  font-size:20px;
+  background:#fffffc;   color:#60564f;
+  padding:16px;   font-size:20px;
 
 }
 
 .menulist{
-  display: flex;
-  text-align:right;
-  align-items:flex-end;
-  gap:5px;
+  display: flex;   text-align:right;
+  align-items:flex-end;   gap:5px;
+  overflow-wrap: anywhere;
 }
 
 main{
@@ -34,14 +29,10 @@ main{
 }
 
 button{
-  display: inline-block;
-  padding: 5px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  color: #c29b8f;
-  backgroundcolor:#fffffc;
-  border:1px solid #c29b8f;
-  border-radius:999px;
+  display: inline-block;   padding: 5px 20px;
+  border-radius: 25px;   text-decoration: none;
+  color: #c29b8f;   backgroundcolor:#fffffc;
+  border:1px solid #c29b8f;   border-radius:999px;
   font-size:13px;
 }
 
@@ -51,34 +42,25 @@ button{
 
 
 .card{
-  background:#fffffc;
-  border-radius:14px;
-  padding:8px;
-  margin:5px 10px;
+  background:#fffffc;   border-radius:14px;
+  padding:8px;   margin:5px 10px;
   box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  width: calc(90% - 8px);
-  display:inline-block;
-  vertical-align:top;
-  border:1px solid #c29b8f;
+  width: calc(90% - 8px);   display:inline-block;
+  vertical-align:top;   border:1px solid #c29b8f;
 }
 
 .tag{
-  display:inline-block;
-  font-size:10px;
-  padding:2px 6px;
-  border-radius:999px;
-  color:#fffffc;
-  margin-right:4px;
+  display:inline-block;   font-size:10px;
+  padding:2px 6px;   border-radius:999px;
+  color:#fffffc;   margin-right:4px;
 }
 #loading{
-  position:fixed;
-  inset:0;
-  background:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
+  position:fixed;   inset:0;
+  background:white;   display:flex;
+  align-items:center;   justify-content:center;
+  z-index:999; 
 }
+
 
 #page-home{
   display:grid;
@@ -102,18 +84,13 @@ button{
 .tag-chip{
 
   border:none;
-
   border-radius:999px;
-
   padding:6px 12px;
-
   background:#eee;
-
   cursor:pointer;
 }
 
 .tag-chip.active{
-
   background:#d46a6a;
   color:#fffffc;
 }
@@ -579,6 +556,8 @@ border-radius:14px;
   cursor:pointer;
 }
 
+
+
 /*カレンダー表示*/
 .calendar-day{
   width:20px;
@@ -772,6 +751,42 @@ border:1px solid #60564f;
 #loading.hidden{
   display:none;
 }
+
+/* 背表紙表示 */
+
+
+/*再読はしおり描画*/
+.bookmark{
+
+  position:absolute;
+
+  top:-4px;
+  right:8px;
+
+  width:14px;
+  height:28px;
+
+  background:#d94b4b;
+
+  border-radius:0 0 4px 4px;
+
+}
+
+.bookmark::after{
+
+  content:"";
+
+  position:absolute;
+
+  bottom:-8px;
+  left:0;
+
+  border-left:7px solid transparent;
+  border-right:7px solid transparent;
+  border-top:8px solid #d94b4b;
+
+}
+
 </style>
 
 </head>
