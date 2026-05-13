@@ -3472,6 +3472,16 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
+    <div class="detail-series">
+      シリーズ:
+      ${relatedSeries.map(s=>`
+        <span style="color:blue;cursor:pointer"
+          onclick="openSeriesById('${s.id}')">
+          ${s.name}
+        </span>
+      `).join(", ") || "なし"}
+    </div>
+
       ${enableMemo ? `
       <textarea id="editMemo">
         ${book.memo || ""}
