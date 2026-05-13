@@ -868,14 +868,20 @@ function sortSeries(list){
 	if(seriesSortMode === "title-asc"){
 		arr.sort((a,b)=>
 			(a.name || "")
-			.localeCompare(b.name || "","ja")
+			.localeCompare(
+				b.name || "",
+				"ja"
+			)
 		);
 	}
 	
 	if(seriesSortMode === "title-desc"){
 		arr.sort((a,b)=>
 			(b.name || "")
-			.localeCompare(a.name || "","ja")
+			.localeCompare(
+				a.name || "",
+				"ja"
+			)
 		);
 	}
 	
@@ -3284,7 +3290,7 @@ el.innerHTML = `
       シリーズ:
       ${relatedSeries.map(s=>`
         <span style="color:blue;cursor:pointer"
-          onclick="openSeries('${s.id}')">
+          onclick="openSeries(s)">
           ${s.name}
         </span>
       `).join(", ") || "なし"}
