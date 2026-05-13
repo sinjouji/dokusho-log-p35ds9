@@ -926,7 +926,7 @@ function renderColorMode(targetId = "color-mode"){
       localStorage.setItem("colorMode", colorMode);
 
       renderHome();              // 
-      renderColorMode(targetId);
+  //    renderColorMode(targetId);
     };
 
     el.appendChild(btn);
@@ -1521,7 +1521,7 @@ function renderViewMode(targetId = "view-mode"){
       localStorage.setItem("viewMode", viewMode);
 
       renderHome();                 // これ必須
-      renderViewMode(targetId);     // 見た目更新
+   //   renderViewMode(targetId);     // 見た目更新
     };
 
     el.appendChild(btn);
@@ -3433,12 +3433,12 @@ async function loadData(){
 
     // UI初期化
     renderTagFilter();
-    renderColorMode();
-    renderViewMode();
+ //   renderColorMode();
+ //   renderViewMode();
 //    renderSort();
     setupTagToggle();
 
-    renderCalendar();
+//    renderCalendar();
     renderHome();
     go('home');
 
