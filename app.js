@@ -3066,7 +3066,8 @@ function openAddSeriesModal(){
 			
 				<div>関連対象を登録</div>
 				<div>
-				<input id=""
+				<input class="addin"
+				 id=""
 					type="text"
 					placeholder="作品／人物名"
 					oninput="renderSeriesSuggest();
