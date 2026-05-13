@@ -1886,7 +1886,7 @@ function renderSeriesSearchArea(){
 		
 		<div id="suggest"></div>
 	`;
-	
+	renderSeriesSuggest();
 }
 
 
