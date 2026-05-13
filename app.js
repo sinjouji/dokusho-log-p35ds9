@@ -3394,9 +3394,6 @@ function openBookDetailModal(book){
 
   currentDetailFav = book.fav || 0;
   
-  const relatedSeries = seriesMaster.filter(s=>{
-  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
-  });
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "open-book-modal";
@@ -3475,11 +3472,14 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
+  const relatedSeries = seriesMaster.filter(s=>{
+  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
+  });
+
     <div class="detail-series">
       シリーズ:
       ${relatedSeries.map(s=>`
-        <span style="color:blue;cursor:pointer"
-          onclick="openSeriesById('${s.id}')">
+        <span onclick="openSeriesById('${s.id}')">
           ${s.name}
         </span>
       `).join(", ") || "なし"}
