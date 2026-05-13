@@ -1862,6 +1862,8 @@ function sortSeries(list){
 //==============================
 function openSeries(series){
 
+console.log("openSeriesいったで",);
+
   currentSeriesId = series.id;
   
   go('detail');
