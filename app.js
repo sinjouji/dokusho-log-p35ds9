@@ -395,7 +395,7 @@ function getTagColor(tagId){
 //シリーズ名を取得
 //==============================
 function openSeriesById(id){
-
+console.log("byid~~");
   const series = seriesMaster.find(
     s => String(s.id) === String(id)
   );
@@ -1861,8 +1861,6 @@ function sortSeries(list){
 //シリーズ詳細を開く
 //==============================
 function openSeries(series){
-
-console.log("openSeriesいったで",);
 
   currentSeriesId = series.id;
   
