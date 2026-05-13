@@ -1984,7 +1984,7 @@ function openAddSeriesModal(){
 //==============================
 function changeSeriesSortMode(){
 
-	sortMode =
+	seriesSortMode =
 		document.getElementById("series-sort-select").value;
 		
 		renderSeriesBookList();
