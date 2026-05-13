@@ -298,6 +298,9 @@ function createBookSpine(b){
   d.style.justifyContent = "space-between";
   d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
   d.style.overflow = "visible";
+  
+  //しおり用のスペース作成
+  d.style.padding-top:"10px;"
 
   
   applySpineColor(d, b);
