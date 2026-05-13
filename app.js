@@ -732,7 +732,7 @@ function renderSearchArea(){
       ? 'active'
       : ''}"
       onclick="changeViewMode('shelf')">
-        📚 
+        ‖ 
       </button>
       <select
   id="type-filter"
