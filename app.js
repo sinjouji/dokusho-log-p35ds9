@@ -577,7 +577,8 @@ function renderCardView(main, books){
   books.forEach(b=>{
 
     const d = document.createElement("div");
-
+    
+    main.classname = "book-grid";
     d.className = "card honlist";
 
     d.innerHTML = `
