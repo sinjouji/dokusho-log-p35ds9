@@ -493,7 +493,7 @@ function renderHome(){
   
   renderTagFilter();
 
-  renderRecentBooks();
+//  renderRecentBooks();
   
   renderBookList();
 }
