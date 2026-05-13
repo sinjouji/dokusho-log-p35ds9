@@ -3386,11 +3386,6 @@ function openBookDetailModal(book){
 
   modal.innerHTML = `
     <div class="modal-box detail-modal">
-
-      <button class="close-btn" onclick="closeModal('open-book-modal')">
-        ×
-      </button>
-
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
 
@@ -3476,6 +3471,9 @@ function openBookDetailModal(book){
       <button class="danger-btn"
         onclick="deleteBook('${book.id}')">
         🗑 削除
+      </button><br>
+      <button onclick="closeModal('open-book-modal')">
+        ×
       </button>
        
     </div>
