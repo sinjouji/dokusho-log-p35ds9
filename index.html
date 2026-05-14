@@ -541,6 +541,45 @@ border-radius:14px;
 }
 
 /*背表紙表示の要*/
+.spine{
+  position:relative;
+  
+  height:130px;
+  border-radius:3px 5px 5px 3px;
+  
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  
+  overflow:visible;
+  
+  padding-top:15px;
+  
+  border-right:3px solid rgba(0,0,0,0.2);
+
+  cursor:pointer;
+}
+
+.spine-title{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  
+  font-size:9px;
+  line-height:1.1;
+  
+  letter-spacing:0.05em;
+  
+  color:#fffffc;
+}
+
+.spine-fav{
+  font-size:8px;
+  
+  color:#fffffc;
+  
+  writing-mode:vertical-rl;
+}
+
 .shelf-view{
   display:flex;
   gap:8px;
@@ -548,10 +587,6 @@ border-radius:14px;
 
   overflow-x:auto;
   padding:10px 0;
-}
-.spine{
-  flex-shrink:0;
-  cursor:pointer;
 }
 
 
