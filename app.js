@@ -2094,23 +2094,24 @@ function openCharacterModal(c){
 			<input id="character-name" class="character-name"
 			value="${c.name || ""}">
 	
-		<div class="detail-series">
-			シリーズ : 
-			${relatedSeries.map(s=>`
-				<span onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
-				 ${s.name}
-				</span>
-			`).join(", ") || "なし"}
-		</div>
+			<div class="detail-series">
+				シリーズ : 
+				${relatedSeries.map(s=>`
+					<span onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
+					 ${s.name}
+					</span>
+				`).join(", ") || "なし"}
+			</div>
 						
-		<textarea id="character-memo">
-			${c.memo || ""}
-		</textarea>
+			<textarea id="character-memo">
+				${c.memo || ""}
+			</textarea>
 		
-		<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
-		<button class="" onclick="">🗑️ 削除</button><br>
-		<button onclick="closeModal('open-chars-modal')">✖️</button>
-		
+			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
+			<button class="" onclick="">🗑️ 削除</button><br>
+			<button onclick="closeModal('open-chars-modal')">✖️</button>
+	
+		</div>
 	`;
 	document.body.appendChild(modal);
 }
@@ -2122,7 +2123,7 @@ function openCharacterModal(c){
 async function saveCharacter(id){
 
 	const chars =
-		character.find(c => String(c.id) === String(id));
+		characters.find(c => String(c.id) === String(id));
 		
 		if(!chars) return;
 		
