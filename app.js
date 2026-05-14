@@ -2284,7 +2284,7 @@ function sortCharacters(list){
 	const arr = [...list];
 	
 	//名前順
-	if(charsSortMode === "cname-asc"{
+	if(charsSortMode === "cname-asc"){
 		arr.sort((a,b)=>
 			(a.name || "")
 			.localeCompare(
@@ -2294,7 +2294,7 @@ function sortCharacters(list){
 		);
 	}
 	
-	if(charsSortMode === "cname-desc"{
+	if(charsSortMode === "cname-desc"){
 		arr.sort((a,b)=>
 			(b.name || "")
 			.localeCompare(
@@ -2303,7 +2303,6 @@ function sortCharacters(list){
 			)
 		);
 	}
-
 }
 
 
