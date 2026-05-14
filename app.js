@@ -1938,7 +1938,7 @@ function openAddSeriesModal(){
 			<h2>シリーズを追加</h2>
 			
 			<input class="addin"
-			 id="add-series-title"
+				id="add-series-title"
 				type="text"
 				placeholder="シリーズタイトル"
 				oninput="renderTitleSuggest()">
@@ -1956,8 +1956,9 @@ function openAddSeriesModal(){
 				
 				<button onclick="">
 					＋
-				</button></div>
-
+				</button>
+				</div>
+				
 				<button onclick="saveNewSeries()">＋追加</button>
 				
 				<button onclick="closeModal('add-series-modal')">×</button>
@@ -2113,7 +2114,7 @@ function openCharacterModal(c){
 			</textarea>
 		
 			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
-			<button class="" onclick="">🗑️ 削除</button><br>
+			<button>🗑️ 削除</button><br>
 			<button onclick="closeModal('open-chars-modal')">✖️</button>
 	
 		</div>
