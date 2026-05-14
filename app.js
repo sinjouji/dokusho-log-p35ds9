@@ -2082,7 +2082,7 @@ function renderCharacters(){
 function openCharacterModal(c){
 
 	const relatedSeries = seriesMaster.filter(s=>{
-  Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
 
 	const modal = document.createElement("div");
@@ -2097,13 +2097,15 @@ function openCharacterModal(c){
 		<div class="detail-series">
 			シリーズ : 
 			${relatedSeries.map(s=>`
-				<button onclick="closeModal('open-chars-modal'); openSeriesById('${relatedSeries[0].id}');">
+				<button onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
 				 ${s.name}
 				</button>
 			`).join(", ") || "なし"}
 		</div>
 						
-		<div class="memo"></div>
+		<textarea id="chars-memo">
+			${chars.memo || ""}
+		</textarea>
 		
 		<button onclick="">✏️ 保存</button>
 		<button class="" onclick="">🗑️ 削除</button><br>
