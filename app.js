@@ -2091,20 +2091,20 @@ function openCharacterModal(c){
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-			<input id="detail-name" class="detail-name"
+			<input id="character-name" class="character-name"
 			value="${c.name || ""}">
 	
 		<div class="detail-series">
 			シリーズ : 
 			${relatedSeries.map(s=>`
-				<span onclick="closeModal('open-chars-modal'); openSeriesById('${relatedSeries[0].id}');">
+				<span onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
 				 ${s.name}
 				</span>
 			`).join(", ") || "なし"}
 		</div>
 						
 		<textarea id="character-memo">
-			${chars.memo || ""}
+			${c.memo || ""}
 		</textarea>
 		
 		<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
@@ -2122,22 +2122,19 @@ function openCharacterModal(c){
 async function saveCharacter(id){
 
 	const chars =
-		character.find(c=>String(c.id)===String(id));
+		character.find(c => String(c.id) === String(id));
 		
 		if(!chars) return;
 		
 		console.log(
-			document.getElementById("detail-character").value
+			document.getElementById("character-name").value
 		);
 		
 		chars.name =
-			document.getElementById("detail-character").value;
+			document.getElementById("character-name").value;
 			
-		const c.memo =
+		chars.memo =
 			document.getElementById("character-memo").value;
-			
-			chars.memo =
-				c.memo?.value || "";
 		
 		console.log("after edit", chars);
 		
