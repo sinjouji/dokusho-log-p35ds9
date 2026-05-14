@@ -2089,7 +2089,7 @@ function renderCharactersBookList(){
 	if(!main) return;
 	main.innerHTML = "";
 	
-	const filtered =
+	const filtered = 
 		characters.filter(c =>
 			(c.name || "")
 				.toLowerCase()
@@ -2097,9 +2097,9 @@ function renderCharactersBookList(){
 		);
 	
 	//ソート
-	const characters = sortCharacters(filtered);
+	const sorted = sortCharacters(filtered);
 
-		characters.forEach(c=>{
+		sorted.forEach(c=>{
 			const d = document.createElement('div');
 			d.className = "card";
 			d.textContent = c.name;
