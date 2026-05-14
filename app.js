@@ -1299,7 +1299,7 @@ async function deleteBook(id){
 //==============================
 //====詳細保存================
 //==============================
-async function saveDetail(id){
+async function )saveDetail(id){
 
   console.log("save start", id);
 
@@ -2103,16 +2103,55 @@ function openCharacterModal(c){
 			`).join(", ") || "なし"}
 		</div>
 						
-		<textarea id="">
+		<textarea id="character-memo">
+			${chars.memo || ""}
 		</textarea>
 		
-		<button onclick="">✏️ 保存</button>
+		<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
 		<button class="" onclick="">🗑️ 削除</button><br>
 		<button onclick="closeModal('open-chars-modal')">✖️</button>
 		
 	`;
 	document.body.appendChild(modal);
 }
+
+
+//==============================
+//====キャラクター詳細の保存====
+//==============================
+async function saveCharacter(id){
+
+	const chars =
+		character.find(c=>String(c.id)===String(id));
+		
+		if(!chars) return;
+		
+		console.log(
+			document.getElementById("detail-character").value
+		);
+		
+		chars.name =
+			document.getElementById("detail-character").value;
+			
+		const c.memo =
+			document.getElementById("character-memo").value;
+			
+			chars.memo =
+				c.memo?.value || "";
+		
+		console.log("after edit", chars);
+		
+		await saveData();
+		
+		showToast("保存しました！");
+		
+		closeModal("open-chars-modal");
+		
+		renderCharacters();
+
+}
+
+
 //==============================
 //====キャラクター詳細====
 //==============================
