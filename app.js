@@ -2083,8 +2083,8 @@ function renderCharacters(){
 function openCharacterModal(c){
 
 	const relatedSeries = seriesMaster.filter(s=>{
-  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-  });
+	return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+	});
 
 	const modal = document.createElement("div");
 	modal.className = "modal-bg";
@@ -2126,34 +2126,34 @@ function openCharacterModal(c){
 //==============================
 //====キャラクター詳細の保存====
 //==============================
-async function saveCharacter(id){
+//async function saveCharacter(id){
 
-	const chars =
-		characters.find(c => String(c.id) === String(id));
+//	const chars =
+//		characters.find(c => String(c.id) === String(id));
 		
-		if(!chars) return;
+//		if(!chars) return;
 		
-		console.log(
-			document.getElementById("character-name").value
-		);
+//		console.log(
+//			document.getElementById("character-name").value
+//		);
 		
-		chars.name =
-			document.getElementById("character-name").value;
+//		chars.name =
+//			document.getElementById("character-name").value;
 			
-		chars.memo =
-			document.getElementById("character-memo").value;
+//		chars.memo =
+//			document.getElementById("character-memo").value;
 		
-		console.log("after edit", chars);
+//		console.log("after edit", chars);
 		
-		await saveData();
+//		await saveData();
 		
-		showToast("保存しました！");
+//		showToast("保存しました！");
 		
-		closeModal("open-chars-modal");
+//		closeModal("open-chars-modal");
 		
-		renderCharacters();
+//		renderCharacters();
 
-}
+//}
 
 
 //==============================
