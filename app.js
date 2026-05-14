@@ -1949,9 +1949,9 @@ function openAddSeriesModal(){
 			
 			
 				<div>関連対象を登録</div>
-				<div>
-				<input class="addin2"
-				 id=""
+				<div class="addin2">
+				<input class="addinput"
+				 id="series-for-one"
 					type="text"
 					placeholder="作品／人物名"
 					oninput="renderSeriesSuggest();
@@ -2408,8 +2408,8 @@ function openAddCharacterModal(){
 				placeholder="人物名">
 				
 			<div>関連シリーズを登録</div>
-			<div>
-			<input class="addin2"
+			<div class="addin2">
+			<input class="addinput"
 				id="chars-for-series"
 				type="text"
 				placeholder="関連シリーズ名"
