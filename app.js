@@ -2415,8 +2415,10 @@ function openAddCharacterModal(){
 			<button>
 				➕
 			</button>
-			
 			</div>
+			
+				<textarea id="add-chars-memo"
+				placeholder="メモ"></textarea>
 			
 			<button onclick="saveNewCharacter()">➕追加</button>
 			
@@ -2439,8 +2441,14 @@ async function saveNewCharacter(){
 			"add-chars-name"
 		).value.trim();
 		
-	if(!name) return;
+	if(!name){
+	alert("名前を入力してね！");
+	return;
+	}
 	
+	const memo =
+		document.getElementById("add-chars-memo")?.value || "";
+		
 	characters.push({
 	
 		id:
