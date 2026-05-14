@@ -290,9 +290,6 @@ function createBookSpine(b){
   const extra = Math.min((b.title || "").length * 2, 55);
   
   d.className = "spine";
-  title.className = "spine-title";
-  fav.className = "spine-fav";
-//badge.className = "unknoooown";
 
   d.style.width = (base + extra + 4) + "px";
   d.style.height = "130px";
@@ -317,6 +314,8 @@ function createBookSpine(b){
 
   const title = document.createElement('div');
   title.textContent = b.title;
+
+  title.className = "spine-title";
   
   //縦書き
   title.style.writingMode = "vertical-rl"; //!
@@ -351,6 +350,9 @@ function createBookSpine(b){
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
+  
+  fav.className = "spine-fav";
+  
   fav.textContent = val === 4 ? "👑" : "★".repeat(val)
 //  +"\n"+${book.dates?.length || 0}+"回読了";
   fav.style.fontSize = "8px";
@@ -366,6 +368,8 @@ function createBookSpine(b){
   d.appendChild(fav);
 
   d.onclick = ()=> openBookDetailModal(b);
+  
+//badge.className = "unknoooown";
 
 //評価を背表紙にうっすら表示
 //const badge = document.createElement("div");
