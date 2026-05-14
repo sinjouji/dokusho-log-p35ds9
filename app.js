@@ -2003,7 +2003,10 @@ async function saveNewSeries(){
       "s" + Date.now(),
 
     name:
-      title
+      title,
+    
+    bookIds:
+      []
 
   });
 
@@ -2450,14 +2453,22 @@ async function saveNewCharacter(){
 	
 	const memo =
 		document.getElementById("add-chars-memo")?.value || "";
-		
+	
+	
+	
 	characters.push({
 	
 		id:
 			"ch" + Date.now(),
 		
 		name:
-			name
+			name,
+		
+		seriesIds:
+			[],
+		
+		memo:
+			memo
 	
 	});
 	
