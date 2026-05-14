@@ -1012,7 +1012,7 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
-    <div style="color:#29f08b">
+    <div style="font-size:10px">
       シリーズ : 
       ${relatedSeries.map(s=>`
         <button class="detail-series"
@@ -2132,17 +2132,17 @@ function openCharacterModal(c){
 			<input id="character-name" class="character-name"
 			value="${c.name || ""}">
 	
-			<div class="detail-series">
+			<div style="font-size:10px">
 				シリーズ : 
 				${relatedSeries.map(s => `
-					<span
+					<button class="detail-series"
 						onclick="
 							closeModal('open-chars-modal');
 							openSeriesById('${s.id}');
 						"
 					>
 						${s.name}
-					</span>
+					</button>
 				`).join(", ")}
 			</div>
 						
