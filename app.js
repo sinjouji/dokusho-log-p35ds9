@@ -2096,11 +2096,16 @@ function openCharacterModal(c){
 	
 			<div class="detail-series">
 				シリーズ : 
-				${relatedSeries.map(s=>`
-					<span onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
-					 ${s.name}
+				${relatedSeries.map(s => `
+					<span
+						onclick="
+							closeModal('open-chars-modal');
+							openSeriesById('${s.id}');
+						"
+					>
+						${s.name}
 					</span>
-				`).join(", ") || "なし"}
+				`).join(", ")}
 			</div>
 						
 			<textarea id="character-memo">
