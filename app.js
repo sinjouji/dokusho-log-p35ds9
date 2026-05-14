@@ -321,6 +321,25 @@ function createBookSpine(b){
   return d;
 }
 
+//==============================
+//今年・今月◯冊取得
+//==============================
+function getMonthlyCounts(year){
+  const arr = Array(12).fill(0);
+  
+  books.forEach(b=>{
+    (b.dates || []).forEach(d=>{
+      if(!d.startsWith(String(year)))
+        return;
+      const month =
+        Number(d.slice(5,7)) - 1;
+      
+      arr[month]++;
+    });
+  });
+  return arr;
+}
+
 
 //==============================
 //タグ色=====
