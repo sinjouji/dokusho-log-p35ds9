@@ -1304,7 +1304,7 @@ async function deleteBook(id){
 //==============================
 //====詳細保存================
 //==============================
-async function )saveDetail(id){
+async function saveDetail(id){
 
   console.log("save start", id);
 
@@ -2085,151 +2085,151 @@ function renderCharacters(){
 //==============================
 //====キャラクター詳細モーダル====
 //==============================
-//function openCharacterModal(c){
+function openCharacterModal(c){
 
-//	const relatedSeries = seriesMaster.filter(s=>{
-//	return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-//	});
+	const relatedSeries = seriesMaster.filter(s=>{
+	return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+	});
 
-//	const modal = document.createElement("div");
-//	modal.className = "modal-bg";
-//	modal.id = "open-chars-modal";
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "open-chars-modal";
 	
-//	modal.innerHTML = `
-//		<div class="modal-box detail-modal">
-//			<input id="character-name" class="character-name"
-//			value="${c.name || ""}">
+	modal.innerHTML = `
+		<div class="modal-box detail-modal">
+			<input id="character-name" class="character-name"
+			value="${c.name || ""}">
 	
-//			<div class="detail-series">
-//				シリーズ : 
-//				${relatedSeries.map(s => `
-//					<span
-//						onclick="
-//							closeModal('open-chars-modal');
-//							openSeriesById('${s.id}');
-//						"
-//					>
-//						${s.name}
-//					</span>
-//				`).join(", ")}
-//			</div>
+			<div class="detail-series">
+				シリーズ : 
+				${relatedSeries.map(s => `
+					<span
+						onclick="
+							closeModal('open-chars-modal');
+							openSeriesById('${s.id}');
+						"
+					>
+						${s.name}
+					</span>
+				`).join(", ")}
+			</div>
 						
-//			<textarea id="character-memo">
-//				${c.memo || ""}
-//			</textarea>
+			<textarea id="character-memo">
+				${c.memo || ""}
+			</textarea>
 		
-//			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
-//			<button>🗑️ 削除</button><br>
-//			<button onclick="closeModal('open-chars-modal')">✖️</button>
+			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
+			<button>🗑️ 削除</button><br>
+			<button onclick="closeModal('open-chars-modal')">✖️</button>
 	
-//		</div>
-//	`;
-//	document.body.appendChild(modal);
-//}
+		</div>
+	`;
+	document.body.appendChild(modal);
+}
 
 
 //==============================
 //====キャラクター詳細の保存====
 //==============================
-//async function saveCharacter(id){
+async function saveCharacter(id){
 
-//	const chars =
-//		characters.find(c => String(c.id) === String(id));
+	const chars =
+		characters.find(c => String(c.id) === String(id));
 		
-//		if(!chars) return;
+		if(!chars) return;
 		
-//		console.log(
-//			document.getElementById("character-name").value
-//		);
+		console.log(
+			document.getElementById("character-name").value
+		);
 		
-//		chars.name =
-//			document.getElementById("character-name").value;
-			
-//		chars.memo =
-//			document.getElementById("character-memo").value;
+		chars.name =
+			document.getElementById("character-name").value;
 		
-//		console.log("after edit", chars);
+		chars.memo =
+			document.getElementById("character-memo").value;
 		
-//		await saveData();
+		console.log("after edit", chars);
 		
-//		showToast("保存しました！");
+		await saveData();
 		
-//		closeModal("open-chars-modal");
+		showToast("保存しました！");
 		
-//		renderCharacters();
+		closeModal("open-chars-modal");
+		
+		renderCharacters();
 
-//}
+}
 
 
 //==============================
 //====キャラクター詳細====
 //==============================
-//function openCharacter(c){
-//  go('detail');
+function openCharacter(c){
+  go('detail');
 
-//  const el = document.getElementById('page-detail');
+  const el = document.getElementById('page-detail');
 
  // 人物→シリーズ
-//  const relatedSeries = seriesMaster.filter(s=>{
-//    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-//  });
+  const relatedSeries = seriesMaster.filter(s=>{
+    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  });
 
   // 人物→本
-//  const relatedBooks = books.filter(b=>{
-//    return relatedSeries.some(s =>
-//     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-//   );
-//  });
+  const relatedBooks = books.filter(b=>{
+    return relatedSeries.some(s =>
+     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+   );
+  });
 
   // HTML
-//  el.innerHTML = `
-//    <h2>${c.name}</h2>
+  el.innerHTML = `
+    <h2>${c.name}</h2>
 
-//    <div style="margin-bottom:10px;">
-//      ${c.memo || ""}
-//    </div>
+    <div style="margin-bottom:10px;">
+      ${c.memo || ""}
+    </div>
 
-//   <hr>
+   <hr>
 
-//    <div>シリーズ:</div>
-//    <div id="char-series"></div>
+    <div>シリーズ:</div>
+    <div id="char-series"></div>
 
-//    <button onclick="go('characters')">戻る</button>
-//  `;
+    <button onclick="go('characters')">戻る</button>
+  `;
 
   // 本セクション追加
-//  el.innerHTML += `
-//    <hr>
-//    <div>登場作品:</div>
-//    <div id="char-books"></div>
-//  `;
+  el.innerHTML += `
+    <hr>
+    <div>登場作品:</div>
+    <div id="char-books"></div>
+  `;
 
   // シリーズ描画
-//  const list = document.getElementById('char-series');
+  const list = document.getElementById('char-series');
 
-//  relatedSeries.forEach(s=>{
-//    const d = document.createElement('div');
-//    d.className = "card";
-//    d.textContent = s.name;
+  relatedSeries.forEach(s=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = s.name;
 
-//    d.onclick = ()=> renderSeriesDetail(s);
+    d.onclick = ()=> renderSeriesDetail(s);
 
-//    list.appendChild(d);
-//  });
+    list.appendChild(d);
+  });
 
   // 本描画
-//  const list3 = document.getElementById('char-books');
+  const list3 = document.getElementById('char-books');
 
-//  relatedBooks.forEach(b=>{
-//    const d = document.createElement('div');
-//    d.className = "card";
-//    d.textContent = b.title;
+  relatedBooks.forEach(b=>{
+    const d = document.createElement('div');
+    d.className = "card";
+    d.textContent = b.title;
 
-//    d.onclick = ()=> openBookDetailModal(b);
+    d.onclick = ()=> openBookDetailModal(b);
 
-//    list3.appendChild(d);
-//  });
-//}
+    list3.appendChild(d);
+  });
+}
 
 //==============================
 //====キャラクター用サジェスト
