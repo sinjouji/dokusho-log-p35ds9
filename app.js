@@ -317,6 +317,7 @@ function createBookSpine(b, mode="main"){
     d.classList.add("mini-s-spine");
     fav.style.fontSize = "5px";
     fav.style.height = "15px";
+    fav.style.marginBottom = "1px";
   }
 
   d.appendChild(title);
@@ -2100,6 +2101,7 @@ function openCharacterModal(c){
 				 ${s.name}
 				</button>
 			`).join(", ") || "なし"}
+		</div>
 						
 		<div class="memo"></div>
 		
