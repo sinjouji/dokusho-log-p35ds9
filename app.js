@@ -292,18 +292,6 @@ function createBookSpine(b){
   d.className = "spine";
 
   d.style.width = (base + extra + 4) + "px";
-  d.style.height = "130px";
-  d.style.margin = "0px";
-  d.style.borderRadius = "3px 5px 5px 3px";
-  d.style.display = "flex";
-  d.style.flexDirection = "column";
-  d.style.justifyContent = "space-between";
-  d.style.borderRight = "3px solid rgba(0, 0, 0, 0.2)";
-  d.style.overflow = "visible";
-  
-  //しおり用のスペース作成
-  d.style.paddingTop = "15px";
-
   
   applySpineColor(d, b);
 
@@ -316,37 +304,6 @@ function createBookSpine(b){
   title.textContent = b.title;
 
   title.className = "spine-title";
-  
-  //縦書き
-  title.style.writingMode = "vertical-rl"; //!
-  title.style.textOrientation = "mixed";
-  
-  //レイアウト安定
-  title.style.display = "flex"; //!
-  title.style.height = "auto";
- // title.style.width = "auto";
-
-  //はみ出し対策
-  title.style.overflow = "visible";//visible:hidden
-  title.style.wordBreak = "break-all";
-  
-  //見た目調整
-  title.style.fontSize = "9px"; //!
-  title.style.lineHeight = "1.1";
-  title.style.paddingTop = "8px";
-  title.style.paddingLeft = "8px";
-  title.style.paddingRight = "6px";
-  title.style.letterSpacing = "0.05em";
-  
-  //色
-  title.style.color = "#fffffc"; //!
-  
-  title.style.flex = "1";
-  title.style.alignItems = "center"; //! flex-start
-  title.style.justifyContent = "flex-start"; //! flex-start/center
-  title.style.textAlign = "left";
-  title.style.whiteSpace = "normal";
-  title.style.maxHeight = "100%";
 
   const fav = document.createElement('div');
   const val = Math.min(b.fav || 0, 4);
@@ -355,39 +312,11 @@ function createBookSpine(b){
   
   fav.textContent = val === 4 ? "👑" : "★".repeat(val)
 //  +"\n"+${book.dates?.length || 0}+"回読了";
-  fav.style.fontSize = "8px";
-  fav.style.color = "#fffffc";
-  fav.style.writingMode = "vertical-rl";
-  fav.style.height = "30px";
-  fav.style.display = "flex";
-  fav.style.alignItems = "center";
-  fav.style.justifyContent = "flex-end";
-  fav.style.paddingBottom = "5px";
 
   d.appendChild(title);
   d.appendChild(fav);
 
   d.onclick = ()=> openBookDetailModal(b);
-  
-//badge.className = "unknoooown";
-
-//評価を背表紙にうっすら表示
-//const badge = document.createElement("div");
-//badge.textContent = getFavLabel(b.fav);
-//badge.style.position = "absolute";
-//badge.style.bottom = "2px";
-//badge.style.right = "2px";
-//badge.style.fontSize = "10px";
-//badge.style.opacity = "0.8";
-//badge.style.writingMode = "vertical-rl";
-//badge.style.height = "30px";
-//badge.style.alignItems = "center";
-//badge.style.justifyContent = "flex-end";
-//badge.style.paddingBottom = "5px";
-
-//d.style.position = "relative";
-//d.appendChild(badge);
-
 
   return d;
 }
@@ -1663,7 +1592,7 @@ function renderSeriesBookList(){
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
-			d.className = "card";
+			d.className = "card ";
 			d.textContent = s.name;
 
 		d.onclick = ()=> openSeries(s);
