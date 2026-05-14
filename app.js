@@ -2400,7 +2400,7 @@ function openAddCharacterModal(){
 			<h2>人物を追加</h2>
 			
 			<input class="addin"
-				id="add-chars-title"
+				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
 				
