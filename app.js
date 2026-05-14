@@ -314,6 +314,7 @@ function createBookSpine(b, mode="main"){
 
    if(mode === "detail"){
     d.classList.add("mini-s-spine");
+    fav.style.fontSize = "7px";
   }
 
   d.appendChild(title);
