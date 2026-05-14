@@ -288,6 +288,11 @@ function createBookSpine(b){
 
   const base = 20;
   const extra = Math.min((b.title || "").length * 2, 55);
+  
+  d.className = "spine";
+  title.className = "spine-title";
+  fav.className = "spine-fav";
+//badge.className = "unknoooown";
 
   d.style.width = (base + extra + 4) + "px";
   d.style.height = "130px";
@@ -613,6 +618,7 @@ function renderListView(main, books){
 
     const row = document.createElement("div");
 
+    main.className = "list-view";
     row.className = "list-row";
 
     row.innerHTML = `
@@ -641,6 +647,7 @@ function renderShelfView(main, books){
 
   const shelf = document.createElement("div");
 
+  main.className = "";
   shelf.className = "shelf-view";
   shelf.style.gap = "2px";
 
