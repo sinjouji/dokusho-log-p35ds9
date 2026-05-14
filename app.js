@@ -2361,7 +2361,7 @@ function handleCharactersSearchInput(){
 		list:
 			characters.map(
 				c => c.name
-			}
+			)
 	
 	});
 	
