@@ -656,7 +656,7 @@ function renderSearchArea(){
  
   top.innerHTML = `
     <button onclick="openAddBookModal()" class="add-btn">
-      ＋ 本を追加
+      ➕ 本を追加
     </button>
 
     <input
@@ -672,11 +672,11 @@ function renderSearchArea(){
       <option value="read-desc">読了日新</option>
       <option value="read-asc">読了日古</option>
 
-      <option value="title-asc">タイトル↑</option>
-      <option value="title-desc">タイトル↓</option>
+      <option value="title-asc">タイトル↓</option>
+      <option value="title-desc">タイトル↑</option>
 
-      <option value="rating-desc">評価↑</option>
-      <option value="rating-asc">評価↓</option>
+      <option value="rating-desc">高評価</option>
+      <option value="rating-asc">低評価</option>
 
       </select>
     <div class="view-switch">
@@ -812,14 +812,14 @@ function openAddBookModal(){
         placeholder="メモ"></textarea>` : ""}
 
         <button onclick="saveNewBook()">
-          ＋本棚
+          ➕本棚
         </button>
 
         <button onclick="addBook('wish')">
-          ＋WishList
+          ➕WishList
         </button>
 
-        <button onclick="closeModal('add-book-modal')">×</button>
+        <button onclick="closeModal('add-book-modal')">✖️</button>
             </div>
   `;
 
@@ -995,7 +995,7 @@ function openBookDetailModal(book){
       <div class="detail-date-add">
       <input type="date" id="readDate-${book.id}">
       <button onclick="addReadDate('${book.id}')">
-        ＋読了日追加
+        ➕読了日追加
       </button>
       </div>
 
@@ -1012,17 +1012,17 @@ function openBookDetailModal(book){
         }).join("")}
       </div>
 
-    <div class="detail-series">
+    <div style="color:#29f08b">
       シリーズ : 
       ${relatedSeries.map(s=>`
-        <span
+        <button class="detail-series"
 				  onclick="
 				    closeModal('open-book-modal');
 				    openSeriesById('${s.id}');
 				  "
 				>
  				 ${s.name}
-				</span>
+				</button>
       `).join(", ") || "なし"}
     </div>
 
@@ -1857,7 +1857,7 @@ function renderSeriesSearchArea(){
 	top.innerHTML = `
 	<button onclick="openAddSeriesModal()"
 		class="add-btn">
-			＋ シリーズ追加
+			➕ シリーズ追加
 		</button>
 		
 		<input
@@ -1873,8 +1873,8 @@ function renderSeriesSearchArea(){
 			<option value="sread-desc">読了日新</option>
 			<option value="sread-asc">読了日古</option>
 			
-			<option value="stitle-asc">タイトル↑</option>
-			<option value="stitle-desc">タイトル↓</option>
+			<option value="stitle-asc">タイトル↓</option>
+			<option value="stitle-desc">タイトル↑</option>
 			</select>
 		
 		<div id="series-suggest"></div>
@@ -1958,13 +1958,13 @@ function openAddSeriesModal(){
 						renderCharacterSuggest();">
 				
 				<button onclick="">
-					＋
+					➕
 				</button>
 				</div>
 				
-				<button onclick="saveNewSeries()">＋追加</button>
+				<button onclick="saveNewSeries()">➕追加</button>
 				
-				<button onclick="closeModal('add-series-modal')">×</button>
+				<button onclick="closeModal('add-series-modal')">✖️</button>
 				
 			
 		</div>
@@ -2323,7 +2323,7 @@ function renderCharactersSearchArea(){
 	
 	<button onclick="openAddCharacterModal()"
 		class="add-btn">
-		＋ 人物追加
+		➕ 人物追加
 	</button>
 	
 	<input
@@ -2336,8 +2336,8 @@ function renderCharactersSearchArea(){
 		<select id="chars-sort-select"
 			onchange="changeCharactersSortMode()">
 			
-		<option value="cname-asc">名前↑</option>
-		<option value="cname-desc">名前↓</option>
+		<option value="cname-asc">名前↓</option>
+		<option value="cname-desc">名前↑</option>
 		</select>
 		
 		<div id="chars-suggest"></div>
@@ -2990,7 +2990,7 @@ function renderSettings(){
   </div>
 
   <button onclick="addTag()">
-    ＋タグ追加
+    ➕タグ追加
   </button>
 
 </div>
@@ -3442,13 +3442,13 @@ function getSortModeLabel(){
   if(
     sortMode === "title-asc"
   ){
-    return "名前↓";
+    return "名前↑";
   }
   
     if(
     sortMode === "title-desc"
   ){
-    return "名前↑";
+    return "名前↓";
   }
   
     if(
