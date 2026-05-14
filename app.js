@@ -2158,7 +2158,7 @@ async function saveCharacter(id){
 
 
 //==============================
-//====キャラクター詳細====
+//====（ページ）キャラクター詳細====
 //==============================
 function openCharacter(c){
   go('detail');
@@ -2255,13 +2255,78 @@ function renderCharacterSuggest(){
 //==============================
 //新規キャラクター登録
 //==============================
+function openAddCharacterModal(){
 
-//"ch"+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "add-chars-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box">
+	
+			<h2>人物を追加</h2>
+			
+			<input class="addin"
+				id="add-chars-title"
+				type="text"
+				placeholder="人物名">
+				
+			<div>関連シリーズを登録</div>
+			<div>
+			<input class="addin2"
+				id=""
+				type="text"
+				placeholder="関連シリーズ名"
+				oninput="renderSeriesSuggest()">
+			
+			<button>
+				➕
+			</button>
+			
+			</div>
+			
+			<button onclick="saveNewCharacter()">➕追加</button>
+			
+			<button onclick="closeModal('add-chars-modal')">✖️</button>
+	
+	
+		</div>
+	`;
 
+	document.body.appenChild(modal);
+}
 
+//==============================
+//新規人物追加処理
+//==============================
+async function saveNewCharacter(){
 
+	const name =
+		document.getElementById(
+			"add-chars-name"
+		).value.trim();
+		
+	if(!name) return;
+	
+	characters.push({
+	
+		id:
+			"ch" + Date.now(),
+		
+		name:
+			name
+	
+	});
+	
+	await saveData();
+	
+	closeModal(
+		"add-chars-modal"
+	);
 
+	renderCharacters();
 
+}
 
 
 //==============================
