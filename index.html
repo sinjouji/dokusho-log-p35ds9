@@ -241,7 +241,7 @@ color:#60564f;
 font-weight:bold;
 }
 .addin2{
-width:90%;
+width:80%;
 padding:5px 0;
 border:1px solid #c29b8f;
 border-radius:12px;
@@ -750,6 +750,30 @@ border:1px solid #60564f;
   color:gray;
   text-align:center;
   padding:20px 0;
+}
+
+/*キャラクターページ*/
+.chars-main{
+display:grid;
+grid-template-columns:1fr;
+gap:5px;
+}
+
+.chars-detail-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+/* タブレット以上 */
+@media(min-width:700px){
+
+  .chars-main{
+    grid-template-columns:1fr 1fr;
+  }
+  .chars-detail-layout{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
 /* ★これ重要（今回の勝因） */
