@@ -313,8 +313,9 @@ function createBookSpine(b, mode="main"){
 //  +"\n"+${book.dates?.length || 0}+"回読了";
 
    if(mode === "detail"){
+    d.style.width = (base + extra) + "px";
     d.classList.add("mini-s-spine");
-    fav.style.fontSize = "6px";
+    fav.style.fontSize = "5px";
   }
 
   d.appendChild(title);
