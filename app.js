@@ -283,14 +283,13 @@ function applySpineColor(d, b){
 //==============================
 //本生成の関数====
 //==============================
-function createBookSpine(b){
+function createBookSpine(b, mode="main"){
   const d = document.createElement('div');
 
   const base = 20;
   const extra = Math.min((b.title || "").length * 2, 55);
   
   d.className = "spine";
-
   d.style.width = (base + extra + 4) + "px";
   
   applySpineColor(d, b);
@@ -312,6 +311,10 @@ function createBookSpine(b){
   
   fav.textContent = val === 4 ? "👑" : "★".repeat(val)
 //  +"\n"+${book.dates?.length || 0}+"回読了";
+
+   if(mode === "detail"){
+    d.classList.add("mini-s-spine");
+  }
 
   d.appendChild(title);
   d.appendChild(fav);
@@ -620,7 +623,7 @@ function renderShelfView(main, books){
 //==============================
 //本棚背表紙モード
 //==============================
-function renderShelf(el, list){
+function renderShelf(el, list, mode = "main"){
   el.innerHTML = "";
 
   const wrap = document.createElement("div");
@@ -629,7 +632,7 @@ function renderShelf(el, list){
   wrap.style.alignItems = "flex-end";
 
   list.forEach(b=>{
-    const spine = createBookSpine(b);
+    const spine = createBookSpine(b, mode);
     wrap.appendChild(spine);
   });
 
@@ -1710,7 +1713,8 @@ if(list){
 
     renderShelf(
       list,
-      relatedBooks
+      relatedBooks,
+      "detail"
     );
 
   } else {
