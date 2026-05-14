@@ -1015,9 +1015,14 @@ function openBookDetailModal(book){
     <div class="detail-series">
       シリーズ : 
       ${relatedSeries.map(s=>`
-        <span onclick="closeModal('open-book-modal'); openSeriesById('${relatedSeries[0].id}');">
-          ${s.name}
-        </span>
+        <span
+				  onclick="
+				    closeModal('open-book-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</span>
       `).join(", ") || "なし"}
     </div>
 
@@ -1027,9 +1032,9 @@ function openBookDetailModal(book){
       </textarea>
       ` : ""}
 
-      <span onclick="saveDetail('${book.id}')">
+      <button onclick="saveDetail('${book.id}')">
         ✏️ 保存
-      </span>
+      </button>
 
       <button class="danger-btn"
         onclick="deleteBook('${book.id}')">
