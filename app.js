@@ -1027,9 +1027,9 @@ function openBookDetailModal(book){
       </textarea>
       ` : ""}
 
-      <button onclick="saveDetail('${book.id}')">
+      <span onclick="saveDetail('${book.id}')">
         ✏️ 保存
-      </button>
+      </span>
 
       <button class="danger-btn"
         onclick="deleteBook('${book.id}')">
@@ -2082,7 +2082,7 @@ function renderCharacters(){
 function openCharacterModal(c){
 
 	const relatedSeries = seriesMaster.filter(s=>{
-  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
   });
 
 	const modal = document.createElement("div");
@@ -2097,9 +2097,9 @@ function openCharacterModal(c){
 		<div class="detail-series">
 			シリーズ : 
 			${relatedSeries.map(s=>`
-				<button onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
+				<span onclick="closeModal('open-chars-modal'); openSeriesById('${s.id}');">
 				 ${s.name}
-				</button>
+				</span>
 			`).join(", ") || "なし"}
 		</div>
 						
