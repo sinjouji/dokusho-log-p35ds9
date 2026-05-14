@@ -2074,8 +2074,8 @@ function renderCharacters(){
   
 	`;
 	
-//	renderCharactersSearchArea();
-	renderCharactersBookList();
+	renderCharactersSearchArea();
+	renderCharacterList();
 
 }
 
@@ -2083,7 +2083,7 @@ function renderCharacters(){
 //==============================
 //====キャラクター一覧だけ表示====
 //==============================
-function renderCharactersBookList(){
+function renderCharacterList(){
 
 	const main = document.getElementById("chars-main");
 	if(!main) return;
@@ -2106,7 +2106,7 @@ function renderCharactersBookList(){
 
 			d.onclick = ()=> openCharacterModal(c);
 
-			el.appendChild(d);
+			main.appendChild(d);
 		});
 
 }
@@ -2366,7 +2366,7 @@ function handleCharactersSearchInput(){
 	});
 	
 	renderCharacterSuggest();
-	renderCharactersBookList();
+	renderCharacterList();
 
 }
 
@@ -2378,7 +2378,7 @@ function changeCharactersSortMode(){
 	charsSortMode =
 		document.getElementById("chars-sort-select").value;
 		
-		renderCharactersBookList();
+		renderCharacterList();
 
 }
 
