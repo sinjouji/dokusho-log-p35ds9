@@ -2104,7 +2104,6 @@ function openCharacterModal(c){
 		</div>
 						
 		<textarea id="">
-			${chars.memo || ""}
 		</textarea>
 		
 		<button onclick="">✏️ 保存</button>
