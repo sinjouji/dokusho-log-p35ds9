@@ -578,7 +578,7 @@ function renderCardView(main, books){
 
     const d = document.createElement("div");
     
-    main.classname = "book-grid";
+    main.className = "book-grid";
     d.className = "card honlist";
 
     d.innerHTML = `
