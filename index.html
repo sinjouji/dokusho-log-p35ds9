@@ -540,90 +540,6 @@ border-radius:14px;
     translateY(0);
 }
 
-/*背表紙表示の要*/
-.spine{
-  position:relative;
-  
-  height:200px;
-  border-radius:3px 5px 5px 3px;
-  
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  
-  overflow:visible;
-  
- /*しおり用上側スペース*/ 
-  padding-top:20px;
-  
-  border-right:3px solid rgba(0,0,0,0.2);
-
-  cursor:pointer;
-}
-
-.spine-title{
-  writing-mode:vertical-rl;
-  text-orientation:mixed;
-  
-  font-size:12px;
-  line-height:1.1;
-  
-  letter-spacing:0.05em;
-  
-  color:#fffffc;
-  
-  padding-top:15px;
-  padding-left:8px;
-  padding-right:6px;
-  padding-bottom:3px;
-  
-  width:auto;
-  max-height:150px;
-  
-/*  justify-content:flex-start;*/
-  text-align:left;
-  white-space:nomal;
-  
-/*使うか分からん調整部分
-  word-break:break-all;
-  flex:1;
-  max-height:100%;
-*/
-}
-
-.spine-fav{
-  font-size:10px;
-  
-  color:#fffffc;
-  height:30px;
-  writing-mode:vertical-rl;
-
-  text-align:center;
-  padding-bottom:5px;
-/*  justify-content:flex-end;*/
-}
-
-.shelf-view{
-  display:flex;
-  gap:8px;
-  align-items:flex-end;
-
-  overflow-x:auto;
-  padding:10px 0;
-}
-
-
-
-/*カレンダー表示*/
-.calendar-day{
-  width:20px;
-  height:20px;
-  font-size:12px;
-}
-.calendar-grid{
-  gap:3px;
-}
-
 /*ミニカレンダー表示*/
 .mini-calendar{
   display:grid;
@@ -816,7 +732,99 @@ border:1px solid #60564f;
 }
 
 /* 背表紙表示 */
+.spine{
+  position:relative;
+  height:200px;
+  border-radius:3px 5px 5px 3px;
+  
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  
+  overflow:visible;
+  
+ /*しおり用上側スペース*/ 
+  padding-top:20px;
+  
+  border-right:3px solid rgba(0,0,0,0.2);
 
+  cursor:pointer;
+}
+
+.spine-title{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  
+  font-size:12px;
+  line-height:1.1;
+  
+  letter-spacing:0.05em;
+  
+  color:#fffffc;
+  
+  padding-top:15px;
+  padding-left:8px;
+  padding-right:6px;
+  padding-bottom:3px;
+  
+  width:auto;
+  max-height:150px;
+  
+/*  justify-content:flex-start;*/
+  text-align:left;
+  white-space:nomal;
+  
+/*使うか分からん調整部分
+  word-break:break-all;
+  flex:1;
+  max-height:100%;
+*/
+}
+
+.spine-fav{
+  font-size:10px;
+  
+  color:#fffffc;
+  height:30px;
+  writing-mode:vertical-rl;
+
+  text-align:center;
+  padding-bottom:5px;
+/*  justify-content:flex-end;*/
+}
+
+.shelf-view{
+  display:flex;
+  gap:8px;
+  align-items:flex-end;
+
+  overflow-x:auto;
+  padding:10px 0;
+}
+
+/*シリーズ詳細でのミニ表示*/
+.mini-s-card,
+.mini-s-list{
+  font-size:7px;
+  }
+
+.mini-s-spine .spine-title{
+  font-size:7px;
+}
+
+.mini-s-spine{
+  height:100px;
+}
+
+/*カレンダー表示*/
+.calendar-day{
+  width:20px;
+  height:20px;
+  font-size:12px;
+}
+.calendar-grid{
+  gap:3px;
+}
 
 /*再読はしおり描画*/
 .bookmark{
