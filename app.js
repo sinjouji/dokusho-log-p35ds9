@@ -316,7 +316,7 @@ function createBookSpine(b, mode="main"){
     d.style.width = (base + extra) + "px";
     d.classList.add("mini-s-spine");
     fav.style.fontSize = "5px";
-    fav.style.height = "15%";
+    fav.style.height = "15px";
   }
 
   d.appendChild(title);
@@ -1012,11 +1012,11 @@ function openBookDetailModal(book){
       </div>
 
     <div class="detail-series">
-      シリーズ:
+      シリーズ : 
       ${relatedSeries.map(s=>`
-        <span onclick="closeModal('open-book-modal'); openSeriesById('${relatedSeries[0].id}');">
+        <button onclick="closeModal('open-book-modal'); openSeriesById('${relatedSeries[0].id}');">
           ${s.name}
-        </span>
+        </button>
       `).join(", ") || "なし"}
     </div>
 
@@ -1027,7 +1027,7 @@ function openBookDetailModal(book){
       ` : ""}
 
       <button onclick="saveDetail('${book.id}')">
-        保存
+        ✏️ 保存
       </button>
 
       <button class="danger-btn"
@@ -1035,7 +1035,7 @@ function openBookDetailModal(book){
         🗑 削除
       </button><br>
       <button onclick="closeModal('open-book-modal')">
-        ×
+        ✖️
       </button>
        
     </div>
@@ -2068,12 +2068,48 @@ function renderCharacters(){
     d.className = "card";
     d.textContent = c.name;
 
-    d.onclick = ()=> openCharacter(c);
+    d.onclick = ()=> openCharacterModal(c);
 
     el.appendChild(d);
   });
 }
 
+
+//==============================
+//====キャラクター詳細モーダル====
+//==============================
+function openCharacterModal(c){
+
+	const relatedSeries = seriesMaster.filter(s=>{
+  Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+  });
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "open-chars-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box detail-modal">
+			<input id="detail-name" class="detail-name"
+			value="${c.name || ""}">
+	
+		<div class="detail-series">
+			シリーズ : 
+			${relatedSeries.map(s=>`
+				<button onclick="closeModal('open-chars-modal'); openSeriesById('${relatedSeries[0].id}');">
+				 ${s.name}
+				</button>
+			`).join(", ") || "なし"}
+						
+		<div class="memo"></div>
+		
+		<button onclick="">✏️ 保存</button>
+		<button class="" onclick="">🗑️ 削除</button><br>
+		<button onclick="closeModal('open-chars-modal')">✖️</button>
+		
+	`;
+	document.body.appendChild(modal);
+}
 //==============================
 //====キャラクター詳細====
 //==============================
