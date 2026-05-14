@@ -2267,6 +2267,7 @@ function renderMiniCalendar(main){
   header.style.display = "flex";
   header.style.justifyContent = "space-between";
   header.style.alignItems = "center";
+  header.style.justifyContent = "top";
   header.style.marginBottom = "8px";
 
   const prev = document.createElement("button");
