@@ -1861,7 +1861,7 @@ function renderSeriesSearchArea(){
 		</button>
 		
 		<input
-			id="search"
+			id="series-search"
 			placeholder="シリーズ検索..."
 			value="${seriesSearchKeyword}"
 			oninput="handleSeriesSearchInput()"
@@ -1877,7 +1877,7 @@ function renderSeriesSearchArea(){
 			<option value="stitle-desc">タイトル↓</option>
 			</select>
 		
-		<div id="suggest"></div>
+		<div id="series-suggest"></div>
 	`;
 	renderSeriesSuggest();
 }
@@ -1892,10 +1892,10 @@ function handleSeriesSearchInput(){
 	renderSuggestList({
 	
 		inputId:
-			"search",
+			"series-search",
 		
 		suggestId:
-			"suggest",
+			"series-suggest",
 		
 		list:
 			seriesMaster.map(
@@ -2062,23 +2062,54 @@ function renderSeriesSuggest(){
 //==============================
 
 //==============================
-//====キャラクターページ====
+//◼️キャラクターホーム（骨組み）だけ
 //==============================
 function renderCharacters(){
-  const el = document.getElementById('page-characters');
-  el.innerHTML = "";
+	
+	const el = document.getElementById('page-characters');
+	el.innerHTML = `
+  
+  		<div id="chars-top"></div>
+  		<div class="chars-main" id="chars-main"></div>
+  
+	`;
+	
+//	renderCharactersSearchArea();
+	renderCharactersBookList();
 
-  characters.forEach(c=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = c.name;
-
-    d.onclick = ()=> openCharacterModal(c);
-
-    el.appendChild(d);
-  });
 }
 
+
+//==============================
+//====キャラクター一覧だけ表示====
+//==============================
+function renderCharactersBookList(){
+
+	const main = document.getElementById("chars-main");
+	if(!main) return;
+	main.innerHTML = "";
+	
+	const filtered =
+		characters.filter(c =>
+			(c.name || "")
+				.toLowerCase()
+				.includes(charsSearchKeyword)
+		);
+	
+	//ソート
+	const sorted = sortCharacters(filtered);
+
+		sorted.forEach(c=>{
+			const d = document.createElement('div');
+			d.className = "card";
+			d.textContent = c.name;
+
+			d.onclick = ()=> openCharacterModal(c);
+
+			el.appendChild(d);
+		});
+
+}
 
 //==============================
 //====キャラクター詳細モーダル====
@@ -2160,72 +2191,72 @@ async function saveCharacter(id){
 //==============================
 //====（ページ）キャラクター詳細====
 //==============================
-function openCharacter(c){
-  go('detail');
+//function openCharacter(c){
+//  go('detail');
 
-  const el = document.getElementById('page-detail');
+//  const el = document.getElementById('page-detail');
 
  // 人物→シリーズ
-  const relatedSeries = seriesMaster.filter(s=>{
-    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-  });
+//  const relatedSeries = seriesMaster.filter(s=>{
+//    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+//  });
 
   // 人物→本
-  const relatedBooks = books.filter(b=>{
-    return relatedSeries.some(s =>
-     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
-   );
-  });
+//  const relatedBooks = books.filter(b=>{
+//    return relatedSeries.some(s =>
+//     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+//   );
+//  });
 
   // HTML
-  el.innerHTML = `
-    <h2>${c.name}</h2>
+//  el.innerHTML = `
+//    <h2>${c.name}</h2>
 
-    <div style="margin-bottom:10px;">
-      ${c.memo || ""}
-    </div>
+//    <div style="margin-bottom:10px;">
+//      ${c.memo || ""}
+//    </div>
 
-   <hr>
+//   <hr>
 
-    <div>シリーズ:</div>
-    <div id="char-series"></div>
+//    <div>シリーズ:</div>
+//    <div id="char-series"></div>
 
-    <button onclick="go('characters')">戻る</button>
-  `;
+//    <button onclick="go('characters')">戻る</button>
+//  `;
 
   // 本セクション追加
-  el.innerHTML += `
-    <hr>
-    <div>登場作品:</div>
-    <div id="char-books"></div>
-  `;
+//  el.innerHTML += `
+//    <hr>
+//    <div>登場作品:</div>
+//    <div id="char-books"></div>
+//  `;
 
   // シリーズ描画
-  const list = document.getElementById('char-series');
+//  const list = document.getElementById('char-series');
 
-  relatedSeries.forEach(s=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = s.name;
+//  relatedSeries.forEach(s=>{
+//    const d = document.createElement('div');
+//    d.className = "card";
+//    d.textContent = s.name;
 
-    d.onclick = ()=> renderSeriesDetail(s);
+//    d.onclick = ()=> renderSeriesDetail(s);
 
-    list.appendChild(d);
-  });
+//    list.appendChild(d);
+//  });
 
   // 本描画
-  const list3 = document.getElementById('char-books');
+//  const list3 = document.getElementById('char-books');
 
-  relatedBooks.forEach(b=>{
-    const d = document.createElement('div');
-    d.className = "card";
-    d.textContent = b.title;
+//  relatedBooks.forEach(b=>{
+//    const d = document.createElement('div');
+//    d.className = "card";
+//    d.textContent = b.title;
 
-    d.onclick = ()=> openBookDetailModal(b);
+//    d.onclick = ()=> openBookDetailModal(b);
 
-    list3.appendChild(d);
-  });
-}
+//    list3.appendChild(d);
+//  });
+//}
 
 //==============================
 //====キャラクター用サジェスト
@@ -2248,7 +2279,109 @@ function renderCharacterSuggest(){
 //==============================
 //キャラクターソート
 //==============================
+function sortCharacters(list){
 
+	const arr = [...list];
+	
+	//名前順
+	if(charsSortMode === "cname-asc"{
+		arr.sort((a,b)=>
+			(a.name || "")
+			.localeCompare(
+				b.name || "",
+				"ja"
+			)
+		);
+	}
+	
+	if(charsSortMode === "cname-desc"{
+		arr.sort((a,b)=>
+			(b.name || "")
+			.localeCompare(
+				a.name || "",
+				"ja"
+			)
+		);
+	}
+
+}
+
+
+
+//==============================
+//キャラクター検索エリア
+//==============================
+function renderCharactersSearchArea(){
+
+	const top = document.getElementById("chars-top");
+	if(!top) return;
+	
+	top.innerHTML = `
+	
+	<button onclick="openAddCharacterModal()"
+		class="add-btn">
+		＋ 人物追加
+	</button>
+	
+	<input
+		id="chars-search"
+		placeholder="人物検索..."
+		value="${charsSearchKeyword}"
+		oninput="handleCharactersSearchInput()"
+	>
+	
+		<select id="chars-sort-select"
+			onchange="changeCharactersSortMode()">
+			
+		<option value="cname-asc">名前↑</option>
+		<option value="cname-desc">名前↓</option>
+		</select>
+		
+		<div id="chars-suggest"></div>
+	
+	`;
+	renderCharacterSuggest();
+
+}
+
+
+
+//==============================
+//キーワード検索（キャラ）
+//==============================
+function handleCharactersSearchInput(){
+
+	renderSuggestList({
+	
+		inputId:
+			"chars-search",
+		
+		suggestId:
+			"chars-suggest",
+		
+		list:
+			characters.map(
+				c => c.name
+			}
+	
+	});
+	
+	renderCharacterSuggest();
+	renderCharactersBookList();
+
+}
+
+//==============================
+//ソートモード切替（キャラ）
+//==============================
+function changeCharactersSortMode(){
+
+	charsSortMode =
+		document.getElementById("chars-sort-select").value;
+		
+		renderCharactersBookList();
+
+}
 
 
 
