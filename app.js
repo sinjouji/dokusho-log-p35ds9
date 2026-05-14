@@ -1027,9 +1027,7 @@ function openBookDetailModal(book){
     </div>
 
       ${enableMemo ? `
-      <textarea id="editMemo">
-        ${book.memo || ""}
-      </textarea>
+      <textarea id="editMemo">${book.memo || ""}</textarea>
       ` : ""}
 
       <button onclick="saveDetail('${book.id}')">
@@ -2114,9 +2112,7 @@ function openCharacterModal(c){
 				`).join(", ")}
 			</div>
 						
-			<textarea id="character-memo">
-				${c.memo || ""}
-			</textarea>
+			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
 			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
 			<button>🗑️ 削除</button><br>
