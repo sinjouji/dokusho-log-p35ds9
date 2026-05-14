@@ -23,7 +23,7 @@ let viewMode = "card";
 
 let sortMode = "read-desc";
 let seriesSortMode = "stitle-asc";
-let charSortMode = "cname-asc";
+let charsSortMode = "cname-asc";
 
 let searchKeyword = "";
 let seriesSearchKeyword = "";
