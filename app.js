@@ -2227,7 +2227,7 @@ goal.innerHTML = `
       main.appendChild(goal);
   }
   
-  renderSummary(main);
+//  renderSummary(main);
   renderMiniCalendar(main);
   renderMonthlyGraph(main, year);
 
