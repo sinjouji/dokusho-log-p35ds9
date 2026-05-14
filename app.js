@@ -2080,47 +2080,47 @@ function renderCharacters(){
 //==============================
 //====キャラクター詳細モーダル====
 //==============================
-function openCharacterModal(c){
+//function openCharacterModal(c){
 
-	const relatedSeries = seriesMaster.filter(s=>{
-	return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-	});
+//	const relatedSeries = seriesMaster.filter(s=>{
+//	return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+//	});
 
-	const modal = document.createElement("div");
-	modal.className = "modal-bg";
-	modal.id = "open-chars-modal";
+//	const modal = document.createElement("div");
+//	modal.className = "modal-bg";
+//	modal.id = "open-chars-modal";
 	
-	modal.innerHTML = `
-		<div class="modal-box detail-modal">
-			<input id="character-name" class="character-name"
-			value="${c.name || ""}">
+//	modal.innerHTML = `
+//		<div class="modal-box detail-modal">
+//			<input id="character-name" class="character-name"
+//			value="${c.name || ""}">
 	
-			<div class="detail-series">
-				シリーズ : 
-				${relatedSeries.map(s => `
-					<span
-						onclick="
-							closeModal('open-chars-modal');
-							openSeriesById('${s.id}');
-						"
-					>
-						${s.name}
-					</span>
-				`).join(", ")}
-			</div>
+//			<div class="detail-series">
+//				シリーズ : 
+//				${relatedSeries.map(s => `
+//					<span
+//						onclick="
+//							closeModal('open-chars-modal');
+//							openSeriesById('${s.id}');
+//						"
+//					>
+//						${s.name}
+//					</span>
+//				`).join(", ")}
+//			</div>
 						
-			<textarea id="character-memo">
-				${c.memo || ""}
-			</textarea>
+//			<textarea id="character-memo">
+//				${c.memo || ""}
+//			</textarea>
 		
-			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
-			<button>🗑️ 削除</button><br>
-			<button onclick="closeModal('open-chars-modal')">✖️</button>
+//			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
+//			<button>🗑️ 削除</button><br>
+//			<button onclick="closeModal('open-chars-modal')">✖️</button>
 	
-		</div>
-	`;
-	document.body.appendChild(modal);
-}
+//		</div>
+//	`;
+//	document.body.appendChild(modal);
+//}
 
 
 //==============================
