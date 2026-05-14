@@ -27,7 +27,7 @@ let charSortMode = "cname-asc";
 
 let searchKeyword = "";
 let seriesSearchKeyword = "";
-//let charaSearchKeyword = "";
+let charsSearchKeyword = "";
 
 //ミニカレンダーの月移動用設定
 let miniMonth = new Date();
@@ -2267,7 +2267,7 @@ function renderCharacterSuggest(){
 
     inputId: "add-character",
 
-    suggestId: "character-suggest",
+    suggestId: "chars-suggest",
 
     list:
       characters.map(c=>c.name)
