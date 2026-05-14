@@ -2303,6 +2303,7 @@ function sortCharacters(list){
 			)
 		);
 	}
+	return arr;
 }
 
 
