@@ -2097,9 +2097,9 @@ function renderCharactersBookList(){
 		);
 	
 	//ソート
-	const sorted = sortCharacters(filtered);
+	const characters = sortCharacters(filtered);
 
-		sorted.forEach(c=>{
+		characters.forEach(c=>{
 			const d = document.createElement('div');
 			d.className = "card";
 			d.textContent = c.name;
