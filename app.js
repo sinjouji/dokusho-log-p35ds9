@@ -2407,10 +2407,12 @@ function openAddCharacterModal(){
 			<div>関連シリーズを登録</div>
 			<div>
 			<input class="addin2"
-				id=""
+				id="chars-for-series"
 				type="text"
 				placeholder="関連シリーズ名"
 				oninput="renderSeriesSuggest()">
+				<div id="series-suggest"></div>
+				
 			
 			<button>
 				➕
@@ -2428,7 +2430,7 @@ function openAddCharacterModal(){
 		</div>
 	`;
 
-	document.body.appenChild(modal);
+	document.body.appendChild(modal);
 }
 
 //==============================
