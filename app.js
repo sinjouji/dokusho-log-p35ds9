@@ -1772,7 +1772,7 @@ if(list2){
         c.name;
 
       d.onclick =
-        ()=> openCharacter(c);
+        ()=> openCharacterModal(c);
 
       list2.appendChild(d);
 
