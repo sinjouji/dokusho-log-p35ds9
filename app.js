@@ -786,7 +786,7 @@ function openAddBookModal(){
 				return `
 				<span
 					class="tag-chip detail-tag-chip"
- 					onclick="toggleBookTag('${book.id}','${tag.id}')"
+ 					onclick="toggleNewBookTag('${tag.id}')"
 					style="
 						background:
 							${isActive ? tag.color : '#fffffc'};
@@ -1207,20 +1207,6 @@ function toggleBookTag(bookId, tagId){
 	openBookDetailModal(book);
 
 }
-
-//yoke
-//      <div class="detail-tags">
-//        ${(book.tagIds || []).map(id=>{
-
-//          const tag =
-//            tagMaster.find(t=>t.id===id);
-
-//          return tag
-//            ? `<span class="tag">${tag.name}</span>`
-//            : "";
-
-//        }).join("")}
-//      </div>
 
 
 //==============================
