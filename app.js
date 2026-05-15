@@ -786,7 +786,7 @@ function openAddBookModal(){
 				return `
 				<span
 					class="tag-chip detail-tag-chip"
- 					onclick="toggleNewBookTag('${tag.id}')"
+ 					onclick="toggleNewBookTag('${tag.id}', this)"
 					style="
 						background:
 							${isActive ? tag.color : '#fffffc'};
@@ -828,20 +828,22 @@ function openAddBookModal(){
 //==============================
 //====新規本のタグ切替え
 //==============================
-function toggleNewBookTag(tagId){
+function toggleNewBookTag(tagId, el){
 
-  if(selectedTagIds.includes(tagId)){
+  if(newBookTagIds.includes(tagId)){
 
-    selectedTagIds =
-      selectedTagIds.filter(id=>id!==tagId);
+    newBookTagIds =
+      newBookTagIds.filter(id=>id!==tagId);
+
+    el.classList.remove("active");
 
   }else{
 
-    selectedTagIds.push(tagId);
+    newBookTagIds.push(tagId);
+
+    el.classList.add("active");
 
   }
-	closeModal("add-book-modal");
-  openAddBookModal();
 
 }
 
