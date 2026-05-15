@@ -1187,7 +1187,7 @@ function openBookDetailModal(book){
       </button>
       </div>
       
-      <hr style="border:1px dashed #c29f8b">
+      <hr style="border:1px dashed #c29f8b;width:100%;">
 			<div class="tag-select-area">
 			
 						${tagMaster.map(tag=>{
