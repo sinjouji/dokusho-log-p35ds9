@@ -781,7 +781,7 @@ function openAddBookModal(){
 				${tagMaster.map(tag=>{
 
 				const isActive =
-					selectedTagIds.includes(tag.id);
+					newBookTagIds.includes(tag.id);
 
 				return `
 				<span
