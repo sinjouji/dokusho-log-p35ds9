@@ -775,7 +775,35 @@ function openAddBookModal(){
         <option value="4">👑</option>
       </select>
       
-//      <div id="selectedTagIds"></div>
+      			<div class="tag-select-area">
+			
+						${tagMaster.map(tag=>{
+
+  const isActive =
+    (book.tagIds || []).includes(tag.id);
+
+  return `
+    <span
+      class="tag-chip"
+      onclick="toggleBookTag('${book.id}','${tag.id}')"
+
+      style="
+        background:
+          ${isActive ? tag.color : '#fffffc'};
+
+        color:
+          ${isActive ? '#fffffc' : tag.color};
+
+        border:
+          1px solid ${tag.color};
+      "
+    >
+      ${tag.name}
+    </span>
+  `;
+
+}).join("")}
+			</div>
       
 
       ${enableMemo ? `
@@ -1261,7 +1289,7 @@ function renderTagFilter(){
     btn.className = "tag-chip";
     
     btn.textContent = tag.name;
-    btn.style.fontSize = "10px";
+    btn.style.fontSize = "12px";
 
     btn.style.background = "#fffffc";
     btn.style.color = tag.color || "#666";
