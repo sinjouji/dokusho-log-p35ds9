@@ -1503,7 +1503,7 @@ async function saveNewBook(){
     memo: memo,
     fav: 0,
     dates: date ? [date] : [],
-    tagIds: [...selectedTagIds],
+    tagIds: [...newBookTagIds],
     type: date ? "normal" : "wish"
   };
 
