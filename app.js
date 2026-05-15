@@ -1300,7 +1300,7 @@ function toggleDateHistory(bookId){
 
   el.style.display =
     el.style.display === "none"
-    ? "block"
+    ? "grid"
     : "none";
 }
 ``
