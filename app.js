@@ -785,17 +785,18 @@ function openAddBookModal(){
         <div class="field-label">読了日</div>
 
         <input type="date" id="add-date">
+        
+	  			<button
+				  type="button"
+				  id="new-book-fav-btn"
+				  class="fav-cycle-btn"
+			  		onclick="cycleNewBookFav()"
+				>
+				  評価：0
+				</button>
+
+        
       </div>
-
-
-			<button
-			  type="button"
-			  id="new-book-fav-btn"
-			  class="fav-cycle-btn"
-			  onclick="cycleNewBookFav()"
-			>
-			  評価：0
-			</button>
       
       	<div class="tag-select-area">
 			
