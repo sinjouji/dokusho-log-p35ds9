@@ -703,7 +703,7 @@ function renderSearchArea(){
       </button>
       <select
   id="type-filter"
-  onchange="changeTypeFilter(this.value)">
+  onchange="changeTypeFilter()">
 
   <option value="all"
     ${typeFilter === "all" ? "selected" : ""}
