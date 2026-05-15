@@ -1084,13 +1084,13 @@ function openBookDetailModal(book){
      </div>
 
       <div class="detail-row">
-        状態【
+        状態 ＝ 〔
         ${
           book.type === "wish"
           ? "❤️ウィッシュ"
           : "📚本棚"
-        }】 ${book.dates?.length || 0}回読了 : 
-        
+        } 〕 : <span class="book-stat">${book.dates?.length || 0}回読了</span>
+   
         <label class="reread-check">
 
   <input
