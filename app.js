@@ -320,6 +320,18 @@ function createBookSpine(b, mode="main"){
     fav.style.height = "15px";
     fav.style.paddingBottom = "1px";
   }
+  
+  if(b.reread){
+  
+    const mark =
+      document.createElement("div");
+      
+    mark.className = "bookmark";
+    
+    d.appendChild(mark);
+  
+  }
+  
 
   d.appendChild(title);
   d.appendChild(fav);
@@ -891,6 +903,34 @@ function changeTypeFilter(){
   renderHome();
 }
 
+
+
+//==============================
+//====再読本のチェック切替え
+//==============================
+function toggleReread(id){
+
+  const book =
+    books.find(
+      b=>String(b.id)===String(id)
+    );
+
+  if(!book) return;
+
+  book.reread =
+    document.getElementById(
+      "reread-check"
+    ).checked;
+
+  saveData();
+
+  renderHome();
+}
+
+
+
+
+
 //==============================
 //====キーワード検索（ホーム本棚用）
 //==============================
@@ -1050,6 +1090,21 @@ function openBookDetailModal(book){
           ? "❤️ウィッシュ"
           : "📚本棚"
         }：${book.dates?.length || 0}回読了
+        
+        <label class="reread-check">
+
+  <input
+    type="checkbox"
+    id="reread-check"
+    ${book.reread ? "checked" : ""}
+
+    onchange="
+      toggleReread('${book.id}')
+    "
+  >
+
+  再読予定
+</label>
       </div>
 
      <div class="detail-row">
