@@ -313,11 +313,11 @@ function createBookSpine(b, mode="main"){
 //  +"\n"+${book.dates?.length || 0}+"回読了";
 
    if(mode === "detail"){
-    d.style.width = (base + extra - 5) + "px";
+    d.style.width = (base + extra - 10) + "px";
     d.classList.add("mini-s-spine");
     fav.style.fontSize = "5px";
     fav.style.height = "15px";
-    fav.style.marginBottom = "1px";
+    fav.style.paddingBottom = "1px";
   }
 
   d.appendChild(title);
