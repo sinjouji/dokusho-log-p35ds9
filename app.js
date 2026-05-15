@@ -44,7 +44,8 @@ showTagFilter = showTagFilter === null
   : showTagFilter === "true";
   
 //タイプフィルター
-let typeFilter = localStorage.getItem("typeFilter") || "all";
+let typeFilter = "all";
+// localStorage.getItem("typeFilter") || "all";
   
 //メモ機能のオンオフ切り替え
 let enableMemo = localStorage.getItem("enableMemo");
@@ -478,7 +479,7 @@ function renderHome(){
 
   renderSearchArea();
   
-  renderTagFilter(value);
+  renderTagFilter();
 
 //  renderRecentBooks();
   
@@ -654,6 +655,8 @@ function renderSearchArea(){
   const top = document.getElementById("home-top");
   if(!top) return;
   
+  document.getElementById("type-filter").value
+   = typeFilter;
  
   top.innerHTML = `
     <button onclick="openAddBookModal()" class="add-btn">
@@ -878,12 +881,12 @@ function changeTypeFilter(value){
 //      "type-filter"
 //    ).value;
 
-	typeFilter = value;
+//  localStorage.setItem(
+//    "typeFilter",
+//    typeFilter
+//  );
 
-  localStorage.setItem(
-    "typeFilter",
-    typeFilter
-  );
+	typeFilter = value;
 
   renderHome();
 }
