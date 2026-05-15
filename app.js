@@ -873,21 +873,17 @@ function toggleNewBookTag(tagId, el, color){
 //==============================
 function changeTypeFilter(value){
 
-//  typeFilter =
-//    document.getElementById(
-//      "type-filter"
-//    ).value;
+  typeFilter =
+    document.getElementById(
+      "type-filter"
+    ).value;
 
-//  localStorage.setItem(
-//    "typeFilter",
-//    typeFilter
-//  );
-
-	typeFilter = value;
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
 
   renderHome();
-  document.getElementById("type-filter").value
-   = typeFilter;
 }
 
 //==============================
@@ -1358,38 +1354,27 @@ function renderTagFilter(){
 //==============================
 function filterBooks(list){
 
-	const filtered = books.filter(book=>{
-		if(typeFilter === "all"){
-			return true;
-		}
-		
-		return book.type === typeFilter;
-	});
+  if(!list) return [];
 
+  let arr = [...list];
 
+  if(typeFilter !== "all"){
 
-  
-//  if(!list) return [];
+    arr = arr.filter(book => {
 
-//  let arr = [...list];
+      if(typeFilter === "normal"){
+        return book.type !== "wish";
+      }
 
-//  if(typeFilter !== "all"){
+      if(typeFilter === "wish"){
+        return book.type === "wish";
+      }
 
-//    arr = arr.filter(book => {
+      return true;
+    });
+  }
 
-//      if(typeFilter === "normal"){
-//        return book.type !== "wish";
-//      }
-
-//      if(typeFilter === "wish"){
-//        return book.type === "wish";
-//      }
-
-//      return true;
-//    });
-//  }
-
-//  return arr;
+  return arr;
 }
 
 //==============================
