@@ -1062,7 +1062,7 @@ function openBookDetailModal(book){
         ${latestDate}
         <button
               class="mini-delete-btn"
-              onclick="removeReadDate('${book.id}','${date}')"
+              onclick="removeReadDate('${book.id}','${latestDate}')"
             >
               ✕
             </button>
