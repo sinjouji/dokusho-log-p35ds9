@@ -10,7 +10,7 @@ let tagMaster = [];
 
 let selectedTagId = null;
 //if(!selectedTagId) selectedTagId = null;
-let selectedTagIds = []; //新規本保存用のタグ一時保存場所
+let newBookTagIds = []; //新規本保存用のタグ一時保存場所
 
 const savedMode = localStorage.getItem("colorMode");
 
