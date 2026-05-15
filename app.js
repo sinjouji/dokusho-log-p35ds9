@@ -785,8 +785,21 @@ function openAddBookModal(){
 
 				return `
 				<span
-					class="tag-chip detail-tag-chip"
- 					onclick="toggleNewBookTag('${tag.id}', this)"
+					class="
+						tag-chip detail-tag-chip
+						${isActive ? "active" : ""}
+					"
+					
+					data-tag-id="${tag.id}"
+					
+ 					onclick="
+ 						toggleNewBookTag(
+ 							'${tag.id}',
+ 							 this,
+ 							 '${tag.color}'
+ 							)
+ 						"
+ 						
 					style="
 						background:
 							${isActive ? tag.color : '#fffffc'};
@@ -828,7 +841,7 @@ function openAddBookModal(){
 //==============================
 //====新規本のタグ切替え
 //==============================
-function toggleNewBookTag(tagId, el){
+function toggleNewBookTag(tagId, el, color){
 
   if(newBookTagIds.includes(tagId)){
 
@@ -836,12 +849,18 @@ function toggleNewBookTag(tagId, el){
       newBookTagIds.filter(id=>id!==tagId);
 
     el.classList.remove("active");
+    
+    el.style.background = "#fffffc";
+    el.style.color = color;
 
   }else{
 
     newBookTagIds.push(tagId);
 
     el.classList.add("active");
+    
+    el.style.background = color;
+    el.style.color = "#fffffc";
 
   }
 
