@@ -79,7 +79,10 @@ button{
 }
 
 .tag-select-area{
+  display:flex;
   flex-wrap:wrap;
+  gap:8px;
+  overflow-x:hidden;
 }
 
 .tag-chip{
@@ -90,6 +93,8 @@ button{
   margin:3px;
   text-align:center;
   transition:0.2s;
+  white-space:nowrap;
+  frex-shrink:0;
 }
 
 .tag-chip.active{
@@ -657,12 +662,15 @@ border-radius:14px;
 .color-dot{
   width:30px;
   height:30px;
-  border-radius:100%;
+  border-radius:50%;
   border:none;
   
   margin-bottom:2px;
   padding:0;
   aspect-ratio:1/1;
+  
+  appearance:none;
+  -webkit-appearance:none;
   
   flex-shrink:0;
 }
