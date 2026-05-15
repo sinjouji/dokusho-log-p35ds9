@@ -1154,7 +1154,7 @@ function openBookDetailModal(book){
       
       <div
         id="date-history-${book.id}"
-        style="display:none;"
+        style="display:none;background:#fbf6e8;"
       >
       
         ${sortedDates.slice(1).map(date=>`
@@ -1979,17 +1979,6 @@ if(list){
       relatedBooks,
       "detail"
     );
-
-  if(list.reread){
-  
-    const mark =
-      document.createElement("div");
-      
-    mark.className = "bookmark";
-    
-    d.appendChild(mark);
-  
-  }
 
 
   } else {
