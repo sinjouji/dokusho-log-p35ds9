@@ -10,6 +10,7 @@ let tagMaster = [];
 
 let selectedTagId = null;
 //if(!selectedTagId) selectedTagId = null;
+let selectedTagIds = []; //新規本保存用のタグ一時保存場所
 
 const savedMode = localStorage.getItem("colorMode");
 
@@ -775,34 +776,31 @@ function openAddBookModal(){
         <option value="4">👑</option>
       </select>
       
-      			<div class="tag-select-area">
+      	<div class="tag-select-area">
 			
-						${tagMaster.map(tag=>{
+				${tagMaster.map(tag=>{
 
-  const isActive =
-    (book.tagIds || []).includes(tag.id);
+				const isActive =
+					selectedTagIds.includes(tag.id);
 
-  return `
-    <span
-      class="tag-chip"
-      onclick="toggleBookTag('${book.id}','${tag.id}')"
+				return `
+				<span
+					class="tag-chip detail-tag-chip"
+ 					onclick="toggleBookTag('${book.id}','${tag.id}')"
+					style="
+						background:
+							${isActive ? tag.color : '#fffffc'};
+						color:
+							${isActive ? '#fffffc' : tag.color};
+						border:
+							1px solid ${tag.color};
+					"
+				>
+				${tag.name}
+			</span>
+		`;
 
-      style="
-        background:
-          ${isActive ? tag.color : '#fffffc'};
-
-        color:
-          ${isActive ? '#fffffc' : tag.color};
-
-        border:
-          1px solid ${tag.color};
-      "
-    >
-      ${tag.name}
-    </span>
-  `;
-
-}).join("")}
+	}).join("")}
 			</div>
       
 
@@ -824,6 +822,29 @@ function openAddBookModal(){
 
   document.body.appendChild(modal);
 }
+
+
+
+//==============================
+//====新規本のタグ切替え
+//==============================
+function toggleNewBookTag(tagId){
+
+  if(selectedTagIds.includes(tagId)){
+
+    selectedTagIds =
+      selectedTagIds.filter(id=>id!==tagId);
+
+  }else{
+
+    selectedTagIds.push(tagId);
+
+  }
+
+  openAddBookModal();
+
+}
+
 
 
 //==============================
@@ -1043,7 +1064,7 @@ function openBookDetailModal(book){
 
   return `
     <span
-      class="tag-chip"
+      class="tag-chip detail-tag-chip"
       onclick="toggleBookTag('${book.id}','${tag.id}')"
 
       style="
@@ -1289,7 +1310,6 @@ function renderTagFilter(){
     btn.className = "tag-chip";
     
     btn.textContent = tag.name;
-    btn.style.fontSize = "12px";
 
     btn.style.background = "#fffffc";
     btn.style.color = tag.color || "#666";
@@ -1495,7 +1515,7 @@ async function saveNewBook(){
     memo: memo,
     fav: 0,
     dates: date ? [date] : [],
-    tagIds: [],
+    tagIds: [...selectedTagIds],
     type: date ? "normal" : "wish"
   };
 
