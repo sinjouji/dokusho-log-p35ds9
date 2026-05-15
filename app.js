@@ -1060,6 +1060,12 @@ function openBookDetailModal(book){
     ? `
       <div class="date-tag">
         ${latestDate}
+        <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${date}')"
+            >
+              ✕
+            </button>
       </div>
       
       <div
@@ -1080,6 +1086,12 @@ function openBookDetailModal(book){
         
           <div class="mini-date-row">
             ${date}
+            <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${date}')"
+            >
+              ✕
+            </button>
           </div>
         
         `).join("")}
