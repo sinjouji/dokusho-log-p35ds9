@@ -886,8 +886,8 @@ function changeTypeFilter(value){
 	typeFilter = value;
 
   renderHome();
-  //document.getElementById("type-filter").value
-  // = typeFilter;
+  document.getElementById("type-filter").value
+   = typeFilter;
 }
 
 //==============================
