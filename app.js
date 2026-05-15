@@ -160,6 +160,7 @@ const tagColors = [
 //タグ追加
 let newTagName = "";
 let newTagColor = "#7b8d8e";
+let newBookFav = 0;
 
 //シリーズ関係
 let seriesMaster = [];
@@ -785,13 +786,16 @@ function openAddBookModal(){
 
         <input type="date" id="add-date">
       </div>
-      <select id="add-fav">
-        <option value="0">評価なし</option>
-        <option value="1">★</option>
-        <option value="2">★★</option>
-        <option value="3">★★★</option>
-        <option value="4">👑</option>
-      </select>
+
+
+			<button
+			  type="button"
+			  id="new-book-fav-btn"
+			  class="fav-cycle-btn"
+			  onclick="cycleNewBookFav()"
+			>
+			  評価：0
+			</button>
       
       	<div class="tag-select-area">
 			
@@ -928,8 +932,21 @@ function toggleReread(id){
 }
 
 
+//==============================
+//新規本用の評価切り替えボタン
+//==============================
+function cycleNewBookFav(){
 
+  newBookFav =
+    (newBookFav + 1) % 5;
 
+  document.getElementById(
+    "new-book-fav-btn"
+  ).textContent =
+    "評価：" +
+    ["0","★","★★","★★★","👑"]
+      [newBookFav];
+}
 
 //==============================
 //====キーワード検索（ホーム本棚用）
@@ -1084,12 +1101,12 @@ function openBookDetailModal(book){
      </div>
 
       <div class="detail-row">
-        状態 ＝ 〔
+        状態 ＝ 
         ${
           book.type === "wish"
           ? "❤️ウィッシュ"
           : "📚本棚"
-        } 〕 : <span class="book-stat">${book.dates?.length || 0}回読了</span>
+        }  : <span class="book-stat">${book.dates?.length || 0}回読了</span>
    
         <label class="reread-check">
 
@@ -1629,7 +1646,7 @@ async function saveNewBook(){
     id: Date.now().toString(),
     title,
     memo: memo,
-    fav: 0,
+    fav: newBookFav,
     dates: date ? [date] : [],
     tagIds: [...newBookTagIds],
     type: date ? "normal" : "wish"
