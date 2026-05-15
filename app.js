@@ -654,9 +654,6 @@ function renderSearchArea(){
 
   const top = document.getElementById("home-top");
   if(!top) return;
-  
-  document.getElementById("type-filter").value
-   = typeFilter;
  
   top.innerHTML = `
     <button onclick="openAddBookModal()" class="add-btn">
@@ -737,7 +734,7 @@ function renderSearchArea(){
 
     <div id="suggest"></div>
   `;
-
+  
   renderSuggest();
 }
 
@@ -889,6 +886,8 @@ function changeTypeFilter(value){
 	typeFilter = value;
 
   renderHome();
+  //document.getElementById("type-filter").value
+  // = typeFilter;
 }
 
 //==============================
@@ -1358,28 +1357,39 @@ function renderTagFilter(){
 //========タイプフィルター（ウィッシュリスト）
 //==============================
 function filterBooks(list){
+
+	const filtered = books.filter(book=>{
+		if(typeFilter === "all"){
+			return true;
+		}
+		
+		return book.type === typeFilter;
+	});
+
+
+
   
-  if(!list) return [];
+//  if(!list) return [];
 
-  let arr = [...list];
+//  let arr = [...list];
 
-  if(typeFilter !== "all"){
+//  if(typeFilter !== "all"){
 
-    arr = arr.filter(book => {
+//    arr = arr.filter(book => {
 
-      if(typeFilter === "normal"){
-        return book.type !== "wish";
-      }
+//      if(typeFilter === "normal"){
+//        return book.type !== "wish";
+//      }
 
-      if(typeFilter === "wish"){
-        return book.type === "wish";
-      }
+//      if(typeFilter === "wish"){
+//        return book.type === "wish";
+//      }
 
-      return true;
-    });
-  }
+//      return true;
+//    });
+//  }
 
-  return arr;
+//  return arr;
 }
 
 //==============================
