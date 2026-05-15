@@ -943,7 +943,7 @@ function openBookDetailModal(book){
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "open-book-modal";
-
+	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
       <input id="detail-title" class="detail-title"
@@ -1008,25 +1008,32 @@ function openBookDetailModal(book){
       
 			<div class="tag-select-area">
 			
-						${tagMaster.map(tag=>`
-							<span
-							style="
-								background:
-									${(book.tagIds || []).includes(tag.id)
-										? tag.color
-										: '#eee'
-									};
-								"
-							class="tag-chip
-								${(book.tagIds || []).includes(tag.id)
-								? "active"
-								: ""
-						}"
-						onclick="toggleBookTag('${book.id}','${tag.id}')"
-					>
-						${tag.name}
-					</span>
-				`).join("")}
+						${tagMaster.map(tag=>{
+
+  const isActive =
+    (book.tagIds || []).includes(tag.id);
+
+  return `
+    <span
+      class="tag-chip"
+      onclick="toggleBookTag('${book.id}','${tag.id}')"
+
+      style="
+        background:
+          ${isActive ? tag.color : '#fffffc'};
+
+        color:
+          ${isActive ? '#fffffc' : tag.color};
+
+        border:
+          1px solid ${tag.color};
+      "
+    >
+      ${tag.name}
+    </span>
+  `;
+
+}).join("")}
 			</div>
       
     <div style="font-size:10px">
