@@ -478,7 +478,7 @@ function renderHome(){
 
   renderSearchArea();
   
-  renderTagFilter();
+  renderTagFilter(value);
 
 //  renderRecentBooks();
   
@@ -873,10 +873,12 @@ function toggleNewBookTag(tagId, el, color){
 //==============================
 function changeTypeFilter(value){
 
-  typeFilter =
-    document.getElementById(
-      "type-filter"
-    ).value;
+//  typeFilter =
+//    document.getElementById(
+//      "type-filter"
+//    ).value;
+
+	typeFilter = value;
 
   localStorage.setItem(
     "typeFilter",
