@@ -1154,7 +1154,8 @@ function openBookDetailModal(book){
       
       <div
         id="date-history-${book.id}"
-        style="display:none;background:#fbf6e8;"
+        class="date-history-grid"
+        style="display:none;"
       >
       
         ${sortedDates.slice(1).map(date=>`
