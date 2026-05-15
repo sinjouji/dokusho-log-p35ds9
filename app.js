@@ -737,38 +737,6 @@ function renderSearchArea(){
   renderSuggest();
 }
 
-//==============================
-//====タイプフィルター切り替え
-//==============================
-function changeTypeFilter(){
-
-  typeFilter =
-    document.getElementById(
-      "type-filter"
-    ).value;
-
-  localStorage.setItem(
-    "typeFilter",
-    typeFilter
-  );
-
-  renderHome();
-}
-
-//==============================
-//====キーワード検索（ホーム本棚用）
-//==============================
-function handleSearchInput(){
-
-  searchKeyword =
-    (document.getElementById(
-    "search"
-    )?.value || "")
-    .toLowerCase();
-
-  renderSuggest();
-  renderBookList();
-}
 
 
 //==============================
@@ -806,6 +774,9 @@ function openAddBookModal(){
         <option value="3">★★★</option>
         <option value="4">👑</option>
       </select>
+      
+//      <div id="selectedTagIds"></div>
+      
 
       ${enableMemo ? `
       <textarea id="add-memo"
@@ -825,6 +796,41 @@ function openAddBookModal(){
 
   document.body.appendChild(modal);
 }
+
+
+//==============================
+//====タイプフィルター切り替え
+//==============================
+function changeTypeFilter(){
+
+  typeFilter =
+    document.getElementById(
+      "type-filter"
+    ).value;
+
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
+
+  renderHome();
+}
+
+//==============================
+//====キーワード検索（ホーム本棚用）
+//==============================
+function handleSearchInput(){
+
+  searchKeyword =
+    (document.getElementById(
+    "search"
+    )?.value || "")
+    .toLowerCase();
+
+  renderSuggest();
+  renderBookList();
+}
+
 
 //==============================
 //====ソートモードの切替え（本）
@@ -998,20 +1004,24 @@ function openBookDetailModal(book){
         ➕読了日追加
       </button>
       </div>
-
-      <div class="detail-tags">
-        ${(book.tagIds || []).map(id=>{
-
-          const tag =
-            tagMaster.find(t=>t.id===id);
-
-          return tag
-            ? `<span class="tag">${tag.name}</span>`
-            : "";
-
-        }).join("")}
-      </div>
-
+      
+      
+			<div class="tag-select-area">
+			
+						${tagMaster.map(tag=>`
+							<span
+							class="tag-chip
+								${(book.tagIds || []).includes(tag.id)
+								? "active"
+								: ""
+						}"
+						onclick="toggleBookTag('${book.id}','${tag.id}')"
+					>
+						${tag.name}
+					</span>
+				`).join("")}
+			</div>
+      
     <div style="font-size:10px">
       シリーズ : 
       ${relatedSeries.map(s=>`
@@ -1101,6 +1111,54 @@ function cycleFav(id){
 
   renderHome();
 }
+
+
+//==============================
+//タグの選択切替え
+//==============================
+function toggleBookTag(bookId, tagId){
+
+	const book =
+		books.find(b=>String(b.id)===String(bookId));
+
+	if(!book) return;
+
+	if(!Array.isArray(book.tagIds)){
+
+		book.tagIds = [];
+
+	}
+
+	if(book.tagIds.includes(tagId)){
+
+		book.tagIds =
+			book.tagIds.filter(id=>id!==tagId);
+
+	}else{
+
+		book.tagIds.push(tagId);
+
+	}
+	
+	closeModal("open-book-modal");
+	openBookDetailModal(book);
+
+}
+
+//yoke
+//      <div class="detail-tags">
+//        ${(book.tagIds || []).map(id=>{
+
+//          const tag =
+//            tagMaster.find(t=>t.id===id);
+
+//          return tag
+//            ? `<span class="tag">${tag.name}</span>`
+//            : "";
+
+//        }).join("")}
+//      </div>
+
 
 //==============================
 //タグ収納トグル
