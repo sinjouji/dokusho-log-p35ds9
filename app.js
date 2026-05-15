@@ -1980,6 +1980,18 @@ if(list){
       "detail"
     );
 
+  if(b.reread){
+  
+    const mark =
+      document.createElement("div");
+      
+    mark.className = "bookmark";
+    
+    d.appendChild(mark);
+  
+  }
+
+
   } else {
 
     relatedBooks.forEach(b=>{
