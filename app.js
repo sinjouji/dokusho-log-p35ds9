@@ -44,8 +44,7 @@ showTagFilter = showTagFilter === null
   : showTagFilter === "true";
   
 //タイプフィルター
-let typeFilter = "all";
-// localStorage.getItem("typeFilter") || "all";
+let typeFilter = localStorage.getItem("typeFilter") || "all";
   
 //メモ機能のオンオフ切り替え
 let enableMemo = localStorage.getItem("enableMemo");
@@ -706,15 +705,21 @@ function renderSearchArea(){
   id="type-filter"
   onchange="changeTypeFilter(this.value)">
 
-  <option value="all">
+  <option value="all"
+    ${typeFilter === "all" ? "selected" : ""}
+  >
     全部
   </option>
 
-  <option value="normal">
+  <option value="normal"
+    ${typeFilter === "normal" ? "selected" : ""}
+  >
     本棚
   </option>
 
-  <option value="wish">
+  <option value="wish"
+    ${typeFilter === "wish" ? "selected" : ""}
+  >
     ウィッシュ
   </option>
 
@@ -871,7 +876,7 @@ function toggleNewBookTag(tagId, el, color){
 //==============================
 //====タイプフィルター切り替え
 //==============================
-function changeTypeFilter(value){
+function changeTypeFilter(){
 
   typeFilter =
     document.getElementById(
