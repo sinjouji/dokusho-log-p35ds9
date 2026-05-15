@@ -1034,10 +1034,10 @@ function openBookDetailModal(book){
         ✏️ 保存
       </button>
 
-      <button class="danger-btn"
+      <button class="danger-btn" style="margin-bottom:3px;"
         onclick="deleteBook('${book.id}')">
         🗑 削除
-      </button><br>
+      </button>
       <button onclick="closeModal('open-book-modal')">
         ✖️
       </button>
@@ -2149,7 +2149,7 @@ function openCharacterModal(c){
 			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
 			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
-			<button>🗑️ 削除</button><br>
+			<button style="margin-bottom:3px;">🗑️ 削除</button>
 			<button onclick="closeModal('open-chars-modal')">✖️</button>
 	
 		</div>
