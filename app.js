@@ -840,7 +840,7 @@ function toggleNewBookTag(tagId){
     selectedTagIds.push(tagId);
 
   }
-	closeModal("add-book-modal")
+	closeModal("add-book-modal");
   openAddBookModal();
 
 }
