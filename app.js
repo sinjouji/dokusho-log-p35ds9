@@ -704,7 +704,7 @@ function renderSearchArea(){
       </button>
       <select
   id="type-filter"
-  onchange="changeTypeFilter()">
+  onchange="changeTypeFilter(this.value)">
 
   <option value="all">
     全部
@@ -871,7 +871,7 @@ function toggleNewBookTag(tagId, el, color){
 //==============================
 //====タイプフィルター切り替え
 //==============================
-function changeTypeFilter(){
+function changeTypeFilter(value){
 
   typeFilter =
     document.getElementById(
