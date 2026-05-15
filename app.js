@@ -1101,7 +1101,7 @@ function openBookDetailModal(book){
 
      </div>
 
-      <div class="detail-row">
+      <div class="detail-row" style="text-align:justify;">
         状態 ＝ 
         ${
           book.type === "wish"
