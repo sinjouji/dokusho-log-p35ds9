@@ -1980,7 +1980,7 @@ if(list){
       "detail"
     );
 
-  if(b.reread){
+  if(list.reread){
   
     const mark =
       document.createElement("div");
