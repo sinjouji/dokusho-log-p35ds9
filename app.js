@@ -1108,7 +1108,8 @@ function openBookDetailModal(book){
           book.type === "wish"
           ? "❤️ウィッシュ"
           : "📚本棚"
-        }  : <span class="book-stat">${book.dates?.length || 0}回読了</span>
+        }
+        <span class="book-stat">${book.dates?.length || 0}回読了</span>
    
         <label class="reread-check">
 
@@ -1176,7 +1177,7 @@ function openBookDetailModal(book){
 </div>
       
       <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}">
+      <input type="date" class="indate" id="readDate-${book.id}">
       <button onclick="addReadDate('${book.id}')">
         ➕読了日追加
       </button>
