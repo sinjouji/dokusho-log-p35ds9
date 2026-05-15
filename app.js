@@ -1126,7 +1126,8 @@ function openBookDetailModal(book){
 </label>
       </div>
 
-     <div class="detail-row">
+     <div class="detail-row" style="display:flex;
+  justify-content:space-between;">
   読了日：
 
   ${
