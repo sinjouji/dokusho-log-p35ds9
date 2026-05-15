@@ -1089,7 +1089,16 @@ function openBookDetailModal(book){
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
 
-     <div class="detail-fav-wrap">
+      <div class="detail-row" style="display:flex;
+  justify-content:space-between;">
+        状態 ＝ 
+        ${
+          book.type === "wish"
+          ? "❤️ウィッシュ"
+          : "📚本棚"
+        }
+   
+        <div class="detail-fav-wrap">
 
        <button
          class="fav-cycle-btn"
@@ -1100,16 +1109,6 @@ function openBookDetailModal(book){
        </button>
 
      </div>
-
-      <div class="detail-row" style="display:flex;
-  justify-content:space-between;">
-        状態 ＝ 
-        ${
-          book.type === "wish"
-          ? "❤️ウィッシュ"
-          : "📚本棚"
-        }
-        <span class="book-stat">${book.dates?.length || 0}回読了</span>
    
         <label class="reread-check">
 
@@ -1142,7 +1141,10 @@ function openBookDetailModal(book){
               ✕
             </button>
       </div>
-      
+      <span class="book-stat">${book.dates?.length || 0}回読了</span>
+    </div>
+    
+    <div class="detail-row">
       <div
         class="toggle-history"
         onclick="
@@ -1184,7 +1186,7 @@ function openBookDetailModal(book){
       </button>
       </div>
       
-      
+      <hr style="border:1px dashed #c29f8b">
 			<div class="tag-select-area">
 			
 						${tagMaster.map(tag=>{
