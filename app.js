@@ -1010,6 +1010,13 @@ function openBookDetailModal(book){
 			
 						${tagMaster.map(tag=>`
 							<span
+							style="
+								background:
+									${(book.tagIds || []).includes(tag.id)
+										? tag.color
+										: '#eee'
+									};
+								"
 							class="tag-chip
 								${(book.tagIds || []).includes(tag.id)
 								? "active"
