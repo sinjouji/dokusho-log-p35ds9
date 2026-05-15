@@ -1126,9 +1126,9 @@ function openBookDetailModal(book){
 </label>
       </div>
 
-     <div class="detail-row" style="display:flex;
-  justify-content:space-between;">
-  読了日：
+     <div class="detail-row">
+  読了日：<span style="display:flex;
+  justify-content:space-between;align-items:center;">
 
   ${
     latestDate
@@ -1144,6 +1144,7 @@ function openBookDetailModal(book){
       </div>
       <span class="book-stat">${book.dates?.length || 0}回読了</span>
     </div>
+    </span>
     
     <div class="detail-row">
       <div
