@@ -1015,6 +1015,13 @@ function openBookDetailModal(book){
   return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
   });
   
+  const sortedDates =
+    [...(book.dates || [])]
+      .sort((a,b)=>b.localeCompare(a));
+  
+  const latestDate =
+    sortedDates[0];
+  
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "open-book-modal";
@@ -1049,28 +1056,37 @@ function openBookDetailModal(book){
   読了日：
 
   ${
-    book.dates?.length
-    ? [...book.dates]
-        .sort((a,b)=>b.localeCompare(a))
-        .map(date=>`
-
-          <div class="date-tag">
-
+    latestDate
+    ? `
+      <div class="date-tag">
+        ${latestDate}
+      </div>
+      
+      <div
+        class="toggle-history"
+        onclick="
+          toggleDateHistory('${book.id}')
+        "
+      >
+        ▼ 履歴を見る
+      </div>
+      
+      <div
+        id="date-history-${book.id}"
+        style="display:none;"
+      >
+      
+        ${sortedDates.slice(1).map(date=>`
+        
+          <div class="mini-date-row">
             ${date}
-
-            <button
-              class="mini-delete-btn"
-              onclick="removeReadDate('${book.id}','${date}')"
-            >
-              ✕
-            </button>
-
           </div>
-
-        `).join("")
+        
+        `).join("")}
+      </div>
+    `
     : "未読"
   }
-
 </div>
       
       <div class="detail-date-add">
@@ -1179,6 +1195,27 @@ async function addReadDate(id){
 
   renderHome();
 }
+
+
+
+//==============================
+//====読了日のトグル表示（モーダル）
+//==============================
+function toggleDateHistory(bookId){
+
+  const el =
+    document.getElementById(
+      `date-history-${bookId}`
+    );
+
+  if(!el) return;
+
+  el.style.display =
+    el.style.display === "none"
+    ? "block"
+    : "none";
+}
+``
 
 //==============================
 //====評価ボタン1つで切替え
