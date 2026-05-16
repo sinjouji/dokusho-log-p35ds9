@@ -2296,8 +2296,15 @@ function openSeriesEditModal(id){
           renderSeriesCharacterSuggest();
         "
       >
-      <div id="series-character-suggest"></div>
-      <div id="series-book-suggest"></div>
+      <div
+  id="series-book-suggest"
+  class="suggest-box"
+></div>
+
+<div
+  id="series-character-suggest"
+  class="suggest-box"
+></div>
 
       <div id="series-book-list">
         本関連
