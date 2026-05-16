@@ -1258,7 +1258,7 @@ function openBookDetailModal(book){
       </button>
       
       <button onclick="saveDetail('${book.id}')">
-        ✏️ 保存
+        🪎 保存
       </button>
       
     </div>
@@ -2290,7 +2290,7 @@ function openSeriesEditModal(series){
       <button
         onclick="saveSeriesEdit('${series.id}')"
       >
-        ✏️保存
+        🪎 保存
       </button>
 
       <button
@@ -2481,7 +2481,7 @@ function openCharacterModal(c){
 						
 			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
-			<button onclick="saveCharacter('${c.id}')">✏️ 保存</button>
+			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
 			<button style="margin-bottom:10px;">🗑️ 削除</button>
 			<button onclick="closeModal('open-chars-modal')">✖️</button>
 	
@@ -3401,7 +3401,7 @@ function renderSettings(){
             </div>
 
             <button onclick="saveTagEdit('${tag.id}')">
-              保存
+             🪎 保存
             </button>
 
             <button
