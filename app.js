@@ -2414,7 +2414,7 @@ async function saveSeriesEdit(id){
 
   series.name =
     document.getElementById(
-      "edit-series-title"
+      "edit-series-name"
     ).value;
 
   series.bookIds =
