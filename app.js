@@ -2304,15 +2304,27 @@ function openSeriesEditModal(id){
 
 </div>
 
-      <div id="series-book-list">
-        本関連
-        <div id="series-edit-books"></div>
+      <div
+        class="toggle-head"
+        onclick="
+          toggleSeriesSection('series-books')
+        "
+      >
+       ▼ 本関連
       </div>
+      <div id="series-edit-books"></div>
+
       
-      <div id="series-char-list">
-        人物関連
-        <div id="series-edit-characters"></div>
+      <div
+        class="toggle-head"
+        onclick="
+          toggleSeriesSection('series-characters')
+        "
+      >
+       ▼ 人物関連
       </div>
+        <div id="series-edit-characters"></div>
+
 
 
     <div class="end-btn">
@@ -2402,26 +2414,6 @@ async function saveSeriesEdit(id){
   renderSeriesDetail(series);
 
   showToast("保存しました！");
-}
-
-
-
-//==============================
-//編集モーダル内トグル（本用）
-//==============================
-function toggleEditRelateBooks(id){
-
-  const el =
-    document.getElementById(
-      `edit-relate-books-${seriesId}`
-    );
-
-  if(!el) return;
-
-  el.style.display =
-    el.style.display === "none"
-    ? "grid"
-    : "none";
 }
 
 
