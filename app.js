@@ -2290,7 +2290,7 @@ function openSeriesEditModal(id){
       >
 
       <div id="series-book-list"
-        onclick="toggleEditRelateBooks('${s.id}')">
+        onclick="toggleEditRelateBooks('${series.id}')">
         本関連
         <div>
           ${relatedBooks.map(b=>`
