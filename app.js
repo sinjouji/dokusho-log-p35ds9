@@ -775,7 +775,10 @@ function openAddBookModal(){
   modal.innerHTML = `
     <div class="modal-box">
 
+      <div class="title-line">
       <h2>本を追加</h2>
+       <button onclick="closeModal('add-book-modal')">✖️</button>
+       </div>
 
 
       <input class="addin"
@@ -848,6 +851,8 @@ function openAddBookModal(){
       <textarea id="add-memo"
         placeholder="メモ"></textarea>` : ""}
 
+
+      <div class="end-btn">
         <button onclick="saveNewBook()">
           ➕本棚
         </button>
@@ -855,9 +860,7 @@ function openAddBookModal(){
         <button onclick="addBook('wish')">
           ➕WishList
         </button>
-
-        <button onclick="closeModal('add-book-modal')">✖️</button>
-            </div>
+            </div></div>
   `;
 
   document.body.appendChild(modal);
