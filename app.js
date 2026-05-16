@@ -1245,12 +1245,12 @@ function openBookDetailModal(book){
       <textarea id="editMemo">${book.memo || ""}</textarea>
       ` : ""}
 
-		<div class="detail-row end-btn">
+		<div class="end-btn">
       <button onclick="saveDetail('${book.id}')">
         ✏️ 保存
       </button>
       
-      <button class="danger-btn" style="margin-bottom:10px;"
+      <button class="danger-btn"
         onclick="deleteBook('${book.id}')">
         🗑 削除
       </button>
