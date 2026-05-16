@@ -2311,19 +2311,17 @@ function openSeriesEditModal(id){
           toggleSeriesEditSection('series-edit-books')
         "
       >
-       ▼ 本関連
-      </div>
-      <div
-        id="series-edit-books"
-        style="
-          display:
-            ${series-edit-books
-              ? "block"
-              : "none"};
-         "
-       ></div>
+      ${series-edit-books
+        ? "▶︎"
+        : "▽"}
+        本関連</div>
+      ${series-edit-books
+        ?`
+      <div id="series-edit-books"></div>
+      `
+      : ""}
+       </div>
 
-      
       <div
         class="toggle-head"
         onclick="
