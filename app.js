@@ -2425,7 +2425,7 @@ async function saveSeriesEdit(id){
 
   await saveData();
 
-  closeModal("series-edit-modal");
+  closeModal("edit-series-modal");
 
   renderSeries();
 
