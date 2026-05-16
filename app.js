@@ -2427,7 +2427,7 @@ async function saveSeriesEdit(id){
 
   closeModal("edit-series-modal");
 
-  renderSeries();
+  renderSeriesDetail(s);
 
   showToast("保存しました！");
 }
