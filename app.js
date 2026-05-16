@@ -170,6 +170,11 @@ let seriesSections = {
 };
 let currentSeriesId = null;
 
+//シリーズ編集用のデータ保持枠
+let editingSeriesBookIds = [];
+let editingSeriesCharacterIds = [];
+
+
 
 //==============================
 //セーブ,go
@@ -1926,6 +1931,7 @@ console.log(
     <div class="seriesp-head">
     <button onclick="go('series')">戻る</button>
     <span class="satu">登録 : ${relatedBooks.length}冊</span>
+    <button onclick="openSeriesEditModal(series)">✏︎編集</span>
     </div>
    
     <h3 class="stitle">${s.name}</h3>
@@ -2242,6 +2248,62 @@ function openAddSeriesModal(){
 `;
 	document.body.appendChild(modal);
 	//関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい
+}
+
+
+//==============================
+//シリーズ編集モーダル
+//==============================
+function openSeriesEditModal(series){
+
+  const modal = document.createElement("div");
+  
+    editingSeriesBookIds =
+      [...(series.bookIds || [])];
+
+    editingSeriesCharacterIds =
+      [...(series.characterIds || [])];
+
+
+  modal.className = "modal-bg";
+  modal.id = "edit-series-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box">
+
+      <h2>シリーズ編集</h2>
+
+      <input
+        id="edit-series-name"
+        class="addin"
+        value="${series.name || ""}"
+      >
+
+      <div id="series-book-list">
+        本関連
+      </div>
+
+      <div id="series-char-list">
+        人物関連
+      </div>
+
+      <button
+        onclick="saveSeriesEdit('${series.id}')"
+      >
+        ✏️保存
+      </button>
+
+      <button
+        onclick="closeModal('edit-series-modal')"
+      >
+        ✖️
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
 }
 
 //==============================
