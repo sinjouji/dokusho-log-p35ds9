@@ -775,10 +775,9 @@ function openAddBookModal(){
   modal.innerHTML = `
     <div class="modal-box">
 
-      <div class="title-line">
-      <h2>本を追加</h2>
-       <button onclick="closeModal('add-book-modal')">✖️</button>
-       </div>
+       <button onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button>
+       
+       <h2>本を追加</h2>
 
 
       <input class="addin"
@@ -2217,6 +2216,7 @@ function openAddSeriesModal(){
 	
 	modal.innerHTML = `
 		<div class="modal-box">
+						<button onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button>
 		
 			<h2>シリーズを追加</h2>
 			
@@ -2244,7 +2244,6 @@ function openAddSeriesModal(){
 				
 				<button onclick="saveNewSeries()">➕追加</button>
 				
-				<button onclick="closeModal('add-series-modal')">✖️</button>
 				
 			
 		</div>
@@ -3094,6 +3093,7 @@ function openAddCharacterModal(){
 	
 	modal.innerHTML = `
 		<div class="modal-box">
+					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button>
 	
 			<h2>人物を追加</h2>
 			
@@ -3122,8 +3122,6 @@ function openAddCharacterModal(){
 			
 			<button onclick="saveNewCharacter()">➕追加</button>
 			
-			<button onclick="closeModal('add-chars-modal')">✖️</button>
-	
 	
 		</div>
 	`;
