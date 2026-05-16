@@ -2317,7 +2317,7 @@ function openSeriesEditModal(id){
         id="series-edit-books"
         style="
           display:
-            ${seriesSections["series-edit-books"]
+            ${series-edit-books
               ? "block"
               : "none"};
          "
@@ -2336,7 +2336,7 @@ function openSeriesEditModal(id){
           id="series-edit-characters"
           style="
             display:
-              ${seriesSections["series-edit-characters"]
+              ${series-edit-characters
                 ? "block"
                 : "none"};
            "
