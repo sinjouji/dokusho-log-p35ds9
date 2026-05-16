@@ -1931,7 +1931,7 @@ console.log(
     <div class="seriesp-head">
     <button onclick="go('series')">戻る</button>
     <span class="satu">登録 : ${relatedBooks.length}冊</span>
-    <button onclick="openSeriesEditModal(s)">✏️ 編集</span>
+    <button onclick="openSeriesEditModal('${s.id}')">✏️ 編集</span>
     </div>
    
     <h3 class="stitle">${s.name}</h3>
@@ -2254,16 +2254,22 @@ function openAddSeriesModal(){
 //==============================
 //シリーズ編集モーダル
 //==============================
-function openSeriesEditModal(series){
+function openSeriesEditModal(id){
 
   const modal = document.createElement("div");
   
-    editingSeriesBookIds =
-      [...(series.bookIds || [])];
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
 
-    editingSeriesCharacterIds =
-      [...(series.characterIds || [])];
+  if(!series) return;
 
+  editingSeriesBookIds =
+    [...(series.bookIds || [])];
+
+  editingSeriesCharacterIds =
+    [...(series.characterIds || [])];
 
   modal.className = "modal-bg";
   modal.id = "edit-series-modal";
