@@ -2290,7 +2290,7 @@ function openSeriesEditModal(id){
       <input class="addin"
         id="series-related-search"
         type="text"
-        placeholder="本を追加"
+        placeholder="本・人物を追加"
         oninput="
           renderSeriesBookSuggest();
           renderSeriesCharacterSuggest();
