@@ -2276,9 +2276,10 @@ function openSeriesEditModal(id){
   );
 
   const relatedCharacters =
-  characters.filter(c =>
-    editingSeriesCharacterIds.includes(c.id)
-  );
+  characters.filter(c =>{
+    return Array.isArray(s.characterIds)
+      && s.characterIds.includes(c.id);
+  });
   
 
   modal.className = "modal-bg";
