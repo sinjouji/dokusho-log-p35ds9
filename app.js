@@ -2262,6 +2262,11 @@ function openSeriesEditModal(id){
       s => String(s.id) === String(id)
     );
     
+  const relatedCharacters =
+  characters.filter(c =>
+    editingSeriesCharacterIds.includes(c.id)
+  );
+  
   if(!series) return;
 
   editingSeriesBookIds =
@@ -2296,6 +2301,17 @@ function openSeriesEditModal(id){
           ${relatedBooks.map(b=>`
             <div class="related-chip">
               ${b.title}
+              
+              <button
+      class="mini-delete-btn"
+      onclick="
+        removeBookFromSeries(
+          '${b.id}'
+        )
+      "
+    >
+      ✕
+    </button>
             </div>
           `).join("")}
         </div>
@@ -2303,6 +2319,28 @@ function openSeriesEditModal(id){
 
       <div id="series-char-list">
         人物関連
+        <div>
+        ${relatedCharacters.map(c=>`
+
+  <div class="related-chip">
+
+    ${c.name}
+
+    <button
+      class="mini-delete-btn"
+      onclick="
+        removeCharacterFromSeries(
+          '${c.id}'
+        )
+      "
+    >
+      ✕
+    </button>
+
+  </div>
+
+`).join("")}        
+        </div>
       </div>
 
 
@@ -2328,6 +2366,32 @@ function openSeriesEditModal(id){
 }
 
 
+
+//==============================
+//編集内：関連削除（本）
+//==============================
+function removeBookFromSeries(id){
+
+  editingSeriesBookIds =
+    editingSeriesBookIds.filter(
+      bId => String(bId) !== String(id)
+    );
+
+}
+
+
+
+//==============================
+//編集内：関連削除（人物）
+//==============================
+function removeCharacterFromSeries(id){
+
+  editingSeriesCharacterIds =
+    editingSeriesCharacterIds.filter(
+      cId => String(cId) !== String(id)
+    );
+
+}
 
 
 //==============================
