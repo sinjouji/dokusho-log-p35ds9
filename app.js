@@ -1086,8 +1086,14 @@ function openBookDetailModal(book){
 	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
+    <div class="detail-row">
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
+    
+      <button onclick="closeModal('open-book-modal')" style="margin-left:auto;">
+        ✖️
+      </button>
+    </div>
 
       <div class="detail-row" style="display:flex;
   justify-content:space-between;">
@@ -1239,18 +1245,17 @@ function openBookDetailModal(book){
       <textarea id="editMemo">${book.memo || ""}</textarea>
       ` : ""}
 
+		<div class="detail-row">
       <button onclick="saveDetail('${book.id}')">
         ✏️ 保存
       </button>
-
+      
       <button class="danger-btn" style="margin-bottom:10px;"
         onclick="deleteBook('${book.id}')">
         🗑 削除
       </button>
-      <button onclick="closeModal('open-book-modal')">
-        ✖️
-      </button>
-       
+    </div>
+      
     </div>
   `;
 
