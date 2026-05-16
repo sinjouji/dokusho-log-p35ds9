@@ -2312,7 +2312,15 @@ function openSeriesEditModal(id){
       >
        ▼ 本関連
       </div>
-      <div id="series-edit-books"></div>
+      <div
+        id="series-edit-books"
+        style="
+          display:
+            ${seriesSections["series-books"]
+              ? "block"
+              : "none"};
+         "
+       ></div>
 
       
       <div
@@ -2323,7 +2331,15 @@ function openSeriesEditModal(id){
       >
        ▼ 人物関連
       </div>
-        <div id="series-edit-characters"></div>
+        <div
+          id="series-edit-characters"
+          style="
+            display:
+              ${seriesSections["series-characters"]
+                ? "block"
+                : "none"};
+           "
+         ></div>
 
 
 
