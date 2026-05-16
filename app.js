@@ -1144,8 +1144,16 @@ function openBookDetailModal(book){
       </div>
       <span class="book-stat">${book.dates?.length || 0}回読了</span>
     </div>
-    
-    <div class="detail-row">
+      
+      <div class="detail-date-add">
+      <input type="date" class="indate" id="readDate-${book.id}">
+      <button onclick="addReadDate('${book.id}')">
+        ➕読了日追加
+      </button>
+      </div>
+      
+      
+          <div class="detail-row">
       <div
         class="toggle-history"
         onclick="
@@ -1180,14 +1188,9 @@ function openBookDetailModal(book){
   }
 </div>
       
-      <div class="detail-date-add">
-      <input type="date" class="indate" id="readDate-${book.id}">
-      <button onclick="addReadDate('${book.id}')">
-        ➕読了日追加
-      </button>
-      </div>
       
       <hr style="border:1px dashed #c29f8b;width:100%;">
+		
 			<div class="tag-select-area">
 			
 						${tagMaster.map(tag=>{
