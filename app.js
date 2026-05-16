@@ -2599,7 +2599,7 @@ function renderSeriesCharacterSuggest(){
 
 
 document.getElementById(
-  "series-edit-chars"
+  "series-edit-characters"
 ).innerHTML = `
         <div>
         ${filtered.map(c=>`
