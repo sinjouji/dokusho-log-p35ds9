@@ -2270,17 +2270,7 @@ function openSeriesEditModal(id){
   editingSeriesCharacterIds =
     [...(series.characterIds || [])];
     
-    const relatedBooks =
-  books.filter(b =>
-    editingSeriesBookIds.includes(b.id)
-  );
 
-  const relatedCharacters =
-  characters.filter(c =>{
-    return Array.isArray(series.characterIds)
-      && series.characterIds.includes(c.id);
-  });
-  
 
   modal.className = "modal-bg";
   modal.id = "edit-series-modal";
@@ -2295,53 +2285,26 @@ function openSeriesEditModal(id){
         class="addin"
         value="${series.name || ""}"
       >
+      
+      
+      <input
+  id="series-book-search"
+  type="text"
+  placeholder="本を追加"
+  oninput="renderSeriesBookSuggest()"
+>
+
+<div id="series-book-suggest"></div>
 
       <div id="series-book-list">
         本関連
-        <div>
-          ${relatedBooks.map(b=>`
-            <div class="related-chip">
-              ${b.title}
-              
-              <button
-      class="mini-delete-btn"
-      onclick="
-        removeBookFromSeries(
-          '${b.id}'
-        )
-      "
-    >
-      ✕
-    </button>
-            </div>
-          `).join("")}
-        </div>
+        <div id="series-edit-books"></div>
+
       </div>
 
       <div id="series-char-list">
         人物関連
-        <div>
-        ${relatedCharacters.map(c=>`
-
-  <div class="related-chip">
-
-    ${c.name}
-
-    <button
-      class="mini-delete-btn"
-      onclick="
-        removeCharacterFromSeries(
-          '${c.id}'
-        )
-      "
-    >
-      ✕
-    </button>
-
-  </div>
-
-`).join("")}        
-        </div>
+        <div id="series-edit-chars"></div>
       </div>
 
 
@@ -2454,6 +2417,180 @@ function toggleEditRelateBooks(id){
     : "none";
 }
 
+
+
+//==============================
+//関連本の一覧描画
+//==============================
+function renderSeriesEditBooks(){
+
+
+    const relatedBooks =
+  books.filter(b =>
+    editingSeriesBookIds.includes(b.id)
+  );
+
+
+document.getElementById(
+  "series-edit-books"
+).innerHTML = `
+        <div>
+          ${relatedBooks.map(b=>`
+            <div class="related-chip">
+              ${b.title}
+              
+              <button
+      class="mini-delete-btn"
+      onclick="
+        removeBookFromSeries(
+          '${b.id}'
+        )
+      "
+    >
+      ✕
+    </button>
+            </div>
+          `).join("")}
+        </div>
+  `;
+
+
+}
+
+
+
+//==============================
+//関連本の検索
+//==============================
+function renderSeriesBookSuggest(){
+
+  const keyword =
+    document.getElementById(
+      "series-book-search"
+    ).value.toLowerCase();
+
+const filtered = books.filter(b=>{
+
+  const match =
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  const notAdded =
+    !editingSeriesBookIds.includes(b.id);
+
+  return match && notAdded;
+
+});
+
+}
+
+
+//==============================
+//関連本の追加処理
+//==============================
+function addBookToSeries(id){
+
+  if(
+    !editingSeriesBookIds.includes(id)
+  ){
+    editingSeriesBookIds.push(id);
+  }
+
+  renderSeriesEditBooks();
+
+}
+
+
+//==============================
+//関連キャラの一覧描画
+//==============================
+function renderSeriesEditCharacters(){
+
+
+  const relatedCharacters =
+  characters.filter(c =>{
+    return Array.isArray(series.characterIds)
+      && series.characterIds.includes(c.id);
+  });
+
+
+document.getElementById(
+  "series-edit-chars"
+).innerHTML = `
+        <div>
+        ${relatedCharacters.map(c=>`
+
+  <div class="related-chip">
+
+    ${c.name}
+
+    <button
+      class="mini-delete-btn"
+      onclick="
+        removeCharacterFromSeries(
+          '${c.id}'
+        )
+      "
+    >
+      ✕
+    </button>
+
+  </div>
+
+`).join("")}        
+        </div>
+  `;
+
+
+}
+
+
+
+
+//==============================
+//関連キャラの検索
+//==============================
+function renderSeriesCharacterSuggest(){
+
+  const keyword =
+    document.getElementById(
+      "series-char-search"
+    ).value.toLowerCase();
+
+const filtered = characters.filter(b=>{
+
+  const match =
+    (c.name || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  const notAdded =
+    !editingSeriesCharacterIds.includes(c.id);
+
+  return match && notAdded;
+
+});
+
+}
+
+
+
+
+//==============================
+//関連キャラの追加処理
+//==============================
+function addCharacterToSeries(id){
+
+  if(
+    !editingSeriesCharacterIds.includes(id)
+  ){
+    editingSeriesCharacterIds.push(id);
+  }
+
+  renderSeriesEditCharacters();
+
+}
 
 
 //==============================
