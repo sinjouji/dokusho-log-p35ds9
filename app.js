@@ -2311,6 +2311,8 @@ function openSeriesEditModal(id){
           toggleSeriesEditSection('series-edit-books')
         "
       >
+      ▼ 関連作品
+      </div>
      <div
   id="series-edit-books"
   style="
@@ -2319,7 +2321,7 @@ function openSeriesEditModal(id){
         ? "block"
         : "none"};
   "
->
+></div>
 
       <div
         class="toggle-head"
