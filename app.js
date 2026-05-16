@@ -2582,12 +2582,7 @@ function renderSeriesEditCharacters(){
 //==============================
 function renderSeriesCharacterSuggest(){
 
-  const keyword =
-    document.getElementById(
-      "series-related-search"
-    ).value.toLowerCase();
-
-const filtered = characters.filter(b=>{
+  const filtered = characters.filter(c=>{
 
   const match =
     (c.name || "")
