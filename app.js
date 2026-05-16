@@ -2287,12 +2287,15 @@ function openSeriesEditModal(id){
       >
       
       
-      <input
-  id="series-book-search"
-  type="text"
-  placeholder="本を追加"
-  oninput="renderSeriesBookSuggest()"
->
+      <input class="addin"
+        id="series-related-search"
+        type="text"
+        placeholder="本を追加"
+        oninput="
+          renderSeriesBookSuggest();
+          renderSeriesCharacterSuggest();
+        "
+      >
 
 <div id="series-book-suggest"></div>
 
@@ -2301,7 +2304,7 @@ function openSeriesEditModal(id){
         <div id="series-edit-books"></div>
 
       </div>
-
+      
       <div id="series-char-list">
         人物関連
         <div id="series-edit-chars"></div>
@@ -2435,22 +2438,18 @@ document.getElementById(
   "series-edit-books"
 ).innerHTML = `
         <div>
-          ${relatedBooks.map(b=>`
-            <div class="related-chip">
-              ${b.title}
-              
-              <button
-      class="mini-delete-btn"
-      onclick="
-        removeBookFromSeries(
-          '${b.id}'
-        )
-      "
-    >
-      ✕
-    </button>
-            </div>
-          `).join("")}
+          ${filtered.map(b=>`
+
+  <div
+    class="search-item"
+    onclick="
+      addBookToSeries('${b.id}')
+    "
+  >
+    📘 ${b.title}
+  </div>
+
+`).join("")}
         </div>
   `;
 
@@ -2466,7 +2465,7 @@ function renderSeriesBookSuggest(){
 
   const keyword =
     document.getElementById(
-      "series-book-search"
+      "series-related-search"
     ).value.toLowerCase();
 
 const filtered = books.filter(b=>{
@@ -2519,26 +2518,18 @@ document.getElementById(
   "series-edit-chars"
 ).innerHTML = `
         <div>
-        ${relatedCharacters.map(c=>`
+        ${filtered.map(c=>`
 
-  <div class="related-chip">
-
-    ${c.name}
-
-    <button
-      class="mini-delete-btn"
-      onclick="
-        removeCharacterFromSeries(
-          '${c.id}'
-        )
-      "
-    >
-      ✕
-    </button>
-
+  <div
+    class="search-item"
+    onclick="
+      addCharacterToSeries('${c.id}')
+    "
+  >
+    👤 ${c.name}
   </div>
 
-`).join("")}        
+`).join("")}
         </div>
   `;
 
@@ -2555,7 +2546,7 @@ function renderSeriesCharacterSuggest(){
 
   const keyword =
     document.getElementById(
-      "series-char-search"
+      "series-related-search"
     ).value.toLowerCase();
 
 const filtered = characters.filter(b=>{
