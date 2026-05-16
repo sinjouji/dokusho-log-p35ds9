@@ -2296,21 +2296,17 @@ function openSeriesEditModal(id){
           renderSeriesCharacterSuggest();
         "
       >
+      <div id="series-character-suggest"></div>
       <div id="series-book-suggest"></div>
-
-<div id="series-character-suggest"></div>
-
-<div id="series-book-suggest"></div>
 
       <div id="series-book-list">
         本関連
         <div id="series-edit-books"></div>
-
       </div>
       
       <div id="series-char-list">
         人物関連
-        <div id="series-edit-chars"></div>
+        <div id="series-edit-characters"></div>
       </div>
 
 
@@ -2430,35 +2426,43 @@ function toggleEditRelateBooks(id){
 //==============================
 function renderSeriesEditBooks(){
 
+  const relatedBooks =
+    books.filter(b =>
 
-    const relatedBooks =
-  books.filter(b =>
-    editingSeriesBookIds.includes(b.id)
-  );
+      editingSeriesBookIds.includes(b.id)
 
+    );
 
-document.getElementById(
-  "series-edit-books"
-).innerHTML = `
-        <div>
-          ${filtered.map(b=>`
+  document.getElementById(
+    "series-edit-books"
+  ).innerHTML = `
 
-  <div
-    class="search-item"
-    onclick="
-      addBookToSeries('${b.id}')
-    "
-  >
-    📘 ${b.title}
-  </div>
+    <div>
 
-`).join("")}
+      ${relatedBooks.map(b=>`
+
+        <div class="related-chip">
+
+          ${b.title}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeBookFromSeries(
+                '${b.id}'
+              )
+            "
+          >
+            ✕
+          </button>
+
         </div>
+
+      `).join("")}
+
+    </div>
   `;
-
-
 }
-
 
 
 //==============================
@@ -2471,19 +2475,36 @@ function renderSeriesBookSuggest(){
       "series-related-search"
     ).value.toLowerCase();
 
-const filtered = books.filter(b=>{
+  const filtered = books.filter(b=>{
 
-  const match =
-    (b.title || "")
-      .toLowerCase()
-      .includes(keyword);
+    const match =
+      (b.title || "")
+        .toLowerCase()
+        .includes(keyword);
 
-  const notAdded =
-    !editingSeriesBookIds.includes(b.id);
+    const notAdded =
+      !editingSeriesBookIds.includes(b.id);
 
-  return match && notAdded;
+    return match && notAdded;
 
-});
+  });
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML =
+
+    filtered.map(b=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addBookToSeries('${b.id}')
+        "
+      >
+        📘 ${b.title}
+      </div>
+
+    `).join("");
 
 }
 
@@ -2509,36 +2530,43 @@ function addBookToSeries(id){
 //==============================
 function renderSeriesEditCharacters(){
 
-
   const relatedCharacters =
-  characters.filter(c =>{
-    return Array.isArray(series.characterIds)
-      && series.characterIds.includes(c.id);
-  });
+    characters.filter(c =>
 
+      editingSeriesCharacterIds.includes(c.id)
 
-document.getElementById(
-  "series-edit-chars"
-).innerHTML = `
-        <div>
-        ${filtered.map(c=>`
+    );
 
-  <div
-    class="search-item"
-    onclick="
-      addCharacterToSeries('${c.id}')
-    "
-  >
-    👤 ${c.name}
-  </div>
+  document.getElementById(
+    "series-edit-characters"
+  ).innerHTML = `
 
-`).join("")}
+    <div>
+
+      ${relatedCharacters.map(c=>`
+
+        <div class="related-chip">
+
+          ${c.name}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeCharacterFromSeries(
+                '${c.id}'
+              )
+            "
+          >
+            ✕
+          </button>
+
         </div>
+
+      `).join("")}
+
+    </div>
   `;
-
-
 }
-
 
 
 
@@ -2565,6 +2593,29 @@ const filtered = characters.filter(b=>{
   return match && notAdded;
 
 });
+
+
+
+document.getElementById(
+  "series-edit-chars"
+).innerHTML = `
+        <div>
+        ${filtered.map(c=>`
+
+  <div
+    class="search-item"
+    onclick="
+      addCharacterToSeries('${c.id}')
+    "
+  >
+    👤 ${c.name}
+  </div>
+
+`).join("")}
+        </div>
+  `;
+
+
 
 }
 
