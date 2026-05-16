@@ -2308,7 +2308,7 @@ function openSeriesEditModal(id){
       <div
         class="toggle-head"
         onclick="
-          toggleSeriesEditSection('series-books')
+          toggleSeriesEditSection('series-edit-books')
         "
       >
        ▼ 本関連
@@ -2317,7 +2317,7 @@ function openSeriesEditModal(id){
         id="series-edit-books"
         style="
           display:
-            ${seriesSections["series-books"]
+            ${seriesSections["series-edit-books"]
               ? "block"
               : "none"};
          "
@@ -2327,7 +2327,7 @@ function openSeriesEditModal(id){
       <div
         class="toggle-head"
         onclick="
-          toggleSeriesEditSection('series-characters')
+          toggleSeriesEditSection('series-edit-characters')
         "
       >
        ▼ 人物関連
@@ -2336,7 +2336,7 @@ function openSeriesEditModal(id){
           id="series-edit-characters"
           style="
             display:
-              ${seriesSections["series-characters"]
+              ${seriesSections["series-edit-characters"]
                 ? "block"
                 : "none"};
            "
