@@ -2313,34 +2313,16 @@ function openSeriesEditModal(id){
       >
       ▼ 関連作品
       </div>
-     <div
-  id="series-edit-books"
-  style="
-    display:
-      ${seriesEditSections["series-edit-books"]
-        ? "block"
-        : "none"};
-  "
-></div>
+     <div id="series-edit-books" class="toggle-content"></div>
 
-      <div
-        class="toggle-head"
+      <div class="toggle-head"
         onclick="
           toggleSeriesEditSection('series-edit-characters')
         "
       >
        ▼ 人物関連
       </div>
-        <div
-          id="series-edit-characters"
-          style="
-            display:
-              ${seriesEditSections["series-edit-characters"]
-                ? "block"
-                : "none"};
-           "
-         ></div>
-
+        <div id="series-edit-characters" class="toggle-content"></div>
 
 
     <div class="end-btn">
@@ -2370,15 +2352,18 @@ function openSeriesEditModal(id){
 //==============================
 //編集モーダル内開閉トグル
 //==============================
-function toggleSeriesEditSection(key){
+function toggleSeriesEditSection(id){
 
-  seriesEditSections[key] =
-    !seriesEditSections[key];
+  document.getElementById(id)?.classList.toggle("open");
 
-  renderSeriesEditBooks();
+//  const el =
+//    document.getElementById(id);
 
-  renderSeriesEditCharacters();
+//  if(!el) return;
+  
+//  const isHidden = getComlutedStyle(el).display === "none";
 
+//  el.style.display = isHidden ? "block" : "none";
 }
 
 //==============================
