@@ -2296,6 +2296,9 @@ function openSeriesEditModal(id){
           renderSeriesCharacterSuggest();
         "
       >
+      <div id="series-book-suggest"></div>
+
+<div id="series-character-suggest"></div>
 
 <div id="series-book-suggest"></div>
 
