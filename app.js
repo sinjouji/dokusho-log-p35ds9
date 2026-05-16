@@ -2143,7 +2143,7 @@ function renderSeriesSearchArea(){
 		<input
 			id="series-search"
 			placeholder="シリーズ検索..."
-			value="${seriesSearchKeyword}"
+			value="${seriesMaster.map}"
 			oninput="handleSeriesSearchInput()"
 		>
 		
@@ -2830,20 +2830,6 @@ function openCharacterModal(c){
 		<div class="modal-box detail-modal">
 			<input id="character-name" class="character-name"
 			value="${c.name || ""}">
-	
-			<div style="font-size:10px">
-				シリーズ : 
-				${relatedSeries.map(s => `
-					<button class="detail-series"
-						onclick="
-							closeModal('open-chars-modal');
-							openSeriesById('${s.id}');
-						"
-					>
-						${s.name}
-					</button>
-				`).join(", ")}
-			</div>
 						
 			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
