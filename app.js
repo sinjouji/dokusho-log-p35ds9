@@ -2296,15 +2296,13 @@ function openSeriesEditModal(id){
           renderSeriesCharacterSuggest();
         "
       >
-      <div
-  id="series-book-suggest"
-  class="suggest-box"
-></div>
+<div class="suggest-box">
 
-<div
-  id="series-character-suggest"
-  class="suggest-box"
-></div>
+  <div id="series-book-suggest"></div>
+
+  <div id="series-character-suggest"></div>
+
+</div>
 
       <div id="series-book-list">
         本関連
@@ -2497,10 +2495,16 @@ function renderSeriesBookSuggest(){
   });
 
   document.getElementById(
-    "series-book-suggest"
-  ).innerHTML =
+  "series-book-suggest"
+).innerHTML =
 
-    filtered.map(b=>`
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      📘 本
+    </div>
+
+    ${filtered.map(b=>`
 
       <div
         class="search-item"
@@ -2508,10 +2512,12 @@ function renderSeriesBookSuggest(){
           addBookToSeries('${b.id}')
         "
       >
-        📘 ${b.title}
+        ${b.title}
       </div>
 
-    `).join("");
+    `).join("")}
+  `
+  : "";
 
 }
 
@@ -2605,23 +2611,29 @@ function renderSeriesCharacterSuggest(){
 
 
 document.getElementById(
-  "series-edit-characters"
-).innerHTML = `
-        <div>
-        ${filtered.map(c=>`
+  "series-character-suggest"
+).innerHTML =
 
-  <div
-    class="search-item"
-    onclick="
-      addCharacterToSeries('${c.id}')
-    "
-  >
-    👤 ${c.name}
-  </div>
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      👤 人物
+    </div>
 
-`).join("")}
-        </div>
-  `;
+    ${filtered.map(c=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addCharacterToSeries('${c.id}')
+        "
+      >
+        ${c.name}
+      </div>
+
+    `).join("")}
+  `
+  : "";
 
 
 
