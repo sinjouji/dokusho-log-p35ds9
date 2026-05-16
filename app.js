@@ -1228,8 +1228,8 @@ function openBookDetailModal(book){
 			</div>
       
     <div style="font-size:10px">
-      シリーズ : 
       ${relatedSeries.map(s=>`
+        シリーズ : 
         <button class="detail-series"
 				  onclick="
 				    closeModal('open-book-modal');
@@ -1238,7 +1238,7 @@ function openBookDetailModal(book){
 				>
  				 ${s.name}
 				</button>
-      `).join(", ") || "なし"}
+      `).join(", ") || ""}
     </div>
 
       ${enableMemo ? `
