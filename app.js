@@ -1931,7 +1931,7 @@ console.log(
     <div class="seriesp-head">
     <button onclick="go('series')">戻る</button>
     <span class="satu">登録 : ${relatedBooks.length}冊</span>
-    <button onclick="openSeriesEditModal('s.id')">❕編集</span>
+    <button onclick="openSeriesEditModal('${s.id}')">❕編集</span>
     </div>
    
     <h3 class="stitle">${s.name}</h3>
