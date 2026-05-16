@@ -2378,6 +2378,8 @@ function removeBookFromSeries(id){
       bId => String(bId) !== String(id)
     );
 
+  renderSeriesEditBooks();
+
 }
 
 
@@ -2392,7 +2394,44 @@ function removeCharacterFromSeries(id){
       cId => String(cId) !== String(id)
     );
 
+  renderSeriesEditCharacters();
+
 }
+
+
+
+//==============================
+//シリーズ編集モーダル保存処理
+//==============================
+async function saveSeriesEdit(id){
+
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
+
+  if(!series) return;
+
+  series.name =
+    document.getElementById(
+      "edit-series-title"
+    ).value;
+
+  series.bookIds =
+    [...editingSeriesBookIds];
+
+  series.characterIds =
+    [...editingSeriesCharacterIds];
+
+  await saveData();
+
+  closeModal("series-edit-modal");
+
+  renderSeries();
+
+  showToast("保存しました！");
+}
+
 
 
 //==============================
