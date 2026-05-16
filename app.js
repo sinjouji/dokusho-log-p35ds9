@@ -2277,8 +2277,8 @@ function openSeriesEditModal(id){
 
   const relatedCharacters =
   characters.filter(c =>{
-    return Array.isArray(s.characterIds)
-      && s.characterIds.includes(c.id);
+    return Array.isArray(series.characterIds)
+      && series.characterIds.includes(c.id);
   });
   
 
