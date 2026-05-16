@@ -1146,8 +1146,8 @@ function openBookDetailModal(book){
     </div>
       
       <div class="detail-date-add">
-      <input type="date" class="indate" id="readDate-${book.id}">
-      <button onclick="addReadDate('${book.id}')">
+      <input type="date" id="readDate-${book.id}">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
         ➕読了日追加
       </button>
       </div>
