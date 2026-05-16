@@ -2262,11 +2262,6 @@ function openSeriesEditModal(id){
       s => String(s.id) === String(id)
     );
     
-  const relatedCharacters =
-  characters.filter(c =>
-    editingSeriesCharacterIds.includes(c.id)
-  );
-  
   if(!series) return;
 
   editingSeriesBookIds =
@@ -2280,6 +2275,11 @@ function openSeriesEditModal(id){
     editingSeriesBookIds.includes(b.id)
   );
 
+  const relatedCharacters =
+  characters.filter(c =>
+    editingSeriesCharacterIds.includes(c.id)
+  );
+  
 
   modal.className = "modal-bg";
   modal.id = "edit-series-modal";
