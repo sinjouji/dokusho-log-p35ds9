@@ -2186,19 +2186,17 @@ function handleSeriesSearchInput(){
 //==============================
 //====シリーズ詳細ページトグル開閉設定
 //==============================
-function toggleSeriesSection(key){
-console.log(seriesSections);
-  seriesSections[key] =
-    !seriesSections[key];
-    
-  const series =
-    seriesMaster.find(
-      s => s.id === currentSeriesId
-    );
-  
-  if(series){
-    renderSeriesDetail(series);
-  }
+function toggleSeriesSection(id){
+
+  const el =
+    document.getElementById(id);
+
+  if(!el) return;
+
+  el.style.display =
+    el.style.display === "none"
+      ? "block"
+      : "none";
 }
 
 
