@@ -2186,7 +2186,7 @@ function handleSeriesSearchInput(){
 //==============================
 //====シリーズ詳細ページトグル開閉設定
 //==============================
-function toggleSeriesSection(id){
+function toggleSeriesSection(key){
 console.log(seriesSections);
   seriesSections[key] =
     !seriesSections[key];
@@ -2199,17 +2199,6 @@ console.log(seriesSections);
   if(series){
     renderSeriesDetail(series);
   }
-
-  const el =
-    document.getElementById(id);
-
-  if(!el) return;
-
-  el.style.display =
-    el.style.display === "none"
-      ? "block"
-      : "none";
- 
   
 }
 
@@ -2319,7 +2308,7 @@ function openSeriesEditModal(id){
       <div
         class="toggle-head"
         onclick="
-          toggleSeriesSection('series-books')
+          toggleSeriesEditSection('series-books')
         "
       >
        ▼ 本関連
@@ -2338,7 +2327,7 @@ function openSeriesEditModal(id){
       <div
         class="toggle-head"
         onclick="
-          toggleSeriesSection('series-characters')
+          toggleSeriesEditSection('series-characters')
         "
       >
        ▼ 人物関連
@@ -2377,6 +2366,23 @@ function openSeriesEditModal(id){
 }
 
 
+
+
+//==============================
+//編集モーダル内開閉トグル
+//==============================
+function toggleSeriesEditSection(id){
+
+  const el =
+    document.getElementById(id);
+
+  if(!el) return;
+
+  el.style.display =
+    el.style.display === "none"
+      ? "block"
+      : "none";
+}
 
 //==============================
 //編集内：関連削除（本）
