@@ -1086,7 +1086,7 @@ function openBookDetailModal(book){
 	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
-    <div class="detail-row">
+    <div class="title-line">
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
     
