@@ -1246,14 +1246,16 @@ function openBookDetailModal(book){
       ` : ""}
 
 		<div class="end-btn">
-      <button onclick="saveDetail('${book.id}')">
-        ✏️ 保存
-      </button>
       
       <button class="danger-btn"
         onclick="deleteBook('${book.id}')">
         🗑 削除
       </button>
+      
+      <button onclick="saveDetail('${book.id}')">
+        ✏️ 保存
+      </button>
+      
     </div>
       
     </div>
