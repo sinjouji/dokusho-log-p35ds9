@@ -2311,16 +2311,15 @@ function openSeriesEditModal(id){
           toggleSeriesEditSection('series-edit-books')
         "
       >
-      ${series-edit-books
-        ? "▶︎"
-        : "▽"}
-        本関連</div>
-      ${series-edit-books
-        ?`
-      <div id="series-edit-books"></div>
-      `
-      : ""}
-       </div>
+     <div
+  id="series-edit-books"
+  style="
+    display:
+      ${seriesEditSections["series-edit-books"]
+        ? "block"
+        : "none"};
+  "
+>
 
       <div
         class="toggle-head"
@@ -2334,7 +2333,7 @@ function openSeriesEditModal(id){
           id="series-edit-characters"
           style="
             display:
-              ${series-edit-characters
+              ${seriesEditSections["series-edit-characters"]
                 ? "block"
                 : "none"};
            "
@@ -2369,17 +2368,15 @@ function openSeriesEditModal(id){
 //==============================
 //編集モーダル内開閉トグル
 //==============================
-function toggleSeriesEditSection(id){
+function toggleSeriesEditSection(key){
 
-  const el =
-    document.getElementById(id);
+  seriesEditSections[key] =
+    !seriesEditSections[key];
 
-  if(!el) return;
+  renderSeriesEditBooks();
 
-  el.style.display =
-    el.style.display === "none"
-      ? "block"
-      : "none";
+  renderSeriesEditCharacters();
+
 }
 
 //==============================
