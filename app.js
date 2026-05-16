@@ -2847,6 +2847,21 @@ function openCharacterModal(c){
 						
 			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
+		      
+    <div style="font-size:10px">
+      ${relatedSeries.map(s=>`
+        シリーズ : 
+        <button class="detail-series"
+				  onclick="
+				    closeModal('open-book-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</button>
+      `).join(", ") || ""}
+    </div>
+		
 			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
 			<button style="margin-bottom:10px;">🗑️ 削除</button>
 			<button onclick="closeModal('open-chars-modal')">✖️</button>
