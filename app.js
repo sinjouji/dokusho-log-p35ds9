@@ -2304,8 +2304,10 @@ function openSeriesEditModal(id){
   <div id="series-character-suggest"></div>
 
 </div>
-<div id="series-edit-books"></div>
-<div id="series-edit-characters"></div>
+<div id="series-book-list">
+<div id="series-edit-books"></div></div>
+<div id="series-char-list">
+<div id="series-edit-characters"></div></div>
 
       <div
         class="toggle-head"
