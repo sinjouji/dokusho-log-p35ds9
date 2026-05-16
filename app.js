@@ -1321,7 +1321,6 @@ function toggleDateHistory(bookId){
     ? "grid"
     : "none";
 }
-``
 
 //==============================
 //====評価ボタン1つで切替え
@@ -2262,7 +2261,12 @@ function openSeriesEditModal(id){
     seriesMaster.find(
       s => String(s.id) === String(id)
     );
-
+  
+  const relatedBooks =
+  books.filter(b =>
+    editingSeriesBookIds.includes(b.id)
+  );
+  
   if(!series) return;
 
   editingSeriesBookIds =
@@ -2285,14 +2289,24 @@ function openSeriesEditModal(id){
         value="${series.name || ""}"
       >
 
-      <div id="series-book-list">
+      <div id="series-book-list"
+        onclick="toggleEditRelateBooks('${s.id}')">
         本関連
+        <div>
+          ${relatedBooks.map(b=>`
+            <div class="related-chip">
+              ${b.title}
+            </div>
+          `).join("")}
+        </div>
       </div>
 
       <div id="series-char-list">
         人物関連
       </div>
 
+
+    <div class="end-btn">
       <button
         onclick="saveSeriesEdit('${series.id}')"
       >
@@ -2304,6 +2318,7 @@ function openSeriesEditModal(id){
       >
         ✖️
       </button>
+     </div>
 
     </div>
   `;
@@ -2311,6 +2326,29 @@ function openSeriesEditModal(id){
   document.body.appendChild(modal);
 
 }
+
+
+
+
+//==============================
+//編集モーダル内トグル（本用）
+//==============================
+function toggleEditRelateBooks(id){
+
+  const el =
+    document.getElementById(
+      `edit-relate-books-${seriesId}`
+    );
+
+  if(!el) return;
+
+  el.style.display =
+    el.style.display === "none"
+    ? "grid"
+    : "none";
+}
+
+
 
 //==============================
 //====ソートモード切替え（シリーズ）
