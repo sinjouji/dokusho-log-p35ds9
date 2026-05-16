@@ -2187,6 +2187,18 @@ function handleSeriesSearchInput(){
 //====シリーズ詳細ページトグル開閉設定
 //==============================
 function toggleSeriesSection(id){
+console.log(seriesSections);
+  seriesSections[key] =
+    !seriesSections[key];
+    
+  const series =
+    seriesMaster.find(
+      s => s.id === currentSeriesId
+    );
+  
+  if(series){
+    renderSeriesDetail(series);
+  }
 
   const el =
     document.getElementById(id);
@@ -2197,6 +2209,8 @@ function toggleSeriesSection(id){
     el.style.display === "none"
       ? "block"
       : "none";
+ 
+  
 }
 
 
