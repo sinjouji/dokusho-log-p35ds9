@@ -1920,9 +1920,13 @@ console.log(
   });
   	
  	 //シリーズ→人物
-  const relatedCharacters = characters.filter(c=>{
-  return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-  });
+  const relatedCharacters =
+  characters.filter(c =>
+
+    Array.isArray(s.characterIds)
+    && s.characterIds.includes(c.id)
+
+  );
   
 
 //シリーズ関連：本HTML表示
