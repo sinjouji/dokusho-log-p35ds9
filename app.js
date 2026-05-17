@@ -758,18 +758,15 @@ function renderSearchArea(){
 
   </select>
 
-      <button class="tag-chip toggle-content" onclick="togglesSection('tag-filter')">
+      <button class="tag-chip" onclick="togglesSection('tag-filter')">
   
-      ${showTagFilter
+      ${toggle-content
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
       }
       </button>
     </div>
-       ${showTagFilter
-     ? `<div id="tag-filter"></div>`
-     : ""
-   }
+<div class="toggle-content" id="tag-filter"></div>
 
     <div id="suggest"></div>
   `;
