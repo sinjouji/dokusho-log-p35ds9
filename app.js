@@ -1200,7 +1200,7 @@ function openBookDetailModal(book){
       
       
 
-     <div class="detail-row" style="display:flex;
+     <div class="detail-row" style="display:flex;justify-content:space-between;
   align-items:center;">
   読了日：
 
@@ -1229,7 +1229,7 @@ function openBookDetailModal(book){
       
       
       <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}">
+      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:80%;">
       <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
         ➕読了日
       </button>
