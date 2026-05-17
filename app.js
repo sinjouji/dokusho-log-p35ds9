@@ -834,9 +834,9 @@ function openAddBookModal(){
       <div id="title-suggest"></div>
       
       <div class="title-line">
-        <div class="field-label" style="padding:0;">読了日</div>
+        <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
 
-        <input type="date" id="add-date">
+        <input type="date" id="add-date" style="padding:1px 2px;">
         
 	  			<button
 				  type="button"
