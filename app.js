@@ -853,8 +853,8 @@ function openAddBookModal(){
       <hr class="kugiri">
 
       ${enableMemo ? `
-      <textarea id="add-memo"
-        placeholder="メモ"></textarea>` : ""}
+      <input type="text" id="add-memo"
+        placeholder="メモ">` : ""}
 
 
       <div class="end-btn">
@@ -1242,6 +1242,10 @@ function openBookDetailModal(book){
 }).join("")}
 			</div>
       
+      ${enableMemo ? `
+      メモ：<input style="border:1px solid #c29b8f;font-size;11px;color:#999;" type="text" id="editMemo" value="${book.memo || ""}
+      ` : ""}">
+
     <div style="font-size:10px">
       ${relatedSeries.map(s=>`
         シリーズ : 
@@ -1256,9 +1260,6 @@ function openBookDetailModal(book){
       `).join(", ") || ""}
     </div>
 
-      ${enableMemo ? `
-      <input type="text" id="editMemo" value="${book.memo || ""}
-      ` : ""}">
 
 		<div class="end-btn">
       
