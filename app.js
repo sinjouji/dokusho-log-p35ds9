@@ -2542,15 +2542,6 @@ function renderSeriesBookSuggest(){
     document.getElementById(
       "series-related-search"
     ).value.toLowerCase();
-    
-    if(!keyword){
-
-  document.getElementById(
-    "series-book-suggest"
-  ).innerHTML = "";
-
-  return;
-}
 
   const filtered = books.filter(b=>{
 
@@ -2565,6 +2556,15 @@ function renderSeriesBookSuggest(){
     return match && notAdded;
 
   });
+  
+  if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
   document.getElementById(
   "series-book-suggest"
@@ -2665,15 +2665,6 @@ function renderSeriesCharacterSuggest(){
     document.getElementById(
       "series-related-search"
     ).value.toLowerCase();
-    
-    if(!keyword){
-
-  document.getElementById(
-    "series-book-suggest"
-  ).innerHTML = "";
-
-  return;
-}
 
   const filtered = characters.filter(c=>{
 
@@ -2689,7 +2680,14 @@ function renderSeriesCharacterSuggest(){
 
 });
 
+if(!keyword){
 
+  document.getElementById(
+    "series-character-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
 document.getElementById(
   "series-character-suggest"
@@ -2764,15 +2762,6 @@ function renderSeriesNewBookSuggest(){
     document.getElementById(
       "series-for-one"
     ).value.toLowerCase();
-    
-    if(!keyword){
-
-  document.getElementById(
-    "series-book-suggest"
-  ).innerHTML = "";
-
-  return;
-}
 
   const filtered = books.filter(b=>{
 
@@ -2787,6 +2776,15 @@ function renderSeriesNewBookSuggest(){
     return match && notAdded;
 
   });
+  
+  if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
   document.getElementById(
   "series-book-suggest"
@@ -2826,15 +2824,6 @@ function renderSeriesNewCharacterSuggest(){
     document.getElementById(
       "series-for-one"
     ).value.toLowerCase();
-    
-    if(!keyword){
-
-  document.getElementById(
-    "series-book-suggest"
-  ).innerHTML = "";
-
-  return;
-}
 
   const filtered = characters.filter(c=>{
 
@@ -2850,6 +2839,14 @@ function renderSeriesNewCharacterSuggest(){
 
 });
 
+if(!keyword){
+
+  document.getElementById(
+    "series-character-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
 
 document.getElementById(
