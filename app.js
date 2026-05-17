@@ -183,6 +183,9 @@ let homeSections = {
   tags: false
 };
 
+let addBookTagSections = { tags: false };
+let addBookSeriesSections = { series: false };
+
 
 
 //==============================
@@ -509,6 +512,12 @@ function togglesSection(id, btn){
       
   homeSections.tags =
     !homeSections.tags;
+    
+  addBookTagSections.tags =
+    !addBookTagSections.tags;
+  
+  addBookSeriesSections.series =
+    !addBookSeriesSections.series;
 }
 
 
@@ -852,7 +861,11 @@ function openAddBookModal(){
       data-open="🏷️タグ非表示"
       data-close="🏷️タグを表示する"
       onclick="togglesSection(this)">🏷️タグ表示</div>
-      	<div class="toggle-content">
+      	<div class="
+      	toggle-content
+      ${addBookTagSections.tags ? "open" : ""}
+    	  "
+    	>
 			
 				${tagMaster.map(tag=>{
 
