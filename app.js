@@ -852,7 +852,7 @@ function openAddBookModal(){
       
       <hr class="kugiri">
     
-      <div
+      <div style="font-size:11px"
       class="toggle-head"
       data-open="▽タグ非表示"
       data-close="▶︎タグ表示"
@@ -1263,7 +1263,20 @@ function openBookDetailModal(book){
       
       <hr class="kugiri">
 		
-			<div class="tag-select-area">
+			<div style="font-size:11px"
+      class="toggle-head"
+      data-open="▽タグ非表示"
+      data-close="▶︎タグ表示"
+      onclick="
+        togglesSection(
+        'open-book-tags',
+        this
+      )
+    "
+  >
+  ▶︎タグ表示</div>
+  <div class="toggle-content"
+    id="open-book-tags">
 			
 						${tagMaster.map(tag=>{
 
@@ -1288,6 +1301,7 @@ function openBookDetailModal(book){
     >
       ${tag.name}
     </span>
+    </div>
   `;
 
 }).join("")}
