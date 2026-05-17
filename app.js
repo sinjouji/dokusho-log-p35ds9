@@ -512,12 +512,7 @@ function togglesSection(id, btn){
       
   homeSections.tags =
     !homeSections.tags;
-    
-  addBookTagSections.tags =
-    !addBookTagSections.tags;
-  
-  addBookSeriesSections.series =
-    !addBookSeriesSections.series;
+
 }
 
 
@@ -856,16 +851,21 @@ function openAddBookModal(){
       </div>
       
       <hr class="kugiri">
-    <div
+    
+      <div
       class="toggle-head"
-      data-open="🏷️タグ非表示"
-      data-close="🏷️タグを表示する"
-      onclick="togglesSection(this)">🏷️タグ表示</div>
-      	<div class="
-      	toggle-content
-      ${addBookTagSections.tags ? "open" : ""}
-    	  "
-    	>
+      data-open="▽タグ非表示"
+      data-close="▶︎タグ表示"
+      onclick="
+        togglesSection(
+        'add-book-tags',
+        this
+      )
+    "
+  >
+  ▶︎タグ表示</div>
+      	<div class="toggle-content"
+      	  id="add-book-tags">
 			
 				${tagMaster.map(tag=>{
 
@@ -905,15 +905,11 @@ function openAddBookModal(){
 	}).join("")}
 			</div>
       
-      
       <hr class="kugiri">
-
       ${enableMemo ? `
       <input type="text" id="add-memo"
         placeholder="メモ">` : ""}
-
-
-      <div class="end-btn">
+          <div class="end-btn">
         <button onclick="saveNewBook()">
           ➕本棚
         </button>
