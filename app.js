@@ -803,6 +803,8 @@ function openAddBookModal(){
         
       </div>
       
+      <hr class="kugiri">
+      
       	<div class="tag-select-area">
 			
 				${tagMaster.map(tag=>{
@@ -843,6 +845,8 @@ function openAddBookModal(){
 	}).join("")}
 			</div>
       
+      
+      <hr class="kugiri">
 
       ${enableMemo ? `
       <textarea id="add-memo"
@@ -1200,7 +1204,7 @@ function openBookDetailModal(book){
 </div>
       
       
-      <hr style="border:1px dashed #c29f8b;width:100%;">
+      <hr class="kugiri">
 		
 			<div class="tag-select-area">
 			
@@ -3115,6 +3119,11 @@ function openAddCharacterModal(){
 				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
+			
+				<textarea id="add-chars-memo"
+				placeholder="メモ"></textarea>
+				
+				<hr class="kugiri">
 				
 			<div>関連シリーズを登録</div>
 			<div class="addin2">
@@ -3130,9 +3139,6 @@ function openAddCharacterModal(){
 				➕
 			</button>
 			</div>
-			
-				<textarea id="add-chars-memo"
-				placeholder="メモ"></textarea>
 			
 			<button onclick="saveNewCharacter()">➕追加</button>
 			
