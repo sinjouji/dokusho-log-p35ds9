@@ -2255,9 +2255,6 @@ function openAddSeriesModal(){
 					oninput="renderSeriesNewBookSuggest();
 						renderSeriesNewCharacterSuggest();">
 				
-				<button onclick="">
-					➕
-				</button>
 				</div>
 				
 				<div class="suggest-box">
@@ -2751,6 +2748,64 @@ function changeSeriesSortMode(){
 
 
 
+//==============================
+//新規用：関連本の描画
+//==============================
+function renderSeriesNewBooks(){
+
+  const relatedBooks =
+    books.filter(b =>
+
+      newSeriesBookIds.includes(b.id)
+
+    );
+
+  document.getElementById(
+    "series-new-books"
+  ).innerHTML = `
+
+    ${relatedBooks.map(b=>`
+
+      <div class="related-chip">
+
+        ${b.title}
+
+      </div>
+
+    `).join("")}
+
+  `;
+}
+
+
+//==============================
+//新規用：関連人物の描画
+//==============================
+function renderSeriesNewCharacters(){
+
+  const relatedCharacters =
+    characters.filter(b =>
+
+      newSeriesCharacterIds.includes(c.id)
+
+    );
+
+  document.getElementById(
+    "series-new-characters"
+  ).innerHTML = `
+
+    ${relatedCharacters.map(c=>`
+
+      <div class="related-chip">
+
+        ${c.name}
+
+      </div>
+
+    `).join("")}
+
+  `;
+}
 
 
 //==============================
