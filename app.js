@@ -2760,7 +2760,7 @@ function renderSeriesNewBooks(){
   const relatedBooks =
     books.filter(b =>
 
-      newSeriesBookIds.includes(b.id)
+      newSeriesBookIds.includes(String(b.id))
 
     );
 
@@ -2830,7 +2830,7 @@ function renderSeriesNewBookSuggest(){
         .includes(keyword);
 
     const notAdded =
-      !newSeriesBookIds.includes(b.id);
+      !newSeriesBookIds.includes(String(b.id));
 
     return match && notAdded;
 
@@ -2946,7 +2946,7 @@ function addBookToNewSeries(id){
   if(
     !newSeriesBookIds.includes(id)
   ){
-    newSeriesBookIds.push(id);
+    newSeriesBookIds.push(String(id));
   }
 
   renderSeriesNewBooks();
