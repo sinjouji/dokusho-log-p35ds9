@@ -1179,9 +1179,8 @@ function openBookDetailModal(book){
         "
       >
         ▼ 履歴を見る
-      </div>
+      </div></div>
       
-      <div class="detail-row">
       <div
         id="date-history-${book.id}"
         class="date-history-grid"
