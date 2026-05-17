@@ -479,6 +479,17 @@ function renderSuggestList({
 
 
 
+
+//==============================
+//開閉トグル（汎用）※('id')を変えるだけ！
+//==============================
+function togglesSection(id){
+
+  document.getElementById(id)?.classList.toggle("open");
+
+
+
+
 //==============================
 //ホーム（メイン本棚）
 //==============================
@@ -747,7 +758,8 @@ function renderSearchArea(){
 
   </select>
 
-      <button class="tag-chip" onclick="toggleTagFilter()">
+      <button class="tag-chip" onclick="togglesSection('tag-filter')">
+     // toggleTagFilter()
       ${showTagFilter
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
@@ -1279,6 +1291,10 @@ function openBookDetailModal(book){
 
   document.body.appendChild(modal);
 }
+
+
+
+
 
 //==============================
 //====読了日の取得
