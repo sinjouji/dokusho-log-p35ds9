@@ -2950,7 +2950,7 @@ function addBookToNewSeries(id){
   }
 
   renderSeriesNewBooks();
-  renderSeriesNewBooksSuggest();
+  renderSeriesNewBookSuggest();
 
 }
 
