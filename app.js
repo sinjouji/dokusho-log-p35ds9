@@ -850,6 +850,10 @@ function openAddBookModal(){
         
       </div>
       
+            ${enableMemo ? `
+      <input type="text" class="bememo" id="add-memo"
+        placeholder="メモ">` : ""}
+      
       <hr class="kugiri">
     
       <div style="font-size:11px"
@@ -906,9 +910,7 @@ function openAddBookModal(){
 			</div>
       
       <hr class="kugiri">
-      ${enableMemo ? `
-      <input type="text" id="add-memo"
-        placeholder="メモ">` : ""}
+
           <div class="end-btn">
         <button onclick="saveNewBook()">
           ➕本棚
