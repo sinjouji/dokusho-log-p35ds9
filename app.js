@@ -1892,7 +1892,7 @@ function renderSeriesBookList(){
 
   );
 	//ソート
-	const sorted = sortSeries(filtered);
+	const sorted = sortSeries(filteredSeries);
 			
 		sorted.forEach(s=>{
 		
