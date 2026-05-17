@@ -847,8 +847,12 @@ function openAddBookModal(){
       </div>
       
       <hr class="kugiri">
-      
-      	<div class="tag-select-area">
+    <div
+      class="toggle-head"
+      data-open="🏷️タグ非表示"
+      data-close="🏷️タグを表示する"
+      onclick="togglesSection(this)">🏷️タグ表示</div>
+      	<div class="toggle-content">
 			
 				${tagMaster.map(tag=>{
 
