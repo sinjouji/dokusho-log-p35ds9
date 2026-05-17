@@ -1165,6 +1165,14 @@ function openBookDetailModal(book){
             </button>
       </div>
       <span class="book-stat">${book.dates?.length || 0}回読了</span>
+             <div
+        class="toggle-history"
+        onclick="
+          toggleDateHistory('${book.id}')
+        "
+       >
+        ▼ 読了履歴
+       </div>
     </div>
       
       
@@ -1173,14 +1181,7 @@ function openBookDetailModal(book){
       <button onclick="addReadDate('${book.id}')" style="padding:2px 2px;margin-left:auto;">
         ➕読了日
       </button>
-       <div
-        class="toggle-history"
-        onclick="
-          toggleDateHistory('${book.id}')
-        "
-       >
-        ▼ 読了履歴
-       </div>
+
       </div>
       
  
