@@ -789,6 +789,7 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
+       </div>
 <div class="
   toggle-content
   ${homeSections.tags ? "open" : ""}
