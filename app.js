@@ -1179,7 +1179,7 @@ function openBookDetailModal(book){
           toggleDateHistory('${book.id}')
         "
        >
-        ▼ 履歴を見る
+        ▼ 読了履歴
        </div>
       </div>
       
