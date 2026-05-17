@@ -760,7 +760,7 @@ function renderSearchArea(){
 
       <button class="tag-chip" onclick="togglesSection('tag-filter')">
   
-      ${toggle-content
+      ${tag-filter
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
       }
