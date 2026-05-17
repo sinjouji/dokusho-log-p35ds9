@@ -1108,6 +1108,7 @@ function openBookDetailModal(book){
       </button>
     </div>
 
+
       <div class="detail-row" style="display:flex;
   justify-content:space-between;">
         状態 ＝ 
@@ -1144,6 +1145,8 @@ function openBookDetailModal(book){
   再読予定
 </label>
       </div>
+      
+      
 
      <div class="detail-row" style="display:flex;
   align-items:center;">
@@ -1167,12 +1170,8 @@ function openBookDetailModal(book){
       <div class="detail-date-add">
       <input type="date" id="readDate-${book.id}">
       <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
-        ➕読了日追加
+        ➕読了日
       </button>
-      </div>
-      
-      
-          <div class="detail-row">
       <div
         class="toggle-history"
         onclick="
@@ -3015,13 +3014,18 @@ async function saveNewSeries(){
 //==============================
 //====シリーズ用サジェスト
 //==============================
-function renderSeriesSuggest(){
+function renderSeriesSuggest({
+  inputId,
+  suggestId
+}){
 
   renderSuggestList({
 
-    inputId: "add-series",
+    inputId,
+    //: "add-series",
 
-    suggestId: "series-suggest",
+    suggestId,
+    //: "series-suggest",
 
     list:
       seriesMaster.map(s => s.name)
