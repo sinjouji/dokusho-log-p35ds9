@@ -487,7 +487,7 @@ function togglesSection(id){
 
   document.getElementById(id)?.classList.toggle("open");
 
-
+}
 
 
 //==============================
