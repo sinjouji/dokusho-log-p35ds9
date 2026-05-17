@@ -1813,15 +1813,6 @@ function renderSuggest(){
   // 検索候補
     //🔍 検索
   const keyword = searchKeyword;
-  
-  if(!keyword){
-
-  document.getElementById(
-    "series-book-suggest"
-  ).innerHTML = "";
-
-  return;
-}
  
   const suggestEl = document.getElementById("search-suggest");
 
