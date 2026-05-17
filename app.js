@@ -496,6 +496,8 @@ function togglesSection(id, btn){
   if(!el) return;
 
   el.classList.toggle("open");
+  
+  console.log(el.className);
 
   const opened =
     el.classList.contains("open");
@@ -1280,7 +1282,7 @@ function openBookDetailModal(book){
       
       <div class="detail-row">
       ${enableMemo ? `
-      <input class="bememo" type="text" id="editMemo" placeholder="メモ" value="${book.memo || ""}
+      <input class="bememo" type="text" id="editMemo" value="${book.memo || "メモ"}
       ` : ""}"></div>
 
     <div style="font-size:10px">
