@@ -1164,7 +1164,7 @@ function openBookDetailModal(book){
               ✕
             </button>
       </div>
-      <span class="book-stat">${book.dates?.length || 0}回読了</span>
+      <div class="book-stat">${book.dates?.length || 0}回読了</div>
              <div
         class="toggle-history"
         onclick="
@@ -1178,7 +1178,7 @@ function openBookDetailModal(book){
       
       <div class="detail-date-add">
       <input type="date" id="readDate-${book.id}">
-      <button onclick="addReadDate('${book.id}')" style="padding:2px 2px;margin-left:auto;">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
         ➕読了日
       </button>
 
@@ -1243,9 +1243,10 @@ function openBookDetailModal(book){
 }).join("")}
 			</div>
       
+      <div class="title-line">
       ${enableMemo ? `
       メモ：<input style="border:1px solid #c29b8f;font-size;11px;color:#999;" type="text" id="editMemo" value="${book.memo || ""}
-      ` : ""}">
+      ` : ""}"></div>
 
     <div style="font-size:10px">
       ${relatedSeries.map(s=>`
