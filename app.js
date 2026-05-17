@@ -1652,6 +1652,13 @@ async function deleteBook(id){
 
   const title = book.title;
 
+  const ok =
+    confirm(
+      '「${book.title}」を削除しますか？'
+    );
+  
+  if(!ok) return;
+
   books =
     books.filter(b=>b.id!=id);
 
