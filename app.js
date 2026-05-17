@@ -1243,7 +1243,7 @@ function openBookDetailModal(book){
       
       <div class="detail-row">
       ${enableMemo ? `
-      メモ：<input class="bememo" type="text" id="editMemo" value="${book.memo || ""}
+      <input class="bememo" type="text" id="editMemo" placeholder="メモ" value="${book.memo || ""}
       ` : ""}"></div>
 
     <div style="font-size:10px">
