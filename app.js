@@ -759,7 +759,7 @@ function renderSearchArea(){
   </select>
 
       <button class="tag-chip" onclick="togglesSection('tag-filter')">
-     // toggleTagFilter()
+  
       ${showTagFilter
         ? "🏷️タグ非表示"
         : "🏷️タグ表示"
@@ -777,7 +777,7 @@ function renderSearchArea(){
   renderSuggest();
 }
 
-
+   // toggleTagFilter()
 
 //==============================
 //⬛︎本の追加モーダル==========
