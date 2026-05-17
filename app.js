@@ -1881,14 +1881,16 @@ function renderSeriesBookList(){
 	main.innerHTML = "";
 	
 	//フィルタ
-	const filtered =
-		seriesMaster.filter(s =>
-		
-			(s.name || "")
-				.toLowerCase()
-				.includes(seriesSearchKeyword)
-				
-		);
+	const filteredSeries =
+  seriesMaster.filter(s =>
+
+    (s.name || "")
+      .toLowerCase()
+      .includes(
+        seriesSearchKeyword.toLowerCase()
+      )
+
+  );
 	//ソート
 	const sorted = sortSeries(filtered);
 			
@@ -2143,7 +2145,7 @@ function renderSeriesSearchArea(){
 		<input
 			id="series-search"
 			placeholder="シリーズ検索..."
-			value="${seriesMaster.map}"
+			value="${seriesSearchKeyword || ""}"
 			oninput="handleSeriesSearchInput()"
 		>
 		
@@ -2169,21 +2171,27 @@ function renderSeriesSearchArea(){
 //==============================
 function handleSeriesSearchInput(){
 
-	renderSuggestList({
-	
-		inputId:
-			"series-search",
-		
-		suggestId:
-			"series-suggest",
-		
-		list:
-			seriesMaster.map(
-				s => s.name
-			)
-	});
+  seriesSearchKeyword =
 
-  renderSeriesSuggest();
+    document.getElementById(
+      "series-search"
+    ).value;
+
+  renderSuggestList({
+
+    inputId:
+      "series-search",
+
+    suggestId:
+      "series-suggest",
+
+    list:
+      seriesMaster.map(
+        s => s.name
+      )
+
+  });
+
   renderSeriesBookList();
 }
 
