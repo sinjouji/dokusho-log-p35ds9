@@ -758,7 +758,7 @@ function renderSearchArea(){
 
   </select>
 
-      <button class="tag-chip" onclick="togglesSection('tag-filter')">
+      <button class="tag-chip toggle-content" onclick="togglesSection('tag-filter')">
   
       ${showTagFilter
         ? "🏷️タグ非表示"
