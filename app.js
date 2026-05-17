@@ -1813,6 +1813,15 @@ function renderSuggest(){
   // 検索候補
     //🔍 検索
   const keyword = searchKeyword;
+  
+  if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
  
   const suggestEl = document.getElementById("search-suggest");
 
@@ -2542,6 +2551,15 @@ function renderSeriesBookSuggest(){
     document.getElementById(
       "series-related-search"
     ).value.toLowerCase();
+    
+    if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
   const filtered = books.filter(b=>{
 
@@ -2656,6 +2674,15 @@ function renderSeriesCharacterSuggest(){
     document.getElementById(
       "series-related-search"
     ).value.toLowerCase();
+    
+    if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
   const filtered = characters.filter(c=>{
 
@@ -2746,6 +2773,15 @@ function renderSeriesNewBookSuggest(){
     document.getElementById(
       "series-for-one"
     ).value.toLowerCase();
+    
+    if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
   const filtered = books.filter(b=>{
 
@@ -2799,6 +2835,15 @@ function renderSeriesNewCharacterSuggest(){
     document.getElementById(
       "series-for-one"
     ).value.toLowerCase();
+    
+    if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
 
   const filtered = characters.filter(c=>{
 
