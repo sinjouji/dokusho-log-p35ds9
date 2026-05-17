@@ -791,7 +791,7 @@ function openAddBookModal(){
       <div id="title-suggest"></div>
       
       <div class="title-line">
-        <div class="field-label">読了日</div>
+        <div class="field-label" style="padding:0;">読了日</div>
 
         <input type="date" id="add-date">
         
@@ -1241,7 +1241,7 @@ function openBookDetailModal(book){
 }).join("")}
 			</div>
       
-      <div class="title-line">
+      <div class="detail-row">
       ${enableMemo ? `
       メモ：<input class="bememo" type="text" id="editMemo" value="${book.memo || ""}
       ` : ""}"></div>
