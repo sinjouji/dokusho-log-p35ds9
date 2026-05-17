@@ -178,6 +178,11 @@ let editingSeriesCharacterIds = [];
 let newSeriesBookIds = [];
 let newSeriesCharacterIds = [];
 
+//汎用トグル用のやつ
+let homeSections = {
+  tags: true
+};
+
 
 
 //==============================
@@ -499,6 +504,9 @@ function togglesSection(id, btn){
     opened
       ? btn.dataset.open
       : btn.dataset.close;
+      
+  homeSections.tags =
+    !homeSections.tags;
 }
 
 
@@ -779,10 +787,13 @@ function renderSearchArea(){
         this
         )
       "
-     >
+     >🏷️タグ表示
        </button>
-    </div>
-<div class="toggle-content" id="tag-filter"></div>
+<div class="
+  toggle-content
+  ${homeSections.tags ? "open" : ""}
+  "
+  id="tag-filter"></div>
 
     <div id="suggest"></div>
   `;
