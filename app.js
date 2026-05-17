@@ -174,6 +174,10 @@ let currentSeriesId = null;
 let editingSeriesBookIds = [];
 let editingSeriesCharacterIds = [];
 
+//新規シリーズ用の関連物
+let newSeriesBookIds = [];
+let newSeriesCharacterIds = [];
+
 
 
 //==============================
@@ -2244,20 +2248,43 @@ function openAddSeriesModal(){
 			
 				<div>関連対象を登録</div>
 				<div class="addin2">
-				<input class="addinput"
+				<input class="addin"
 				 id="series-for-one"
 					type="text"
-					placeholder="作品／人物名"
-					oninput="renderSeriesSuggest();
-						renderCharacterSuggest();">
+					placeholder="作品／人物を追加"
+					oninput="renderSeriesBookSuggest();
+						renderSeriesCharacterSuggest();">
 				
 				<button onclick="">
 					➕
 				</button>
 				</div>
 				
+				<div class="suggest-box">
+					<div id="series-book-suggest"></div>
+					<div id="series-character-suggest"></div>
+				</div>
+				
 				<button onclick="saveNewSeries()">➕追加</button>
 				
+				<div
+        class="toggle-head"
+        onclick="
+          toggleSeriesNewSection('series-new-books')
+        "
+      >
+      ▼ 関連作品
+      </div>
+     <div id="series-new-books" class="toggle-content"></div>
+
+      <div class="toggle-head"
+        onclick="
+          toggleSeriesNewSection('series-new-characters')
+        "
+      >
+       ▼ 人物関連
+      </div>
+        <div id="series-new-characters" class="toggle-content"></div>
 				
 			
 		</div>
@@ -2382,6 +2409,16 @@ function toggleSeriesEditSection(id){
 //  const isHidden = getComlutedStyle(el).display === "none";
 
 //  el.style.display = isHidden ? "block" : "none";
+}
+
+
+//==============================
+//新規モーダル内開閉トグル
+//==============================
+function toggleSeriesNewSection(id){
+
+  document.getElementById(id)?.classList.toggle("open");
+
 }
 
 //==============================
@@ -2696,6 +2733,155 @@ function changeSeriesSortMode(){
 
 }
 
+
+
+
+
+//==============================
+//新規用：関連本の検索
+//==============================
+function renderSeriesNewBookSuggest(){
+
+  const keyword =
+    document.getElementById(
+      "series-related-search"
+    ).value.toLowerCase();
+
+  const filtered = books.filter(b=>{
+
+    const match =
+      (b.title || "")
+        .toLowerCase()
+        .includes(keyword);
+
+    const notAdded =
+      !newSeriesBookIds.includes(b.id);
+
+    return match && notAdded;
+
+  });
+
+  document.getElementById(
+  "series-book-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      📘 本
+    </div>
+
+    ${filtered.map(b=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addBookToNewSeries('${b.id}')
+        "
+      >
+        ${b.title}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+}
+
+
+//==============================
+//新規追加用：関連キャラの検索
+//==============================
+function renderSeriesNewCharacterSuggest(){
+
+
+  const keyword =
+    document.getElementById(
+      "series-related-search"
+    ).value.toLowerCase();
+
+  const filtered = characters.filter(c=>{
+
+  const match =
+    (c.name || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  const notAdded =
+    !newSeriesCharacterIds.includes(c.id);
+
+  return match && notAdded;
+
+});
+
+
+
+document.getElementById(
+  "series-character-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      👤 人物
+    </div>
+
+    ${filtered.map(c=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addCharacterToNewSeries('${c.id}')
+        "
+      >
+        ${c.name}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+
+
+}
+
+
+//==============================
+//⭐︎新規シリーズに関連本追加処理
+//==============================
+function addBookToNewSeries(id){
+
+  if(
+    !newSeriesBookIds.includes(id)
+  ){
+    newSeriesBookIds.push(id);
+  }
+
+  renderSeriesNewBooks();
+  renderSeriesNewBooksSuggest();
+
+}
+
+
+
+//==============================
+//⭐︎新規シリーズに関連人物追加処理
+//==============================
+function addCharacterToNewSeries(id){
+
+  if(
+    !newSeriesCharacterIds.includes(id)
+  ){
+    newSeriesCharacterIds.push(id);
+  }
+
+  renderSeriesNewCharacters();
+  renderSeriesNewCharacterSuggest();
+
+}
+
+
+
 //==============================
 //====新規シリーズ追加処理
 //==============================
@@ -2717,7 +2903,10 @@ async function saveNewSeries(){
       title,
     
     bookIds:
-      []
+      [...newSeriesBookIds],
+    
+    characterIds:
+      [...newSeriesCharacterIds],
 
   });
 
@@ -2865,7 +3054,7 @@ function openCharacterModal(c){
 		
 		<div class="end-btn">
 			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
-			<button style="margin-bottom:10px;">🗑️ 削除</button>
+			<button>🗑️ 削除</button>
 		</div>
 	
 		</div>
