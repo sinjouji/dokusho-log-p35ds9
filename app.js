@@ -790,7 +790,7 @@ function openAddBookModal(){
         >
       <div id="title-suggest"></div>
       
-      <div class="field">
+      <div class="title-line">
         <div class="field-label">読了日</div>
 
         <input type="date" id="add-date">
