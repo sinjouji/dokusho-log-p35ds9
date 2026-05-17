@@ -2840,8 +2840,11 @@ function openCharacterModal(c){
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
+		<div class="title-line">
 			<input id="character-name" class="character-name"
 			value="${c.name || ""}">
+						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')">✖️</button></div>
+			
 						
 			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
@@ -2860,9 +2863,10 @@ function openCharacterModal(c){
       `).join(", ") || ""}
     </div>
 		
+		<div class="end-btn">
 			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
 			<button style="margin-bottom:10px;">🗑️ 削除</button>
-			<button onclick="closeModal('open-chars-modal')">✖️</button>
+		</div>
 	
 		</div>
 	`;
@@ -3111,9 +3115,9 @@ function openAddCharacterModal(){
 	
 	modal.innerHTML = `
 		<div class="modal-box">
-			
+			<div class="title-line">
 			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
-					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button>
+					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button></div>
 			
 			<input class="addin"
 				id="add-chars-name"
