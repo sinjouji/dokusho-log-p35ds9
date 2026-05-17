@@ -1107,8 +1107,6 @@ function openBookDetailModal(book){
         ✖️
       </button>
     </div>
-
-
       <div class="detail-row" style="display:flex;
   justify-content:space-between;">
         状態 ＝ 
@@ -1245,7 +1243,7 @@ function openBookDetailModal(book){
       
       <div class="title-line">
       ${enableMemo ? `
-      メモ：<input style="border:1px solid #c29b8f;font-size;11px;color:#999;" type="text" id="editMemo" value="${book.memo || ""}
+      メモ：<input class="bememo" type="text" id="editMemo" value="${book.memo || ""}
       ` : ""}"></div>
 
     <div style="font-size:10px">
