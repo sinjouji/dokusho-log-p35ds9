@@ -483,10 +483,22 @@ function renderSuggestList({
 //==============================
 //開閉トグル（汎用）※('id')を変えるだけ！
 //==============================
-function togglesSection(id){
+function togglesSection(id, btn){
 
-  document.getElementById(id)?.classList.toggle("open");
+  const el =
+    document.getElementById(id);
 
+  if(!el) return;
+
+  el.classList.toggle("open");
+
+  const opened =
+    el.classList.contains("open");
+
+  btn.textContent =
+    opened
+      ? btn.dataset.open
+      : btn.dataset.close;
 }
 
 
@@ -758,13 +770,17 @@ function renderSearchArea(){
 
   </select>
 
-      <button class="tag-chip" onclick="togglesSection('tag-filter')">
-  
-      ${tag-filter
-        ? "🏷️タグ非表示"
-        : "🏷️タグ表示"
-      }
-      </button>
+      <button class="tag-chip"
+        data-open="🏷️タグ非表示"
+        data-close="🏷️タグ表示"
+
+        onclick="togglesSection(
+        'tag-filter',
+        this
+        )
+      "
+     >
+       </button>
     </div>
 <div class="toggle-content" id="tag-filter"></div>
 
