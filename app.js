@@ -836,7 +836,7 @@ function openAddBookModal(){
       <div class="title-line">
         <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
 
-        <input type="date" id="add-date" style="padding:1px 2px;">
+        <input type="date" id="add-date" style="padding:1px 2px;border-radius:10px;">
         
 	  			<button
 				  type="button"
@@ -1229,7 +1229,7 @@ function openBookDetailModal(book){
       
       
       <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:70%;">
+      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:70%;border-radius:10px;">
       <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
         ➕読了日
       </button>
