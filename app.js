@@ -3111,9 +3111,9 @@ function openAddCharacterModal(){
 	
 	modal.innerHTML = `
 		<div class="modal-box">
+			
+			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
 					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button>
-	
-			<h2>人物を追加</h2>
 			
 			<input class="addin"
 				id="add-chars-name"
