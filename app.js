@@ -180,7 +180,7 @@ let newSeriesCharacterIds = [];
 
 //汎用トグル用のやつ
 let homeSections = {
-  tags: true
+  tags: false
 };
 
 
@@ -1282,7 +1282,7 @@ function openBookDetailModal(book){
       
       <div class="detail-row">
       ${enableMemo ? `
-      <input class="bememo" type="text" id="editMemo" value="${book.memo || "メモ"}
+      <input class="bememo" type="text" id="editMemo" value="${book.memo || ""}
       ` : ""}"></div>
 
     <div style="font-size:10px">
