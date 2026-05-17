@@ -1654,7 +1654,7 @@ async function deleteBook(id){
 
   const ok =
     confirm(
-      `「${book.title}」を削除しますか？`
+      `${book.title}を削除しますか？`
     );
   
   if(!ok) return;
