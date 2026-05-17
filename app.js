@@ -2228,6 +2228,10 @@ console.log(seriesSections);
 //==============================
 function openAddSeriesModal(){
 
+newSeriesBookIds = [];
+
+newSeriesCharacterIds = [];
+
 	const modal = document.createElement("div");
 	modal.className = "modal-bg";
 	modal.id = "add-series-modal";
@@ -2784,7 +2788,7 @@ function renderSeriesNewBooks(){
 function renderSeriesNewCharacters(){
 
   const relatedCharacters =
-    characters.filter(b =>
+    characters.filter(c =>
 
       newSeriesCharacterIds.includes(c.id)
 
