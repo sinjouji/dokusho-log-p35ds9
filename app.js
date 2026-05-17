@@ -1302,9 +1302,9 @@ function openBookDetailModal(book){
       ${tag.name}
     </span>
   `;
-
+</div>
 }).join("")}
-			</div>
+			
       
       <div class="detail-row">
       ${enableMemo ? `
