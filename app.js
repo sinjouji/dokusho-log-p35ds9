@@ -1183,7 +1183,7 @@ function openBookDetailModal(book){
        </div>
       </div>
       
-      <div class="detail-row">
+ 
       <div
         id="date-history-${book.id}"
         class="date-history-grid"
@@ -1207,7 +1207,7 @@ function openBookDetailModal(book){
     `
     : "未読"
   }
-</div>
+
       
       
       <hr class="kugiri">
@@ -1257,8 +1257,8 @@ function openBookDetailModal(book){
     </div>
 
       ${enableMemo ? `
-      <textarea id="editMemo">${book.memo || ""}</textarea>
-      ` : ""}
+      <input type="text" id="editMemo" value="${book.memo || ""}
+      ` : ""}">
 
 		<div class="end-btn">
       
