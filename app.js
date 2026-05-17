@@ -2252,8 +2252,8 @@ function openAddSeriesModal(){
 				 id="series-for-one"
 					type="text"
 					placeholder="作品／人物を追加"
-					oninput="renderSeriesBookSuggest();
-						renderSeriesCharacterSuggest();">
+					oninput="renderSeriesNewBookSuggest();
+						renderSeriesNewCharacterSuggest();">
 				
 				<button onclick="">
 					➕
@@ -2744,7 +2744,7 @@ function renderSeriesNewBookSuggest(){
 
   const keyword =
     document.getElementById(
-      "series-related-search"
+      "series-for-one"
     ).value.toLowerCase();
 
   const filtered = books.filter(b=>{
@@ -2797,7 +2797,7 @@ function renderSeriesNewCharacterSuggest(){
 
   const keyword =
     document.getElementById(
-      "series-related-search"
+      "series-for-one"
     ).value.toLowerCase();
 
   const filtered = characters.filter(c=>{
