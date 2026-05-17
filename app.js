@@ -1301,7 +1301,6 @@ function openBookDetailModal(book){
     >
       ${tag.name}
     </span>
-    </div>
   `;
 
 }).join("")}
