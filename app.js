@@ -1308,8 +1308,16 @@ function openBookDetailModal(book){
       
       <div class="detail-row">
       ${enableMemo ? `
-      <input class="bememo" type="text" id="editMemo" value="${book.memo || ""}
-      ` : ""}"></div>
+      <input
+        class="bememo"
+        type="text"
+        id="editMemo"
+        
+        placeholder="メモ"
+        
+        value="${book.memo || ""}"
+      >
+      ` : ""}</div>
 
     <div style="font-size:10px">
       ${relatedSeries.map(s=>`
