@@ -1169,7 +1169,7 @@ function openBookDetailModal(book){
       
       <div class="detail-date-add">
       <input type="date" id="readDate-${book.id}">
-      <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
+      <button onclick="addReadDate('${book.id}')" style="padding:2px 2px;margin-left:auto;">
         ➕読了日
       </button>
       <div
@@ -1181,6 +1181,7 @@ function openBookDetailModal(book){
         ▼ 履歴を見る
       </div>
       
+      <div class="detail-row">
       <div
         id="date-history-${book.id}"
         class="date-history-grid"
