@@ -1259,9 +1259,20 @@ function openBookDetailModal(book){
     : "未読"
   }
 
+            <div class="detail-row">
+      ${enableMemo ? `
+      <input
+        class="bememo"
+        type="text"
+        id="editMemo"
+        
+        placeholder="メモ"
+        
+        value="${book.memo || ""}"
+      >
+      ` : ""}</div>
       
-      
-      <hr class="kugiri">
+
 		
 			<div style="font-size:11px"
       class="toggle-head"
@@ -1305,19 +1316,9 @@ function openBookDetailModal(book){
 
 }).join("")}
 			</div>
-      
-      <div class="detail-row">
-      ${enableMemo ? `
-      <input
-        class="bememo"
-        type="text"
-        id="editMemo"
-        
-        placeholder="メモ"
-        
-        value="${book.memo || ""}"
-      >
-      ` : ""}</div>
+
+
+      <hr class="kugiri">
 
     <div style="font-size:10px">
       ${relatedSeries.map(s=>`
