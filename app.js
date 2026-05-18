@@ -1358,32 +1358,34 @@ function openBookDetailModal(book){
 		<div class="end-btn">
 		
 			<div style="font-size:11px"
-      class="toggle-head"
-      data-open="▽タグ非表示"
-      data-close="▶︎タグ表示"
-      onclick="
-        togglesSection(
-        'open-book-tags',
-        this
-      )
-    "
-  >
-  ▶︎タグ表示</div>
+        class="toggle-head"
+        data-open="▽タグ非表示"
+        data-close="▶︎タグ表示"
+        onclick="
+          togglesSection(
+          'open-book-tags',
+          this
+          )
+        "
+      >
+      ▶︎タグ表示</div>
   
-<div style="font-size:11px"
-      class="toggle-head"
-      data-open="▽関連シリーズ追加エリア非表示"
-      data-close="▶︎関連シリーズ追加エリア表示"
-      onclick="
-        togglesSection(
-        'book-edit-series',
-        this
-      )
-    "
-  >▶︎関連用シリーズ追加エリア表示</div>
+      <div style="font-size:11px"
+        class="toggle-head"
+        data-open="▽関連シリーズ追加エリア非表示"
+        data-close="▶︎関連シリーズ追加エリア表示"
+        onclick="
+          togglesSection(
+          'open-book-series',
+          this
+          )
+        "
+      >
+      ▶︎関連用シリーズ追加エリア表示</div>
+   </div>
+   
+   <div class="toggle-content" id="open-book-series">
   
-  </div>
-  <div class="toggle-content">
         <input class="addin"
         id="book-related-search"
         type="text"
@@ -1392,15 +1394,15 @@ function openBookDetailModal(book){
           renderBookSeriesSuggest();
         "
       >
-<div class="suggest-box">
-  <div id="book-series-suggest"></div>
-</div>
+    <div class="suggest-box">
+      <div id="book-series-suggest"></div>
+    </div>
 
-  <div id="book-edit-series">
-  </div>
+    <div id="book-edit-series"></div>
+   
+   </div>
  
-  <div class="toggle-content"
-    id="open-book-tags">
+  <div id="open-book-tags">
 			${tagMaster.map(tag=>{
 
   const isActive =
