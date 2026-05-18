@@ -2464,16 +2464,18 @@ newSeriesCharacterIds = [];
       
       </div>
       
-      			 <button onclick="saveNewSeries()">➕追加</button>
+ 
       
+      
+ 
       
      <div id="series-new-books" class="toggle-content"></div>
 
      <div id="series-new-characters" class="toggle-content"></div>
 				
 			
-			
-
+			     <hr class="kugiri">
+     			 <button onclick="saveNewSeries()">➕追加</button>
 			
 			
 			
@@ -2573,7 +2575,8 @@ function openSeriesEditModal(id){
       
      <div id="series-edit-books" class="toggle-content"></div>
      <div id="series-edit-characters" class="toggle-content"></div>
-
+     
+     <hr class="kugiri">
 
     <div class="end-btn">
     
@@ -3364,6 +3367,8 @@ function openCharacterModal(c){
 				</button>
       `).join(", ") || ""}
     </div>
+    
+         <hr class="kugiri">
 		
 		<div class="end-btn">
 			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
@@ -3641,10 +3646,9 @@ function openAddCharacterModal(){
 				<div id="series-suggest"></div>
 				
 			
-			<button>
-				➕
-			</button>
 			</div>
+			
+			     <hr class="kugiri">
 			
 			<button onclick="saveNewCharacter()">➕追加</button>
 			
