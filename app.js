@@ -1768,6 +1768,9 @@ async function deleteBook(id){
 //==============================
 async function saveDetail(id){
 
+ const book =
+    books.find(b=>String(b.id)===String(id));
+
   console.log("save start", id);
   
   if(!book.readDates){
@@ -1777,8 +1780,7 @@ async function saveDetail(id){
 }
 delete book.dates;
 
-  const book =
-    books.find(b=>String(b.id)===String(id));
+ 
 
   console.log("found book", book);
 
