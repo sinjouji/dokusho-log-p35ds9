@@ -1312,7 +1312,7 @@ function openBookDetailModal(book){
             </button>
           </div>
         
-        ).join("")}
+        `).join("")}
     `
     : "未読"
   }</div>
