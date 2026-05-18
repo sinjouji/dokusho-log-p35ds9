@@ -2464,13 +2464,16 @@ newSeriesCharacterIds = [];
       
       </div>
       
+      			 <button onclick="saveNewSeries()">➕追加</button>
+      
+      
      <div id="series-new-books" class="toggle-content"></div>
 
      <div id="series-new-characters" class="toggle-content"></div>
 				
 			
 			
-			 <button style="margin-left:auto;" onclick="saveNewSeries()">➕追加</button>
+
 			
 			
 			
