@@ -10,8 +10,6 @@ let tagMaster = [];
 
 let selectedTagId = null;
 //if(!selectedTagId) selectedTagId = null;
-let newBookTagIds = []; //新規本保存用のタグ一時保存場所
-let newBookSeries = []; //新規本保存用の関連シリーズ一時保存場所
 
 const savedMode = localStorage.getItem("colorMode");
 
@@ -178,6 +176,11 @@ let editingSeriesCharacterIds = [];
 //新規シリーズ用の関連物
 let newSeriesBookIds = [];
 let newSeriesCharacterIds = [];
+
+let newBookTagIds = []; //新規本保存用のタグ一時保存場所
+let newBookSeries = []; //新規本保存用の関連シリーズ一時保存場所
+
+let editingBookSeriesIds = []; //本編集用の関連シリーズ一時保存場所
 
 //汎用トグル用のやつ
 let homeSections = {
@@ -1366,7 +1369,7 @@ function openBookDetailModal(book){
       data-close="▶︎関連シリーズ追加エリア表示"
       onclick="
         togglesSection(
-        'open-book-series',
+        'book-edit-series',
         this
       )
     "
@@ -1375,8 +1378,7 @@ function openBookDetailModal(book){
   </div>
   
   <div class="toggle-content"
-    id="open-book-series">
-    関連シリーズ追加エリア予定地
+    id="book-edit-series">
   </div>
  
   <div class="toggle-content"
@@ -1434,6 +1436,133 @@ function openBookDetailModal(book){
   document.body.appendChild(modal);
 }
 
+
+//==============================
+//関連本の一覧描画
+//==============================
+function renderBookEditSeries(){
+
+  const relatedSeries =
+    seriesMaster.filter(s =>
+
+      editingBookSeriesIds.includes(
+        String(s.id)
+      )
+
+    );
+
+  document.getElementById(
+    "book-edit-series"
+  ).innerHTML = `
+
+    <div>
+
+      ${relatedSeries.map(s=>`
+
+        <div class="related-chip">
+
+          ${s.name}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeSeriesFromBook(
+                '${s.id}'
+              )
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+//==============================
+//本詳細で関連本の検索
+//==============================
+function renderBookSeriesSuggest(){
+
+  const keyword =
+    document.getElementById(
+      "series-related-search"
+    ).value.toLowerCase();
+
+  const filtered = seriesMaster.filter(s=>{
+
+    const match =
+      (s.name || "")
+        .toLowerCase()
+        .includes(keyword);
+
+    const notAdded =
+      !editingBookSeriesIds.includes(
+        String(s.id)
+      );
+
+    return match && notAdded;
+
+  });
+  
+  if(!keyword){
+
+  document.getElementById(
+    "book-series-suggest"
+  ).innerHTML = "";
+
+  return;
+}
+
+  document.getElementById(
+  "book-series-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      📚 シリーズ
+    </div>
+
+    ${filtered.map(s=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addSeriesToBook('${s.id}')
+        "
+      >
+        ${s.name}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+}
+
+
+//==============================
+//本詳細に関連本の追加処理
+//==============================
+function addSeriesToBook(id){
+
+  if(
+    !editingBookSeriesIds.includes(id)
+  ){
+    editingBookSeriesIds.push(
+      String(id)
+    );
+  }
+
+  renderBookEditSeries();
+  renderBookSeriesSuggest();
+
+}
 
 
 
@@ -1753,6 +1882,17 @@ async function deleteBook(id){
 
   books =
     books.filter(b=>b.id!=id);
+    
+  seriesMaster.forEach(series=>{
+
+  series.bookIds =
+    (series.bookIds || [])
+      .filter(id =>
+
+        String(id) !== String(bookId)
+
+      );
+  });
 
   await saveData();
 
@@ -3682,7 +3822,7 @@ function openAddCharacterModal(){
 				
 			<div>関連シリーズを登録</div>
 			
-			<div class="addin">
+		
 			<input class="addinput"
 				id="chars-for-series"
 				type="text"
@@ -3691,7 +3831,6 @@ function openAddCharacterModal(){
 				<div id="series-suggest"></div>
 				
 			
-			</div>
 			
 			     <hr class="kugiri">
 			
