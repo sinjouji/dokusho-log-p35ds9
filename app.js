@@ -330,7 +330,7 @@ function createBookSpine(b, mode="main"){
   fav.className = "spine-fav";
   
   fav.textContent = val === 4 ? "👑" : "★".repeat(val)
-//  +"\n"+${book.dates?.length || 0}+"回読了";
+//  +"\n"+${book.readDates?.length || 0}+"回読了";
 
    if(mode === "detail"){
     d.style.width = (base + extra - 10) + "px";
@@ -367,7 +367,7 @@ function getMonthlyCounts(year){
   const arr = Array(12).fill(0);
   
   books.forEach(b=>{
-    (b.dates || []).forEach(d=>{
+    (b.readDates || []).forEach(d=>{
       if(!d.startsWith(String(year)))
         return;
       const month =
@@ -614,7 +614,7 @@ function renderCardView(main, books){
       </div>
       
       <div class="book-read-count">
-        ${b.dates?.length || 0}回
+        ${b.readDates?.length || 0}回
       </div>
 
       <div class="fav">
@@ -649,7 +649,7 @@ function renderListView(main, books){
       <div class="list-meta">
         ${getFavLabel(b.fav)}
         ${getLatestReadDate(b)}：
-        ${b.dates?.length || 0}回
+        ${b.readDates?.length || 0}回
       </div>
     `;
 
@@ -1183,7 +1183,7 @@ function openBookDetailModal(book){
   });
   
   const sortedDates =
-    [...(book.dates || [])]
+    [...(book.readDates || [])]
       .sort((a,b)=>b.localeCompare(a));
   
   const latestDate =
@@ -1280,7 +1280,7 @@ function openBookDetailModal(book){
               ✕
             </button>
       </div>
-      <div class="book-stat">${book.dates?.length || 0}回読了</div>
+      <div class="book-stat">${book.readDates?.length || 0}回読了</div>
              <div
         class="toggle-history"
         onclick="
@@ -1441,20 +1441,26 @@ function openBookDetailModal(book){
 async function addReadDate(id){
 
   const book =
-    books.find(b=>String(b.id)===String(id));
+    books.find(
+      b => String(b.id) === String(id)
+    );
 
   if(!book) return;
 
   const input =
-    document.getElementById(`readDate-${id}`);
+    document.getElementById(
+      `readDate-${id}`
+    );
 
   if(!input.value) return;
 
-  if(!book.dates){
-    book.dates = [];
+  if(!book.readDates){
+    book.readDates = [];
   }
 
-  book.dates.unshift(input.value);
+  book.readDates.unshift(
+    input.value
+  );
 
   // 本棚へ移動
   book.type = "normal";
@@ -1708,7 +1714,7 @@ function toDateNum(book){
 function getLatestReadDate(book){
 
   return (
-  [...(book.dates || [])]
+  [...(book.readDates || [])]
     .sort()
     .at(-1)
   ) || "";
@@ -1841,7 +1847,7 @@ async function saveNewBook(){
     title,
     memo: memo,
     fav: newBookFav,
-    dates: date ? [date] : [],
+    readDates: date ? [date] : [],
     tagIds: [...newBookTagIds],
     type: date ? "normal" : "wish"
   };
@@ -1887,7 +1893,7 @@ async function addBook(type){
 
     type,
 
-    dates: date ? [date] : [],
+    readDates: date ? [date] : [],
 
     tagIds: []
   };
@@ -1912,11 +1918,11 @@ async function removeReadDate(bookId,date){
 
   if(!book) return;
 
-  book.dates =
-    (book.dates || [])
+  book.readDates =
+    (book.readDates || [])
       .filter(d=>d !== date);
 
-  if(book.dates.length === 0){
+  if(book.readDates.length === 0){
     book.type = "wish";
   }
 
@@ -3835,7 +3841,7 @@ function renderMiniCalendar(main){
   const map = {};
 
   books.forEach(b=>{
-    (b.dates || []).forEach(date=>{
+    (b.readDates || []).forEach(date=>{
       map[date] = map[date] || [];
       map[date].push(b);
     });
@@ -3935,7 +3941,7 @@ function getYearReadCount(year){
 
   let count = 0;
   books.forEach(b=>{
-    (b.dates || []).forEach(d=>{
+    (b.readDates || []).forEach(d=>{
       if(new Date(d).getFullYear() === year){
        count++;
        }
