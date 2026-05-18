@@ -1183,8 +1183,12 @@ function openBookDetailModal(book){
   });
   
   const sortedDates =
-    [...(book.readDates || [])]
-      .sort((a,b)=>b.localeCompare(a));
+    [...(
+      book.readDates ||
+      book.dates ||
+      []
+    )
+    ].sort((a,b)=>b.localeCompare(a));
   
   const latestDate =
     sortedDates[0];
