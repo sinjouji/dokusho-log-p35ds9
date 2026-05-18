@@ -839,7 +839,7 @@ function openAddBookModal(){
 
 
 
-        <input type="date" id="add-date"  style="padding:1px 2px;width:50%;border-radius:12px;">
+        <input type="date" id="add-date"  style="padding:1px 2px;width:50%;border-radius:12px;margin-right:auto;">
         
         
         
