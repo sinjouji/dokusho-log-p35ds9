@@ -1184,7 +1184,14 @@ function openBookDetailModal(book){
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
         
-        
+    
+      <button onclick="closeModal('open-book-modal')" style="margin-left:auto;">
+        ✖️
+      </button>
+    </div>
+    
+    
+            
             <div style="font-size:10px">
       ${relatedSeries.map(s=>`
         シリーズ : 
@@ -1198,12 +1205,11 @@ function openBookDetailModal(book){
 				</button>
       `).join(", ") || ""}
     </div>
-        
+
     
-      <button onclick="closeModal('open-book-modal')" style="margin-left:auto;">
-        ✖️
-      </button>
-    </div>
+    
+    
+    
       <div class="detail-row" style="display:flex;
   justify-content:space-between;">
         状態 ＝ 
