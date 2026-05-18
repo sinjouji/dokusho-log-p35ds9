@@ -2090,17 +2090,19 @@ console.log(
   const el = document.getElementById('page-detail');
 
 	//シリーズ→本
-  const relatedBooks = books.filter(b=>{
-    return Array.isArray(s.bookIds) && s.bookIds.includes(b.id);
-  });
+  const relatedBooks = books.filter(b=>
+    return (series.bookIds || [])
+      .map(String)
+      .includes(String(b.id))
+  );
   	
  	 //シリーズ→人物
   const relatedCharacters =
   characters.filter(c =>
 
-    Array.isArray(s.characterIds)
-    && s.characterIds.includes(c.id)
-
+    return (series.characterIds || [])
+      .map(String)
+      .includes(String(c.id))
   );
   
 
