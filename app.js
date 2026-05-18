@@ -1950,6 +1950,7 @@ async function removeReadDate(bookId,date){
 
   closeModal("open-book-modal");
   openBookDetailModal(book);
+  renderHome();
 }
 
 
