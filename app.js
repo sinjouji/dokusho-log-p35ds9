@@ -1358,10 +1358,7 @@ function openBookDetailModal(book){
  
   <div class="toggle-content"
     id="open-book-tags">
-    
-  
-	<div class="detail-row">		
-						${tagMaster.map(tag=>{
+			${tagMaster.map(tag=>{
 
   const isActive =
     (book.tagIds || []).includes(tag.id);
