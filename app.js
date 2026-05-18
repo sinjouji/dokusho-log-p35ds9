@@ -2501,7 +2501,7 @@ function openSeriesEditModal(id){
   modal.innerHTML = `
     <div class="modal-box">
 
-      <div "title-line">
+      <div class="title-line">
       <span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズ編集</span>
       <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;">✖️</button>
       </div>
@@ -2533,9 +2533,9 @@ function openSeriesEditModal(id){
       
       
        <div
-      class="toggle-head"
-      data-open="▽人物一覧を閉じる"
-      data-close="▶︎人物一覧を開く"
+      class="toggle-head series-edit-list"
+      data-open="▽作品一覧を閉じる"
+      data-close="▶︎作品一覧を開く"
       onclick="
         togglesSection(
         'series-edit-books',
@@ -2546,7 +2546,7 @@ function openSeriesEditModal(id){
       
       
        <div
-      class="toggle-head"
+      class="toggle-head series-edit-list"
       data-open="▽人物一覧を閉じる"
       data-close="▶︎人物一覧を開く"
       onclick="
@@ -2696,7 +2696,9 @@ function renderSeriesEditBooks(){
   const relatedBooks =
     books.filter(b =>
 
-      editingSeriesBookIds.includes(b.id)
+      editingSeriesBookIds.includes(
+        String(b.id)
+      )
 
     );
 
@@ -2750,7 +2752,9 @@ function renderSeriesBookSuggest(){
         .includes(keyword);
 
     const notAdded =
-      !editingSeriesBookIds.includes(b.id);
+      !editingSeriesBookIds.includes(
+        String(b.id)
+      );
 
     return match && notAdded;
 
@@ -2801,7 +2805,9 @@ function addBookToSeries(id){
   if(
     !editingSeriesBookIds.includes(id)
   ){
-    editingSeriesBookIds.push(id);
+    editingSeriesBookIds.push(
+      String(id)
+    );
   }
 
   renderSeriesEditBooks();
