@@ -2959,9 +2959,75 @@ async function saveSeriesEdit(id){
 
   series.bookIds =
     editingSeriesBookIds.map(String);
+    
+  books.forEach(book=>{
+
+  const shouldHaveSeries =
+    editingSeriesBookIds.includes(
+      String(book.id)
+    );
+
+  if(shouldHaveSeries){
+
+    if(
+      !(book.seriesIds || [])
+        .includes(series.id)
+    ){
+
+      book.seriesIds = [
+        ...(book.seriesIds || []),
+        String(series.id)
+      ];
+    }
+
+  }else{
+
+    book.seriesIds =
+      (book.seriesIds || [])
+        .filter(seriesId =>
+
+          String(seriesId)
+          !== String(series.id)
+
+        );
+  }
+});
 
   series.characterIds =
     editingSeriesCharacterIds.map(String);
+    
+  characters.forEach(character=>{
+
+  const shouldHaveSeries =
+    editingSeriesCharacterIds.includes(
+      String(character.id)
+    );
+
+  if(shouldHaveSeries){
+
+    if(
+      !(character.seriesIds || [])
+        .includes(String(series.id))
+    ){
+
+      character.seriesIds = [
+        ...(character.seriesIds || []),
+        String(series.id)
+      ];
+    }
+
+  }else{
+
+    character.seriesIds =
+      (character.seriesIds || [])
+        .filter(seriesId =>
+
+          String(seriesId)
+          !== String(series.id)
+
+        );
+  }
+});
 
   await saveData();
 
@@ -3671,6 +3737,42 @@ async function saveCharacter(id){
 		characters.find(c => String(c.id) === String(id));
 		
 		if(!chars) return;
+		
+		chars.seriesIds =
+  editingCharacterSeriesIds.map(String);
+  
+  seriesMaster.forEach(series=>{
+
+  const shouldHaveCharacter =
+    editingCharacterSeriesIds.includes(
+      String(series.id)
+    );
+
+  if(shouldHaveCharacter){
+
+    if(
+      !(series.characterIds || [])
+        .includes(String(chars.id))
+    ){
+
+      series.characterIds = [
+        ...(series.characterIds || []),
+        String(chars.id)
+      ];
+    }
+
+  }else{
+
+    series.characterIds =
+      (series.characterIds || [])
+        .filter(characterId =>
+
+          String(characterId)
+          !== String(chars.id)
+
+        );
+  }
+});
 		
 		console.log(
 			document.getElementById("character-name").value
