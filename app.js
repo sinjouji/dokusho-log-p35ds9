@@ -1383,7 +1383,8 @@ function openBookDetailModal(book){
   >▶︎関連用シリーズ追加エリア表示</div>
   
   </div>
-        <input class="addin toggle-content"
+  <div class="toggle-content">
+        <input class="addin"
         id="book-related-search"
         type="text"
         placeholder="関連シリーズを追加"
@@ -1391,14 +1392,11 @@ function openBookDetailModal(book){
           renderBookSeriesSuggest();
         "
       >
-<div class="suggest-box toggle-content">
+<div class="suggest-box">
   <div id="book-series-suggest"></div>
 </div>
 
-  
-  
-  <div class="toggle-content"
-    id="book-edit-series">
+  <div id="book-edit-series">
   </div>
  
   <div class="toggle-content"
