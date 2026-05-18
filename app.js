@@ -2091,7 +2091,7 @@ console.log(
 
 	//シリーズ→本
   const relatedBooks = books.filter(b=>
-    (series.bookIds || [])
+    (s.bookIds || [])
       .map(String)
       .includes(String(b.id))
   );
@@ -2100,7 +2100,7 @@ console.log(
   const relatedCharacters =
   characters.filter(c =>
 
-    (series.characterIds || [])
+    (s.characterIds || [])
       .map(String)
       .includes(String(c.id))
   );
@@ -2685,10 +2685,10 @@ async function saveSeriesEdit(id){
     ).value;
 
   series.bookIds =
-    [...editingSeriesBookIds];
+    editingSeriesBookIds.map(String);
 
   series.characterIds =
-    [...editingSeriesCharacterIds];
+    editingSeriesCharacterIds.map(String);
 
   await saveData();
 
