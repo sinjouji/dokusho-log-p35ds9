@@ -1341,15 +1341,26 @@ function openBookDetailModal(book){
     "
   >
   ▶︎タグ表示</div>
+  
+<div style="font-size:11px"
+      class="toggle-head"
+      data-open="▽関連シリーズ追加エリア非表示"
+      data-close="▶︎関連シリーズ追加エリア表示"
+      onclick="
+        togglesSection(
+        'open-book-tags',
+        this
+      )
+    "
+  >▶︎関連用トグル予定</div>
+  
+  </div>
+ 
   <div class="toggle-content"
     id="open-book-tags">
     
-    
-    <div>▶︎関連用トグル予定</div>
-    
-    </div></div>
-    
-			
+  
+	<div class="detail-row">		
 						${tagMaster.map(tag=>{
 
   const isActive =
@@ -1376,6 +1387,7 @@ function openBookDetailModal(book){
   `;
 
 }).join("")}
+</div>
 			
 
 
