@@ -888,15 +888,15 @@ function openAddBookModal(){
   
    <div style="font-size:11px"
       class="toggle-head"
-      data-open="▽追加エリアを閉じる"
-      data-close="▶︎関連シリーズ追加エリアを開く"
+      data-open="▽関連シリーズ"
+      data-close="▶︎関連シリーズ"
       onclick="
         togglesSection(
         'add-book-series',
         this
       )
     "
-  >▶︎関連シリーズ追加エリアを開く</div>
+  >▶︎関連シリーズ</div>
   
   
   </div>
@@ -905,9 +905,12 @@ function openAddBookModal(){
 
 
   
-     <div class="toggle-content"
-      	  id="add-book-series">
-            関連追加エリア</div>
+     <div class="toggle-content">
+     インプットでシリーズの検索＆追加するやーつ
+     
+      	 <div id="add-book-series" class="series-edit-list"></div>
+            
+     </div>
   
   
       	<div class="toggle-content"
@@ -3914,14 +3917,14 @@ function openAddCharacterModal(){
 			<div>関連シリーズを登録</div>
 			
 		
-			<input class="addinput"
+			<input class="addinput series-edit-list"
 				id="chars-for-series"
 				type="text"
 				placeholder="関連シリーズ名"
 				oninput="renderSeriesSuggest()">
 				<div id="series-suggest"></div>
 				
-			
+			<div class="series-edit-list">関連シリーズ表示する予定のやーつ</div>
 			
 			     <hr class="kugiri">
 			
