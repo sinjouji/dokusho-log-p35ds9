@@ -2415,7 +2415,9 @@ newSeriesCharacterIds = [];
 			<div id="title-suggest"></div>
 			
 			
-				<div>関連対象を登録</div>
+			
+			
+				<div>関連登録</div>
 				<div class="addin2">
 				<input class="addin"
 				 id="series-for-one"
@@ -2431,7 +2433,7 @@ newSeriesCharacterIds = [];
 					<div id="series-character-suggest"></div>
 				</div>
 				
-				<button onclick="saveNewSeries()">➕追加</button>
+				
 				
 				<div class="end-btn">
       <div
@@ -2466,6 +2468,11 @@ newSeriesCharacterIds = [];
 
      <div id="series-new-characters" class="toggle-content"></div>
 				
+			
+			
+			 <button style="margin-left:auto;" onclick="saveNewSeries()">➕追加</button>
+			
+			
 			
 `;
 	document.body.appendChild(modal);
@@ -2512,7 +2519,7 @@ function openSeriesEditModal(id){
         value="${series.name || ""}"
       >
       
-      
+     
       <input class="addin"
         id="series-related-search"
         type="text"
