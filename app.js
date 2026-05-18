@@ -2501,7 +2501,10 @@ function openSeriesEditModal(id){
   modal.innerHTML = `
     <div class="modal-box">
 
-      <h2>シリーズ編集</h2>
+      <div "title-line">
+      <span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズ編集</span>
+      <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;">✖️</button>
+      </div>
 
       <input
         id="edit-series-name"
@@ -2526,38 +2529,55 @@ function openSeriesEditModal(id){
   <div id="series-character-suggest"></div>
 
 </div>
-      <div
-        class="toggle-head"
-        onclick="
-          toggleSeriesEditSection('series-edit-books')
-        "
-      >
-      ▼ 関連作品
+      <div class="end-btn">
+      
+      
+       <div
+      class="toggle-head"
+      data-open="▽人物一覧を閉じる"
+      data-close="▶︎人物一覧を開く"
+      onclick="
+        togglesSection(
+        'series-edit-books',
+        this
+      )
+    "
+  >▶︎作品一覧を開く</div>
+      
+      
+       <div
+      class="toggle-head"
+      data-open="▽人物一覧を閉じる"
+      data-close="▶︎人物一覧を開く"
+      onclick="
+        togglesSection(
+        'series-edit-characters',
+        this
+      )
+    "
+  >▶︎人物一覧を開く</div>
+      
+      
       </div>
+      
+      
      <div id="series-edit-books" class="toggle-content"></div>
-
-      <div class="toggle-head"
-        onclick="
-          toggleSeriesEditSection('series-edit-characters')
-        "
-      >
-       ▼ 人物関連
-      </div>
-        <div id="series-edit-characters" class="toggle-content"></div>
+     <div id="series-edit-characters" class="toggle-content"></div>
 
 
     <div class="end-btn">
+    
+    
+     <button>
+        🗑️ 削除
+      </button>
+    
       <button
         onclick="saveSeriesEdit('${series.id}')"
       >
         🪎 保存
       </button>
 
-      <button
-        onclick="closeModal('edit-series-modal')"
-      >
-        ✖️
-      </button>
      </div>
 
     </div>
