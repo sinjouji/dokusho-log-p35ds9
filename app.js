@@ -1199,6 +1199,10 @@ function openBookDetailModal(book){
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "open-book-modal";
+  
+  editingBookSeriesIds =
+    [...(book.seriesIds || [])]
+      .map(String);
 	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
@@ -1372,8 +1376,8 @@ function openBookDetailModal(book){
   
       <div style="font-size:11px"
         class="toggle-head"
-        data-open="▽関連シリーズ追加エリア非表示"
-        data-close="▶︎関連シリーズ追加エリア表示"
+        data-open="▽関連シリーズ"
+        data-close="▶︎関連シリーズ"
         onclick="
           togglesSection(
           'open-book-series',
@@ -1381,7 +1385,7 @@ function openBookDetailModal(book){
           )
         "
       >
-      ▶︎関連用シリーズ追加エリア表示</div>
+      ▶︎関連用シリーズ</div>
    </div>
    
    <div class="toggle-content" id="open-book-series">
@@ -1402,7 +1406,7 @@ function openBookDetailModal(book){
    
    </div>
  
-  <div id="open-book-tags">
+  <div class="toggle-content" id="open-book-tags">
 			${tagMaster.map(tag=>{
 
   const isActive =
@@ -1956,7 +1960,8 @@ async function saveDetail(id){
 }
 delete book.dates;
 
- 
+ book.seriesIds =
+   [...editingBookSeriesIds];
 
   console.log("found book", book);
 
