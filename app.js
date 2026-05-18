@@ -1287,7 +1287,8 @@ function openBookDetailModal(book){
               ✕
             </button>
       </div>
-      <div class="book-stat">${book.readDates?.length || 0}回読了</div>
+      <div class="book-stat">${book.readDates ||
+        book.dates || []).length}回読了</div>
              <div
         class="toggle-history"
         onclick="
@@ -1451,7 +1452,7 @@ function openBookDetailModal(book){
 
 
 //==============================
-//関連本の一覧描画
+//本詳細の関連本の一覧描画
 //==============================
 function renderBookEditSeries(){
 
@@ -1577,7 +1578,23 @@ function addSeriesToBook(id){
 
 }
 
+//==============================
+//本詳細の関連削除（シリーズ）
+//==============================
+function removeSeriesFromBook(id){
 
+if(!confirm("削除しますか？")){
+  return;
+}
+
+  editingBookSeriesIds =
+    editingBookSeriesIds.filter(
+      sId => String(sId) !== String(id)
+    );
+
+  renderBookEditSeries();
+
+}
 
 
 //==============================
