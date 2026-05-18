@@ -837,13 +837,13 @@ function openAddBookModal(){
         >
       <div id="title-suggest"></div>
       
+      
+      
+      
       <div class="title-line">
         <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
 
-
-
-        <input type="date" id="add-date"  style="padding:1px 2px;width:50%;border-radius:12px;margin-right:auto;">
-        
+        <input type="date" id="add-date"  style="width:50%;margin-right:auto;">
         
         
 	  			<button
@@ -3647,6 +3647,8 @@ function openCharacterModal(c){
       `).join(", ") || ""}
     </div>
     
+    
+   <div>インプットで関連シリーズ登録するやつ</div> 
          <hr class="kugiri">
 		
 		<div class="end-btn">
