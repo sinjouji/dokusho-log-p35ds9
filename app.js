@@ -189,6 +189,7 @@ let homeSections = {
 
 let addBookTagSections = { tags: false };
 let addBookSeriesSections = { series: false };
+let detailSections.tags = true;
 
 
 
@@ -370,7 +371,7 @@ function getMonthlyCounts(year){
   const arr = Array(12).fill(0);
   
   books.forEach(b=>{
-    (b.readDates || []).forEach(d=>{
+    (b.readDates || b.dates || []).forEach(d=>{
       if(!d.startsWith(String(year)))
         return;
       const month =
@@ -1409,7 +1410,11 @@ function openBookDetailModal(book){
    
    </div>
  
-  <div class="toggle-content" id="open-book-tags">
+  <div class="
+    toggle-content
+    ${detailSections.tags ? "open" : ""}
+  "
+  id="open-book-tags">
 			${tagMaster.map(tag=>{
 
   const isActive =
@@ -2971,7 +2976,7 @@ async function saveSeriesEdit(id){
 
     if(
       !(book.seriesIds || [])
-        .includes(series.id)
+        .includes(String(series.id))
     ){
 
       book.seriesIds = [
@@ -2992,7 +2997,6 @@ async function saveSeriesEdit(id){
         );
   }
 });
-
   series.characterIds =
     editingSeriesCharacterIds.map(String);
     
@@ -4215,7 +4219,7 @@ function renderMiniCalendar(main){
   const map = {};
 
   books.forEach(b=>{
-    (b.readDates || []).forEach(date=>{
+    (b.readDates || b.dates || []).forEach(date=>{
       map[date] = map[date] || [];
       map[date].push(b);
     });
@@ -4315,7 +4319,7 @@ function getYearReadCount(year){
 
   let count = 0;
   books.forEach(b=>{
-    (b.readDates || []).forEach(d=>{
+    (b.readDates || b.dates || []).forEach(d=>{
       if(new Date(d).getFullYear() === year){
        count++;
        }
