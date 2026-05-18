@@ -1341,7 +1341,7 @@ function openBookDetailModal(book){
     
     <div>▶︎関連用トグル予定</div>
     
-    </div>
+    </div></div>
     
 			
 						${tagMaster.map(tag=>{
@@ -1370,7 +1370,7 @@ function openBookDetailModal(book){
   `;
 
 }).join("")}
-			</div>
+			
 
 
 
