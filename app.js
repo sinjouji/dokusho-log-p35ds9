@@ -1373,9 +1373,22 @@ function openBookDetailModal(book){
         this
       )
     "
-  >▶︎関連用トグル予定</div>
+  >▶︎関連用シリーズ追加エリア表示</div>
   
   </div>
+        <input class="addin"
+        id="book-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderBookSeriesSuggest();
+        "
+      >
+<div class="suggest-box">
+  <div id="book-series-suggest"></div>
+</div>
+
+  
   
   <div class="toggle-content"
     id="book-edit-series">
@@ -1490,7 +1503,7 @@ function renderBookSeriesSuggest(){
 
   const keyword =
     document.getElementById(
-      "series-related-search"
+      "book-related-search"
     ).value.toLowerCase();
 
   const filtered = seriesMaster.filter(s=>{
