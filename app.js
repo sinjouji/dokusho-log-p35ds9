@@ -1469,12 +1469,20 @@ async function addReadDate(id){
   book.type = "normal";
 
   await saveData();
+  
+  console.log("books after save", books);
 
   closeModal("open-book-modal");
 
   openBookDetailModal(book);
 
   renderHome();
+  
+  
+  console.log("after add", book);
+console.log("readDates", book.readDates);
+console.log("type", book.type);
+  
 }
 
 
