@@ -11,6 +11,7 @@ let tagMaster = [];
 let selectedTagId = null;
 //if(!selectedTagId) selectedTagId = null;
 let newBookTagIds = []; //新規本保存用のタグ一時保存場所
+let newBookSeries = []; //新規本保存用の関連シリーズ一時保存場所
 
 const savedMode = localStorage.getItem("colorMode");
 
@@ -836,7 +837,11 @@ function openAddBookModal(){
       <div class="title-line">
         <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
 
-        <input type="date" id="add-date" style="padding:1px 2px;border-radius:10px;">
+
+
+        <input type="date" id="add-date"  style="padding:1px 2px;width:70%;border-radius:10px;">
+        
+        
         
 	  			<button
 				  type="button"
@@ -850,13 +855,27 @@ function openAddBookModal(){
         
       </div>
       
-            ${enableMemo ? `
-      <input type="text" class="bememo" id="add-memo"
-        placeholder="メモ">` : ""}
       
-      <hr class="kugiri">
-    
       <div style="font-size:11px"
+      class="toggle-head"
+      data-open="▽追加エリアを閉じる"
+      data-close="▶︎関連シリーズ追加エリアを開く"
+      onclick="
+        togglesSection(
+        'add-book-series',
+        this
+      )
+    "
+  >▶︎関連シリーズ追加エリアを開く</div>
+      <div class="toggle-content"
+      	  id="add-book-series">
+            関連追加エリア</div>
+      
+      
+      
+      
+      
+            <div style="font-size:11px"
       class="toggle-head"
       data-open="▽タグ非表示"
       data-close="▶︎タグ表示"
@@ -908,6 +927,14 @@ function openAddBookModal(){
 
 	}).join("")}
 			</div>
+      
+      
+      
+      
+            ${enableMemo ? `
+      <input type="text" class="bememo" id="add-memo"
+        placeholder="メモ">` : ""}
+
       
       <hr class="kugiri">
 
@@ -1156,6 +1183,22 @@ function openBookDetailModal(book){
     <div class="title-line">
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
+        
+        
+            <div style="font-size:10px">
+      ${relatedSeries.map(s=>`
+        シリーズ : 
+        <button class="detail-series"
+				  onclick="
+				    closeModal('open-book-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</button>
+      `).join(", ") || ""}
+    </div>
+        
     
       <button onclick="closeModal('open-book-modal')" style="margin-left:auto;">
         ✖️
@@ -1228,14 +1271,7 @@ function openBookDetailModal(book){
     </div>
       
       
-      <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:70%;border-radius:10px;">
-      <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
-        ➕読了日
-      </button>
-
-      </div>
-      
+            
  
       <div
         id="date-history-${book.id}"
@@ -1260,6 +1296,16 @@ function openBookDetailModal(book){
     `
     : "未読"
   }
+      
+      
+      <div class="detail-date-add">
+      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:70%;border-radius:10px;">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
+        ➕読了日
+      </button>
+
+      </div>
+
 
             <div class="detail-row">
       ${enableMemo ? `
@@ -1275,6 +1321,7 @@ function openBookDetailModal(book){
       ` : ""}</div>
       
 
+		<div class="end-btn">
 		
 			<div style="font-size:11px"
       class="toggle-head"
@@ -1290,6 +1337,12 @@ function openBookDetailModal(book){
   ▶︎タグ表示</div>
   <div class="toggle-content"
     id="open-book-tags">
+    
+    
+    <div>▶︎関連用トグル予定</div>
+    
+    </div>
+    
 			
 						${tagMaster.map(tag=>{
 
@@ -1320,21 +1373,8 @@ function openBookDetailModal(book){
 			</div>
 
 
-      <hr class="kugiri">
 
-    <div style="font-size:10px">
-      ${relatedSeries.map(s=>`
-        シリーズ : 
-        <button class="detail-series"
-				  onclick="
-				    closeModal('open-book-modal');
-				    openSeriesById('${s.id}');
-				  "
-				>
- 				 ${s.name}
-				</button>
-      `).join(", ") || ""}
-    </div>
+      <hr class="kugiri">
 
 
 		<div class="end-btn">
