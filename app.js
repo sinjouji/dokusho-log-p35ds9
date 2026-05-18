@@ -868,17 +868,6 @@ function openAddBookModal(){
       
      <div class="end-btn"> 
       
-      <div style="font-size:11px"
-      class="toggle-head"
-      data-open="▽追加エリアを閉じる"
-      data-close="▶︎関連シリーズ追加エリアを開く"
-      onclick="
-        togglesSection(
-        'add-book-series',
-        this
-      )
-    "
-  >▶︎関連シリーズ追加エリアを開く</div>
    
       <div style="font-size:11px"
       class="toggle-head"
@@ -892,6 +881,20 @@ function openAddBookModal(){
     "
   >
   ▶︎タグ表示</div>
+  
+  
+   <div style="font-size:11px"
+      class="toggle-head"
+      data-open="▽追加エリアを閉じる"
+      data-close="▶︎関連シリーズ追加エリアを開く"
+      onclick="
+        togglesSection(
+        'add-book-series',
+        this
+      )
+    "
+  >▶︎関連シリーズ追加エリアを開く</div>
+  
   
   </div>
 
@@ -2430,27 +2433,40 @@ newSeriesCharacterIds = [];
 				
 				<button onclick="saveNewSeries()">➕追加</button>
 				
-				<div
-        class="toggle-head"
-        onclick="
-          toggleSeriesNewSection('series-new-books')
-        "
-      >
-      ▼ 関連作品
+				<div class="end-btn">
+      <div
+      class="toggle-head"
+      data-open="▽作品一覧を閉じる"
+      data-close="▶︎作品一覧を開く"
+      onclick="
+        togglesSection(
+        'series-new-books',
+        this
+      )
+    "
+  >▶︎作品一覧を開く</div>
+      
+      
+      <div
+      class="toggle-head"
+      data-open="▽人物一覧を閉じる"
+      data-close="▶︎人物一覧を開く"
+      onclick="
+        togglesSection(
+        'series-new-characters',
+        this
+      )
+    "
+  >▶︎人物一覧を開く</div>
+      
+      
       </div>
+      
      <div id="series-new-books" class="toggle-content"></div>
 
-      <div class="toggle-head"
-        onclick="
-          toggleSeriesNewSection('series-new-characters')
-        "
-      >
-       ▼ 人物関連
-      </div>
-        <div id="series-new-characters" class="toggle-content"></div>
+     <div id="series-new-characters" class="toggle-content"></div>
 				
 			
-		</div>
 `;
 	document.body.appendChild(modal);
 	//関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい
