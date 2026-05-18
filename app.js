@@ -1962,7 +1962,40 @@ async function saveDetail(id){
 delete book.dates;
 
  book.seriesIds =
-   [...editingBookSeriesIds];
+  [...editingBookSeriesIds];
+
+seriesMaster.forEach(series=>{
+
+  const hasBook =
+    editingBookSeriesIds.includes(
+      String(series.id)
+    );
+
+  if(hasBook){
+
+    if(
+      !(series.bookIds || [])
+        .includes(book.id)
+    ){
+
+      series.bookIds = [
+        ...(series.bookIds || []),
+        book.id
+      ];
+    }
+
+  }else{
+
+    series.bookIds =
+      (series.bookIds || [])
+        .filter(seriesBookId =>
+
+          String(seriesBookId)
+          !== String(book.id)
+
+        );
+  }
+});
 
   console.log("found book", book);
 
