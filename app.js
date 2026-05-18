@@ -1195,14 +1195,14 @@ function openBookDetailModal(book){
   
   const latestDate =
     sortedDates[0];
+    
+      editingBookSeriesIds =
+    [...(book.seriesIds || [])]
+      .map(String);
   
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "open-book-modal";
-  
-  editingBookSeriesIds =
-    [...(book.seriesIds || [])]
-      .map(String);
 	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
@@ -1458,6 +1458,7 @@ function openBookDetailModal(book){
   `;
 
   document.body.appendChild(modal);
+  renderBookEditSeries();
 }
 
 
