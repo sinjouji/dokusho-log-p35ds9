@@ -1287,8 +1287,14 @@ function openBookDetailModal(book){
               ✕
             </button>
       </div>
-      <div class="book-stat">${book.readDates ||
-        book.dates || []).length}回読了</div>
+      <div class="book-stat">
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
              <div
         class="toggle-history"
         onclick="
