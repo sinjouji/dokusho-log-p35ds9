@@ -2091,7 +2091,7 @@ console.log(
 
 	//シリーズ→本
   const relatedBooks = books.filter(b=>
-    return (series.bookIds || [])
+    (series.bookIds || [])
       .map(String)
       .includes(String(b.id))
   );
@@ -2100,7 +2100,7 @@ console.log(
   const relatedCharacters =
   characters.filter(c =>
 
-    return (series.characterIds || [])
+    (series.characterIds || [])
       .map(String)
       .includes(String(c.id))
   );
