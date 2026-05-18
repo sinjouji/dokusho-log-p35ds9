@@ -1937,6 +1937,10 @@ async function removeReadDate(bookId,date){
     books.find(b=>b.id==bookId);
 
   if(!book) return;
+  
+  if(!confirm("この読了日を削除しますか？")){
+    return;
+  }
 
   book.readDates =
     (book.readDates || [])
@@ -2667,6 +2671,10 @@ function toggleSeriesNewSection(id){
 //==============================
 function removeBookFromSeries(id){
 
+if(!confirm("削除しますか？")){
+  return;
+}
+
   editingSeriesBookIds =
     editingSeriesBookIds.filter(
       bId => String(bId) !== String(id)
@@ -2682,6 +2690,10 @@ function removeBookFromSeries(id){
 //編集内：関連削除（人物）
 //==============================
 function removeCharacterFromSeries(id){
+
+if(!confirm("削除しますか？")){
+  return;
+}
 
   editingSeriesCharacterIds =
     editingSeriesCharacterIds.filter(
@@ -3288,6 +3300,10 @@ function renderSeriesSuggest(
 //async function deleteSeries(id){
 
 //	const s
+
+//if(!confirm("シリーズを削除しますか？\n関連付けも解除されます")){
+//  return;
+//}
 
 //}
 
