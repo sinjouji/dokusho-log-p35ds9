@@ -1348,12 +1348,17 @@ function openBookDetailModal(book){
       data-close="▶︎関連シリーズ追加エリア表示"
       onclick="
         togglesSection(
-        'open-book-tags',
+        'open-book-series',
         this
       )
     "
   >▶︎関連用トグル予定</div>
   
+  </div>
+  
+  <div class="toggle-content"
+    id="open-book-series">
+    関連シリーズ追加エリア予定地
   </div>
  
   <div class="toggle-content"
