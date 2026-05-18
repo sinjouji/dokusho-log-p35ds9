@@ -3679,10 +3679,10 @@ function openAddCharacterModal(){
 				<textarea id="add-chars-memo"
 				placeholder="メモ"></textarea>
 				
-				<hr class="kugiri">
 				
 			<div>関連シリーズを登録</div>
-			<div class="addin2">
+			
+			<div class="addin">
 			<input class="addinput"
 				id="chars-for-series"
 				type="text"
