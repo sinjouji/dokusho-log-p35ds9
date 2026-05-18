@@ -856,6 +856,18 @@ function openAddBookModal(){
       </div>
       
       
+      
+      
+      
+            ${enableMemo ? `
+      <input type="text" class="bememo" id="add-memo"
+        placeholder="メモ">` : ""}
+
+      
+      
+      
+     <div class="end-btn"> 
+      
       <div style="font-size:11px"
       class="toggle-head"
       data-open="▽追加エリアを閉じる"
@@ -867,15 +879,8 @@ function openAddBookModal(){
       )
     "
   >▶︎関連シリーズ追加エリアを開く</div>
-      <div class="toggle-content"
-      	  id="add-book-series">
-            関連追加エリア</div>
-      
-      
-      
-      
-      
-            <div style="font-size:11px"
+   
+      <div style="font-size:11px"
       class="toggle-head"
       data-open="▽タグ非表示"
       data-close="▶︎タグ表示"
@@ -887,6 +892,18 @@ function openAddBookModal(){
     "
   >
   ▶︎タグ表示</div>
+  
+  </div>
+
+
+
+
+  
+     <div class="toggle-content"
+      	  id="add-book-series">
+            関連追加エリア</div>
+  
+  
       	<div class="toggle-content"
       	  id="add-book-tags">
 			
@@ -930,11 +947,6 @@ function openAddBookModal(){
       
       
       
-      
-            ${enableMemo ? `
-      <input type="text" class="bememo" id="add-memo"
-        placeholder="メモ">` : ""}
-
       
       <hr class="kugiri">
 
