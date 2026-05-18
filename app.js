@@ -371,7 +371,7 @@ function getMonthlyCounts(year){
   const arr = Array(12).fill(0);
   
   books.forEach(b=>{
-    (b.readDates || b.dates || []).forEach(d=>{
+    (b.readDates || []).forEach(d=>{
       if(!d.startsWith(String(year)))
         return;
       const month =
@@ -2997,6 +2997,7 @@ async function saveSeriesEdit(id){
         );
   }
 });
+
   series.characterIds =
     editingSeriesCharacterIds.map(String);
     
