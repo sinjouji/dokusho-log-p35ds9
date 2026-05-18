@@ -1402,7 +1402,7 @@ function openBookDetailModal(book){
       <div id="book-series-suggest"></div>
     </div>
 
-    <div id="book-edit-series"></div>
+    <div id="book-edit-series" class=""></div>
    
    </div>
  
@@ -2717,9 +2717,17 @@ newSeriesCharacterIds = [];
       
  
       
-     <div id="series-new-books" class="toggle-content"></div>
+     <div id="series-new-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
 
-     <div id="series-new-characters" class="toggle-content"></div>
+     <div id="series-new-characters"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
 				
 			
 			     <hr class="kugiri">
@@ -2793,7 +2801,7 @@ function openSeriesEditModal(id){
       
       
        <div
-      class="toggle-head series-edit-list"
+      class="toggle-head"
       data-open="▽作品一覧を閉じる"
       data-close="▶︎作品一覧を開く"
       onclick="
@@ -2806,7 +2814,7 @@ function openSeriesEditModal(id){
       
       
        <div
-      class="toggle-head series-edit-list"
+      class="toggle-head"
       data-open="▽人物一覧を閉じる"
       data-close="▶︎人物一覧を開く"
       onclick="
@@ -2821,8 +2829,16 @@ function openSeriesEditModal(id){
       </div>
       
       
-     <div id="series-edit-books" class="toggle-content"></div>
-     <div id="series-edit-characters" class="toggle-content"></div>
+     <div id="series-edit-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+     <div id="series-edit-characters"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
      
      <hr class="kugiri">
 
