@@ -1265,7 +1265,7 @@ function openBookDetailModal(book){
       
 
      <div class="detail-row" style="display:flex;justify-content:space-between;
-  align-items:center;">
+  align-items:center;gap:2px;flex-wrap:wrap;">
   読了日：
 
   ${
@@ -1313,10 +1313,9 @@ function openBookDetailModal(book){
           </div>
         
         `).join("")}
-      </div>
     `
     : "未読"
-  }
+  }</div>
       
       
       <div class="detail-date-add">
