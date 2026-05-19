@@ -956,7 +956,7 @@ function openAddBookModal(){
        </div>
      
      <div class="title-line">
-     関連：
+     関連：<br>
       	 <div
       	  id="add-book-series-list"
       	  class="series-edit-list"></div>
@@ -4351,6 +4351,8 @@ function changeCharactersSortMode(){
 //==============================
 function openAddCharacterModal(){
 
+  editingCharacterSeriesIds = [];
+
 	const modal = document.createElement("div");
 	modal.className = "modal-bg";
 	modal.id = "add-chars-modal";
@@ -4373,14 +4375,24 @@ function openAddCharacterModal(){
 			<div>関連シリーズを登録</div>
 			
 		
-			<input class="addinput series-edit-list"
-				id="chars-for-series"
+			<input class="addin"
+				id="add-character-related-search"
 				type="text"
 				placeholder="関連シリーズ名"
-				oninput="renderSeriesSuggest()">
-				<div id="series-suggest"></div>
+				oninput="
+				  renderCharacterSeriesSuggest(
+				    'add-character-related-search',
+						'add-character-series-suggest',
+						'add-character-series-list'
+				  );">
+				<div class="suggest-box">
+				<div id="add-character-series-suggest"></div>
+				</div>
 				
-			<div class="series-edit-list">関連シリーズ表示する予定のやーつ</div>
+				<div class="title-line">
+				関連：<br>
+			<div id="add-character-series-list" class="series-edit-list"></div>
+			</div>
 			
 			     <hr class="kugiri">
 			
@@ -4391,6 +4403,9 @@ function openAddCharacterModal(){
 	`;
 
 	document.body.appendChild(modal);
+	renderCharacterEditSeries(
+	  "add-character-series-list"
+	);
 }
 
 //==============================
@@ -4398,47 +4413,69 @@ function openAddCharacterModal(){
 //==============================
 async function saveNewCharacter(){
 
-	const name =
-		document.getElementById(
-			"add-chars-name"
-		).value.trim();
-		
-	if(!name){
-	alert("名前を入力してね！");
-	return;
-	}
-	
-	const memo =
-		document.getElementById("add-chars-memo")?.value || "";
-	
-	
-	
-	characters.push({
-	
-		id:
-			"ch" + Date.now(),
-		
-		name:
-			name,
-		
-		seriesIds:
-			[],
-		
-		memo:
-			memo
-	
-	});
-	
-	await saveData();
-	
-	closeModal(
-		"add-chars-modal"
-	);
+  const name =
+    document.getElementById(
+      "add-chars-name"
+    ).value.trim();
 
-	renderCharacters();
+  if(!name){
+    alert("名前を入力してね！");
+    return;
+  }
 
+  const memo =
+    document.getElementById(
+      "add-chars-memo"
+    )?.value || "";
+
+  const character = {
+
+    id:
+      "ch" + Date.now(),
+
+    name,
+
+    seriesIds:
+      editingCharacterSeriesIds.map(String),
+
+    memo
+  };
+
+  characters.unshift(character);
+
+  seriesMaster.forEach(series=>{
+
+    const shouldHaveSeries =
+      editingCharacterSeriesIds.includes(
+        String(series.id)
+      );
+
+    if(shouldHaveSeries){
+
+      if(
+        !(series.characterIds || [])
+          .includes(String(character.id))
+      ){
+
+        series.characterIds =
+          (series.characterIds || [])
+            .concat(String(character.id));
+      }
+    }
+  });
+
+  await saveData();
+
+  closeModal(
+    "add-chars-modal"
+  );
+
+  renderCharacters();
+
+  showToast(
+    `「${character.name}」を追加しました`
+  );
 }
-
 
 //==============================
 //統計
