@@ -3852,9 +3852,9 @@ function openCharacterModal(c){
 	`;
 	document.body.appendChild(modal);
 	renderCharacterEditSeries(
-	"
-	  character-edit-series
-	"
+	  "
+	    character-edit-series
+	  "
 	);
 }
 
