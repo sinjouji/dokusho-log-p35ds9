@@ -551,7 +551,7 @@ function setActiveMenu(menuId){
 //==============================
 function renderHome(){
 
-setActiveMenu("menu-home");
+setActiveMenu("page-home");
 
   const el = document.getElementById("page-home");
   if(!el) return;
@@ -2316,7 +2316,7 @@ function renderTitleSuggest(){
 //==============================
 function renderSeries(){
 
-setActiveMenu("menu-series");
+setActiveMenu("page-series");
 
   const list = document.getElementById('page-series');
   list.innerHTML = `
@@ -3676,7 +3676,7 @@ function renderSeriesSuggest(
 //==============================
 function renderCharacters(){
 
-setActiveMenu("menu-characters");
+setActiveMenu("page-characters");
 	
 	const el = document.getElementById('page-characters');
 	el.innerHTML = `
@@ -4160,7 +4160,7 @@ async function saveNewCharacter(){
 //==============================
 function renderStats(){
 
-setActiveMenu("menu-stats");
+setActiveMenu("page-stats");
 
   const main = document.getElementById("page-stats");
   main.innerHTML = "";
@@ -4452,7 +4452,7 @@ function openDayModal(dateStr, list){
 //==============================
 function renderSettings(){
 
-setActiveMenu("menu-settings");
+setActiveMenu("page-settings");
 
   const el = document.getElementById("page-settings");
   if(!el) return;
