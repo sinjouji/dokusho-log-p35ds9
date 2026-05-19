@@ -543,6 +543,92 @@ function setActiveMenu(menuId){
 
 
 
+//==============================
+//フィルタの状態
+//==============================
+const filterState = {
+  tags: [],        // 選択中タグID
+  tagMode: "AND",  // AND / OR / NOT
+  types: {
+    book: true,
+    series: true,
+    character: true
+  },
+  search: ""
+};
+
+
+
+//==============================
+//フィルタをまとめるベースちゃん
+//==============================
+function shouldShowByType(item){
+  if(item.type === "book") return filterState.types.book;
+  if(item.type === "series") return filterState.types.series;
+  if(item.type === "character") return filterState.types.character;
+
+  return true;
+}
+
+
+
+//==============================
+//フィルタを判定する子ちゃん
+//==============================
+function matchTags(item){
+
+  if(filterState.tags.length === 0){
+    return true;
+  }
+
+  const itemTags = (item.tagIds || []).map(String);
+  const selected = filterState.tags.map(String);
+
+  if(filterState.tagMode === "AND"){
+
+    return selected.every(tag =>
+      itemTags.includes(tag)
+    );
+
+  } else {
+
+    return selected.some(tag =>
+      itemTags.includes(tag)
+    );
+
+  }
+}
+
+
+
+//==============================
+//フィルタの状態更新用ちゃん
+//==============================
+function setTagMode(mode){
+  filterState.tagMode = mode;
+  renderHome();
+  updateTagModeUI();
+}
+
+
+
+//==============================
+//フィルタの選択状態見た目ちゃん
+//==============================
+function updateTagModeUI(){
+
+  document.querySelectorAll(".filter-mode button")
+    .forEach(btn => {
+
+      if(btn.textContent === filterState.tagMode){
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+
+    });
+}
+
 
 //==============================
 //ホーム（メイン本棚）
@@ -813,6 +899,13 @@ function renderSearchArea(){
   </option>
 
   </select>
+
+
+		<div class="filter-mode">
+			<button onclick="setTagMode('AND')">AND</button>
+			<button onclick="setTagMode('OR')">OR</button>
+		</div>
+
 
       <button class="tag-chip"
         data-open="🏷️タグ非表示"
