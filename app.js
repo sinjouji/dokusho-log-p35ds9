@@ -3851,9 +3851,8 @@ editingCharacterSeriesIds =
       <div id="character-series-suggest"></div>
     </div>
     <div class="title-line">
-    【関連：
+    関連：<br>
     <div id="character-edit-series" class="series-edit-list"></div>
-   】
    </div>
          <hr class="kugiri">
 		
