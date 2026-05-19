@@ -3997,7 +3997,7 @@ function addSeriesToCharacter(
 
   if(
     editingCharacterSeriesIds.includes(
-      string(id)
+      String(id)
     )
   ){
     return;
