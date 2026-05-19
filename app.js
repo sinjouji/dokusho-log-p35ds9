@@ -843,6 +843,10 @@ function renderSearchArea(){
 //==============================
 function openAddBookModal(){
 
+  editingBookSeriesIds = [];
+  newBookTagIds = [];
+  newBookFav = 0;
+
   const modal = document.createElement("div");
   modal.className = "modal-bg";
   modal.id = "add-book-modal";
@@ -1003,11 +1007,11 @@ function openAddBookModal(){
       
       <hr class="kugiri">
 
-          <div class="end-btn">
+ 
         <button onclick="saveNewBook()">
           ➕保存
         </button>
-            </div></div>
+            </div>
   `;
 
   document.body.appendChild(modal);
