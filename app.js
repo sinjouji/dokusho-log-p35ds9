@@ -726,6 +726,9 @@ function renderBookList(){
   const main = document.getElementById("home-main");
   if(!main) return;
 
+  // ★絶対これ必要
+  main.innerHTML = "";
+
   const filteredBooks = books.filter(b =>
     shouldShowItem(b)
   );
@@ -743,11 +746,10 @@ function renderBookList(){
   }
 
   if(viewMode === "shelf"){
-    renderShelfView(main, sorted);
-    return;
+  const shelf = renderShelfView(sorted);
+  main.appendChild(shelf);
   }
 }
-
 //==============================
 //====カードビューモード
 //==============================
@@ -817,25 +819,18 @@ function renderListView(main, books){
 //==============================
 //====背表紙ビューモード❤️
 //==============================
-function renderShelfView(main, books){
+function renderShelfView(books){
 
   const shelf = document.createElement("div");
-
-  main.className = "";
   shelf.className = "shelf-view";
-  shelf.style.gap = "2px";
 
   books.forEach(b=>{
-
     const spine = createBookSpine(b);
-
-    spine.onclick =
-      ()=> openBookDetailModal(b);
-
+    spine.onclick = () => openBookDetailModal(b);
     shelf.appendChild(spine);
   });
 
-  main.appendChild(shelf);
+  return shelf;
 }
 
 
