@@ -839,6 +839,8 @@ function renderSearchArea(){
   const top = document.getElementById("home-top");
   if(!top) return;
   
+  const items = books;//応急処置、後で変更
+  
   const visibleItems = items.filter(item =>
   shouldShowByType(item) &&
   matchTags(item)
