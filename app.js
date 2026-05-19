@@ -3777,6 +3777,8 @@ function renderCharacterList(){
 //==============================
 function openCharacterModal(c){
 
+editingCharacterSeriesIds =
+  (c.seriesIds || []).map(String);
 
     const relatedSeries =
   seriesMaster.filter(s =>
