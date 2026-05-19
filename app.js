@@ -3851,6 +3851,11 @@ function openCharacterModal(c){
 		</div>
 	`;
 	document.body.appendChild(modal);
+	renderCharacterEditSeries(
+	"
+	  character-edit-series
+	"
+	);
 }
 
 
