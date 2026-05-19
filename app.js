@@ -182,6 +182,8 @@ let newBookSeries = []; //新規本保存用の関連シリーズ一時保存場
 
 let editingBookSeriesIds = []; //本編集用の関連シリーズ一時保存場所
 
+let editingCharacterSeriesIds = []; //人物編集用の関連シリーズ一時保存場所
+
 //汎用トグル用のやつ
 let homeSections = {
   tags: false
@@ -1663,6 +1665,13 @@ function addSeriesToBook(
   suggestId
 ){
 
+  if(
+    editingBookSeriesIds.includes(
+      String(id)
+    )
+  ){
+    return;
+  }
   editingBookSeriesIds.push(
     String(id)
   );
@@ -3812,7 +3821,26 @@ function openCharacterModal(c){
     </div>
     
     
-   <div>インプットで関連シリーズ登録するやつ</div> 
+    
+   <input class="addin"
+        id="character-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderCharacterSeriesSuggest(
+            'character-related-search',
+            'character-series-suggest',
+            'character-edit-series'
+          );
+        "
+      >
+    <div class="suggest-box">
+      <div id="character-series-suggest"></div>
+    </div>
+
+    <div id="character-edit-series" class="series-edit-list"></div>
+   
+   
          <hr class="kugiri">
 		
 		<div class="end-btn">
@@ -3824,6 +3852,195 @@ function openCharacterModal(c){
 	`;
 	document.body.appendChild(modal);
 }
+
+
+
+//==============================
+//人物詳細編集の関連シリーズ一覧描画
+//==============================
+function renderCharacterEditSeries(
+  targetId
+){
+
+  const target =
+    document.getElementById(targetId);
+
+  if(!target) return;
+
+  const relatedSeries =
+    seriesMaster.filter(s =>
+
+      editingCharacterSeriesIds.includes(
+        String(s.id)
+      )
+
+    );
+
+  target.innerHTML = `
+
+    <div>
+
+      ${relatedSeries.map(s=>`
+
+        <div class="related-chip">
+
+          ${s.name}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeSeriesFromCharacter(
+                '${s.id}',
+                '${targetId}'
+              )
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+
+
+
+//==============================
+//人物詳細編集の関連シリーズサジェスト検索
+//==============================
+function renderCharacterSeriesSuggest(
+  searchId,
+  suggestId,
+  listId
+){
+
+  const keyword =
+    document.getElementById(searchId)
+      .value
+      .toLowerCase();
+
+  const filtered =
+    seriesMaster.filter(s=>{
+
+      const match =
+        (s.name || "")
+          .toLowerCase()
+          .includes(keyword);
+
+      const notAdded =
+        !editingCharacterSeriesIds.includes(
+          String(s.id)
+        );
+
+      return match && notAdded;
+
+    });
+
+  if(!keyword){
+
+    document.getElementById(
+      suggestId
+    ).innerHTML = "";
+
+    return;
+  }
+
+  document.getElementById(
+    suggestId
+  ).innerHTML =
+
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        📚 シリーズ
+      </div>
+
+      ${filtered.map(s=>`
+
+        <div
+          class="search-item"
+          onclick="
+            addSeriesToCharacter(
+            '${s.id}',
+            '${listId}',
+            '${searchId}',
+            '${suggestId}'
+            )
+          "
+        >
+          ${s.name}
+        </div>
+
+      `).join("")}
+    `
+    : "";
+}
+
+
+
+
+
+//==============================
+//人物詳細編集の関連追加処理
+//==============================
+function addSeriesToCharacter(
+  id,
+  listId,
+  searchId,
+  suggestId
+){
+
+  if(
+    editingCharacterSeriesIds.includes(
+      string(id)
+    )
+  ){
+    return;
+  }
+
+  editingCharacterSeriesIds.push(
+    String(id)
+  );
+
+  renderCharacterEditSeries(listId);
+
+  renderCharacterSeriesSuggest(
+    searchId,
+    suggestId,
+    listId
+  );
+}
+
+
+
+
+
+//==============================
+//人物詳細編集の関連消去
+//==============================
+function removeSeriesFromCharacter(
+  id,
+  listId
+){
+
+if(!confirm("削除しますか？")){
+  return;
+}
+
+  editingCharacterSeriesIds =
+    editingCharacterSeriesIds.filter(
+      sId => String(sId) !== String(id)
+    );
+
+  renderCharacterEditSeries();
+
+}
+
 
 
 //==============================
