@@ -3738,67 +3738,73 @@ function openCharacterModal(c){
 //==============================
 async function saveCharacter(id){
 
-	const chars =
-		characters.find(c => String(c.id) === String(id));
-		
-		if(!chars) return;
-		
-		chars.seriesIds =
-  editingCharacterSeriesIds.map(String);
-  
-  seriesMaster.forEach(series=>{
-
-  const shouldHaveCharacter =
-    editingCharacterSeriesIds.includes(
-      String(series.id)
+  const chars =
+    characters.find(
+      c => String(c.id) === String(id)
     );
 
-  if(shouldHaveCharacter){
+  if(!chars) return;
 
-    if(
-      !(series.characterIds || [])
-        .includes(String(chars.id))
-    ){
+  chars.seriesIds =
+    (editingCharacterSeriesIds || [])
+      .map(String);
 
-      series.characterIds = [
-        ...(series.characterIds || []),
-        String(chars.id)
-      ];
+  seriesMaster.forEach(series=>{
+
+    const shouldHaveCharacter =
+      editingCharacterSeriesIds.includes(
+        String(series.id)
+      );
+
+    if(shouldHaveCharacter){
+
+      if(
+        !(series.characterIds || [])
+          .includes(String(chars.id))
+      ){
+
+        series.characterIds =
+          (series.characterIds || []).concat(
+            String(chars.id)
+          );
+      }
+
+    }else{
+
+      series.characterIds =
+        (series.characterIds || [])
+          .filter(characterId =>
+
+            String(characterId)
+            !== String(chars.id)
+
+          );
     }
+  });
 
-  }else{
+  console.log(
+    document.getElementById("character-name").value
+  );
 
-    series.characterIds =
-      (series.characterIds || [])
-        .filter(characterId =>
+  chars.name =
+    document.getElementById(
+      "character-name"
+    ).value;
 
-          String(characterId)
-          !== String(chars.id)
+  chars.memo =
+    document.getElementById(
+      "character-memo"
+    ).value;
 
-        );
-  }
-});
-		
-		console.log(
-			document.getElementById("character-name").value
-		);
-		
-		chars.name =
-			document.getElementById("character-name").value;
-		
-		chars.memo =
-			document.getElementById("character-memo").value;
-		
-		console.log("after edit", chars);
-		
-		await saveData();
-		
-		showToast("保存しました！");
-		
-		closeModal("open-chars-modal");
-		
-		renderCharacters();
+  console.log("after edit", chars);
 
+  await saveData();
+
+  showToast("保存しました！");
+
+  closeModal("open-chars-modal");
+
+  renderCharacters();
 }
 
 
