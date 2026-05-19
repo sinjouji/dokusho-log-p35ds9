@@ -189,7 +189,7 @@ let homeSections = {
 
 let addBookTagSections = { tags: false };
 let addBookSeriesSections = { series: false };
-let detailSections = { tags: true };
+let detailSections = { tags:  false };
 
 
 
@@ -1185,8 +1185,16 @@ function openBookDetailModal(book){
 
   currentDetailFav = book.fav || 0;
   
-  const relatedSeries = seriesMaster.filter(s=>{
-  return Array.isArray(s.bookIds) && s.bookIds.includes(book.id);
+  const relatedSeries =
+  seriesMaster.filter(s=>{
+
+    return (
+      Array.isArray(book.seriesIds)
+      &&
+      book.seriesIds
+        .map(String)
+        .includes(String(s.id))
+    );
   });
   
   const sortedDates =
@@ -3692,9 +3700,19 @@ function renderCharacterList(){
 //==============================
 function openCharacterModal(c){
 
-	const relatedSeries = seriesMaster.filter(s=>{
-	return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
-	});
+
+    const relatedSeries =
+    seriesMaster.filter(s=>{
+    
+      return (
+        Array.isArray(c.seriesIds)
+        &&
+        c.seriesIds
+          .map(String)
+          .includes(String(s.id))
+      );
+  });
+  
 
 	const modal = document.createElement("div");
 	modal.className = "modal-bg";
