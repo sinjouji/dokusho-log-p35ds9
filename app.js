@@ -949,7 +949,9 @@ function openAddBookModal(){
        </div>
      
      
-      	 <div id="add-book-series-list" class="series-edit-list"></div>
+      	 <div
+      	  id="add-book-series-list"
+      	  class="series-edit-list"></div>
             
      </div>
   
@@ -1533,6 +1535,11 @@ function renderBookEditSeries(
   targetId
 ){
 
+  const target =
+    document.getElementById(targetId);
+
+  if(!target) return;
+
   const relatedSeries =
     seriesMaster.filter(s =>
 
@@ -1542,9 +1549,7 @@ function renderBookEditSeries(
 
     );
 
-  document.getElementById(
-    targetId
-  ).innerHTML = `
+  target.innerHTML = `
 
     <div>
 
