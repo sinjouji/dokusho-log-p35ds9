@@ -1947,7 +1947,9 @@ function getLatestReadDate(book){
 async function deleteBook(id){
 
   const book =
-    books.find(b=>b.id==id);
+    books.find(
+      b => String(b.id) === String(id)
+    );
 
   if(!book) return;
 
@@ -1957,21 +1959,24 @@ async function deleteBook(id){
     confirm(
       `${book.title}を削除しますか？`
     );
-  
+
   if(!ok) return;
 
   books =
-    books.filter(b=>b.id!=id);
-    
+    books.filter(
+      b => String(b.id) !== String(id)
+    );
+
   seriesMaster.forEach(series=>{
 
-  series.bookIds =
-    (series.bookIds || [])
-      .filter(id =>
+    series.bookIds =
+      (series.bookIds || [])
+        .filter(seriesBookId =>
 
-        String(id) !== String(bookId)
+          String(seriesBookId)
+          !== String(book.id)
 
-      );
+        );
   });
 
   await saveData();
@@ -1980,7 +1985,9 @@ async function deleteBook(id){
 
   renderHome();
 
-  showToast(`「${title}」を削除しました`);
+  showToast(
+    `「${title}」を削除しました`
+  );
 }
 
 //==============================
