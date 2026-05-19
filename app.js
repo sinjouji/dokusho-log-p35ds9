@@ -522,6 +522,27 @@ function togglesSection(id, btn){
 
 
 //==============================
+//メニューボタンactive切り替え
+//==============================
+function setActiveMenu(menuId){
+
+  document
+    .querySelectorAll(".btn-me")
+    .forEach(btn=>{
+
+      btn.classList.remove("active");
+
+    });
+
+  document
+    .getElementById(menuId)
+    ?.classList.add("active");
+}
+
+
+
+
+//==============================
 //ホーム（メイン本棚）
 //==============================
 //==============================
@@ -529,6 +550,8 @@ function togglesSection(id, btn){
 //ホーム画面の「骨組みだけ」にする！
 //==============================
 function renderHome(){
+
+setActiveMenu("menu-home");
 
   const el = document.getElementById("page-home");
   if(!el) return;
@@ -2292,6 +2315,9 @@ function renderTitleSuggest(){
 //◼️シリーズ一覧表示（骨組みだけ）
 //==============================
 function renderSeries(){
+
+setActiveMenu("menu-home");
+
   const list = document.getElementById('page-series');
   list.innerHTML = `
   		
@@ -3649,6 +3675,8 @@ function renderSeriesSuggest(
 //◼️キャラクターホーム（骨組み）だけ
 //==============================
 function renderCharacters(){
+
+setActiveMenu("menu-home");
 	
 	const el = document.getElementById('page-characters');
 	el.innerHTML = `
@@ -4132,6 +4160,8 @@ async function saveNewCharacter(){
 //==============================
 function renderStats(){
 
+setActiveMenu("menu-home");
+
   const main = document.getElementById("page-stats");
   main.innerHTML = "";
 
@@ -4421,6 +4451,9 @@ function openDayModal(dateStr, list){
 //🔧====設定ページ====
 //==============================
 function renderSettings(){
+
+setActiveMenu("menu-home");
+
   const el = document.getElementById("page-settings");
   if(!el) return;
   
