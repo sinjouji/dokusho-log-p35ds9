@@ -1586,7 +1586,7 @@ function renderBookEditSeries(
 //==============================
 function renderBookSeriesSuggest(
   searchId,
-  suggestId
+  suggestId,
   listId
 ){
 
