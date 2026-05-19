@@ -3806,7 +3806,7 @@ function openCharacterModal(c){
 			<textarea id="character-memo">${c.memo || ""}</textarea>
 		
 		      
-    <div style="font-size:10px">
+      <div style="font-size:10px">
       ${relatedSeries.map(s=>`
         シリーズ : 
         <button class="detail-series"
@@ -3844,8 +3844,8 @@ function openCharacterModal(c){
          <hr class="kugiri">
 		
 		<div class="end-btn">
-			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
 			<button>🗑️ 削除</button>
+			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
 		</div>
 	
 		</div>
