@@ -677,19 +677,19 @@ function updateTagModeUI(){
 //==============================
 //★新型タグフィルタちゃん（しばし共存
 //==============================
-function toggleFilterTag(tagId){
+function toggleFilterTag(id){
 
-  tagId = String(tagId);
+  const strId = String(id);
 
-  const i = filterState.tags.indexOf(tagId);
+  if(filterState.tags.includes(strId)){
 
-  if(i >= 0){
-    filterState.tags.splice(i, 1);
+    filterState.tags =
+      filterState.tags.filter(t => t !== strId);
+
   } else {
-    filterState.tags.push(tagId);
-  }
 
-  renderHome();
+    filterState.tags.push(strId);
+  }
 }
 
 
@@ -711,43 +711,31 @@ function renderHome(){
   el.innerHTML = `
     <div id="home-top"></div>
     <div id="home-main"></div>
-    <div id="tag-filter"></div>
   `;
 
-  
   renderSearchArea();
-  renderTagFilter();
-  renderBookList();
-
-  // ★最後に必ずこれ
-  requestAnimationFrame(() => {
+  
+  if(homeSections.tags){
     renderTagFilter();
-  });
+  }
+  renderBookList();
 }
 //==============================
 //======本の一覧だけ表示させる役
 //==============================
 function renderBookList(){
 
-  console.log("renderBookList start");
-
   const main = document.getElementById("home-main");
   if(!main) return;
 
-  
-  // ★絶対これ必要
   main.innerHTML = "";
 
   const filteredBooks = books.filter(b =>
     shouldShowItem(b)
   );
 
-  console.log("filteredBooks:", filteredBooks.length);
-
   const sorted = sortBooks(filteredBooks);
-  
-  console.log("sorted:", sorted.length);
-  
+
   main.className = "";
 
   if(viewMode === "card"){
@@ -1292,23 +1280,16 @@ function changeSortMode(){
 
 
 //==============================
-//====本棚のビューモード切替え
+//====本棚のビューモード切替え(いずれ削除20260520
 //==============================
 function changeViewMode(mode){
 
   viewMode = mode;
 
-  localStorage.setItem(
-    "viewMode",
-    viewMode
-  );
-  
-  renderSearchArea();
+  localStorage.setItem("viewMode", viewMode);
 
-  renderBookList();
-  renderTagFilter();
+  renderHome(); // ★これ一本化
 }
-
 //==============================
 //====背表紙カラー切り替え
 //==============================
@@ -2093,9 +2074,12 @@ function renderTagFilter(){
       btn.style.color = "#fffffc";
     }
 
-    btn.onclick = () => {
-      toggleFilterTag(tag.id);
-    };
+  btn.onclick = () => {
+
+    toggleFilterTag(tag.id);
+
+    renderHome();
+  };
 
     area.appendChild(btn);
   });
