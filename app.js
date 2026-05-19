@@ -2979,10 +2979,10 @@ async function saveSeriesEdit(id){
         .includes(String(series.id))
     ){
 
-      book.seriesIds = [
-        ...(book.seriesIds || []),
-        String(series.id)
-      ];
+      book.seriesIds =
+  (book.seriesIds || []).concat(
+    String(series.id)
+  );
     }
 
   }else{
@@ -3015,10 +3015,10 @@ async function saveSeriesEdit(id){
         .includes(String(series.id))
     ){
 
-      character.seriesIds = [
-        ...(character.seriesIds || []),
-        String(series.id)
-      ];
+      character.seriesIds =
+  (character.seriesIds || []).concat(
+    String(series.id)
+  );
     }
 
   }else{
