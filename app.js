@@ -926,13 +926,30 @@ function openAddBookModal(){
   </div>
 
 
-
-
-  
-     <div class="toggle-content">
-     インプットでシリーズの検索＆追加するやーつ
+     <div
+       class="toggle-content"
+       id="add-book-series"
+     >
+        <input
+          class="addin"
+          id="add-book-related-search"
+          type="text"
+          placeholder="関連シリーズを追加"
+          
+          oninput="
+            renderBookSeriesSuggest(
+              'add-book-related-search',
+              'add-book-series-suggest'
+            );
+          "
+        >
+      
+       <div class="suggest-box">
+        <div id="add-book-series-suggest"></div>
+       </div>
      
-      	 <div id="add-book-series" class="series-edit-list"></div>
+     
+      	 <div id="add-book-series-list" class="series-edit-list"></div>
             
      </div>
   
@@ -995,6 +1012,9 @@ function openAddBookModal(){
   `;
 
   document.body.appendChild(modal);
+  renderBookEditSeries(
+   "add-book-series-list"
+  );
 }
 
 
@@ -1430,14 +1450,17 @@ function openBookDetailModal(book){
         type="text"
         placeholder="関連シリーズを追加"
         oninput="
-          renderBookSeriesSuggest();
+          renderBookSeriesSuggest(
+            'book-related-search',
+            'book-series-suggest'
+          );
         "
       >
     <div class="suggest-box">
       <div id="book-series-suggest"></div>
     </div>
 
-    <div id="book-edit-series" class=""></div>
+    <div id="book-edit-series" class="series-edit-list"></div>
    
    </div>
  
@@ -1497,14 +1520,18 @@ function openBookDetailModal(book){
   `;
 
   document.body.appendChild(modal);
-  renderBookEditSeries();
+  renderBookEditSeries(
+  "book-edit-series"
+  );
 }
 
 
 //==============================
 //本詳細の関連本の一覧描画
 //==============================
-function renderBookEditSeries(){
+function renderBookEditSeries(
+  targetId
+){
 
   const relatedSeries =
     seriesMaster.filter(s =>
@@ -1516,7 +1543,7 @@ function renderBookEditSeries(){
     );
 
   document.getElementById(
-    "book-edit-series"
+    targetId
   ).innerHTML = `
 
     <div>
@@ -1550,63 +1577,66 @@ function renderBookEditSeries(){
 //==============================
 //本詳細で関連本の検索
 //==============================
-function renderBookSeriesSuggest(){
+function renderBookSeriesSuggest(
+  searchId,
+  suggestId
+){
 
   const keyword =
-    document.getElementById(
-      "book-related-search"
-    ).value.toLowerCase();
+    document.getElementById(searchId)
+      .value
+      .toLowerCase();
 
-  const filtered = seriesMaster.filter(s=>{
+  const filtered =
+    seriesMaster.filter(s=>{
 
-    const match =
-      (s.name || "")
-        .toLowerCase()
-        .includes(keyword);
+      const match =
+        (s.name || "")
+          .toLowerCase()
+          .includes(keyword);
 
-    const notAdded =
-      !editingBookSeriesIds.includes(
-        String(s.id)
-      );
+      const notAdded =
+        !editingBookSeriesIds.includes(
+          String(s.id)
+        );
 
-    return match && notAdded;
+      return match && notAdded;
 
-  });
-  
+    });
+
   if(!keyword){
 
+    document.getElementById(
+      suggestId
+    ).innerHTML = "";
+
+    return;
+  }
+
   document.getElementById(
-    "book-series-suggest"
-  ).innerHTML = "";
+    suggestId
+  ).innerHTML =
 
-  return;
-}
-
-  document.getElementById(
-  "book-series-suggest"
-).innerHTML =
-
-  filtered.length
-  ? `
-    <div class="suggest-label">
-      📚 シリーズ
-    </div>
-
-    ${filtered.map(s=>`
-
-      <div
-        class="search-item"
-        onclick="
-          addSeriesToBook('${s.id}')
-        "
-      >
-        ${s.name}
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        📚 シリーズ
       </div>
 
-    `).join("")}
-  `
-  : "";
+      ${filtered.map(s=>`
 
+        <div
+          class="search-item"
+          onclick="
+            addSeriesToBook('${s.id}')
+          "
+        >
+          ${s.name}
+        </div>
+
+      `).join("")}
+    `
+    : "";
 }
 
 
@@ -2130,10 +2160,36 @@ async function saveNewBook(){
     fav: newBookFav,
     readDates: date ? [date] : [],
     tagIds: [...newBookTagIds],
+    seriesIds:
+      editingBookSeriesIds.map(String),
     type: date ? "normal" : "wish"
   };
 
   books.unshift(book);
+  
+  
+  seriesMaster.forEach(series=>{
+
+  const shouldHaveSeries =
+    editingBookSeriesIds.includes(
+      String(series.id)
+    );
+
+  if(shouldHaveSeries){
+
+    if(
+      !(series.bookIds || [])
+        .includes(String(book.id))
+    ){
+
+      series.bookIds =
+        (series.bookIds || []).concat(
+          String(book.id)
+        );
+    }
+  }
+});
+  
 
   await saveData();
   showToast(`「${book.title}」を追加しました`);
