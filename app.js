@@ -2020,7 +2020,7 @@ function sortBooks(list){
 }
 
 //==============================
-//====タグフィルター描画※旧になる予定20260519
+//====★タグフィルター描画※旧になる予定20260519
 //==============================
 function renderTagFilter(){
 
@@ -2037,39 +2037,29 @@ function renderTagFilter(){
       document.createElement("button");
 
     btn.className = "tag-chip";
-    
     btn.textContent = tag.name;
 
     btn.style.background = "#fffffc";
     btn.style.color = tag.color || "#666";
-    
     btn.style.border = `1px solid ${tag.color || "#ccc"}`;
     btn.style.borderRadius = "999px";
 
-    if(selectedTagId === tag.id){
+    const isActive =
+      filterState.tags.includes(String(tag.id));
+
+    if(isActive){
       btn.classList.add("active");
       btn.style.background = tag.color;
       btn.style.color = "#fffffc";
     }
 
-    btn.onclick = ()=>{
-
-      if(selectedTagId === tag.id){
-
-        selectedTagId = null;
-
-      }else{
-
-        selectedTagId = tag.id;
-      }
-
-      renderHome();
+    btn.onclick = () => {
+      toggleFilterTag(tag.id);
     };
 
     area.appendChild(btn);
   });
 }
-
 
 //==============================
 //========タイプフィルター（ウィッシュリスト）
