@@ -189,7 +189,7 @@ let homeSections = {
 
 let addBookTagSections = { tags: false };
 let addBookSeriesSections = { series: false };
-let detailSections.tags = true;
+let detailSections = { tags: true };
 
 
 
@@ -2965,7 +2965,7 @@ async function saveSeriesEdit(id){
   series.bookIds =
     editingSeriesBookIds.map(String);
     
-  books.forEach(book=>{
+  books.forEach(function(book){
 
   const shouldHaveSeries =
     editingSeriesBookIds.includes(
@@ -2974,27 +2974,34 @@ async function saveSeriesEdit(id){
 
   if(shouldHaveSeries){
 
+    const currentIds =
+      (book.seriesIds || []);
+
     if(
-      !(book.seriesIds || [])
-        .includes(String(series.id))
+      !currentIds.includes(
+        String(series.id)
+      )
     ){
 
       book.seriesIds =
-  (book.seriesIds || []).concat(
-    String(series.id)
-  );
+        currentIds.concat(
+          String(series.id)
+        );
     }
 
   }else{
 
     book.seriesIds =
-      (book.seriesIds || [])
-        .filter(seriesId =>
+      (book.seriesIds || []).filter(
+        function(seriesId){
 
-          String(seriesId)
-          !== String(series.id)
+          return (
+            String(seriesId)
+            !== String(series.id)
+          );
 
-        );
+        }
+      );
   }
 });
 
