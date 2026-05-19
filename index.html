@@ -818,15 +818,21 @@ margin-top:6px;
     0 0 0 2px #333;
 }
 /*本棚：カード表示*/
-.book-grid{
+.card-view{
   display:grid;
   grid-template-columns:1fr;
   gap:10px;
 }
 @media(min-width:700px){
-  .book-grid{
-    grid-template-columns:1fr 1fr;
+  .card-view{
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+  gap:6px;
 }
 
 @media(max-width:768px){
@@ -1068,9 +1074,9 @@ gap:5px;
 
 .shelf-view{
   display:flex;
-  gap:8px;
+  gap:2px;
   align-items:flex-end;
-
+  flex-wrap:wrap;
   overflow-x:auto;
   padding:10px 0;
 }
