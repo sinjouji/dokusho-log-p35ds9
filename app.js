@@ -575,8 +575,11 @@ function setActiveMenu(menuId){
 
 
 
+
+
+
 //==============================
-//フィルタの状態
+//★フィルタの状態
 //==============================
 const filterState = {
   tags: [],        // 選択中タグID
@@ -620,28 +623,46 @@ function shouldShowItem(item){
 //==============================
 function matchTags(item){
 
-  if(filterState.tags.length === 0){
+  if(
+    filterState.tagMode === "OFF"
+    ||
+    !filterState.tags.length
+  ){
     return true;
   }
 
-  const itemTags = (item.tagIds || []).map(String);
-  const selected = filterState.tags.map(String);
+  const itemTags =
+    (item.tagIds || []).map(String);
 
   if(filterState.tagMode === "AND"){
 
-    return selected.every(tag =>
-      itemTags.includes(tag)
+    return filterState.tags.every(tagId =>
+
+      itemTags.includes(String(tagId))
+
     );
-
-  } else {
-
-    return selected.some(tag =>
-      itemTags.includes(tag)
-    );
-
   }
-}
 
+  if(filterState.tagMode === "OR"){
+
+    return filterState.tags.some(tagId =>
+
+      itemTags.includes(String(tagId))
+
+    );
+  }
+
+  if(filterState.tagMode === "NOT"){
+
+    return !filterState.tags.some(tagId =>
+
+      itemTags.includes(String(tagId))
+
+    );
+  }
+
+  return true;
+}
 
 
 //==============================
@@ -692,6 +713,36 @@ function toggleFilterTag(id){
   }
 }
 
+
+
+//==============================
+//★絞込み切り替えちゃん
+//==============================
+function cycleTagMode(){
+
+  if(filterState.tagMode === "AND"){
+
+    filterState.tagMode = "OR";
+
+  } else if(
+    filterState.tagMode === "OR"
+  ){
+
+    filterState.tagMode = "NOT";
+
+  } else if(
+    filterState.tagMode === "NOT"
+  ){
+
+    filterState.tagMode = "OFF";
+
+  } else {
+
+    filterState.tagMode = "AND";
+  }
+
+  renderHome();
+}
 
 
 //==============================
@@ -942,10 +993,15 @@ function renderSearchArea(){
   </select>
 
 
-		<div class="filter-mode">
-			<button onclick="setTagMode('AND')">AND</button>
-			<button onclick="setTagMode('OR')">OR</button>
-		</div>
+	<div class="filter-mode">
+
+  <button onclick="cycleTagMode()">
+
+    ${filterState.tagMode}
+
+  </button>
+
+</div>
 
 
       <button class="tag-chip"
