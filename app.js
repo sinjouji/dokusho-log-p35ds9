@@ -711,12 +711,16 @@ function renderHome(){
   el.innerHTML = `
     <div id="home-top"></div>
     <div id="home-main"></div>
+    <div id="tag-filter"></div>
   `;
 
   renderSearchArea();
-  renderTagFilter();
+  renderBookList();
 
-  renderBookList(); // ←ここは“filtered前提”にする
+  // ★最後に必ずこれ
+  requestAnimationFrame(() => {
+    renderTagFilter();
+  });
 }
 //==============================
 //======本の一覧だけ表示させる役
