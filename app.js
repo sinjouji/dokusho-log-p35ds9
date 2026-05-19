@@ -723,10 +723,12 @@ function renderHome(){
 //==============================
 function renderBookList(){
 
+  console.log("renderBookList start");
+
   const main = document.getElementById("home-main");
   if(!main) return;
 
-  main.className = "";
+  
   // ★絶対これ必要
   main.innerHTML = "";
 
@@ -734,17 +736,26 @@ function renderBookList(){
     shouldShowItem(b)
   );
 
+  console.log("filteredBooks:", filteredBooks.length);
+
   const sorted = sortBooks(filteredBooks);
+  
+  console.log("sorted:", sorted.length);
+  
+  main.className = "";
 
   if(viewMode === "card"){
+    renderCardView(main, sorted);
     main.classList.add("card-view");
   }
 
   if(viewMode === "list"){
+    renderListView(main, sorted);
     main.classList.add("list-view");
   }
 
   if(viewMode === "shelf"){
+    renderShelfView(main, sorted);
     main.classList.add("shelf-view");
   }
 }
@@ -757,7 +768,7 @@ function renderCardView(main, books){
 
     const d = document.createElement("div");
     
-    main.className = "book-grid";
+    main.className = "card-view";
     d.className = "card honlist";
 
     d.innerHTML = `
