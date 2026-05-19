@@ -1005,11 +1005,7 @@ function openAddBookModal(){
 
           <div class="end-btn">
         <button onclick="saveNewBook()">
-          ➕本棚
-        </button>
-
-        <button onclick="addBook('wish')">
-          ➕WishList
+          ➕保存
         </button>
             </div></div>
   `;
@@ -2209,50 +2205,13 @@ async function saveNewBook(){
   
 
   await saveData();
-  showToast(`「${book.title}」を追加しました`);
-
-  closeModal("add-book-modal");
-
-  renderHome();
-}
-
-//==============================
-//======ウィッシュリストに本を追加
-//==============================
-async function addBook(type){
-
-  const title =
-    document.getElementById("add-title").value.trim();
-
-  if(!title){
-    alert("タイトルを入力してください");
-    return;
-  }
-
-  const date =
-    document.getElementById("add-date").value;
-
-  const memo =
-    document.getElementById("add-memo").value;
-
-  const newBook = {
-    id: Date.now().toString(),
-
-    title,
-    fav: newBookFav,
-    memo,
-
-    type,
-
-    readDates: date ? [date] : [],
-
-    tagIds: []
-  };
-
-  books.unshift(newBook);
-
-  await saveData();
-  showToast(`「${book.title}」をウィッシュに追加しました`);
+  
+  const placeName =
+    book.type === "wish"
+      ? "ウィッシュリスト"
+      : "本棚";
+      
+  showToast(`「${book.title}」を${placeName}に追加しました`);
 
   closeModal("add-book-modal");
 
