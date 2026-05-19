@@ -3779,16 +3779,15 @@ function openCharacterModal(c){
 
 
     const relatedSeries =
-    seriesMaster.filter(s=>{
-    
-      return (
-        Array.isArray(c.seriesIds)
-        &&
-        c.seriesIds
-          .map(String)
-          .includes(String(s.id))
-      );
-  });
+  seriesMaster.filter(s =>
+
+    Array.isArray(c.seriesIds)
+    &&
+    c.seriesIds
+      .map(String)
+      .includes(String(s.id))
+
+  );
   
 
 	const modal = document.createElement("div");
@@ -3811,7 +3810,7 @@ function openCharacterModal(c){
         シリーズ : 
         <button class="detail-series"
 				  onclick="
-				    closeModal('open-book-modal');
+				    closeModal('open-chars-modal');
 				    openSeriesById('${s.id}');
 				  "
 				>
@@ -3852,9 +3851,7 @@ function openCharacterModal(c){
 	`;
 	document.body.appendChild(modal);
 	renderCharacterEditSeries(
-	  "
-	    character-edit-series
-	  "
+	  "character-edit-series"
 	);
 }
 
