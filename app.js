@@ -788,7 +788,7 @@ function renderSearchArea(){
       ? 'active'
       : ''}"
       onclick="changeViewMode('shelf')">
-        ‖ 
+        ‖‖ 
       </button>
       <select
   id="type-filter"
@@ -955,11 +955,12 @@ function openAddBookModal(){
         <div id="add-book-series-suggest"></div>
        </div>
      
-     
+     <div class="title-line">
+     関連：
       	 <div
       	  id="add-book-series-list"
       	  class="series-edit-list"></div>
-            
+      </div>      
      </div>
   
   
@@ -1465,8 +1466,12 @@ function openBookDetailModal(book){
     <div class="suggest-box">
       <div id="book-series-suggest"></div>
     </div>
+    
+    <div class="title-line">
+    関連：
 
     <div id="book-edit-series" class="series-edit-list"></div>
+    </div>
    
    </div>
  
