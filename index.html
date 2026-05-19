@@ -1142,11 +1142,11 @@ gap:5px;
 
 
 <nav class="menulist">
-  <button class="btn-me" onclick="go('home')">ホーム</button>
-  <button class="btn-me" onclick="go('series')">シリーズ</button>
-  <button class="btn-me" onclick="go('characters')">人物</button>
-  <button class="btn-me" onclick="go('stats')">統計</button>
-  <button class="btn-me" onclick="go('settings')">設定</button>
+  <button class="btn-me" id="menu-home" onclick="go('home')">ホーム</button>
+  <button class="btn-me" id="menu-series" onclick="go('series')">シリーズ</button>
+  <button class="btn-me" id="menu-characters" onclick="go('characters')">人物</button>
+  <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
+  <button class="btn-me" id="menu-settings" onclick="go('settings')">設定</button>
   <button class="btn-me" onclick="loadData()">更新</button>
   </nav>
 </header>
@@ -1161,7 +1161,6 @@ gap:5px;
 <div id="page-home" class="page"></div>
 <div id="page-series" class="page hidden"></div>
 <div id="page-characters" class="page hidden"></div>
-<div id="page-calendar" class="page hidden"></div>
 <div id="page-stats" class="page hidden"></div>
 <div id="page-settings" class="page hidden"></div>
 <div id="page-detail" class="page hidden"></div>
