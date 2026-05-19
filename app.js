@@ -828,18 +828,18 @@ function renderListView(main, books){
 //==============================
 //====背表紙ビューモード❤️
 //==============================
-function renderShelfView(books){
+function renderShelfView(main, list){
 
   const shelf = document.createElement("div");
   shelf.className = "shelf-view";
 
-  books.forEach(b=>{
+  list.forEach(b=>{
     const spine = createBookSpine(b);
     spine.onclick = () => openBookDetailModal(b);
     shelf.appendChild(spine);
   });
 
-  return shelf;
+  main.appendChild(shelf);
 }
 
 
