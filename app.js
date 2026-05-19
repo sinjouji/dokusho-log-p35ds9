@@ -1567,7 +1567,10 @@ function renderBookEditSeries(
             class="mini-delete-btn"
             onclick="
               removeSeriesFromBook(
-                '${s.id}'
+                '${s.id}',
+                '${targetId}',
+                'book-related-search',
+                'book-series-suggest'
               )
             "
           >
@@ -1687,7 +1690,12 @@ function addSeriesToBook(
 //==============================
 //本詳細の関連削除（シリーズ）
 //==============================
-function removeSeriesFromBook(id){
+function removeSeriesFromBook(
+  id,
+  searchId,
+  suggestId,
+  listId
+){
 
 if(!confirm("削除しますか？")){
   return;
@@ -1698,7 +1706,11 @@ if(!confirm("削除しますか？")){
       sId => String(sId) !== String(id)
     );
 
-  renderBookEditSeries();
+  renderBookEditSeries(
+    searchId,
+    suggestId,
+    listId
+    );
 
 }
 
@@ -3838,10 +3850,11 @@ editingCharacterSeriesIds =
     <div class="suggest-box">
       <div id="character-series-suggest"></div>
     </div>
-
+    <div class="title-line">
+    【関連：
     <div id="character-edit-series" class="series-edit-list"></div>
-   
-   
+   】
+   </div>
          <hr class="kugiri">
 		
 		<div class="end-btn">
@@ -3895,7 +3908,9 @@ function renderCharacterEditSeries(
             onclick="
               removeSeriesFromCharacter(
                 '${s.id}',
-                '${targetId}'
+                '${targetId}',
+                'character-related-search',
+                'character-series-suggest'
               )
             "
           >
@@ -4029,22 +4044,30 @@ function addSeriesToCharacter(
 //==============================
 function removeSeriesFromCharacter(
   id,
-  listId
+  listId,
+  searchId,
+  suggestId
 ){
 
-if(!confirm("削除しますか？")){
-  return;
-}
+  if(!confirm("削除しますか？")){
+    return;
+  }
 
   editingCharacterSeriesIds =
     editingCharacterSeriesIds.filter(
       sId => String(sId) !== String(id)
     );
 
-  renderCharacterEditSeries();
+  renderCharacterEditSeries(
+    listId
+  );
 
+  renderCharacterSeriesSuggest(
+    searchId,
+    suggestId,
+    listId
+  );
 }
-
 
 
 //==============================
