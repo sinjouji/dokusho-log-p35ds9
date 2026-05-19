@@ -737,21 +737,15 @@ function renderBookList(){
   const sorted = sortBooks(filteredBooks);
 
   if(viewMode === "card"){
-    renderCardView(main, sorted);
-    main.className = "card-view";
-    return;
+    main.classList.add("card-view");
   }
 
   if(viewMode === "list"){
-    renderListView(main, sorted);
-    main.className = "list-view";
-    return;
+    main.classList.add("list-view");
   }
 
   if(viewMode === "shelf"){
-  const shelf = renderShelfView(sorted);
-  main.className = "shelf-view";
-  main.appendChild(shelf);
+    main.classList.add("shelf-view");
   }
 }
 //==============================
