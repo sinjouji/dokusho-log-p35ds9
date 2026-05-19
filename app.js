@@ -417,6 +417,38 @@ console.log("byid~~");
 //汎用設定
 //==============================
 
+
+
+
+
+//==============================
+//安全共通renderテンプレ
+//==============================
+function safeRender({
+  mountId,
+  html,
+  afterRender
+}){
+
+  const el = document.getElementById(mountId);
+  if(!el) return;
+
+  // ① 必ず初期化
+  el.innerHTML = "";
+
+  // ② HTML描画
+  el.innerHTML = html;
+
+  // ③ DOM生成後処理
+  if(afterRender) afterRender(el);
+}
+
+
+
+
+
+
+
 //==============================
 //====モーダルを閉じる（汎用）
 //==============================
@@ -2535,117 +2567,83 @@ function renderSeriesBookList(){
 //============================
 function renderSeriesDetail(s){
 
-  console.log("render detail");
-
-  const el = document.getElementById('page-detail');
-  if(!el) return;
-
-  // シリーズ→本
   const relatedBooks = books.filter(b =>
     (s.bookIds || []).map(String).includes(String(b.id))
   );
 
-  // シリーズ→人物
   const relatedCharacters = characters.filter(c =>
     (s.characterIds || []).map(String).includes(String(c.id))
   );
 
-  // ① まず全体描画（枠だけ作る）
-  el.innerHTML = `
-    <div class="seriesp-head">
-      <button onclick="go('series')">戻る</button>
-      <span class="satu">登録 : ${relatedBooks.length}冊</span>
-      <button onclick="openSeriesEditModal('${s.id}')">✏️ 編集</button>
-    </div>
-
-    <h3 class="stitle">${s.name}</h3>
-
-    <div class="series-detail-layout">
-
-      <div class="series-section">
-        <div class="series-section-title"
-          onclick="toggleSeriesSection('books')"
-        >
-          ${seriesSections.books ? "▽" : "▶︎"} 関連作品
-        </div>
-
-        ${
-          seriesSections.books
-            ? `<div class="series-section-body">
-                <div id="series-books"></div>
-               </div>`
-            : ""
-        }
+  safeRender({
+    mountId: "page-detail",
+    html: `
+      <div class="seriesp-head">
+        <button onclick="go('series')">戻る</button>
+        <span class="satu">登録 : ${relatedBooks.length}冊</span>
+        <button onclick="openSeriesEditModal('${s.id}')">✏️ 編集</button>
       </div>
 
-      <div class="series-section">
-        <div class="series-section-title"
-          onclick="toggleSeriesSection('chars')"
-        >
-          ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+      <h3 class="stitle">${s.name}</h3>
+
+      <div class="series-detail-layout">
+
+        <div class="series-section">
+          <div class="series-section-title">
+            ${seriesSections.books ? "▽" : "▶︎"} 関連作品
+          </div>
+
+          ${
+            seriesSections.books
+              ? `<div id="series-books"></div>`
+              : ""
+          }
         </div>
 
-        ${
-          seriesSections.chars
-            ? `<div class="series-section-body">
-                <div id="series-chars"></div>
-               </div>`
-            : ""
-        }
+        <div class="series-section">
+          <div class="series-section-title">
+            ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+          </div>
+
+          ${
+            seriesSections.chars
+              ? `<div id="series-chars"></div>`
+              : ""
+          }
+        </div>
+
       </div>
+    `,
+    afterRender: (el) => {
 
-    </div>
-  `;
+      const list = document.getElementById("series-books");
+      if(list){
+        relatedBooks.forEach(b=>{
+          const d = document.createElement("div");
+          d.className = "card";
+          d.textContent = b.title;
+          d.onclick = () => openBookDetailModal(b);
+          list.appendChild(d);
+        });
+      }
 
-  // =========================
-  // 本リスト描画
-  // =========================
-  const list = document.getElementById('series-books');
+      const list2 = document.getElementById("series-chars");
+      if(list2){
+        if(!relatedCharacters.length){
+          list2.innerHTML = `<div style="color:gray;">（人物なし）</div>`;
+        }else{
+          relatedCharacters.forEach(c=>{
+            const d = document.createElement("div");
+            d.className = "card";
+            d.textContent = c.name;
+            d.onclick = () => openCharacterModal(c);
+            list2.appendChild(d);
+          });
+        }
+      }
 
-  if(list){
-    list.innerHTML = ""; // ★重要：毎回クリア
-
-    relatedBooks.forEach(b => {
-
-      const d = document.createElement('div');
-      d.className = "card";
-      d.textContent = b.title;
-
-      d.onclick = () => openBookDetailModal(b);
-
-      list.appendChild(d);
-    });
-  }
-
-  // =========================
-  // 人物リスト描画
-  // =========================
-  const list2 = document.getElementById('series-chars');
-
-  if(list2){
-    list2.innerHTML = ""; // ★重要：毎回クリア
-
-    if(relatedCharacters.length === 0){
-
-      list2.innerHTML = `
-        <div style="color:gray;">
-          （人物なし）
-        </div>
-      `;
-      return;
     }
-
-    relatedCharacters.forEach(c => {
-
-      const d = document.createElement('div');
-      d.className = "card";
-      d.textContent = c.name;
-
-      d.onclick = () => openCharacterModal(c);
-
-      list2.appendChild(d);
-    });
-  }
+  });
 }
 
 //==============================
