@@ -714,10 +714,7 @@ function renderHome(){
   `;
 
   renderSearchArea();
-  
-  if(homeSections.tags){
-    renderTagFilter();
-  }
+  renderTagFilter();
   renderBookList();
 }
 //==============================
