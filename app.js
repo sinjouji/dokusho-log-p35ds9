@@ -560,7 +560,7 @@ const filterState = {
 
 
 //==============================
-//フィルタをまとめるベースちゃん
+//★フィルタをまとめるベースちゃん
 //==============================
 function shouldShowByType(item){
   if(item.type === "book") return filterState.types.book;
@@ -573,7 +573,18 @@ function shouldShowByType(item){
 
 
 //==============================
-//フィルタを判定する子ちゃん
+//★共通フィルタ関数ちゃん
+//==============================
+function shouldShowItem(item){
+
+  return shouldShowByType(item)
+    && matchTags(item);
+}
+
+
+
+//==============================
+//★フィルタを判定する子ちゃん
 //==============================
 function matchTags(item){
 
@@ -602,7 +613,7 @@ function matchTags(item){
 
 
 //==============================
-//フィルタの状態更新用ちゃん
+//★フィルタの状態更新用ちゃん
 //==============================
 function setTagMode(mode){
   filterState.tagMode = mode;
@@ -613,7 +624,7 @@ function setTagMode(mode){
 
 
 //==============================
-//フィルタの選択状態見た目ちゃん
+//★フィルタの選択状態見た目ちゃん
 //==============================
 function updateTagModeUI(){
 
@@ -630,6 +641,27 @@ function updateTagModeUI(){
 }
 
 
+
+//==============================
+//★新型タグフィルタちゃん（しばし共存
+//==============================
+function toggleFilterTag(tagId){
+
+  tagId = String(tagId);
+
+  const i = filterState.tags.indexOf(tagId);
+
+  if(i >= 0){
+    filterState.tags.splice(i, 1);
+  } else {
+    filterState.tags.push(tagId);
+  }
+
+  renderHome();
+}
+
+
+
 //==============================
 //ホーム（メイン本棚）
 //==============================
@@ -639,58 +671,38 @@ function updateTagModeUI(){
 //==============================
 function renderHome(){
 
-setActiveMenu("menu-home");
+  setActiveMenu("menu-home");
 
   const el = document.getElementById("page-home");
   if(!el) return;
 
   el.innerHTML = `
- 
     <div id="home-top"></div>
     <div id="home-main"></div>
   `;
 
-
   renderSearchArea();
-  
   renderTagFilter();
 
-//  renderRecentBooks();
-  
-  renderBookList();
+  renderBookList(); // ←ここは“filtered前提”にする
 }
 //==============================
 //======本の一覧だけ表示させる役
 //==============================
 function renderBookList(){
+
   const main = document.getElementById("home-main");
   if(!main) return;
-  main.innerHTML = "";
 
-  
-  //フィルタ
-  const filtered = filterBooks(
-  books.filter(b=>{
+  // ① フィルタ
+  const filteredBooks = books.filter(b =>
+    shouldShowItem(b)
+  );
 
-    const matchTitle =
-      (b.title || "")
-      .toLowerCase()
-      .includes(searchKeyword);
+  // ② ソート
+  const sorted = sortBooks(filteredBooks);
 
-    const matchTag =
-      !selectedTagId ||
-
-      (b.tagIds || [])
-      .includes(selectedTagId);
-
-    return matchTitle && matchTag;
-  })
-);
-  
-  //ソート
-  const sorted = sortBooks(filtered);
-  
-  //表示
+  // ③ 表示（1回だけ）
   if(viewMode === "card"){
     renderCardView(main, sorted);
     return;
@@ -705,8 +717,6 @@ function renderBookList(){
     renderShelfView(main, sorted);
     return;
   }
-  
-  
 }
 
 //==============================
@@ -822,12 +832,17 @@ function renderShelf(el, list, mode = "main"){
 
 //==============================
 //======🔍検索用エリア===========
-//====検索UIだけの役割
+//★====検索UIだけの役割
 //==============================
 function renderSearchArea(){
 
   const top = document.getElementById("home-top");
   if(!top) return;
+  
+  const visibleItems = items.filter(item =>
+  shouldShowByType(item) &&
+  matchTags(item)
+  );
  
   top.innerHTML = `
     <button onclick="openAddBookModal()" class="add-btn">
@@ -1936,7 +1951,7 @@ function toggleBookTag(bookId, tagId){
 
 
 //==============================
-//タグ収納トグル
+//タグ収納トグル※旧になる予定20260519
 //==============================
 function toggleTagFilter(){
 
@@ -2003,7 +2018,7 @@ function sortBooks(list){
 }
 
 //==============================
-//====タグフィルター描画
+//====タグフィルター描画※旧になる予定20260519
 //==============================
 function renderTagFilter(){
 
