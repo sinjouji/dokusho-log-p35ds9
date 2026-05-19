@@ -694,15 +694,12 @@ function renderBookList(){
   const main = document.getElementById("home-main");
   if(!main) return;
 
-  // ① フィルタ
   const filteredBooks = books.filter(b =>
     shouldShowItem(b)
   );
 
-  // ② ソート
   const sorted = sortBooks(filteredBooks);
 
-  // ③ 表示（1回だけ）
   if(viewMode === "card"){
     renderCardView(main, sorted);
     return;
@@ -2624,18 +2621,6 @@ console.log(
     'series-books'
   );
 
-if(list){
-
-  if(viewMode.startsWith("shelf")){
-
-    renderShelf(
-      list,
-      relatedBooks,
-      "detail"
-    );
-
-
-  } else {
 
     relatedBooks.forEach(b=>{
 
@@ -2654,9 +2639,6 @@ if(list){
 
     });
 
-  }
-
-}
 
   const list2 =
   document.getElementById(
@@ -2672,7 +2654,7 @@ if(list2){
         （人物なし）
       </div>
     `;
-
+  }
   } else {
 
     relatedCharacters.forEach(c=>{
@@ -2695,7 +2677,7 @@ if(list2){
   }
 
 }
-}
+
 
 //==============================
 //シリーズソート
