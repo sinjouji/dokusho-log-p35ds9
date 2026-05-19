@@ -726,6 +726,7 @@ function renderBookList(){
   const main = document.getElementById("home-main");
   if(!main) return;
 
+  main.className = "";
   // ★絶対これ必要
   main.innerHTML = "";
 
@@ -737,16 +738,19 @@ function renderBookList(){
 
   if(viewMode === "card"){
     renderCardView(main, sorted);
+    main.className = "card-view";
     return;
   }
 
   if(viewMode === "list"){
     renderListView(main, sorted);
+    main.className = "list-view";
     return;
   }
 
   if(viewMode === "shelf"){
   const shelf = renderShelfView(sorted);
+  main.className = "shelf-view";
   main.appendChild(shelf);
   }
 }
