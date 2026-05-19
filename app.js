@@ -714,7 +714,9 @@ function renderHome(){
     <div id="tag-filter"></div>
   `;
 
+  
   renderSearchArea();
+  renderTagFilter();
   renderBookList();
 
   // ★最後に必ずこれ
@@ -1304,6 +1306,7 @@ function changeViewMode(mode){
   renderSearchArea();
 
   renderBookList();
+  renderTagFilter();
 }
 
 //==============================
