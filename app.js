@@ -939,7 +939,8 @@ function openAddBookModal(){
           oninput="
             renderBookSeriesSuggest(
               'add-book-related-search',
-              'add-book-series-suggest'
+              'add-book-series-suggest',
+              'add-book-series-list'
             );
           "
         >
@@ -1454,7 +1455,8 @@ function openBookDetailModal(book){
         oninput="
           renderBookSeriesSuggest(
             'book-related-search',
-            'book-series-suggest'
+            'book-series-suggest',
+            'book-edit-series'
           );
         "
       >
@@ -1585,6 +1587,7 @@ function renderBookEditSeries(
 function renderBookSeriesSuggest(
   searchId,
   suggestId
+  listId
 ){
 
   const keyword =
@@ -1633,7 +1636,12 @@ function renderBookSeriesSuggest(
         <div
           class="search-item"
           onclick="
-            addSeriesToBook('${s.id}')
+            addSeriesToBook(
+            '${s.id}',
+            '${listId}',
+            '${searchId}',
+            '${suggestId}'
+            )
           "
         >
           ${s.name}
@@ -1648,19 +1656,23 @@ function renderBookSeriesSuggest(
 //==============================
 //本詳細に関連本の追加処理
 //==============================
-function addSeriesToBook(id){
+function addSeriesToBook(
+  id,
+  listId,
+  searchId,
+  suggestId
+){
 
-  if(
-    !editingBookSeriesIds.includes(id)
-  ){
-    editingBookSeriesIds.push(
-      String(id)
-    );
-  }
+  editingBookSeriesIds.push(
+    String(id)
+  );
 
-  renderBookEditSeries();
-  renderBookSeriesSuggest();
+  renderBookEditSeries(listId);
 
+  renderBookSeriesSuggest(
+    searchId,
+    suggestId
+  );
 }
 
 //==============================
@@ -2220,9 +2232,6 @@ async function addBook(type){
   const date =
     document.getElementById("add-date").value;
 
-  const fav =
-    Number(document.getElementById("add-fav").value);
-
   const memo =
     document.getElementById("add-memo").value;
 
@@ -2230,7 +2239,7 @@ async function addBook(type){
     id: Date.now().toString(),
 
     title,
-    fav,
+    fav: newBookFav,
     memo,
 
     type,
