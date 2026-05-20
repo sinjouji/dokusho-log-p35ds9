@@ -614,7 +614,7 @@ function shouldShowByType(item){
 function shouldShowItem(item){
 
   return shouldShowByType(item)
-    && matchTags(item);
+    && matchTagsAdvanced(item);
 }
 
 
