@@ -4883,9 +4883,8 @@ function renderCharacterSearchArea(){
 		➕ 人物追加
 	</button>
 	
-	<input class="addin"
+	<input
 		type="text"
-		id="characters-search"
 		placeholder="人物検索..."
 		value="${characterSearchKeyword}"
 		oninput="
@@ -4901,7 +4900,6 @@ function renderCharacterSearchArea(){
 		<option value="cname-desc">名前↑</option>
 		</select>
 		
-		<div id="characters-suggest"></div>
 	
 	`;
 	renderCharacterSuggest();
