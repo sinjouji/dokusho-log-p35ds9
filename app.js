@@ -3419,8 +3419,8 @@ function openSeriesEditModal(id){
     <div class="end-btn">
     
     
-     <button>
-        🗑️ 削除
+      <button onclick="deleteSeries('${series.id}')">
+       🗑️ 削除
       </button>
     
       <button
@@ -4175,16 +4175,58 @@ function renderSeriesSuggest(
 //==============================
 //====シリーズ削除
 //==============================
-//async function deleteSeries(id){
+async function deleteSeries(id){
 
-//	const s
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
 
-//if(!confirm("シリーズを削除しますか？\n関連付けも解除されます")){
-//  return;
-//}
+  if(!series) return;
 
-//}
+  if(
+    !confirm(
+      `「${series.name}」を削除しますか？\n本や人物は削除されません。`
+    )
+  ){
+    return;
+  }
 
+  seriesMaster =
+    seriesMaster.filter(
+      s => String(s.id) !== String(id)
+    );
+
+  books.forEach(book=>{
+
+    book.seriesIds =
+      (book.seriesIds || []).filter(
+        seriesId =>
+          String(seriesId) !== String(id)
+      );
+
+  });
+
+  characters.forEach(character=>{
+
+    character.seriesIds =
+      (character.seriesIds || []).filter(
+        seriesId =>
+          String(seriesId) !== String(id)
+      );
+
+  });
+
+  await saveData();
+
+  closeModal("edit-series-modal");
+
+  renderSeries();
+
+  showToast(
+    `「${series.name}」を削除しました`
+  );
+}
 
 
 //====================
