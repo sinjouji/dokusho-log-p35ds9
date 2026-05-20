@@ -719,6 +719,8 @@ function toggleFilterTag(id){
     filterState.tagStates[strId] =
       filterState.tagMode;
   }
+  
+  console.log(filterState.tagStates);
 
   renderHome();
 }
@@ -1021,10 +1023,7 @@ function renderSearchArea(){
 
       </select>
       
-      <div id="active-filter-view"></div>
-      
-      
-      
+       
     <div class="view-switch">
 
       <button class="${viewMode === 'card'
@@ -1100,6 +1099,10 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
+       
+       
+            <div id="active-filter-view" style="font-size:10px;white-space:break-word;"></div>
+       
        
        
        </div>
