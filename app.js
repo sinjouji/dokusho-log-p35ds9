@@ -4884,7 +4884,6 @@ function renderCharacterSearchArea(){
 	</button>
 	
 	<input
-		type="text"
 		placeholder="人物検索..."
 		value="${characterSearchKeyword}"
 		oninput="
