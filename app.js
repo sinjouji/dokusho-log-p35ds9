@@ -1061,7 +1061,13 @@ function renderSearchArea(){
 
 	<div class="filter-mode">
 
-  <button onclick="cycleTagMode()">
+  <button
+    class="
+      filter-mode-btn
+      mode-${filterState.tagMode.toLowerCase()}
+    "
+    onclick="cycleTagMode()"
+  >
 
     ${filterState.tagMode}
 
