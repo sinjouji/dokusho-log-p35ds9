@@ -1187,26 +1187,43 @@ function renderCardView(main, books){
 //==============================
 function renderListView(main, books){
 
+  main.className = "list-view";
+
   books.forEach(b=>{
 
-    const row = document.createElement("div");
+    const row =
+      document.createElement("div");
 
-    main.className = "list-view";
-    row.className = "list-row";
+    row.className =
+      "list-row";
+
+    const latestDate =
+      getLatestReadDate(b) || "未読";
+
+    const readCount =
+      b.readDates?.length || 0;
 
     row.innerHTML = `
+
       <div class="list-title">
         ${b.title}
       </div>
 
       <div class="list-meta">
-        ${getFavLabel(b.fav)}
-        ${getLatestReadDate(b)}：
-        ${b.readDates?.length || 0}回
+
+        <span class="list-date">
+          ${latestDate}
+        </span>
+
+        <span class="list-count">
+          ${readCount}読
+        </span>
+
       </div>
     `;
 
-    row.onclick = ()=> openBookDetailModal(b);
+    row.onclick =
+      ()=> openBookDetailModal(b);
 
     main.appendChild(row);
   });
