@@ -2369,7 +2369,7 @@ function renderTagFilter(){
 
   btn.onclick = () => {
 
-    toggleFilterTag(tag.id);
+    cycleTagState(tag.id);
 
     renderHome();
   };
