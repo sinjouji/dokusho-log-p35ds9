@@ -193,6 +193,9 @@ let addBookTagSections = { tags: false };
 let addBookSeriesSections = { series: false };
 let detailSections = { tags:  false };
 
+//人物検索用
+let characterSearchKeyword = "";
+
 
 
 //==============================
@@ -4302,28 +4305,62 @@ async function deleteSeries(id){
 //==============================
 function renderCharacters(){
 
-setActiveMenu("menu-characters");
-	
-	const el = document.getElementById('page-characters');
-	el.innerHTML = `
-  
-  		<div id="chars-top"></div>
-  		<div class="chars-main" id="chars-main"></div>
-  
-	`;
-	
-	renderCharactersSearchArea();
-	renderCharacterList();
+  setActiveMenu("menu-characters");
 
+  const el =
+    document.getElementById("page-characters");
+
+  if(!el) return;
+
+  el.innerHTML = `
+    <div id="characters-top"></div>
+    <div id="characters-main" class="chars-main"></div>
+  `;
+
+  renderCharacterSearchArea();
+
+  const main =
+    document.getElementById("characters-main");
+
+  if(!main) return;
+
+  const keyword =
+    characterSearchKeyword
+      .trim()
+      .toLowerCase();
+
+  const filteredCharacters =
+    characters.filter(c =>
+
+      !keyword
+      ||
+      (c.name || "")
+        .toLowerCase()
+        .includes(keyword)
+
+    );
+
+  filteredCharacters.forEach(c=>{
+
+    const d =
+      document.createElement("div");
+
+    d.className = "card";
+    d.textContent = c.name;
+
+    d.onclick =
+      ()=> openCharacterModal(c);
+
+    main.appendChild(d);
+  });
 }
-
 
 //==============================
 //====キャラクター一覧だけ表示====
 //==============================
 function renderCharacterList(){
 
-	const main = document.getElementById("chars-main");
+	const main = document.getElementById("characters-main");
 	if(!main) return;
 	main.innerHTML = "";
 	
@@ -4836,7 +4873,7 @@ function sortCharacters(list){
 //==============================
 function renderCharactersSearchArea(){
 
-	const top = document.getElementById("chars-top");
+	const top = document.getElementById("characters-top");
 	if(!top) return;
 	
 	top.innerHTML = `
@@ -4846,21 +4883,25 @@ function renderCharactersSearchArea(){
 		➕ 人物追加
 	</button>
 	
-	<input
-		id="chars-search"
+	<input class="addin"
+		type="text"
+		id="characters-search"
 		placeholder="人物検索..."
-		value="${charsSearchKeyword}"
-		oninput="handleCharactersSearchInput()"
+		value="${characterSearchKeyword}"
+		oninput="
+		  characterSearchKeyword = this.value;
+		  renderCharacters();
+		"
 	>
 	
-		<select id="chars-sort-select"
+		<select id="characters-sort-select"
 			onchange="changeCharactersSortMode()">
 			
 		<option value="cname-asc">名前↓</option>
 		<option value="cname-desc">名前↑</option>
 		</select>
 		
-		<div id="chars-suggest"></div>
+		<div id="characters-suggest"></div>
 	
 	`;
 	renderCharacterSuggest();
@@ -4877,10 +4918,10 @@ function handleCharactersSearchInput(){
 	renderSuggestList({
 	
 		inputId:
-			"chars-search",
+			"characters-search",
 		
 		suggestId:
-			"chars-suggest",
+			"characters-suggest",
 		
 		list:
 			characters.map(
@@ -5087,6 +5128,13 @@ async function deleteCharacter(id){
     `「${character.name}」を削除しました`
   );
 }
+
+
+
+//==============================
+//人物検索
+//==============================
+
 
 
 
