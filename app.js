@@ -4901,7 +4901,7 @@ function renderCharacterSearchArea(){
 		
 	
 	`;
-	renderCharacterSuggest();
+	
 
 }
 
