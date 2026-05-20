@@ -27,7 +27,6 @@ let charsSortMode = "cname-asc";
 
 let searchKeyword = "";
 let seriesSearchKeyword = "";
-let charsSearchKeyword = "";
 
 //ミニカレンダーの月移動用設定
 let miniMonth = new Date();
@@ -4308,7 +4307,9 @@ function renderCharacters(){
   setActiveMenu("menu-characters");
 
   const el =
-    document.getElementById("page-characters");
+    document.getElementById(
+      "page-characters"
+    );
 
   if(!el) return;
 
@@ -4319,40 +4320,7 @@ function renderCharacters(){
 
   renderCharacterSearchArea();
 
-  const main =
-    document.getElementById("characters-main");
-
-  if(!main) return;
-
-  const keyword =
-    characterSearchKeyword
-      .trim()
-      .toLowerCase();
-
-  const filteredCharacters =
-    characters.filter(c =>
-
-      !keyword
-      ||
-      (c.name || "")
-        .toLowerCase()
-        .includes(keyword)
-
-    );
-
-  filteredCharacters.forEach(c=>{
-
-    const d =
-      document.createElement("div");
-
-    d.className = "card";
-    d.textContent = c.name;
-
-    d.onclick =
-      ()=> openCharacterModal(c);
-
-    main.appendChild(d);
-  });
+  renderCharacterList();
 }
 
 //==============================
@@ -4368,7 +4336,7 @@ function renderCharacterList(){
 		characters.filter(c =>
 			(c.name || "")
 				.toLowerCase()
-				.includes(charsSearchKeyword)
+				.includes(characterSearchKeyword)
 		);
 	
 	//ソート
@@ -4884,11 +4852,12 @@ function renderCharacterSearchArea(){
 	</button>
 	
 	<input
+		id="chars-search"
 		placeholder="人物検索..."
 		value="${characterSearchKeyword}"
 		oninput="
 		  characterSearchKeyword = this.value;
-		  renderCharacters();
+		  renderCharacterList();
 		"
 	>
 	
