@@ -963,8 +963,6 @@ function renderActiveFilterView(){
 
       <span class="filter-tag-list">
 
-        ${names.join(" / ")}
-
       </span>
 
     </div>
