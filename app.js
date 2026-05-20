@@ -584,6 +584,7 @@ function setActiveMenu(menuId){
 const filterState = {
   tags: [],        // 選択中タグID
   tagMode: "AND",  // AND / OR / NOT
+  tagStates: {},
   types: {
     book: true,
     series: true,
@@ -745,6 +746,70 @@ function cycleTagMode(){
 }
 
 
+
+//==============================
+//★絞込み現状表示ちゃん
+//==============================
+function renderActiveFilterView(){
+
+  const area =
+    document.getElementById(
+      "active-filter-view"
+    );
+
+  if(!area) return;
+
+  if(!filterState.tags.length){
+
+    area.innerHTML = `
+      <div class="filter-empty">
+        絞り込みなし
+      </div>
+    `;
+
+    return;
+  }
+
+  const names =
+    filterState.tags.map(tagId=>{
+
+      const tag =
+        tagMaster.find(
+          t => String(t.id) === String(tagId)
+        );
+
+      return tag?.name || "？";
+    });
+
+  area.innerHTML = `
+
+    <div class="active-filter-row">
+
+      <span class="filter-mode-label">
+
+        ${filterState.tagMode}
+
+      </span>
+
+      :
+
+      <span class="filter-tag-list">
+
+        ${names.join(" / ")}
+
+      </span>
+
+    </div>
+
+  `;
+}
+
+
+
+
+
+
+
 //==============================
 //ホーム（メイン本棚）
 //==============================
@@ -766,6 +831,7 @@ function renderHome(){
 
   renderSearchArea();
   renderTagFilter();
+  renderActiveFilterView();
   renderBookList();
 }
 //==============================
@@ -1015,6 +1081,10 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
+       
+       <div id="active-filter-view"></div>
+       
+       
        </div>
 <div class="
   toggle-content
