@@ -666,6 +666,69 @@ function matchTags(item){
 }
 
 
+
+//==============================
+//★フィルタの判定個別Verちゃん
+//==============================
+function matchTagsAdvanced(item){
+
+  const itemTags =
+    (item.tagIds || []).map(String);
+
+  const states =
+    filterState.tagStates;
+
+
+  //AND判定
+  const andTags = Object.keys(states)
+    .filter(
+      tagId => states[tagId] === "AND"
+    );
+
+  //AND全部持ってないと除外
+  const andOk =
+    andTags.every(
+      tagId => itemTags.includes(tagId)
+    );
+
+  if(!andOk) return false;
+
+
+  //OR判定
+  const orTags = Object.keys(states)
+  .filter(
+    tagId => states[tagId] === "OR"
+  );
+  
+  if(orTags.length){
+
+  const orOk =
+    orTags.some(
+      tagId => itemTags.includes(tagId)
+    );
+
+    if(!orOk) return false;
+  }
+  
+  //NOT判定
+  const notTags = Object.keys(states)
+  .filter(
+    tagId => states[tagId] === "NOT"
+  );
+  
+  const hasNot =
+  notTags.some(
+    tagId => itemTags.includes(tagId)
+  );
+
+  if(hasNot) return false;
+  
+
+  return true;
+}
+
+
+
 //==============================
 //★フィルタの状態更新用ちゃん
 //==============================
