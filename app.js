@@ -821,6 +821,47 @@ function cycleTagMode(){
 }
 
 
+//==============================
+//★タグ単体で絞込み条件変更ちゃん
+//==============================
+function cycleTagState(tagId){
+
+  const strId = String(tagId);
+
+  const current =
+    filterState.tagStates[strId];
+
+  if(!current){
+
+    filterState.tagStates[strId] =
+      "AND";
+
+  } else if(current === "AND"){
+
+    filterState.tagStates[strId] =
+      "OR";
+
+  } else if(current === "OR"){
+
+    filterState.tagStates[strId] =
+      "NOT";
+
+  } else {
+
+    delete filterState.tagStates[strId];
+  }
+
+  filterState.tags =
+    Object.keys(filterState.tagStates);
+
+  saveFilterState();
+
+  renderHome();
+}
+
+
+
+
 
 //==============================
 //★絞込み現状表示ちゃん
