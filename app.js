@@ -4422,7 +4422,9 @@ editingCharacterSeriesIds =
          <hr class="kugiri">
 		
 		<div class="end-btn">
-			<button>🗑️ 削除</button>
+			<button onclick="deleteCharacter('${c.id}')">
+  🗑️ 削除
+</button>
 			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
 		</div>
 	
@@ -5036,6 +5038,58 @@ async function saveNewCharacter(){
     `「${character.name}」を追加しました`
   );
 }
+
+
+
+//==============================
+//人物削除処理
+//==============================
+async function deleteCharacter(id){
+
+  const character =
+    characters.find(
+      c => String(c.id) === String(id)
+    );
+
+  if(!character) return;
+
+  if(
+    !confirm(
+      `「${character.name}」を削除しますか？\nシリーズや本は削除されません。`
+    )
+  ){
+    return;
+  }
+
+  characters =
+    characters.filter(
+      c => String(c.id) !== String(id)
+    );
+
+  // シリーズ側から人物IDを掃除
+  seriesMaster.forEach(series=>{
+
+    series.characterIds =
+      (series.characterIds || []).filter(
+        characterId =>
+          String(characterId) !== String(id)
+      );
+
+  });
+
+  await saveData();
+
+  closeModal("open-chars-modal");
+
+  renderCharacters();
+
+  showToast(
+    `「${character.name}」を削除しました`
+  );
+}
+
+
+
 
 //==============================
 //統計
