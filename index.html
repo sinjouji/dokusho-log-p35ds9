@@ -7,13 +7,13 @@
 <link rel="icon" href="favicon.png" type="image/png">
 <style>
 body{
-  margin-left:20px;   margin-right:20px;
+/*  margin-left:20px;   margin-right:20px;*/
   font-family:sans-serif;   background:#fff0d9;
   touch-action: pan-y;
 }
 
 header{
-  background:#fffffc;   color:#8cd2bc;
+  background:#fffffc;   color:#646364;
   padding:16px;   font-size:20px;
 
 }
@@ -73,12 +73,40 @@ font-weight:bold;
   z-index:999; 
 }
 
-/*フィルターちゃん*/
+/*＝＝＝＝＝フィルターちゃん＝＝＝＝＝*/
 .filter-mode button.active {
   background: #333;
   color: white;
 }
 
+/*＝＝＝＝＝絞込みの色分け＝＝＝＝＝*/
+.filter-mode-btn{
+
+  border:none;
+  border-radius:999px;
+
+  padding:4px 10px;
+
+  font-weight:bold;
+
+  color:white;
+}
+
+.mode-and{
+  background:#4a90e2;
+}
+
+.mode-or{
+  background:#53b36b;
+}
+
+.mode-not{
+  background:#d9534f;
+}
+
+.mode-off{
+  background:#999;
+}
 
 
 #page-home{
