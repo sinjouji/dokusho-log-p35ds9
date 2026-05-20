@@ -956,15 +956,22 @@ margin-top:6px;
 }
 
 .list-row{
-  padding:8px 10px;
+  position:relative;
+
+  padding:8px 64px 8px 10px;
 
   border-bottom:
     1px solid rgba(0,0,0,0.08);
 
   cursor:pointer;
+
+  overflow:hidden;
 }
 
 .list-title{
+  position:relative;
+  z-index:2;
+
   font-size:15px;
   font-weight:600;
   line-height:1.4;
@@ -973,27 +980,31 @@ margin-top:6px;
 }
 
 .list-meta{
-  margin-top:3px;
+  position:relative;
+  z-index:2;
 
-  display:flex;
-  align-items:center;
-  gap:8px;
+  margin-top:3px;
 
   font-size:11px;
   color:#888;
 }
 
-.list-count{
-  padding:1px 7px;
+.list-count-watermark{
+  position:absolute;
+  right:10px;
+  top:50%;
 
-  border-radius:999px;
+  transform:translateY(-50%);
 
-  background:
-    rgba(0,0,0,0.05);
+  font-size:28px;
+  font-weight:bold;
 
-  color:#999;
+  color:rgba(0,0,0,0.08);
+
+  line-height:1;
+  pointer-events:none;
+  white-space:nowrap;
 }
-
 
 
 .list-item{
