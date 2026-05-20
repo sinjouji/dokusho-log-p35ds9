@@ -1072,35 +1072,95 @@ function renderBookList(){
 //==============================
 function renderCardView(main, books){
 
+  main.className = "card-view";
+
   books.forEach(b=>{
 
-    const d = document.createElement("div");
-    
-    main.className = "card-view";
-    d.className = "card honlist";
+    const d =
+      document.createElement("div");
+
+    d.className =
+      "card honlist";
+
+    // タグ取得
+    const tags = (b.tagIds || [])
+      .map(tagId => {
+
+        const tag = tagMaster.find(
+          t =>
+            String(t.id)
+            === String(tagId)
+        );
+
+        return tag?.name || "";
+
+      })
+      .filter(Boolean);
+
+    // 関連シリーズ取得
+    const relatedSeries =
+      seriesMaster.filter(s =>
+
+        (s.bookIds || [])
+          .map(String)
+          .includes(String(b.id))
+
+      );
 
     d.innerHTML = `
-      <div class="title">${b.title}</div>
 
-      <div class="book-latest-date">
-        ${getLatestReadDate(b) || "未読"}
-      </div>
-      
-      <div class="book-read-count">
-        ${b.readDates?.length || 0}回
+      <div class="title">
+        ${b.title}
       </div>
 
-      <div class="fav">
-        ${getFavLabel(b.fav)}
+      <div class="card-sub-row">
+
+        <div class="book-latest-date">
+          ${getLatestReadDate(b) || "未読"}
+        </div>
+
+        <div class="fav">
+          ${getFavLabel(b.fav)}
+        </div>
+
+        <div class="book-read-count">
+          ${b.readDates?.length || 0}回
+        </div>
+
       </div>
+
+      ${
+        tags.length
+          ? `
+            <div class="card-tags">
+              ${tags.join(" / ")}
+            </div>
+          `
+          : ""
+      }
+
+      ${
+        relatedSeries.length
+          ? `
+            <div class="card-series">
+              ${relatedSeries
+                .map(s => s.name)
+                .join(" / ")
+              }
+            </div>
+          `
+          : ""
+      }
+
     `;
 
-    d.onclick = ()=> openBookDetailModal(b);
+    d.onclick =
+      ()=> openBookDetailModal(b);
 
     main.appendChild(d);
+
   });
 }
-
 
 //==============================
 //====リストビューモード
