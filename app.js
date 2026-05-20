@@ -706,14 +706,22 @@ function toggleFilterTag(id){
   if(filterState.tags.includes(strId)){
 
     filterState.tags =
-      filterState.tags.filter(t => t !== strId);
+      filterState.tags.filter(
+        t => t !== strId
+      );
+
+    delete filterState.tagStates[strId];
 
   } else {
 
     filterState.tags.push(strId);
-  }
-}
 
+    filterState.tagStates[strId] =
+      filterState.tagMode;
+  }
+
+  renderHome();
+}
 
 
 //==============================
