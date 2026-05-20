@@ -4217,13 +4217,13 @@ async function deleteSeries(id){
 
   });
 
-  await saveData();
+    await saveData();
 
-  closeModal("edit-series-modal");
+    closeModal("edit-series-modal");
 
-  renderSeries();
+    renderSeries();
 
-  showToast(
+    showToast(
     `「${series.name}」を削除しました`
   );
 }
