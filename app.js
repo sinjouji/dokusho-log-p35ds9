@@ -786,6 +786,7 @@ function toggleFilterTag(id){
   console.log(filterState.tagStates);
 
   renderHome();
+  saveFilterState();
 }
 
 
@@ -816,6 +817,7 @@ function cycleTagMode(){
   }
 
   renderHome();
+  saveFilterState();
 }
 
 
@@ -878,7 +880,41 @@ function renderActiveFilterView(){
 }
 
 
+//==============================
+//★フィルタの状態保存ちゃん
+//==============================
+function saveFilterState(){
 
+  localStorage.setItem(
+
+    "filterState",
+
+    JSON.stringify(filterState)
+
+  );
+
+}
+
+
+//==============================
+//★フィルタの状態読み込みちゃん
+//==============================
+const savedFilterState =
+  localStorage.getItem(
+    "filterState"
+  );
+
+if(savedFilterState){
+
+  Object.assign(
+
+    filterState,
+
+    JSON.parse(savedFilterState)
+
+  );
+
+}
 
 
 
