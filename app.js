@@ -2204,9 +2204,19 @@ function renderTagFilter(){
 
     const isActive =
       filterState.tags.includes(String(tag.id));
+      
+    const mode =
+      filterState.tagStates[String(tag.id)];
 
     if(isActive){
       btn.classList.add("active");
+      
+       if(mode){
+         btn.classList.add(
+          `tag-mode-${mode.toLowerCase()}`
+         );
+       }
+      
       btn.style.background = tag.color;
       btn.style.color = "#fffffc";
     }
