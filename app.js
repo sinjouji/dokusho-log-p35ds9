@@ -1134,8 +1134,27 @@ function renderCardView(main, books){
         tags.length
           ? `
             <div class="card-tags">
-              ${tags.join(" / ")}
-            </div>
+
+  ${tags.map(tagName=>{
+
+    const tag = tagMaster.find(
+      t => t.name === tagName
+    );
+
+    return `
+      <span
+        class="card-tag"
+        style="
+          color:${tag?.color || "#999"};
+        "
+      >
+        #${tagName}
+      </span>
+    `;
+
+  }).join("")}
+
+</div>
           `
           : ""
       }
