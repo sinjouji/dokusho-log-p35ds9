@@ -4122,20 +4122,69 @@ async function saveNewSeries(){
 
   if(!title) return;
 
-  seriesMaster.push({
+  const series = {
 
     id:
       "s" + Date.now(),
 
     name:
       title,
-    
-    bookIds:
-      [...newSeriesBookIds],
-    
-    characterIds:
-      [...newSeriesCharacterIds],
 
+    bookIds:
+      (newSeriesBookIds || []).map(String),
+
+    characterIds:
+      (newSeriesCharacterIds || []).map(String)
+  };
+
+  seriesMaster.push(series);
+
+  // 本側へ同期
+  books.forEach(book=>{
+
+    const shouldHaveSeries =
+      series.bookIds.includes(
+        String(book.id)
+      );
+
+    if(shouldHaveSeries){
+
+      if(
+        !(book.seriesIds || [])
+          .map(String)
+          .includes(String(series.id))
+      ){
+
+        book.seriesIds =
+          (book.seriesIds || []).concat(
+            String(series.id)
+          );
+      }
+    }
+  });
+
+  // 人物側へ同期
+  characters.forEach(character=>{
+
+    const shouldHaveSeries =
+      series.characterIds.includes(
+        String(character.id)
+      );
+
+    if(shouldHaveSeries){
+
+      if(
+        !(character.seriesIds || [])
+          .map(String)
+          .includes(String(series.id))
+      ){
+
+        character.seriesIds =
+          (character.seriesIds || []).concat(
+            String(series.id)
+          );
+      }
+    }
   });
 
   await saveData();
@@ -4146,6 +4195,9 @@ async function saveNewSeries(){
 
   renderSeries();
 
+  showToast(
+    `「${series.name}」を追加しました`
+  );
 }
 
 //==============================
