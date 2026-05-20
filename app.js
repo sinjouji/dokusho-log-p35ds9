@@ -885,17 +885,55 @@ function renderActiveFilterView(){
 
     return;
   }
+    
+    
+  function getTagNames(tagIds){
 
-  const names =
-    filterState.tags.map(tagId=>{
+  return tagIds.map(tagId=>{
 
-      const tag =
-        tagMaster.find(
-          t => String(t.id) === String(tagId)
-        );
+    const tag =
+      tagMaster.find(
+        t => String(t.id) === String(tagId)
+      );
 
-      return tag?.name || "？";
-    });
+    return tag?.name || "？";
+
+  }).join(" / ");
+
+}
+
+  //AND選択中タグ抽出
+  const andTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "AND"
+  );
+  
+  //OR抽出
+  const orTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "OR"
+  );
+  
+  //NOT抽出
+  const notTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "NOT"
+  );
 
   area.innerHTML = `
 
@@ -903,11 +941,25 @@ function renderActiveFilterView(){
 
       <span class="filter-mode-label">
 
-        ${filterState.tagMode}
-
-      </span>
-
-      :
+        ${andTags.length ? `
+          <div>
+            AND：${getTagNames(andTags)}
+         </div>
+         ` : ""}
+         
+        ${orTags.length ? `
+          <div>
+            OR：${getTagNames(orTags)}
+           </div>
+        ` : ""}
+         
+        ${notTags.length ? `
+          <div>
+            NOT：${getTagNames(notTags)}
+          </div>
+        ` : ""}
+       
+        </span>
 
       <span class="filter-tag-list">
 
@@ -1209,24 +1261,6 @@ function renderSearchArea(){
   </option>
 
   </select>
-
-
-	<div class="filter-mode">
-
-  <button
-    class="
-      filter-mode-btn
-      mode-${filterState.tagMode.toLowerCase()}
-    "
-    onclick="cycleTagMode()"
-  >
-
-    ${filterState.tagMode}
-
-  </button>
-
-</div>
-
 
       <button class="tag-chip"
         data-open="🏷️タグ非表示"
