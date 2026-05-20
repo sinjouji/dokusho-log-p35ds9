@@ -4220,7 +4220,7 @@ async function deleteSeries(id){
     await saveData();
 
     closeModal("edit-series-modal");
-
+    go('series');
     renderSeries();
 
     showToast(
