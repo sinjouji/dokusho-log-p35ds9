@@ -1020,6 +1020,11 @@ function renderSearchArea(){
       <option value="rating-asc">低評価</option>
 
       </select>
+      
+      <div id="active-filter-view"></div>
+      
+      
+      
     <div class="view-switch">
 
       <button class="${viewMode === 'card'
@@ -1095,8 +1100,6 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
-       
-       <div id="active-filter-view"></div>
        
        
        </div>
