@@ -1203,24 +1203,24 @@ function renderListView(main, books){
     const readCount =
       b.readDates?.length || 0;
 
-    row.innerHTML = `
+   row.innerHTML = `
 
-      <div class="list-title">
-        ${b.title}
-      </div>
+  <div class="list-title">
+    ${b.title}
+  </div>
 
-      <div class="list-meta">
+  <div class="list-meta">
 
-        <span class="list-date">
-          ${latestDate}
-        </span>
+    <span class="list-date">
+      ${latestDate}
+    </span>
 
-        <span class="list-count">
-          ${readCount}読
-        </span>
+  </div>
 
-      </div>
-    `;
+  <div class="list-count-watermark">
+    ${readCount}読
+  </div>
+`;
 
     row.onclick =
       ()=> openBookDetailModal(b);
