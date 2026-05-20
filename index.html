@@ -905,7 +905,7 @@ margin-top:6px;
 
   font-size:11px;
 
-  color:#888;
+  color:#999;
 
 }
 
@@ -920,25 +920,19 @@ margin-top:6px;
 }
 
 .card .title{
-
-/*  font-family:
-    "Georgia",
-    "Times New Roman",
-    serif;*/
-
-
   font-family:
-  "Hiragino Mincho ProN",
-  serif;
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "YuMincho",
+    serif;
+
+  font-weight:600;
+  letter-spacing:0.03em;
+  line-height:1.35;
 }
 
 
 /*本棚：リスト表示*/
-.list-view {
-  display: flex;
-  flex-direction: column;
-  gap:6px;
-}
 
 @media(max-width:768px){
 .honlist{
@@ -952,6 +946,68 @@ margin-top:6px;
   gap:5px;
  }
 }
+
+/*リストビューの表示設定*/
+
+.list-view{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.list-row{
+  padding:8px 10px;
+
+  border-bottom:
+    1px solid rgba(0,0,0,0.08);
+
+  cursor:pointer;
+}
+
+.list-title{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+
+  word-break:break-word;
+}
+
+.list-meta{
+  margin-top:3px;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  font-size:11px;
+  color:#888;
+}
+
+.list-count{
+  padding:1px 7px;
+
+  border-radius:999px;
+
+  background:
+    rgba(0,0,0,0.05);
+
+  color:#999;
+}
+
+
+
+.list-item{
+  position:relative;
+  padding:10px 44px 10px 12px;
+}
+
+
+.list-date{
+  margin-top:3px;
+  font-size:11px;
+  color:#888;
+}
+
 
 /*シリーズページ*/
 .series-main{
