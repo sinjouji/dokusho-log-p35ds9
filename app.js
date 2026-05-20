@@ -4871,7 +4871,7 @@ function sortCharacters(list){
 //==============================
 //キャラクター検索エリア
 //==============================
-function renderCharactersSearchArea(){
+function renderCharacterSearchArea(){
 
 	const top = document.getElementById("characters-top");
 	if(!top) return;
