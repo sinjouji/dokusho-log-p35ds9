@@ -879,7 +879,8 @@ function renderActiveFilterView(){
 
     area.innerHTML = `
       <div class="filter-empty">
-        絞り込みなし
+        絞り込みなし<br>
+        タグタップでAND/OR/NOT/OFF切替え
       </div>
     `;
 
