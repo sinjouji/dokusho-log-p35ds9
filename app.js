@@ -1047,9 +1047,24 @@ function renderBookList(){
 
   main.innerHTML = "";
 
-  const filteredBooks = books.filter(b =>
+ const keyword =
+  (searchKeyword || "").trim().toLowerCase();
+
+const filteredBooks = books.filter(b => {
+
+  const matchSearch =
+    !keyword
+    ||
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  return (
     shouldShowItem(b)
+    &&
+    matchSearch
   );
+});
 
   const sorted = sortBooks(filteredBooks);
 
