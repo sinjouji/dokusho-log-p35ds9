@@ -3246,12 +3246,15 @@ newSeriesCharacterIds = [];
 					<span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズを追加</span>
 						<button onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
 			
-			<input class="addin"
-				id="add-series-title"
-				type="text"
-				placeholder="シリーズタイトル"
-				oninput="renderTitleSuggest()">
-			<div id="title-suggest"></div>
+			<input
+  class="addin"
+  id="add-series-title"
+  type="text"
+  placeholder="シリーズタイトル"
+  oninput="renderSeriesTitleSuggest()"
+>
+
+<div id="series-title-suggest"></div>
 			
 			
 			
@@ -3681,6 +3684,20 @@ function renderSeriesEditBooks(){
     </div>
   `;
 }
+
+
+//==============================
+//関連本のタイトルだけ検索（Sタイトル用）
+//==============================
+function renderSeriesTitleSuggest(){
+
+  renderSuggestList({
+    inputId: "add-series-title",
+    suggestId: "series-title-suggest",
+    list: books.map(b => b.title)
+  });
+}
+
 
 
 //==============================
