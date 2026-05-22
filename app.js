@@ -2081,6 +2081,10 @@ function openBookDetailModal(book){
         🗑 削除
       </button>
       
+      <button onclick="duplicateBook('${book.id}')">
+  📄 複製
+</button>
+      
       <button onclick="saveDetail('${book.id}')">
         🪎 保存
       </button>
@@ -2938,6 +2942,89 @@ function renderTitleSuggest(){
 
 
 //==============================
+//本の複製
+//==============================
+async function duplicateBook(id){
+
+  const book =
+    books.find(b => String(b.id) === String(id));
+
+  if(!book) return;
+
+  const today =
+    new Date().toISOString().slice(0, 10);
+
+  const newBook = {
+    ...book,
+
+    id: Date.now().toString(),
+
+    title:
+      incrementVolumeTitle(book.title || ""),
+
+    memo: "",
+
+    readDates: [today],
+
+    type: "normal",
+
+    tagIds:
+      [...(book.tagIds || [])],
+
+    seriesIds:
+      [...(book.seriesIds || [])]
+  };
+
+  books.unshift(newBook);
+
+  seriesMaster.forEach(series=>{
+
+    const shouldHaveSeries =
+      (newBook.seriesIds || [])
+        .map(String)
+        .includes(String(series.id));
+
+    if(shouldHaveSeries){
+
+      if(
+        !(series.bookIds || [])
+          .map(String)
+          .includes(String(newBook.id))
+      ){
+        series.bookIds =
+          (series.bookIds || [])
+            .concat(String(newBook.id));
+      }
+    }
+  });
+
+  await saveData();
+
+  closeModal("open-book-modal");
+
+  renderHome();
+
+  showToast(
+    `「${newBook.title}」を追加しました`
+  );
+}
+
+//==============================
+//本の複製時巻数＋1
+//==============================
+function incrementVolumeTitle(title){
+
+  return title.replace(
+    /(\d+)(?!.*\d)/,
+    n => String(Number(n) + 1)
+  );
+}
+
+
+
+
+
+//==============================
 //シリーズ
 //==============================
 //====シリーズホーム
@@ -3697,6 +3784,11 @@ function renderSeriesTitleSuggest(){
     list: books.map(b => b.title)
   });
 }
+
+
+
+
+
 
 
 
