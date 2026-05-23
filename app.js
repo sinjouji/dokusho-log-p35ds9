@@ -540,8 +540,6 @@ function togglesSection(id, btn){
   if(!el) return;
 
   el.classList.toggle("open");
-  
-  console.log(el.className);
 
   const opened =
     el.classList.contains("open");
@@ -550,10 +548,18 @@ function togglesSection(id, btn){
     opened
       ? btn.dataset.open
       : btn.dataset.close;
-      
-  homeSections.tags =
-    !homeSections.tags;
 
+  if(id === "tag-filter"){
+    homeSections.tags = opened;
+  }
+
+  if(id === "open-book-tags"){
+    detailSections.tags = opened;
+  }
+
+  if(id === "open-book-series"){
+    detailSections.series = opened;
+  }
 }
 
 
@@ -2009,7 +2015,11 @@ function openBookDetailModal(book){
       ▶︎関連用シリーズ</div>
    </div>
    
-   <div class="toggle-content" id="open-book-series">
+   <div class="
+  toggle-content
+  ${detailSections.series ? "open" : ""}
+"
+id="open-book-series">
   
         <input class="addin"
         id="book-related-search"
@@ -2043,7 +2053,9 @@ function openBookDetailModal(book){
 			${tagMaster.map(tag=>{
 
   const isActive =
-    (book.tagIds || []).includes(tag.id);
+  (book.tagIds || [])
+    .map(String)
+    .includes(String(tag.id));
 
   return `
     <span
@@ -3008,6 +3020,11 @@ async function duplicateBook(id){
     `「${newBook.title}」を追加しました`
   );
 }
+
+//最後をこう↓すると、追加した後に新規本の詳細を開ける
+//renderHome();
+//openBookDetailModal(newBook);
+
 
 //==============================
 //本の複製時巻数＋1
