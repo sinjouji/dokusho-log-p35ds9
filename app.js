@@ -1078,10 +1078,17 @@ const filteredBooks = books.filter(b => {
       .toLowerCase()
       .includes(keyword);
 
+  const matchType =
+    typeFilter === "all"
+    ||
+    b.type === typeFilter;
+
   return (
     shouldShowItem(b)
     &&
     matchSearch
+    &&
+    matchType
   );
 });
 
@@ -1317,7 +1324,7 @@ function renderHomeFixedBar(){
 
   bar.innerHTML = `
     <button onclick="openAddBookModal()" class="fixed-add-btn">
-      ＋
+      ＋本
     </button>
 
     <button
@@ -1693,12 +1700,17 @@ function toggleNewBookTag(tagId, el, color){
 function changeTypeFilterFromFixed(){
 
   typeFilter =
-    document.getElementById("type-filter-fixed").value;
+    document.getElementById(
+      "type-filter-fixed"
+    ).value;
+
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
 
   renderHome();
 }
-
-
 
 //==============================
 //====タイプフィルター切り替え
