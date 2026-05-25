@@ -1356,6 +1356,20 @@ gap:5px;
 }
 
 
+/*右下の「↑」ちゃん*/
+#scroll-top-btn{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  z-index:80;
+
+  width:44px;
+  height:44px;
+  border-radius:999px;
+
+  opacity:0.75;
+}
+
 </style>
 
 </head>
@@ -1383,7 +1397,9 @@ gap:5px;
   <div id="home-main"></div>  <!-- 本一覧 -->
 </div>
   
-
+<button id="scroll-top-btn" onclick="scrollToTop()">
+  ↑
+</button>
 
 <div id="page-home" class="page"></div>
 <div id="page-series" class="page hidden"></div>
