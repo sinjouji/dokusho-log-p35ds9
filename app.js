@@ -3343,7 +3343,7 @@ function renderSeriesSearchArea(){
 	top.innerHTML = `
 	<button onclick="openAddSeriesModal()"
 		class="add-btn">
-			➕ シリーズ追加
+			➕ シリーズ
 		</button>
 		
 		<input
@@ -5077,7 +5077,7 @@ function renderCharacterSearchArea(){
 	
 	<button onclick="openAddCharacterModal()"
 		class="add-btn">
-		➕ 人物追加
+		➕ 人物
 	</button>
 	
 	<input
