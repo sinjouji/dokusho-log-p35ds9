@@ -1451,6 +1451,7 @@ function renderSearchArea(){
   </select>
   
        </div>
+       <div class="view-switch">
 
       <button class="tag-chip"
         data-open="🏷️タグ非表示"
@@ -1466,6 +1467,7 @@ function renderSearchArea(){
        
        
             <div id="active-filter-view" style="font-size:10px;white-space:break-word;"></div>
+            </div>
        
    
 <div class="
