@@ -1,1418 +1,6461 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📙読書ログ</title>
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="favicon.png">
-<style>
-body{
-/*  margin-left:20px;   margin-right:20px;*/
-  font-family:sans-serif;   background:#f3e9be;/*蒸し栗*/
-  touch-action: pan-y;
-}
+// ★ JSON URL
+const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
 
-header{
-  background:#fffffc;   color:#646364;
-  padding:16px;   font-size:20px;
+//🟦①====状態（let）====
+//初期設定
 
-}
+let books = [];
+let characters = [];
+let tagMaster = [];
 
-.menulist{
-  display: flex; 
-  align-items:flex-end;   gap:5px;
-  overflow-wrap: anywhere;
-}
+let selectedTagId = null;
+//if(!selectedTagId) selectedTagId = null;
 
-main{
-  padding:16px;
-}
+const savedMode = localStorage.getItem("colorMode");
 
-button{
-  display: inline-block;   padding: 5px 10px;
-  border-radius: 10px;   text-decoration: none;
-  color: #f4a57a;   background-color:#fffffc;
-  border:1px solid #f4a57a;  font-size:13px;
-}
+let colorMode = localStorage.getItem("colorMode") || "single";
+if(!["single","gradient","stripe"].includes(colorMode)){
+  colorMode = "single";
+} // 背表紙カラー：single/gradient/stripe
 
-.btn-me{
-border:none;
-background:#f4a57a;
-/*↑はねず*/
-font-size:12px;
-color:#646364;
-/*↑燻銀*/
-}
-.btn-me.active{
-background:#fcd475;
-/*卵色*/
-font-weight:bold;
-}
+let viewMode = "card";
+//if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
 
-#page-stats{
- margin:20px;
-}
+let sortMode = "read-desc";
+let seriesSortMode = "stitle-asc";
+let charsSortMode = "cname-asc";
 
+let searchKeyword = "";
+let seriesSearchKeyword = "";
 
-.card{
-  background:#fffffc;   border-radius:10px;
-  padding:8px;   margin:5px 10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  border:1px solid #f4a57a;
-}
+//ミニカレンダーの月移動用設定
+let miniMonth = new Date();
 
-.tag{
-  display:inline-block;   font-size:10px;
-  padding:2px 6px;   border-radius:999px;
-  color:#fffffc;   margin-right:4px;
-}
-#loading{
-  position:fixed;   inset:0;
-  background:white;   display:flex;
-  align-items:center;   justify-content:center;
-  z-index:999; 
-}
+let currentDetailFav = 0;
 
-/*＝＝＝＝＝フィルターちゃん＝＝＝＝＝*/
-.filter-mode button.active {
-  background: #333;
-  color: white;
-}
+let openedSeries = {};
 
-/*＝＝＝＝＝絞込みの色分け＝＝＝＝＝*/
-.filter-mode-btn{
-
-  border:none;
-  border-radius:999px;
-
-  padding:4px 10px;
-
-  font-weight:bold;
-
-  color:white;
-}
-
-.mode-and{
-  background:#4a90e2;
-}
-
-.mode-or{
-  background:#53b36b;
-}
-
-.mode-not{
-  background:#d9534f;
-}
-
-.mode-off{
-  background:#999;
-}
-
-/*＝＝＝＝＝タグの絞込み変化＝＝＝＝＝*/
-.tag-mode-and{
-
-  filter:brightness(0.9);
-
-}
-
-.tag-mode-or{
-
-  box-shadow:
-    0 0 0 2px #c8d921;
-
-}
-
-.tag-mode-not{
-
-  text-decoration:line-through;
-
-  opacity:0.7;
-}
-
-
-#page-home{
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-/*#book-list{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}*/
-
-.tag-select-area{
-  display:flex;
-  flex-wrap:wrap;
-  gap:2px;
-  overflow-x:hidden;
-}
-
-.tag-chip{
-  border-radius:999px;
-  padding:4px 8px;
-  cursor:pointer;
-  font-size:13px;
-  margin:2px;
-  text-align:center;
-  transition:0.2s;
-  white-space:nowrap;
-  frex-shrink:0;
-}
-
-.tag-chip.active{
-  color:#fffffc;
-  transform:scale(1.05);
-}
-
-.detail-tag-chip{
-  font-size:10px;
-}
-
-#search{
-flex:1 1 160px;
-min-width:120px;
-border:1px solid #f4a57a;
-border-radius:10px;
-font-size:13px;
-background:#fffffc;
-color:#333;
-margin-left:10px;
-}
-
-#sort-mode, #view-mode{
-display:flex;
-flex-wrap:nowrap;
-gap:4px;
-}
-
-#sort-mode button,
-#view-mode button{
-white-space:nowrap;
-flex:0 0 auto;
-}
-
-#sort-mode::after,
-#view-mode::after,
-#color-mode::after{
-content:" / ";
-margin:0 4px;
-color: #999;
-}
-
-
-#type-filter button{
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid #ccc;
-  background: #fffffc;
-  cursor: pointer;
-  color:#ccc
-  font-size:13px;
-}
-
-#type-filter button.active{
-  background: #333;
-  color: #fffffc;
-  font-size:13px;
-}
-
-
-/* トグル */
-.switch{
-  width:40px;
-  height:22px;
-  background:#ccc;
-  border-radius:10px;
-  position:relative;
-  transition:0.2s;
-}
-
-.switch::after{
-  content:"";
-  width:18px;
-  height:18px;
-  background:#fffffc;
-  border-radius:50%;
-  position:absolute;
-  top:2px;
-  left:2px;
-  transition:0.2s;
-}
-
-.switch.on{
-  background:#f4a57a;
-}
-
-.switch.on::after{
-  left:20px;
-}
-
-/* 小カードかわいいの */
-.recent-grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:8px;
-  margin:10px 0;
-}
-
-.mini-card{
-  background:#fffffc;
-  border-radius:10px;
-  padding:10px;
-  border:1px solid #eee;
-  font-size:10px;
-  min-width:100px; /* ←横スクロール用 */
-  flex-shrink:0;   /* ←縮まない */
+//絞込み用タグ収納用
+let showTagFilter = localStorage.getItem("showTagFilter");
+showTagFilter = showTagFilter === null
+  ? true
+  : showTagFilter === "true";
   
-  box-shadow:0 2px 6px rgba(0,0,0,0.05);
-  margin-left:5px;
-  margin-right:5px;
-}
-
-.mini-title{
-  font-weight:bold;
-  font-size:13px;
-  margin-bottom:4px;
-}
-
-
-.mini-date{
-  font-size:11px;
-  color:#888;
-}
-
-
-
-/*リスト時に2カラム用*/
-.list-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
-}
-
-.list-card{
- background:#fffffc;
- border-radius:10px;
- padding:8px;
- border:1px solid #f4a57a;
- box-shadow:0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/*iPadでは３カラムにするやつ*/
-@media (min-width: 768px){
-  .list-grid{
-    grid-template-columns:1fr 1fr 1fr;
-  }
-}
-
-/* 本追加モーダルデザイン */
-.addin{
-width:100%;
-padding:5px 0;
-border:1px solid #f4a57a;
-border-radius:10px;
-font-size:13px;
-color:#60564f;
-font-weight:bold;
-}
-.addin2{
-display:flex;
-}
-.addinput{
-width:85%;
-padding:5px 2px;
-border:1px solid #f4a57a;
-border-radius:10px;
-font-size:13px;
-color:#60564f;
-}
-
-.add-btn{
-  width:150px;
-  padding:8px;
-  margin:10px;
-  border:1px solid #f4a57a;
-  border-radius:10px;
-  font-size:16px;
-  margin-bottom:12px;
-}
-
-.modal-bg{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.5);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  z-index:9999;
-}
-
-.modal-box{
-  width:90%;
-  max-width:400px;
-
-  background:#fffffc;
-  border-radius:10px;
-
-  padding:16px;
-
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.modal input:focus,
-.modal select:focus,
-.modal textarea:focus{
-  outline:none;
-  border-color:#9cc9ff;
-  box-shadow:0 0 0 3px rgba(156,201,255,.2);
-
-  width:100%;
-  box-sizing:border-box;
-
-  padding:12px;
-  border-radius:10px;
-
-  border:1px solid #ddd;
-  background:#fffffc;
-
-  font-size:14px;
-}
-.modal-box textarea{
-  min-height:100px;
-  resize:vertical;
-  font-size:14px;
-  padding:5px 0;
-}
-
-.modal-actions{
-  margin-top:20px;
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.field-label{
-  font-size:13px;
-  color:#777;
-  margin:10px 0 6px;
-}
-
-.modar input{
-font-size:14px;
-padding:5px 2px;
-border:1px solid #f4a57a;
-}
-
-#book-title{
-font-size:18px;
-font-weight:600;
-}
-
-.detail-date-add{
-  display: flex;
-  border-radius: 10px;
-}
-
-input[type="date"]{
-  padding: 0 10pxpx;
-  width:260px;
-  background:#fffffc;
-/*  box-sizing: border-box;*/
-  border: 1px solid #f4a57a;
-  font-size: 12px;
-  border-radius:10px;
-  color: #999;
-}
-
-select{
-  border-radius:10px;
-}
-
-
-/*本詳細モーダルの日付履歴*/
-.toggle-history{
-  font-size:11px;
-  color:#f4a57a;
-  cursor:pointer;
-  margin-bottom:2px;
-  border-radius:10px;
-  background:#fbf6e8;
-/*  border:1px solid #fef4f4;*/
-}
-
-.bememo{
-border:1px solid #f4a57a;
-font-size;13px;
-color:#60564f;
-margin:0 3px;
-width:95%;
-border-radius:10px;
-}
-
-.date-history-grid{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr 1fr;
-
-  gap:2px;
-
-  margin-top:1px;
-/*一定以上の量だとスクロールエリアになる*/
-  max-height:120px;
-  overflow-y:auto;
-
-}
-
-.mini-date-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+//タイプフィルター
+let typeFilter = localStorage.getItem("typeFilter") || "all";
   
-  font-size:10px;
-  color:#f4a57a;
-  padding:1px 4px;
-  gap:2px;
-  background:#fbf6e8;
-  border:1px solid #f4a57a;
-
-  border-radius:10px;
-}
-
-/*本詳細モーダル内表示の設定など*/
-.book-stat{
-  background:#9ba582;
-  color:#fffffc;
-  font-size:12px;
-  border-radius:10px;
-  padding:4px 13px;
-  margin:1px 3px;
-/*  margin-left:auto;*/
-}
-
-.reread-check{
-  font-size:13px;
-  color:#e0803a;
-  border:1px solid #e0803a;
-  border-radius:10px;
-  padding:1px 10px;
-  margin:3px;
-}
-
-.inate{
-  border:1px solid #f4a57a;
-  padding:3px 1px;
-  font-size:12px;
-}
-
-/* 検索エリア */
-.search-area{
-  position:relative;
-  margin-bottom:14px;
-  
-}
-
-#search,#series-search,
-#chars-search{
-  width:200px;
-  box-sizing:border-box;
-
-  padding:8px 10px;
-
-  border-radius:10px;
-  border:1px solid #f4a57a;
-
-  font-size:16px;
-  background:#fffffc;
-}
-
-#title-suggest{
-  background:#fbf6e8;
-}
-
-#search-suggest,
-#series-suggest,
-#chars-suggest{
-  position:absolute;
-  top:100%;
-  left:0;
-  right:0;
-
-  background:#fffffc;
-
-  border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-
-  overflow:hidden;
-  z-index:20;
-}
-
-.search-item{
-  padding:10px 14px;
-  cursor:pointer;
-}
-
-.search-item:hover{
-  background:#e4e5e6;
-}
-
-/* ビューモード用 */
-.view-switch{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-}
-
-.view-switch button.active{
-  background:#f4a57a;
-  color:#fffffc;
-  
-  border:none;
-}
-
-.list-row{
-  background:#fffffc;
-  padding:12px;
-  border-radius:10px;
-  margin-bottom:8px;
-}
-
-/* 詳細表示モーダル */
-.detail-modal{
-  max-width: 400px;
-}
-
-.detail-title{
-  width:95%;
-  padding:5px 3px;
-  border:1px solid #f4a57a;
-  color:#60564f;
-  font-weight:bold;
-  font-size:14px;
-  border-radius:10px;
-}
-.title-line{
-  display: flex;
-  justify-content: space-between;
-  gap:3px;
-}
-
-.close-btn{
-  border:1px solid white;
-  background:white;
-  font-size:20px;
-  cursor:pointer;
-  padding:5px;
-
-/*  position:absolute;
-  top:16px;
-  right:20px;*/
-}
-
-.detail-row{
-  margin-top:5px;
-  font-size:14px;
-}
-
-.end-btn{
-  width:70%;
-  display:flex;
-  justify-content: space-between;
-  font-size:14px;
-  margin:auto;
-}
-
-.detail-series{
-font-size:10px;
-color:#f4a57a;
-border:1px solid #f4a57a;
-background:#fffffc;
-padding:3px 8px;
-border-radius:10px;
-}
-
-.detail-tags{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-
-/*  margin-top:5px;*/
-}
-
-.detail-memo{
-  margin-top:10px;
-
-  padding:16px;
-
-  background:#fffffc;
-  border-radius:10px;
-
-  white-space:pre-wrap;
-}
-
-/*シリーズ編集モーダルの情報表示上限*/
-.series-edit-list{
-max-height:120px;
-overflow-y:auto;
-padding-right:4px;
-display:flex;
-flex-wrap:wrap;
-gap:4px;
-margin-top:6px;
-}
-
-/*キャラクター詳細モーダル*/
-.character-name{
-  max-width:300px;
-  padding-top:5px;
-  padding-bottom:10px;
-  border:1px solid #f4a57a;
-  color:#60564f;
-  font-weight:bold;
-  font-size:14px;
-  border-radius:10px;
-}
-
-.chars-memo{
-  margin-top:10px;
-
-  padding:16px;
-
-  background:#fffffc;
-  border-radius:10px;
-
-  border:1px solid #f4a57a;
-  font-size:12px;
-
-  white-space:pre-wrap;
-}
-
-/* 評価切替えボタン */
-.fav-cycle-btn{
-  font-size:14px;
-  padding:2px 8px;
-  border:none;
-  border-radius:999px;
-  background:#f3e9be;
-}
-
-/* タグ風読了日表示 */
-.date-tag{
-  display:flex;
-  align-items:center;
-  gap:2px;
-  text-align:center;
-
-  padding:1px 6px;
-  margin:3px;
-
-  background:#fbf6e8;
-  border-radius:999px;
-
-  font-size:11px;
-/*  border:1px solid #f4a57a;*/
-  color:#e3a29c;
-}
-
-.mini-delete-btn{
-  border:none;
-  background:none;
-
-  color:#f4a57a;
-  font-size:12px;
-}
-
-/* 保存通知 */
-.toast{
-
-  position:fixed;
-
-  left:50%;
-  bottom:30px;
-
-  transform:
-    translateX(-50%)
-    translateY(20px);
-
-  background:#333;
-  color:#fffffc;
-
-  padding:12px 18px;
-
-  border-radius:999px;
-
-  font-size:14px;
-
-  opacity:0;
-
-  transition:0.3s;
-
-  z-index:9999;
-}
-
-.toast.show{
-
-  opacity:1;
-
-  transform:
-    translateX(-50%)
-    translateY(0);
-}
-
-/*ミニカレンダー表示*/
-.mini-calendar{
-  display:grid;
-  grid-template-columns:repeat(7, 1fr);
-  gap:4px;
-  max-width:800px;
-  max-height:600px;
-}
-
-.mini-day{
-  aspect-ratio:1;
-  font-size:10px;
-  color:#60564f;
-  font-weight:bold;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  border-radius:10px;
-  background:#eee;
-}
-
-
-/*カード風設定*/
-.setting-card{
-  background:#fffffc;
-  border-radius:10px;
-  padding:16px;
-  margin-bottom:18px;
-  box-shadow:
-    0 2px 10px
-    rgba(0,0,0,0.05);
-/*  min-width:600px;*/
-}
-
-.setting-card-title{
-  font-size:14px;
-  font-weight:bold;
-  color:#60564f;
-  margin-bottom:12px;
-}
-
-.setting-row{
-  display:flex;
-  justify-content:
-    space-between;
-  align-items:center;
-  margin:12px 0;
-  border-bottom:1px dashed #7f9698;
-  font-size:12px;
-  padding-bottom:10px;
-}
-
-.setting-row button{
-  min-width:140px;
-}
-
-/*タグ編集エリア*/
-.tag-edit-area{
-  background:#f7f7f7;
-  padding:8px;
-  border-radius:10px;
-  margin-top:8px;
-  font-size:12px;
-}
-
-.tag-color-palette{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:12px;
-}
-
-.color-dot{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  border:none;
-  
-  margin-bottom:2px;
-  padding:0;
-  aspect-ratio:1/1;
-  
-  appearance:none;
-  -webkit-appearance:none;
-  
-  flex-shrink:0;
-}
-
-.color-dot.active{
-  outline:2px solid #333;
-  transform:scale(1.15);
-}
-
-.color-dot.active{
-  transform:scale(1.1);
-  border:2px solid #fff;
-  box-shadow:
-    0 0 0 2px #333;
-}
-/*本棚：カード表示*/
-.card-view{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-}
-@media(min-width:700px){
-  .card-view{
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.card-sub-row{
-
-  display:flex;
-  gap:12px;
-
-  font-size:12px;
-
-  color:#666;
-
-  margin-top:4px;
-
-}
-
-.card-tags{
-
-  margin-top:6px;
-
-  font-size:11px;
-
-}
-
-.card-series{
-
-  margin-top:4px;
-
-  font-size:11px;
-
-  color:#999;
-
-}
-
-.card-tag{
-
-  margin-right:6px;
-
-  font-size:11px;
-
-  font-weight:bold;
-
-}
-
-.card .title{
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    "YuMincho",
-    serif;
-
-  font-weight:600;
-  letter-spacing:0.03em;
-  line-height:1.35;
-}
-
-
-/*本棚：リスト表示*/
-
-@media(max-width:768px){
-.honlist{
-  background:#fffffc;
-  border-radius:10px;
-  padding:8px;
-  margin:5px 10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  vertical-align:top;
-  border:1px solid #f4a57a;
-  gap:5px;
- }
-}
-
-/*リストビューの表示設定*/
-
-.list-view{
-  margin-top:20px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.list-row{
-  position:relative;
-
-  padding:8px 64px 8px 10px;
-
-  border-bottom:
-    1px solid rgba(0,0,0,0.08);
-
-  cursor:pointer;
-
-  overflow:hidden;
-}
-
-.list-title{
-  position:relative;
-  z-index:2;
-
-  font-size:15px;
-  font-weight:600;
-  line-height:1.4;
-
-  word-break:break-word;
-}
-
-.list-meta{
-  position:relative;
-  z-index:2;
-
-  margin-top:3px;
-
-  font-size:11px;
-  color:#888;
-}
-
-.list-count-watermark{
-  position:absolute;
-  right:10px;
-  top:50%;
-
-  transform:translateY(-50%);
-
-  font-size:28px;
-  font-weight:bold;
-
-  color:rgba(0,0,0,0.08);
-
-  line-height:1;
-  pointer-events:none;
-  white-space:nowrap;
-}
-
-
-.list-item{
-  position:relative;
-  padding:10px 44px 10px 12px;
-}
-
-
-.list-date{
-  margin-top:3px;
-  font-size:11px;
-  color:#888;
-}
-
-
-/*シリーズページ*/
-.series-main{
-display:grid;
-grid-template-columns:1fr;
-gap:5px;
-}
-
-.series-detail-layout{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:16px;
-}
-
-/* タブレット以上 */
-@media(min-width:700px){
-
-.series-main{
-grid-template-columns:1fr 1fr;
-}
-
-
-  .series-detail-layout{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-/*シリーズ詳細ページ*/
-.seriesp-head{
-  display: flex;
-  justify-content: space-between;
-  margin:20px 20px 0 20px;
-  }
-  
-.satu{
-background:#fffffc;
-color:#60564f;
-font-size:15px;
-font-weight:bold;
-padding:5px 30px;
-border-radius:10px;
-border:1px solid #60564f;
-}
-
-  
-.stitle{
-  width:90%;
-  margin:10px 20px;
-  background: linear-gradient(transparent 70%, #eddbd8 70%);
-}
-
-.series-section{
-  background:#fffffc;
-  border-radius:10px;
-  padding:12px;
-  margin:5px;
-  border:1px solid #60564f;
-  color:#60564f;
-}
-.series-section-title{
-  font-weight:bold;
-  cursor:pointer;
-  padding:8px 0;
-}
-.series-section-body{
-  font-size:10px
-}
-.empty-text{
-  color:gray;
-  text-align:center;
-  padding:20px 0;
-}
-
-/*シリーズ詳細編集モーダル*/
-.related-chip{
-
-  display:inline-flex;
-  align-items:center;
-  gap:2px;
-
-  padding:2px 5px;
-  margin:2px;
-
-  background:#f3f3f3;
-
-  border-radius:999px;
-
-  font-size:10px;
-}
-
-/*サジェスト用*/
-.suggest-box{
-
-  max-height:140px;
-
-  overflow-y:auto;
-
-  margin-top:8px;
-
-  background:#fff;
-
-  border-radius:10px;
-
-  font-size:10px;
-}
-
-.search-item{
-
-  padding:8px 10px;
-
-  cursor:pointer;
-
-  border-bottom:
-    1px solid #eee;
-
-}
-
-.suggest-label{
-
-  font-size:11px;
-
-  color:#666;
-
-  padding:6px 8px 2px;
-
-}
-
-.toggle-content {
-  display: none !important;
-}
-
-.toggle-content.open {
-  display:flex !important;
-  gap:4px;
-  flex-wrap:wrap;
-}
-
-/*キャラクターページ*/
-.chars-main{
-display:grid;
-grid-template-columns:1fr;
-gap:5px;
-}
-
-.chars-detail-layout{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:16px;
-}
-
-/* タブレット以上 */
-@media(min-width:700px){
-
-  .chars-main{
-    grid-template-columns:1fr 1fr;
-  }
-  .chars-detail-layout{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-/* ★これ重要（今回の勝因） */
-#loading.hidden{
-  display:none;
-}
-
-/* 背表紙表示 */
-.spine{
-  position:relative;
-  height:200px;
-  border-radius:4px 6px 6px 4px;
-  
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;
-  
-  overflow:visible;
-  
- /*しおり用上側スペース*/ 
-  padding-top:20px;
-  
-  border-right:3px solid rgba(0,0,0,0.2);
-
-  cursor:pointer;
-}
-
-.spine-title{
-  writing-mode:vertical-rl;
-  text-orientation:mixed;
-  
-  font-size:13px;
-  line-height:1.1;
-  
-  letter-spacing:0.05em;
-  
-  color:#fffffc;
-  
-  padding:15px 6px 3px 8px;
-  
-/*  width:auto;*/
-  max-height:150px;
-  
-  text-align:left;
-  white-space:nomal;
-  
-/*使うか分からん調整部分
-  word-break:break-all;
-  flex:1;
-  max-height:100%;
-*/
-}
-
-.spine-fav{
-  font-size:10px;
-  
-  color:#fffffc;
-  height:30px;
-  writing-mode:vertical-rl;
-
-  align-items:center;
-  text-align:right;
-  padding-bottom:5px;
-}
-
-.shelf-view{
-  display:flex;
-  gap:2px;
-  align-items:flex-end;
-  flex-wrap:wrap;
-  overflow-x:auto;
-  padding:10px 0;
-}
-
-/*シリーズ詳細でのミニ表示*/
-/*.mini-s-card,
-.mini-s-list{
-  font-size:8px;
-}*/
-
-.mini-s-spine .spine-title{
-  font-size:8px;
-}
-
-.mini-s-spine{
-  height:100px;
-  padding:2px;
-  margin:0 2px;
-}
-
-/*カレンダー表示*/
-.calendar-day{
-  width:20px;
-  height:20px;
-  font-size:12px;
-}
-.calendar-grid{
-  gap:3px;
-}
-
-/*再読はしおり描画*/
-.bookmark{
-
-  position:absolute;
-
-  top:-4px;
-  right:8px;
-
-  width:14px;
-  height:28px;
-
-  background:#d94b4b;
-
-  border-radius:0 0 4px 4px;
-
-}
-
-.bookmark::after{
-
-  content:"";
-
-  position:absolute;
-
-  bottom:-8px;
-  left:0;
-
-  border-left:7px solid transparent;
-  border-right:7px solid transparent;
-  border-top:8px solid #d94b4b;
-
-}
-
-/*区切り用デザインHR*/
-.kugiri{
- border:1px dashed #f4a57a;
- width:100%;
-}
-</style>
-
-</head>
-
-<body>
-
-<div id="loading">読み込み中…</div>
-
-<header>
-<h2>読書ログ</h2>
-
-
-<nav class="menulist">
-  <button class="btn-me" id="menu-home" onclick="go('home')">ホーム</button>
-  <button class="btn-me" id="menu-series" onclick="go('series')">シリーズ</button>
-  <button class="btn-me" id="menu-characters" onclick="go('characters')">人物</button>
-  <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
-  <button class="btn-me" id="menu-settings" onclick="go('settings')">設定</button>
-  <button class="btn-me" onclick="loadData()">更新</button>
-  </nav>
-</header>
-
-<div id="page-home">
-  <div id="home-top"></div>   <!-- 検索・フィルタ -->
-  <div id="home-main"></div>  <!-- 本一覧 -->
-</div>
-  
-
-
-<div id="page-home" class="page"></div>
-<div id="page-series" class="page hidden"></div>
-<div id="page-characters" class="page hidden"></div>
-<div id="page-stats" class="page hidden"></div>
-<div id="page-settings" class="page hidden"></div>
-<div id="page-detail" class="page hidden"></div>
-
-
-<main>
-  <div id="list"></div>
-</main>
-
-
-
-
-<!-- ① Firebase側（先に読み込む） -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  // ← あなたのやつ貼る
-  apiKey: "AIzaSyDvYzIGUPnflmLtQh0lGmtHprk6cetHeYE",
-  authDomain: "myreadinglog-e0cc4.firebaseapp.com",
-  projectId: "myreadinglog-e0cc4",
-  storageBucket: "myreadinglog-e0cc4.firebasestorage.app",
-  messagingSenderId: "1005754930934",
-  appId: "1:1005754930934:web:cb92ea93a66245243cfed7",
-  measurementId: "G-ES0WYH0VXY"
+//メモ機能のオンオフ切り替え
+let enableMemo = localStorage.getItem("enableMemo");
+ enableMemo =
+  enableMemo === null
+   ? true
+   : enableMemo === "true";
+
+//テーマカラーの設定
+let themeColor = localStorage.getItem("themeColor") || "#f5f5f5";
+ document.body.style.background = themeColor;
+
+let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか
+let sortOrder = localStorage.getItem("sortOrder") || "asc"; // asc / desc
+let selectedType = "all"; // "all" | "normal" | "wish"※ウィッシュリスト切替
+let currentMonth = new Date();
+
+//====年間目標設定
+let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
+
+let enableGoal = localStorage.getItem("enableGoal");
+enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
+
+//グラフ年間移動用
+let statsYear = new Date().getFullYear();
+
+// 設定（保存＋初期値）
+let uiSettings = {
+  recent: true,
+  summary: true,
+  tags: true,
+  type: true,
+  ...JSON.parse(localStorage.getItem("uiSettings") || "{}")
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let uiMode = localStorage.getItem("uiMode") || "on";
+// "on" or "off"
+let recentViewMode = localStorage.getItem("recentViewMode") || "card";
+// "card" or "spine"
 
-// 👇 グローバルに公開（これ超重要）
-window.db = db;
-window.doc = doc;
-window.setDoc = setDoc;
-window.getDoc = getDoc;
-</script>
+//設定のグループ開閉
+let settingSections = JSON.parse(
+  localStorage.getItem("settingSections")
+  ) || {
+    home: true,
+    input: true,
+    stats: true,
+    tags: true,
+    datas: true,
+    };
+
+//タグ編集用
+let editingTagId = null;
+let editingTagColor = "";
+
+//====設定用のカラーモード設定
+let shelfColorMode =
+  localStorage.getItem(
+    "shelfColorMode"
+    ) || "single";
+
+//タグパレット
+const tagColors = [
+//濃い色
+  "#ea6d7e", // 韓紅花
+  "#eea220", // 黄丹
+  "#c9171e", // 紅
+  "#223a70", // 群青
+  "#674196", // 菖蒲
+  "#478384", // 青碧
+  "#5dac81", // 若竹
+  "#f08300", // 蜜柑色
+  "#e95464", // 薄紅
+  "#ca6924", // 琥珀
+
+  "#7B8D8E", // 青鈍
+//  "#6E7F80", // 御召茶
+//  "#8F7A66", // 江戸茶
+  "#8C6B4F", // 狐色
+  "#7C5C46", // 路考茶
+
+//  "#8B6F70", // 鳩羽鼠
+//  "#A16D5D", // 唐茶
+  "#B77B57", // 琥珀色
+//  "#A67B5B", // 丁子茶
+
+//  "#6D8C74", // 千歳緑
+  "#5F7B6E", // 深緑
+  "#768F72", // 柳煤竹
+
+//  "#6F7C8C", // 鉄紺
+  "#5F6A7D", // 紺鼠
+  "#7A89A8", // 藍鼠
+
+  "#9A8C98", // 紫鼠
+  "#8D7A8C", // 葡萄鼠
+
+//  "#B4A582", // 利休白茶
+  "#C2B59B", // 灰桜
+//  "#D0C2A8",  // 鳥の子
+
+//カスタム追加
+"#74aea9", //水浅葱
+"#67b255", //鮮緑
+"#f9ca00", //金
+"#f8a484", //曙
+"#646364", //燻銀
+"#eddece", //惚
+"#b9d08b", //若葉
+"#86964e" //苔
+];
+
+//タグ追加
+let newTagName = "";
+let newTagColor = "#7b8d8e";
+let newBookFav = 0;
+
+//シリーズ関係
+let seriesMaster = [];
+let seriesSections = {
+  books: true,
+  chars: true
+};
+let currentSeriesId = null;
+
+//シリーズ編集用のデータ保持枠
+let editingSeriesBookIds = [];
+let editingSeriesCharacterIds = [];
+
+//新規シリーズ用の関連物
+let newSeriesBookIds = [];
+let newSeriesCharacterIds = [];
+
+let newBookTagIds = []; //新規本保存用のタグ一時保存場所
+let newBookSeries = []; //新規本保存用の関連シリーズ一時保存場所
+
+let editingBookSeriesIds = []; //本編集用の関連シリーズ一時保存場所
+
+let editingCharacterSeriesIds = []; //人物編集用の関連シリーズ一時保存場所
+
+//汎用トグル用のやつ
+let homeSections = {
+  tags: false
+};
+
+let addBookTagSections = { tags: false };
+let addBookSeriesSections = { series: false };
+let detailSections = { tags:  false };
+
+//人物検索用
+let characterSearchKeyword = "";
 
 
-<!-- ② あなたのアプリ本体（こっちが後） -->
-<script>
-window.saveData = async function(){
+
+//==============================
+//セーブ,go
+//==============================
+//==============================
+//go、ページ切り替え
+//==============================
+
+function go(page){
+  document.querySelectorAll("[id^='page-']").forEach(el=>{
+    el.style.display = "none";
+  });
+
+  const target = document.getElementById("page-" + page);
+  if(target) target.style.display = "block";
+
+  // ここ追加
+//  updateUIVisibility(page);
+
+  if(page === 'settings') renderSettings();
+  if(page === 'home') renderHome();
+  if(page === 'series') renderSeries();
+  if(page === 'characters') renderCharacters();
+  if(page === 'stats') renderStats();
+}
+//==============================
+//====🔑データの保存処理：超重要！！
+//==============================
+async function saveData(){
+
   const data = {
     books,
-    seriesMaster,
     characters,
-    tagMaster
+    tagMaster,
+    seriesMaster
   };
 
-  localStorage.setItem("bookAppData", JSON.stringify(data));
+  // ローカル保存
+  localStorage.setItem(
+    "bookAppData",
+    JSON.stringify(data)
+  );
 
-  try {
-    await window.setDoc(
-      window.doc(window.db, "app", "data"),
-      data
-    );
-    console.log("🔥 保存成功");
-  } catch (e) {
-    console.error("❌ 保存失敗", e);
+  // Firestore保存
+  await window.setDoc(
+    window.doc(window.db, "app", "data"),
+    data
+  );
+
+  console.log("Firestore保存完了");
+}
+
+
+
+
+
+
+
+
+
+//==============================
+//データの取得（get）とか
+//==============================
+
+//==============================
+//評価取得
+//==============================
+function getFavLabel(val){
+	if(val >= 4) return "👑";
+	return "★".repeat(val || 0);
+	}
+
+//==============================                                                                                                       
+//====背表紙のカラー設定
+//==============================
+function applySpineColor(d, b){
+
+  const c1 =
+    getTagColor(b.tagIds?.[0]) || "#888";
+
+  const c2 =
+    getTagColor(
+      b.tagIds?.[1]
+      || b.tagIds?.[0]
+    ) || c1;
+
+  const c3 =
+    getTagColor(
+      b.tagIds?.[2]
+      || b.tagIds?.[0]
+    ) || c1;
+
+  if(colorMode === "single"){
+    d.style.background = c1;
   }
+
+  if(colorMode === "gradient"){
+    d.style.background =
+      `linear-gradient(         135deg,         ${c1},         ${c2}       )`;
+  }
+
+  if(colorMode === "stripe"){
+    d.style.background =
+      `linear-gradient(
+               to bottom,
+               ${c1} 0%, ${c1} 10%,
+               ${c3} 10%, ${c3} 13%,
+               ${c1} 13%, ${c1} 83%,
+               ${c2} 83%, ${c2} 100%)`;
+  }
+}
+
+//==============================
+//本生成の関数====
+//==============================
+function createBookSpine(b, mode="main"){
+  const d = document.createElement('div');
+
+  const base = 20;
+  const extra = Math.min((b.title || "").length * 2, 55);
+  
+  d.className = "spine";
+  d.style.width = (base + extra + 4) + "px";
+  
+  applySpineColor(d, b);
+
+  if(b.type === "wish"){
+	d.style.opacity = "0.65";
+	d.style.filter = "grayscale(0.15)";
+	}
+
+  const title = document.createElement('div');
+  title.textContent = b.title;
+
+  title.className = "spine-title";
+
+  const fav = document.createElement('div');
+  const val = Math.min(b.fav || 0, 4);
+  
+  fav.className = "spine-fav";
+  
+  fav.textContent = val === 4 ? "👑" : "★".repeat(val)
+//  +"\n"+${book.readDates?.length || 0}+"回読了";
+
+   if(mode === "detail"){
+    d.style.width = (base + extra - 10) + "px";
+    d.classList.add("mini-s-spine");
+    fav.style.fontSize = "5px";
+    fav.style.height = "15px";
+    fav.style.paddingBottom = "1px";
+  }
+  
+  if(b.reread){
+  
+    const mark =
+      document.createElement("div");
+      
+    mark.className = "bookmark";
+    
+    d.appendChild(mark);
+  
+  }
+  
+
+  d.appendChild(title);
+  d.appendChild(fav);
+
+  d.onclick = ()=> openBookDetailModal(b);
+
+  return d;
+}
+
+//==============================
+//今年・今月◯冊取得
+//==============================
+function getMonthlyCounts(year){
+  const arr = Array(12).fill(0);
+  
+  books.forEach(b=>{
+    (b.readDates || []).forEach(d=>{
+      if(!d.startsWith(String(year)))
+        return;
+      const month =
+        Number(d.slice(5,7)) - 1;
+      
+      arr[month]++;
+    });
+  });
+  return arr;
+}
+
+
+//==============================
+//タグ色=====
+//==============================
+function getTagColor(tagId){
+  const t = tagMaster.find(x => x.id === tagId);
+  return t?.color || "#999";
+}
+
+
+
+//==============================
+//シリーズ名を取得
+//==============================
+function openSeriesById(id){
+console.log("byid~~");
+  const series = seriesMaster.find(
+    s => String(s.id) === String(id)
+  );
+
+  if(!series) return;
+
+  openSeries(series);
+}
+
+
+
+
+//==============================
+//汎用設定
+//==============================
+
+
+
+
+
+//==============================
+//安全共通renderテンプレ
+//==============================
+function safeRender({
+  mountId,
+  html,
+  afterRender
+}){
+
+  const el = document.getElementById(mountId);
+  if(!el) return;
+
+  // ① 必ず初期化
+  el.innerHTML = "";
+
+  // ② HTML描画
+  el.innerHTML = html;
+
+  // ③ DOM生成後処理
+  if(afterRender) afterRender(el);
+}
+
+
+
+
+
+
+
+//==============================
+//====モーダルを閉じる（汎用）
+//==============================
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    ?.remove();
+}
+
+//==============================
+//====汎用サジェスト
+//==============================
+function renderSuggestList({
+
+  inputId,
+  suggestId,
+  list,
+  max = 5
+
+}){
+
+  const input =
+    document.getElementById(inputId);
+
+  const suggest =
+    document.getElementById(suggestId);
+
+  if(!input || !suggest) return;
+
+  const keyword =
+    input.value
+      .trim()
+      .toLowerCase();
+
+  if(!keyword){
+
+    suggest.innerHTML = "";
+    return;
+  }
+
+  const matched =
+    [...new Set(list)]
+      .filter(v=>
+
+        v &&
+        v.toLowerCase()
+          .includes(keyword)
+
+      )
+      .slice(0, max);
+
+  suggest.innerHTML = "";
+  
+  matched.forEach(text=>{
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "suggest-item";
+
+    item.textContent = text;
+    
+    item.onclick = ()=>{
+
+      input.value = text;
+
+      suggest.innerHTML = "";
+    };
+
+    suggest.appendChild(item);
+  });
+}
+
+
+
+
+//==============================
+//開閉トグル（汎用）※('id')を変えるだけ！
+//==============================
+function togglesSection(id, btn){
+
+  const el =
+    document.getElementById(id);
+
+  if(!el) return;
+
+  el.classList.toggle("open");
+
+  const opened =
+    el.classList.contains("open");
+
+  btn.textContent =
+    opened
+      ? btn.dataset.open
+      : btn.dataset.close;
+
+  if(id === "tag-filter"){
+    homeSections.tags = opened;
+  }
+
+  if(id === "open-book-tags"){
+    detailSections.tags = opened;
+  }
+
+  if(id === "open-book-series"){
+    detailSections.series = opened;
+  }
+}
+
+
+//==============================
+//メニューボタンactive切り替え
+//==============================
+function setActiveMenu(menuId){
+
+  document
+    .querySelectorAll(".btn-me")
+    .forEach(btn=>{
+
+      btn.classList.remove("active");
+
+    });
+
+  document
+    .getElementById(menuId)
+    ?.classList.add("active");
+}
+
+
+
+
+
+
+//==============================
+//★フィルタの状態
+//==============================
+const filterState = {
+  tags: [],        // 選択中タグID
+  tagMode: "AND",  // AND / OR / NOT
+  tagStates: {},
+  types: {
+    book: true,
+    series: true,
+    character: true
+  },
+  search: ""
 };
-</script>
-<script src="app.js"></script>
-</body>
-</html>
+
+
+
+//==============================
+//★フィルタをまとめるベースちゃん
+//==============================
+function shouldShowByType(item){
+  if(item.type === "book") return filterState.types.book;
+  if(item.type === "series") return filterState.types.series;
+  if(item.type === "character") return filterState.types.character;
+
+  return true;
+}
+
+
+
+//==============================
+//★共通フィルタ関数ちゃん
+//==============================
+function shouldShowItem(item){
+
+  return shouldShowByType(item)
+    && matchTagsAdvanced(item);
+}
+
+
+
+//==============================
+//★フィルタを判定する子ちゃん
+//==============================
+function matchTags(item){
+
+  if(
+    filterState.tagMode === "OFF"
+    ||
+    !filterState.tags.length
+  ){
+    return true;
+  }
+
+  const itemTags =
+    (item.tagIds || []).map(String);
+
+  if(filterState.tagMode === "AND"){
+
+    return filterState.tags.every(tagId =>
+
+      itemTags.includes(String(tagId))
+
+    );
+  }
+
+  if(filterState.tagMode === "OR"){
+
+    return filterState.tags.some(tagId =>
+
+      itemTags.includes(String(tagId))
+
+    );
+  }
+
+  if(filterState.tagMode === "NOT"){
+
+    return !filterState.tags.some(tagId =>
+
+      itemTags.includes(String(tagId))
+
+    );
+  }
+
+  return true;
+}
+
+
+
+//==============================
+//★フィルタの判定個別Verちゃん
+//==============================
+function matchTagsAdvanced(item){
+
+  const itemTags =
+    (item.tagIds || []).map(String);
+
+  const states =
+    filterState.tagStates;
+
+
+  //AND判定
+  const andTags = Object.keys(states)
+    .filter(
+      tagId => states[tagId] === "AND"
+    );
+
+  //AND全部持ってないと除外
+  const andOk =
+    andTags.every(
+      tagId => itemTags.includes(tagId)
+    );
+
+  if(!andOk) return false;
+
+
+  //OR判定
+  const orTags = Object.keys(states)
+  .filter(
+    tagId => states[tagId] === "OR"
+  );
+  
+  if(orTags.length){
+
+  const orOk =
+    orTags.some(
+      tagId => itemTags.includes(tagId)
+    );
+
+    if(!orOk) return false;
+  }
+  
+  //NOT判定
+  const notTags = Object.keys(states)
+  .filter(
+    tagId => states[tagId] === "NOT"
+  );
+  
+  const hasNot =
+  notTags.some(
+    tagId => itemTags.includes(tagId)
+  );
+
+  if(hasNot) return false;
+  
+
+  return true;
+}
+
+
+
+//==============================
+//★フィルタの状態更新用ちゃん
+//==============================
+function setTagMode(mode){
+  filterState.tagMode = mode;
+  renderHome();
+  updateTagModeUI();
+}
+
+
+
+//==============================
+//★フィルタの選択状態見た目ちゃん
+//==============================
+function updateTagModeUI(){
+
+  document.querySelectorAll(".filter-mode button")
+    .forEach(btn => {
+
+      if(btn.textContent === filterState.tagMode){
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+
+    });
+}
+
+
+
+//==============================
+//★新型タグフィルタちゃん（しばし共存
+//==============================
+function toggleFilterTag(id){
+
+  const strId = String(id);
+
+  if(filterState.tags.includes(strId)){
+
+    filterState.tags =
+      filterState.tags.filter(
+        t => t !== strId
+      );
+
+    delete filterState.tagStates[strId];
+
+  } else {
+
+    filterState.tags.push(strId);
+
+    filterState.tagStates[strId] =
+      filterState.tagMode;
+  }
+  
+  console.log(filterState.tagStates);
+
+  renderHome();
+  saveFilterState();
+}
+
+
+//==============================
+//★絞込み切り替えちゃん
+//==============================
+function cycleTagMode(){
+
+  if(filterState.tagMode === "AND"){
+
+    filterState.tagMode = "OR";
+
+  } else if(
+    filterState.tagMode === "OR"
+  ){
+
+    filterState.tagMode = "NOT";
+
+  } else if(
+    filterState.tagMode === "NOT"
+  ){
+
+    filterState.tagMode = "OFF";
+
+  } else {
+
+    filterState.tagMode = "AND";
+  }
+
+  renderHome();
+  saveFilterState();
+}
+
+
+//==============================
+//★タグ単体で絞込み条件変更ちゃん
+//==============================
+function cycleTagState(tagId){
+
+  const strId = String(tagId);
+
+  const current =
+    filterState.tagStates[strId];
+
+  if(!current){
+
+    filterState.tagStates[strId] =
+      "AND";
+
+  } else if(current === "AND"){
+
+    filterState.tagStates[strId] =
+      "OR";
+
+  } else if(current === "OR"){
+
+    filterState.tagStates[strId] =
+      "NOT";
+
+  } else {
+
+    delete filterState.tagStates[strId];
+  }
+
+  filterState.tags =
+    Object.keys(filterState.tagStates);
+
+  saveFilterState();
+
+  renderHome();
+}
+
+
+
+
+
+//==============================
+//★絞込み現状表示ちゃん
+//==============================
+function renderActiveFilterView(){
+
+  const area =
+    document.getElementById(
+      "active-filter-view"
+    );
+
+  if(!area) return;
+
+  if(!filterState.tags.length){
+
+    area.innerHTML = `
+      <div class="filter-empty">
+        絞り込みなし<br>
+        タグタップでAND/OR/NOT/OFF切替え
+      </div>
+    `;
+
+    return;
+  }
+    
+    
+  function getTagNames(tagIds){
+
+  return tagIds.map(tagId=>{
+
+    const tag =
+      tagMaster.find(
+        t => String(t.id) === String(tagId)
+      );
+
+    return tag?.name || "？";
+
+  }).join(" / ");
+
+}
+
+  //AND選択中タグ抽出
+  const andTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "AND"
+  );
+  
+  //OR抽出
+  const orTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "OR"
+  );
+  
+  //NOT抽出
+  const notTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "NOT"
+  );
+
+  area.innerHTML = `
+
+    <div class="active-filter-row">
+
+      <span class="filter-mode-label">
+
+        ${andTags.length ? `
+          <div>
+            AND：${getTagNames(andTags)}
+         </div>
+         ` : ""}
+         
+        ${orTags.length ? `
+          <div>
+            OR：${getTagNames(orTags)}
+           </div>
+        ` : ""}
+         
+        ${notTags.length ? `
+          <div>
+            NOT：${getTagNames(notTags)}
+          </div>
+        ` : ""}
+       
+        </span>
+
+      <span class="filter-tag-list">
+
+      </span>
+
+    </div>
+
+  `;
+}
+
+
+//==============================
+//★フィルタの状態保存ちゃん
+//==============================
+function saveFilterState(){
+
+  localStorage.setItem(
+
+    "filterState",
+
+    JSON.stringify(filterState)
+
+  );
+
+}
+
+
+//==============================
+//★フィルタの状態読み込みちゃん
+//==============================
+const savedFilterState =
+  localStorage.getItem(
+    "filterState"
+  );
+
+if(savedFilterState){
+
+  Object.assign(
+
+    filterState,
+
+    JSON.parse(savedFilterState)
+
+  );
+
+}
+
+
+
+
+//==============================
+//ホーム（メイン本棚）
+//==============================
+//==============================
+// ⬛︎ホーム（本のリスト表示）HOME====
+//ホーム画面の「骨組みだけ」にする！
+//==============================
+function renderHome(){
+
+  setActiveMenu("menu-home");
+
+  const el = document.getElementById("page-home");
+  if(!el) return;
+
+  el.innerHTML = `
+    <div id="home-top"></div>
+    <div id="home-main"></div>
+  `;
+
+  renderSearchArea();
+  renderTagFilter();
+  renderActiveFilterView();
+  renderBookList();
+}
+//==============================
+//======本の一覧だけ表示させる役
+//==============================
+function renderBookList(){
+
+  const main = document.getElementById("home-main");
+  if(!main) return;
+
+  main.innerHTML = "";
+
+ const keyword =
+  (searchKeyword || "").trim().toLowerCase();
+
+const filteredBooks = books.filter(b => {
+
+  const matchSearch =
+    !keyword
+    ||
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  return (
+    shouldShowItem(b)
+    &&
+    matchSearch
+  );
+});
+
+  const sorted = sortBooks(filteredBooks);
+
+  main.className = "";
+
+  if(viewMode === "card"){
+    renderCardView(main, sorted);
+    main.classList.add("card-view");
+  }
+
+  if(viewMode === "list"){
+    renderListView(main, sorted);
+    main.classList.add("list-view");
+  }
+
+  if(viewMode === "shelf"){
+    renderShelfView(main, sorted);
+    main.classList.add("shelf-view");
+  }
+}
+//==============================
+//====カードビューモード
+//==============================
+function renderCardView(main, books){
+
+  main.className = "card-view";
+
+  books.forEach(b=>{
+
+    const d =
+      document.createElement("div");
+
+    d.className =
+      "card honlist";
+
+    // タグ取得
+    const tags = (b.tagIds || [])
+      .map(tagId => {
+
+        const tag = tagMaster.find(
+          t =>
+            String(t.id)
+            === String(tagId)
+        );
+
+        return tag?.name || "";
+
+      })
+      .filter(Boolean);
+
+    // 関連シリーズ取得
+    const relatedSeries =
+      seriesMaster.filter(s =>
+
+        (s.bookIds || [])
+          .map(String)
+          .includes(String(b.id))
+
+      );
+
+    d.innerHTML = `
+
+      <div class="title">
+        ${b.title}
+      </div>
+
+      <div class="card-sub-row">
+
+        <div class="book-latest-date">
+          ${getLatestReadDate(b) || "未読"}
+        </div>
+
+        <div class="fav">
+          ${getFavLabel(b.fav)}
+        </div>
+
+        <div class="book-read-count">
+          ${b.readDates?.length || 0}回
+        </div>
+
+      </div>
+
+      ${
+        tags.length
+          ? `
+            <div class="card-tags">
+
+  ${tags.map(tagName=>{
+
+    const tag = tagMaster.find(
+      t => t.name === tagName
+    );
+
+    return `
+      <span
+        class="card-tag"
+        style="
+          color:${tag?.color || "#999"};
+        "
+      >
+        #${tagName}
+      </span>
+    `;
+
+  }).join("")}
+
+</div>
+          `
+          : ""
+      }
+
+      ${
+        relatedSeries.length
+          ? `
+            <div class="card-series">
+              ${relatedSeries
+                .map(s => s.name)
+                .join(" / ")
+              }
+            </div>
+          `
+          : ""
+      }
+
+    `;
+
+    d.onclick =
+      ()=> openBookDetailModal(b);
+
+    main.appendChild(d);
+
+  });
+}
+
+//==============================
+//====リストビューモード
+//==============================
+function renderListView(main, books){
+
+  main.className = "list-view";
+
+  books.forEach(b=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className =
+      "list-row";
+
+    const latestDate =
+      getLatestReadDate(b) || "未読";
+
+    const readCount =
+      b.readDates?.length || 0;
+
+   row.innerHTML = `
+
+  <div class="list-title">
+    ${b.title}
+  </div>
+
+  <div class="list-meta">
+
+    <span class="list-date">
+      ${latestDate}
+    </span>
+
+  </div>
+
+  <div class="list-count-watermark">
+    ${readCount}読
+  </div>
+`;
+
+    row.onclick =
+      ()=> openBookDetailModal(b);
+
+    main.appendChild(row);
+  });
+}
+
+
+//==============================
+//====背表紙ビューモード❤️
+//==============================
+function renderShelfView(main, list){
+
+  const shelf = document.createElement("div");
+  shelf.className = "shelf-view";
+
+  list.forEach(b=>{
+    const spine = createBookSpine(b);
+    spine.onclick = () => openBookDetailModal(b);
+    shelf.appendChild(spine);
+  });
+
+  main.appendChild(shelf);
+}
+
+
+//==============================
+//本棚背表紙モード
+//==============================
+function renderShelf(el, list, mode = "main"){
+  el.innerHTML = "";
+
+  const wrap = document.createElement("div");
+  wrap.style.display = "flex";
+  wrap.style.flexWrap = "wrap";
+  wrap.style.alignItems = "flex-end";
+
+  list.forEach(b=>{
+    const spine = createBookSpine(b, mode);
+    wrap.appendChild(spine);
+  });
+
+  el.appendChild(wrap);
+}
+
+
+//==============================
+//======🔍検索用エリア===========
+//★====検索UIだけの役割
+//==============================
+function renderSearchArea(){
+
+  const top = document.getElementById("home-top");
+  if(!top) return;
+  
+  const items = books;//応急処置、後で変更
+  
+  const visibleItems = items.filter(item =>
+  shouldShowByType(item) &&
+  matchTags(item)
+  );
+ 
+  top.innerHTML = `
+    <button onclick="openAddBookModal()" class="add-btn">
+      ➕ 本を追加
+    </button>
+
+    <input
+      id="search"
+      placeholder="検索..."
+      value="${searchKeyword}"
+      oninput="handleSearchInput()"
+    >
+    
+      <select id="sort-select"
+        onchange="changeSortMode()">
+
+      <option value="read-desc">読了日新</option>
+      <option value="read-asc">読了日古</option>
+
+      <option value="title-asc">タイトル↓</option>
+      <option value="title-desc">タイトル↑</option>
+
+      <option value="rating-desc">高評価</option>
+      <option value="rating-asc">低評価</option>
+
+      </select>
+      
+       
+    <div class="view-switch">
+
+      <button class="${viewMode === 'card'
+      ? 'active'
+      : ''}"
+      onclick="changeViewMode('card')">
+        ■ 
+      </button>
+
+      <button class="${viewMode === 'list'
+      ? 'active'
+      : ''}"
+      onclick="changeViewMode('list')">
+        ☰ 
+      </button>
+
+      <button class="${viewMode === 'shelf'
+      ? 'active'
+      : ''}"
+      onclick="changeViewMode('shelf')">
+        ‖‖ 
+      </button>
+      <select
+  id="type-filter"
+  onchange="changeTypeFilter()">
+
+  <option value="all"
+    ${typeFilter === "all" ? "selected" : ""}
+  >
+    全部
+  </option>
+
+  <option value="normal"
+    ${typeFilter === "normal" ? "selected" : ""}
+  >
+    本棚
+  </option>
+
+  <option value="wish"
+    ${typeFilter === "wish" ? "selected" : ""}
+  >
+    ウィッシュ
+  </option>
+
+  </select>
+
+      <button class="tag-chip"
+        data-open="🏷️タグ非表示"
+        data-close="🏷️タグ表示"
+
+        onclick="togglesSection(
+        'tag-filter',
+        this
+        )
+      "
+     >🏷️タグ表示
+       </button>
+       
+       
+            <div id="active-filter-view" style="font-size:10px;white-space:break-word;"></div>
+       
+       
+       
+       </div>
+<div class="
+  toggle-content
+  ${homeSections.tags ? "open" : ""}
+  "
+  id="tag-filter"></div>
+
+    <div id="suggest"></div>
+  `;
+  
+  renderSuggest();
+}
+
+   // toggleTagFilter()
+
+//==============================
+//⬛︎本の追加モーダル==========
+//==============================
+function openAddBookModal(){
+
+  editingBookSeriesIds = [];
+  newBookTagIds = [];
+  newBookFav = 0;
+
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "add-book-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box">
+ <div class="title-line">
+         <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
+         <button onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
+
+      <input class="addin"
+       id="add-title"
+        type="text"
+        placeholder="タイトル"
+        oninput="renderTitleSuggest()"
+        >
+      <div id="title-suggest"></div>
+      
+      
+      
+      
+      <div class="title-line">
+        <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
+
+        <input type="date" id="add-date"  style="width:50%;margin-right:auto;">
+        
+        
+	  			<button
+				  type="button"
+				  id="new-book-fav-btn"
+				  class="fav-cycle-btn"
+			  		onclick="cycleNewBookFav()"
+				>
+				  評価：0
+				</button>
+
+        
+      </div>
+      
+      
+      
+      
+      
+            ${enableMemo ? `
+      <input type="text" class="bememo" id="add-memo"
+        placeholder="メモ">` : ""}
+
+      
+      
+      
+     <div class="end-btn"> 
+      
+   
+      <div style="font-size:11px"
+      class="toggle-head"
+      data-open="▽タグ非表示"
+      data-close="▶︎タグ表示"
+      onclick="
+        togglesSection(
+        'add-book-tags',
+        this
+      )
+    "
+  >
+  ▶︎タグ表示</div>
+  
+  
+   <div style="font-size:11px"
+      class="toggle-head"
+      data-open="▽関連シリーズ"
+      data-close="▶︎関連シリーズ"
+      onclick="
+        togglesSection(
+        'add-book-series',
+        this
+      )
+    "
+  >▶︎関連シリーズ</div>
+  
+  
+  </div>
+
+
+     <div
+       class="toggle-content"
+       id="add-book-series"
+     >
+        <input
+          class="addin"
+          id="add-book-related-search"
+          type="text"
+          placeholder="関連シリーズを追加"
+          
+          oninput="
+            renderBookSeriesSuggest(
+              'add-book-related-search',
+              'add-book-series-suggest',
+              'add-book-series-list'
+            );
+          "
+        >
+      
+       <div class="suggest-box">
+        <div id="add-book-series-suggest"></div>
+       </div>
+     
+     <div class="title-line">
+     関連：<br>
+      	 <div
+      	  id="add-book-series-list"
+      	  class="series-edit-list"></div>
+      </div>      
+     </div>
+  
+  
+      	<div class="toggle-content"
+      	  id="add-book-tags">
+			
+				${tagMaster.map(tag=>{
+
+				const isActive =
+					newBookTagIds.includes(tag.id);
+
+				return `
+				<span
+					class="
+						tag-chip detail-tag-chip
+						${isActive ? "active" : ""}
+					"
+					
+					data-tag-id="${tag.id}"
+					
+ 					onclick="
+ 						toggleNewBookTag(
+ 							'${tag.id}',
+ 							 this,
+ 							 '${tag.color}'
+ 							)
+ 						"
+ 						
+					style="
+						background:
+							${isActive ? tag.color : '#fffffc'};
+						color:
+							${isActive ? '#fffffc' : tag.color};
+						border:
+							1px solid ${tag.color};
+					"
+				>
+				${tag.name}
+			</span>
+		`;
+
+	}).join("")}
+			</div>
+      
+      
+      
+      
+      <hr class="kugiri">
+
+ 
+        <button onclick="saveNewBook()">
+          ➕保存
+        </button>
+            </div>
+  `;
+
+  document.body.appendChild(modal);
+  renderBookEditSeries(
+   "add-book-series-list"
+  );
+}
+
+
+
+//==============================
+//====新規本のタグ切替え
+//==============================
+function toggleNewBookTag(tagId, el, color){
+
+  if(newBookTagIds.includes(tagId)){
+
+    newBookTagIds =
+      newBookTagIds.filter(id=>id!==tagId);
+
+    el.classList.remove("active");
+    
+    el.style.background = "#fffffc";
+    el.style.color = color;
+
+  }else{
+
+    newBookTagIds.push(tagId);
+
+    el.classList.add("active");
+    
+    el.style.background = color;
+    el.style.color = "#fffffc";
+
+  }
+
+}
+
+
+
+//==============================
+//====タイプフィルター切り替え
+//==============================
+function changeTypeFilter(){
+
+  typeFilter =
+    document.getElementById(
+      "type-filter"
+    ).value;
+
+  localStorage.setItem(
+    "typeFilter",
+    typeFilter
+  );
+
+  renderHome();
+}
+
+
+
+//==============================
+//====再読本のチェック切替え
+//==============================
+function toggleReread(id){
+
+  const book =
+    books.find(
+      b=>String(b.id)===String(id)
+    );
+
+  if(!book) return;
+
+  book.reread =
+    document.getElementById(
+      "reread-check"
+    ).checked;
+
+  saveData();
+
+  renderHome();
+}
+
+
+//==============================
+//新規本用の評価切り替えボタン
+//==============================
+function cycleNewBookFav(){
+
+  newBookFav =
+    (newBookFav + 1) % 5;
+
+  document.getElementById(
+    "new-book-fav-btn"
+  ).textContent =
+    "評価：" +
+    ["0","★","★★","★★★","👑"]
+      [newBookFav];
+}
+
+//==============================
+//====キーワード検索（ホーム本棚用）
+//==============================
+function handleSearchInput(){
+
+  searchKeyword =
+    (document.getElementById(
+    "search"
+    )?.value || "")
+    .toLowerCase();
+
+  renderSuggest();
+  renderBookList();
+}
+
+
+//==============================
+//====ソートモードの切替え（本）
+//==============================
+function changeSortMode(){
+
+  sortMode =
+    document.getElementById("sort-select").value;
+
+  renderBookList();
+}
+
+
+//==============================
+//====本棚のビューモード切替え(いずれ削除20260520
+//==============================
+function changeViewMode(mode){
+
+  viewMode = mode;
+
+  localStorage.setItem("viewMode", viewMode);
+
+  renderHome(); // ★これ一本化
+}
+//==============================
+//====背表紙カラー切り替え
+//==============================
+const shelfColorModes = [
+  "single",
+  "gradient",
+  "stripe"
+];
+
+function changeShelfColorMode(){
+
+  colorMode =
+    cycleSetting({
+
+      current:
+        colorMode,
+
+      list:
+        shelfColorModes
+
+    });
+
+  localStorage.setItem(
+    "colorMode",
+    colorMode
+  );
+
+  renderSettings();
+  renderHome();
+}
+
+//==============================
+//背表紙カラーモード変更描画
+//==============================
+function renderColorMode(targetId = "color-mode"){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "single", label: "単色" },
+    { id: "gradient", label: "グラデ" },
+    { id: "stripe", label: "目印" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+    btn.className = "setting-btn";
+
+    if(m.id === colorMode){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = ()=>{
+      colorMode = m.id;
+      localStorage.setItem("colorMode", colorMode);
+
+      renderHome();              // 
+  //    renderColorMode(targetId);
+    };
+
+    el.appendChild(btn);
+  });
+}
+
+
+//==============================
+//====本詳細モーダル========
+//==============================
+function openBookDetailModal(book){
+
+  currentDetailFav = book.fav || 0;
+  
+  const relatedSeries =
+  seriesMaster.filter(s=>{
+
+    return (
+      Array.isArray(book.seriesIds)
+      &&
+      book.seriesIds
+        .map(String)
+        .includes(String(s.id))
+    );
+  });
+  
+  const sortedDates =
+    [...(
+      book.readDates ||
+      book.dates ||
+      []
+    )
+    ].sort((a,b)=>b.localeCompare(a));
+  
+  const latestDate =
+    sortedDates[0];
+    
+      editingBookSeriesIds =
+    [...(book.seriesIds || [])]
+      .map(String);
+  
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "open-book-modal";
+	
+  modal.innerHTML = `
+    <div class="modal-box detail-modal">
+    <div class="title-line">
+      <input id="detail-title" class="detail-title"
+        value="${book.title || ""}">
+        
+    
+      <button onclick="closeModal('open-book-modal')" style="margin-left:auto;">
+        ✖️
+      </button>
+    </div>
+    
+    
+            
+            <div style="font-size:10px">
+      ${relatedSeries.map(s=>`
+        シリーズ : 
+        <button class="detail-series"
+				  onclick="
+				    closeModal('open-book-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</button>
+      `).join(", ") || ""}
+    </div>
+
+    
+    
+    
+    
+      <div class="detail-row" style="display:flex;
+  justify-content:space-between;align-items:center;">
+        状態 ＝ 
+        ${
+          book.type === "wish"
+          ? "❤️ウィッシュ"
+          : "📚本棚"
+        }
+   
+        <div class="detail-fav-wrap">
+
+       <button
+         class="fav-cycle-btn"
+         onclick="cycleFav('${book.id}')">評価：
+           ${
+              ["0","★","★★","★★★","👑"][book.fav || 0]
+            }
+       </button>
+
+     </div>
+   
+        <label class="reread-check">
+
+  <input
+    type="checkbox"
+    id="reread-check"
+    ${book.reread ? "checked" : ""}
+
+    onchange="
+      toggleReread('${book.id}')
+    "
+  >
+
+  再読予定
+</label>
+      </div>
+      
+      
+
+     <div class="detail-row" style="display:flex;justify-content:space-between;
+  align-items:center;gap:2px;flex-wrap:wrap;">
+  読了日：
+
+  ${
+    latestDate
+    ? `
+      <div class="date-tag">
+        ${latestDate}
+        <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${latestDate}')"
+            >
+              ✕
+            </button>
+      </div>
+      <div class="book-stat">
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
+             <div
+        class="toggle-history"
+        onclick="
+          toggleDateHistory('${book.id}')
+        "
+       >
+        ▼ 読了履歴
+       </div>
+    </div>
+      
+      
+            
+ 
+      <div
+        id="date-history-${book.id}"
+        class="date-history-grid"
+        style="display:none;"
+      >
+      
+        ${sortedDates.slice(1).map(date=>`
+        
+          <div class="mini-date-row">
+            ${date}
+            <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${date}')"
+            >
+              ✕
+            </button>
+          </div>
+        
+        `).join("")}
+    `
+    : "未読"
+  }</div>
+      
+      
+      <div class="detail-date-add">
+      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:70%;border-radius:10px;">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
+        ➕読了日
+      </button>
+
+      </div>
+
+
+            <div class="detail-row">
+      ${enableMemo ? `
+      <input
+        class="bememo"
+        type="text"
+        id="editMemo"
+        
+        placeholder="メモ"
+        
+        value="${book.memo || ""}"
+      >
+      ` : ""}</div>
+      
+
+		<div class="end-btn">
+		
+			<div style="font-size:11px"
+        class="toggle-head"
+        data-open="▽タグ非表示"
+        data-close="▶︎タグ表示"
+        onclick="
+          togglesSection(
+          'open-book-tags',
+          this
+          )
+        "
+      >
+      ▶︎タグ表示</div>
+  
+      <div style="font-size:11px"
+        class="toggle-head"
+        data-open="▽関連シリーズ"
+        data-close="▶︎関連シリーズ"
+        onclick="
+          togglesSection(
+          'open-book-series',
+          this
+          )
+        "
+      >
+      ▶︎関連用シリーズ</div>
+   </div>
+   
+   <div class="
+  toggle-content
+  ${detailSections.series ? "open" : ""}
+"
+id="open-book-series">
+  
+        <input class="addin"
+        id="book-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderBookSeriesSuggest(
+            'book-related-search',
+            'book-series-suggest',
+            'book-edit-series'
+          );
+        "
+      >
+    <div class="suggest-box">
+      <div id="book-series-suggest"></div>
+    </div>
+    
+    <div class="title-line">
+    関連：
+
+    <div id="book-edit-series" class="series-edit-list"></div>
+    </div>
+   
+   </div>
+ 
+  <div class="
+    toggle-content
+    ${detailSections.tags ? "open" : ""}
+  "
+  id="open-book-tags">
+			${tagMaster.map(tag=>{
+
+  const isActive =
+  (book.tagIds || [])
+    .map(String)
+    .includes(String(tag.id));
+
+  return `
+    <span
+      class="tag-chip detail-tag-chip"
+      onclick="toggleBookTag('${book.id}','${tag.id}')"
+
+      style="
+        background:
+          ${isActive ? tag.color : '#fffffc'};
+
+        color:
+          ${isActive ? '#fffffc' : tag.color};
+
+        border:
+          1px solid ${tag.color};
+      "
+    >
+      ${tag.name}
+    </span>
+  `;
+
+}).join("")}
+</div>
+			
+
+
+
+      <hr class="kugiri">
+
+
+		<div class="end-btn">
+      
+      <button class="danger-btn"
+        onclick="deleteBook('${book.id}')">
+        🗑 削除
+      </button>
+      
+      <button onclick="duplicateBook('${book.id}')">
+  📄 複製
+</button>
+      
+      <button onclick="saveDetail('${book.id}')">
+        🪎 保存
+      </button>
+      
+    </div>
+      
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  renderBookEditSeries(
+  "book-edit-series"
+  );
+}
+
+
+//==============================
+//本詳細の関連本の一覧描画
+//==============================
+function renderBookEditSeries(
+  targetId
+){
+
+  const target =
+    document.getElementById(targetId);
+
+  if(!target) return;
+
+  const relatedSeries =
+    seriesMaster.filter(s =>
+
+      editingBookSeriesIds.includes(
+        String(s.id)
+      )
+
+    );
+
+  target.innerHTML = `
+
+    <div>
+
+      ${relatedSeries.map(s=>`
+
+        <div class="related-chip">
+
+          ${s.name}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeSeriesFromBook(
+                '${s.id}',
+                '${targetId}',
+                'book-related-search',
+                'book-series-suggest'
+              )
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+//==============================
+//本詳細で関連本の検索
+//==============================
+function renderBookSeriesSuggest(
+  searchId,
+  suggestId,
+  listId
+){
+
+  const keyword =
+    document.getElementById(searchId)
+      .value
+      .toLowerCase();
+
+  const filtered =
+    seriesMaster.filter(s=>{
+
+      const match =
+        (s.name || "")
+          .toLowerCase()
+          .includes(keyword);
+
+      const notAdded =
+        !editingBookSeriesIds.includes(
+          String(s.id)
+        );
+
+      return match && notAdded;
+
+    });
+
+  if(!keyword){
+
+    document.getElementById(
+      suggestId
+    ).innerHTML = "";
+
+    return;
+  }
+
+  document.getElementById(
+    suggestId
+  ).innerHTML =
+
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        📚 シリーズ
+      </div>
+
+      ${filtered.map(s=>`
+
+        <div
+          class="search-item"
+          onclick="
+            addSeriesToBook(
+            '${s.id}',
+            '${listId}',
+            '${searchId}',
+            '${suggestId}'
+            )
+          "
+        >
+          ${s.name}
+        </div>
+
+      `).join("")}
+    `
+    : "";
+}
+
+
+//==============================
+//本詳細に関連本の追加処理
+//==============================
+function addSeriesToBook(
+  id,
+  listId,
+  searchId,
+  suggestId
+){
+
+  if(
+    editingBookSeriesIds.includes(
+      String(id)
+    )
+  ){
+    return;
+  }
+  editingBookSeriesIds.push(
+    String(id)
+  );
+
+  renderBookEditSeries(listId);
+
+  renderBookSeriesSuggest(
+    searchId,
+    suggestId
+  );
+}
+
+//==============================
+//本詳細の関連削除（シリーズ）
+//==============================
+function removeSeriesFromBook(
+  id,
+  searchId,
+  suggestId,
+  listId
+){
+
+if(!confirm("削除しますか？")){
+  return;
+}
+
+  editingBookSeriesIds =
+    editingBookSeriesIds.filter(
+      sId => String(sId) !== String(id)
+    );
+
+  renderBookEditSeries(
+    searchId,
+    suggestId,
+    listId
+    );
+
+}
+
+
+//==============================
+//====読了日の取得
+//==============================
+async function addReadDate(id){
+
+  const book =
+    books.find(
+      b => String(b.id) === String(id)
+    );
+
+  if(!book) return;
+
+  const input =
+    document.getElementById(
+      `readDate-${id}`
+    );
+
+  if(!input.value) return;
+
+  if(!book.readDates){
+    book.readDates = [];
+  }
+
+  book.readDates.unshift(
+    input.value
+  );
+
+  // 本棚へ移動
+  book.type = "normal";
+
+  await saveData();
+  
+  console.log("books after save", books);
+
+  closeModal("open-book-modal");
+
+  openBookDetailModal(book);
+
+  renderHome();
+  
+  
+  console.log("after add", book);
+console.log("readDates", book.readDates);
+console.log("type", book.type);
+  
+}
+
+
+
+//==============================
+//====読了日のトグル表示（モーダル）
+//==============================
+function toggleDateHistory(bookId){
+
+  const el =
+    document.getElementById(
+      `date-history-${bookId}`
+    );
+
+  if(!el) return;
+
+  el.style.display =
+    el.style.display === "none"
+    ? "grid"
+    : "none";
+}
+
+//==============================
+//====評価ボタン1つで切替え
+//==============================
+function cycleFav(id){
+
+  const book =
+    books.find(b=>String(b.id)===String(id));
+
+  if(!book) return;
+
+  book.fav = (book.fav + 1) % 5;
+
+  saveData();
+
+  closeModal("open-book-modal");
+
+  openBookDetailModal(book);
+
+  renderHome();
+}
+
+
+//==============================
+//タグの選択切替え
+//==============================
+function toggleBookTag(bookId, tagId){
+
+	const book =
+		books.find(b=>String(b.id)===String(bookId));
+
+	if(!book) return;
+
+	if(!Array.isArray(book.tagIds)){
+
+		book.tagIds = [];
+
+	}
+
+	if(book.tagIds.includes(tagId)){
+
+		book.tagIds =
+			book.tagIds.filter(id=>id!==tagId);
+
+	}else{
+
+		book.tagIds.push(tagId);
+
+	}
+	
+	closeModal("open-book-modal");
+	openBookDetailModal(book);
+
+}
+
+
+//==============================
+//タグ収納トグル※旧になる予定20260519
+//==============================
+function toggleTagFilter(){
+
+  showTagFilter = !showTagFilter;
+  
+  localStorage.setItem(
+    "showTagFilter",
+    showTagFilter
+  );
+
+  renderHome();
+}
+
+
+//==============================
+//本のソートここから
+//==============================
+function sortBooks(list){
+
+  const arr = [...list];
+
+  if(sortMode === "title-asc"){
+    arr.sort((a,b)=>
+      (a.title || "")
+      .localeCompare(b.title || "","ja")
+    );
+  }
+  
+  if(sortMode === "title-desc"){
+    arr.sort((a,b)=>
+      (b.title || "")
+      .localeCompare(a.title || "", "ja")
+    );
+  }
+
+  if(sortMode === "rating-desc"){
+
+    arr.sort((a,b)=>
+      Number(b.fav || 0) - Number(a.fav || 0)
+    );
+  }
+  
+  if(sortMode === "rating-asc"){
+    arr.sort((a,b)=>
+      Number(a.fav || 0) - Number(b.fav || 0)
+    );
+  }
+
+  if(sortMode === "read-asc"){
+
+    arr.sort((a,b)=>
+      toDateNum(a) - toDateNum(b)
+      );
+  }
+
+  if(sortMode === "read-desc"){
+
+    arr.sort((a,b)=>
+      toDateNum(b) - toDateNum(a)
+    );
+  }
+
+  return arr;
+}
+
+//==============================
+//====★タグフィルター描画※旧になる予定20260519
+//==============================
+function renderTagFilter(){
+
+  const area =
+    document.getElementById("tag-filter");
+
+  if(!area) return;
+
+  area.innerHTML = "";
+
+  tagMaster.forEach(tag=>{
+
+    const btn =
+      document.createElement("button");
+
+    btn.className = "tag-chip";
+    btn.textContent = tag.name;
+
+    btn.style.background = "#fffffc";
+    btn.style.color = tag.color || "#666";
+    btn.style.border = `1px solid ${tag.color || "#ccc"}`;
+    btn.style.borderRadius = "999px";
+
+    const isActive =
+      filterState.tags.includes(String(tag.id));
+      
+    const mode =
+      filterState.tagStates[String(tag.id)];
+
+    if(isActive){
+      btn.classList.add("active");
+      
+       if(mode){
+         btn.classList.add(
+          `tag-mode-${mode.toLowerCase()}`
+         );
+       }
+      
+      btn.style.background = tag.color;
+      btn.style.color = "#fffffc";
+    }
+
+  btn.onclick = () => {
+
+    cycleTagState(tag.id);
+
+    renderHome();
+  };
+
+    area.appendChild(btn);
+  });
+}
+
+//==============================
+//========タイプフィルター（ウィッシュリスト）
+//==============================
+function filterBooks(list){
+
+  if(!list) return [];
+
+  let arr = [...list];
+
+  if(typeFilter !== "all"){
+
+    arr = arr.filter(book => {
+
+      if(typeFilter === "normal"){
+        return book.type !== "wish";
+      }
+
+      if(typeFilter === "wish"){
+        return book.type === "wish";
+      }
+
+      return true;
+    });
+  }
+
+  return arr;
+}
+
+//==============================
+//====日付の空白安全対策
+//==============================
+function toDateNum(book){
+
+  const d = getLatestReadDate(book);
+
+  return d
+    ? new Date(d).getTime()
+    : 0;
+}
+
+//==============================
+//====最新読了日を取得するやつ
+//==============================
+function getLatestReadDate(book){
+
+  return (
+  [...(book.readDates || [])]
+    .sort()
+    .at(-1)
+  ) || "";
+}
+
+
+//==============================
+//====本を削除==================
+//==============================
+async function deleteBook(id){
+
+  const book =
+    books.find(
+      b => String(b.id) === String(id)
+    );
+
+  if(!book) return;
+
+  const title = book.title;
+
+  const ok =
+    confirm(
+      `${book.title}を削除しますか？`
+    );
+
+  if(!ok) return;
+
+  books =
+    books.filter(
+      b => String(b.id) !== String(id)
+    );
+
+  seriesMaster.forEach(series=>{
+
+    series.bookIds =
+      (series.bookIds || [])
+        .filter(seriesBookId =>
+
+          String(seriesBookId)
+          !== String(book.id)
+
+        );
+  });
+
+  await saveData();
+
+  closeModal("open-book-modal");
+
+  renderHome();
+
+  showToast(
+    `「${title}」を削除しました`
+  );
+}
+
+//==============================
+//====詳細保存================
+//==============================
+async function saveDetail(id){
+
+ const book =
+    books.find(b=>String(b.id)===String(id));
+
+  console.log("save start", id);
+  
+  if(!book.readDates){
+
+  book.readDates =
+    book.dates || [];
+}
+delete book.dates;
+
+ book.seriesIds =
+  [...editingBookSeriesIds];
+
+seriesMaster.forEach(series=>{
+
+  const hasBook =
+    editingBookSeriesIds.includes(
+      String(series.id)
+    );
+
+  if(hasBook){
+
+    if(
+      !(series.bookIds || [])
+        .includes(book.id)
+    ){
+
+      series.bookIds = [
+        ...(series.bookIds || []),
+        book.id
+      ];
+    }
+
+  }else{
+
+    series.bookIds =
+      (series.bookIds || [])
+        .filter(seriesBookId =>
+
+          String(seriesBookId)
+          !== String(book.id)
+
+        );
+  }
+});
+
+  console.log("found book", book);
+
+  if(!book) return;
+
+  console.log(
+    document.getElementById("detail-title").value
+  );
+
+  book.title =
+    document.getElementById("detail-title").value;
+
+ if(enableMemo){
+   const memoEl =
+     document.getElementById("editMemo");
+     
+     book.memo =
+       memoEl?.value || "";
+  }
+
+  book.fav = currentDetailFav;
+
+  console.log("after edit", book);
+
+  await saveData();
+
+showToast("保存しました！");
+
+  closeModal("open-book-modal");
+
+  renderHome();
+}
+
+//==============================
+//====保存通知
+//==============================
+function showToast(message){
+
+  const toast =
+    document.createElement("div");
+
+  toast.className = "toast";
+  toast.textContent = message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(()=>{
+    toast.classList.add("show");
+  },10);
+
+  setTimeout(()=>{
+
+    toast.classList.remove("show");
+
+    setTimeout(()=>{
+      toast.remove();
+    },300);
+
+  },2000);
+}
+
+
+//==============================
+//====本を追加保存================
+//=============================
+async function saveNewBook(){
+
+  const title =
+    document.getElementById("add-title").value.trim();
+
+  if(!title){
+    alert("タイトルを入力してね！");
+    return;
+  }
+
+  const date =
+    document.getElementById("add-date").value;
+
+  const memo =
+    document.getElementById("add-memo")?.value || "";
+
+  const book = {
+    id: Date.now().toString(),
+    title,
+    memo: memo,
+    fav: newBookFav,
+    readDates: date ? [date] : [],
+    tagIds: [...newBookTagIds],
+    seriesIds:
+      editingBookSeriesIds.map(String),
+    type: date ? "normal" : "wish"
+  };
+
+  books.unshift(book);
+  
+  
+  seriesMaster.forEach(series=>{
+
+  const shouldHaveSeries =
+    editingBookSeriesIds.includes(
+      String(series.id)
+    );
+
+  if(shouldHaveSeries){
+
+    if(
+      !(series.bookIds || [])
+        .includes(String(book.id))
+    ){
+
+      series.bookIds =
+        (series.bookIds || []).concat(
+          String(book.id)
+        );
+    }
+  }
+});
+  
+
+  await saveData();
+  
+  const placeName =
+    book.type === "wish"
+      ? "ウィッシュリスト"
+      : "本棚";
+      
+  showToast(`「${book.title}」を${placeName}に追加しました`);
+
+  closeModal("add-book-modal");
+
+  renderHome();
+}
+
+//==============================
+//====モーダル版日付削除処理
+//==============================
+async function removeReadDate(bookId,date){
+
+  const book =
+    books.find(b=>b.id==bookId);
+
+  if(!book) return;
+  
+  if(!confirm("この読了日を削除しますか？")){
+    return;
+  }
+
+  book.readDates =
+    (book.readDates || [])
+      .filter(d=>d !== date);
+
+  if(book.readDates.length === 0){
+    book.type = "wish";
+  }
+
+  await saveData();
+
+  closeModal("open-book-modal");
+  openBookDetailModal(book);
+  renderHome();
+}
+
+
+
+
+
+//==============================
+//===旧?viewmode
+//==============================
+function renderViewMode(targetId = "view-mode"){
+  const el = document.getElementById(targetId);
+  if(!el) return;
+
+  el.innerHTML = "";
+
+  const modes = [
+    { id: "card", label: "カード" },
+    { id: "list", label: "リスト（２列）"},
+    { id: "shelf", label: "本棚" },
+    { id: "shelf-series", label: "シリーズ" }
+  ];
+
+  modes.forEach(m=>{
+    const btn = document.createElement('button');
+    btn.textContent = m.label;
+    btn.className = "setting-btn";
+
+    if(m.id === viewMode){
+      btn.classList.add("active");
+    }
+
+    btn.onclick = ()=>{
+      viewMode = m.id;
+      localStorage.setItem("viewMode", viewMode);
+
+      renderHome();                 // これ必須
+   //   renderViewMode(targetId);     // 見た目更新
+    };
+
+    el.appendChild(btn);
+  });
+}
+
+
+
+//==============================
+//====サジェスト
+//====検索候補のみ表示させる役
+//==============================
+function renderSuggest(){
+
+  // 検索候補
+    //🔍 検索
+  const keyword = searchKeyword;
+ 
+  const suggestEl = document.getElementById("search-suggest");
+
+  if(suggestEl){
+
+  if(keyword){
+
+    const suggestions = books
+  .filter(b =>
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword)
+  )
+  .slice(0,5);
+
+  suggestEl.innerHTML = suggestions.map(b=>`
+    <div class="search-item"
+         onclick="openDetailById('${b.id}')">
+      ${b.title}
+    </div>
+  `).join("");
+
+  }else{
+    suggestEl.innerHTML = "";
+  }
+}
+}
+//==============================
+//====タイトル用サジェスト
+//==============================
+function renderTitleSuggest(){
+
+  renderSuggestList({
+
+    inputId: "add-title",
+
+    suggestId: "title-suggest",
+
+    list:
+      books.map(b=>b.title)
+
+  });
+}
+
+
+//==============================
+//本の複製
+//==============================
+async function duplicateBook(id){
+
+  const book =
+    books.find(b => String(b.id) === String(id));
+
+  if(!book) return;
+
+  const today =
+    new Date().toISOString().slice(0, 10);
+
+  const newBook = {
+    ...book,
+
+    id: Date.now().toString(),
+
+    title:
+      incrementVolumeTitle(book.title || ""),
+
+    memo: "",
+
+    readDates: [today],
+
+    type: "normal",
+
+    tagIds:
+      [...(book.tagIds || [])],
+
+    seriesIds:
+      [...(book.seriesIds || [])]
+  };
+
+  books.unshift(newBook);
+
+  seriesMaster.forEach(series=>{
+
+    const shouldHaveSeries =
+      (newBook.seriesIds || [])
+        .map(String)
+        .includes(String(series.id));
+
+    if(shouldHaveSeries){
+
+      if(
+        !(series.bookIds || [])
+          .map(String)
+          .includes(String(newBook.id))
+      ){
+        series.bookIds =
+          (series.bookIds || [])
+            .concat(String(newBook.id));
+      }
+    }
+  });
+
+  await saveData();
+
+  closeModal("open-book-modal");
+
+  renderHome();
+
+  showToast(
+    `「${newBook.title}」を追加しました`
+  );
+}
+
+//最後をこう↓すると、追加した後に新規本の詳細を開ける
+//renderHome();
+//openBookDetailModal(newBook);
+
+
+//==============================
+//本の複製時巻数＋1
+//==============================
+function incrementVolumeTitle(title){
+
+  return title.replace(
+    /(\d+)(?!.*\d)/,
+    n => String(Number(n) + 1)
+  );
+}
+
+
+
+
+
+//==============================
+//シリーズ
+//==============================
+//====シリーズホーム
+//◼️シリーズ一覧表示（骨組みだけ）
+//==============================
+function renderSeries(){
+
+setActiveMenu("menu-series");
+
+  const list = document.getElementById('page-series');
+  list.innerHTML = `
+  		
+  		<div id="series-top"></div>
+  		<div class="series-main" id="series-main"></div>
+  `;
+	
+	
+	renderSeriesSearchArea();
+	renderSeriesBookList();
+	
+}
+
+//==============================
+//====シリーズ一覧だけを表示する
+//==============================
+function renderSeriesBookList(){
+
+
+	const main = document.getElementById("series-main");
+	if(!main) return;
+	main.innerHTML = "";
+	
+	//フィルタ
+	const filteredSeries =
+  seriesMaster.filter(s =>
+
+    (s.name || "")
+      .toLowerCase()
+      .includes(
+        seriesSearchKeyword.toLowerCase()
+      )
+
+  );
+	//ソート
+	const sorted = sortSeries(filteredSeries);
+			
+		sorted.forEach(s=>{
+		
+			const d = document.createElement('div');
+			d.className = "card ";
+			d.textContent = s.name;
+
+		d.onclick = ()=> openSeries(s);
+		main.appendChild(d);
+	});
+	
+}
+
+//============================
+// シリーズ：詳細画面の表示
+//============================
+function renderSeriesDetail(s){
+
+  const relatedBooks = books.filter(b =>
+    (s.bookIds || []).map(String).includes(String(b.id))
+  );
+
+  const relatedCharacters = characters.filter(c =>
+    (s.characterIds || []).map(String).includes(String(c.id))
+  );
+
+  safeRender({
+    mountId: "page-detail",
+    html: `
+      <div class="seriesp-head">
+        <button onclick="go('series')">戻る</button>
+        <span class="satu">登録 : ${relatedBooks.length}冊</span>
+        <button onclick="openSeriesEditModal('${s.id}')">✏️ 編集</button>
+      </div>
+
+      <h3 class="stitle">${s.name}</h3>
+
+      <div class="series-detail-layout">
+
+        <div class="series-section">
+          <div class="series-section-title">
+            ${seriesSections.books ? "▽" : "▶︎"} 関連作品
+          </div>
+
+          ${
+            seriesSections.books
+              ? `<div id="series-books"></div>`
+              : ""
+          }
+        </div>
+
+        <div class="series-section">
+          <div class="series-section-title">
+            ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+          </div>
+
+          ${
+            seriesSections.chars
+              ? `<div id="series-chars"></div>`
+              : ""
+          }
+        </div>
+
+      </div>
+    `,
+    afterRender: (el) => {
+
+      const list = document.getElementById("series-books");
+      if(list){
+        relatedBooks.forEach(b=>{
+          const d = document.createElement("div");
+          d.className = "card";
+          d.textContent = b.title;
+          d.onclick = () => openBookDetailModal(b);
+          list.appendChild(d);
+        });
+      }
+
+      const list2 = document.getElementById("series-chars");
+      if(list2){
+        if(!relatedCharacters.length){
+          list2.innerHTML = `<div style="color:gray;">（人物なし）</div>`;
+        }else{
+          relatedCharacters.forEach(c=>{
+            const d = document.createElement("div");
+            d.className = "card";
+            d.textContent = c.name;
+            d.onclick = () => openCharacterModal(c);
+            list2.appendChild(d);
+          });
+        }
+      }
+
+    }
+  });
+}
+
+//==============================
+//シリーズソート
+//==============================
+function sortSeries(list){
+
+	const arr = [...list];
+
+//シリーズ名順	
+	if(seriesSortMode === "stitle-asc"){
+		arr.sort((a,b)=>
+			(a.name || "")
+			.localeCompare(
+				b.name || "",
+				"ja"
+			)
+		);
+	}
+	
+	if(seriesSortMode === "stitle-desc"){
+		arr.sort((a,b)=>
+			(b.name || "")
+			.localeCompare(
+				a.name || "",
+				"ja"
+			)
+		);
+	}
+	
+//読了日順	
+//	if(seriesSortMode === "sread-asc"){
+//		arr.sort((a,b)=>
+//			toDateNum(b) - toDateNum(a)
+//		);
+//	}
+	
+//	if(seriesSortMode === "sread-desc"){
+//		arr.sort((a,b)=>
+//			toDateNum(a) - toDateNum(b)
+//		);
+//	}
+	
+	
+	return arr;
+}
+
+//==============================
+//シリーズ詳細を開く
+//==============================
+function openSeries(series){
+
+  currentSeriesId = series.id;
+  
+  go('detail');
+
+  renderSeriesDetail(series);
+
+}
+
+
+
+//==============================
+//====シリーズページの検索エリア
+//==============================
+function renderSeriesSearchArea(){
+
+	const top = document.getElementById("series-top");
+	if(!top) return;
+	
+	top.innerHTML = `
+	<button onclick="openAddSeriesModal()"
+		class="add-btn">
+			➕ シリーズ追加
+		</button>
+		
+		<input
+			id="series-search"
+			placeholder="シリーズ検索..."
+			value="${seriesSearchKeyword || ""}"
+			oninput="handleSeriesSearchInput()"
+		>
+		
+			<select id="series-sort-select"
+				onchange="changeSeriesSortMode()">
+			
+			<option value="sread-desc">読了日新</option>
+			<option value="sread-asc">読了日古</option>
+			
+			<option value="stitle-asc">タイトル↓</option>
+			<option value="stitle-desc">タイトル↑</option>
+			</select>
+		
+		<div id="series-suggest"></div>
+	`;
+	renderSeriesSuggest();
+}
+
+
+
+//==============================
+//====キーワード検索（シリーズ一覧用）
+//==============================
+function handleSeriesSearchInput(){
+
+  seriesSearchKeyword =
+
+    document.getElementById(
+      "series-search"
+    ).value;
+
+  renderSuggestList({
+
+    inputId:
+      "series-search",
+
+    suggestId:
+      "series-suggest",
+
+    list:
+      seriesMaster.map(
+        s => s.name
+      )
+
+  });
+
+  renderSeriesBookList();
+}
+
+//==============================
+//====シリーズ詳細ページトグル開閉設定
+//==============================
+function toggleSeriesSection(key){
+console.log(seriesSections);
+  seriesSections[key] =
+    !seriesSections[key];
+    
+  const series =
+    seriesMaster.find(
+      s => s.id === currentSeriesId
+    );
+  
+  if(series){
+    renderSeriesDetail(series);
+  }
+  
+}
+
+
+//==============================
+//====シリーズの追加モーダル
+//==============================
+function openAddSeriesModal(){
+
+newSeriesBookIds = [];
+
+newSeriesCharacterIds = [];
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "add-series-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box">
+		<div class="title-line">
+					<span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズを追加</span>
+						<button onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
+			
+			<input
+  class="addin"
+  id="add-series-title"
+  type="text"
+  placeholder="シリーズタイトル"
+  oninput="renderSeriesTitleSuggest()"
+>
+
+<div id="series-title-suggest"></div>
+			
+			
+			
+			
+				<div>関連登録</div>
+				<div class="addin2">
+				<input class="addin"
+				 id="series-for-one"
+					type="text"
+					placeholder="作品／人物を追加"
+					oninput="renderSeriesNewBookSuggest();
+						renderSeriesNewCharacterSuggest();">
+				
+				</div>
+				
+				<div class="suggest-box">
+					<div id="series-book-suggest"></div>
+					<div id="series-character-suggest"></div>
+				</div>
+				
+				
+				
+				<div class="end-btn">
+      <div
+      class="toggle-head"
+      data-open="▽作品一覧を閉じる"
+      data-close="▶︎作品一覧を開く"
+      onclick="
+        togglesSection(
+        'series-new-books',
+        this
+      )
+    "
+  >▶︎作品一覧を開く</div>
+      
+      
+      <div
+      class="toggle-head"
+      data-open="▽人物一覧を閉じる"
+      data-close="▶︎人物一覧を開く"
+      onclick="
+        togglesSection(
+        'series-new-characters',
+        this
+      )
+    "
+  >▶︎人物一覧を開く</div>
+      
+      
+      </div>
+      
+ 
+      
+      
+ 
+      
+     <div id="series-new-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+
+     <div id="series-new-characters"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+				
+			
+			     <hr class="kugiri">
+     			 <button onclick="saveNewSeries()">➕追加</button>
+			
+			
+			
+`;
+	document.body.appendChild(modal);
+	//関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい
+}
+
+
+//==============================
+//シリーズ編集モーダル
+//==============================
+function openSeriesEditModal(id){
+
+  const modal = document.createElement("div");
+  
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
+    
+  if(!series) return;
+
+  editingSeriesBookIds =
+    [...(series.bookIds || [])];
+
+  editingSeriesCharacterIds =
+    [...(series.characterIds || [])];
+    
+
+
+  modal.className = "modal-bg";
+  modal.id = "edit-series-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box">
+
+      <div class="title-line">
+      <span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズ編集</span>
+      <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;">✖️</button>
+      </div>
+
+      <input
+        id="edit-series-name"
+        class="addin"
+        value="${series.name || ""}"
+      >
+      
+     
+      <input class="addin"
+        id="series-related-search"
+        type="text"
+        placeholder="本・人物を追加"
+        oninput="
+          renderSeriesBookSuggest();
+          renderSeriesCharacterSuggest();
+        "
+      >
+<div class="suggest-box">
+
+  <div id="series-book-suggest"></div>
+
+  <div id="series-character-suggest"></div>
+
+</div>
+      <div class="end-btn">
+      
+      
+       <div
+      class="toggle-head"
+      data-open="▽作品一覧を閉じる"
+      data-close="▶︎作品一覧を開く"
+      onclick="
+        togglesSection(
+        'series-edit-books',
+        this
+      )
+    "
+  >▶︎作品一覧を開く</div>
+      
+      
+       <div
+      class="toggle-head"
+      data-open="▽人物一覧を閉じる"
+      data-close="▶︎人物一覧を開く"
+      onclick="
+        togglesSection(
+        'series-edit-characters',
+        this
+      )
+    "
+  >▶︎人物一覧を開く</div>
+      
+      
+      </div>
+      
+      
+     <div id="series-edit-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+     <div id="series-edit-characters"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+     
+     <hr class="kugiri">
+
+    <div class="end-btn">
+    
+    
+      <button onclick="deleteSeries('${series.id}')">
+       🗑️ 削除
+      </button>
+    
+      <button
+        onclick="saveSeriesEdit('${series.id}')"
+      >
+        🪎 保存
+      </button>
+
+     </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  renderSeriesEditBooks();
+
+renderSeriesEditCharacters();
+
+}
+
+
+
+
+//==============================
+//編集モーダル内開閉トグル
+//==============================
+function toggleSeriesEditSection(id){
+
+  document.getElementById(id)?.classList.toggle("open");
+
+//  const el =
+//    document.getElementById(id);
+
+//  if(!el) return;
+  
+//  const isHidden = getComlutedStyle(el).display === "none";
+
+//  el.style.display = isHidden ? "block" : "none";
+}
+
+
+//==============================
+//新規モーダル内開閉トグル
+//==============================
+function toggleSeriesNewSection(id){
+
+  document.getElementById(id)?.classList.toggle("open");
+
+}
+
+//==============================
+//編集内：関連削除（本）
+//==============================
+function removeBookFromSeries(id){
+
+if(!confirm("削除しますか？")){
+  return;
+}
+
+  editingSeriesBookIds =
+    editingSeriesBookIds.filter(
+      bId => String(bId) !== String(id)
+    );
+
+  renderSeriesEditBooks();
+
+}
+
+
+
+//==============================
+//編集内：関連削除（人物）
+//==============================
+function removeCharacterFromSeries(id){
+
+if(!confirm("削除しますか？")){
+  return;
+}
+
+  editingSeriesCharacterIds =
+    editingSeriesCharacterIds.filter(
+      cId => String(cId) !== String(id)
+    );
+
+  renderSeriesEditCharacters();
+
+}
+
+
+
+//==============================
+//シリーズ編集モーダル保存処理
+//==============================
+async function saveSeriesEdit(id){
+
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
+
+  if(!series) return;
+
+  series.name =
+    document.getElementById(
+      "edit-series-name"
+    ).value;
+
+  series.bookIds =
+    editingSeriesBookIds.map(String);
+    
+  books.forEach(function(book){
+
+  const shouldHaveSeries =
+    editingSeriesBookIds.includes(
+      String(book.id)
+    );
+
+  if(shouldHaveSeries){
+
+    const currentIds =
+      (book.seriesIds || []);
+
+    if(
+      !currentIds.includes(
+        String(series.id)
+      )
+    ){
+
+      book.seriesIds =
+        currentIds.concat(
+          String(series.id)
+        );
+    }
+
+  }else{
+
+    book.seriesIds =
+      (book.seriesIds || []).filter(
+        function(seriesId){
+
+          return (
+            String(seriesId)
+            !== String(series.id)
+          );
+
+        }
+      );
+  }
+});
+
+  series.characterIds =
+    editingSeriesCharacterIds.map(String);
+    
+  characters.forEach(character=>{
+
+  const shouldHaveSeries =
+    editingSeriesCharacterIds.includes(
+      String(character.id)
+    );
+
+  if(shouldHaveSeries){
+
+    if(
+      !(character.seriesIds || [])
+        .includes(String(series.id))
+    ){
+
+      character.seriesIds =
+  (character.seriesIds || []).concat(
+    String(series.id)
+  );
+    }
+
+  }else{
+
+    character.seriesIds =
+      (character.seriesIds || [])
+        .filter(seriesId =>
+
+          String(seriesId)
+          !== String(series.id)
+
+        );
+  }
+});
+
+  await saveData();
+
+  closeModal("edit-series-modal");
+
+  renderSeries();
+  
+  renderSeriesDetail(series);
+
+  showToast("保存しました！");
+}
+
+
+
+//==============================
+//関連本の一覧描画
+//==============================
+function renderSeriesEditBooks(){
+
+  const relatedBooks =
+    books.filter(b =>
+
+      editingSeriesBookIds.includes(
+        String(b.id)
+      )
+
+    );
+
+  document.getElementById(
+    "series-edit-books"
+  ).innerHTML = `
+
+    <div>
+
+      ${relatedBooks.map(b=>`
+
+        <div class="related-chip">
+
+          ${b.title}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeBookFromSeries(
+                '${b.id}'
+              )
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+//==============================
+//関連本のタイトルだけ検索（Sタイトル用）
+//==============================
+function renderSeriesTitleSuggest(){
+
+  renderSuggestList({
+    inputId: "add-series-title",
+    suggestId: "series-title-suggest",
+    list: books.map(b => b.title)
+  });
+}
+
+
+
+
+
+
+
+
+//==============================
+//関連本の検索
+//==============================
+function renderSeriesBookSuggest(){
+
+  const keyword =
+    document.getElementById(
+      "series-related-search"
+    ).value.toLowerCase();
+
+  const filtered = books.filter(b=>{
+
+    const match =
+      (b.title || "")
+        .toLowerCase()
+        .includes(keyword);
+
+    const notAdded =
+      !editingSeriesBookIds.includes(
+        String(b.id)
+      );
+
+    return match && notAdded;
+
+  });
+  
+  if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
+
+  document.getElementById(
+  "series-book-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      📘 本
+    </div>
+
+    ${filtered.map(b=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addBookToSeries('${b.id}')
+        "
+      >
+        ${b.title}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+}
+
+
+//==============================
+//関連本の追加処理
+//==============================
+function addBookToSeries(id){
+
+  if(
+    !editingSeriesBookIds.includes(id)
+  ){
+    editingSeriesBookIds.push(
+      String(id)
+    );
+  }
+
+  renderSeriesEditBooks();
+
+}
+
+
+//==============================
+//関連キャラの一覧描画
+//==============================
+function renderSeriesEditCharacters(){
+
+  const relatedCharacters =
+    characters.filter(c =>
+
+      editingSeriesCharacterIds.includes(c.id)
+
+    );
+
+  document.getElementById(
+    "series-edit-characters"
+  ).innerHTML = `
+
+    <div>
+
+      ${relatedCharacters.map(c=>`
+
+        <div class="related-chip">
+
+          ${c.name}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeCharacterFromSeries(
+                '${c.id}'
+              )
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+
+//==============================
+//関連キャラの検索
+//==============================
+function renderSeriesCharacterSuggest(){
+
+
+  const keyword =
+    document.getElementById(
+      "series-related-search"
+    ).value.toLowerCase();
+
+  const filtered = characters.filter(c=>{
+
+  const match =
+    (c.name || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  const notAdded =
+    !editingSeriesCharacterIds.includes(c.id);
+
+  return match && notAdded;
+
+});
+
+if(!keyword){
+
+  document.getElementById(
+    "series-character-suggest"
+  ).innerHTML = "";
+
+  return;
+}
+
+document.getElementById(
+  "series-character-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      👤 人物
+    </div>
+
+    ${filtered.map(c=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addCharacterToSeries('${c.id}')
+        "
+      >
+        ${c.name}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+
+
+}
+
+
+
+
+//==============================
+//関連キャラの追加処理
+//==============================
+function addCharacterToSeries(id){
+
+  if(
+    !editingSeriesCharacterIds.includes(id)
+  ){
+    editingSeriesCharacterIds.push(id);
+  }
+
+  renderSeriesEditCharacters();
+
+}
+
+
+//==============================
+//====ソートモード切替え（シリーズ）
+//==============================
+function changeSeriesSortMode(){
+
+	seriesSortMode =
+		document.getElementById("series-sort-select").value;
+		
+		renderSeriesBookList();
+
+}
+
+
+
+//==============================
+//新規用：関連本の描画
+//==============================
+function renderSeriesNewBooks(){
+
+  const relatedBooks =
+    books.filter(b =>
+
+      newSeriesBookIds.includes(String(b.id))
+
+    );
+
+  document.getElementById(
+    "series-new-books"
+  ).innerHTML = `
+
+    ${relatedBooks.map(b=>`
+
+      <div class="related-chip">
+
+        ${b.title}
+
+      </div>
+
+    `).join("")}
+
+  `;
+}
+
+
+//==============================
+//新規用：関連人物の描画
+//==============================
+function renderSeriesNewCharacters(){
+
+  const relatedCharacters =
+    characters.filter(c =>
+
+      newSeriesCharacterIds.includes(c.id)
+
+    );
+
+  document.getElementById(
+    "series-new-characters"
+  ).innerHTML = `
+
+    ${relatedCharacters.map(c=>`
+
+      <div class="related-chip">
+
+        ${c.name}
+
+      </div>
+
+    `).join("")}
+
+  `;
+}
+
+
+//==============================
+//新規用：関連本の検索
+//==============================
+function renderSeriesNewBookSuggest(){
+
+  const keyword =
+    document.getElementById(
+      "series-for-one"
+    ).value.toLowerCase();
+
+  const filtered = books.filter(b=>{
+
+    const match =
+      (b.title || "")
+        .toLowerCase()
+        .includes(keyword);
+
+    const notAdded =
+      !newSeriesBookIds.includes(String(b.id));
+
+    return match && notAdded;
+
+  });
+  
+  if(!keyword){
+
+  document.getElementById(
+    "series-book-suggest"
+  ).innerHTML = "";
+
+  return;
+}
+
+  document.getElementById(
+  "series-book-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      📘 本
+    </div>
+
+    ${filtered.map(b=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addBookToNewSeries('${b.id}')
+        "
+      >
+        ${b.title}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+}
+
+
+//==============================
+//新規追加用：関連キャラの検索
+//==============================
+function renderSeriesNewCharacterSuggest(){
+
+
+  const keyword =
+    document.getElementById(
+      "series-for-one"
+    ).value.toLowerCase();
+
+  const filtered = characters.filter(c=>{
+
+  const match =
+    (c.name || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  const notAdded =
+    !newSeriesCharacterIds.includes(c.id);
+
+  return match && notAdded;
+
+});
+
+if(!keyword){
+
+  document.getElementById(
+    "series-character-suggest"
+  ).innerHTML = "";
+
+  return;
+}
+
+
+document.getElementById(
+  "series-character-suggest"
+).innerHTML =
+
+  filtered.length
+  ? `
+    <div class="suggest-label">
+      👤 人物
+    </div>
+
+    ${filtered.map(c=>`
+
+      <div
+        class="search-item"
+        onclick="
+          addCharacterToNewSeries('${c.id}')
+        "
+      >
+        ${c.name}
+      </div>
+
+    `).join("")}
+  `
+  : "";
+
+
+
+}
+
+
+//==============================
+//⭐︎新規シリーズに関連本追加処理
+//==============================
+function addBookToNewSeries(id){
+
+  if(
+    !newSeriesBookIds.includes(id)
+  ){
+    newSeriesBookIds.push(String(id));
+  }
+
+  renderSeriesNewBooks();
+  renderSeriesNewBookSuggest();
+
+}
+
+
+
+//==============================
+//⭐︎新規シリーズに関連人物追加処理
+//==============================
+function addCharacterToNewSeries(id){
+
+  if(
+    !newSeriesCharacterIds.includes(id)
+  ){
+    newSeriesCharacterIds.push(id);
+  }
+
+  renderSeriesNewCharacters();
+  renderSeriesNewCharacterSuggest();
+
+}
+
+
+
+//==============================
+//====新規シリーズ追加処理
+//==============================
+async function saveNewSeries(){
+
+  const title =
+    document.getElementById(
+      "add-series-title"
+    ).value.trim();
+
+  if(!title) return;
+
+  const series = {
+
+    id:
+      "s" + Date.now(),
+
+    name:
+      title,
+
+    bookIds:
+      (newSeriesBookIds || []).map(String),
+
+    characterIds:
+      (newSeriesCharacterIds || []).map(String)
+  };
+
+  seriesMaster.push(series);
+
+  // 本側へ同期
+  books.forEach(book=>{
+
+    const shouldHaveSeries =
+      series.bookIds.includes(
+        String(book.id)
+      );
+
+    if(shouldHaveSeries){
+
+      if(
+        !(book.seriesIds || [])
+          .map(String)
+          .includes(String(series.id))
+      ){
+
+        book.seriesIds =
+          (book.seriesIds || []).concat(
+            String(series.id)
+          );
+      }
+    }
+  });
+
+  // 人物側へ同期
+  characters.forEach(character=>{
+
+    const shouldHaveSeries =
+      series.characterIds.includes(
+        String(character.id)
+      );
+
+    if(shouldHaveSeries){
+
+      if(
+        !(character.seriesIds || [])
+          .map(String)
+          .includes(String(series.id))
+      ){
+
+        character.seriesIds =
+          (character.seriesIds || []).concat(
+            String(series.id)
+          );
+      }
+    }
+  });
+
+  await saveData();
+
+  closeModal(
+    "add-series-modal"
+  );
+
+  renderSeries();
+
+  showToast(
+    `「${series.name}」を追加しました`
+  );
+}
+
+//==============================
+//====シリーズ用サジェスト
+//==============================
+function renderSeriesSuggest(
+//{
+//  inputId,
+//  suggestId
+//}
+){
+
+  renderSuggestList({
+
+    inputId:
+     "add-series",
+
+    suggestId:
+     "series-suggest",
+
+    list:
+      seriesMaster.map(s => s.name)
+
+  });
+}
+
+//==============================
+//====シリーズ削除
+//==============================
+async function deleteSeries(id){
+
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
+
+  if(!series) return;
+
+  if(
+    !confirm(
+      `「${series.name}」を削除しますか？\n本や人物は削除されません。`
+    )
+  ){
+    return;
+  }
+
+  seriesMaster =
+    seriesMaster.filter(
+      s => String(s.id) !== String(id)
+    );
+
+  books.forEach(book=>{
+
+    book.seriesIds =
+      (book.seriesIds || []).filter(
+        seriesId =>
+          String(seriesId) !== String(id)
+      );
+
+  });
+
+  characters.forEach(character=>{
+
+    character.seriesIds =
+      (character.seriesIds || []).filter(
+        seriesId =>
+          String(seriesId) !== String(id)
+      );
+
+  });
+
+    await saveData();
+
+    closeModal("edit-series-modal");
+    go('series');
+    renderSeries();
+
+    showToast(
+    `「${series.name}」を削除しました`
+  );
+}
+
+
+//====================
+//シリーズ内作品の最新読了日取得
+//====================
+//function getSeriesLastRead(series){
+//関連作品から最新の日付を取得するやーつ
+//}
+
+
+
+
+
+
+//==============================
+//キャラクター・人物メモ
+//==============================
+
+//==============================
+//◼️キャラクターホーム（骨組み）だけ
+//==============================
+function renderCharacters(){
+
+  setActiveMenu("menu-characters");
+
+  const el =
+    document.getElementById(
+      "page-characters"
+    );
+
+  if(!el) return;
+
+  el.innerHTML = `
+    <div id="characters-top"></div>
+    <div id="characters-main" class="chars-main"></div>
+  `;
+
+  renderCharacterSearchArea();
+
+  renderCharacterList();
+}
+
+//==============================
+//====キャラクター一覧だけ表示====
+//==============================
+function renderCharacterList(){
+
+	const main = document.getElementById("characters-main");
+	if(!main) return;
+	main.innerHTML = "";
+	
+	const filtered = 
+		characters.filter(c =>
+			(c.name || "")
+				.toLowerCase()
+				.includes(characterSearchKeyword)
+		);
+	
+	//ソート
+	const sorted = sortCharacters(filtered);
+
+		sorted.forEach(c=>{
+			const d = document.createElement('div');
+			d.className = "card";
+			d.textContent = c.name;
+
+			d.onclick = ()=> openCharacterModal(c);
+
+			main.appendChild(d);
+		});
+
+}
+
+//==============================
+//====キャラクター詳細モーダル====
+//==============================
+function openCharacterModal(c){
+
+editingCharacterSeriesIds =
+  (c.seriesIds || []).map(String);
+
+    const relatedSeries =
+  seriesMaster.filter(s =>
+
+    Array.isArray(c.seriesIds)
+    &&
+    c.seriesIds
+      .map(String)
+      .includes(String(s.id))
+
+  );
+  
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "open-chars-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box detail-modal">
+		<div class="title-line">
+			<input id="character-name" class="character-name"
+			value="${c.name || ""}">
+						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')">✖️</button></div>
+			
+						
+			<textarea id="character-memo">${c.memo || ""}</textarea>
+		
+		      
+      <div style="font-size:10px">
+      ${relatedSeries.map(s=>`
+        シリーズ : 
+        <button class="detail-series"
+				  onclick="
+				    closeModal('open-chars-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</button>
+      `).join(", ") || ""}
+    </div>
+    
+    
+    
+   <input class="addin"
+        id="character-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderCharacterSeriesSuggest(
+            'character-related-search',
+            'character-series-suggest',
+            'character-edit-series'
+          );
+        "
+      >
+    <div class="suggest-box">
+      <div id="character-series-suggest"></div>
+    </div>
+    <div class="title-line">
+    関連：<br>
+    <div id="character-edit-series" class="series-edit-list"></div>
+   </div>
+         <hr class="kugiri">
+		
+		<div class="end-btn">
+			<button onclick="deleteCharacter('${c.id}')">
+  🗑️ 削除
+</button>
+			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
+		</div>
+	
+		</div>
+	`;
+	document.body.appendChild(modal);
+	renderCharacterEditSeries(
+	  "character-edit-series"
+	);
+}
+
+
+
+//==============================
+//人物詳細編集の関連シリーズ一覧描画
+//==============================
+function renderCharacterEditSeries(
+  targetId
+){
+
+  const target =
+    document.getElementById(targetId);
+
+  if(!target) return;
+
+  const relatedSeries =
+    seriesMaster.filter(s =>
+
+      editingCharacterSeriesIds.includes(
+        String(s.id)
+      )
+
+    );
+
+  target.innerHTML = `
+
+    <div>
+
+      ${relatedSeries.map(s=>`
+
+        <div class="related-chip">
+
+          ${s.name}
+
+          <button
+            class="mini-delete-btn"
+            onclick="
+              removeSeriesFromCharacter(
+                '${s.id}',
+                '${targetId}',
+                'character-related-search',
+                'character-series-suggest'
+              )
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+
+
+
+//==============================
+//人物詳細編集の関連シリーズサジェスト検索
+//==============================
+function renderCharacterSeriesSuggest(
+  searchId,
+  suggestId,
+  listId
+){
+
+  const keyword =
+    document.getElementById(searchId)
+      .value
+      .toLowerCase();
+
+  const filtered =
+    seriesMaster.filter(s=>{
+
+      const match =
+        (s.name || "")
+          .toLowerCase()
+          .includes(keyword);
+
+      const notAdded =
+        !editingCharacterSeriesIds.includes(
+          String(s.id)
+        );
+
+      return match && notAdded;
+
+    });
+
+  if(!keyword){
+
+    document.getElementById(
+      suggestId
+    ).innerHTML = "";
+
+    return;
+  }
+
+  document.getElementById(
+    suggestId
+  ).innerHTML =
+
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        📚 シリーズ
+      </div>
+
+      ${filtered.map(s=>`
+
+        <div
+          class="search-item"
+          onclick="
+            addSeriesToCharacter(
+            '${s.id}',
+            '${listId}',
+            '${searchId}',
+            '${suggestId}'
+            )
+          "
+        >
+          ${s.name}
+        </div>
+
+      `).join("")}
+    `
+    : "";
+}
+
+
+
+
+
+//==============================
+//人物詳細編集の関連追加処理
+//==============================
+function addSeriesToCharacter(
+  id,
+  listId,
+  searchId,
+  suggestId
+){
+
+  if(
+    editingCharacterSeriesIds.includes(
+      String(id)
+    )
+  ){
+    return;
+  }
+
+  editingCharacterSeriesIds.push(
+    String(id)
+  );
+
+  renderCharacterEditSeries(listId);
+
+  renderCharacterSeriesSuggest(
+    searchId,
+    suggestId,
+    listId
+  );
+}
+
+
+
+
+
+//==============================
+//人物詳細編集の関連消去
+//==============================
+function removeSeriesFromCharacter(
+  id,
+  listId,
+  searchId,
+  suggestId
+){
+
+  if(!confirm("削除しますか？")){
+    return;
+  }
+
+  editingCharacterSeriesIds =
+    editingCharacterSeriesIds.filter(
+      sId => String(sId) !== String(id)
+    );
+
+  renderCharacterEditSeries(
+    listId
+  );
+
+  renderCharacterSeriesSuggest(
+    searchId,
+    suggestId,
+    listId
+  );
+}
+
+
+//==============================
+//====キャラクター詳細の保存====
+//==============================
+async function saveCharacter(id){
+
+  const chars =
+    characters.find(
+      c => String(c.id) === String(id)
+    );
+
+  if(!chars) return;
+
+  chars.seriesIds =
+    (editingCharacterSeriesIds || [])
+      .map(String);
+
+  seriesMaster.forEach(series=>{
+
+    const shouldHaveCharacter =
+      editingCharacterSeriesIds.includes(
+        String(series.id)
+      );
+
+    if(shouldHaveCharacter){
+
+      if(
+        !(series.characterIds || [])
+          .includes(String(chars.id))
+      ){
+
+        series.characterIds =
+          (series.characterIds || []).concat(
+            String(chars.id)
+          );
+      }
+
+    }else{
+
+      series.characterIds =
+        (series.characterIds || [])
+          .filter(characterId =>
+
+            String(characterId)
+            !== String(chars.id)
+
+          );
+    }
+  });
+
+  console.log(
+    document.getElementById("character-name").value
+  );
+
+  chars.name =
+    document.getElementById(
+      "character-name"
+    ).value;
+
+  chars.memo =
+    document.getElementById(
+      "character-memo"
+    ).value;
+
+  console.log("after edit", chars);
+
+  await saveData();
+
+  showToast("保存しました！");
+
+  closeModal("open-chars-modal");
+
+  renderCharacters();
+}
+
+
+//==============================
+//====（ページ）キャラクター詳細====
+//==============================
+//function openCharacter(c){
+//  go('detail');
+
+//  const el = document.getElementById('page-detail');
+
+ // 人物→シリーズ
+//  const relatedSeries = seriesMaster.filter(s=>{
+//    return Array.isArray(c.seriesIds) && c.seriesIds.includes(s.id);
+//  });
+
+  // 人物→本
+//  const relatedBooks = books.filter(b=>{
+//    return relatedSeries.some(s =>
+//     Array.isArray(s.bookIds) && s.bookIds.includes(b.id)
+//   );
+//  });
+
+  // HTML
+//  el.innerHTML = `
+//    <h2>${c.name}</h2>
+
+//    <div style="margin-bottom:10px;">
+//      ${c.memo || ""}
+//    </div>
+
+//   <hr>
+
+//    <div>シリーズ:</div>
+//    <div id="char-series"></div>
+
+//    <button onclick="go('characters')">戻る</button>
+//  `;
+
+  // 本セクション追加
+//  el.innerHTML += `
+//    <hr>
+//    <div>登場作品:</div>
+//    <div id="char-books"></div>
+//  `;
+
+  // シリーズ描画
+//  const list = document.getElementById('char-series');
+
+//  relatedSeries.forEach(s=>{
+//    const d = document.createElement('div');
+//    d.className = "card";
+//    d.textContent = s.name;
+
+//    d.onclick = ()=> renderSeriesDetail(s);
+
+//    list.appendChild(d);
+//  });
+
+  // 本描画
+//  const list3 = document.getElementById('char-books');
+
+//  relatedBooks.forEach(b=>{
+//    const d = document.createElement('div');
+//    d.className = "card";
+//    d.textContent = b.title;
+
+//    d.onclick = ()=> openBookDetailModal(b);
+
+//    list3.appendChild(d);
+//  });
+//}
+
+//==============================
+//====キャラクター用サジェスト
+//==============================
+function renderCharacterSuggest(){
+
+  renderSuggestList({
+
+    inputId: "add-character",
+
+    suggestId: "chars-suggest",
+
+    list:
+      characters.map(c=>c.name)
+
+  });
+}
+
+
+//==============================
+//キャラクターソート
+//==============================
+function sortCharacters(list){
+
+	const arr = [...list];
+	
+	//名前順
+	if(charsSortMode === "cname-asc"){
+		arr.sort((a,b)=>
+			(a.name || "")
+			.localeCompare(
+				b.name || "",
+				"ja"
+			)
+		);
+	}
+	
+	if(charsSortMode === "cname-desc"){
+		arr.sort((a,b)=>
+			(b.name || "")
+			.localeCompare(
+				a.name || "",
+				"ja"
+			)
+		);
+	}
+	return arr;
+}
+
+
+
+//==============================
+//キャラクター検索エリア
+//==============================
+function renderCharacterSearchArea(){
+
+	const top = document.getElementById("characters-top");
+	if(!top) return;
+	
+	top.innerHTML = `
+	
+	<button onclick="openAddCharacterModal()"
+		class="add-btn">
+		➕ 人物追加
+	</button>
+	
+	<input
+		id="chars-search"
+		placeholder="人物検索..."
+		value="${characterSearchKeyword}"
+		oninput="
+		  characterSearchKeyword = this.value;
+		  renderCharacterList();
+		"
+	>
+	
+		<select id="characters-sort-select"
+			onchange="changeCharactersSortMode()">
+			
+		<option value="cname-asc">名前↓</option>
+		<option value="cname-desc">名前↑</option>
+		</select>
+		
+	
+	`;
+	
+
+}
+
+
+
+//==============================
+//キーワード検索（キャラ）
+//==============================
+function handleCharactersSearchInput(){
+
+	renderSuggestList({
+	
+		inputId:
+			"characters-search",
+		
+		suggestId:
+			"characters-suggest",
+		
+		list:
+			characters.map(
+				c => c.name
+			)
+	
+	});
+	
+	renderCharacterSuggest();
+	renderCharacterList();
+
+}
+
+//==============================
+//ソートモード切替（キャラ）
+//==============================
+function changeCharactersSortMode(){
+
+	charsSortMode =
+		document.getElementById("chars-sort-select").value;
+		
+		renderCharacterList();
+
+}
+
+
+
+//==============================
+//新規キャラクター登録
+//==============================
+function openAddCharacterModal(){
+
+  editingCharacterSeriesIds = [];
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "add-chars-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box">
+			<div class="title-line">
+			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
+					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button></div>
+			
+			<input class="addin"
+				id="add-chars-name"
+				type="text"
+				placeholder="人物名">
+			
+				<textarea id="add-chars-memo"
+				placeholder="メモ"></textarea>
+				
+				
+			<div>関連シリーズを登録</div>
+			
+		
+			<input class="addin"
+				id="add-character-related-search"
+				type="text"
+				placeholder="関連シリーズ名"
+				oninput="
+				  renderCharacterSeriesSuggest(
+				    'add-character-related-search',
+						'add-character-series-suggest',
+						'add-character-series-list'
+				  );">
+				<div class="suggest-box">
+				<div id="add-character-series-suggest"></div>
+				</div>
+				
+				<div class="title-line">
+				関連：<br>
+			<div id="add-character-series-list" class="series-edit-list"></div>
+			</div>
+			
+			     <hr class="kugiri">
+			
+			<button onclick="saveNewCharacter()">➕追加</button>
+			
+	
+		</div>
+	`;
+
+	document.body.appendChild(modal);
+	renderCharacterEditSeries(
+	  "add-character-series-list"
+	);
+}
+
+//==============================
+//新規人物追加処理
+//==============================
+async function saveNewCharacter(){
+
+  const name =
+    document.getElementById(
+      "add-chars-name"
+    ).value.trim();
+
+  if(!name){
+    alert("名前を入力してね！");
+    return;
+  }
+
+  const memo =
+    document.getElementById(
+      "add-chars-memo"
+    )?.value || "";
+
+  const character = {
+
+    id:
+      "ch" + Date.now(),
+
+    name,
+
+    seriesIds:
+      editingCharacterSeriesIds.map(String),
+
+    memo
+  };
+
+  characters.unshift(character);
+
+  seriesMaster.forEach(series=>{
+
+    const shouldHaveSeries =
+      editingCharacterSeriesIds.includes(
+        String(series.id)
+      );
+
+    if(shouldHaveSeries){
+
+      if(
+        !(series.characterIds || [])
+          .includes(String(character.id))
+      ){
+
+        series.characterIds =
+          (series.characterIds || [])
+            .concat(String(character.id));
+      }
+    }
+  });
+
+  await saveData();
+
+  closeModal(
+    "add-chars-modal"
+  );
+
+  renderCharacters();
+
+  showToast(
+    `「${character.name}」を追加しました`
+  );
+}
+
+
+
+//==============================
+//人物削除処理
+//==============================
+async function deleteCharacter(id){
+
+  const character =
+    characters.find(
+      c => String(c.id) === String(id)
+    );
+
+  if(!character) return;
+
+  if(
+    !confirm(
+      `「${character.name}」を削除しますか？\nシリーズや本は削除されません。`
+    )
+  ){
+    return;
+  }
+
+  characters =
+    characters.filter(
+      c => String(c.id) !== String(id)
+    );
+
+  // シリーズ側から人物IDを掃除
+  seriesMaster.forEach(series=>{
+
+    series.characterIds =
+      (series.characterIds || []).filter(
+        characterId =>
+          String(characterId) !== String(id)
+      );
+
+  });
+
+  await saveData();
+
+  closeModal("open-chars-modal");
+
+  renderCharacters();
+
+  showToast(
+    `「${character.name}」を削除しました`
+  );
+}
+
+
+
+//==============================
+//人物検索
+//==============================
+
+
+
+
+
+//==============================
+//統計
+//==============================
+//==============================
+//====カレンダー、統計ページの表示
+//==============================
+function renderStats(){
+
+setActiveMenu("menu-stats");
+
+  const main = document.getElementById("page-stats");
+  main.innerHTML = "";
+
+  const year = statsYear;
+
+  main.innerHTML = `
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+    ">
+      <button onclick="changeStatsYear(-1)">←</button>
+
+      <h2>${year}年 統計</h2>
+
+      <button onclick="changeStatsYear(1)">→</button>
+    </div>
+  `;
+
+
+  
+  //年間目標
+  const yearlyCount = getYearReadCount(year);
+
+const percent =
+  Math.min(
+    yearlyCount / yearlyGoal * 100,
+    100
+  );
+
+const goal = document.createElement("div");
+
+goal.style.margin = "16px 0";
+
+goal.innerHTML = `
+  <div style="
+    font-size:14px;
+    margin-bottom:6px;
+  ">
+    年間目標：
+    ${yearlyCount} / ${yearlyGoal}冊
+  </div>
+
+  <div style="
+    height:14px;
+    background:#eee;
+    border-radius:999px;
+    overflow:hidden;
+  ">
+
+    <div style="
+      width:${percent}%;
+      height:100%;
+      background:#aacf53;
+    ">
+    </div>
+
+  </div>
+  `;
+  if(enableGoal){
+      main.appendChild(goal);
+  }
+  
+//  renderSummary(main);
+  renderMiniCalendar(main);
+  renderMonthlyGraph(main, year);
+
+// renderReadingHistory(main);
+}
+//==============================
+//====小さめ表示のカレンダー（統計ページ用）
+//==============================
+function renderMiniCalendar(main){
+
+  const now = miniMonth;
+  const year = statsYear;
+  const month = now.getMonth();
+
+  // ===== ヘッダー =====
+
+  const header = document.createElement("div");
+  header.style.display = "flex";
+  header.style.justifyContent = "space-between";
+  header.style.alignItems = "center";
+  header.style.justifyContent = "top";
+  header.style.marginBottom = "8px";
+
+  const prev = document.createElement("button");
+  prev.textContent = "←";
+
+  prev.onclick = ()=>{
+    miniMonth.setMonth(miniMonth.getMonth() - 1);
+    renderStats();
+  };
+
+  const title = document.createElement("div");
+  title.textContent =
+    `${year}年 ${month+1}月`;
+
+  const next = document.createElement("button");
+  next.textContent = "→";
+
+  next.onclick = ()=>{
+    miniMonth.setMonth(miniMonth.getMonth() + 1);
+    renderStats();
+  };
+
+  header.append(prev);
+  header.append(title);
+  header.append(next);
+
+  main.appendChild(header);
+
+  // ===== 読書データ =====
+
+  const map = {};
+
+  books.forEach(b=>{
+    (b.readDates || b.dates || []).forEach(date=>{
+      map[date] = map[date] || [];
+      map[date].push(b);
+    });
+  });
+
+  // ===== カレンダー =====
+  
+  const firstDay =
+    new Date(year, month, 1).getDay();
+
+  const lastDate =
+    new Date(year, month + 1, 0).getDate();
+
+  const grid = document.createElement("div");
+
+  grid.className = "mini-calendar";
+
+  // 空白
+  for(let i=0; i<firstDay; i++){
+    grid.appendChild(
+      document.createElement("div")
+    );
+  }
+
+  // 日付
+  for(let d=1; d<=lastDate; d++){
+
+    const mm = String(month + 1).padStart(2, "0");
+    const dd = String(d).padStart(2, "0");
+
+    const dateStr =
+      year + "-" + mm + "-" + dd;
+
+    const count =
+      map[dateStr]?.length || 0;
+
+    const cell =
+      document.createElement("div");
+
+    cell.className = "mini-day";
+
+    cell.style.background =
+      getHeatColor(count);
+
+    // 今日
+    const today =
+      new Date().toISOString().slice(0,10);
+
+    if(dateStr === today){
+      cell.style.border =
+        "2px solid #f8a484"
+    }
+
+    cell.innerHTML =
+      "<div>" + d + "</div>" +
+      "<div>" + (count || "") + "</div>";
+
+    cell.onclick = ()=>{
+      if(!map[dateStr]) return;
+
+      openDayModal(
+        dateStr,
+        map[dateStr]
+      );
+    };
+
+    grid.appendChild(cell);
+  }
+
+  main.appendChild(grid);
+}
+
+//==============================
+//====グラフ、年間目標年送り
+//==============================
+function changeStatsYear(diff){
+  statsYear += diff;
+  renderStats();
+}
+
+//==============================
+//====ヒートマップカラー
+//==============================
+function getHeatColor(count){
+  if(count === 0) return "#9b8e82"; //鼯鼠
+  if(count === 1) return "#f8d8c6"; //乙女
+  if(count === 2) return "#f7ed92"; //承和
+  if(count === 3) return "#fddb5d"; //くちなし
+  if(count === 4) return "#aacf53"; //萌葱
+  return "#78ccd2"; //白群
+  }
+
+//==============================
+//====年間読了数の取得
+//==============================
+function getYearReadCount(year){
+
+  let count = 0;
+  books.forEach(b=>{
+    (b.readDates || b.dates || []).forEach(d=>{
+      if(new Date(d).getFullYear() === year){
+       count++;
+       }
+    });
+  });
+
+  return count;
+}
+
+//==============================
+//カレンダーの日モーダル設定====
+//==============================
+function openDayModal(dateStr, list){
+  const m = document.createElement("div");
+  m.style.position = "fixed";
+  m.style.top = 0;
+  m.style.left = 0;
+  m.style.right = 0;
+  m.style.bottom = 0;
+  m.style.background = "rgba(0,0,0,0.5)";
+  m.style.display = "flex";
+  m.style.alignItems = "center";
+  m.style.justifyContent = "center";
+
+  const box = document.createElement("div");
+  box.style.background = "#fffffc";
+  box.style.padding = "20px";
+  box.style.maxHeight = "80%";
+  box.style.overflow = "auto";
+  box.style.borderRadius = "12px";
+  box.style.minWidth = "200px";
+
+  list.forEach(b=>{
+    const d = document.createElement("div");
+    d.style.padding = "6px 0";
+    d.style.borderBottom = "1px solid #eee";
+    
+    d.innerHTML = `
+      <div style="font-weight:bold">${b.title}</div>`;
+
+    d.onclick = ()=>{
+      m.remove();
+      openBookDetailModal(b);
+    };
+    
+    box.appendChild(d);
+  });
+
+  m.appendChild(box);
+  m.onclick = ()=> m.remove();
+  box.onclick = (e)=>{
+    e.stopPropagation();
+  };
+
+  document.body.appendChild(m);
+}
+
+
+
+
+
+//==============================
+//設定
+//==============================
+
+//==============================
+//🔧====設定ページ====
+//==============================
+function renderSettings(){
+
+setActiveMenu("menu-settings");
+
+  const el = document.getElementById("page-settings");
+  if(!el) return;
+  
+ 
+  
+  el.innerHTML = `
+    <button onclick="go('home')" style="margin:16px;">← 戻る</button>
+    <h2 style="padding:12px;">設定</h2>
+
+  <div class="setting-card">
+    <div class="setting-card-title" onclick="toggleSettingSection('home')">
+    ${settingSections.home
+    ? "▽"
+    : "▶︎"}
+    ホーム表示設定</div>
+    
+    ${settingSections.home
+    ? `
+    <!--背表紙-->
+    <div class="setting-row">
+      <span>背表紙カラー</span>
+      <button onclick="changeShelfColorMode()">
+        背表紙カラー：${getShelfColorModeLabel()}
+      </button>
+    </div>
+    
+    <!--並び順-->
+    <div class="setting-row">
+      <span>並び順</span>
+      <button onclick="changeDefaultSort()">
+        ${getSortModeLabel()}
+      </button>
+    </div>
+    
+    <!--表示タイプ-->
+    <div class="setting-row">
+      <span>表示タイプ</span>
+      <button onclick="changeDefaultType()">
+        ${getTypeModeLabel()}
+      </button>
+    </div>
+    
+    <!--テーマカラー-->
+    <div class="setting-row">
+      <span>テーマカラー</span>
+      ---
+    </div>
+    
+    <!--フォントサイズ-->
+    <div class="setting-row">
+      <span>フォントサイズ</span>
+      ---
+    </div>
+    
+    <!--最近の本-->
+    <div class="setting-row">
+      <span>最近の本</span>
+      ---
+    </div>
+    
+    <!--サマリー-->
+    <div class="setting-row">
+      <span>サマリー</span>
+      ---
+    </div>
+`
+: ""}
+  </div>
+  
+  
+  <div class="setting-card">
+    <div class="setting-card-title"onclick="toggleSettingSection('input')">
+    ${settingSections.input
+    ? "▽"
+    : "▶︎"}入力設定</div>
+      ${settingSections.input
+    ? `
+    <!--メモエリア-->
+    <div class="setting-row">
+      <span>メモエリア</span>
+      <button onclick="toggleMemo()">
+        ${
+          enableMemo
+            ? "📝 メモ表示：ON"
+            : "📝 メモ表示：OFF"
+          }
+        </button>
+      </div>
+  
+    <!--タグの使用-->
+    <div class="setting-row">
+      <span>タグの使用</span>
+      ---
+    </div>
+
+    <!--引用-->
+    <div class="setting-row">
+      <span>引用</span>
+      ---
+    </div>
+
+    <!--再読チェック-->
+    <div class="setting-row">
+      <span>再読チェック</span>
+      ---
+    </div>
+
+    <!--サジェスト-->
+    <div class="setting-row">
+      <span>サジェスト</span>
+      ---
+    </div>
+`
+: ""}
+  </div>
+
+  <div class="setting-card">
+    <div class="setting-card-title" onclick="toggleSettingSection('stats')">
+    ${settingSections.stats
+    ? "▽"
+    : "▶︎"}統計設定</div>
+  
+      ${settingSections.stats
+    ? `
+    <!--年間目標-->
+    <div class="setting-row">
+      <span>年間目標</span>
+      <div class="switch ${enableGoal ? "on" : ""}"             
+        onclick="toggleGoal(event)"></div>
+      <div class="settings-item">
+        目標冊数
+        <input 
+          type="number" 
+          value="${yearlyGoal}" 
+          min="1"
+          style="width:80px;"
+          onchange="changeGoal(this.value)">
+       </div>
+    </div>  
+
+    <!--カレンダー-->
+    <div class="setting-row">
+      <span>カレンダー</span>
+      ---
+    </div>
+
+    <!--グラフ-->
+    <div class="setting-row">
+      <span>グラフ</span>
+      ---
+    </div>
+`
+: ""}
+  </div>
+   
+ 
+   <div class="setting-card">
+  <div
+    class="setting-card-title"
+    onclick="toggleSettingSection('tags')"
+  >
+
+    ${settingSections.tags
+      ? "▽"
+      : "▶︎"
+    }
+
+    タグ設定
+
+  </div>
+
+  ${settingSections.tags
+    ? `
+
+    <div class="setting-row">
+
+      <span>タグの編集</span>
+
+    </div>
+       <div class="tag-add-area">
+
+  <input
+    id="new-tag-name"
+    placeholder="新しいタグ">
+
+  <div class="tag-color-palette">
+
+    ${tagColors.map(color => `
+
+      <button
+        class="
+          color-dot
+          ${newTagColor === color
+            ? "active"
+            : ""
+          }
+        "
+
+        style="background:${color};"
+
+        onclick="
+          selectNewTagColor('${color}')
+        ">
+      </button>
+
+    `).join("")}
+
+  </div>
+
+  <button onclick="addTag()">
+    ➕タグ追加
+  </button>
+
+</div>
+
+
+    ${tagMaster.map(tag => `
+
+      <div class="tag-edit-item">
+
+        <div class="setting-row">
+
+          <span
+            class="tag-chip"
+              style="
+                background:${tag.color};
+                color:white;
+              "
+            >
+              ${tag.name}
+            </span>
+
+          <button
+            onclick="
+              openTagEditor('${tag.id}')
+            "
+          >
+            編集
+          </button>
+          
+          <button
+            class="danger-button"
+            onclick="deleteTag('${tag.id}')"
+          >
+            削除
+          </button>
+
+        </div>
+
+        ${editingTagId === tag.id
+          ? `
+
+          <div class="tag-edit-area">
+
+            <input
+              id="edit-tag-name"
+              value="${tag.name}">
+
+            <div class="tag-color-palette">
+
+              ${tagColors.map(color => `
+
+                <button
+
+                  class="
+                    color-dot
+                    ${editingTagColor === color
+                      ? "active"
+                      : ""
+                    }
+                  "
+
+                  style="
+                    background:${color};
+                  "
+
+                  onclick="
+                    selectTagColor('${color}')
+                  "
+
+                >
+                </button>
+
+              `).join("")}
+
+            </div>
+
+            <button onclick="saveTagEdit('${tag.id}')">
+             🪎 保存
+            </button>
+
+            <button
+              onclick="
+                closeTagEditor()
+              "
+            >
+              キャンセル
+            </button>
+
+          </div>
+
+          `
+          : ""
+        }
+
+      </div>
+
+    `).join("")}
+
+    `
+    : ""
+  }
+
+</div>
+   
+
+  <div class="setting-card">
+    <div class="setting-card-title"onclick="toggleSettingSection('datas')">
+    ${settingSections.datas
+    ? "▽"
+    : "▶︎"}データ</div>
+    
+      ${settingSections.datas
+    ? `
+    <!--エクスポート-->
+    <div class="setting-row">
+      <span>インポート</span>
+      ---
+    </div>  
+
+    <!--インポートー-->
+    <div class="setting-row">
+      <span>インポート</span>
+      ---
+    </div>
+
+    <!--バックアップ-->
+    <div class="setting-row">
+      <span>バックアップ</span>
+      ---
+    </div>
+    
+    <!--同期-->
+    <div class="setting-row">
+      <span>Firestore同期</span>
+      ---
+    </div>
+`
+: ""}
+  </div>
+
+
+  `;  
+}
+
+
+//==============================
+//====タグエディタ「編集開く」
+//==============================
+function openTagEditor(id){
+
+  editingTagId = id;
+  
+  const tag =
+    tagMaster.find(
+      t => t.id === id
+    );
+  
+  if(tag){
+    editingTagColor = tag.color;
+  }
+
+  renderSettings();
+}
+
+//==============================
+//====タグエディタ「閉じる」
+//==============================
+function closeTagEditor(){
+
+  editingTagId = null;
+
+  renderSettings();
+}
+
+//==============================
+//====年間目標のオンオフ切替
+//==============================
+function toggleGoal(e){
+  e.stopPropagation();
+
+  enableGoal = !enableGoal;
+  localStorage.setItem("enableGoal", enableGoal);
+
+  renderSettings();
+  renderHome(); // 即反映
+}
+//==============================
+//====タグ削除処理
+//==============================
+async function deleteTag(id){
+
+ const used = books.some(book =>
+  (book.tagIds || []).includes(id)
+);
+  if(used){
+    alert("使用中のタグは削除できません");
+    return;
+  }
+     const ok = confirm("タグを削除しますか？");
+
+  if(!ok) return;
+
+tagMaster =
+  tagMaster.filter(
+    tag =>
+      String(tag.id)
+      !==
+      String(id)
+  );
+
+  await saveData();
+
+  renderSettings();
+  renderHome();
+}
+
+//==============================
+//====タグ保存処理
+//==============================
+async function saveTagEdit(id){
+
+  const tag =
+    tagMaster.find(
+      t => t.id === id
+    );
+
+  if(!tag) return;
+
+  // 名前
+  const input =
+    document.getElementById(
+      "edit-tag-name"
+    );
+
+  if(input){
+    tag.name = input.value.trim();
+  }
+
+  // 色
+  tag.color = editingTagColor;
+
+  await saveData();
+
+  editingTagId = null;
+
+  renderSettings();
+  renderHome();
+}
+//==============================
+//====新規タグ追加用：色の処理
+//==============================
+function selectNewTagColor(color){
+
+  newTagColor = color;
+
+  renderSettings();
+}
+
+//==============================
+//====タグ編集用：色の処理
+//==============================
+function selectTagColor(color){
+
+  editingTagColor = color;
+  
+  renderSettings();
+}
+
+
+//==============================
+//====デフォルト並び順切り替え
+//==============================
+const sortModes = [
+  "read-desc",
+  "read-asc",
+  "title-asc",
+  "title-desc",
+  "rating-desc",
+  "rating-asc"
+];
+
+function changeDefaultSort(){
+  sortMode =
+    cycleSetting({
+      current:
+        sortMode,
+      
+      list:
+        sortModes
+     });
+     
+   localStorage.setItem(
+     "sortMode",
+     sortMode
+   );
+   
+   renderSettings();
+   renderHome();
+}
+
+//==============================
+//====デフォルト表示タイプ切り替え
+//==============================
+const typeModes = [
+  "all",
+  "normal",
+  "wish"
+];
+
+function changeDefaultType(){
+  typeFilter =
+    cycleSetting({
+      current:
+        typeFilter,
+      list:
+        typeModes
+      });
+    localStorage.setItem(
+      "typeFilter",
+      typeFilter
+    );
+    
+    renderSettings();
+    renderHome();
+}
+
+//==============================
+//====セッティングの汎用切り替えボタン
+//==============================
+function cycleSetting({
+
+  current,
+  list
+
+}){
+
+  const index =
+    list.indexOf(current);
+
+  const next =
+    (index + 1) % list.length;
+
+  return list[next];
+}
+//==============================
+
+//==============================
+//====設定ページエリアトグル開閉設定
+//==============================
+function toggleSettingSection(key){
+
+  settingSections[key] =
+    !settingSections[key];
+
+  localStorage.setItem(
+
+    "settingSections",
+
+    JSON.stringify(
+      settingSections
+    )
+  );
+
+  renderSettings();
+}
+
+
+//==============================
+//====新規タグ追加
+//==============================
+async function addTag(){
+
+  const input =
+    document.getElementById("new-tag-name");
+
+  if(!input) return;
+
+  const name =
+    input.value.trim();
+
+  if(!name){
+
+    alert("タグ名を入力してください");
+    return;
+  }
+
+  tagMaster.push({
+
+    id: "t" + Date.now(),
+
+    name,
+
+    color: newTagColor
+
+  });
+
+  await saveData();
+
+  input.value = "";
+
+  newTagColor = "#7b8d8e";
+
+  renderSettings();
+}
+
+//==============================
+//====設定用：背表紙カラー
+//==============================
+function getShelfColorModeLabel(){
+
+  if(
+    colorMode === "single"
+  ){
+    return "単色";
+  }
+
+  if(
+    colorMode === "gradient"
+  ){
+    return "グラデ";
+  }
+
+  if(
+    colorMode === "stripe"
+  ){
+    return "目印";
+  }
+
+  return "";
+}
+
+//==============================
+//====設定用：並び順
+//==============================
+function getSortModeLabel(){
+
+  if(
+    sortMode === "read-desc"
+  ){
+    return "最新読了順";
+  }
+
+  if(
+    sortMode === "read-asc"
+  ){
+    return "最古読了順";
+  }
+
+  if(
+    sortMode === "title-asc"
+  ){
+    return "名前↑";
+  }
+  
+    if(
+    sortMode === "title-desc"
+  ){
+    return "名前↓";
+  }
+  
+    if(
+    sortMode === "rating-desc"
+  ){
+    return "高評価";
+  }
+  
+    if(
+    sortMode === "rating-asc"
+  ){
+    return "低評価";
+  }
+
+  return "";
+}
+
+//==============================
+//====設定用：表示タイプ
+//==============================
+function getTypeModeLabel(){
+    if(
+    typeFilter === "all"
+  ){
+    return "全部";
+  }
+  
+      if(
+    typeFilter === "normal"
+  ){
+    return "本棚";
+  }
+
+    if(
+    typeFilter === "wish"
+  ){
+    return "ウィッシュリスト";
+  }
+  return "";
+}
+
+//==============================
+//====メモのオンオフ
+//==============================
+function toggleMemo(){
+
+  enableMemo = !enableMemo;
+
+  localStorage.setItem(
+    "enableMemo",
+    enableMemo
+  );
+
+  renderSettings();
+  renderHome();
+}
+
+//==============================
+//====年間目標数の変更
+//==============================
+function changeGoal(val){
+  yearlyGoal = Number(val) || 0;
+  localStorage.setItem("yearlyGoal", yearlyGoal);
+
+  renderHome(); // 即反映
+}
+
+//==============================
+//====月間読書グラフ表示
+//==============================
+function renderMonthlyGraph(main, year){
+
+  const counts = getMonthlyCounts(year);
+
+  const wrap = document.createElement("div");
+
+  wrap.style.marginTop = "20px";
+
+  counts.forEach((c,i)=>{
+
+    const row = document.createElement("div");
+
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "8px";
+
+    row.innerHTML = `
+  <div style="
+    width:70px;
+    font-size:12px;
+    flex-shrink:0;
+  ">
+    ${i+1}月 (${c}冊)
+  </div>
+
+  <div style="
+    flex:1;
+    height:12px;
+    background:#eee;
+    border-radius:999px;
+    overflow:hidden;
+  ">
+
+    <div style="
+      width:${c*5}px;
+      height:100%;
+      background:#78ccd2;
+    ">
+    </div>
+
+  </div>
+`;
+
+    wrap.appendChild(row);
+
+  });
+
+  main.appendChild(wrap);
+}
+
+
+
+//==============================
+//なんかわからん系
+//==============================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//==============================
+//⑥ロード
+//==============================
+async function loadData(){
+
+  // ここに入れる（関数の一番上）
+  if(!window.db || !window.doc || !window.getDoc){
+    console.log("⏳ Firebase待機中...");
+    setTimeout(loadData, 100);
+    return;
+  }
+
+  try{
+    // Firestoreから取得
+    const snap = await window.getDoc(
+      window.doc(window.db, "app", "data")
+    );
+    
+    
+    if(snap.exists()){
+      const data = snap.data();
+
+      books = data.books || [];
+      characters = data.characters || [];
+      tagMaster = data.tagMaster || [];
+      seriesMaster =
+        (data.series || [])
+          .concat(
+            data.seriesMaster || []
+          );
+
+
+      // ローカルにも保存（バックアップ）
+      localStorage.setItem("bookAppData",JSON.stringify(data));
+
+      console.log("Firestoreから読み込み");
+
+    } else {
+
+      // Firestore空ならローカル
+      const saved = localStorage.getItem("bookAppData");
+
+      if(saved){
+        const data = JSON.parse(saved);
+
+        books = data.books || [];
+        characters = data.characters || [];
+        tagMaster = data.tagMaster || [];
+        seriesMaster = data.seriesMaster || [];
+
+        console.log("◆ローカルから読み込み");
+
+      } else {
+
+        // 🔸 初回だけGitHub
+        const res = await fetch(DATA_URL + "?t=" + Date.now());
+        const data = await res.json();
+
+        books = data.books || [];
+        characters = data.characters || [];
+        tagMaster = data.tagMaster || [];
+        seriesMaster = data.seriesMaster || [];
+
+        await saveData();
+
+        console.log("🌐 初期データ取得");
+      }
+    }
+    
+    viewMode =
+      localStorage.getItem("viewMode")
+      || "card";
+
+
+    // UI初期化
+    renderTagFilter();
+ //   renderColorMode();
+ //   renderViewMode();
+//    renderSort();
+//    setupTagToggle();
+
+//    renderCalendar();
+    renderHome();
+    go('home');
+
+
+  }catch(e){
+    console.error(e);
+    alert("読み込み失敗: " + e.message);
+  }
+
+
+
+  const l = document.getElementById('loading');
+  if(l) l.classList.add('hidden');
+}//async function loadData()おわり
+
+// 初回ロード
+window.addEventListener("load", ()=>{
+  loadData();
+  console.log("ここまで読めてる");
+});
