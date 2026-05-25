@@ -1388,7 +1388,6 @@ function renderSearchArea(){
     >
     
     
-    <div class="view-switch">
     
     
       <select id="sort-select"
@@ -1450,7 +1449,7 @@ function renderSearchArea(){
 
   </select>
   
-       </div>
+      
        <div class="view-switch">
 
       <button class="tag-chip"
