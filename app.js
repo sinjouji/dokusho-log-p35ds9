@@ -1034,10 +1034,12 @@ function renderHome(){
   if(!el) return;
 
   el.innerHTML = `
+    <div id="home-fixed-bar"></div>
     <div id="home-top"></div>
     <div id="home-main"></div>
   `;
 
+  renderHomeFixedBar();
   renderSearchArea();
   renderTagFilter();
   renderActiveFilterView();
@@ -1289,6 +1291,54 @@ function renderShelf(el, list, mode = "main"){
 
   el.appendChild(wrap);
 }
+
+
+
+//==============================
+//ホーム固定バー
+//==============================
+function renderHomeFixedBar(){
+
+  const bar =
+    document.getElementById("home-fixed-bar");
+
+  if(!bar) return;
+
+  bar.innerHTML = `
+    <button onclick="openAddBookModal()" class="fixed-add-btn">
+      ＋
+    </button>
+
+    <button
+      class="${viewMode === 'card' ? 'active' : ''}"
+      onclick="changeViewMode('card')"
+    >
+      ■
+    </button>
+
+    <button
+      class="${viewMode === 'list' ? 'active' : ''}"
+      onclick="changeViewMode('list')"
+    >
+      ☰
+    </button>
+
+    <button
+      class="${viewMode === 'shelf' ? 'active' : ''}"
+      onclick="changeViewMode('shelf')"
+    >
+      ‖‖
+    </button>
+
+    <select id="type-filter-fixed" onchange="changeTypeFilterFromFixed()">
+      <option value="all" ${typeFilter === "all" ? "selected" : ""}>全部</option>
+      <option value="normal" ${typeFilter === "normal" ? "selected" : ""}>本棚</option>
+      <option value="wish" ${typeFilter === "wish" ? "selected" : ""}>ウィッシュ</option>
+    </select>
+  `;
+}
+
+
 
 
 //==============================
@@ -1623,6 +1673,18 @@ function toggleNewBookTag(tagId, el, color){
 
   }
 
+}
+
+
+//==============================
+//固定バー用タイプ切り替え
+//==============================
+function changeTypeFilterFromFixed(){
+
+  typeFilter =
+    document.getElementById("type-filter-fixed").value;
+
+  renderHome();
 }
 
 
