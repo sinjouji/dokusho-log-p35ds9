@@ -1377,7 +1377,7 @@ function renderSearchArea(){
  
   top.innerHTML = `
     <button onclick="openAddBookModal()" class="add-btn">
-      ➕ 本を追加
+      ➕ 本
     </button>
 
     <input
@@ -1386,6 +1386,10 @@ function renderSearchArea(){
       value="${searchKeyword}"
       oninput="handleSearchInput()"
     >
+    
+    
+    <div class="view-switch">
+    
     
       <select id="sort-select"
         onchange="changeSortMode()">
@@ -1401,8 +1405,6 @@ function renderSearchArea(){
 
       </select>
       
-       
-    <div class="view-switch">
 
       <button class="${viewMode === 'card'
       ? 'active'
@@ -1447,6 +1449,8 @@ function renderSearchArea(){
   </option>
 
   </select>
+  
+       </div>
 
       <button class="tag-chip"
         data-open="🏷️タグ非表示"
@@ -1463,9 +1467,7 @@ function renderSearchArea(){
        
             <div id="active-filter-view" style="font-size:10px;white-space:break-word;"></div>
        
-       
-       
-       </div>
+   
 <div class="
   toggle-content
   ${homeSections.tags ? "open" : ""}
