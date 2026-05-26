@@ -528,27 +528,6 @@ const filterState = {
 
 
 
-
-//==============================
-//★フィルタの選択状態見た目ちゃん
-//==============================
-function updateTagModeUI(){
-
-  document.querySelectorAll(".filter-mode button")
-    .forEach(btn => {
-
-      if(btn.textContent === filterState.tagMode){
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-
-    });
-}
-
-
-
-
 //==============================
 //★絞込み現状表示ちゃん
 //==============================
