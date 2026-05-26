@@ -3,6 +3,7 @@
 <!--<link rel="stylesheet" href="css/base.css">まだ未実装-->
 <link rel="stylesheet" href="css/modal.css">
 <link rel="stylesheet" href="css/suggest.css">
+<link rel="stylesheet" href="css/ui.css">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -382,16 +383,7 @@ select{
 }
 
 
-/*本詳細モーダルの日付履歴*/
-.toggle-history{
-  font-size:11px;
-  color:#f4a57a;
-  cursor:pointer;
-  margin-bottom:2px;
-  border-radius:10px;
-  background:#fbf6e8;
-/*  border:1px solid #fef4f4;*/
-}
+
 
 .bememo{
 border:1px solid #f4a57a;
@@ -651,43 +643,6 @@ margin-top:6px;
 
   color:#f4a57a;
   font-size:12px;
-}
-
-/* 保存通知 */
-.toast{
-
-  position:fixed;
-
-  left:50%;
-  bottom:30px;
-
-  transform:
-    translateX(-50%)
-    translateY(20px);
-
-  background:#333;
-  color:#fffffc;
-
-  padding:12px 18px;
-
-  border-radius:999px;
-
-  font-size:14px;
-
-  opacity:0;
-
-  transition:0.3s;
-
-  z-index:9999;
-}
-
-.toast.show{
-
-  opacity:1;
-
-  transform:
-    translateX(-50%)
-    translateY(0);
 }
 
 /*ミニカレンダー表示*/
@@ -1051,16 +1006,6 @@ border:1px solid #60564f;
 }
 
 
-.toggle-content {
-  display: none !important;
-}
-
-.toggle-content.open {
-  display:flex !important;
-  gap:4px;
-  flex-wrap:wrap;
-}
-
 /*キャラクターページ*/
 .chars-main{
 display:grid;
@@ -1258,19 +1203,20 @@ gap:5px;
 }
 
 
-/*右下の「↑」ちゃん*/
-#scroll-top-btn{
-  position:fixed;
-  right:16px;
-  bottom:18px;
-  z-index:80;
 
-  width:44px;
-  height:44px;
-  border-radius:999px;
+/* toggle */
 
-  opacity:0.75;
+.toggle-content {
+  display: none !important;
 }
+
+.toggle-content.open {
+  display:flex !important;
+  gap:4px;
+  flex-wrap:wrap;
+}
+
+
 
 </style>
 
@@ -1370,6 +1316,7 @@ window.saveData = async function(){
 </script>
 <script src="js/suggest.js"></script>
 <script src="js/modal.js"></script>
+<script src="js/ui.js"></script>
 <!--<script src="js/main.js"></script>まだ未実装-->
 <script src="js/app.js"></script>
 </body>
