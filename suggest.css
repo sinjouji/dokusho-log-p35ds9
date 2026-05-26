@@ -1,0 +1,60 @@
+/* =====================
+   SUGGEST
+   
+   サジェスト系のCSSを集めるんだヨォ！！
+   全員集合だぜヒャッハ〜〜〜〜〜〜！！
+===================== */
+
+
+#title-suggest{
+  background:#fbf6e8;
+}
+
+#search-suggest,
+#series-suggest,
+#chars-suggest{
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+
+  background:#fffffc;
+
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+  overflow:hidden;
+  z-index:20;
+}
+
+
+.suggest-box{
+
+  max-height:140px;
+
+  overflow-y:auto;
+
+  margin-top:8px;
+
+  background:#fff;
+
+  border-radius:10px;
+
+  font-size:10px;
+}
+
+
+
+.suggest-label{
+
+  font-size:11px;
+
+  color:#666;
+
+  padding:6px 8px 2px;
+
+}
+
+
+
+
