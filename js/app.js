@@ -3590,16 +3590,6 @@ const percent =
 
 const goal = document.createElement("div");
 
-const calendarWrap = document.createElement("div");
-calendarWrap.className = "stats-block";
-renderMiniCalendar(calendarWrap);
-main.appendChild(calendarWrap);
-
-const graphWrap = document.createElement("div");
-graphWrap.className = "stats-block";
-renderMonthlyGraph(graphWrap, year);
-main.appendChild(graphWrap);
-
 goal.style.margin = "16px 0";
 
 goal.innerHTML = `
@@ -3640,8 +3630,13 @@ goal.innerHTML = `
 //==============================
 //====小さめ表示のカレンダー（統計ページ用）
 //==============================
-function renderMiniCalendar(main){
+function renderMiniCalendar(main);
 
+const spacer = document.createElement("div");
+spacer.style.height = "24px";
+main.appendChild(spacer);
+
+renderMonthlyGraph(main, year);
   const now = miniMonth;
   const year = statsYear;
   const month = now.getMonth();
