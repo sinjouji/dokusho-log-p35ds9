@@ -1,0 +1,50 @@
+/*
+ STATS 統計関係のCSS
+
+ カレンダーとかヒートマップのや〜〜つ
+*/
+
+
+/*ミニカレンダー表示*/
+.mini-calendar{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:4px;
+  max-width:800px;
+
+}
+
+.mini-day{
+  aspect-ratio:1;
+  font-size:10px;
+  color:#60564f;
+  font-weight:bold;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#eee;
+}
+
+
+
+
+/*
+ もしかしたら旧カレンダーかも？
+*/
+
+
+/*カレンダー表示*/
+.calendar-day{
+  width:20px;
+  height:20px;
+  font-size:12px;
+}
+.calendar-grid{
+  gap:3px;
+}
+
+
+
