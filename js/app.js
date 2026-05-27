@@ -376,19 +376,36 @@ function createBookSpine(b, mode="main"){
 //今年・今月◯冊取得
 //==============================
 function getMonthlyCounts(year){
-  const arr = Array(12).fill(0);
-  
-  books.forEach(b=>{
-    (b.readDates || []).forEach(d=>{
-      if(!d.startsWith(String(year)))
-        return;
-      const month =
-        Number(d.slice(5,7)) - 1;
-      
-      arr[month]++;
+
+  const counts =
+    Array(12).fill(0);
+
+  books.forEach(book=>{
+
+    const dates =
+      book.readDates ||
+      book.dates ||
+      [];
+
+    dates.forEach(date=>{
+
+      if(!date) return;
+
+      const y =
+        Number(date.slice(0, 4));
+
+      const m =
+        Number(date.slice(5, 7));
+
+      if(y === Number(year)){
+
+        counts[m - 1]++;
+
+      }
     });
   });
-  return arr;
+
+  return counts;
 }
 
 
