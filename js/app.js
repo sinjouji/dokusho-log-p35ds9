@@ -3550,20 +3550,6 @@ async function deleteCharacter(id){
 //統計
 //==============================
 
-const calendarWrap = document.createElement("div");
-calendarWrap.className = "stats-block";
-renderMiniCalendar(calendarWrap);
-main.appendChild(calendarWrap);
-
-const graphWrap = document.createElement("div");
-graphWrap.className = "stats-block";
-renderMonthlyGraph(graphWrap, year);
-main.appendChild(graphWrap);
-
-
-
-
-
 //==============================
 //====カレンダー、統計ページの表示
 //==============================
@@ -3803,6 +3789,15 @@ function getYearReadCount(year){
 
 
 
+const calendarWrap = document.createElement("div");
+calendarWrap.className = "stats-block";
+renderMiniCalendar(calendarWrap);
+main.appendChild(calendarWrap);
+
+const graphWrap = document.createElement("div");
+graphWrap.className = "stats-block";
+renderMonthlyGraph(graphWrap, year);
+main.appendChild(graphWrap);
 
 
 //==============================
