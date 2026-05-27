@@ -3622,21 +3622,20 @@ goal.innerHTML = `
   }
   
 //  renderSummary(main);
-  renderMiniCalendar(main);
-  renderMonthlyGraph(main, year);
-
-// renderReadingHistory(main);
-}
-//==============================
-//====小さめ表示のカレンダー（統計ページ用）
-//==============================
-function renderMiniCalendar(main);
+renderMiniCalendar(main);
 
 const spacer = document.createElement("div");
 spacer.style.height = "24px";
 main.appendChild(spacer);
 
 renderMonthlyGraph(main, year);
+// renderReadingHistory(main);
+}
+//==============================
+//====小さめ表示のカレンダー（統計ページ用）
+//==============================
+function renderMiniCalendar(main){
+
   const now = miniMonth;
   const year = statsYear;
   const month = now.getMonth();
