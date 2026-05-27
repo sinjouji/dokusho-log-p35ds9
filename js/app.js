@@ -3590,6 +3590,16 @@ const percent =
 
 const goal = document.createElement("div");
 
+const calendarWrap = document.createElement("div");
+calendarWrap.className = "stats-block";
+renderMiniCalendar(calendarWrap);
+main.appendChild(calendarWrap);
+
+const graphWrap = document.createElement("div");
+graphWrap.className = "stats-block";
+renderMonthlyGraph(graphWrap, year);
+main.appendChild(graphWrap);
+
 goal.style.margin = "16px 0";
 
 goal.innerHTML = `
@@ -3787,17 +3797,6 @@ function getYearReadCount(year){
 }
 
 
-
-
-const calendarWrap = document.createElement("div");
-calendarWrap.className = "stats-block";
-renderMiniCalendar(calendarWrap);
-main.appendChild(calendarWrap);
-
-const graphWrap = document.createElement("div");
-graphWrap.className = "stats-block";
-renderMonthlyGraph(graphWrap, year);
-main.appendChild(graphWrap);
 
 
 //==============================
