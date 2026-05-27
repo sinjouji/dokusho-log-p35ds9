@@ -4,85 +4,6 @@
 //
 //==============================
 
-//==============================
-//====グラフ、年間目標年送り
-//==============================
-function changeStatsYear(diff){
-  statsYear += diff;
-  renderStats();
-}
-
-//==============================
-//====年間読了数の取得
-//==============================
-function getYearReadCount(year){
-
-  let count = 0;
-  books.forEach(b=>{
-    (b.readDates || b.dates || []).forEach(d=>{
-      if(new Date(d).getFullYear() === year){
-       count++;
-       }
-    });
-  });
-
-  return count;
-}
-
-
-//==============================
-//今年・今月◯冊取得
-//==============================
-function getMonthlyCounts(year){
-
-  const counts =
-    Array(12).fill(0);
-
-  books.forEach(book=>{
-
-    const dates =
-      book.readDates ||
-      book.dates ||
-      [];
-
-    dates.forEach(date=>{
-
-      if(!date) return;
-
-      const y =
-        Number(date.slice(0, 4));
-
-      const m =
-        Number(date.slice(5, 7));
-
-      if(y === Number(year)){
-
-        counts[m - 1]++;
-
-      }
-    });
-  });
-
-  return counts;
-}
-
-
-//==============================
-//====ヒートマップカラー
-//==============================
-function getHeatColor(count){
-  if(count === 0) return "#9b8e82"; //鼯鼠
-  if(count === 1) return "#f8d8c6"; //乙女
-  if(count === 2) return "#f7ed92"; //承和
-  if(count === 3) return "#fddb5d"; //くちなし
-  if(count === 4) return "#aacf53"; //萌葱
-  return "#78ccd2"; //白群
-  }
-
-
-
-
-
 
 //==============================
 //====カレンダー、統計ページの表示
@@ -344,6 +265,90 @@ function renderMonthlyGraph(main, year){
 
 
 
+
+
+//==============================
+//今年・今月◯冊取得
+//==============================
+function getMonthlyCounts(year){
+
+  const counts =
+    Array(12).fill(0);
+
+  books.forEach(book=>{
+
+    const dates =
+      book.readDates ||
+      book.dates ||
+      [];
+
+    dates.forEach(date=>{
+
+      if(!date) return;
+
+      const y =
+        Number(date.slice(0, 4));
+
+      const m =
+        Number(date.slice(5, 7));
+
+      if(y === Number(year)){
+
+        counts[m - 1]++;
+
+      }
+    });
+  });
+
+  return counts;
+}
+
+
+
+//==============================
+//====年間読了数の取得
+//==============================
+function getYearReadCount(year){
+
+  let count = 0;
+  books.forEach(b=>{
+    (b.readDates || b.dates || []).forEach(d=>{
+      if(new Date(d).getFullYear() === year){
+       count++;
+       }
+    });
+  });
+
+  return count;
+}
+
+
+
+
+
+
+
+
+//==============================
+//====グラフ、年間目標年送り
+//==============================
+function changeStatsYear(diff){
+  statsYear += diff;
+  renderStats();
+}
+
+
+//==============================
+//====ヒートマップカラー
+//==============================
+function getHeatColor(count){
+  if(count === 0) return "#9b8e82"; //鼯鼠
+  if(count === 1) return "#f8d8c6"; //乙女
+  if(count === 2) return "#f7ed92"; //承和
+  if(count === 3) return "#fddb5d"; //くちなし
+  if(count === 4) return "#aacf53"; //萌葱
+  return "#78ccd2"; //白群
+  }
 
 
 
