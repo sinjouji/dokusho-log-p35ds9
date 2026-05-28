@@ -1,0 +1,37 @@
+/*
+
+ CHARACTER.CSS
+
+ 人物関連のCSSちゃんたちの集い
+ 割と少ない？？増えるか？？？？
+
+*/
+
+/*キャラクター詳細モーダル*/
+.character-name{
+  max-width:300px;
+  padding-top:5px;
+  padding-bottom:10px;
+  border:1px solid #f4a57a;
+  color:#60564f;
+  font-weight:bold;
+  font-size:14px;
+  border-radius:10px;
+}
+
+.chars-memo{
+  margin-top:10px;
+
+  padding:16px;
+
+  background:#fffffc;
+  border-radius:10px;
+
+  border:1px solid #f4a57a;
+  font-size:12px;
+
+  white-space:pre-wrap;
+}
+
+
+
