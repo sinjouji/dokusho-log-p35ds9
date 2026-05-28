@@ -264,14 +264,6 @@ async function saveData(){
 //データの取得（get）とか
 //==============================
 
-//==============================
-//評価取得
-//==============================
-function getFavLabel(val){
-	if(val >= 4) return "👑";
-	return "★".repeat(val || 0);
-	}
-
 //==============================                                                                                                       
 //====背表紙のカラー設定
 //==============================
@@ -1117,28 +1109,6 @@ function toggleNewBookTag(tagId, el, color){
 
 
 
-//==============================
-//====再読本のチェック切替え
-//==============================
-function toggleReread(id){
-
-  const book =
-    books.find(
-      b=>String(b.id)===String(id)
-    );
-
-  if(!book) return;
-
-  book.reread =
-    document.getElementById(
-      "reread-check"
-    ).checked;
-
-  saveData();
-
-  renderHome();
-}
-
 
 //==============================
 //新規本用の評価切り替えボタン
@@ -1374,54 +1344,6 @@ if(!confirm("削除しますか？")){
     listId
     );
 
-}
-
-
-//==============================
-//====読了日の取得
-//==============================
-async function addReadDate(id){
-
-  const book =
-    books.find(
-      b => String(b.id) === String(id)
-    );
-
-  if(!book) return;
-
-  const input =
-    document.getElementById(
-      `readDate-${id}`
-    );
-
-  if(!input.value) return;
-
-  if(!book.readDates){
-    book.readDates = [];
-  }
-
-  book.readDates.unshift(
-    input.value
-  );
-
-  // 本棚へ移動
-  book.type = "normal";
-
-  await saveData();
-  
-  console.log("books after save", books);
-
-  closeModal("open-book-modal");
-
-  openBookDetailModal(book);
-
-  renderHome();
-  
-  
-  console.log("after add", book);
-console.log("readDates", book.readDates);
-console.log("type", book.type);
-  
 }
 
 
@@ -1661,17 +1583,7 @@ function toDateNum(book){
     : 0;
 }
 
-//==============================
-//====最新読了日を取得するやつ
-//==============================
-function getLatestReadDate(book){
 
-  return (
-  [...(book.readDates || [])]
-    .sort()
-    .at(-1)
-  ) || "";
-}
 
 
 //==============================
@@ -1882,36 +1794,6 @@ async function saveNewBook(){
   renderHome();
 }
 
-//==============================
-//====モーダル版日付削除処理
-//==============================
-async function removeReadDate(bookId,date){
-
-  const book =
-    books.find(b=>b.id==bookId);
-
-  if(!book) return;
-  
-  if(!confirm("この読了日を削除しますか？")){
-    return;
-  }
-
-  book.readDates =
-    (book.readDates || [])
-      .filter(d=>d !== date);
-
-  if(book.readDates.length === 0){
-    book.type = "wish";
-  }
-
-  await saveData();
-
-  closeModal("open-book-modal");
-  openBookDetailModal(book);
-  renderHome();
-}
-
-
 
 
 
@@ -1953,149 +1835,6 @@ function renderViewMode(targetId = "view-mode"){
 }
 
 
-
-
-
-//==============================
-//本の複製
-//==============================
-async function duplicateBook(id){
-
-  const book =
-    books.find(b => String(b.id) === String(id));
-
-  if(!book) return;
-
-  const today =
-    new Date().toISOString().slice(0, 10);
-
-  const newBook = {
-    ...book,
-
-    id: Date.now().toString(),
-
-    title:
-      incrementVolumeTitle(book.title || ""),
-
-    memo: "",
-
-    readDates: [today],
-
-    type: "normal",
-
-    tagIds:
-      [...(book.tagIds || [])],
-
-    seriesIds:
-      [...(book.seriesIds || [])]
-  };
-
-  books.unshift(newBook);
-
-  seriesMaster.forEach(series=>{
-
-    const shouldHaveSeries =
-      (newBook.seriesIds || [])
-        .map(String)
-        .includes(String(series.id));
-
-    if(shouldHaveSeries){
-
-      if(
-        !(series.bookIds || [])
-          .map(String)
-          .includes(String(newBook.id))
-      ){
-        series.bookIds =
-          (series.bookIds || [])
-            .concat(String(newBook.id));
-      }
-    }
-  });
-
-  await saveData();
-
-  closeModal("open-book-modal");
-
-  renderHome();
-
-  showToast(
-    `「${newBook.title}」を追加しました`
-  );
-}
-
-//最後をこう↓すると、追加した後に新規本の詳細を開ける
-//renderHome();
-//openBookDetailModal(newBook);
-
-
-//==============================
-//本の複製時巻数＋1
-//==============================
-function incrementVolumeTitle(title){
-
-  return title.replace(
-    /(\d+)(?!.*\d)/,
-    n => String(Number(n) + 1)
-  );
-}
-
-
-
-
-
-//==============================
-//シリーズ
-
-//==============================
-//====シリーズ詳細ページトグル開閉設定
-//==============================
-//function toggleSeriesSection(key){
-//console.log(seriesSections);
-//  seriesSections[key] =
-//    !seriesSections[key];
-    
-//  const series =
-//    seriesMaster.find(
-//      s => s.id === currentSeriesId
-//    );
-  
-//  if(series){
-//    renderSeriesDetail(series);
-//  }
-  
-//}
-
-
-
-
-
-//==============================
-//編集モーダル内開閉トグル
-//==============================
-//function toggleSeriesEditSection(id){
-
- // document.getElementById(id)?.classList.toggle("open");
-
-//  const el =
-//    document.getElementById(id);
-
-//  if(!el) return;
-  
-//  const isHidden = getComlutedStyle(el).display === "none";
-
-//  el.style.display = isHidden ? "block" : "none";
-//}
-
-
-//==============================
-//新規モーダル内開閉トグル
-//==============================
-//function toggleSeriesNewSection(id){
-
-  //document.getElementById(id)?.classList.toggle("open");
-
-//}
 
 
 
