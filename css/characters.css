@@ -34,4 +34,27 @@
 }
 
 
+/*キャラクターページ*/
+.chars-main{
+display:grid;
+grid-template-columns:1fr;
+gap:5px;
+}
+
+.chars-detail-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+/* タブレット以上 */
+@media(min-width:700px){
+
+  .chars-main{
+    grid-template-columns:1fr 1fr;
+  }
+  .chars-detail-layout{
+    grid-template-columns:1fr 1fr;
+  }
+}
 

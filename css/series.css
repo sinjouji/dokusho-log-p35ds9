@@ -1,0 +1,126 @@
+/*
+
+ SERIES.CSS
+ シリーズ関連CSS あんまりない
+
+*/
+
+/*シリーズ編集モーダルの情報表示上限*/
+.series-edit-list{
+max-height:120px;
+overflow-y:auto;
+padding-right:4px;
+display:flex;
+flex-wrap:wrap;
+gap:4px;
+margin-top:6px;
+}
+
+
+
+/*シリーズページ*/
+.series-main{
+display:grid;
+grid-template-columns:1fr;
+gap:5px;
+}
+
+.series-detail-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+/* タブレット以上 */
+@media(min-width:700px){
+
+.series-main{
+grid-template-columns:1fr 1fr;
+}
+
+
+  .series-detail-layout{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+/*シリーズ詳細ページ*/
+.seriesp-head{
+  display: flex;
+  justify-content: space-between;
+  margin:20px 20px 0 20px;
+  }
+  
+.satu{
+background:#fffffc;
+color:#60564f;
+font-size:15px;
+font-weight:bold;
+padding:5px 30px;
+border-radius:10px;
+border:1px solid #60564f;
+}
+
+  
+.stitle{
+  width:90%;
+  margin:10px 20px;
+  background: linear-gradient(transparent 70%, #eddbd8 70%);
+}
+
+.series-section{
+  background:#fffffc;
+  border-radius:10px;
+  padding:12px;
+  margin:5px;
+  border:1px solid #60564f;
+  color:#60564f;
+}
+.series-section-title{
+  font-weight:bold;
+  cursor:pointer;
+  padding:8px 0;
+}
+.series-section-body{
+  font-size:10px
+}
+.empty-text{
+  color:gray;
+  text-align:center;
+  padding:20px 0;
+}
+
+/*シリーズ詳細編集モーダル*/
+.related-chip{
+
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+
+  padding:2px 5px;
+  margin:2px;
+
+  background:#f3f3f3;
+
+  border-radius:999px;
+
+  font-size:10px;
+}
+
+
+
+/*シリーズ詳細でのミニ表示*/
+/*.mini-s-card,
+.mini-s-list{
+  font-size:8px;
+}*/
+
+.mini-s-spine .spine-title{
+  font-size:8px;
+}
+
+.mini-s-spine{
+  height:100px;
+  padding:2px;
+  margin:0 2px;
+}
