@@ -1,0 +1,266 @@
+//
+// VIEW.CSS
+// 本棚表示関係
+// カード・リスト・背表紙
+//
+
+
+
+/*本棚：カード表示*/
+.card-view{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+@media(min-width:700px){
+  .card-view{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card-sub-row{
+
+  display:flex;
+  gap:12px;
+
+  font-size:12px;
+
+  color:#666;
+
+  margin-top:4px;
+
+}
+
+.card-tags{
+
+  margin-top:6px;
+
+  font-size:11px;
+
+}
+
+.card-series{
+
+  margin-top:4px;
+
+  font-size:11px;
+
+  color:#999;
+
+}
+
+.card-tag{
+
+  margin-right:6px;
+
+  font-size:11px;
+
+  font-weight:bold;
+
+}
+
+.card .title{
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "YuMincho",
+    serif;
+
+  font-weight:600;
+  letter-spacing:0.03em;
+  line-height:1.35;
+}
+
+
+/*本棚：リスト表示*/
+
+@media(max-width:768px){
+.honlist{
+  background:#fffffc;
+  border-radius:10px;
+  padding:8px;
+  margin:5px 10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  vertical-align:top;
+  border:1px solid #f4a57a;
+  gap:5px;
+ }
+}
+
+/*リストビューの表示設定*/
+
+.list-view{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.list-row{
+  position:relative;
+
+  padding:8px 64px 8px 10px;
+
+  border-bottom:
+    1px solid rgba(0,0,0,0.08);
+
+  cursor:pointer;
+
+  overflow:hidden;
+}
+
+.list-title{
+  position:relative;
+  z-index:2;
+
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+
+  word-break:break-word;
+}
+
+.list-meta{
+  position:relative;
+  z-index:2;
+
+  margin-top:3px;
+
+  font-size:11px;
+  color:#888;
+}
+
+.list-count-watermark{
+  position:absolute;
+  right:10px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  font-size:28px;
+  font-weight:bold;
+
+  color:rgba(0,0,0,0.08);
+
+  line-height:1;
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+
+.list-item{
+  position:relative;
+  padding:10px 44px 10px 12px;
+}
+
+
+.list-date{
+  margin-top:3px;
+  font-size:11px;
+  color:#888;
+}
+
+
+
+/* 背表紙表示 */
+.spine{
+  position:relative;
+  height:200px;
+  border-radius:4px 6px 6px 4px;
+  
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  
+  overflow:visible;
+  
+ /*しおり用上側スペース*/ 
+  padding-top:20px;
+  
+  border-right:3px solid rgba(0,0,0,0.2);
+
+  cursor:pointer;
+}
+
+.spine-title{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  
+  font-size:13px;
+  line-height:1.1;
+  
+  letter-spacing:0.05em;
+  
+  color:#fffffc;
+  
+  padding:15px 6px 3px 8px;
+  
+/*  width:auto;*/
+  max-height:150px;
+  
+  text-align:left;
+  white-space:nomal;
+  
+/*使うか分からん調整部分
+  word-break:break-all;
+  flex:1;
+  max-height:100%;
+*/
+}
+
+.spine-fav{
+  font-size:10px;
+  
+  color:#fffffc;
+  height:30px;
+  writing-mode:vertical-rl;
+
+  align-items:center;
+  text-align:right;
+  padding-bottom:5px;
+}
+
+.shelf-view{
+  display:flex;
+  gap:2px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  overflow-x:auto;
+  padding:10px 0;
+}
+
+
+
+/*再読はしおり描画*/
+.bookmark{
+
+  position:absolute;
+
+  top:-4px;
+  right:8px;
+
+  width:14px;
+  height:28px;
+
+  background:#d94b4b;
+
+  border-radius:0 0 4px 4px;
+
+}
+
+.bookmark::after{
+
+  content:"";
+
+  position:absolute;
+
+  bottom:-8px;
+  left:0;
+
+  border-left:7px solid transparent;
+  border-right:7px solid transparent;
+  border-top:8px solid #d94b4b;
+
+}
