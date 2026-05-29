@@ -133,7 +133,7 @@ function renderSeriesDetail(s){
       if(list){
         relatedBooks.forEach(b=>{
           const d = document.createElement("div");
-          d.className = "card";
+          d.className = "card mini-s-card";
           d.textContent = b.title;
           d.onclick = () => openBookDetailModal(b);
           list.appendChild(d);
@@ -147,7 +147,7 @@ function renderSeriesDetail(s){
         }else{
           relatedCharacters.forEach(c=>{
             const d = document.createElement("div");
-            d.className = "card";
+            d.className = "card mini-s-card";
             d.textContent = c.name;
             d.onclick = () => openCharacterModal(c);
             list2.appendChild(d);
