@@ -522,6 +522,20 @@ console.log(
 );
 }
 
+if(
+  charsSortMode === "series-asc" ||
+  charsSortMode === "series-desc"
+){
+
+  console.log(
+    arr.map(c=>({
+      name: c.name,
+      series: getCharacterSeriesText(c)
+    }))
+  );
+
+}
+
 
 }
 
