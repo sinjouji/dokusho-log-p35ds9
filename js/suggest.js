@@ -560,6 +560,15 @@ document.getElementById(
     </div>
 
     ${filtered.map(c=>`
+    
+    const relatedSeries =
+  seriesMaster.filter(s =>
+
+    (s.characterIds || [])
+      .map(String)
+      .includes(String(c.id))
+
+  );
 
       <div
         class="search-item"
@@ -567,7 +576,23 @@ document.getElementById(
           addCharacterToSeries('${c.id}')
         "
       >
+      <div>
         ${c.name}
+      </div>
+      
+      ${
+              relatedSeries.length
+                ? `
+                  <div class="suggest-sub">
+                    ${relatedSeries
+                      .map(s => s.name.slice(0, 8))
+                      .join(" / ")
+                    }
+                  </div>
+                `
+                : ""
+            }  
+        
       </div>
 
     `).join("")}
