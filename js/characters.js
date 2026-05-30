@@ -456,90 +456,48 @@ function removeSeriesFromCharacter(
 //==============================
 function sortCharacters(list){
 
-console.log(
-  "sortCharacters called:",
-  charsSortMode
-);
+  const arr = [...list];
 
-	const arr = [...list];
-	
-	//名前順
-	if(charsSortMode === "cname-asc"){
-		arr.sort((a,b)=>
-			(a.name || "")
-			.localeCompare(
-				b.name || "",
-				"ja"
-			)
-		);
-	}
-	
-	if(charsSortMode === "cname-desc"){
-		arr.sort((a,b)=>
-			(b.name || "")
-			.localeCompare(
-				a.name || "",
-				"ja"
-			)
-		);
-	}
-	return arr;
-	
-	
-	
-	if(
-  charsSortMode === "series-asc" ||
-  charsSortMode === "series-desc"
-){
+  if(charsSortMode === "cname-asc"){
+    arr.sort((a,b)=>
+      (a.name || "").localeCompare(
+        b.name || "",
+        "ja"
+      )
+    );
+  }
 
-  console.log(
-    arr.map(c=>({
-      name: c.name,
-      series: getCharacterSeriesText(c)
-    }))
-  );
+  if(charsSortMode === "cname-desc"){
+    arr.sort((a,b)=>
+      (b.name || "").localeCompare(
+        a.name || "",
+        "ja"
+      )
+    );
+  }
 
+  if(charsSortMode === "series-asc"){
+    arr.sort((a,b)=>
+      getCharacterSeriesText(a)
+        .localeCompare(
+          getCharacterSeriesText(b),
+          "ja"
+        )
+    );
+  }
+
+  if(charsSortMode === "series-desc"){
+    arr.sort((a,b)=>
+      getCharacterSeriesText(b)
+        .localeCompare(
+          getCharacterSeriesText(a),
+          "ja"
+        )
+    );
+  }
+
+  return arr;
 }
-
-
-//if(charsSortMode === "series-asc"){
-
-//  arr.sort((a,b)=>
-
-//    getCharacterSeriesText(a)
-//      .localeCompare(
-//        getCharacterSeriesText(b),
-//        "ja"
-//      )
-
-//  );
-//}
-
-//console.log("check before series-desc");
-
-//if(charsSortMode === "series-desc"){
-//console.log(
-//  "before",
-//  arr.map(c => getCharacterSeriesText(c))
-//);
-
-//  arr.sort((a,b)=>
-
-//    getCharacterSeriesText(b)
-//      .localeCompare(
-//        getCharacterSeriesText(a),
-//        "ja"
-//      )
-
-//  );
-//  console.log(
-//  "after",
-//  arr.map(c => getCharacterSeriesText(c))
-//);
-//}
-
-}
-
 
 
 //==============================
