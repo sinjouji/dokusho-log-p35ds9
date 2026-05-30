@@ -62,14 +62,15 @@ function renderSeriesBookList(){
   );
 	//ソート
 	const sorted = sortSeries(filteredSeries);
-	const latestDate =
-  getSeriesLatestReadDate(s);
 			
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
 			d.className = "card ";
 			
+			const latestDate =
+  getSeriesLatestReadDate(s);
+	
 			
 			d.innerHTML = `
   <div class="series-list-name">
