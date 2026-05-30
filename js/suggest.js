@@ -1,4 +1,12 @@
 //==============================
+// SUGGEST
+//
+// とりあえず、render + Suggestを
+// まとめてある場所 20260526
+//==============================
+
+
+//==============================
 //====汎用サジェスト
 //==============================
 function renderSuggestList({
@@ -107,7 +115,7 @@ function renderSuggest(){
 
 
 //==============================
-//本詳細で関連本の検索
+//本詳細で関連シリーズの検索
 //==============================
 function renderBookSeriesSuggest(
   searchId,
@@ -264,48 +272,71 @@ function renderSeriesNewBookSuggest(){
         .includes(keyword);
 
     const notAdded =
-      !newSeriesBookIds.includes(String(b.id));
+      !newSeriesBookIds.includes(
+        String(b.id)
+      );
 
     return match && notAdded;
-
   });
-  
+
   if(!keyword){
+
+    document.getElementById(
+      "series-book-suggest"
+    ).innerHTML = "";
+
+    return;
+  }
 
   document.getElementById(
     "series-book-suggest"
-  ).innerHTML = "";
+  ).innerHTML =
 
-  return;
-}
-
-  document.getElementById(
-  "series-book-suggest"
-).innerHTML =
-
-  filtered.length
-  ? `
-    <div class="suggest-label">
-      📘 本
-    </div>
-
-    ${filtered.map(b=>`
-
-      <div
-        class="search-item"
-        onclick="
-          addBookToNewSeries('${b.id}')
-        "
-      >
-        ${b.title}
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        📘 本
       </div>
 
-    `).join("")}
-  `
-  : "";
+      ${filtered.map(b=>{
 
+        const relatedSeries =
+          seriesMaster.filter(s =>
+
+            (s.bookIds || [])
+              .map(String)
+              .includes(String(b.id))
+
+          );
+
+        return `
+          <div
+            class="search-item"
+            onclick="addBookToNewSeries('${b.id}')"
+          >
+            <div>
+              ${b.title}
+            </div>
+
+            ${
+              relatedSeries.length
+                ? `
+                  <div class="suggest-sub">
+                    ${relatedSeries
+                      .map(s => s.name.slice(0, 8))
+                      .join(" / ")
+                    }
+                  </div>
+                `
+                : ""
+            }
+          </div>
+        `;
+
+      }).join("")}
+    `
+    : "";
 }
-
 
 //==============================
 //新規追加用：関連キャラの検索
@@ -406,41 +437,64 @@ function renderSeriesBookSuggest(){
     return match && notAdded;
 
   });
-  
+
   if(!keyword){
+
+    document.getElementById(
+      "series-book-suggest"
+    ).innerHTML = "";
+
+    return;
+  }
 
   document.getElementById(
     "series-book-suggest"
-  ).innerHTML = "";
+  ).innerHTML =
 
-  return;
-}
-
-  document.getElementById(
-  "series-book-suggest"
-).innerHTML =
-
-  filtered.length
-  ? `
-    <div class="suggest-label">
-      📘 本
-    </div>
-
-    ${filtered.map(b=>`
-
-      <div
-        class="search-item"
-        onclick="
-          addBookToSeries('${b.id}')
-        "
-      >
-        ${b.title}
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        📘 本
       </div>
 
-    `).join("")}
-  `
-  : "";
+      ${filtered.map(b=>{
 
+        const relatedSeries =
+          seriesMaster.filter(s =>
+
+            (s.bookIds || [])
+              .map(String)
+              .includes(String(b.id))
+
+          );
+
+        return `
+          <div
+            class="search-item"
+            onclick="addBookToSeries('${b.id}')"
+          >
+            <div>
+              ${b.title}
+            </div>
+
+            ${
+              relatedSeries.length
+                ? `
+                  <div class="suggest-sub">
+                    ${relatedSeries
+                      .map(s => s.name.slice(0, 8))
+                      .join(" / ")
+                    }
+                  </div>
+                `
+                : ""
+            }
+          </div>
+        `;
+
+      }).join("")}
+    `
+    : "";
 }
 
 
