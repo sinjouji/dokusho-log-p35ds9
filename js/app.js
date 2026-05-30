@@ -1043,6 +1043,13 @@ function renderSearchArea(){
   
       
        <div class="view-switch">
+       
+       <button
+  class="filter-reset-btn"
+  onclick="resetHomeSearchFilter()"
+>
+  🧹リセット
+</button>
 
       <button class="tag-chip"
         data-open="🏷️タグ非表示"

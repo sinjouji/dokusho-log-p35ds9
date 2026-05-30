@@ -326,3 +326,23 @@ function updateTagModeUI(){
     });
 }
 
+
+
+//==============================
+//絞込み状態リセットちゃん
+//==============================
+function resetHomeSearchFilter(){
+
+  // タグ条件リセット
+  filterState.tags = [];
+  filterState.tagStates = {};
+
+  // 検索欄リセット
+  searchKeyword = "";
+
+  saveFilterState();
+
+  renderHome();
+}
+
+
