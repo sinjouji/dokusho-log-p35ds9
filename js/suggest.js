@@ -343,7 +343,6 @@ function renderSeriesNewBookSuggest(){
 //==============================
 function renderSeriesNewCharacterSuggest(){
 
-
   const keyword =
     document.getElementById(
       "series-for-one"
@@ -351,60 +350,77 @@ function renderSeriesNewCharacterSuggest(){
 
   const filtered = characters.filter(c=>{
 
-  const match =
-    (c.name || "")
-      .toLowerCase()
-      .includes(keyword);
+    const match =
+      (c.name || "")
+        .toLowerCase()
+        .includes(keyword);
 
-  const notAdded =
-    !newSeriesCharacterIds.includes(c.id);
+    const notAdded =
+      !newSeriesCharacterIds.includes(
+        String(c.id)
+      );
 
-  return match && notAdded;
+    return match && notAdded;
+  });
 
-});
+  if(!keyword){
 
-if(!keyword){
+    document.getElementById(
+      "series-character-suggest"
+    ).innerHTML = "";
+
+    return;
+  }
 
   document.getElementById(
     "series-character-suggest"
-  ).innerHTML = "";
+  ).innerHTML =
 
-  return;
-}
-
-
-document.getElementById(
-  "series-character-suggest"
-).innerHTML =
-
-  filtered.length
-  ? `
-    <div class="suggest-label">
-      👤 人物
-    </div>
-
-    ${filtered.map(c=>`
-
-      <div
-        class="search-item"
-        onclick="
-          addCharacterToNewSeries('${c.id}')
-        "
-      >
-        ${c.name}
+    filtered.length
+    ? `
+      <div class="suggest-label">
+        👤 人物
       </div>
 
-    `).join("")}
-  `
-  : "";
+      ${filtered.map(c=>{
 
+        const relatedSeries =
+          seriesMaster.filter(s =>
 
+            (s.characterIds || [])
+              .map(String)
+              .includes(String(c.id))
 
+          );
+
+        return `
+          <div
+            class="search-item"
+            onclick="addCharacterToNewSeries('${c.id}')"
+          >
+            <div>
+              ${c.name}
+            </div>
+
+            ${
+              relatedSeries.length
+                ? `
+                  <div class="suggest-sub">
+                    ${relatedSeries
+                      .map(s => s.name.slice(0, 8))
+                      .join(" / ")
+                    }
+                  </div>
+                `
+                : ""
+            }
+          </div>
+        `;
+
+      }).join("")}
+    `
+    : "";
 }
-
-
-
-
 
 
 
