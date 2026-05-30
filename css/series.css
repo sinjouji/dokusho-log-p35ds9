@@ -129,3 +129,14 @@ border:1px solid #60564f;
   padding:2px;
   margin:0 2px;
 }
+
+.series-list-name{
+  font-size:14px;
+  font-weight:600;
+}
+
+.series-list-date{
+  margin-top:3px;
+  font-size:10px;
+  color:#888;
+}
