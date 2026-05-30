@@ -62,13 +62,31 @@ function renderSeriesBookList(){
   );
 	//ソート
 	const sorted = sortSeries(filteredSeries);
+	const latestDate =
+  getSeriesLatestReadDate(s);
 			
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
 			d.className = "card ";
-			d.textContent = s.name;
+			
+			
+			d.innerHTML = `
+  <div class="series-list-name">
+    ${s.name}
+  </div>
 
+  ${
+    latestDate
+      ? `
+        <div class="series-list-date">
+          最新読了：${latestDate}
+        </div>
+      `
+      : ""
+  }
+`;
+			
 		d.onclick = ()=> openSeries(s);
 		main.appendChild(d);
 	});
