@@ -538,10 +538,13 @@ function getCharacterSeriesText(character){
 //==============================
 function changeCharactersSortMode(){
 
-	charsSortMode =
-		document.getElementById("characters-sort-select").value;
-		
-		renderCharacterList();
+  charsSortMode =
+    document.getElementById(
+      "characters-sort-select"
+    ).value;
 
+  console.log("charsSortMode:", charsSortMode);
+
+  renderCharacterList();
 }
 
