@@ -49,9 +49,32 @@ function renderCharacterList(){
 
 		sorted.forEach(c=>{
 			const d = document.createElement('div');
+			
 			d.className = "card";
-			d.textContent = c.name;
+			
+			
+			const relatedSeries =
+  seriesMaster.filter(s =>
+    (s.characterIds || [])
+      .map(String)
+      .includes(String(c.id))
+  );
 
+d.innerHTML = `
+  <div class="character-list-name">
+    ${c.name}
+  </div>
+
+  ${
+    relatedSeries.length
+      ? `
+        <div class="character-list-series">
+          ${relatedSeries.map(s => s.name).join(" / ")}
+        </div>
+      `
+      : ""
+  }
+`;
 			d.onclick = ()=> openCharacterModal(c);
 
 			main.appendChild(d);
