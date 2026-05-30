@@ -484,6 +484,22 @@ console.log(
 		);
 	}
 	return arr;
+	
+	
+	
+	if(
+  charsSortMode === "series-asc" ||
+  charsSortMode === "series-desc"
+){
+
+  console.log(
+    arr.map(c=>({
+      name: c.name,
+      series: getCharacterSeriesText(c)
+    }))
+  );
+
+}
 
 
 if(charsSortMode === "series-asc"){
@@ -521,21 +537,6 @@ console.log(
   arr.map(c => getCharacterSeriesText(c))
 );
 }
-
-if(
-  charsSortMode === "series-asc" ||
-  charsSortMode === "series-desc"
-){
-
-  console.log(
-    arr.map(c=>({
-      name: c.name,
-      series: getCharacterSeriesText(c)
-    }))
-  );
-
-}
-
 
 }
 
