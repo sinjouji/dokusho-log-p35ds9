@@ -495,6 +495,10 @@ if(charsSortMode === "series-asc"){
 }
 
 if(charsSortMode === "series-desc"){
+console.log(
+  "before",
+  arr.map(c => getCharacterSeriesText(c))
+);
 
   arr.sort((a,b)=>
 
@@ -505,6 +509,10 @@ if(charsSortMode === "series-desc"){
       )
 
   );
+  console.log(
+  "after",
+  arr.map(c => getCharacterSeriesText(c))
+);
 }
 
 
@@ -517,20 +525,16 @@ if(charsSortMode === "series-desc"){
 //==============================
 function getCharacterSeriesText(character){
 
-  const relatedSeries =
-    seriesMaster.filter(s =>
-
+  return seriesMaster
+    .filter(s =>
       (s.characterIds || [])
         .map(String)
         .includes(String(character.id))
-
-    );
-
-  return relatedSeries
+    )
     .map(s => s.name || "")
+    .sort((a,b)=>a.localeCompare(b, "ja"))
     .join(" / ");
 }
-
 
 
 //==============================
