@@ -262,11 +262,12 @@ function renderSeriesSearchArea(){
 			<select id="series-sort-select"
 				onchange="changeSeriesSortMode()">
 			
+			<option value="stitle-asc">タイトル↓</option>
+			<option value="stitle-desc">タイトル↑</option>
+			
 			<option value="sread-desc">読了日新</option>
 			<option value="sread-asc">読了日古</option>
 			
-			<option value="stitle-asc">タイトル↓</option>
-			<option value="stitle-desc">タイトル↑</option>
 			</select>
 		
 		<div id="series-suggest"></div>

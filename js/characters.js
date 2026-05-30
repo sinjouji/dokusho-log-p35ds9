@@ -486,7 +486,7 @@ function sortCharacters(list){
 function changeCharactersSortMode(){
 
 	charsSortMode =
-		document.getElementById("chars-sort-select").value;
+		document.getElementById("characters-sort-select").value;
 		
 		renderCharacterList();
 
