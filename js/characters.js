@@ -456,6 +456,11 @@ function removeSeriesFromCharacter(
 //==============================
 function sortCharacters(list){
 
+console.log(
+  "sortCharacters called:",
+  charsSortMode
+);
+
 	const arr = [...list];
 	
 	//名前順
@@ -493,6 +498,8 @@ if(charsSortMode === "series-asc"){
 
   );
 }
+
+console.log("check before series-desc");
 
 if(charsSortMode === "series-desc"){
 console.log(
