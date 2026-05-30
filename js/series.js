@@ -188,17 +188,33 @@ function sortSeries(list){
 	}
 	
 //読了日順	
-//	if(seriesSortMode === "sread-asc"){
-//		arr.sort((a,b)=>
-//			toDateNum(b) - toDateNum(a)
-//		);
-//	}
-	
-//	if(seriesSortMode === "sread-desc"){
-//		arr.sort((a,b)=>
-//			toDateNum(a) - toDateNum(b)
-//		);
-//	}
+	if(seriesSortMode === "sread-asc"){
+
+  arr.sort((a,b)=>
+
+    getSeriesLatestReadDate(a)
+      .localeCompare(
+        getSeriesLatestReadDate(b),
+        "ja"
+      )
+
+  );
+
+}
+
+if(seriesSortMode === "sread-desc"){
+
+  arr.sort((a,b)=>
+
+    getSeriesLatestReadDate(b)
+      .localeCompare(
+        getSeriesLatestReadDate(a),
+        "ja"
+      )
+
+  );
+
+}
 	
 	
 	return arr;
@@ -843,9 +859,34 @@ async function deleteSeries(id){
 //====================
 //シリーズ内作品の最新読了日取得
 //====================
-//function getSeriesLastRead(series){
-//関連作品から最新の日付を取得するやーつ
-//}
 
+function getSeriesLatestReadDate(series){
+
+  const relatedBooks =
+    books.filter(b =>
+
+      (series.bookIds || [])
+        .map(String)
+        .includes(String(b.id))
+
+    );
+
+  const dates = [];
+
+  relatedBooks.forEach(b=>{
+
+    (b.readDates || b.dates || [])
+      .forEach(date=>{
+
+        dates.push(date);
+
+      });
+
+  });
+
+  return dates.length
+    ? dates.sort().slice(-1)[0]
+    : "";
+}
 
 
