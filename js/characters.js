@@ -502,41 +502,41 @@ console.log(
 }
 
 
-if(charsSortMode === "series-asc"){
+//if(charsSortMode === "series-asc"){
 
-  arr.sort((a,b)=>
+//  arr.sort((a,b)=>
 
-    getCharacterSeriesText(a)
-      .localeCompare(
-        getCharacterSeriesText(b),
-        "ja"
-      )
+//    getCharacterSeriesText(a)
+//      .localeCompare(
+//        getCharacterSeriesText(b),
+//        "ja"
+//      )
 
-  );
-}
+//  );
+//}
 
-console.log("check before series-desc");
+//console.log("check before series-desc");
 
-if(charsSortMode === "series-desc"){
-console.log(
-  "before",
-  arr.map(c => getCharacterSeriesText(c))
-);
+//if(charsSortMode === "series-desc"){
+//console.log(
+//  "before",
+//  arr.map(c => getCharacterSeriesText(c))
+//);
 
-  arr.sort((a,b)=>
+//  arr.sort((a,b)=>
 
-    getCharacterSeriesText(b)
-      .localeCompare(
-        getCharacterSeriesText(a),
-        "ja"
-      )
+//    getCharacterSeriesText(b)
+//      .localeCompare(
+//        getCharacterSeriesText(a),
+//        "ja"
+//      )
 
-  );
-  console.log(
-  "after",
-  arr.map(c => getCharacterSeriesText(c))
-);
-}
+//  );
+//  console.log(
+//  "after",
+//  arr.map(c => getCharacterSeriesText(c))
+//);
+//}
 
 }
 
