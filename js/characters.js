@@ -114,6 +114,9 @@ function renderCharacterSearchArea(){
 			
 		<option value="cname-asc">名前↓</option>
 		<option value="cname-desc">名前↑</option>
+		
+		<option value="series-asc">シリーズ↓</option>
+		<option value="series-desc">シリーズ↑</option>
 		</select>
 		
 	
@@ -476,6 +479,56 @@ function sortCharacters(list){
 		);
 	}
 	return arr;
+
+
+if(charsSortMode === "series-asc"){
+
+  arr.sort((a,b)=>
+
+    getCharacterSeriesText(a)
+      .localeCompare(
+        getCharacterSeriesText(b),
+        "ja"
+      )
+
+  );
+}
+
+if(charsSortMode === "series-desc"){
+
+  arr.sort((a,b)=>
+
+    getCharacterSeriesText(b)
+      .localeCompare(
+        getCharacterSeriesText(a),
+        "ja"
+      )
+
+  );
+}
+
+
+}
+
+
+
+//==============================
+//関連シリーズでソート
+//==============================
+function getCharacterSeriesText(character){
+
+  const relatedSeries =
+    seriesMaster.filter(s =>
+
+      (s.characterIds || [])
+        .map(String)
+        .includes(String(character.id))
+
+    );
+
+  return relatedSeries
+    .map(s => s.name || "")
+    .join(" / ");
 }
 
 
