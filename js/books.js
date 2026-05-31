@@ -229,39 +229,3 @@ function incrementVolumeTitle(title){
   );
 }
 
-
-
-//１回だけのやつ
-async function migrateReadDates(){
-
-  let count = 0;
-
-  books.forEach(book=>{
-
-    if(
-      Array.isArray(book.dates) &&
-      book.dates.length &&
-
-      (
-        !Array.isArray(book.readDates) ||
-        !book.readDates.length
-      )
-    ){
-
-      book.readDates = [
-        ...book.dates
-      ];
-
-      count++;
-
-    }
-
-  });
-
-  await saveData();
-
-  console.log(
-    `migrated ${count} books`
-  );
-
-}
