@@ -158,7 +158,7 @@ function renderSeriesDetail(s){
     getLatestReadDate(b);
     
     
-      if(!getLatestReadDate(b)){
+      if(!latestDate){
   console.log(
     "未読扱い:",
     b.title,
@@ -172,7 +172,7 @@ function renderSeriesDetail(s){
   d.innerHTML = `
     <span class="mini-s-title">
       ${b.title}
-    </splan><br>
+    </span><br>
 
     <span class="
       mini-read-status
