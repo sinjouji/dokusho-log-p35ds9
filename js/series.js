@@ -74,9 +74,6 @@ function renderSeriesBookList(){
   const progress =
   getSeriesProgress(s);
   
-  const bookCount =
-  relatedBooks.length;
-	
 			
 			d.innerHTML = `
   <div class="series-list-name">
@@ -118,6 +115,10 @@ function renderSeriesDetail(s){
   const relatedBooks = books.filter(b =>
     (s.bookIds || []).map(String).includes(String(b.id))
   );
+
+  const bookCount =
+  relatedBooks.length;
+	
 
   const relatedCharacters = characters.filter(c =>
     (s.characterIds || []).map(String).includes(String(c.id))
