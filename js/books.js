@@ -11,17 +11,8 @@
 //==============================
 function getLatestReadDate(book){
 
-  const dates =
-
-    Array.isArray(book.readDates) &&
-    book.readDates.length
-
-      ? book.readDates
-
-      : (book.dates || []);
-
   return (
-    [...dates]
+    [...(book.readDates || [])]
       .filter(Boolean)
       .sort()
       .at(-1)
@@ -229,3 +220,41 @@ function incrementVolumeTitle(title){
   );
 }
 
+
+
+//１回だけのやつ
+// 一度実行済み
+// 念のため数日保管
+//async function migrateReadDates(){
+
+//  let count = 0;
+
+//  books.forEach(book=>{
+
+//    if(
+//      Array.isArray(book.dates) &&
+//      book.dates.length &&
+
+//      (
+//        !Array.isArray(book.readDates) ||
+//        !book.readDates.length
+//      )
+//    ){
+
+//      book.readDates = [
+//        ...book.dates
+//      ];
+
+//      count++;
+
+//    }
+
+//  });
+
+//  await saveData();
+
+//  console.log(
+//    `migrated ${count} books`
+//  );
+
+//}
