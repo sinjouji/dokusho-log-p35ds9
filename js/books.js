@@ -156,6 +156,9 @@ async function duplicateBook(id){
     originalReadDates.length
       ? [today]
       : [];
+   
+   const isRead =
+    (book.readDates || []).length > 0;
 
   const newBook = {
     ...book,
@@ -167,9 +170,12 @@ async function duplicateBook(id){
 
     memo: "",
 
-    readDates: newReadDates,
+    type: book.type,
 
-    type: "normal",
+    readDates:
+      (book.readDates || []).length
+        ? [today]
+        : [],
 
     tagIds:
       [...(book.tagIds || [])],
