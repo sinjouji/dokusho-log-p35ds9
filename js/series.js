@@ -160,11 +160,11 @@ function renderSeriesDetail(s){
   d.className = "card mini-s-card";
 
   d.innerHTML = `
-    <div class="mini-s-title">
+    <span class="mini-s-title">
       ${b.title}
-    </div>
+    </splan><br>
 
-    <div class="
+    <span class="
       mini-read-status
       ${latestDate ? "read" : "unread"}
     ">
@@ -173,7 +173,7 @@ function renderSeriesDetail(s){
           ? `既読：${latestDate}`
           : "未読"
       }
-    </div>
+    </span>
   `;
 
   d.onclick = () => openBookDetailModal(b);
