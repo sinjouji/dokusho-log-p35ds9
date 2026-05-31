@@ -932,3 +932,37 @@ function getSeriesLatestReadDate(series){
 }
 
 
+//====================
+//一覧に巻数チップ表示用
+//====================
+function getSeriesProgress(series){
+
+  const relatedBooks =
+    books.filter(b =>
+
+      (series.bookIds || [])
+        .includes(String(b.id))
+
+    );
+
+  return relatedBooks
+    .sort((a,b)=>
+
+      (a.volume || 0) -
+      (b.volume || 0)
+
+    )
+    .map(b=>
+
+      getLatestReadDate(b)
+        ? "●"
+        : "○"
+
+    )
+    .join("");
+
+}
+
+
+
+
