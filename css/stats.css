@@ -47,4 +47,37 @@
 }
 
 
+/*ダッシュボード*/
+.stats-dashboard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(90px, 1fr));
+  gap:10px;
+  margin:14px 0 18px;
+}
 
+.stats-card{
+  background:#fffffc;
+  border:1px solid #e8b8a0;
+  border-radius:16px;
+  padding:10px 8px;
+  text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.04);
+}
+
+.stats-icon{
+  font-size:18px;
+  line-height:1;
+}
+
+.stats-number{
+  margin-top:4px;
+  font-size:22px;
+  font-weight:bold;
+  color:#60564f;
+}
+
+.stats-label{
+  margin-top:2px;
+  font-size:10px;
+  color:#888;
+}
