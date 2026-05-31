@@ -74,31 +74,27 @@ function renderSeriesBookList(){
   const progress =
   getSeriesProgress(s);
   
+    const bookCount =
+  (s.bookIds || []).length;
+	
 			
-			d.innerHTML = `
+	d.innerHTML = `
   <div class="series-list-name">
     ${s.name}
   </div>
 
-  ${
-    latestDate
-      ? `
-        <div class="series-list-date">
-        ${bookCount}冊
-        ・
-          最新読了：${latestDate}
-        </div>
-      `
-      : ""
-  }
-  
+  <div class="series-list-date">
+    ${bookCount}冊
+    ${
+      latestDate
+        ? `・最新読了：${latestDate}`
+        : ""
+    }
+  </div>
 
   <div class="series-progress">
-  ${progress}
-</div>
-
-
-  
+    ${progress}
+  </div>
 `;
 			
 		d.onclick = ()=> openSeries(s);
@@ -116,9 +112,6 @@ function renderSeriesDetail(s){
     (s.bookIds || []).map(String).includes(String(b.id))
   );
 
-  const bookCount =
-  relatedBooks.length;
-	
 
   const relatedCharacters = characters.filter(c =>
     (s.characterIds || []).map(String).includes(String(c.id))
