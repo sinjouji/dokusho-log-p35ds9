@@ -11,13 +11,19 @@
 //==============================
 function getLatestReadDate(book){
 
-  return (
-  [...(book.readDates || [])]
-    .sort()
-    .at(-1)
-  ) || "";
-}
+  const dates =
+    book.readDates ||
+    book.dates ||
+    [];
 
+  return (
+    [...dates]
+      .filter(Boolean)
+      .sort()
+      .at(-1)
+  ) || "";
+
+}
 
 
 //==============================
