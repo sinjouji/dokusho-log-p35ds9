@@ -151,12 +151,35 @@ function renderSeriesDetail(s){
       const list = document.getElementById("series-books");
       if(list){
         relatedBooks.forEach(b=>{
-          const d = document.createElement("div");
-          d.className = "card mini-s-card";
-          d.textContent = b.title;
-          d.onclick = () => openBookDetailModal(b);
-          list.appendChild(d);
-        });
+
+  const d = document.createElement("div");
+
+  const latestDate =
+    getLatestReadDate(b);
+
+  d.className = "card mini-s-card";
+
+  d.innerHTML = `
+    <div class="mini-s-title">
+      ${b.title}
+    </div>
+
+    <div class="
+      mini-read-status
+      ${latestDate ? "read" : "unread"}
+    ">
+      ${
+        latestDate
+          ? `既読：${latestDate}`
+          : "未読"
+      }
+    </div>
+  `;
+
+  d.onclick = () => openBookDetailModal(b);
+
+  list.appendChild(d);
+});
       }
 
       const list2 = document.getElementById("series-chars");
