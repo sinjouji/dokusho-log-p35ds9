@@ -163,12 +163,53 @@ border:1px solid #60564f;
 
 .series-progress{
 
-  margin-top:4px;
+  margin-top:6px;
 
-  font-size:12px;
+  display:flex;
 
-  letter-spacing:2px;
+  flex-wrap:wrap;
 
-  color:#60564f;
+  gap:4px;
 
 }
+
+.progress-chip{
+
+  min-width:20px;
+
+  height:20px;
+
+  padding:0 4px;
+
+  border-radius:10px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:11px;
+
+  box-sizing:border-box;
+
+}
+
+.progress-chip.unread{
+
+  border:1px solid #c8b8aa;
+
+  color:#8c8178;
+
+}
+
+.progress-chip.read{
+
+  background:#8c8178;
+
+  color:white;
+
+}
+
+
+
