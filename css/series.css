@@ -140,3 +140,23 @@ border:1px solid #60564f;
   font-size:10px;
   color:#888;
 }
+
+/*詳細での読了状態など表示*/
+.mini-s-title{
+  font-size:8px;
+}
+
+.mini-read-status{
+  margin-top:3px;
+  font-size:9px;
+  color:#999;
+}
+
+.mini-read-status.read{
+  color:#6f9f5f;
+}
+
+.mini-read-status.unread{
+  color:#aaa;
+}
+
