@@ -73,6 +73,9 @@ function renderSeriesBookList(){
   
   const progress =
   getSeriesProgress(s);
+  
+  const bookCount =
+  relatedBooks.length;
 	
 			
 			d.innerHTML = `
@@ -84,6 +87,8 @@ function renderSeriesBookList(){
     latestDate
       ? `
         <div class="series-list-date">
+        ${bookCount}冊
+        ・
           最新読了：${latestDate}
         </div>
       `
