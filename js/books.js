@@ -12,9 +12,9 @@
 function getLatestReadDate(book){
 
   const dates =
-    book.readDates ||
-    book.dates ||
-    [];
+    Array.isArray(book.readDates)
+      ? book.readDates
+      : [];
 
   return (
     [...dates]
@@ -22,7 +22,6 @@ function getLatestReadDate(book){
       .sort()
       .at(-1)
   ) || "";
-
 }
 
 
