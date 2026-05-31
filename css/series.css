@@ -144,12 +144,14 @@ border:1px solid #60564f;
 /*詳細での読了状態など表示*/
 .mini-s-title{
   font-size:8px;
+  display:block;
 }
 
 .mini-read-status{
   margin-top:3px;
   font-size:9px;
   color:#999;
+  display:block;
 }
 
 .mini-read-status.read{
