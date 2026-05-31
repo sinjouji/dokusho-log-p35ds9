@@ -80,10 +80,6 @@ function renderSeriesBookList(){
     ${s.name}
   </div>
 
-  <div class="series-progress">
-  ${progress}
-</div>
-
   ${
     latestDate
       ? `
@@ -94,6 +90,11 @@ function renderSeriesBookList(){
       : ""
   }
   
+
+  <div class="series-progress">
+  ${progress}
+</div>
+
 
   
 `;

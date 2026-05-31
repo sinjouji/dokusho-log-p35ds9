@@ -33,6 +33,8 @@ setActiveMenu("menu-stats");
   `;
 
 
+//ダッシュボード
+renderStatsDashboard(main);
   
   //年間目標
   const yearlyCount = getYearReadCount(year);
@@ -89,6 +91,10 @@ renderMonthlyGraph(main, year);
 //==============================
 //====小さめ表示のカレンダー（統計ページ用）
 //==============================
+// TODO:
+// 日付を左上表示
+// 読了数を中央表示
+// ヒートマップ色と連動したチップ化
 function renderMiniCalendar(main){
 
   const now = miniMonth;
@@ -352,4 +358,64 @@ function getHeatColor(count){
 
 
 
+//==============================
+//ダッシュボード
+//==============================
+function renderStatsDashboard(main){
 
+  const totalBooks =
+    books.length;
+
+  const totalSeries =
+    seriesMaster.length;
+
+  const totalCharacters =
+    characters.length;
+
+  const readBooks =
+    books.filter(b =>
+      (b.readDates || []).length
+    ).length;
+
+  const wishBooks =
+    books.filter(b =>
+      b.type === "wish"
+    ).length;
+
+  const dash = document.createElement("div");
+  dash.className = "stats-dashboard";
+
+  dash.innerHTML = `
+    <div class="stats-card">
+      <div class="stats-icon">📚</div>
+      <div class="stats-number">${totalBooks}</div>
+      <div class="stats-label">総冊数</div>
+    </div>
+
+    <div class="stats-card">
+      <div class="stats-icon">✅</div>
+      <div class="stats-number">${readBooks}</div>
+      <div class="stats-label">読了冊数</div>
+    </div>
+
+    <div class="stats-card">
+      <div class="stats-icon">💭</div>
+      <div class="stats-number">${wishBooks}</div>
+      <div class="stats-label">wish</div>
+    </div>
+
+    <div class="stats-card">
+      <div class="stats-icon">📖</div>
+      <div class="stats-number">${totalSeries}</div>
+      <div class="stats-label">シリーズ</div>
+    </div>
+
+    <div class="stats-card">
+      <div class="stats-icon">👤</div>
+      <div class="stats-number">${totalCharacters}</div>
+      <div class="stats-label">人物</div>
+    </div>
+  `;
+
+  main.appendChild(dash);
+}
