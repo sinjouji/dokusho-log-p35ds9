@@ -80,6 +80,10 @@ function renderSeriesBookList(){
     ${s.name}
   </div>
 
+  <div class="series-progress">
+  ${progress}
+</div>
+
   ${
     latestDate
       ? `
@@ -90,9 +94,7 @@ function renderSeriesBookList(){
       : ""
   }
   
-  <div class="series-progress">
-  ${progress}
-</div>
+
   
 `;
 			
@@ -965,29 +967,37 @@ function getSeriesProgress(series){
     );
 
   const sorted =
-    [...relatedBooks];
+    [...relatedBooks]
+      .sort((a,b)=>
+
+        (a.volume || 0) -
+        (b.volume || 0)
+
+      );
 
   return sorted
     .map((b,index)=>{
 
-      const num =
-        index + 1;
-
       const read =
         !!getLatestReadDate(b);
 
-      return read
-        ? toCircledNumber(num, true)
-        : toCircledNumber(num, false);
+      return `
+        <span class="
+          progress-chip
+          ${read ? "read" : "unread"}
+        ">
+          ${index + 1}
+        </span>
+      `;
 
     })
     .join("");
 
 }
 
-//
+//===========================
 //巻数チップ補助巻数
-//
+//===========================
 function toCircledNumber(num, read){
 
   const filled = [
