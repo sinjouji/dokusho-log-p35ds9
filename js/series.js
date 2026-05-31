@@ -70,6 +70,9 @@ function renderSeriesBookList(){
 			
 			const latestDate =
   getSeriesLatestReadDate(s);
+  
+  const progress =
+  getSeriesProgress(s);
 	
 			
 			d.innerHTML = `
@@ -86,6 +89,11 @@ function renderSeriesBookList(){
       `
       : ""
   }
+  
+  <div class="series-progress">
+  ${progress}
+</div>
+  
 `;
 			
 		d.onclick = ()=> openSeries(s);
@@ -948,20 +956,24 @@ function getSeriesLatestReadDate(series){
 function getSeriesProgress(series){
 
   const relatedBooks =
-    books.filter(b =>
+    books.filter(b=>
 
       (series.bookIds || [])
+        .map(String)
         .includes(String(b.id))
 
     );
 
-  return relatedBooks
-    .sort((a,b)=>
+  const sorted =
+    [...relatedBooks]
+      .sort((a,b)=>
 
-      (a.volume || 0) -
-      (b.volume || 0)
+        (a.volume || 0) -
+        (b.volume || 0)
 
-    )
+      );
+
+  return sorted
     .map(b=>
 
       getLatestReadDate(b)
@@ -972,7 +984,6 @@ function getSeriesProgress(series){
     .join("");
 
 }
-
 
 
 
