@@ -965,25 +965,50 @@ function getSeriesProgress(series){
     );
 
   const sorted =
-    [...relatedBooks]
-      .sort((a,b)=>
-
-        (a.volume || 0) -
-        (b.volume || 0)
-
-      );
+    [...relatedBooks];
 
   return sorted
-    .map(b=>
+    .map((b,index)=>{
 
-      getLatestReadDate(b)
-        ? "●"
-        : "○"
+      const num =
+        index + 1;
 
-    )
+      const read =
+        !!getLatestReadDate(b);
+
+      return read
+        ? toCircledNumber(num, true)
+        : toCircledNumber(num, false);
+
+    })
     .join("");
 
 }
 
+//
+//巻数チップ補助巻数
+//
+function toCircledNumber(num, read){
+
+  const filled = [
+    "⓿","❶","❷","❸","❹",
+    "❺","❻","❼","❽","❾","❿"
+  ];
+
+  const normal = [
+    "⓪","①","②","③","④",
+    "⑤","⑥","⑦","⑧","⑨","⑩"
+  ];
+
+  if(num <= 10){
+    return read
+      ? filled[num]
+      : normal[num];
+  }
+
+  return read
+    ? "●"
+    : "○";
+}
 
 
