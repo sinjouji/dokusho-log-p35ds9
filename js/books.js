@@ -148,6 +148,14 @@ async function duplicateBook(id){
 
   const today =
     new Date().toISOString().slice(0, 10);
+    
+  const originalReadDates =
+    book.readDates || [];
+
+  const newReadDates =
+    originalReadDates.length
+      ? [today]
+      : [];
 
   const newBook = {
     ...book,
@@ -159,7 +167,7 @@ async function duplicateBook(id){
 
     memo: "",
 
-    readDates: [today],
+    readDates: newReadDates,
 
     type: "normal",
 
