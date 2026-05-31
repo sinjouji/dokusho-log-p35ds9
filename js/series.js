@@ -74,8 +74,15 @@ function renderSeriesBookList(){
   const progress =
   getSeriesProgress(s);
   
-    const bookCount =
-  (s.bookIds || []).length;
+    const relatedBooks =
+  books.filter(b =>
+    (s.bookIds || [])
+      .map(String)
+      .includes(String(b.id))
+  );
+
+const bookCount =
+  relatedBooks.length;
 	
 			
 	d.innerHTML = `
