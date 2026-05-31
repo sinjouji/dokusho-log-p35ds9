@@ -15,20 +15,15 @@ function getLatestReadDate(book){
     Array.isArray(book.readDates)
       ? book.readDates
       : [];
-if(!getLatestReadDate(b)){
-  console.log(
-    "未読扱い:",
-    b.title,
-    b.readDates,
-    b.dates
-  );
-}
+
   return (
     [...dates]
       .filter(Boolean)
       .sort()
       .at(-1)
   ) || "";
+  
+  
 }
 
 

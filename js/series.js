@@ -156,6 +156,16 @@ function renderSeriesDetail(s){
 
   const latestDate =
     getLatestReadDate(b);
+    
+    
+      if(!getLatestReadDate(b)){
+  console.log(
+    "未読扱い:",
+    b.title,
+    b.readDates,
+    b.dates
+  );
+}
 
   d.className = "card mini-s-card";
 
