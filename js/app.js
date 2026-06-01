@@ -2692,6 +2692,9 @@ async function loadData(){
       localStorage.getItem("viewMode")
       || "card";
 
+      const lastPage =
+        localStorage.getItem("lastPage")
+        || "home";
 
     // UI初期化
     renderTagFilter();
@@ -2701,8 +2704,7 @@ async function loadData(){
 //    setupTagToggle();
 
 //    renderCalendar();
-    renderHome();
-    go('home');
+    go(lastPage);
 
 
   }catch(e){
