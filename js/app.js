@@ -226,8 +226,6 @@ function go(page){
     page
   );
   
-  render();
-
   document.querySelectorAll("[id^='page-']").forEach(el=>{
     el.style.display = "none";
   });
