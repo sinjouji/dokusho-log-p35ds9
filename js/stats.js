@@ -214,6 +214,10 @@ renderStats();
     cell.style.background =
       getHeatColor(count);
 
+    if(count >= 5){
+      cell.classList.add("heat-max");
+    }
+
     // 今日
     const today =
       new Date().toISOString().slice(0,10);
@@ -239,9 +243,6 @@ renderStats();
   }
 `;
 
-    if(count >= 5){
-      cell.classList.add("heat-max");
-    }
 
 
     cell.onclick = ()=>{
