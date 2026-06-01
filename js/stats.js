@@ -210,6 +210,10 @@ renderStats();
       document.createElement("div");
 
     cell.className = "mini-day";
+    
+    if(count >= 5){
+      cell.classList.add("heat-max");
+    }
 
     cell.style.background =
       getHeatColor(count);
@@ -388,9 +392,8 @@ function getHeatColor(count){
   if(count === 2) return "#efecad"; //女郎花
   if(count === 3) return "#c8ddb0"; //苗
   
-  if(count === 4) return "#a2d7dd"; //瓶覗
-  return "#89c3eb";//勿忘草
-//  return "#84c9d4"; //gptちゃん提案色
+  if(count === 4) return "#9fd3d8"; //
+  return "#7c94c0";//御空
   }
 
 
