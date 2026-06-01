@@ -394,7 +394,7 @@ function getHeatColor(count){
   if(count === 2) return "#efecad"; //女郎花
   if(count === 3) return "#c7dc68"; //若苗
   
-  if(count === 4) return "#a2d7dd"; //瓶覗
+  if(count === 4) return "#7baa17"; //青柳
   return "#007c45";//常盤
   }
 
