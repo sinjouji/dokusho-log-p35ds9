@@ -386,7 +386,7 @@ function getHeatColor(count){
   if(count === 0) return "#e1e5e4"; //蕎麦切
   if(count === 1) return "#f8d8c6"; //乙女
   if(count === 2) return "#efecad"; //女郎花
-  if(count === 3) return "#fef263"; //黄檗
+  if(count === 3) return "#b9d08b"; //若葉
   if(count === 4) return "##a2cc89"; //若緑
   return "#a2d7dd"; //瓶覗
   }
