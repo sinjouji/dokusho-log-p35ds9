@@ -224,7 +224,7 @@ renderStats();
 
     if(dateStr === today){
       cell.style.border =
-        "3px solid #f8a484"
+        "4px solid #d9a27c"
     }
 
     cell.innerHTML = `
@@ -390,8 +390,8 @@ function changeStatsYear(diff){
 //==============================
 function getHeatColor(count){
   if(count === 0) return "#e1e5e4"; //蕎麦切
-  if(count === 1) return "#f8d8c6"; //乙女
-    if(count === 2) return "#fcd475"; //卵
+  if(count === 1) return "#f2c3ca"; //撫子
+  if(count === 2) return "#fcd475"; //卵
   if(count === 3) return "#efecad"; //女郎花
   
   if(count === 4) return "#c7dc68"; //若苗
