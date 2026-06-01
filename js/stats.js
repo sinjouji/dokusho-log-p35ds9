@@ -16,26 +16,28 @@ setActiveMenu("menu-stats");
   const main = document.getElementById("page-stats");
   main.innerHTML = "";
 
-  const year = statsYear;
+main.innerHTML = "";
 
-  main.innerHTML = `
-    <div style="
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:16px;
-    ">
-      <button onclick="changeStatsYear(-1)">←</button>
-
-      <h2>${year}年 統計</h2>
-
-      <button onclick="changeStatsYear(1)">→</button>
-    </div>
-  `;
-
-
-//ダッシュボード
 renderStatsDashboard(main);
+
+const year = statsYear;
+
+const head = document.createElement("div");
+
+head.style.display = "flex";
+head.style.justifyContent = "space-between";
+head.style.alignItems = "center";
+head.style.marginBottom = "16px";
+
+head.innerHTML = `
+  <button onclick="changeStatsYear(-1)">←</button>
+
+  <h2>${year}年 統計</h2>
+
+  <button onclick="changeStatsYear(1)">→</button>
+`;
+
+main.appendChild(head);
   
   //年間目標
   const yearlyCount = getYearReadCount(year);
