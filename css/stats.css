@@ -157,3 +157,23 @@
   background:#78ccd2;
   border-radius:999px;
 }
+
+
+.stats-calendar-card{
+  margin:18px 0;
+  padding:12px;
+  border:1px solid #ead2c2;
+  border-radius:18px;
+  background:#fffffc;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+
+.stats-calendar-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+  font-size:14px;
+  font-weight:bold;
+}
+
