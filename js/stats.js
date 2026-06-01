@@ -221,46 +221,43 @@ function renderMiniCalendar(main){
 //==============================
 function renderMonthlyGraph(main, year){
 
-  const counts = getMonthlyCounts(year);
+  const counts =
+    getMonthlyCounts(year);
 
-  const wrap = document.createElement("div");
+  const maxCount =
+    Math.max(...counts, 1);
 
-  wrap.style.marginTop = "20px";
+  const wrap =
+    document.createElement("div");
+
+  wrap.className = "monthly-graph";
 
   counts.forEach((c,i)=>{
 
-    const row = document.createElement("div");
+    const row =
+      document.createElement("div");
 
-    row.style.display = "flex";
-    row.style.alignItems = "center";
-    row.style.gap = "8px";
+    row.className = "monthly-row";
+
+    const percent =
+      c === 0
+        ? 0
+        : (c / maxCount) * 100;
 
     row.innerHTML = `
-  <div style="
-    width:70px;
-    font-size:12px;
-    flex-shrink:0;
-  ">
-    ${i+1}月 (${c}冊)
-  </div>
+      <div class="monthly-label">
+        ${i+1}月 (${c}冊)
+      </div>
 
-  <div style="
-    flex:1;
-    height:12px;
-    background:#eee;
-    border-radius:999px;
-    overflow:hidden;
-  ">
+      <div class="monthly-bar-bg">
 
-    <div style="
-      width:${c*5}px;
-      height:100%;
-      background:#78ccd2;
-    ">
-    </div>
+        <div
+          class="monthly-bar"
+          style="width:${percent}%;"
+        ></div>
 
-  </div>
-`;
+      </div>
+    `;
 
     wrap.appendChild(row);
 
@@ -268,9 +265,6 @@ function renderMonthlyGraph(main, year){
 
   main.appendChild(wrap);
 }
-
-
-
 
 
 //==============================
