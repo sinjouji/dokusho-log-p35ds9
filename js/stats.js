@@ -28,9 +28,6 @@ renderStatsYearHeader(
   main,
   year
 );
-
-renderStatsYearHeader(main, year);
-  
   
   
   const yearCard =
