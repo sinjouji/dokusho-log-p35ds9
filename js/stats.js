@@ -82,13 +82,13 @@ goal.innerHTML = `
   }
   
 //  renderSummary(main);
-renderMiniCalendar(main);
+renderMonthlyGraph(main, year);
 
 const spacer = document.createElement("div");
 spacer.style.height = "24px";
 main.appendChild(spacer);
 
-renderMonthlyGraph(main, year);
+renderMiniCalendar(main);
 // renderReadingHistory(main);
 }
 //==============================
