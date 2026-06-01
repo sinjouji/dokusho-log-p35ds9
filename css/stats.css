@@ -215,3 +215,27 @@
   color:#8aa35b;
   font-weight:bold;
 }
+
+.year-goal{
+  margin:16px 0;
+}
+
+.year-goal-label{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+.year-goal-bar-bg{
+  height:14px;
+  background:#eee;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.year-goal-bar{
+  height:100%;
+  background:#aacf53;
+}
+
+
+
