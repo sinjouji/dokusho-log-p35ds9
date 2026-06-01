@@ -218,13 +218,6 @@ let currentPage = localStorage.getItem("lastPage") || "home";
 //==============================
 
 function go(page){
-
-  currentPage = page;
-  
-  localStorage.setItem(
-    "lastPage",
-    page
-  );
   
   document.querySelectorAll("[id^='page-']").forEach(el=>{
     el.style.display = "none";
@@ -265,6 +258,14 @@ async function saveData(){
   await window.setDoc(
     window.doc(window.db, "app", "data"),
     data
+  );
+
+
+currentPage = page;
+  
+  localStorage.setItem(
+    "lastPage",
+    page
   );
 
   console.log("Firestore保存完了");
