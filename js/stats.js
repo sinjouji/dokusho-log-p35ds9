@@ -47,44 +47,8 @@ main.appendChild(head);
 yearCard.className =
   "stats-year-card";
 
-// 年間目標
-const yearlyCount = getYearReadCount(year);
-
-const percent =
-  Math.min(
-    yearlyCount / yearlyGoal * 100,
-    100
-  );
-
-const goal = document.createElement("div");
-
-goal.style.margin = "16px 0";
-
-goal.innerHTML = `
-  <div style="
-    font-size:14px;
-    margin-bottom:6px;
-  ">
-    年間目標：
-    ${yearlyCount} / ${yearlyGoal}冊
-  </div>
-
-  <div style="
-    height:14px;
-    background:#eee;
-    border-radius:999px;
-    overflow:hidden;
-  ">
-    <div style="
-      width:${percent}%;
-      height:100%;
-      background:#aacf53;
-    "></div>
-  </div>
-`;
-
 if(enableGoal){
-  yearCard.appendChild(goal);
+  renderYearGoal(yearCard, year);
 }
 
 renderMonthlyGraph(yearCard, year);
@@ -507,3 +471,43 @@ function isCreatedInYear(item, year){
 
   return date.getFullYear() === year;
 }
+
+
+
+//==============================
+//年間読了目標数
+//==============================
+function renderYearGoal(main, year){
+
+  const yearlyCount =
+    getYearReadCount(year);
+
+  const percent =
+    Math.min(
+      yearlyCount / yearlyGoal * 100,
+      100
+    );
+
+  const goal =
+    document.createElement("div");
+
+  goal.className = "year-goal";
+
+  goal.innerHTML = `
+    <div class="year-goal-label">
+      年間目標：
+      ${yearlyCount} / ${yearlyGoal}冊
+    </div>
+
+    <div class="year-goal-bar-bg">
+      <div
+        class="year-goal-bar"
+        style="width:${percent}%;"
+      ></div>
+    </div>
+  `;
+
+  main.appendChild(goal);
+}
+
+
