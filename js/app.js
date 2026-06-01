@@ -218,6 +218,16 @@ let currentPage = localStorage.getItem("lastPage") || "home";
 //==============================
 
 function go(page){
+
+  currentPage = page;
+  
+  localStorage.setItem(
+    "lastPage",
+    page
+  );
+  
+  render();
+
   document.querySelectorAll("[id^='page-']").forEach(el=>{
     el.style.display = "none";
   });
@@ -234,14 +244,6 @@ function go(page){
   if(page === 'characters') renderCharacters();
   if(page === 'stats') renderStats();
   
-  currentPage = page;
-  
-  localStorage.setItem(
-    "lastPage",
-    page
-  );
-  
-  render();
 }
 //==============================
 //====🔑データの保存処理：超重要！！
