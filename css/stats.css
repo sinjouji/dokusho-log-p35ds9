@@ -182,25 +182,8 @@
 }
 
 
+.stats-year-card,
 .stats-calendar-card{
-  margin:18px 0;
-  padding:12px;
-  border:1px solid #ead2c2;
-  border-radius:18px;
-  background:#fffffc;
-  box-shadow:0 2px 8px rgba(0,0,0,0.04);
-}
-
-.stats-calendar-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
-  font-size:18px;
-  font-weight:700;
-}
-
-.stats-year-card{
   margin:18px 0;
   padding:16px;
   border:1px solid #ead2c2;
@@ -208,6 +191,25 @@
   background:#fffffc;
   box-shadow:0 2px 8px rgba(0,0,0,0.04);
 }
+
+
+.stats-year-header,
+.stats-calendar-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stats-year-header{
+  margin-bottom:16px;
+}
+
+.stats-calendar-header{
+  margin-bottom:14px;
+  font-size:18px;
+  font-weight:700;
+}
+
 
 .stats-sub{
   margin-top:2px;
@@ -235,13 +237,6 @@
 .year-goal-bar{
   height:100%;
   background:#aacf53;
-}
-
-.stats-year-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
 }
 
 
