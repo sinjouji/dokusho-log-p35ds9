@@ -391,11 +391,11 @@ function changeStatsYear(diff){
 function getHeatColor(count){
   if(count === 0) return "#e1e5e4"; //蕎麦切
   if(count === 1) return "#f8d8c6"; //乙女
-  if(count === 2) return "#fcd697"; //密陀僧
-  if(count === 3) return "#efecad"; //女郎花
+  if(count === 2) return "#efecad"; //女郎花
+  if(count === 3) return "#bcd079"; //苗
   
-  if(count === 4) return "#9fd3d8"; //
-  return "#68b7a1";//青磁
+  if(count === 4) return "#a2d7dd"; //瓶覗
+  return "#4f8a5d";//緑青
   }
 
 
