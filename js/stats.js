@@ -391,8 +391,8 @@ function changeStatsYear(diff){
 function getHeatColor(count){
   if(count === 0) return "#e1e5e4"; //蕎麦切
   if(count === 1) return "#f8d8c6"; //乙女
-  if(count === 2) return "#efecad"; //女郎花
-  if(count === 3) return "#fcd475"; //卵
+    if(count === 2) return "#fcd475"; //卵
+  if(count === 3) return "#efecad"; //女郎花
   
   if(count === 4) return "#c7dc68"; //若苗
   return "#4f8a5d";//緑青
