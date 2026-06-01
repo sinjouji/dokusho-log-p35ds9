@@ -107,7 +107,6 @@ function renderMiniCalendar(main){
   header.style.display = "flex";
   header.style.justifyContent = "space-between";
   header.style.alignItems = "center";
-  header.style.justifyContent = "top";
   header.style.marginBottom = "8px";
 
   const prev = document.createElement("button");
@@ -141,11 +140,11 @@ function renderMiniCalendar(main){
   const map = {};
 
   books.forEach(b=>{
-    (b.readDates || b.dates || []).forEach(date=>{
-      map[date] = map[date] || [];
-      map[date].push(b);
-    });
+  (b.readDates || []).forEach(date=>{
+    map[date] = map[date] || [];
+    map[date].push(b);
   });
+});
 
   // ===== カレンダー =====
   
@@ -195,9 +194,21 @@ function renderMiniCalendar(main){
         "2px solid #f8a484"
     }
 
-    cell.innerHTML =
-      "<div>" + d + "</div>" +
-      "<div>" + (count || "") + "</div>";
+    cell.innerHTML = `
+  <div class="mini-day-date">
+    ${d}
+  </div>
+
+  ${
+    count
+      ? `
+        <div class="mini-day-count">
+          ${count}
+        </div>
+      `
+      : ""
+  }
+`;
 
     cell.onclick = ()=>{
       if(!map[dateStr]) return;
@@ -342,7 +353,7 @@ function changeStatsYear(diff){
 //====ヒートマップカラー
 //==============================
 function getHeatColor(count){
-  if(count === 0) return "#9b8e82"; //鼯鼠
+  if(count === 0) return "#e1e5e4"; //蕎麦切
   if(count === 1) return "#f8d8c6"; //乙女
   if(count === 2) return "#f7ed92"; //承和
   if(count === 3) return "#fddb5d"; //くちなし
