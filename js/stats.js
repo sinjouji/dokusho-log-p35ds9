@@ -423,6 +423,26 @@ function renderStatsDashboard(main){
     books.filter(b =>
       b.type === "wish"
     ).length;
+    
+    
+    //（＋⚪︎）用
+    const year =
+  statsYear;
+
+const addedBooks =
+  books.filter(b =>
+    isCreatedInYear(b, year)
+  ).length;
+
+const addedSeries =
+  seriesMaster.filter(s =>
+    isCreatedInYear(s, year)
+  ).length;
+
+const addedCharacters =
+  characters.filter(c =>
+    isCreatedInYear(c, year)
+  ).length;
 
   const dash = document.createElement("div");
   dash.className = "stats-dashboard";
@@ -431,6 +451,7 @@ function renderStatsDashboard(main){
     <div class="stats-card">
       <div class="stats-icon">📚</div>
       <div class="stats-number">${totalBooks}</div>
+      <div class="stats-sub">+${addedBooks}</div>
       <div class="stats-label">総冊数</div>
     </div>
 
@@ -449,15 +470,32 @@ function renderStatsDashboard(main){
     <div class="stats-card">
       <div class="stats-icon">📖</div>
       <div class="stats-number">${totalSeries}</div>
+      <div class="stats-sub">+${addedSeries}</div>
       <div class="stats-label">シリーズ</div>
     </div>
 
     <div class="stats-card">
       <div class="stats-icon">👤</div>
       <div class="stats-number">${totalCharacters}</div>
+      <div class="stats-sub">+${addedCharacters}</div>
       <div class="stats-label">人物</div>
     </div>
   `;
 
   main.appendChild(dash);
+}
+
+
+
+//==============================
+//ダッシュボード改造（＋⚪︎冊）用
+//==============================
+function isCreatedInYear(item, year){
+
+  const date =
+    new Date(Number(item.id));
+
+  if(isNaN(date)) return false;
+
+  return date.getFullYear() === year;
 }
