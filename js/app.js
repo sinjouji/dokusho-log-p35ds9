@@ -32,7 +32,7 @@ let charsSortMode = "cname-asc";
 let searchKeyword = "";
 let seriesSearchKeyword = "";
 
-let currentDetailFav = 0;
+let currentDetailFav = 2;
 
 let openedSeries = {};
 
@@ -205,6 +205,9 @@ let detailSections = { tags:  false };
 //人物検索用
 let characterSearchKeyword = "";
 
+//最後に開いたページを記憶
+let currentPage = localStorage.getItem("lastPage") || "home";
+
 
 
 //==============================
@@ -230,6 +233,15 @@ function go(page){
   if(page === 'series') renderSeries();
   if(page === 'characters') renderCharacters();
   if(page === 'stats') renderStats();
+  
+  currentPage = page;
+  
+  localStorage.setItem(
+    "lastPage",
+    page
+  );
+  
+  render();
 }
 //==============================
 //====🔑データの保存処理：超重要！！
