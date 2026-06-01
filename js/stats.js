@@ -104,9 +104,18 @@ function renderMiniCalendar(main){
   const month =
     calendarMonth;
   
+//カレンダー全体のカード化
+const card =
+  document.createElement("div");
+
+card.className =
+  "stats-calendar-card";
+
   // ===== ヘッダー =====
 
   const header = document.createElement("div");
+  header.className =
+  "stats-calendar-header";
   header.style.display = "flex";
   header.style.justifyContent = "space-between";
   header.style.alignItems = "center";
@@ -148,7 +157,7 @@ renderStats();
   header.append(title);
   header.append(next);
 
-  main.appendChild(header);
+  card.appendChild(header);
 
   // ===== 読書データ =====
 
@@ -237,7 +246,8 @@ renderStats();
     grid.appendChild(cell);
   }
 
-  main.appendChild(grid);
+  card.appendChild(grid);
+  main.appendChild(card);
 }
 
 
