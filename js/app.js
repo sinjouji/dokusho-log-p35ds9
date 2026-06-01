@@ -32,9 +32,6 @@ let charsSortMode = "cname-asc";
 let searchKeyword = "";
 let seriesSearchKeyword = "";
 
-//ミニカレンダーの月移動用設定
-let miniMonth = new Date();
-
 let currentDetailFav = 0;
 
 let openedSeries = {};
@@ -70,8 +67,17 @@ let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
 let enableGoal = localStorage.getItem("enableGoal");
 enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
 
-//グラフ年間移動用
-let statsYear = new Date().getFullYear();
+//統計ページ年
+let statsYear =
+  new Date().getFullYear();
+
+//カレンダー年
+let calendarYear =
+  new Date().getFullYear();
+
+//カレンダー月
+let calendarMonth =
+  new Date().getMonth();
 
 // 設定（保存＋初期値）
 let uiSettings = {
