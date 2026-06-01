@@ -1,0 +1,117 @@
+/*
+ STATS 統計関係のCSS
+
+ カレンダーとかヒートマップのや〜〜つ
+*/
+
+
+/*ミニカレンダー表示*/
+.mini-calendar{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:4px;
+  max-width:800px;
+
+}
+
+.mini-day{
+  aspect-ratio:1;
+  font-size:10px;
+  color:#60564f;
+  font-weight:bold;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  background:#eee;
+}
+
+
+
+
+/*
+ もしかしたら旧カレンダーかも？
+*/
+
+
+/*カレンダー表示*/
+.calendar-day{
+  width:20px;
+  height:20px;
+  font-size:12px;
+}
+.calendar-grid{
+  gap:3px;
+}
+
+
+/*ダッシュボード*/
+.stats-dashboard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(90px, 1fr));
+  gap:10px;
+  margin:14px 0 18px;
+}
+
+.stats-card{
+  background:#fffffc;
+  border:1px solid #e8b8a0;
+  border-radius:16px;
+  padding:10px 8px;
+  text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.04);
+}
+
+.stats-icon{
+  font-size:18px;
+  line-height:1;
+}
+
+.stats-number{
+  margin-top:4px;
+  font-size:22px;
+  font-weight:bold;
+  color:#60564f;
+}
+
+.stats-label{
+  margin-top:2px;
+  font-size:10px;
+  color:#888;
+}
+
+
+.monthly-graph{
+  margin-top:20px;
+  max-width:800px;
+  width:100%;
+}
+
+.monthly-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:6px;
+}
+
+.monthly-label{
+  width:70px;
+  font-size:12px;
+  flex-shrink:0;
+}
+
+.monthly-bar-bg{
+  flex:1;
+  height:12px;
+  background:#eee;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.monthly-bar{
+  height:100%;
+  background:#78ccd2;
+  border-radius:999px;
+}
