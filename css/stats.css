@@ -31,7 +31,7 @@
 }
 
 .heat-max .mini-day-date{
- color:rgba(255,255,252,.8);
+ color:rgba(255,255,252,.7);
 }
 
 .heat-max .mini-day-count{
@@ -207,4 +207,11 @@
   border-radius:18px;
   background:#fffffc;
   box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+
+.stats-sub{
+  margin-top:2px;
+  font-size:11px;
+  color:#8aa35b;
+  font-weight:bold;
 }
