@@ -39,8 +39,16 @@ head.innerHTML = `
 
 main.appendChild(head);
   
-  //年間目標
-  const yearlyCount = getYearReadCount(year);
+  
+  
+  const yearCard =
+  document.createElement("div");
+
+yearCard.className =
+  "stats-year-card";
+
+// 年間目標
+const yearlyCount = getYearReadCount(year);
 
 const percent =
   Math.min(
@@ -67,26 +75,21 @@ goal.innerHTML = `
     border-radius:999px;
     overflow:hidden;
   ">
-
     <div style="
       width:${percent}%;
       height:100%;
       background:#aacf53;
-    ">
-    </div>
-
+    "></div>
   </div>
-  `;
-  if(enableGoal){
-      main.appendChild(goal);
-  }
-  
-//  renderSummary(main);
-renderMonthlyGraph(main, year);
+`;
 
-const spacer = document.createElement("div");
-spacer.style.height = "24px";
-main.appendChild(spacer);
+if(enableGoal){
+  yearCard.appendChild(goal);
+}
+
+renderMonthlyGraph(yearCard, year);
+
+main.appendChild(yearCard);
 
 renderMiniCalendar(main);
 // renderReadingHistory(main);
