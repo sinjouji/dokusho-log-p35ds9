@@ -30,6 +30,10 @@
   background:#eee;
 }
 
+.heat-max{
+  color:#fffffc;
+}
+
 .mini-day-date{
   position:absolute;
   top:5px;
