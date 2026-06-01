@@ -235,6 +235,15 @@ function go(page){
   if(page === 'characters') renderCharacters();
   if(page === 'stats') renderStats();
   
+  currentPage = page;
+  
+  localStorage.setItem(
+    "lastPage",
+    page
+  );
+
+  
+  
 }
 //==============================
 //====🔑データの保存処理：超重要！！
@@ -258,14 +267,6 @@ async function saveData(){
   await window.setDoc(
     window.doc(window.db, "app", "data"),
     data
-  );
-
-
-currentPage = page;
-  
-  localStorage.setItem(
-    "lastPage",
-    page
   );
 
   console.log("Firestore保存完了");
