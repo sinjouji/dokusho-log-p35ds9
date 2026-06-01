@@ -15,19 +15,36 @@
 }
 
 .mini-day{
+  position:relative;
   aspect-ratio:1;
   font-size:10px;
   color:#60564f;
   font-weight:bold;
 
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
+
   border-radius:10px;
   background:#eee;
 }
 
+.mini-day-date{
+  position:absolute;
+  top:5px;
+  left:6px;
+
+  font-size:9px;
+  color:rgba(96,86,79,0.55);
+  font-weight:600;
+}
+
+.mini-day-count{
+  font-size:18px;
+  font-weight:bold;
+  color:#60564f;
+  line-height:1;
+}
 
 
 
@@ -38,10 +55,35 @@
 
 /*カレンダー表示*/
 .calendar-day{
-  width:20px;
-  height:20px;
-  font-size:12px;
+  position:relative;
+  
+  min-height:48px;
 }
+.calendar-date{
+ position:absolute;
+ top:4px;
+ left:6px;
+ font-size:10px;
+ color:#999;
+}
+.calendar-count{
+
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  color:#60564f;
+
+}
+
 .calendar-grid{
   gap:3px;
 }
