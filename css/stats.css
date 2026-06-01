@@ -81,3 +81,37 @@
   font-size:10px;
   color:#888;
 }
+
+
+.monthly-graph{
+  margin-top:20px;
+  max-width:800px;
+  width:100%;
+}
+
+.monthly-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:6px;
+}
+
+.monthly-label{
+  width:70px;
+  font-size:12px;
+  flex-shrink:0;
+}
+
+.monthly-bar-bg{
+  flex:1;
+  height:12px;
+  background:#eee;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.monthly-bar{
+  height:100%;
+  background:#78ccd2;
+  border-radius:999px;
+}
