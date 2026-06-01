@@ -18,26 +18,18 @@ setActiveMenu("menu-stats");
 
 main.innerHTML = "";
 
+//ダッシュボード呼び出し
 renderStatsDashboard(main);
 
+//ヘッダー（←年→）部分呼び出し
 const year = statsYear;
 
-const head = document.createElement("div");
+renderStatsYearHeader(
+  main,
+  year
+);
 
-head.style.display = "flex";
-head.style.justifyContent = "space-between";
-head.style.alignItems = "center";
-head.style.marginBottom = "16px";
-
-head.innerHTML = `
-  <button onclick="changeStatsYear(-1)">←</button>
-
-  <h2>${year}年 統計</h2>
-
-  <button onclick="changeStatsYear(1)">→</button>
-`;
-
-main.appendChild(head);
+renderStatsYearHeader(main, year);
   
   
   
@@ -508,6 +500,33 @@ function renderYearGoal(main, year){
   `;
 
   main.appendChild(goal);
+}
+
+
+//==============================
+//年ヘッダー部分
+//==============================
+function renderStatsYearHeader(main, year){
+
+  const head =
+    document.createElement("div");
+
+  head.className =
+    "stats-year-header";
+
+  head.innerHTML = `
+    <button onclick="changeStatsYear(-1)">
+      ←
+    </button>
+
+    <h2>${year}年 統計</h2>
+
+    <button onclick="changeStatsYear(1)">
+      →
+    </button>
+  `;
+
+  main.appendChild(head);
 }
 
 
