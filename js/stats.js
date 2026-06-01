@@ -211,10 +211,6 @@ renderStats();
 
     cell.className = "mini-day";
     
-    if(count >= 5){
-      cell.classList.add("heat-max");
-    }
-
     cell.style.background =
       getHeatColor(count);
 
@@ -242,6 +238,11 @@ renderStats();
       : ""
   }
 `;
+
+    if(count >= 5){
+      cell.classList.add("heat-max");
+    }
+
 
     cell.onclick = ()=>{
       if(!map[dateStr]) return;
