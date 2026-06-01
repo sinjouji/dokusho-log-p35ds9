@@ -11,40 +11,30 @@
 //==============================
 function renderStats(){
 
-setActiveMenu("menu-stats");
+  setActiveMenu("menu-stats");
 
-  const main = document.getElementById("page-stats");
+  const main =
+    document.getElementById("page-stats");
+  
   main.innerHTML = "";
 
-main.innerHTML = "";
+  //ダッシュボード呼び出し
+  renderStatsDashboard(main);
 
-//ダッシュボード呼び出し
-renderStatsDashboard(main);
+  //ヘッダー（←年→）部分呼び出し
+  const year = statsYear;
 
-//ヘッダー（←年→）部分呼び出し
-const year = statsYear;
-
-renderStatsYearHeader(
-  main,
-  year
-);
+  renderStatsYearHeader(
+    main,
+    year
+  );
   
-  
-  const yearCard =
-  document.createElement("div");
+  renderStatsYearCard(
+    main,
+    year
+  );
 
-yearCard.className =
-  "stats-year-card";
-
-if(enableGoal){
-  renderYearGoal(yearCard, year);
-}
-
-renderMonthlyGraph(yearCard, year);
-
-main.appendChild(yearCard);
-
-renderMiniCalendar(main);
+  renderMiniCalendar(main);
 // renderReadingHistory(main);
 }
 //==============================
@@ -527,3 +517,25 @@ function renderStatsYearHeader(main, year){
 }
 
 
+//==============================
+//年グラフカード
+//==============================
+function renderStatsYearCard(main, year){
+
+  const yearCard =
+    document.createElement("div");
+
+  yearCard.className =
+    "stats-year-card";
+
+  if(enableGoal){
+    renderYearGoal(yearCard, year);
+  }
+
+  renderMonthlyGraph(
+    yearCard,
+    year
+  );
+
+  main.appendChild(yearCard);
+}
