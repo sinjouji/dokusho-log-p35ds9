@@ -5,6 +5,7 @@
 //==============================
 
 
+
 //==============================
 //====カレンダー、統計ページの表示
 //==============================
@@ -97,10 +98,12 @@ renderMonthlyGraph(main, year);
 // ヒートマップ色と連動したチップ化
 function renderMiniCalendar(main){
 
-  const now = miniMonth;
-  const year = statsYear;
-  const month = now.getMonth();
+  const year =
+    calendarYear;
 
+  const month =
+    calendarMonth;
+  
   // ===== ヘッダー =====
 
   const header = document.createElement("div");
@@ -113,7 +116,13 @@ function renderMiniCalendar(main){
   prev.textContent = "←";
 
   prev.onclick = ()=>{
-    miniMonth.setMonth(miniMonth.getMonth() - 1);
+    calendarMonth--;
+
+if(calendarMonth < 0){
+  calendarMonth = 11;
+  calendarYear--;
+}
+
     renderStats();
   };
 
@@ -125,8 +134,14 @@ function renderMiniCalendar(main){
   next.textContent = "→";
 
   next.onclick = ()=>{
-    miniMonth.setMonth(miniMonth.getMonth() + 1);
-    renderStats();
+    calendarMonth++;
+
+if(calendarMonth > 11){
+  calendarMonth = 0;
+  calendarYear++;
+}
+
+renderStats();
   };
 
   header.append(prev);
@@ -191,7 +206,7 @@ function renderMiniCalendar(main){
 
     if(dateStr === today){
       cell.style.border =
-        "2px solid #f8a484"
+        "3px solid #f8a484"
     }
 
     cell.innerHTML = `
