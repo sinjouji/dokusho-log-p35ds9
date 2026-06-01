@@ -29,11 +29,13 @@ function renderStats(){
     year
   );
   
+  //年間グラフカード呼び出し
   renderStatsYearCard(
     main,
     year
   );
-
+  
+  //カレンダーカード呼び出し
   renderMiniCalendar(main);
 // renderReadingHistory(main);
 }
@@ -41,8 +43,6 @@ function renderStats(){
 //====小さめ表示のカレンダー（統計ページ用）
 //==============================
 // TODO:
-// 日付を左上表示
-// 読了数を中央表示
 // ヒートマップ色と連動したチップ化
 function renderMiniCalendar(main){
 
@@ -64,10 +64,6 @@ card.className =
   const header = document.createElement("div");
   header.className =
   "stats-calendar-header";
-  header.style.display = "flex";
-  header.style.justifyContent = "space-between";
-  header.style.alignItems = "center";
-  header.style.marginBottom = "8px";
 
   const prev = document.createElement("button");
   prev.textContent = "←";
