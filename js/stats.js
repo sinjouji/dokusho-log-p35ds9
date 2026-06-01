@@ -395,7 +395,7 @@ function getHeatColor(count){
   if(count === 3) return "#bcd079"; //苗
   
   if(count === 4) return "#a2d7dd"; //瓶覗
-  return "#4f8a5d";//緑青
+  return "#2980af";//縹
   }
 
 
