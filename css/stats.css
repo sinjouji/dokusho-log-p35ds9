@@ -30,7 +30,11 @@
   background:#eee;
 }
 
-.heat-max{
+.heat-max .mini-day-date{
+ color:rgba(255,255,252,.8);
+}
+
+.heat-max .mini-day-count{
   color:#fffffc;
 }
 
