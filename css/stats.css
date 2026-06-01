@@ -16,7 +16,8 @@
 
 .mini-day{
   position:relative;
-  aspect-ratio:1;
+  aspect-ratio:auto;
+  min-height:52px;
   font-size:10px;
   color:#60564f;
   font-weight:bold;
