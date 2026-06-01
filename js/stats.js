@@ -492,10 +492,18 @@ const addedCharacters =
 //==============================
 function isCreatedInYear(item, year){
 
-  const date =
-    new Date(Number(item.id));
+  const rawId =
+    String(item.id || "");
 
-  if(isNaN(date)) return false;
+  const timestamp =
+    Number(
+      rawId.replace(/\D/g, "")
+    );
+
+  if(!timestamp) return false;
+
+  const date =
+    new Date(timestamp);
 
   return date.getFullYear() === year;
 }
