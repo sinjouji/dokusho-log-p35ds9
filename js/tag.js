@@ -70,6 +70,13 @@ function renderVisibleTags(){
   tagMaster
     .filter(tag => !tag.isHidden)
     .forEach(tag=>{
+    
+    const count =
+  books.filter(book =>
+    (book.tagIds || [])
+      .map(String)
+      .includes(String(tag.id))
+  ).length;
 
       const card =
         document.createElement("div");
