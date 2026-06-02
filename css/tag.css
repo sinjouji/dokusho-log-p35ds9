@@ -42,3 +42,13 @@ tag.css
   background:#eeeeee;
   color:#666;
 }
+
+
+.hidden-tag-input-area{
+  margin-top:6px;
+}
+
+.hidden-tag-input-area input{
+  font-size:12px;
+}
+
