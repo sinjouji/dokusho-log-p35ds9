@@ -68,7 +68,25 @@ function renderSeriesBookList(){
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
-			if(seriesViewMode === "compact"){
+			
+			const latestDate =
+  getSeriesLatestReadDate(s);
+  
+  const progress =
+  getSeriesProgress(s);
+  
+    const relatedBooks =
+  books.filter(b =>
+    (s.bookIds || [])
+      .map(String)
+      .includes(String(b.id))
+  );
+
+const bookCount =
+  relatedBooks.length;
+	
+			
+	if(seriesViewMode === "compact"){
 
   d.className = "series-compact-card";
 
@@ -105,42 +123,6 @@ function renderSeriesBookList(){
     </div>
   `;
 }
-			
-			const latestDate =
-  getSeriesLatestReadDate(s);
-  
-  const progress =
-  getSeriesProgress(s);
-  
-    const relatedBooks =
-  books.filter(b =>
-    (s.bookIds || [])
-      .map(String)
-      .includes(String(b.id))
-  );
-
-const bookCount =
-  relatedBooks.length;
-	
-			
-	d.innerHTML = `
-  <div class="series-list-name">
-    ${s.name}
-  </div>
-
-  <div class="series-list-date">
-    ${bookCount}冊
-    ${
-      latestDate
-        ? `・最新読了：${latestDate}`
-        : ""
-    }
-  </div>
-
-  <div class="series-progress">
-    ${progress}
-  </div>
-`;
 			
 		d.onclick = ()=> openSeries(s);
 		main.appendChild(d);
