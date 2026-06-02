@@ -83,7 +83,7 @@ tag.css
 .visible-tags-grid{
   display:grid;
   grid-template-columns:
-    repeat(auto-fill, minmax(250px, 1fr));
+    repeat(auto-fill, minmax(230px, 1fr));
   gap:12px;
 }
 
