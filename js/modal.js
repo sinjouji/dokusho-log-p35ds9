@@ -287,7 +287,7 @@ function openBookDetailModal(book){
          class="fav-cycle-btn"
          onclick="cycleFav('${book.id}')">評価：
            ${
-              ["0","★","★★","★★★","👑"][book.fav || 0]
+              ["0","★","★★","★★★","👑"][book.fav || 2]
             }
        </button>
 
@@ -459,7 +459,9 @@ id="open-book-series">
     ${detailSections.tags ? "open" : ""}
   "
   id="open-book-tags">
-			${tagMaster.map(tag=>{
+			${tagMaster
+				.filter(tag => !tag.isHidden)
+				.map(tag=>{
 
   const isActive =
   (book.tagIds || [])

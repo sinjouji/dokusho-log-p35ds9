@@ -3,7 +3,24 @@
 //
 // 非表示タグとか入れていくよ〜〜〜
 
+//==============================
+//タグ情報を取得
+//==============================
+function getVisibleBookTagIds(book){
 
+  return (book.tagIds || [])
+    .filter(tagId =>
+      !isHiddenTag(tagId)
+    );
+}
+
+function getHiddenBookTagIds(book){
+
+  return (book.tagIds || [])
+    .filter(tagId =>
+      isHiddenTag(tagId)
+    );
+}
 
 
 //==============================
