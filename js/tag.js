@@ -173,66 +173,63 @@ const grid =
 if(editingTagPageId === tag.id){
 
   card.innerHTML = `
+  <input
+    id="tag-page-name-${tag.id}"
+    class="addin"
+    value="${tag.name}"
+  >
+
+  <label class="tag-page-check">
     <input
-      id="tag-page-name-${tag.id}"
-      class="addin"
-      value="${tag.name}"
+      type="checkbox"
+      id="tag-page-hidden-${tag.id}"
+      ${tag.isHidden ? "checked" : ""}
     >
+    管理タグにする
+  </label>
 
-    <label class="tag-page-check">
-      <input
-        type="checkbox"
-        id="tag-page-hidden-${tag.id}"
-        ${tag.isHidden ? "checked" : ""}
-      >
-      管理タグにする
-    </label>
+  <div class="tag-page-actions">
+    <button onclick="saveTagPageEdit('${tag.id}')">
+      保存
+    </button>
 
-    <div class="tag-page-actions">
-      <button onclick="saveTagPageEdit('${tag.id}')">
-        保存
-      </button>
+    <button
+      onclick="
+        deletingTagId = '${tag.id}';
+        renderTags();
+      "
+    >
+      削除
+    </button>
 
-      <button
-  onclick="
-    deletingTagId =
-      '${tag.id}';
+    <button onclick="cancelTagPageEdit()">
+      キャンセル
+    </button>
+  </div>
 
-    renderTags();
-  "
->
-  削除
-</button>
-${
-  deletingTagId === tag.id
-  ? `
-    <div class="delete-confirm">
+  ${
+    deletingTagId === tag.id
+      ? `
+        <div class="delete-confirm">
+          本当に削除しますか？
 
-      本当に削除しますか？
+          <button onclick="deleteTag('${tag.id}')">
+            削除する
+          </button>
 
-      <button
-        onclick="
-          deleteTag(
-            '${tag.id}'
-          )
-        "
-      >
-        削除する
-      </button>
-
-      <button
-        onclick="
-          deletingTagId = null;
-          renderTags();
-        "
-      >
-        キャンセル
-      </button>
-
-    </div>
-  `
-  : ""
-}  `;
+          <button
+            onclick="
+              deletingTagId = null;
+              renderTags();
+            "
+          >
+            やめる
+          </button>
+        </div>
+      `
+      : ""
+  }
+`;
 
 }else{
 
