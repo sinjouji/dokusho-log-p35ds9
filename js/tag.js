@@ -84,3 +84,33 @@ function addHiddenTag(bookId, tagName){
 
   openBookDetailModal(book);
 }
+
+
+//==============================
+//非表示タグを本から削除
+//==============================
+function confirmRemoveHiddenTag(bookId, tagId){
+
+  const key =
+    `${bookId}-${tagId}`;
+
+  if(pendingHiddenTagRemove === key){
+
+    removeHiddenTag(bookId, tagId);
+
+    pendingHiddenTagRemove = null;
+
+    return;
+  }
+
+  pendingHiddenTagRemove = key;
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(book){
+    openBookDetailModal(book);
+  }
+}

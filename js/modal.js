@@ -5,6 +5,9 @@
 //==============================
 
 
+//非表示タグの削除用変数
+let pendingHiddenTagRemove = null;
+
 //==============================
 //====モーダルを閉じる（汎用）
 //==============================
@@ -550,10 +553,22 @@ id="open-book-tags">
 
             return `
               <span
-                class="hidden-tag-chip"
-              >
-                ${tag.name}
-              </span>
+  class="
+    hidden-tag-chip
+    ${
+      pendingHiddenTagRemove === `${book.id}-${tag.id}`
+        ? "remove-ready"
+        : ""
+    }
+  "
+  onclick="confirmRemoveHiddenTag('${book.id}','${tag.id}')"
+>
+  ${
+    pendingHiddenTagRemove === `${book.id}-${tag.id}`
+      ? `削除？ ${tag.name}`
+      : tag.name
+  }
+</span>
             `;
           })
           .join("")
