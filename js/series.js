@@ -58,6 +58,10 @@ function renderSeriesBookList(){
   seriesViewMode === "compact"
 );
 
+main.classList.toggle(
+  "spine-mode",
+  seriesViewMode === "spine"
+);
 	main.innerHTML = "";
 	
 	//フィルタ
@@ -95,7 +99,21 @@ const bookCount =
   relatedBooks.length;
 	
 			
-	if(seriesViewMode === "compact"){
+	if(seriesViewMode === "spine"){
+
+  d.className = "series-spine-card";
+
+  d.innerHTML = `
+    <div class="series-spine-title">
+      ${s.name}
+    </div>
+
+    <div class="series-spine-count">
+      ${bookCount}冊
+    </div>
+  `;
+
+}else if(seriesViewMode === "compact"){
 
   d.className = "series-compact-card";
 
@@ -126,6 +144,9 @@ const bookCount =
           : ""
       }
     </div>
+    
+    
+    
 
     <div class="series-progress">
       ${progress}
@@ -385,11 +406,15 @@ function renderSeriesSearchArea(){
 			</select>
 			
 			<button onclick="changeSeriesViewMode('card')">
-  カード
+  ◼️
 </button>
 
 <button onclick="changeSeriesViewMode('compact')">
-  一覧
+  ≡
+</button>
+
+<button onclick="changeSeriesViewMode('spine')">
+  ‖‖
 </button>
 		
 		<div id="series-suggest"></div>
