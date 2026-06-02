@@ -32,7 +32,7 @@ tag.css
 .hidden-tag-list{
   display:flex;
   flex-wrap:wrap;
-  gap:4px;
+  gap:8px;
   margin-top:8px;
 }
 
@@ -146,5 +146,40 @@ tag.css
   justify-content:flex-end;
   margin-top:10px;
 }
+
+.hidden-tag-panel{
+
+  margin-top:16px;
+
+  padding:16px;
+
+  border:1px solid #ead2c2;
+
+  border-radius:18px;
+
+  background:#fffffc;
+
+}
+
+.hidden-tag-header{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  margin-bottom:12px;
+
+}
+
+.hidden-tag-count{
+
+  font-size:12px;
+
+  color:#999;
+
+}
+
 
 
