@@ -1026,20 +1026,20 @@ editingCharacterSeriesIds =
 //==============================
 //タグ追加モーダル
 //==============================
-function openAddTagModal(){
+//function openAddTagModal(){
 
-  document.getElementById(
-    "new-tag-name"
-  ).value = "";
+//  document.getElementById(
+//    "new-tag-name"
+//  ).value = "";
 
-  document.getElementById(
-    "new-tag-hidden"
-  ).checked = false;
+//  document.getElementById(
+//    "new-tag-hidden"
+//  ).checked = false;
 
-  openModal(
-    "add-tag-modal"
-  );
-}
+//  openModal(
+//    "add-tag-modal"
+//  );
+//}
 
 
 

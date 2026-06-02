@@ -6,6 +6,8 @@
 
 //編集中タグ用
 let editingTagPageId = null;
+//新規タグ用
+let showAddTagForm = false;
 
 
 //==============================
@@ -48,63 +50,49 @@ setActiveMenu("menu-tags");
   <h2>🏷️ タグ</h2>
 
   <button
-    class="add-tag-btn"
-    onclick="openAddTagModal()"
-  >
-    ＋タグ
-  </button>
-
-</div>
-
-<div
-  id="add-tag-modal"
-  class="modal"
+  class="add-tag-btn"
+  onclick="toggleAddTagForm()"
 >
-
-  <div class="modal-content">
-
-    <h3>タグ追加</h3>
-
-    <input
-      id="new-tag-name"
-      class="addin"
-      placeholder="タグ名"
-    >
-
-    <label>
-
-      <input
-        id="new-tag-hidden"
-        type="checkbox"
-      >
-
-      管理タグ
-
-    </label>
-
-    <div class="modal-actions">
-
-      <button
-        onclick="saveNewTag()"
-      >
-        保存
-      </button>
-
-      <button
-        onclick="
-          closeModal(
-            'add-tag-modal'
-          )
-        "
-      >
-        キャンセル
-      </button>
-
-    </div>
-
-  </div>
+  ＋タグ
+</button>
 
 </div>
+
+${
+  showAddTagForm
+    ? `
+      <div class="add-tag-card">
+
+        <h3>タグ追加</h3>
+
+        <input
+          id="new-tag-name"
+          class="addin"
+          placeholder="タグ名"
+        >
+
+        <label class="tag-page-check">
+          <input
+            id="new-tag-hidden"
+            type="checkbox"
+          >
+          管理タグ
+        </label>
+
+        <div class="tag-page-actions">
+          <button onclick="saveNewTag()">
+            保存
+          </button>
+
+          <button onclick="toggleAddTagForm()">
+            キャンセル
+          </button>
+        </div>
+
+      </div>
+    `
+    : ""
+}
 
 
     <div id="visible-tags-area"></div>
@@ -570,5 +558,19 @@ async function saveNewTag(){
     "add-tag-modal"
   );
 
+  showAddTagForm = false;
   renderTags();
 }
+
+
+//==============================
+//新規タグ登録エリア開閉トグル
+//==============================
+function toggleAddTagForm(){
+
+  showAddTagForm =
+    !showAddTagForm;
+
+  renderTags();
+}
+
