@@ -655,12 +655,7 @@ function renderBookList(){
  const keyword =
   (searchKeyword || "").trim().toLowerCase();
 
-const baseBooks =
-  showHiddenItems
-    ? books
-    : books.filter(b => !hasHiddenTag(b));
-
-const filteredBooks = baseBooks.filter(b => {
+const filteredBooks = books.filter(b => {
 
   const matchSearch =
     !keyword
@@ -1506,7 +1501,9 @@ function renderTagFilter(){
 
   area.innerHTML = "";
 
-  tagMaster.forEach(tag=>{
+  tagMaster
+    .filter(tag => !tag.isHidden)
+    .forEach(tag=>{
 
     const btn =
       document.createElement("button");
