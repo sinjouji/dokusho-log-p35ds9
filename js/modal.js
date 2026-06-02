@@ -513,21 +513,24 @@ id="open-book-tags">
   id="hidden-tag-input-${book.id}"
   type="text"
   placeholder="管理タグを追加"
-
+  oninput="renderHiddenTagSuggest('${book.id}')"
   onkeydown="
     if(event.key==='Enter'){
-      addHiddenTag(
-        '${book.id}',
-        this.value
-      );
+      addHiddenTag('${book.id}', this.value);
     }
   "
 >
+
 </div>
+ <div
+  id="hidden-tag-suggest-${book.id}"
+  class="hidden-tag-suggest"
+></div>
  
   ${
   hiddenTagIds.length
     ? `
+      <br>
       <div class="hidden-tag-area">
 
         <div class="hidden-tag-title">
