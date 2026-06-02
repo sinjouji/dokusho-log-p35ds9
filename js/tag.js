@@ -43,7 +43,69 @@ setActiveMenu("menu-tags");
   if(!main) return;
 
   main.innerHTML = `
-    <h2>🏷️ タグ</h2>
+    <div class="tags-header">
+
+  <h2>🏷️ タグ</h2>
+
+  <button
+    class="add-tag-btn"
+    onclick="openAddTagModal()"
+  >
+    ＋タグ
+  </button>
+
+</div>
+
+<div
+  id="add-tag-modal"
+  class="modal"
+>
+
+  <div class="modal-content">
+
+    <h3>タグ追加</h3>
+
+    <input
+      id="new-tag-name"
+      class="addin"
+      placeholder="タグ名"
+    >
+
+    <label>
+
+      <input
+        id="new-tag-hidden"
+        type="checkbox"
+      >
+
+      管理タグ
+
+    </label>
+
+    <div class="modal-actions">
+
+      <button
+        onclick="saveNewTag()"
+      >
+        保存
+      </button>
+
+      <button
+        onclick="
+          closeModal(
+            'add-tag-modal'
+          )
+        "
+      >
+        キャンセル
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 
     <div id="visible-tags-area"></div>
 
@@ -427,7 +489,7 @@ function cancelTagPageEdit(){
 
 
 //==============================
-//タグ保存
+//タグ編集保存
 //==============================
 async function saveTagPageEdit(id){
 
@@ -466,3 +528,47 @@ async function saveTagPageEdit(id){
   renderHome();
 }
 
+
+
+//==============================
+//新規タグ保存
+//==============================
+async function saveNewTag(){
+
+  const name =
+    document
+      .getElementById(
+        "new-tag-name"
+      )
+      .value
+      .trim();
+
+  if(!name) return;
+
+  tagMaster.push({
+
+    id:
+      "t" + Date.now(),
+
+    name,
+
+    color:
+      "#b9b9b9",
+
+    isHidden:
+      document
+        .getElementById(
+          "new-tag-hidden"
+        )
+        .checked
+
+  });
+
+  await saveData();
+
+  closeModal(
+    "add-tag-modal"
+  );
+
+  renderTags();
+}
