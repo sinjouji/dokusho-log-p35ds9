@@ -628,10 +628,10 @@ function toggleAddTagForm(){
 //==============================
 async function deleteTag(id){
 
-  const ok =
-    confirm("タグを削除しますか？");
+//  const ok =
+//    confirm("タグを削除しますか？");
 
-  if(!ok) return;
+//  if(!ok) return;
 
   tagMaster =
     tagMaster.filter(tag =>
