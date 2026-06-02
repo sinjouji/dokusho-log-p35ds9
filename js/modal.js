@@ -471,6 +471,13 @@ id="open-book-tags">
           (book.tagIds || [])
             .map(String)
             .includes(String(tag.id));
+            
+              const hiddenTagIds =
+  (book.tagIds || [])
+    .filter(tagId =>
+      isHiddenTag(tagId)
+    );
+
 
         return `
           <span
@@ -497,13 +504,6 @@ id="open-book-tags">
       .join("")
   }
   
-  
-  const hiddenTagIds =
-  (book.tagIds || [])
-    .filter(tagId =>
-      isHiddenTag(tagId)
-    );
-
   ${
   hiddenTagIds.length
     ? `
