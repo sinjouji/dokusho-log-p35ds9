@@ -12,7 +12,7 @@
 function isHiddenTag(tagId){
 
   const tag =
-    tags.find(t =>
+    tagMaster.find(t =>
       String(t.id) === String(tagId)
     );
 
