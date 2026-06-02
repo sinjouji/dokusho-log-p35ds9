@@ -207,13 +207,24 @@ if(editingTagPageId === tag.id){
     </button>
   </div>
 
-  ${
-    deletingTagId === tag.id
-      ? `
-        <div class="delete-confirm">
-          本当に削除しますか？
+ if(editingTagPageId === tag.id){
 
-          <button onclick="deleteTag('${tag.id}')">
+  if(deletingTagId === tag.id){
+
+    card.innerHTML = `
+      <div class="delete-confirm">
+
+        本当に削除しますか？
+
+        <div class="tag-page-actions">
+
+          <button
+            onclick="
+              deleteTag(
+                '${tag.id}'
+              )
+            "
+          >
             削除する
           </button>
 
@@ -225,27 +236,22 @@ if(editingTagPageId === tag.id){
           >
             やめる
           </button>
+
         </div>
-      `
-      : ""
+
+      </div>
+    `;
+
+  }else{
+
+    card.innerHTML = `
+      編集フォーム
+      保存
+      削除
+      キャンセル
+    `;
+
   }
-`;
-
-}else{
-
-  card.innerHTML = `
-    <div class="tag-card-name">
-      ${tag.name}
-    </div>
-
-    <div class="tag-card-count">
-      (${count})
-    </div>
-
-    <button onclick="startTagPageEdit('${tag.id}')">
-      編集
-    </button>
-  `;
 }
       grid.appendChild(card);
     });
