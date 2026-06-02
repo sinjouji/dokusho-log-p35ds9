@@ -239,6 +239,12 @@ function openBookDetailModal(book){
       editingBookSeriesIds =
     [...(book.seriesIds || [])]
       .map(String);
+      
+    const hiddenTagIds =
+  (book.tagIds || [])
+    .filter(tagId =>
+      isHiddenTag(tagId)
+    );
   
   const modal = document.createElement("div");
   modal.className = "modal-bg";
@@ -472,12 +478,6 @@ id="open-book-tags">
             .map(String)
             .includes(String(tag.id));
             
-              const hiddenTagIds =
-  (book.tagIds || [])
-    .filter(tagId =>
-      isHiddenTag(tagId)
-    );
-
 
         return `
           <span
@@ -504,6 +504,7 @@ id="open-book-tags">
       .join("")
   }
   
+ 
   ${
   hiddenTagIds.length
     ? `
