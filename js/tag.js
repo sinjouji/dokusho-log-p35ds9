@@ -628,25 +628,25 @@ function toggleAddTagForm(){
 //==============================
 async function deleteTag(id){
 
+  const ok =
+    confirm("本当に削除しますか？");
+
+  if(!ok) return;
+
   tagMaster =
-    tagMaster.filter(
-      tag =>
-        String(tag.id) !==
-        String(id)
+    tagMaster.filter(tag =>
+      String(tag.id) !== String(id)
     );
 
   books.forEach(book=>{
-
     book.tagIds =
       (book.tagIds || [])
-        .filter(
-          tagId =>
-            String(tagId) !==
-            String(id)
+        .filter(tagId =>
+          String(tagId) !== String(id)
         );
-
   });
 
+  editingTagPageId = null;
   deletingTagId = null;
 
   await saveData();
@@ -654,3 +654,4 @@ async function deleteTag(id){
   renderTags();
   renderHome();
 }
+
