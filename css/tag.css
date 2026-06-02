@@ -145,6 +145,7 @@ tag.css
   gap:8px;
   justify-content:flex-end;
   margin-top:10px;
+  font-size:11px;
 }
 
 .hidden-tag-panel{
