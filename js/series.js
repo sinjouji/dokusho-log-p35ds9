@@ -46,6 +46,10 @@ setActiveMenu("menu-series");
 //==============================
 function renderSeriesBookList(){
 
+main.classList.toggle(
+  "compact-mode",
+  seriesViewMode === "compact"
+);
 
 	const main = document.getElementById("series-main");
 	if(!main) return;
