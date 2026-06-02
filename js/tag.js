@@ -50,3 +50,37 @@ function hasHiddenTag(book){
 }
 
 
+
+//==============================
+//非表示タグを本に追加
+//==============================
+function addHiddenTag(bookId, tagName){
+
+  const book =
+    books.find(
+      b => String(b.id) === String(bookId)
+    );
+
+  if(!book) return;
+
+  const tag =
+    tagMaster.find(t =>
+      t.isHidden
+      &&
+      t.name === tagName.trim()
+    );
+
+  if(!tag) return;
+
+  if(!book.tagIds){
+    book.tagIds = [];
+  }
+
+  if(
+    !book.tagIds.includes(tag.id)
+  ){
+    book.tagIds.push(tag.id);
+  }
+
+  openBookDetailModal(book);
+}

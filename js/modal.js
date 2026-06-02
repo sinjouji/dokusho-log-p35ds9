@@ -506,11 +506,20 @@ id="open-book-tags">
   
  <div class="hidden-tag-input-area">
   <input
-    class="addin"
-    id="hidden-tag-input-${book.id}"
-    type="text"
-    placeholder="管理タグを追加"
-  >
+  class="addin"
+  id="hidden-tag-input-${book.id}"
+  type="text"
+  placeholder="管理タグを追加"
+
+  onkeydown="
+    if(event.key==='Enter'){
+      addHiddenTag(
+        '${book.id}',
+        this.value
+      );
+    }
+  "
+>
 </div>
  
   ${
