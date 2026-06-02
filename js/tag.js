@@ -47,14 +47,15 @@ setActiveMenu("menu-tags");
   main.innerHTML = `
     <div class="tags-header">
 
-  <h2>🏷️ タグ</h2>
-
   <button
   class="add-tag-btn"
   onclick="toggleAddTagForm()"
 >
   ＋タグ
 </button>
+
+
+  <h2>🏷️ タグ</h2>
 
 </div>
 
@@ -236,9 +237,24 @@ function renderHiddenTags(){
     );
 
   if(!area) return;
+  
+  const hiddenTags =
+  tagMaster.filter(
+    tag => tag.isHidden
+  );
 
   area.innerHTML = `
-    <h3># 管理タグ</h3>
+  <div class="hidden-tag-panel">
+
+    <div class="hidden-tag-header">
+
+      <h3># 管理タグ</h3>
+
+      <div class="hidden-tag-count">
+        (${hiddenTags.length})
+      </div>
+
+    </div>
 
     <input
       id="hidden-tag-search"
@@ -250,7 +266,9 @@ function renderHiddenTags(){
       id="hidden-tag-list"
       class="hidden-tag-list"
     ></div>
-  `;
+
+  </div>
+`;
 
   const list =
     document.getElementById(
