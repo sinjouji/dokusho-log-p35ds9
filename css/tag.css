@@ -82,27 +82,31 @@ tag.css
 .visible-tags-grid{
   display:grid;
   grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(160px,1fr)
-    );
-
-  gap:12px;
+    repeat(auto-fill, minmax(150px, 1fr));
+  gap:10px;
 }
 
 .tag-card{
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:12px;
+  position:relative;
+
+  padding:10px 10px 10px 14px;
+
+  border:1px solid #ead2c2;
+  border-radius:14px;
+
   background:#fffffc;
-  border-left:
-  4px solid tag.color
+  min-height:auto;
+}
+
+.tag-card-name{
+  font-size:15px;
+  font-weight:600;
 }
 
 .tag-card-count{
-  font-size:12px;
+  font-size:11px;
   color:#999;
-  margin-top:4px;
+  margin:3px 0 6px;
 }
 
 
