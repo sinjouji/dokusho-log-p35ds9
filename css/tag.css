@@ -75,3 +75,34 @@ tag.css
   color:#666;
 }
 
+#hidden-tag-search{
+  margin-bottom:12px;
+}
+
+.visible-tags-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(160px,1fr)
+    );
+
+  gap:12px;
+}
+
+.tag-card{
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:#fffffc;
+  border-left:
+  4px solid tag.color
+}
+
+.tag-card-count{
+  font-size:12px;
+  color:#999;
+  margin-top:4px;
+}
+
+
