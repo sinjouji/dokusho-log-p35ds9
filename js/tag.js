@@ -122,170 +122,136 @@ function renderVisibleTags(){
   if(!area) return;
 
   area.innerHTML = `
-  <h3>表示タグ</h3>
-  <div id="visible-tags-grid" class="visible-tags-grid"></div>
-`;
+    <h3>表示タグ</h3>
+    <div
+      id="visible-tags-grid"
+      class="visible-tags-grid"
+    ></div>
+  `;
 
-const grid =
-  document.getElementById("visible-tags-grid");
-  
+  const grid =
+    document.getElementById(
+      "visible-tags-grid"
+    );
+
   tagMaster
     .filter(tag => !tag.isHidden)
     .forEach(tag=>{
-    
-    const count =
-  books.filter(book =>
-    (book.tagIds || [])
-      .map(String)
-      .includes(String(tag.id))
-  ).length;
+
+      const count =
+        books.filter(book =>
+          (book.tagIds || [])
+            .map(String)
+            .includes(String(tag.id))
+        ).length;
 
       const card =
         document.createElement("div");
 
-      card.className =
-        "tag-card";
+      card.className = "tag-card";
+
       card.style.borderLeft =
         `6px solid ${tag.color}`;
 
-      card.innerHTML = `
-  <div class="tag-card-name">
-    ${tag.name}
-  </div>
+      // 削除確認中
+      if(
+        editingTagPageId === tag.id &&
+        deletingTagId === tag.id
+      ){
 
-  <div class="tag-card-count">
-    (${count})
-  </div>
+        card.innerHTML = `
+          <div class="delete-confirm">
+            <div>
+              本当に削除しますか？
+            </div>
 
-  <button
-    class="tag-card-edit"
-    onclick="
-      openTagEditModal(
-        '${tag.id}'
-      )
-    "
-  >
-    編集
-  </button>
-`;
+            <div class="tag-page-actions">
+              <button
+                onclick="deleteTag('${tag.id}')"
+              >
+                削除する
+              </button>
 
+              <button
+                onclick="
+                  deletingTagId = null;
+                  renderTags();
+                "
+              >
+                やめる
+              </button>
+            </div>
+          </div>
+        `;
 
-if(editingTagPageId === tag.id){
+      // 編集中
+      }else if(
+        editingTagPageId === tag.id
+      ){
 
-  if(deletingTagId === tag.id){
+        card.innerHTML = `
+          <input
+            id="tag-page-name-${tag.id}"
+            class="addin"
+            value="${tag.name}"
+          >
 
-    card.innerHTML = `
-      <div class="delete-confirm">
+          <label class="tag-page-check">
+            <input
+              type="checkbox"
+              id="tag-page-hidden-${tag.id}"
+              ${tag.isHidden ? "checked" : ""}
+            >
+            管理タグにする
+          </label>
 
-        本当に削除しますか？
+          <div class="tag-page-actions">
+            <button
+              onclick="saveTagPageEdit('${tag.id}')"
+            >
+              保存
+            </button>
 
-        <div class="tag-page-actions">
+            <button
+              onclick="
+                deletingTagId = '${tag.id}';
+                renderTags();
+              "
+            >
+              削除
+            </button>
+
+            <button
+              onclick="cancelTagPageEdit()"
+            >
+              キャンセル
+            </button>
+          </div>
+        `;
+
+      // 通常表示
+      }else{
+
+        card.innerHTML = `
+          <div class="tag-card-name">
+            ${tag.name}
+          </div>
+
+          <div class="tag-card-count">
+            (${count})
+          </div>
 
           <button
-            onclick="
-              deleteTag(
-                '${tag.id}'
-              )
-            "
+            onclick="startTagPageEdit('${tag.id}')"
           >
-            削除する
+            編集
           </button>
+        `;
+      }
 
-          <button
-            onclick="
-              deletingTagId = null;
-              renderTags();
-            "
-          >
-            やめる
-          </button>
-
-        </div>
-
-      </div>
-    `;
-
-  }else{
-
-  card.innerHTML = `
-  <input
-    id="tag-page-name-${tag.id}"
-    class="addin"
-    value="${tag.name}"
-  >
-
-  <label class="tag-page-check">
-    <input
-      type="checkbox"
-      id="tag-page-hidden-${tag.id}"
-      ${tag.isHidden ? "checked" : ""}
-    >
-    管理タグにする
-  </label>
-
-  <div class="tag-page-actions">
-    <button onclick="saveTagPageEdit('${tag.id}')">
-      保存
-    </button>
-
-    <button
-      onclick="
-        deletingTagId = '${tag.id}';
-        renderTags();
-      "
-    >
-      削除
-    </button>
-
-    <button onclick="cancelTagPageEdit()">
-      キャンセル
-    </button>
-  </div>
-
-  ${
-    deletingTagId === tag.id
-      ? `
-        <div class="delete-confirm">
-          本当に削除しますか？
-
-          <button onclick="deleteTag('${tag.id}')">
-            削除する
-          </button>
-
-          <button
-            onclick="
-              deletingTagId = null;
-              renderTags();
-            "
-          >
-            やめる
-          </button>
-        </div>
-      `
-      : ""
-  }
-`;
-
-}else{
-
-  card.innerHTML = `
-    <div class="tag-card-name">
-      ${tag.name}
-    </div>
-
-    <div class="tag-card-count">
-      (${count})
-    </div>
-
-    <button onclick="startTagPageEdit('${tag.id}')">
-      編集
-    </button>
-  `;
-}
       grid.appendChild(card);
     });
 }
-
 
 
 
