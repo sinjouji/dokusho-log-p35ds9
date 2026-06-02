@@ -1,0 +1,66 @@
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:9999;
+}
+
+.modal-box{
+  width:90%;
+  max-width:400px;
+
+  background:#fffffc;
+  border-radius:10px;
+
+  padding:16px;
+
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus{
+  outline:none;
+  border-color:#9cc9ff;
+  box-shadow:0 0 0 3px rgba(156,201,255,.2);
+
+  width:100%;
+  box-sizing:border-box;
+
+  padding:12px;
+  border-radius:10px;
+
+  border:1px solid #ddd;
+  background:#fffffc;
+
+  font-size:14px;
+}
+
+.modal-box textarea{
+  min-height:100px;
+  resize:vertical;
+  font-size:14px;
+  padding:5px 0;
+}
+
+.modal-actions{
+  margin-top:20px;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+
+
+/* 詳細表示モーダル */
+.detail-modal{
+  max-width: 400px;
+}
