@@ -1,0 +1,44 @@
+/*
+tag.css
+タグ関係のCSS置き場だよ〜〜〜
+*/
+
+.hidden-tag-area{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:6px;
+}
+
+.hidden-tag-chip{
+  font-size:10px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#eeeeee;
+  color:#666;
+}
+
+
+.hidden-tag-area{
+  margin-top:8px;
+}
+
+.hidden-tag-title{
+  font-size:10px;
+  color:#888;
+  margin-bottom:4px;
+}
+
+.hidden-tag-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+}
+
+.hidden-tag-chip{
+  font-size:10px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#eeeeee;
+  color:#666;
+}
