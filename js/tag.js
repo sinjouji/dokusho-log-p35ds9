@@ -172,43 +172,6 @@ const grid =
 
 if(editingTagPageId === tag.id){
 
-  card.innerHTML = `
-  <input
-    id="tag-page-name-${tag.id}"
-    class="addin"
-    value="${tag.name}"
-  >
-
-  <label class="tag-page-check">
-    <input
-      type="checkbox"
-      id="tag-page-hidden-${tag.id}"
-      ${tag.isHidden ? "checked" : ""}
-    >
-    管理タグにする
-  </label>
-
-  <div class="tag-page-actions">
-    <button onclick="saveTagPageEdit('${tag.id}')">
-      保存
-    </button>
-
-    <button
-      onclick="
-        deletingTagId = '${tag.id}';
-        renderTags();
-      "
-    >
-      削除
-    </button>
-
-    <button onclick="cancelTagPageEdit()">
-      キャンセル
-    </button>
-  </div>
-
- if(editingTagPageId === tag.id){
-
   if(deletingTagId === tag.id){
 
     card.innerHTML = `
@@ -244,14 +207,80 @@ if(editingTagPageId === tag.id){
 
   }else{
 
-    card.innerHTML = `
-      編集フォーム
-      保存
-      削除
-      キャンセル
-    `;
+  card.innerHTML = `
+  <input
+    id="tag-page-name-${tag.id}"
+    class="addin"
+    value="${tag.name}"
+  >
 
+  <label class="tag-page-check">
+    <input
+      type="checkbox"
+      id="tag-page-hidden-${tag.id}"
+      ${tag.isHidden ? "checked" : ""}
+    >
+    管理タグにする
+  </label>
+
+  <div class="tag-page-actions">
+    <button onclick="saveTagPageEdit('${tag.id}')">
+      保存
+    </button>
+
+    <button
+      onclick="
+        deletingTagId = '${tag.id}';
+        renderTags();
+      "
+    >
+      削除
+    </button>
+
+    <button onclick="cancelTagPageEdit()">
+      キャンセル
+    </button>
+  </div>
+
+  ${
+    deletingTagId === tag.id
+      ? `
+        <div class="delete-confirm">
+          本当に削除しますか？
+
+          <button onclick="deleteTag('${tag.id}')">
+            削除する
+          </button>
+
+          <button
+            onclick="
+              deletingTagId = null;
+              renderTags();
+            "
+          >
+            やめる
+          </button>
+        </div>
+      `
+      : ""
   }
+`;
+
+}else{
+
+  card.innerHTML = `
+    <div class="tag-card-name">
+      ${tag.name}
+    </div>
+
+    <div class="tag-card-count">
+      (${count})
+    </div>
+
+    <button onclick="startTagPageEdit('${tag.id}')">
+      編集
+    </button>
+  `;
 }
       grid.appendChild(card);
     });
