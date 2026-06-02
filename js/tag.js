@@ -150,7 +150,52 @@ function refreshBookDetailModal(book){
 }
 
 
+//==============================
+//非表示タグサジェスト
+//==============================
+function renderHiddenTagSuggest(bookId){
 
+  const input =
+    document.getElementById(
+      `hidden-tag-input-${bookId}`
+    );
 
+  const area =
+    document.getElementById(
+      `hidden-tag-suggest-${bookId}`
+    );
+
+  if(!input || !area) return;
+
+  const keyword =
+    input.value.trim().toLowerCase();
+
+  area.innerHTML = "";
+
+  if(!keyword) return;
+
+  const candidates =
+    tagMaster.filter(tag =>
+      tag.isHidden &&
+      (tag.name || "")
+        .toLowerCase()
+        .includes(keyword)
+    );
+
+  candidates.forEach(tag=>{
+
+    const chip =
+      document.createElement("button");
+
+    chip.className = "hidden-tag-suggest-chip";
+    chip.textContent = tag.name;
+
+    chip.onclick = ()=>{
+      addHiddenTag(bookId, tag.name);
+    };
+
+    area.appendChild(chip);
+  });
+}
 
 
