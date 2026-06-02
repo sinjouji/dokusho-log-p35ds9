@@ -504,6 +504,14 @@ id="open-book-tags">
       .join("")
   }
   
+ <div class="hidden-tag-input-area">
+  <input
+    class="addin"
+    id="hidden-tag-input-${book.id}"
+    type="text"
+    placeholder="管理タグを追加"
+  >
+</div>
  
   ${
   hiddenTagIds.length
