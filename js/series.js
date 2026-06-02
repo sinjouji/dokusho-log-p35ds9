@@ -68,8 +68,7 @@ function renderSeriesBookList(){
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
-			d.className =
-  if(seriesViewMode === "compact"){
+			if(seriesViewMode === "compact"){
 
   d.className = "series-compact-card";
 
