@@ -16,8 +16,9 @@ function isHiddenTag(tagId){
       String(t.id) === String(tagId)
     );
 
-  return !!tag?.hidden;
+  return !!tag?.isHidden;
 }
+
 
 
 //==============================
