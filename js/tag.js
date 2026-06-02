@@ -64,9 +64,13 @@ function renderVisibleTags(){
   if(!area) return;
 
   area.innerHTML = `
-    <h3>表示タグ</h3>
-  `;
+  <h3>表示タグ</h3>
+  <div id="visible-tags-grid" class="visible-tags-grid"></div>
+`;
 
+const grid =
+  document.getElementById("visible-tags-grid");
+  
   tagMaster
     .filter(tag => !tag.isHidden)
     .forEach(tag=>{
@@ -83,6 +87,8 @@ function renderVisibleTags(){
 
       card.className =
         "tag-card";
+      card.style.borderLeft =
+        `6px solid ${tag.color}`;
 
       card.innerHTML = `
   <div class="tag-card-name">
@@ -105,7 +111,7 @@ function renderVisibleTags(){
   </button>
 `;
 
-      area.appendChild(card);
+      grid.appendChild(card);
     });
 }
 
