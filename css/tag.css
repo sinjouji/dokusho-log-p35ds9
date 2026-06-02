@@ -33,6 +33,7 @@ tag.css
   display:flex;
   flex-wrap:wrap;
   gap:4px;
+  margin-top:8px;
 }
 
 .hidden-tag-chip{
@@ -82,14 +83,14 @@ tag.css
 .visible-tags-grid{
   display:grid;
   grid-template-columns:
-    repeat(auto-fill, minmax(150px, 1fr));
-  gap:10px;
+    repeat(auto-fill, minmax(220px, 1fr));
+  gap:12px;
 }
 
 .tag-card{
   position:relative;
 
-  padding:10px 10px 10px 14px;
+  padding:14px;
 
   border:1px solid #ead2c2;
   border-radius:14px;
