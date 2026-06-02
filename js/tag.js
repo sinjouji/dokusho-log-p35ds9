@@ -629,7 +629,7 @@ function toggleAddTagForm(){
 async function deleteTag(id){
 
   const ok =
-    confirm("本当に削除しますか？");
+    confirm("タグを削除しますか？");
 
   if(!ok) return;
 
@@ -654,4 +654,3 @@ async function deleteTag(id){
   renderTags();
   renderHome();
 }
-

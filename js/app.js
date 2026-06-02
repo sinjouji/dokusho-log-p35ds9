@@ -2263,34 +2263,31 @@ function toggleGoal(e){
   renderHome(); // 即反映
 }
 //==============================
-//====タグ削除処理
+//====タグ削除処理※タグページに移動次第削除予定2026/06/02
 //==============================
-async function deleteTag(id){
+//async function deleteTag(id){
 
- const used = books.some(book =>
-  (book.tagIds || []).includes(id)
-);
-  if(used){
-    alert("使用中のタグは削除できません");
-    return;
-  }
-     const ok = confirm("タグを削除しますか？");
+// const used = books.some(book =>
+//  (book.tagIds || []).includes(id)
+//);
 
-  if(!ok) return;
+//     const ok = confirm("タグを削除しますか？");
 
-tagMaster =
-  tagMaster.filter(
-    tag =>
-      String(tag.id)
-      !==
-      String(id)
-  );
+//  if(!ok) return;
 
-  await saveData();
+//tagMaster =
+//  tagMaster.filter(
+//    tag =>
+//      String(tag.id)
+//      !==
+//      String(id)
+//  );
 
-  renderSettings();
-  renderHome();
-}
+//  await saveData();
+
+//  renderSettings();
+//  renderHome();
+//}
 
 //==============================
 //====タグ保存処理
