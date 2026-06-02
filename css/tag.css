@@ -119,4 +119,32 @@ tag.css
 }
 
 
+.add-tag-card{
+  max-width:360px;
+  margin:12px 0 20px;
+  padding:14px;
+  border:1px solid #ead2c2;
+  border-radius:14px;
+  background:#fffffc;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+
+.add-tag-card h3{
+  margin:0 0 10px;
+  font-size:16px;
+}
+
+.tag-page-check{
+  display:block;
+  margin:8px 0;
+  font-size:13px;
+}
+
+.tag-page-actions{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:10px;
+}
+
 
