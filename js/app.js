@@ -208,7 +208,7 @@ let characterSearchKeyword = "";
 //最後に開いたページを記憶
 let currentPage = localStorage.getItem("lastPage") || "home";
 
-
+let showHiddenItems = false;
 
 //==============================
 //セーブ,go
@@ -680,7 +680,12 @@ function renderBookList(){
  const keyword =
   (searchKeyword || "").trim().toLowerCase();
 
-const filteredBooks = books.filter(b => {
+const baseBooks =
+  showHiddenItems
+    ? books
+    : books.filter(b => !hasHiddenTag(b));
+
+const filteredBooks = baseBooks.filter(b => {
 
   const matchSearch =
     !keyword
