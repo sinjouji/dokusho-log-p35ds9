@@ -270,6 +270,7 @@ border:1px solid #60564f;
   text-orientation:mixed;
   font-size:9px;
   line-height:1.2;
+  flex-wrap:wrap;
 }
 
 .series-spine-count{
