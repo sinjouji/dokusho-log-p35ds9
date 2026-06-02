@@ -30,6 +30,8 @@ function getHiddenBookTagIds(book){
 //==============================
 function renderTags(){
 
+setActiveMenu("menu-tags");
+
   const main =
     document.getElementById("tags-main");
 
@@ -40,7 +42,7 @@ function renderTags(){
 
     <div id="visible-tags-area"></div>
 
-    <hr>
+    <hr class="kugiri">
 
     <div id="hidden-tags-area"></div>
   `;
@@ -76,13 +78,25 @@ function renderVisibleTags(){
         "tag-card";
 
       card.innerHTML = `
-        <div>${tag.name}</div>
-        <button
-          onclick="openTagEditModal('${tag.id}')"
-        >
-          編集
-        </button>
-      `;
+  <div class="tag-card-name">
+    ${tag.name}
+  </div>
+
+  <div class="tag-card-count">
+    (${count})
+  </div>
+
+  <button
+    class="tag-card-edit"
+    onclick="
+      openTagEditModal(
+        '${tag.id}'
+      )
+    "
+  >
+    編集
+  </button>
+`;
 
       area.appendChild(card);
     });
