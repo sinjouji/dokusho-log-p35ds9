@@ -81,7 +81,7 @@ function addHiddenTag(bookId, tagName){
   ){
     book.tagIds.push(tag.id);
   }
-
+  closeModal("open-book-modal");
   openBookDetailModal(book);
 }
 
