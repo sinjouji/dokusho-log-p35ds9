@@ -52,3 +52,9 @@ tag.css
   font-size:12px;
 }
 
+
+.hidden-tag-chip.remove-ready{
+  background:#f8d8c6;
+  color:#8a4b4b;
+}
+
