@@ -143,7 +143,7 @@ const tagColors = [
 
 //タグ追加
 let newTagName = "";
-let newTagColor = "#e597b2";
+let newTagColor = "#b9b9b9";
 let newBookFav = 0;
 
 //シリーズ関係
