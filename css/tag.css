@@ -58,3 +58,20 @@ tag.css
   color:#8a4b4b;
 }
 
+
+.hidden-tag-suggest{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:4px;
+}
+
+.hidden-tag-suggest-chip{
+  font-size:10px;
+  padding:3px 8px;
+  border-radius:999px;
+  border:1px solid #ccc;
+  background:#fffffc;
+  color:#666;
+}
+
