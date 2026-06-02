@@ -181,37 +181,6 @@ function openAddBookModal(){
 			</span>
 			
 			
-			<div class="hidden-tag-area">
-
-  <div class="hidden-tag-title">
-    管理タグ
-  </div>
-
-  <div class="hidden-tag-list">
-    ${
-      (book.tagIds || [])
-        .filter(tagId => isHiddenTag(tagId))
-        .map(tagId => {
-
-          const tag =
-            tagMaster.find(t =>
-              String(t.id) === String(tagId)
-            );
-
-          if(!tag) return "";
-
-          return `
-            <span class="hidden-tag-chip">
-              ${tag.name}
-            </span>
-          `;
-        })
-        .join("")
-    }
-  </div>
-
-</div>
-			
 		`;
 
 	}).join("")}
@@ -521,6 +490,38 @@ id="open-book-series">
     >
       ${tag.name}
     </span>
+    
+    <div class="hidden-tag-area">
+
+  <div class="hidden-tag-title">
+    管理タグ
+  </div>
+
+  <div class="hidden-tag-list">
+    ${
+      (book.tagIds || [])
+        .filter(tagId => isHiddenTag(tagId))
+        .map(tagId => {
+
+          const tag =
+            tagMaster.find(t =>
+              String(t.id) === String(tagId)
+            );
+
+          if(!tag) return "";
+
+          return `
+            <span class="hidden-tag-chip">
+              ${tag.name}
+            </span>
+          `;
+        })
+        .join("")
+    }
+  </div>
+
+</div>
+    
   `;
 
 }).join("")}
