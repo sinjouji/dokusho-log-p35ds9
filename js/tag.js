@@ -3,6 +3,11 @@
 //
 // 非表示タグとか入れていくよ〜〜〜
 
+
+//編集中タグ用
+let editingTagPageId = null;
+
+
 //==============================
 //タグ情報を取得
 //==============================
@@ -110,6 +115,58 @@ const grid =
     編集
   </button>
 `;
+
+
+if(editingTagPageId === tag.id){
+
+  card.innerHTML = `
+    <input
+      id="tag-page-name-${tag.id}"
+      class="addin"
+      value="${tag.name}"
+    >
+
+    <label class="tag-page-check">
+      <input
+        type="checkbox"
+        id="tag-page-hidden-${tag.id}"
+        ${tag.isHidden ? "checked" : ""}
+      >
+      管理タグにする
+    </label>
+
+    <div class="tag-page-actions">
+      <button onclick="saveTagPageEdit('${tag.id}')">
+        保存
+      </button>
+
+      <button onclick="confirmDeleteTag('${tag.id}')">
+        削除
+      </button>
+
+      <button onclick="cancelTagPageEdit()">
+        キャンセル
+      </button>
+    </div>
+  `;
+
+}else{
+
+  card.innerHTML = `
+    <div class="tag-card-name">
+      ${tag.name}
+    </div>
+
+    <div class="tag-card-count">
+      (${count})
+    </div>
+
+    <button onclick="startTagPageEdit('${tag.id}')">
+      編集
+    </button>
+  `;
+}
+
 
       grid.appendChild(card);
     });
@@ -345,4 +402,67 @@ function renderHiddenTagSuggest(bookId){
   });
 }
 
+
+
+
+//==============================
+//タグ編集開始
+//==============================
+function startTagPageEdit(id){
+
+  editingTagPageId = id;
+
+  renderTags();
+}
+
+//==============================
+//タグ編集キャンセル
+//==============================
+function cancelTagPageEdit(){
+
+  editingTagPageId = null;
+
+  renderTags();
+}
+
+
+//==============================
+//タグ保存
+//==============================
+async function saveTagPageEdit(id){
+
+  const tag =
+    tagMaster.find(t =>
+      String(t.id) === String(id)
+    );
+
+  if(!tag) return;
+
+  const nameInput =
+    document.getElementById(
+      `tag-page-name-${id}`
+    );
+
+  const hiddenInput =
+    document.getElementById(
+      `tag-page-hidden-${id}`
+    );
+
+  if(nameInput){
+    tag.name =
+      nameInput.value.trim();
+  }
+
+  if(hiddenInput){
+    tag.isHidden =
+      hiddenInput.checked;
+  }
+
+  await saveData();
+
+  editingTagPageId = null;
+
+  renderTags();
+  renderHome();
+}
 
