@@ -206,12 +206,25 @@ border:1px solid #60564f;
 }
 
 .series-compact-card{
-  padding:8px 10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:7px 10px;
   border-bottom:1px solid #ead2c2;
   font-size:13px;
 }
 
-.series-compact-card .series-progress{
-  display:none;
+.series-compact-title{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.series-compact-count{
+  margin-left:8px;
+  flex-shrink:0;
+  font-size:11px;
+  color:#888;
 }
 
