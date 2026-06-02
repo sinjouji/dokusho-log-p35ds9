@@ -268,13 +268,14 @@ border:1px solid #60564f;
 .series-spine-title{
   writing-mode:vertical-rl;
   text-orientation:mixed;
-  font-size:9px;
+  font-size:11px;
   line-height:1.2;
   flex-wrap:wrap;
   
   letter-spacing:0.05em;
   width:auto;
-  height:150px;
+  height:130px;
+  padding-top:5px;
   
   text-align:left;
   white-space:nomal;
@@ -285,6 +286,7 @@ border:1px solid #60564f;
   padding:2px 5px;
   border-radius:999px;
   background:#f7f0ea;
+  font-weight:600;
   font-size:9px;
   color:#60564f;
 }
