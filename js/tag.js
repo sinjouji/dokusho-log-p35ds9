@@ -81,8 +81,7 @@ function addHiddenTag(bookId, tagName){
   ){
     book.tagIds.push(tag.id);
   }
-  closeModal("open-book-modal");
-  openBookDetailModal(book);
+  refreshBookDetailModal(book);
 }
 
 
@@ -106,8 +105,7 @@ function removeHiddenTag(
       .filter(id =>
         String(id) !== String(tagId)
       );
-
-  openBookDetailModal(book);
+  refreshBookDetailModal(book);
 }
 
 
@@ -120,6 +118,13 @@ function confirmRemoveHiddenTag(bookId, tagId){
   const key =
     `${bookId}-${tagId}`;
 
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book) return;
+
   if(pendingHiddenTagRemove === key){
 
     removeHiddenTag(bookId, tagId);
@@ -131,13 +136,21 @@ function confirmRemoveHiddenTag(bookId, tagId){
 
   pendingHiddenTagRemove = key;
 
-  const book =
-    books.find(b =>
-      String(b.id) === String(bookId)
-    );
-
-  if(book){
-    closeModal("open-book-modal");
-openBookDetailModal(book);
-  }
+  refreshBookDetailModal(book);
 }
+
+//==============================
+//モーダル重複防止ちゃん
+//==============================
+function refreshBookDetailModal(book){
+
+  closeModal("open-book-modal");
+
+  openBookDetailModal(book);
+}
+
+
+
+
+
+
