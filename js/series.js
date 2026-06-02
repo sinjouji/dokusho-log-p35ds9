@@ -2,6 +2,8 @@
 // SERIE.JS シリーズ関連の処理
 //
 
+let seriesViewMode =
+  localStorage.getItem("seriesViewMode") || "card";
 
 //==============================
 //シリーズ名を取得
@@ -66,7 +68,10 @@ function renderSeriesBookList(){
 		sorted.forEach(s=>{
 		
 			const d = document.createElement('div');
-			d.className = "card ";
+			d.className =
+  seriesViewMode === "compact"
+    ? "series-compact-card"
+    : "card";
 			
 			const latestDate =
   getSeriesLatestReadDate(s);
@@ -354,6 +359,14 @@ function renderSeriesSearchArea(){
 			<option value="sread-asc">読了日古</option>
 			
 			</select>
+			
+			<button onclick="changeSeriesViewMode('card')">
+  カード
+</button>
+
+<button onclick="changeSeriesViewMode('compact')">
+  一覧
+</button>
 		
 		<div id="series-suggest"></div>
 	`;
@@ -1028,4 +1041,20 @@ function toCircledNumber(num, read){
     : "○";
 }
 
+
+
+//===========================
+//シリーズの表示モード切り替え
+//===========================
+function changeSeriesViewMode(mode){
+
+  seriesViewMode = mode;
+
+  localStorage.setItem(
+    "seriesViewMode",
+    mode
+  );
+
+  renderSeriesBookList();
+}
 
