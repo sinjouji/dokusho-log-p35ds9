@@ -7,11 +7,6 @@ let seriesViewMode =
   
   
   
-main.classList.toggle(
-  "compact-mode",
-  seriesViewMode === "compact"
-);
-
 
 //==============================
 //シリーズ名を取得
@@ -33,6 +28,13 @@ console.log("byid~~");
 //◼️シリーズ一覧表示（骨組みだけ）
 //==============================
 function renderSeries(){
+
+main.classList.toggle(
+  "compact-mode",
+  seriesViewMode === "compact"
+);
+
+
 
 setActiveMenu("menu-series");
 
