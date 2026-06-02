@@ -29,12 +29,6 @@ console.log("byid~~");
 //==============================
 function renderSeries(){
 
-main.classList.toggle(
-  "compact-mode",
-  seriesViewMode === "compact"
-);
-
-
 
 setActiveMenu("menu-series");
 
@@ -58,6 +52,12 @@ function renderSeriesBookList(){
 
 	const main = document.getElementById("series-main");
 	if(!main) return;
+	
+	main.classList.toggle(
+  "compact-mode",
+  seriesViewMode === "compact"
+);
+
 	main.innerHTML = "";
 	
 	//フィルタ
