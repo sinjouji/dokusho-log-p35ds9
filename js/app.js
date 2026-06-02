@@ -2145,9 +2145,10 @@ setActiveMenu("menu-settings");
             
             <label>
   <input
-    type="checkbox"
-    id="tag-hidden-check"
-  >
+  type="checkbox"
+  id="tag-hidden-check"
+  ${tag.isHidden ? "checked" : ""}
+>
   非表示タグにする
 </label>
             
