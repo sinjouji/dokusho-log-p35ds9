@@ -23,6 +23,126 @@ function getHiddenBookTagIds(book){
 }
 
 
+
+
+//==============================
+//タグページ描画
+//==============================
+function renderTags(){
+
+  const main =
+    document.getElementById("tags-main");
+
+  if(!main) return;
+
+  main.innerHTML = `
+    <h2>🏷️ タグ</h2>
+
+    <div id="visible-tags-area"></div>
+
+    <hr>
+
+    <div id="hidden-tags-area"></div>
+  `;
+
+  renderVisibleTags();
+  renderHiddenTags();
+}
+
+//==============================
+//表示タグエリア
+//==============================
+function renderVisibleTags(){
+
+  const area =
+    document.getElementById(
+      "visible-tags-area"
+    );
+
+  if(!area) return;
+
+  area.innerHTML = `
+    <h3>表示タグ</h3>
+  `;
+
+  tagMaster
+    .filter(tag => !tag.isHidden)
+    .forEach(tag=>{
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "tag-card";
+
+      card.innerHTML = `
+        <div>${tag.name}</div>
+        <button
+          onclick="openTagEditModal('${tag.id}')"
+        >
+          編集
+        </button>
+      `;
+
+      area.appendChild(card);
+    });
+}
+
+
+
+
+//==============================
+//管理（非表示）タグエリア
+//==============================
+function renderHiddenTags(){
+
+  const area =
+    document.getElementById(
+      "hidden-tags-area"
+    );
+
+  if(!area) return;
+
+  area.innerHTML = `
+    <h3># 管理タグ</h3>
+
+    <input
+      id="hidden-tag-search"
+      class="addin"
+      placeholder="管理タグ検索"
+    >
+
+    <div
+      id="hidden-tag-list"
+      class="hidden-tag-list"
+    ></div>
+  `;
+
+  const list =
+    document.getElementById(
+      "hidden-tag-list"
+    );
+
+  tagMaster
+    .filter(tag => tag.isHidden)
+    .forEach(tag=>{
+
+      const chip =
+        document.createElement("span");
+
+      chip.className =
+        "hidden-tag-chip";
+
+      chip.textContent =
+        "#" + tag.name;
+
+      list.appendChild(chip);
+    });
+}
+
+
+
+
 //==============================
 //非表示タグ
 //==============================
