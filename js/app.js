@@ -135,6 +135,8 @@ const tagColors = [
   "#9b89c4", //藤
   "#87a96b", //若葉
   "#e597b2", //撫子
+//カスタムその他
+  "#e1d1b3", //亜麻
   "#b9b9b9" //銀鼠
 ];
 
@@ -2313,12 +2315,18 @@ async function saveTagEdit(id){
   }
 
   // 色
-  tag.color = editingTagColor;
-  
-  //非表示チェック
-  isHidden:
-  document.getElementById("tag-hidden-check").checked
+tag.color = editingTagColor;
 
+// 非表示チェック
+const hiddenCheck =
+  document.getElementById(
+    "tag-hidden-check"
+  );
+
+if(hiddenCheck){
+  tag.isHidden =
+    hiddenCheck.checked;
+}
   await saveData();
 
   editingTagId = null;
