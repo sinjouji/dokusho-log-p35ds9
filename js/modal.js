@@ -291,7 +291,7 @@ function openBookDetailModal(book){
          class="fav-cycle-btn"
          onclick="cycleFav('${book.id}')">評価：
            ${
-              ["0","★","★★","★★★","👑"][book.fav || 2]
+              ["0","★","★★","★★★","👑"][book.fav || 0]
             }
        </button>
 
@@ -348,8 +348,6 @@ function openBookDetailModal(book){
         ▼ 読了履歴
        </div>
     </div>
-      
-      
             
  
       <div
@@ -498,12 +496,22 @@ id="open-book-tags">
       })
       .join("")
   }
+  
+  
+  const hiddenTagIds =
+  (book.tagIds || [])
+    .filter(tagId =>
+      isHiddenTag(tagId)
+    );
 
-  <div class="hidden-tag-area">
+  ${
+  hiddenTagIds.length
+    ? `
+      <div class="hidden-tag-area">
 
-    <div class="hidden-tag-title">
-      管理タグ
-    </div>
+        <div class="hidden-tag-title">
+          管理タグ
+        </div>
 
     <div class="hidden-tag-list">
 
@@ -536,6 +544,12 @@ id="open-book-tags">
     </div>
 
   </div>
+  
+      `
+    : ""
+}
+
+
 
 </div>
 			
