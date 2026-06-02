@@ -8,6 +8,8 @@
 let editingTagPageId = null;
 //新規タグ用
 let showAddTagForm = false;
+//削除用
+let deletingTagId = null;
 
 
 //==============================
@@ -191,9 +193,16 @@ if(editingTagPageId === tag.id){
         保存
       </button>
 
-      <button onclick="confirmDeleteTag('${tag.id}')">
-        削除
-      </button>
+      <button
+  onclick="
+    deletingTagId =
+      '${tag.id}';
+
+    renderTags();
+  "
+>
+  削除
+</button>
 
       <button onclick="cancelTagPageEdit()">
         キャンセル
@@ -217,7 +226,36 @@ if(editingTagPageId === tag.id){
     </button>
   `;
 }
+${
+  deletingTagId === tag.id
+  ? `
+    <div class="delete-confirm">
 
+      本当に削除しますか？
+
+      <button
+        onclick="
+          deleteTag(
+            '${tag.id}'
+          )
+        "
+      >
+        削除する
+      </button>
+
+      <button
+        onclick="
+          deletingTagId = null;
+          renderTags();
+        "
+      >
+        キャンセル
+      </button>
+
+    </div>
+  `
+  : ""
+}
 
       grid.appendChild(card);
     });
@@ -592,3 +630,36 @@ function toggleAddTagForm(){
   renderTags();
 }
 
+
+
+//==============================
+//タグ削除処理
+//==============================
+async function deleteTag(id){
+
+  tagMaster =
+    tagMaster.filter(
+      tag =>
+        String(tag.id) !==
+        String(id)
+    );
+
+  books.forEach(book=>{
+
+    book.tagIds =
+      (book.tagIds || [])
+        .filter(
+          tagId =>
+            String(tagId) !==
+            String(id)
+        );
+
+  });
+
+  deletingTagId = null;
+
+  await saveData();
+
+  renderTags();
+  renderHome();
+}
