@@ -459,72 +459,84 @@ id="open-book-series">
    </div>
  
   <div class="
-    toggle-content
-    ${detailSections.tags ? "open" : ""}
-  "
-  id="open-book-tags">
-			${tagMaster
-				.filter(tag => !tag.isHidden)
-				.map(tag=>{
+  toggle-content
+  ${detailSections.tags ? "open" : ""}
+"
+id="open-book-tags">
 
-  const isActive =
-  (book.tagIds || [])
-    .map(String)
-    .includes(String(tag.id));
+  ${
+    tagMaster
+      .filter(tag => !tag.isHidden)
+      .map(tag=>{
 
-  return `
-    <span
-      class="tag-chip detail-tag-chip"
-      onclick="toggleBookTag('${book.id}','${tag.id}')"
+        const isActive =
+          (book.tagIds || [])
+            .map(String)
+            .includes(String(tag.id));
 
-      style="
-        background:
-          ${isActive ? tag.color : '#fffffc'};
+        return `
+          <span
+            class="tag-chip detail-tag-chip"
+            onclick="toggleBookTag(
+              '${book.id}',
+              '${tag.id}'
+            )"
+            style="
+              background:
+                ${isActive ? tag.color : '#fffffc'};
 
-        color:
-          ${isActive ? '#fffffc' : tag.color};
+              color:
+                ${isActive ? '#fffffc' : tag.color};
 
-        border:
-          1px solid ${tag.color};
-      "
-    >
-      ${tag.name}
-    </span>
-    
-    <div class="hidden-tag-area">
+              border:
+                1px solid ${tag.color};
+            "
+          >
+            ${tag.name}
+          </span>
+        `;
+      })
+      .join("")
+  }
 
-  <div class="hidden-tag-title">
-    管理タグ
+  <div class="hidden-tag-area">
+
+    <div class="hidden-tag-title">
+      管理タグ
+    </div>
+
+    <div class="hidden-tag-list">
+
+      ${
+        (book.tagIds || [])
+          .filter(tagId =>
+            isHiddenTag(tagId)
+          )
+          .map(tagId=>{
+
+            const tag =
+              tagMaster.find(t =>
+                String(t.id) ===
+                String(tagId)
+              );
+
+            if(!tag) return "";
+
+            return `
+              <span
+                class="hidden-tag-chip"
+              >
+                ${tag.name}
+              </span>
+            `;
+          })
+          .join("")
+      }
+
+    </div>
+
   </div>
 
-  <div class="hidden-tag-list">
-    ${
-      (book.tagIds || [])
-        .filter(tagId => isHiddenTag(tagId))
-        .map(tagId => {
-
-          const tag =
-            tagMaster.find(t =>
-              String(t.id) === String(tagId)
-            );
-
-          if(!tag) return "";
-
-          return `
-            <span class="hidden-tag-chip">
-              ${tag.name}
-            </span>
-          `;
-        })
-        .join("")
-    }
-  </div>
-
-</div>
-    
-  `;
-
-}).join("")}
 </div>
 			
 
