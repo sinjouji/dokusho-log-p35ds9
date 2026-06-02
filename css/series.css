@@ -213,6 +213,9 @@ border:1px solid #60564f;
   padding:7px 10px;
   border-bottom:1px solid #ead2c2;
   font-size:13px;
+  
+  border-radius:8px;
+  margin-bottom:2px;
 }
 
 .series-compact-title{
@@ -226,5 +229,14 @@ border:1px solid #60564f;
   flex-shrink:0;
   font-size:11px;
   color:#888;
+}
+
+/*コンパクトリストの行色変更*/
+.series-compact-card:nth-child(even){
+  background:#fffffc;
+}
+
+.series-compact-card:nth-child(odd){
+  background:#f7f0ea;
 }
 
