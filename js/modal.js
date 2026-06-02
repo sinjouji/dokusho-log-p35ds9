@@ -144,7 +144,9 @@ function openAddBookModal(){
       	<div class="toggle-content"
       	  id="add-book-tags">
 			
-				${tagMaster.map(tag=>{
+				${tagMaster
+					.filter(tag => !tag.isHidden)
+					.map(tag=>{
 
 				const isActive =
 					newBookTagIds.includes(tag.id);
