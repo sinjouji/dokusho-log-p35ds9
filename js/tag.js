@@ -137,6 +137,7 @@ function confirmRemoveHiddenTag(bookId, tagId){
     );
 
   if(book){
-    openBookDetailModal(book);
+    closeModal("open-book-modal");
+openBookDetailModal(book);
   }
 }
