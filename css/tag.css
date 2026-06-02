@@ -142,7 +142,7 @@ tag.css
 
 .tag-page-actions{
   display:flex;
-  gap:8px;
+  gap:5px;
   justify-content:flex-end;
   margin-top:10px;
   font-size:10px;
