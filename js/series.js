@@ -4,6 +4,14 @@
 
 let seriesViewMode =
   localStorage.getItem("seriesViewMode") || "card";
+  
+  
+  
+main.classList.toggle(
+  "compact-mode",
+  seriesViewMode === "compact"
+);
+
 
 //==============================
 //シリーズ名を取得
@@ -45,11 +53,6 @@ setActiveMenu("menu-series");
 //====シリーズ一覧だけを表示する
 //==============================
 function renderSeriesBookList(){
-
-main.classList.toggle(
-  "compact-mode",
-  seriesViewMode === "compact"
-);
 
 	const main = document.getElementById("series-main");
 	if(!main) return;
