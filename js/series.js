@@ -69,9 +69,43 @@ function renderSeriesBookList(){
 		
 			const d = document.createElement('div');
 			d.className =
-  seriesViewMode === "compact"
-    ? "series-compact-card"
-    : "card";
+  if(seriesViewMode === "compact"){
+
+  d.className = "series-compact-card";
+
+  d.innerHTML = `
+    <div class="series-compact-title">
+      ${s.name}
+    </div>
+
+    <div class="series-compact-count">
+      ${bookCount}冊
+    </div>
+  `;
+
+}else{
+
+  d.className = "card";
+
+  d.innerHTML = `
+    <div class="series-list-name">
+      ${s.name}
+    </div>
+
+    <div class="series-list-date">
+      ${bookCount}冊
+      ${
+        latestDate
+          ? `・最新読了：${latestDate}`
+          : ""
+      }
+    </div>
+
+    <div class="series-progress">
+      ${progress}
+    </div>
+  `;
+}
 			
 			const latestDate =
   getSeriesLatestReadDate(s);
