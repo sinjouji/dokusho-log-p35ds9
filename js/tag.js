@@ -89,6 +89,32 @@ function addHiddenTag(bookId, tagName){
 //==============================
 //非表示タグを本から削除
 //==============================
+function removeHiddenTag(
+  bookId,
+  tagId
+){
+
+  const book =
+    books.find(
+      b => String(b.id) === String(bookId)
+    );
+
+  if(!book) return;
+
+  book.tagIds =
+    (book.tagIds || [])
+      .filter(id =>
+        String(id) !== String(tagId)
+      );
+
+  openBookDetailModal(book);
+}
+
+
+
+//==============================
+//非表示タグを本から削除のトグルちゃん
+//==============================
 function confirmRemoveHiddenTag(bookId, tagId){
 
   const key =
