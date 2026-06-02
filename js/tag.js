@@ -203,29 +203,6 @@ if(editingTagPageId === tag.id){
 >
   削除
 </button>
-
-      <button onclick="cancelTagPageEdit()">
-        キャンセル
-      </button>
-    </div>
-  `;
-
-}else{
-
-  card.innerHTML = `
-    <div class="tag-card-name">
-      ${tag.name}
-    </div>
-
-    <div class="tag-card-count">
-      (${count})
-    </div>
-
-    <button onclick="startTagPageEdit('${tag.id}')">
-      編集
-    </button>
-  `;
-}
 ${
   deletingTagId === tag.id
   ? `
@@ -255,8 +232,24 @@ ${
     </div>
   `
   : ""
-}
+}  `;
 
+}else{
+
+  card.innerHTML = `
+    <div class="tag-card-name">
+      ${tag.name}
+    </div>
+
+    <div class="tag-card-count">
+      (${count})
+    </div>
+
+    <button onclick="startTagPageEdit('${tag.id}')">
+      編集
+    </button>
+  `;
+}
       grid.appendChild(card);
     });
 }
