@@ -273,9 +273,8 @@ border:1px solid #60564f;
   flex-wrap:wrap;
   
   letter-spacing:0.05em;
-  color:#fffffc;
-/*  width:auto;*/
-  max-height:150px;
+  width:auto;
+  height:150px;
   
   text-align:left;
   white-space:nomal;
