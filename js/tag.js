@@ -10,6 +10,10 @@ let editingTagPageId = null;
 let showAddTagForm = false;
 //削除用
 let deletingTagId = null;
+//管理タグ編集用
+let editingHiddenTagId = null;
+let deletingHiddenTagId = null;
+
 
 
 //==============================
@@ -266,61 +270,176 @@ function renderHiddenTags(){
     );
 
   if(!area) return;
-  
+
   const hiddenTags =
-  tagMaster.filter(
-    tag => tag.isHidden
-  );
+    tagMaster.filter(tag =>
+      tag.isHidden
+    );
+
+  const editingTag =
+    hiddenTags.find(tag =>
+      String(tag.id) ===
+      String(editingHiddenTagId)
+    );
 
   area.innerHTML = `
-  <div class="hidden-tag-panel">
+    <div class="hidden-tag-panel">
 
-    <div class="hidden-tag-header">
+      <div class="hidden-tag-header">
 
-      <h3># 管理タグ</h3>
+        <h3># 管理タグ</h3>
 
-      <div class="hidden-tag-count">
-        (${hiddenTags.length})
+        <div class="hidden-tag-count">
+          (${hiddenTags.length})
+        </div>
+
       </div>
 
+      <input
+        id="hidden-tag-search"
+        class="addin"
+        placeholder="管理タグ検索"
+      >
+
+      <div
+        id="hidden-tag-list"
+        class="hidden-tag-list"
+      ></div>
+
+      <div
+        id="hidden-tag-edit-area"
+      ></div>
+
     </div>
-
-    <input
-      id="hidden-tag-search"
-      class="addin"
-      placeholder="管理タグ検索"
-    >
-
-    <div
-      id="hidden-tag-list"
-      class="hidden-tag-list"
-    ></div>
-
-  </div>
-`;
+  `;
 
   const list =
     document.getElementById(
       "hidden-tag-list"
     );
 
-  tagMaster
-    .filter(tag => tag.isHidden)
-    .forEach(tag=>{
+  hiddenTags.forEach(tag=>{
 
-      const chip =
-        document.createElement("span");
+    const count =
+      books.filter(book =>
+        (book.tagIds || [])
+          .map(String)
+          .includes(String(tag.id))
+      ).length;
 
-      chip.className =
-        "hidden-tag-chip";
+    const chip =
+      document.createElement("span");
 
-      chip.textContent =
-        "#" + tag.name;
+    chip.className =
+      "hidden-tag-chip";
 
-      list.appendChild(chip);
-    });
+    if(String(tag.id) === String(editingHiddenTagId)){
+      chip.classList.add("active");
+    }
+
+    chip.textContent =
+      `#${tag.name} (${count})`;
+
+    chip.onclick = ()=>{
+
+      editingHiddenTagId =
+        String(editingHiddenTagId) === String(tag.id)
+          ? null
+          : tag.id;
+
+      deletingHiddenTagId = null;
+
+      renderHiddenTags();
+    };
+
+    list.appendChild(chip);
+  });
+
+  const editArea =
+    document.getElementById(
+      "hidden-tag-edit-area"
+    );
+
+  if(!editArea || !editingTag) return;
+
+  const count =
+    books.filter(book =>
+      (book.tagIds || [])
+        .map(String)
+        .includes(String(editingTag.id))
+    ).length;
+
+  if(
+    String(deletingHiddenTagId) ===
+    String(editingTag.id)
+  ){
+
+    editArea.innerHTML = `
+      <div class="hidden-tag-edit-card delete-confirm">
+
+        <div>
+          #${editingTag.name} を削除しますか？
+        </div>
+
+        <div class="tag-page-actions">
+          <button
+            onclick="deleteTag('${editingTag.id}')"
+          >
+            削除する
+          </button>
+
+          <button
+            onclick="
+              deletingHiddenTagId = null;
+              renderHiddenTags();
+            "
+          >
+            やめる
+          </button>
+        </div>
+
+      </div>
+    `;
+
+  }else{
+
+    editArea.innerHTML = `
+      <div class="hidden-tag-edit-card">
+
+        <div class="hidden-tag-edit-title">
+          #${editingTag.name}
+          <span class="hidden-tag-edit-count">
+            (${count})
+          </span>
+        </div>
+
+        <div class="tag-page-actions">
+          <button
+            onclick="
+              deletingHiddenTagId =
+                '${editingTag.id}';
+
+              renderHiddenTags();
+            "
+          >
+            削除
+          </button>
+
+          <button
+            onclick="
+              editingHiddenTagId = null;
+              deletingHiddenTagId = null;
+              renderHiddenTags();
+            "
+          >
+            閉じる
+          </button>
+        </div>
+
+      </div>
+    `;
+  }
 }
-
 
 
 
@@ -627,11 +746,6 @@ function toggleAddTagForm(){
 //タグ削除処理
 //==============================
 async function deleteTag(id){
-
-//  const ok =
-//    confirm("タグを削除しますか？");
-
-//  if(!ok) return;
 
   tagMaster =
     tagMaster.filter(tag =>
