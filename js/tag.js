@@ -365,7 +365,7 @@ const hiddenTags =
 
   const editArea =
     document.getElementById(
-      "hidden-tag-edit-area"
+      "hidden-tag-edit-area".
     );
 
   if(!editArea || !editingTag) return;
@@ -412,40 +412,56 @@ const hiddenTags =
   }else{
 
     editArea.innerHTML = `
-      <div class="hidden-tag-edit-card">
+  <div class="hidden-tag-edit-card">
 
-        <div class="hidden-tag-edit-title">
-          #${editingTag.name}
-          <span class="hidden-tag-edit-count">
-            (${count})
-          </span>
-        </div>
+    <div class="hidden-tag-edit-title">
+      #${editingTag.name}
+      <span class="hidden-tag-edit-count">
+        (${count})
+      </span>
+    </div>
 
-        <div class="tag-page-actions">
-          <button
-            onclick="
-              deletingHiddenTagId =
-                '${editingTag.id}';
+    <input
+      id="hidden-tag-edit-name-${editingTag.id}"
+      class="addin"
+      value="${editingTag.name}"
+    >
 
-              renderHiddenTags();
-            "
-          >
-            削除
-          </button>
+    <div class="tag-page-actions">
+      <button
+        onclick="
+          saveHiddenTagEdit(
+            '${editingTag.id}'
+          )
+        "
+      >
+        保存
+      </button>
 
-          <button
-            onclick="
-              editingHiddenTagId = null;
-              deletingHiddenTagId = null;
-              renderHiddenTags();
-            "
-          >
-            閉じる
-          </button>
-        </div>
+      <button
+        onclick="
+          deletingHiddenTagId =
+            '${editingTag.id}';
 
-      </div>
-    `;
+          renderHiddenTags();
+        "
+      >
+        削除
+      </button>
+
+      <button
+        onclick="
+          editingHiddenTagId = null;
+          deletingHiddenTagId = null;
+          renderHiddenTags();
+        "
+      >
+        閉じる
+      </button>
+    </div>
+
+  </div>
+`;
   }
 }
 
@@ -629,6 +645,38 @@ function confirmRemoveHiddenTag(bookId, tagId){
   pendingHiddenTagRemove = key;
 
   refreshBookDetailModal(book);
+}
+
+
+//==============================
+//非表示タグ編集保存ちゃん
+//==============================
+async function saveHiddenTagEdit(id){
+
+  const tag =
+    tagMaster.find(t =>
+      String(t.id) === String(id)
+    );
+
+  if(!tag) return;
+
+  const input =
+    document.getElementById(
+      `hidden-tag-edit-name-${id}`
+    );
+
+  if(input){
+    tag.name =
+      input.value.trim();
+  }
+
+  await saveData();
+
+  editingHiddenTagId = null;
+  deletingHiddenTagId = null;
+
+  renderHiddenTags();
+  renderHome();
 }
 
 //==============================
