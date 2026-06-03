@@ -17,6 +17,8 @@ let deletingHiddenTagId = null;
 let editingTagPageColor = null;
 //管理タグ検索ワード用変数
 let hiddenTagSearchKeyword = "";
+//管理タグソート用
+let tagSortMode = "nameAsc";
 
 
 
@@ -63,6 +65,24 @@ setActiveMenu("menu-tags");
 >
   ＋タグ
 </button>
+
+<div class="tag-sort-buttons">
+  <button onclick="tagSortMode='nameAsc'; renderTags();">
+    名前↑
+  </button>
+
+  <button onclick="tagSortMode='nameDesc'; renderTags();">
+    名前↓
+  </button>
+
+  <button onclick="tagSortMode='countDesc'; renderTags();">
+    使用数↓
+  </button>
+
+  <button onclick="tagSortMode='countAsc'; renderTags();">
+    使用数↑
+  </button>
+</div>
 
 
   <h2>🏷️ タグ</h2>
@@ -142,8 +162,9 @@ function renderVisibleTags(){
       "visible-tags-grid"
     );
 
-  tagMaster
-    .filter(tag => !tag.isHidden)
+  sortTags(
+  tagMaster.filter(tag => !tag.isHidden)
+  )
     .forEach(tag=>{
 
       const count =
@@ -305,8 +326,9 @@ function renderHiddenTags(){
     .toLowerCase();
 
 const hiddenTags =
-  tagMaster
-    .filter(tag => tag.isHidden)
+  sortTags(
+  tagMaster.filter(tag => tag.isHidden)
+  )
     .filter(tag =>
       !keyword
       ||
@@ -927,3 +949,52 @@ async function deleteTag(id){
   renderTags();
   renderHome();
 }
+
+
+
+//==============================
+//管理タグソート用（使用数取得）
+//==============================
+function getTagUseCount(tagId){
+
+  return books.filter(book =>
+    (book.tagIds || [])
+      .map(String)
+      .includes(String(tagId))
+  ).length;
+}
+
+
+
+//==============================
+//管理タグソート
+//==============================
+function sortTags(list){
+
+  return [...list].sort((a,b)=>{
+
+    if(tagSortMode === "nameAsc"){
+      return a.name.localeCompare(b.name, "ja");
+    }
+
+    if(tagSortMode === "nameDesc"){
+      return b.name.localeCompare(a.name, "ja");
+    }
+
+    if(tagSortMode === "countDesc"){
+      return getTagUseCount(b.id) - getTagUseCount(a.id);
+    }
+
+    if(tagSortMode === "countAsc"){
+      return getTagUseCount(a.id) - getTagUseCount(b.id);
+    }
+
+    return 0;
+  });
+}
+
+
+
+
+
+
