@@ -204,7 +204,7 @@ function renderVisibleTags(){
 
 
           <div class="tag-color-row">
-  ${tagColorPalette.map(color => `
+  ${tagColors.map(color => `
     <button
       class="tag-color-dot"
       style="background:${color};"
