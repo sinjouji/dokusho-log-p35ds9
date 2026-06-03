@@ -10,15 +10,6 @@ tag.css
   margin-top:6px;
 }
 
-.hidden-tag-chip{
-  font-size:10px;
-  padding:3px 7px;
-  border-radius:999px;
-  background:#eeeeee;
-  color:#666;
-}
-
-
 .hidden-tag-area{
   margin-top:8px;
 }
@@ -45,6 +36,36 @@ tag.css
 }
 
 
+.hidden-tag-chip.remove-ready{
+  background:#f8d8c6;
+  color:#8a4b4b;
+}
+
+.hidden-tag-chip.active{
+  background:#b9b9b9;
+  color:#fffffc;
+}
+
+.hidden-tag-edit-card{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid #ead2c2;
+  border-radius:14px;
+  background:#fffffc;
+}
+
+.hidden-tag-edit-title{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.hidden-tag-edit-count{
+  margin-left:4px;
+  color:#999;
+  font-size:12px;
+}
+
 .hidden-tag-input-area{
   margin-top:6px;
 }
@@ -52,13 +73,6 @@ tag.css
 .hidden-tag-input-area input{
   font-size:12px;
 }
-
-
-.hidden-tag-chip.remove-ready{
-  background:#f8d8c6;
-  color:#8a4b4b;
-}
-
 
 .hidden-tag-suggest{
   display:flex;
