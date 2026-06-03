@@ -13,6 +13,8 @@ let deletingTagId = null;
 //管理タグ編集用
 let editingHiddenTagId = null;
 let deletingHiddenTagId = null;
+//カラーパレット用の一時色保管所
+let editingTagPageColor = null;
 
 
 
@@ -199,6 +201,23 @@ function renderVisibleTags(){
             class="addin"
             value="${tag.name}"
           >
+
+
+          <div class="tag-color-row">
+  ${tagColorPalette.map(color => `
+    <button
+      class="tag-color-dot"
+      style="background:${color};"
+      onclick="
+        selectTagPageColor(
+          '${tag.id}',
+          '${color}'
+        )
+      "
+    ></button>
+  `).join("")}
+</div>
+
 
           <label class="tag-page-check">
             <input
@@ -628,6 +647,25 @@ function startTagPageEdit(id){
 
   editingTagPageId = id;
 
+  const tag =
+    tagMaster.find(t =>
+      String(t.id) === String(id)
+    );
+
+  editingTagPageColor =
+    tag?.color || "#b9b9b9";
+
+  renderTags();
+}
+
+
+//==============================
+//タグ色パレット選択
+//==============================
+function selectTagPageColor(id, color){
+
+  editingTagPageColor = color;
+
   renderTags();
 }
 
@@ -673,6 +711,9 @@ async function saveTagPageEdit(id){
     tag.isHidden =
       hiddenInput.checked;
   }
+  
+  tag.color =
+    editingTagPageColor || tag.color;
 
   await saveData();
 
