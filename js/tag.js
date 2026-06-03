@@ -365,7 +365,7 @@ const hiddenTags =
 
   const editArea =
     document.getElementById(
-      "hidden-tag-edit-area".
+      "hidden-tag-edit-area"
     );
 
   if(!editArea || !editingTag) return;
