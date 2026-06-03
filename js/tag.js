@@ -205,17 +205,24 @@ function renderVisibleTags(){
 
           <div class="tag-color-row">
   ${tagColors.map(color => `
-    <button
-      class="tag-color-dot"
-      style="background:${color};"
-      onclick="
-        selectTagPageColor(
-          '${tag.id}',
-          '${color}'
-        )
-      "
-    ></button>
-  `).join("")}
+  <button
+    class="
+      tag-color-dot
+      ${
+        editingTagPageColor === color
+          ? "active"
+          : ""
+      }
+    "
+    style="background:${color};"
+    onclick="
+      selectTagPageColor(
+        '${tag.id}',
+        '${color}'
+      )
+    "
+  ></button>
+`).join("")}
 </div>
 
 
