@@ -692,7 +692,7 @@ if(visibleCheck && visibleCheck.checked){
   editingHiddenTagId = null;
   deletingHiddenTagId = null;
 
-  renderHiddenTags();
+  renderTags();
   renderHome();
 }
 
