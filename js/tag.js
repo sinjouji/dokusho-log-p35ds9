@@ -338,10 +338,9 @@ const hiddenTags =
   id="hidden-tag-search"
   class="addin"
   placeholder="管理タグ検索"
-  value="${hiddenTagSearchKeyword}"
   oninput="
     hiddenTagSearchKeyword = this.value;
-    renderHiddenTags();
+    renderHiddenTagList();
   "
 >
 
@@ -362,42 +361,7 @@ const hiddenTags =
       "hidden-tag-list"
     );
 
-  hiddenTags.forEach(tag=>{
-
-    const count =
-      books.filter(book =>
-        (book.tagIds || [])
-          .map(String)
-          .includes(String(tag.id))
-      ).length;
-
-    const chip =
-      document.createElement("span");
-
-    chip.className =
-      "hidden-tag-chip";
-
-    if(String(tag.id) === String(editingHiddenTagId)){
-      chip.classList.add("active");
-    }
-
-    chip.textContent =
-      `#${tag.name} (${count})`;
-
-    chip.onclick = ()=>{
-
-      editingHiddenTagId =
-        String(editingHiddenTagId) === String(tag.id)
-          ? null
-          : tag.id;
-
-      deletingHiddenTagId = null;
-
-      renderHiddenTags();
-    };
-
-    list.appendChild(chip);
-  });
+  renderHiddenTagList();
 
   const editArea =
     document.getElementById(
@@ -485,6 +449,70 @@ const hiddenTags =
   }
 }
 
+
+
+//==============================
+//非表示タグ描画
+//==============================
+function renderHiddenTagList(){
+
+  const list =
+    document.getElementById("hidden-tag-list");
+
+  if(!list) return;
+
+  list.innerHTML = "";
+
+  const keyword =
+    (hiddenTagSearchKeyword || "")
+      .trim()
+      .toLowerCase();
+
+  const hiddenTags =
+    tagMaster
+      .filter(tag => tag.isHidden)
+      .filter(tag =>
+        !keyword ||
+        (tag.name || "")
+          .toLowerCase()
+          .includes(keyword)
+      );
+
+  hiddenTags.forEach(tag=>{
+
+    const count =
+      books.filter(book =>
+        (book.tagIds || [])
+          .map(String)
+          .includes(String(tag.id))
+      ).length;
+
+    const chip =
+      document.createElement("span");
+
+    chip.className = "hidden-tag-chip";
+
+    if(String(tag.id) === String(editingHiddenTagId)){
+      chip.classList.add("active");
+    }
+
+    chip.textContent =
+      `#${tag.name} (${count})`;
+
+    chip.onclick = ()=>{
+      editingHiddenTagId =
+        String(editingHiddenTagId) === String(tag.id)
+          ? null
+          : tag.id;
+
+      deletingHiddenTagId = null;
+
+      renderHiddenTags();
+    };
+
+    list.appendChild(chip);
+  });
+}
 
 
 //==============================
