@@ -428,6 +428,14 @@ const hiddenTags =
     >
 
     <div class="tag-page-actions">
+    <label class="tag-page-check">
+  <input
+    type="checkbox"
+    id="hidden-tag-edit-visible-${editingTag.id}"
+  >
+  表示タグにする
+</label>
+    
       <button
         onclick="
           saveHiddenTagEdit(
@@ -669,6 +677,15 @@ async function saveHiddenTagEdit(id){
     tag.name =
       input.value.trim();
   }
+
+  const visibleCheck =
+  document.getElementById(
+    `hidden-tag-edit-visible-${id}`
+  );
+
+if(visibleCheck && visibleCheck.checked){
+  tag.isHidden = false;
+}
 
   await saveData();
 
