@@ -105,8 +105,8 @@ let settingSections = JSON.parse(
     };
 
 //タグ編集用
-let editingTagId = null;
-let editingTagColor = "";
+//let editingTagId = null;
+//let editingTagColor = "";
 
 //====設定用のカラーモード設定
 let shelfColorMode =
@@ -1897,18 +1897,6 @@ setActiveMenu("menu-settings");
       </button>
     </div>
     
-    <!--テーマカラー-->
-    <div class="setting-row">
-      <span>テーマカラー</span>
-      ---
-    </div>
-    
-    <!--フォントサイズ-->
-    <div class="setting-row">
-      <span>フォントサイズ</span>
-      ---
-    </div>
-    
     <!--最近の本-->
     <div class="setting-row">
       <span>最近の本</span>
@@ -1961,12 +1949,6 @@ setActiveMenu("menu-settings");
       <span>再読チェック</span>
       ---
     </div>
-
-    <!--サジェスト-->
-    <div class="setting-row">
-      <span>サジェスト</span>
-      ---
-    </div>
 `
 : ""}
   </div>
@@ -2009,176 +1991,6 @@ setActiveMenu("menu-settings");
 `
 : ""}
   </div>
-   
- 
-   <div class="setting-card">
-  <div
-    class="setting-card-title"
-    onclick="toggleSettingSection('tags')"
-  >
-
-    ${settingSections.tags
-      ? "▽"
-      : "▶︎"
-    }
-
-    タグ設定
-
-  </div>
-
-  ${settingSections.tags
-    ? `
-
-    <div class="setting-row">
-
-      <span>タグの編集</span>
-
-    </div>
-       <div class="tag-add-area">
-
-  <input
-    id="new-tag-name"
-    placeholder="新しいタグ">
-
-  <div class="tag-color-palette">
-
-    ${tagColors.map(color => `
-
-      <button
-        class="
-          color-dot
-          ${newTagColor === color
-            ? "active"
-            : ""
-          }
-        "
-
-        style="background:${color};"
-
-        onclick="
-          selectNewTagColor('${color}')
-        ">
-      </button>
-
-    `).join("")}
-
-  </div>
-
-  <button onclick="addTag()">
-    ➕タグ追加
-  </button>
-
-</div>
-
-
-    ${tagMaster.map(tag => `
-
-      <div class="tag-edit-item">
-
-        <div class="setting-row">
-
-          <span
-            class="tag-chip"
-              style="
-                background:${tag.color};
-                color:white;
-              "
-            >
-              ${tag.name}
-            </span>
-
-          <button
-            onclick="
-              openTagEditor('${tag.id}')
-            "
-          >
-            編集
-          </button>
-          
-          <button
-            class="danger-button"
-            onclick="deleteTag('${tag.id}')"
-          >
-            削除
-          </button>
-
-        </div>
-
-        ${editingTagId === tag.id
-          ? `
-
-          <div class="tag-edit-area">
-
-            <input
-              id="edit-tag-name"
-              value="${tag.name}">
-
-            <div class="tag-color-palette">
-
-              ${tagColors.map(color => `
-
-                <button
-
-                  class="
-                    color-dot
-                    ${editingTagColor === color
-                      ? "active"
-                      : ""
-                    }
-                  "
-
-                  style="
-                    background:${color};
-                  "
-
-                  onclick="
-                    selectTagColor('${color}')
-                  "
-
-                >
-                </button>
-
-              `).join("")}
-
-            </div>
-            
-            <label>
-  <input
-  type="checkbox"
-  id="tag-hidden-check"
-  ${tag.isHidden ? "checked" : ""}
->
-  非表示タグにする
-</label>
-            
-
-            <button onclick="saveTagEdit('${tag.id}')">
-             🪎 保存
-            </button>
-
-            <button
-              onclick="
-                closeTagEditor()
-              "
-            >
-              キャンセル
-            </button>
-
-          </div>
-
-          `
-          : ""
-        }
-
-      </div>
-
-    `).join("")}
-
-    `
-    : ""
-  }
-
-</div>
    
 
   <div class="setting-card">
@@ -2224,31 +2036,31 @@ setActiveMenu("menu-settings");
 //==============================
 //====タグエディタ「編集開く」
 //==============================
-function openTagEditor(id){
+//function openTagEditor(id){
 
-  editingTagId = id;
+ // editingTagId = id;
   
-  const tag =
-    tagMaster.find(
-      t => t.id === id
-    );
+ // const tag =
+  //  tagMaster.find(
+ //     t => t.id === id
+//    );
   
-  if(tag){
-    editingTagColor = tag.color;
-  }
+//  if(tag){
+//    editingTagColor = tag.color;
+//  }
 
-  renderSettings();
-}
+//  renderSettings();
+//}
 
 //==============================
 //====タグエディタ「閉じる」
 //==============================
-function closeTagEditor(){
+//function closeTagEditor(){
 
-  editingTagId = null;
+//  editingTagId = null;
 
-  renderSettings();
-}
+//  renderSettings();
+//}
 
 //==============================
 //====年間目標のオンオフ切替
@@ -2292,64 +2104,64 @@ function toggleGoal(e){
 //==============================
 //====タグ保存処理
 //==============================
-async function saveTagEdit(id){
+//async function saveTagEdit(id){
 
-  const tag =
-    tagMaster.find(
-      t => t.id === id
-    );
+ // const tag =
+//    tagMaster.find(
+ //     t => t.id === id
+//    );
 
-  if(!tag) return;
+ // if(!tag) return;
 
-  // 名前
-  const input =
-    document.getElementById(
-      "edit-tag-name"
-    );
+// 名前
+//  const input =
+  //  document.getElementById(
+ //     "edit-tag-name"
+//    );
 
-  if(input){
-    tag.name = input.value.trim();
-  }
+//  if(input){
+//    tag.name = input.value.trim();
+//  }
 
   // 色
-tag.color = editingTagColor;
+//tag.color = editingTagColor;
 
 // 非表示チェック
-const hiddenCheck =
-  document.getElementById(
-    "tag-hidden-check"
-  );
+//const hiddenCheck =
+//  document.getElementById(
+ //   "tag-hidden-check"
+//  );
 
-if(hiddenCheck){
-  tag.isHidden =
-    hiddenCheck.checked;
-}
-  await saveData();
+//if(hiddenCheck){
+//  tag.isHidden =
+//    hiddenCheck.checked;
+//}
+//  await saveData();
 
-  editingTagId = null;
+//  editingTagId = null;
 
-  renderSettings();
-  renderHome();
-}
+//  renderSettings();
+//  renderHome();
+//}
 //==============================
 //====新規タグ追加用：色の処理
 //==============================
-function selectNewTagColor(color){
+//function selectNewTagColor(color){
 
-  newTagColor = color;
+ // newTagColor = color;
 
-  renderSettings();
-}
+//  renderSettings();
+//}
 
 //==============================
 //====タグ編集用：色の処理
 //==============================
-function selectTagColor(color){
+//function selectTagColor(color){
 
-  editingTagColor = color;
+//  editingTagColor = color;
   
-  renderSettings();
-}
+//  renderSettings();
+//}
 
 
 //==============================
@@ -2453,40 +2265,40 @@ function toggleSettingSection(key){
 //==============================
 //====新規タグ追加
 //==============================
-async function addTag(){
+//async function addTag(){
 
-  const input =
-    document.getElementById("new-tag-name");
+//  const input =
+//    document.getElementById("new-tag-name");
 
-  if(!input) return;
+  //if(!input) return;
 
-  const name =
-    input.value.trim();
+  //const name =
+    //input.value.trim();
 
-  if(!name){
+//  if(!name){
 
-    alert("タグ名を入力してください");
-    return;
-  }
+  //  alert("タグ名を入力してください");
+   // return;
+ // }
 
-  tagMaster.push({
+  //tagMaster.push({
 
-    id: "t" + Date.now(),
+    //id: "t" + Date.now(),
 
-    name,
+//    name,
 
-    color: newTagColor
+  //  color: newTagColor
 
-  });
+//  });
 
-  await saveData();
+//  await saveData();
 
-  input.value = "";
+//  input.value = "";
 
-  newTagColor = "#7b8d8e";
+//  newTagColor = "#7b8d8e";
 
-  renderSettings();
-}
+  //renderSettings();
+//}
 
 //==============================
 //====設定用：背表紙カラー
