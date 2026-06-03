@@ -15,6 +15,8 @@ let editingHiddenTagId = null;
 let deletingHiddenTagId = null;
 //カラーパレット用の一時色保管所
 let editingTagPageColor = null;
+//管理タグ検索ワード用変数
+let hiddenTagSearchKeyword = "";
 
 
 
@@ -297,9 +299,20 @@ function renderHiddenTags(){
 
   if(!area) return;
 
-  const hiddenTags =
-    tagMaster.filter(tag =>
-      tag.isHidden
+  const keyword =
+  hiddenTagSearchKeyword
+    .trim()
+    .toLowerCase();
+
+const hiddenTags =
+  tagMaster
+    .filter(tag => tag.isHidden)
+    .filter(tag =>
+      !keyword
+      ||
+      (tag.name || "")
+        .toLowerCase()
+        .includes(keyword)
     );
 
   const editingTag =
@@ -322,10 +335,15 @@ function renderHiddenTags(){
       </div>
 
       <input
-        id="hidden-tag-search"
-        class="addin"
-        placeholder="管理タグ検索"
-      >
+  id="hidden-tag-search"
+  class="addin"
+  placeholder="管理タグ検索"
+  value="${hiddenTagSearchKeyword}"
+  oninput="
+    hiddenTagSearchKeyword = this.value;
+    renderHiddenTags();
+  "
+>
 
       <div
         id="hidden-tag-list"

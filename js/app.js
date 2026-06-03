@@ -104,10 +104,6 @@ let settingSections = JSON.parse(
     datas: true,
     };
 
-//タグ編集用
-//let editingTagId = null;
-//let editingTagColor = "";
-
 //====設定用のカラーモード設定
 let shelfColorMode =
   localStorage.getItem(
@@ -2033,34 +2029,6 @@ setActiveMenu("menu-settings");
 }
 
 
-//==============================
-//====タグエディタ「編集開く」
-//==============================
-//function openTagEditor(id){
-
- // editingTagId = id;
-  
- // const tag =
-  //  tagMaster.find(
- //     t => t.id === id
-//    );
-  
-//  if(tag){
-//    editingTagColor = tag.color;
-//  }
-
-//  renderSettings();
-//}
-
-//==============================
-//====タグエディタ「閉じる」
-//==============================
-//function closeTagEditor(){
-
-//  editingTagId = null;
-
-//  renderSettings();
-//}
 
 //==============================
 //====年間目標のオンオフ切替
@@ -2074,94 +2042,6 @@ function toggleGoal(e){
   renderSettings();
   renderHome(); // 即反映
 }
-//==============================
-//====タグ削除処理※タグページに移動次第削除予定2026/06/02
-//==============================
-//async function deleteTag(id){
-
-// const used = books.some(book =>
-//  (book.tagIds || []).includes(id)
-//);
-
-//     const ok = confirm("タグを削除しますか？");
-
-//  if(!ok) return;
-
-//tagMaster =
-//  tagMaster.filter(
-//    tag =>
-//      String(tag.id)
-//      !==
-//      String(id)
-//  );
-
-//  await saveData();
-
-//  renderSettings();
-//  renderHome();
-//}
-
-//==============================
-//====タグ保存処理
-//==============================
-//async function saveTagEdit(id){
-
- // const tag =
-//    tagMaster.find(
- //     t => t.id === id
-//    );
-
- // if(!tag) return;
-
-// 名前
-//  const input =
-  //  document.getElementById(
- //     "edit-tag-name"
-//    );
-
-//  if(input){
-//    tag.name = input.value.trim();
-//  }
-
-  // 色
-//tag.color = editingTagColor;
-
-// 非表示チェック
-//const hiddenCheck =
-//  document.getElementById(
- //   "tag-hidden-check"
-//  );
-
-//if(hiddenCheck){
-//  tag.isHidden =
-//    hiddenCheck.checked;
-//}
-//  await saveData();
-
-//  editingTagId = null;
-
-//  renderSettings();
-//  renderHome();
-//}
-//==============================
-//====新規タグ追加用：色の処理
-//==============================
-//function selectNewTagColor(color){
-
- // newTagColor = color;
-
-//  renderSettings();
-//}
-
-//==============================
-//====タグ編集用：色の処理
-//==============================
-//function selectTagColor(color){
-
-//  editingTagColor = color;
-  
-//  renderSettings();
-//}
 
 
 //==============================
@@ -2261,44 +2141,6 @@ function toggleSettingSection(key){
   renderSettings();
 }
 
-
-//==============================
-//====新規タグ追加
-//==============================
-//async function addTag(){
-
-//  const input =
-//    document.getElementById("new-tag-name");
-
-  //if(!input) return;
-
-  //const name =
-    //input.value.trim();
-
-//  if(!name){
-
-  //  alert("タグ名を入力してください");
-   // return;
- // }
-
-  //tagMaster.push({
-
-    //id: "t" + Date.now(),
-
-//    name,
-
-  //  color: newTagColor
-
-//  });
-
-//  await saveData();
-
-//  input.value = "";
-
-//  newTagColor = "#7b8d8e";
-
-  //renderSettings();
-//}
 
 //==============================
 //====設定用：背表紙カラー
