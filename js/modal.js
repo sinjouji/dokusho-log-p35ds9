@@ -36,8 +36,8 @@ function openAddBookModal(){
   modal.innerHTML = `
     <div class="modal-box">
  <div class="flex-between">
-         <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
-         <button onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
+         <span class="btn-main" style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
+         <button class="btn-sub" onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
 
       <input class="input-title"
        id="add-title"
@@ -195,7 +195,7 @@ function openAddBookModal(){
       <hr class="kugiri">
 
  
-        <button onclick="saveNewBook()">
+        <button onclick="saveNewBook()" class="btn-main">
           ➕保存
         </button>
             </div>
@@ -260,7 +260,7 @@ function openBookDetailModal(book){
         value="${book.title || ""}">
         
     
-      <button onclick="closeModal('open-book-modal')" style="margin-left:auto;">
+      <button class="btn-sub" onclick="closeModal('open-book-modal')" style="margin-left:auto;">
         ✖️
       </button>
     </div>
@@ -617,7 +617,7 @@ id="open-book-tags">
 
 		<div class="actions-row">
       
-      <button class="danger-btn"
+      <button class="danger-btn btn-danger"
         onclick="deleteBook('${book.id}')">
         🗑 削除
       </button>
@@ -626,7 +626,7 @@ id="open-book-tags">
   📄 複製
 </button>
       
-      <button onclick="saveDetail('${book.id}')">
+      <button class="btn-main" onclick="saveDetail('${book.id}')">
         🪎 保存
       </button>
       
@@ -666,7 +666,7 @@ newSeriesCharacterIds = [];
 		<div class="modal-box">
 		<div class="flex-between">
 					<span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズを追加</span>
-						<button onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
+						<button class="btn-sub" onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
 			
 			<input
   class="input-common"
@@ -746,7 +746,7 @@ newSeriesCharacterIds = [];
 				
 			
 			     <hr class="kugiri">
-     			 <button onclick="saveNewSeries()">➕追加</button>
+     			 <button class="btn-main" onclick="saveNewSeries()">➕追加</button>
 			
 			
 			
@@ -786,7 +786,7 @@ function openSeriesEditModal(id){
 
       <div class="flex-between">
       <span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズ編集</span>
-      <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;">✖️</button>
+      <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;" class="btn-sub">✖️</button>
       </div>
 
       <input
@@ -860,11 +860,11 @@ function openSeriesEditModal(id){
     <div class="actions-row">
     
     
-      <button onclick="deleteSeries('${series.id}')">
+      <button class="btn-danger" onclick="deleteSeries('${series.id}')">
        🗑️ 削除
       </button>
     
-      <button
+      <button class="btn-main"
         onclick="saveSeriesEdit('${series.id}')"
       >
         🪎 保存
@@ -903,7 +903,7 @@ function openAddCharacterModal(){
 		<div class="modal-box">
 			<div class="flex-between">
 			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
-					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button></div>
+					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;" class="btn-sub">✖️</button></div>
 			
 			<input class="input-title"
 				id="add-chars-name"
@@ -938,7 +938,7 @@ function openAddCharacterModal(){
 			
 			     <hr class="kugiri">
 			
-			<button onclick="saveNewCharacter()">➕追加</button>
+			<button onclick="saveNewCharacter()" class="btn-main">➕追加</button>
 			
 	
 		</div>
@@ -981,7 +981,7 @@ editingCharacterSeriesIds =
 		<div class="flex-between">
 			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
-						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')">✖️</button></div>
+						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
 			
 						
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
@@ -1025,10 +1025,10 @@ editingCharacterSeriesIds =
          <hr class="kugiri">
 		
 		<div class="actions-row">
-			<button onclick="deleteCharacter('${c.id}')">
+			<button onclick="deleteCharacter('${c.id}')" class="btn-danger">
   🗑️ 削除
 </button>
-			<button onclick="saveCharacter('${c.id}')">🪎 保存</button>
+			<button onclick="saveCharacter('${c.id}')" class="btn-main">🪎 保存</button>
 		</div>
 	
 		</div>
