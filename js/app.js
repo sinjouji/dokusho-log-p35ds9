@@ -964,7 +964,7 @@ function renderSearchArea(){
       ➕ 本
     </button>
 
-    <input
+    <input class="input-common"
       id="search"
       placeholder="検索..."
       value="${searchKeyword}"
@@ -1964,7 +1964,7 @@ setActiveMenu("menu-settings");
         onclick="toggleGoal(event)"></div>
       <div class="settings-item">
         目標冊数
-        <input 
+        <input class="input-common"
           type="number" 
           value="${yearlyGoal}" 
           min="1"

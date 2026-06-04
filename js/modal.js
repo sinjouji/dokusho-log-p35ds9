@@ -39,7 +39,7 @@ function openAddBookModal(){
          <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
          <button onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
 
-      <input class="input-common"
+      <input class="input-title"
        id="add-title"
         type="text"
         placeholder="タイトル"
@@ -51,9 +51,9 @@ function openAddBookModal(){
       
       
       <div class="flex-between">
-        <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
+        <div class="field-label" style="padding:0;margin-right:2px;">読了日：</div>
 
-        <input type="date" id="add-date"  style="width:50%;margin-right:auto;">
+        <input type="date" id="add-date" class="input-common" style="margin-right:auto;">
         
         
 	  			<button
@@ -73,7 +73,7 @@ function openAddBookModal(){
       
       
             ${enableMemo ? `
-      <input type="text" class="bememo" id="add-memo"
+      <input type="text" class="input-common" id="add-memo"
         placeholder="メモ">` : ""}
 
       
@@ -256,7 +256,7 @@ function openBookDetailModal(book){
   modal.innerHTML = `
     <div class="modal-box detail-modal">
     <div class="flex-between">
-      <input id="detail-title" class="detail-title"
+      <input id="detail-title" class="input-title"
         value="${book.title || ""}">
         
     
@@ -384,7 +384,7 @@ function openBookDetailModal(book){
       
       
       <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}" style="padding:1px 2px;width:70%;border-radius:10px;">
+      <input type="date" id="readDate-${book.id}" class="input-common">
       <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
         ➕読了日
       </button>
@@ -395,7 +395,7 @@ function openBookDetailModal(book){
             <div class="detail-row">
       ${enableMemo ? `
       <input
-        class="bememo"
+        class="input-common"
         type="text"
         id="editMemo"
         
@@ -661,8 +661,7 @@ newSeriesCharacterIds = [];
 			
 			
 			
-				<div>関連登録</div>
-				<div class="addin2">
+				<div class="flex-between">関連登録
 				<input class="input-common"
 				 id="series-for-one"
 					type="text"
@@ -886,12 +885,12 @@ function openAddCharacterModal(){
 			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
 					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button></div>
 			
-			<input class="input-common"
+			<input class="input-title"
 				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
 			
-				<textarea id="add-chars-memo"
+				<textarea class="textarea-common" id="add-chars-memo"
 				placeholder="メモ"></textarea>
 				
 				
@@ -960,12 +959,12 @@ editingCharacterSeriesIds =
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
 		<div class="flex-between">
-			<input id="character-name" class="character-name"
+			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')">✖️</button></div>
 			
 						
-			<textarea id="character-memo">${c.memo || ""}</textarea>
+			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
 		
 		      
       <div style="font-size:10px">
