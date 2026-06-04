@@ -81,13 +81,11 @@ button{
 /*==========
 コンテンツ配置（主にモーダル内）
 ==========*/
-/*元：end-btn*/
-.actions-row{
-  width:70%;
-  display:flex;
-  justify-content: space-between;
+
+.detail-row{
+  margin-top:5px;
   font-size:14px;
-  margin:auto;
+  align:left;
 }
 
 /*元：title-line*/
@@ -97,6 +95,16 @@ button{
   gap:3px;
 }
 
+
+/*元：end-btn*/
+.actions-row{
+  width:70%;
+  display:flex;
+  justify-content: space-between;
+  font-size:14px;
+  margin:auto;
+  align-items:center;
+}
 
 
 
