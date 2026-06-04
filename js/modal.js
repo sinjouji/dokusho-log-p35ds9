@@ -304,9 +304,11 @@ function openBookDetailModal(book){
             }
        </button>
 
-     </div>
-   
-        <label class="reread-check">
+        </div>
+      </div>
+      <label class="reread-check">
+
+
 
   <input
     type="checkbox"
@@ -320,7 +322,6 @@ function openBookDetailModal(book){
 
   再読予定
 </label>
-      </div>
       
       
 
@@ -342,15 +343,17 @@ function openBookDetailModal(book){
             </button>
       </div>
       
+    </div>
+      
+      
+      
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')">
         ➕読了日
       </button>
       
-    </div>
       
       
-      <div class="detail-date-add flex-between">
       
         <div class="book-stat">
       ${
@@ -360,6 +363,9 @@ function openBookDetailModal(book){
           []
         ).length
       }回読了</div>
+      
+      
+      
       
       <div
         class="toggle-history"
@@ -371,7 +377,7 @@ function openBookDetailModal(book){
        </div>
       
       
-      </div>
+      
 
       <div
         id="date-history-${book.id}"
@@ -411,8 +417,6 @@ function openBookDetailModal(book){
       >
       ` : ""}</div>
       
-
-		<div class="actions-row">
 		
 			<div style="font-size:11px"
         class="toggle-head"
@@ -439,7 +443,7 @@ function openBookDetailModal(book){
         "
       >
       ▶︎関連用シリーズ</div>
-   </div>
+   
    
    <div class="
   toggle-content
