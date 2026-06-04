@@ -345,17 +345,15 @@ function openBookDetailModal(book){
     </div>
       
       
+      
       <div class="detail-row">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')">
         ➕読了日
       </button>
-      </div>
+            
       
-      
-      
-      <div class="detail-row input-small">
-        <div class="book-stat">
+        <div class="book-stat" style="margin-left:auto;">
       ${
         (
           book.readDates ||
