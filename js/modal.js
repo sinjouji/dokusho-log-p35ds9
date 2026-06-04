@@ -308,7 +308,7 @@ function openBookDetailModal(book){
       <label class="reread-check input-small">
 
 
- 
+ <div class="detail-row">
   <input
     type="checkbox"
     id="reread-check"
@@ -321,11 +321,11 @@ function openBookDetailModal(book){
 
   再読予定
 </label>
+</div>
       
       
 
-     <div class="detail-row actions-row"
-     style="align-items:center;flex-wrap:wrap;">
+     <div class="detail-row">
      
   読了日：
 
@@ -366,6 +366,19 @@ function openBookDetailModal(book){
       
       
       
+       <div class="detail-row">
+      ${enableMemo ? `
+      <input
+        class="input-common"
+        type="text"
+        id="editMemo"
+        
+        placeholder="メモ"
+        
+        value="${book.memo || ""}"
+      >
+      ` : ""}</div>
+      
       
       <div
         class="toggle-history"
@@ -402,20 +415,6 @@ function openBookDetailModal(book){
     : "未読"
   }</div>
       
-
-
-            <div class="detail-row">
-      ${enableMemo ? `
-      <input
-        class="input-common"
-        type="text"
-        id="editMemo"
-        
-        placeholder="メモ"
-        
-        value="${book.memo || ""}"
-      >
-      ` : ""}</div>
       
       
       
