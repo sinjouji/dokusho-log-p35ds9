@@ -1350,19 +1350,29 @@ if(!confirm("削除しますか？")){
 //==============================
 //====読了日のトグル表示（モーダル）
 //==============================
-function toggleDateHistory(bookId){
+function toggleDateHistory(bookId, head){
 
-  const el =
+  const body =
     document.getElementById(
       `date-history-${bookId}`
     );
 
-  if(!el) return;
+  if(!body) return;
 
-  el.style.display =
-    el.style.display === "none"
-    ? "grid"
-    : "none";
+  const isOpening =
+    body.style.display === "none";
+
+  body.style.display =
+    isOpening
+      ? "grid"
+      : "none";
+
+  if(head){
+    head.textContent =
+      isOpening
+        ? head.dataset.open
+        : head.dataset.close;
+  }
 }
 
 //==============================

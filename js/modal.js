@@ -382,17 +382,20 @@ function openBookDetailModal(book){
       
       
       <div
-        class="toggle-history"
-        onclick="
-          toggleDateHistory('${book.id}')
-        "
-       >
-        ▼ 読了履歴
-       </div>
-      
-      
-      
+  class="toggle-history toggle-head"
+  data-open="▽ 読了履歴"
+  data-close="▶︎ 読了履歴"
+  onclick="
+    toggleDateHistory(
+      '${book.id}',
+      this
+    )
+  "
+>
+  ▶︎ 読了履歴
+</div>
 
+      
       <div
         id="date-history-${book.id}"
         class="date-history-grid"
