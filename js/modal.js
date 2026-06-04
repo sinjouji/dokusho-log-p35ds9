@@ -326,6 +326,7 @@ function openBookDetailModal(book){
 
      <div class="detail-row flex-between"
      style="align-items:center;flex-wrap:wrap;">
+     
   読了日：
 
   ${
@@ -340,7 +341,18 @@ function openBookDetailModal(book){
               ✕
             </button>
       </div>
-      <div class="book-stat">
+      
+       <input type="date" id="readDate-${book.id}" class="input-common input-small">
+      <button onclick="addReadDate('${book.id}')">
+        ➕読了日
+      </button>
+      
+    </div>
+      
+      
+      <div class="detail-date-add flex-between">
+      
+        <div class="book-stat">
       ${
         (
           book.readDates ||
@@ -348,10 +360,7 @@ function openBookDetailModal(book){
           []
         ).length
       }回読了</div>
-             
-    </div>
       
-      <div class="detail-date-add flex-between">
       <div
         class="toggle-history"
         onclick="
@@ -362,14 +371,9 @@ function openBookDetailModal(book){
        </div>
       
       
-      <input type="date" id="readDate-${book.id}" class="input-common input-small">
-      <button onclick="addReadDate('${book.id}')">
-        ➕読了日
-      </button>
-
       </div>
 
-<div
+      <div
         id="date-history-${book.id}"
         class="date-history-grid"
         style="display:none;"
@@ -391,8 +395,7 @@ function openBookDetailModal(book){
     `
     : "未読"
   }</div>
-
-
+      
 
 
             <div class="detail-row">
