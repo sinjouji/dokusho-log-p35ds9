@@ -35,7 +35,7 @@ function openAddBookModal(){
 
   modal.innerHTML = `
     <div class="modal-box">
- <div class="title-line">
+ <div class="flex-between">
          <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
          <button onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
 
@@ -50,7 +50,7 @@ function openAddBookModal(){
       
       
       
-      <div class="title-line">
+      <div class="flex-between">
         <div class="field-label" style="padding:0;margin-right:2px;">読了日:</div>
 
         <input type="date" id="add-date"  style="width:50%;margin-right:auto;">
@@ -79,7 +79,7 @@ function openAddBookModal(){
       
       
       
-     <div class="end-btn"> 
+     <div class="actions-row"> 
       
    
       <div style="font-size:11px"
@@ -135,7 +135,7 @@ function openAddBookModal(){
         <div id="add-book-series-suggest"></div>
        </div><br>
      
-     <div class="title-line">
+     <div class="flex-between">
      関連：<br>
       	 <div
       	  id="add-book-series-list"
@@ -255,7 +255,7 @@ function openBookDetailModal(book){
 	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
-    <div class="title-line">
+    <div class="flex-between">
       <input id="detail-title" class="detail-title"
         value="${book.title || ""}">
         
@@ -406,7 +406,7 @@ function openBookDetailModal(book){
       ` : ""}</div>
       
 
-		<div class="end-btn">
+		<div class="actions-row">
 		
 			<div style="font-size:11px"
         class="toggle-head"
@@ -457,7 +457,7 @@ id="open-book-series">
       <div id="book-series-suggest"></div>
     </div>
     
-    <div class="title-line">
+    <div class="flex-between">
     関連：
 
     <div id="book-edit-series" class="series-edit-list"></div>
@@ -595,7 +595,7 @@ id="open-book-tags">
       <hr class="kugiri">
 
 
-		<div class="end-btn">
+		<div class="actions-row">
       
       <button class="danger-btn"
         onclick="deleteBook('${book.id}')">
@@ -644,7 +644,7 @@ newSeriesCharacterIds = [];
 	
 	modal.innerHTML = `
 		<div class="modal-box">
-		<div class="title-line">
+		<div class="flex-between">
 					<span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズを追加</span>
 						<button onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
 			
@@ -679,7 +679,7 @@ newSeriesCharacterIds = [];
 				
 				
 				
-				<div class="end-btn">
+				<div class="actions-row">
       <div
       class="toggle-head"
       data-open="▽作品一覧を閉じる"
@@ -765,7 +765,7 @@ function openSeriesEditModal(id){
   modal.innerHTML = `
     <div class="modal-box">
 
-      <div class="title-line">
+      <div class="flex-between">
       <span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズ編集</span>
       <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;">✖️</button>
       </div>
@@ -793,7 +793,7 @@ function openSeriesEditModal(id){
   <div id="series-character-suggest"></div>
 
 </div>
-      <div class="end-btn">
+      <div class="actions-row">
       
       
        <div
@@ -838,7 +838,7 @@ function openSeriesEditModal(id){
      
      <hr class="kugiri">
 
-    <div class="end-btn">
+    <div class="actions-row">
     
     
       <button onclick="deleteSeries('${series.id}')">
@@ -882,7 +882,7 @@ function openAddCharacterModal(){
 	
 	modal.innerHTML = `
 		<div class="modal-box">
-			<div class="title-line">
+			<div class="flex-between">
 			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
 					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button></div>
 			
@@ -912,7 +912,7 @@ function openAddCharacterModal(){
 				<div id="add-character-series-suggest"></div>
 				</div>
 				
-				<div class="title-line">
+				<div class="flex-between">
 				関連：<br>
 			<div id="add-character-series-list" class="series-edit-list"></div>
 			</div>
@@ -959,7 +959,7 @@ editingCharacterSeriesIds =
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-		<div class="title-line">
+		<div class="flex-between">
 			<input id="character-name" class="character-name"
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')">✖️</button></div>
@@ -999,13 +999,13 @@ editingCharacterSeriesIds =
     <div class="suggest-box">
       <div id="character-series-suggest"></div>
     </div>
-    <div class="title-line">
+    <div class="flex-between">
     関連：<br>
     <div id="character-edit-series" class="series-edit-list"></div>
    </div>
          <hr class="kugiri">
 		
-		<div class="end-btn">
+		<div class="actions-row">
 			<button onclick="deleteCharacter('${c.id}')">
   🗑️ 削除
 </button>
