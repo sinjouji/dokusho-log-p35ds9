@@ -117,7 +117,7 @@ ${
 
         <input
           id="new-tag-name"
-          class="addin"
+          class="input-common"
           placeholder="タグ名"
         >
 
@@ -240,7 +240,7 @@ function renderVisibleTags(){
         card.innerHTML = `
           <input
             id="tag-page-name-${tag.id}"
-            class="addin"
+            class="input-common"
             value="${tag.name}"
           >
 
@@ -376,7 +376,7 @@ const hiddenTags =
 
       <input
   id="hidden-tag-search"
-  class="addin"
+  class="input-common"
   placeholder="管理タグ検索"
   oninput="
     hiddenTagSearchKeyword = this.value;
@@ -463,7 +463,7 @@ const hiddenTags =
 
     <input
       id="hidden-tag-edit-name-${editingTag.id}"
-      class="addin"
+      class="input-common"
       value="${editingTag.name}"
     >
 
