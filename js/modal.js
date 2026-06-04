@@ -307,7 +307,7 @@ function openBookDetailModal(book){
       </div>
  
  
- <div class="detail-row">
+ <div class="detail-row" style="margin-left:auto;">
       <label class="reread-check">
 
   <input
