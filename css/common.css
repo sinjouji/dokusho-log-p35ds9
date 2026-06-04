@@ -106,39 +106,40 @@ button{
 ==========*/
 .input-common{
   width:auto;
-  padding:8px;
-
+  height:34px;
+  padding:0 8px;
+  box-sizing:border-box;
   border:1px solid #f4a57a;
   border-radius:10px;
-
   background:#fffffc;
   font-size:13px;
-}
-.addin2{
-display:flex;
-}
-.addinput{
-width:85%;
-padding:5px 2px;
-border:1px solid #f4a57a;
-border-radius:10px;
-font-size:13px;
-color:#60564f;
-}
-.modar input{
-font-size:14px;
-padding:5px 2px;
-border:1px solid #f4a57a;
+  color:#646364;
 }
 
-
-input[type="date"]{
-  padding: 0 10pxpx;
-  width:260px;
-  background:#fffffc;
-/*  box-sizing: border-box;*/
-  border: 1px solid #f4a57a;
-  font-size: 12px;
+.input-title{
+  width:100%;
+  min-height:38px;
+  padding:6px 8px;
+  box-sizing:border-box;
+  border:1px solid #f4a57a;
   border-radius:10px;
-  color: #999;
+  background:#fffffc;
+  font-size:16px;
+  font-weight:600;
+  color:#646364;
 }
+
+.textarea-common{
+  width:100%;
+  min-height:72px;
+  padding:8px;
+  box-sizing:border-box;
+  border:1px solid #f4a57a;
+  border-radius:10px;
+  background:#fffffc;
+  font-size:13px;
+  color:#646364;
+  resize:vertical;
+}
+
+
