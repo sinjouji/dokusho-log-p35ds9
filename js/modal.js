@@ -36,7 +36,7 @@ function openAddBookModal(){
   modal.innerHTML = `
     <div class="modal-box">
  <div class="flex-between">
-         <span class="btn-main" style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
+         <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
          <button class="btn-sub" onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
 
       <input class="input-title"
