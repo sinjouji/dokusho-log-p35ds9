@@ -1,0 +1,28 @@
+/*
+
+COMMON.CSS
+
+きょうつうこうもくのCSS置き場
+
+*/
+
+
+.select-chip{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid #ead2c2;
+  background:#fffffc;
+  color:#60564f;
+  font-size:12px;
+
+  cursor:pointer;
+  transition:.15s;
+}
+
+.select-chip:hover{
+  transform:translateY(-1px);
+}
+
+
+
+
