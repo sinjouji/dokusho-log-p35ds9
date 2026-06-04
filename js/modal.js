@@ -307,7 +307,7 @@ function openBookDetailModal(book){
       </div>
  
  
- <div class="detail-row actions-row" style="margin-left:auto;">
+ <div class="detail-row" style="width:75%;margin-left:auto;">
       <label class="reread-check">
 
   <input
@@ -349,8 +349,8 @@ function openBookDetailModal(book){
       <div class="flex-between">
       <div class="detail-row ">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
-        <button onclick="addReadDate('${book.id}')">
-        ➕読了日
+      <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
+       ➕読了日
       </button>
       </div>
             
