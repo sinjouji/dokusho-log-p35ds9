@@ -326,9 +326,8 @@ function renderHiddenTags(){
     .toLowerCase();
 
 const hiddenTags =
-  sortTags(
-  tagMaster.filter(tag => tag.isHidden)
-  )
+  tagMaster
+  .filter(tag => tag.isHidden)
     .filter(tag =>
       !keyword
       ||
@@ -515,8 +514,9 @@ function renderHiddenTagList(){
       .toLowerCase();
 
   const hiddenTags =
-    tagMaster
-      .filter(tag => tag.isHidden)
+    sortTags(
+  tagMaster.filter(tag => tag.isHidden)
+)
       .filter(tag =>
         !keyword ||
         (tag.name || "")
