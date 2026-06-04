@@ -308,7 +308,7 @@ function openBookDetailModal(book){
  
  
  <div class="detail-row">
-      <label class="reread-check input-small">
+      <label class="reread-check">
 
   <input
     type="checkbox"
@@ -355,7 +355,7 @@ function openBookDetailModal(book){
       </div>
             
       
-        <div class="book-stat" style="margin-left:auto;">
+        <div class="book-stat" style="margin-left:auto;justify-content:center;">
       ${
         (
           book.readDates ||
