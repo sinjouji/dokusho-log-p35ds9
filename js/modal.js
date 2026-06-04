@@ -349,7 +349,7 @@ function openBookDetailModal(book){
       <div class="flex-between">
       <div class="detail-row ">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
-      <button onclick="addReadDate('${book.id}')">
+        <button onclick="addReadDate('${book.id}')">
         ➕読了日
       </button>
       </div>
