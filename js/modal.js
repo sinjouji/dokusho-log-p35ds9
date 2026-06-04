@@ -305,11 +305,11 @@ function openBookDetailModal(book){
 
         </div>
       </div>
-      <label class="reread-check">
+      <label class="reread-check input-common input-small">
 
 
-
-  <input class="input-common input-small"
+ 
+  <input
     type="checkbox"
     id="reread-check"
     ${book.reread ? "checked" : ""}
@@ -324,7 +324,7 @@ function openBookDetailModal(book){
       
       
 
-     <div class="detail-row"
+     <div class="detail-row actions-row"
      style="align-items:center;flex-wrap:wrap;">
      
   読了日：
@@ -354,8 +354,8 @@ function openBookDetailModal(book){
       
       
       
-      
-        <div class="book-stat input-small">
+      <div class="detail-row input-small">
+        <div class="book-stat">
       ${
         (
           book.readDates ||
@@ -363,6 +363,7 @@ function openBookDetailModal(book){
           []
         ).length
       }回読了</div>
+      </div>
       
       
       
@@ -416,6 +417,56 @@ function openBookDetailModal(book){
         value="${book.memo || ""}"
       >
       ` : ""}</div>
+      
+      
+      
+      
+      
+      <div style="font-size:11px"
+        class="toggle-head"
+        data-open="▽関連シリーズ"
+        data-close="▶︎関連シリーズ"
+        onclick="
+          togglesSection(
+          'open-book-series',
+          this
+          )
+        "
+      >
+      ▶︎関連用シリーズ</div>
+   
+   
+   <div class="
+  toggle-content
+  ${detailSections.series ? "open" : ""}
+"
+id="open-book-series">
+  
+        <input class="input-common"
+        id="book-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderBookSeriesSuggest(
+            'book-related-search',
+            'book-series-suggest',
+            'book-edit-series'
+          );
+        "
+      >
+    <div class="suggest-box">
+      <div id="book-series-suggest"></div>
+    </div>
+    
+    <div class="flex-between">
+    関連：
+
+    <div id="book-edit-series" class="series-edit-list"></div>
+    </div>
+   
+   </div>
+      
+      
       
 		
 			<div style="font-size:11px"
@@ -558,52 +609,6 @@ id="open-book-tags">
       
       
       
-  
-      <div style="font-size:11px"
-        class="toggle-head"
-        data-open="▽関連シリーズ"
-        data-close="▶︎関連シリーズ"
-        onclick="
-          togglesSection(
-          'open-book-series',
-          this
-          )
-        "
-      >
-      ▶︎関連用シリーズ</div>
-   
-   
-   <div class="
-  toggle-content
-  ${detailSections.series ? "open" : ""}
-"
-id="open-book-series">
-  
-        <input class="input-common"
-        id="book-related-search"
-        type="text"
-        placeholder="関連シリーズを追加"
-        oninput="
-          renderBookSeriesSuggest(
-            'book-related-search',
-            'book-series-suggest',
-            'book-edit-series'
-          );
-        "
-      >
-    <div class="suggest-box">
-      <div id="book-series-suggest"></div>
-    </div>
-    
-    <div class="flex-between">
-    関連：
-
-    <div id="book-edit-series" class="series-edit-list"></div>
-    </div>
-   
-   </div>
-
-
 
       <hr class="kugiri">
 
