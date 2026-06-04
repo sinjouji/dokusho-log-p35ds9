@@ -53,7 +53,7 @@ function openAddBookModal(){
       <div class="flex-between">
         <div class="field-label" style="padding:0;margin-right:2px;">読了日：</div>
 
-        <input type="date" id="add-date" class="input-common" style="margin-right:auto;">
+        <input type="date" id="add-date" class="input-common input-small" style="margin-right:auto;">
         
         
 	  			<button
@@ -113,7 +113,7 @@ function openAddBookModal(){
 
 
      <div
-       class="toggle-content"
+       inclass="toggle-content"
        id="add-book-series"
      >
         <input
@@ -384,7 +384,7 @@ function openBookDetailModal(book){
       
       
       <div class="detail-date-add">
-      <input type="date" id="readDate-${book.id}" class="input-common">
+      <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')" style="margin-left:auto;">
         ➕読了日
       </button>
