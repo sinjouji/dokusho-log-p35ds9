@@ -66,24 +66,43 @@ setActiveMenu("menu-tags");
   ＋タグ
 </button>
 
-<div class="tag-sort-buttons">
-  <button onclick="tagSortMode='nameAsc'; renderTags();">
-    名前↑
-  </button>
+<select
+  class="tag-sort-select"
+  onchange="
+    tagSortMode = this.value;
+    renderTags();
+  "
+>
 
-  <button onclick="tagSortMode='nameDesc'; renderTags();">
-    名前↓
-  </button>
+  <option
+    value="nameAsc"
+    ${tagSortMode === "nameAsc" ? "selected" : ""}
+  >
+    名前順 ↑
+  </option>
 
-  <button onclick="tagSortMode='countDesc'; renderTags();">
-    使用数↓
-  </button>
+  <option
+    value="nameDesc"
+    ${tagSortMode === "nameDesc" ? "selected" : ""}
+  >
+    名前順 ↓
+  </option>
 
-  <button onclick="tagSortMode='countAsc'; renderTags();">
-    使用数↑
-  </button>
-</div>
+  <option
+    value="countDesc"
+    ${tagSortMode === "countDesc" ? "selected" : ""}
+  >
+    使用数 多い順
+  </option>
 
+  <option
+    value="countAsc"
+    ${tagSortMode === "countAsc" ? "selected" : ""}
+  >
+    使用数 少ない順
+  </option>
+
+</select>
 
   <h2>🏷️ タグ</h2>
 
