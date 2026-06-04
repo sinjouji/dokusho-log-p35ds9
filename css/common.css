@@ -41,6 +41,31 @@ COMMON.CSS
   cursor:pointer;
 }
 
+.btn-main{
+  background:#7A89A8;
+  color:#fffffc;
+
+  border:none;
+}/*保存，追加*/
+
+.btn-sub{
+  padding:6px 10px;
+  border-radius:12px;
+  border:1px solid #ead2c2;
+  background:#fffffc;
+  color:#60564f;
+}/*編集，閉じる，キャンセル*/
+
+.btn-danger{
+  padding:6px 10px;
+  border-radius:12px;
+  border:1px solid #e0b0a0;
+  background:#fff7f5;
+  color:#9a5a4f;
+}/*削除，初期化*/
+
+
+
 .input-common{
   width:100%;
   padding:8px;
