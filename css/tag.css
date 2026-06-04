@@ -3,6 +3,110 @@ tag.css
 タグ関係のCSS置き場だよ〜〜〜
 */
 
+.tag{
+  display:inline-block;   font-size:10px;
+  padding:2px 6px;   border-radius:999px;
+  color:#fffffc;   margin-right:4px;
+}
+
+
+/*タグ編集エリア*/
+.tag-edit-area{
+  background:#f7f7f7;
+  padding:8px;
+  border-radius:10px;
+  margin-top:8px;
+  font-size:12px;
+}
+
+.tag-color-palette{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+
+/*多分旧カラーパレット
+.color-dot{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:none;
+  
+  margin-bottom:2px;
+  padding:0;
+  aspect-ratio:1/1;
+  
+  appearance:none;
+  -webkit-appearance:none;
+  
+  flex-shrink:0;
+}
+
+.color-dot.active{
+  outline:2px solid #333;
+  transform:scale(1.15);
+}
+
+.color-dot.active{
+  transform:scale(1.1);
+  border:2px solid #fff;
+  box-shadow:
+    0 0 0 2px #333;
+}
+*/
+
+
+/*＝＝＝＝＝タグの絞込み変化＝＝＝＝＝*/
+.tag-mode-and{
+
+  filter:brightness(0.9);
+
+}
+
+.tag-mode-or{
+
+  box-shadow:
+    0 0 0 2px #c8d921;
+
+}
+
+.tag-mode-not{
+
+  text-decoration:line-through;
+
+  opacity:0.7;
+}
+
+.tag-select-area{
+  display:flex;
+  flex-wrap:wrap;
+  gap:2px;
+  overflow-x:hidden;
+}
+
+.tag-chip{
+  border-radius:999px;
+  padding:4px 8px;
+  cursor:pointer;
+  font-size:13px;
+  margin:2px;
+  text-align:center;
+  transition:0.2s;
+  white-space:nowrap;
+  frex-shrink:0;
+}
+
+.tag-chip.active{
+  color:#fffffc;
+  transform:scale(1.05);
+}
+
+.detail-tag-chip{
+  font-size:10px;
+}
+
+
 .hidden-tag-area{
   display:flex;
   flex-wrap:wrap;

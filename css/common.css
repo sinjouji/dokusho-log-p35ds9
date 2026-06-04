@@ -29,6 +29,19 @@ COMMON.CSS
   border:1px solid #ead2c2;
 }
 
+
+
+
+/*==========
+ボタン
+==========*/
+button{
+  display: inline-block;   padding: 5px 10px;
+  border-radius: 10px;   text-decoration: none;
+  color: #f4a57a;   background-color:#fffffc;
+  border:1px solid #f4a57a;  font-size:13px;
+}
+
 .common-button{
   padding:8px 12px;
 
@@ -65,17 +78,9 @@ COMMON.CSS
 }/*削除，初期化*/
 
 
-
-.input-common{
-  width:100%;
-  padding:8px;
-
-  border:1px solid #ddd;
-  border-radius:10px;
-
-  background:#fffffc;
-}
-
+/*==========
+コンテンツ配置（主にモーダル内）
+==========*/
 /*元：end-btn*/
 .actions-row{
   width:70%;
@@ -94,3 +99,46 @@ COMMON.CSS
 
 
 
+
+
+/*==========
+インプット
+==========*/
+.input-common{
+  width:100%;
+  padding:8px;
+
+  border:1px solid #f4a57a;
+  border-radius:10px;
+
+  background:#fffffc;
+  font-size:13px;
+}
+.addin2{
+display:flex;
+}
+.addinput{
+width:85%;
+padding:5px 2px;
+border:1px solid #f4a57a;
+border-radius:10px;
+font-size:13px;
+color:#60564f;
+}
+.modar input{
+font-size:14px;
+padding:5px 2px;
+border:1px solid #f4a57a;
+}
+
+
+input[type="date"]{
+  padding: 0 10pxpx;
+  width:260px;
+  background:#fffffc;
+/*  box-sizing: border-box;*/
+  border: 1px solid #f4a57a;
+  font-size: 12px;
+  border-radius:10px;
+  color: #999;
+}
