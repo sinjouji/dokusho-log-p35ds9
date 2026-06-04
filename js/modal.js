@@ -307,8 +307,8 @@ function openBookDetailModal(book){
       </div>
  
  
- <div class="detail-row" style="width:75%;margin-left:auto;">
-      <label class="reread-check">
+ <div class="detail-row" style="width:75%;">
+      <label class="reread-check" style="margin-left:auto;">
 
   <input
     type="checkbox"
