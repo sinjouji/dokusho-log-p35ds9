@@ -39,7 +39,7 @@ function openAddBookModal(){
          <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
          <button onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
 
-      <input class="addin"
+      <input class="input-common"
        id="add-title"
         type="text"
         placeholder="タイトル"
@@ -117,7 +117,7 @@ function openAddBookModal(){
        id="add-book-series"
      >
         <input
-          class="addin"
+          class="input-common"
           id="add-book-related-search"
           type="text"
           placeholder="関連シリーズを追加"
@@ -441,7 +441,7 @@ function openBookDetailModal(book){
 "
 id="open-book-series">
   
-        <input class="addin"
+        <input class="input-common"
         id="book-related-search"
         type="text"
         placeholder="関連シリーズを追加"
@@ -509,7 +509,7 @@ id="open-book-tags">
   
  <div class="hidden-tag-input-area">
   <input
-  class="addin"
+  class="input-common"
   id="hidden-tag-input-${book.id}"
   type="text"
   placeholder="管理タグを追加"
@@ -649,7 +649,7 @@ newSeriesCharacterIds = [];
 						<button onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
 			
 			<input
-  class="addin"
+  class="input-common"
   id="add-series-title"
   type="text"
   placeholder="シリーズタイトル"
@@ -663,7 +663,7 @@ newSeriesCharacterIds = [];
 			
 				<div>関連登録</div>
 				<div class="addin2">
-				<input class="addin"
+				<input class="input-common"
 				 id="series-for-one"
 					type="text"
 					placeholder="作品／人物を追加"
@@ -772,12 +772,12 @@ function openSeriesEditModal(id){
 
       <input
         id="edit-series-name"
-        class="addin"
+        class="input-common"
         value="${series.name || ""}"
       >
       
      
-      <input class="addin"
+      <input class="input-common"
         id="series-related-search"
         type="text"
         placeholder="本・人物を追加"
@@ -886,7 +886,7 @@ function openAddCharacterModal(){
 			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
 					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;">✖️</button></div>
 			
-			<input class="addin"
+			<input class="input-common"
 				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
@@ -898,7 +898,7 @@ function openAddCharacterModal(){
 			<div>関連シリーズを登録</div>
 			
 		
-			<input class="addin"
+			<input class="input-common"
 				id="add-character-related-search"
 				type="text"
 				placeholder="関連シリーズ名"
@@ -984,7 +984,7 @@ editingCharacterSeriesIds =
     
     
     
-   <input class="addin"
+   <input class="input-common"
         id="character-related-search"
         type="text"
         placeholder="関連シリーズを追加"
