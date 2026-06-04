@@ -226,4 +226,12 @@ tag.css
 }
 
 
+.tag-sort-select{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid #ead2c2;
+  background:#fffffc;
+}
+
 
