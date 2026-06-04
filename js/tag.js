@@ -130,11 +130,11 @@ ${
         </label>
 
         <div class="tag-page-actions">
-          <button onclick="saveNewTag()">
+          <button class="btn-main" onclick="saveNewTag()">
             保存
           </button>
 
-          <button onclick="toggleAddTagForm()">
+          <button class="btn-sub" onclick="toggleAddTagForm()">
             キャンセル
           </button>
         </div>
@@ -214,7 +214,7 @@ function renderVisibleTags(){
             </div>
 
             <div class="tag-page-actions">
-              <button
+              <button class="btn-danger"
                 onclick="deleteTag('${tag.id}')"
               >
                 削除する
@@ -278,13 +278,13 @@ function renderVisibleTags(){
           </label>
 
           <div class="tag-page-actions">
-            <button
+            <button class="btn-main"
               onclick="saveTagPageEdit('${tag.id}')"
             >
               保存
             </button>
 
-            <button
+            <button class="btn-danger"
               onclick="
                 deletingTagId = '${tag.id}';
                 renderTags();
@@ -293,7 +293,7 @@ function renderVisibleTags(){
               削除
             </button>
 
-            <button
+            <button class="btn-sub"
               onclick="cancelTagPageEdit()"
             >
               キャンセル
@@ -430,7 +430,7 @@ const hiddenTags =
         </div>
 
         <div class="tag-page-actions">
-          <button
+          <button class="btn-danger"
             onclick="deleteTag('${editingTag.id}')"
           >
             削除する
@@ -476,7 +476,7 @@ const hiddenTags =
   表示タグにする
 </label>
     
-      <button
+      <button class="btn-main"
         onclick="
           saveHiddenTagEdit(
             '${editingTag.id}'
@@ -486,7 +486,7 @@ const hiddenTags =
         保存
       </button>
 
-      <button
+      <button class="btn-danger"
         onclick="
           deletingHiddenTagId =
             '${editingTag.id}';
@@ -497,7 +497,7 @@ const hiddenTags =
         削除
       </button>
 
-      <button
+      <button class="btn-sub"
         onclick="
           editingHiddenTagId = null;
           deletingHiddenTagId = null;
