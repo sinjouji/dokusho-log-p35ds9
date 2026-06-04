@@ -305,10 +305,11 @@ function openBookDetailModal(book){
 
         </div>
       </div>
+ 
+ 
+ <div class="detail-row">
       <label class="reread-check input-small">
 
-
- <div class="detail-row">
   <input
     type="checkbox"
     id="reread-check"
