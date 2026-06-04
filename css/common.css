@@ -86,6 +86,7 @@ button{
   margin-top:5px;
   font-size:14px;
   align:left;
+  display:flex;
 }
 
 /*元：title-line*/
