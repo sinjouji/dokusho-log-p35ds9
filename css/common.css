@@ -85,8 +85,8 @@ button{
 .detail-row{
   margin-top:5px;
   font-size:14px;
-  align:left;
   display:flex;
+  align-items:center;
 }
 
 /*元：title-line*/
