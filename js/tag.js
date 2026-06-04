@@ -376,9 +376,8 @@ const hiddenTags =
           (${hiddenTags.length})
         </div>
 
-      </div>
-       <input
-  id="hidden-tag-search"
+ <input
+  id="hidden-tag-search" style="margin-left:auto;"
   class="input-common"
   placeholder="管理タグ検索"
   oninput="
@@ -386,6 +385,9 @@ const hiddenTags =
     renderHiddenTagList();
   "
 >
+
+      </div>
+      
 
       <div
         id="hidden-tag-list"
