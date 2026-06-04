@@ -394,7 +394,7 @@ function renderSeriesSearchArea(){
 			oninput="handleSeriesSearchInput()"
 		>
 		
-			<select id="series-sort-select"
+			<select id="series-sort-select" class="select-chip"
 				onchange="changeSeriesSortMode()">
 			
 			<option value="stitle-asc">タイトル↓</option>
@@ -406,7 +406,7 @@ function renderSeriesSearchArea(){
 			</select>
 			
 			<button onclick="changeSeriesViewMode('card')">
-  ◼️
+  ⬜︎
 </button>
 
 <button onclick="changeSeriesViewMode('compact')">

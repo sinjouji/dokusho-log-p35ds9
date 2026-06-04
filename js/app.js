@@ -932,7 +932,7 @@ function renderHomeFixedBar(){
       ‖‖
     </button>
 
-    <select id="type-filter-fixed" onchange="changeTypeFilterFromFixed()">
+    <select class="select-chip" id="type-filter-fixed" onchange="changeTypeFilterFromFixed()">
       <option value="all" ${typeFilter === "all" ? "selected" : ""}>全部</option>
       <option value="normal" ${typeFilter === "normal" ? "selected" : ""}>本棚</option>
       <option value="wish" ${typeFilter === "wish" ? "selected" : ""}>ウィッシュ</option>
@@ -974,7 +974,7 @@ function renderSearchArea(){
     
     
     
-      <select id="sort-select"
+      <select id="sort-select" class="select-chip"
         onchange="changeSortMode()">
 
       <option value="read-desc">読了日新</option>
@@ -1010,7 +1010,7 @@ function renderSearchArea(){
         ‖‖ 
       </button>
       <select
-  id="type-filter"
+  id="type-filter" class="select-chip"
   onchange="changeTypeFilter()">
 
   <option value="all"

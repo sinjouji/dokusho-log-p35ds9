@@ -109,7 +109,7 @@ function renderCharacterSearchArea(){
 		"
 	>
 	
-		<select id="characters-sort-select"
+		<select id="characters-sort-select" class="select-chip"
 			onchange="changeCharactersSortMode()">
 			
 		<option value="cname-asc">名前↓</option>
