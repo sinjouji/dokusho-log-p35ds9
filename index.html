@@ -39,12 +39,6 @@ main{
   padding:16px;
 }
 
-button{
-  display: inline-block;   padding: 5px 10px;
-  border-radius: 10px;   text-decoration: none;
-  color: #f4a57a;   background-color:#fffffc;
-  border:1px solid #f4a57a;  font-size:13px;
-}
 
 .btn-me{
 border:none;
@@ -72,11 +66,7 @@ font-weight:bold;
   border:1px solid #f4a57a;
 }
 
-.tag{
-  display:inline-block;   font-size:10px;
-  padding:2px 6px;   border-radius:999px;
-  color:#fffffc;   margin-right:4px;
-}
+
 #loading{
   position:fixed;   inset:0;
   background:white;   display:flex;
@@ -119,26 +109,7 @@ font-weight:bold;
   background:#999;
 }
 
-/*＝＝＝＝＝タグの絞込み変化＝＝＝＝＝*/
-.tag-mode-and{
 
-  filter:brightness(0.9);
-
-}
-
-.tag-mode-or{
-
-  box-shadow:
-    0 0 0 2px #c8d921;
-
-}
-
-.tag-mode-not{
-
-  text-decoration:line-through;
-
-  opacity:0.7;
-}
 
 
 #page-home{
@@ -151,34 +122,6 @@ font-weight:bold;
   grid-template-columns:1fr 1fr;
   gap:10px;
 }*/
-
-.tag-select-area{
-  display:flex;
-  flex-wrap:wrap;
-  gap:2px;
-  overflow-x:hidden;
-}
-
-.tag-chip{
-  border-radius:999px;
-  padding:4px 8px;
-  cursor:pointer;
-  font-size:13px;
-  margin:2px;
-  text-align:center;
-  transition:0.2s;
-  white-space:nowrap;
-  frex-shrink:0;
-}
-
-.tag-chip.active{
-  color:#fffffc;
-  transform:scale(1.05);
-}
-
-.detail-tag-chip{
-  font-size:10px;
-}
 
 #search{
 flex:1 1 160px;
@@ -261,26 +204,6 @@ color: #999;
 
 
 /* 本追加モーダルデザイン */
-.addin{
-width:100%;
-padding:5px 0;
-border:1px solid #f4a57a;
-border-radius:10px;
-font-size:13px;
-color:#60564f;
-font-weight:bold;
-}
-.addin2{
-display:flex;
-}
-.addinput{
-width:85%;
-padding:5px 2px;
-border:1px solid #f4a57a;
-border-radius:10px;
-font-size:13px;
-color:#60564f;
-}
 
 .add-btn{
   width:100px;
@@ -300,11 +223,7 @@ color:#60564f;
   margin:10px 0 6px;
 }
 
-.modar input{
-font-size:14px;
-padding:5px 2px;
-border:1px solid #f4a57a;
-}
+
 
 #book-title{
 font-size:18px;
@@ -314,21 +233,6 @@ font-weight:600;
 .detail-date-add{
   display: flex;
   border-radius: 10px;
-}
-
-input[type="date"]{
-  padding: 0 10pxpx;
-  width:260px;
-  background:#fffffc;
-/*  box-sizing: border-box;*/
-  border: 1px solid #f4a57a;
-  font-size: 12px;
-  border-radius:10px;
-  color: #999;
-}
-
-select{
-  border-radius:10px;
 }
 
 
@@ -590,49 +494,6 @@ border-radius:10px;
   min-width:140px;
 }
 
-/*タグ編集エリア*/
-.tag-edit-area{
-  background:#f7f7f7;
-  padding:8px;
-  border-radius:10px;
-  margin-top:8px;
-  font-size:12px;
-}
-
-.tag-color-palette{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:12px;
-}
-
-.color-dot{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  border:none;
-  
-  margin-bottom:2px;
-  padding:0;
-  aspect-ratio:1/1;
-  
-  appearance:none;
-  -webkit-appearance:none;
-  
-  flex-shrink:0;
-}
-
-.color-dot.active{
-  outline:2px solid #333;
-  transform:scale(1.15);
-}
-
-.color-dot.active{
-  transform:scale(1.1);
-  border:2px solid #fff;
-  box-shadow:
-    0 0 0 2px #333;
-}
 
 /*サジェスト用*/
 
