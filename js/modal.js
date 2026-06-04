@@ -113,7 +113,7 @@ function openAddBookModal(){
 
 
      <div
-       inclass="toggle-content"
+       class="toggle-content"
        id="add-book-series"
      >
         <input
