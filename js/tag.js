@@ -67,6 +67,44 @@ setActiveMenu("menu-tags");
 </button>
 
   <h2>🏷️ タグ</h2>
+  
+      <select
+  class="tag-sort-select"
+  onchange="
+    tagSortMode = this.value;
+    renderTags();
+  "
+>
+
+  <option
+    value="nameAsc"
+    ${tagSortMode === "nameAsc" ? "selected" : ""}
+  >
+    名前順 ↑
+  </option>
+
+  <option
+    value="nameDesc"
+    ${tagSortMode === "nameDesc" ? "selected" : ""}
+  >
+    名前順 ↓
+  </option>
+
+  <option
+    value="countDesc"
+    ${tagSortMode === "countDesc" ? "selected" : ""}
+  >
+    使用数 多い順
+  </option>
+
+  <option
+    value="countAsc"
+    ${tagSortMode === "countAsc" ? "selected" : ""}
+  >
+    使用数 少ない順
+  </option>
+
+</select>
 
 </div>
 
@@ -131,45 +169,10 @@ function renderVisibleTags(){
   if(!area) return;
 
   area.innerHTML = `
-    <div class="flex-between">
+  
     <h3>表示タグ</h3>
-    <select
-  class="tag-sort-select"
-  onchange="
-    tagSortMode = this.value;
-    renderTags();
-  "
->
+    
 
-  <option
-    value="nameAsc"
-    ${tagSortMode === "nameAsc" ? "selected" : ""}
-  >
-    名前順 ↑
-  </option>
-
-  <option
-    value="nameDesc"
-    ${tagSortMode === "nameDesc" ? "selected" : ""}
-  >
-    名前順 ↓
-  </option>
-
-  <option
-    value="countDesc"
-    ${tagSortMode === "countDesc" ? "selected" : ""}
-  >
-    使用数 多い順
-  </option>
-
-  <option
-    value="countAsc"
-    ${tagSortMode === "countAsc" ? "selected" : ""}
-  >
-    使用数 少ない順
-  </option>
-
-</select>
     </div>
     <div
       id="visible-tags-grid"
@@ -372,8 +375,9 @@ const hiddenTags =
         <div class="hidden-tag-count">
           (${hiddenTags.length})
         </div>
-        
-        <input
+
+      </div>
+       <input
   id="hidden-tag-search"
   class="input-common"
   placeholder="管理タグ検索"
@@ -382,8 +386,6 @@ const hiddenTags =
     renderHiddenTagList();
   "
 >
-
-      </div>
 
       <div
         id="hidden-tag-list"
