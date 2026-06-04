@@ -23,6 +23,49 @@ COMMON.CSS
   transform:translateY(-1px);
 }
 
+.card-common{
+  background:#fffffc;
+  border-radius:16px;
+  border:1px solid #ead2c2;
+}
+
+.common-button{
+  padding:8px 12px;
+
+  border-radius:999px;
+  border:1px solid #ead2c2;
+
+  background:#fffffc;
+  color:#60564f;
+ 
+  cursor:pointer;
+}
+
+.input-common{
+  width:100%;
+  padding:8px;
+
+  border:1px solid #ddd;
+  border-radius:10px;
+
+  background:#fffffc;
+}
+
+/*元：end-btn*/
+.actions-row{
+  width:70%;
+  display:flex;
+  justify-content: space-between;
+  font-size:14px;
+  margin:auto;
+}
+
+/*元：title-line*/
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  gap:3px;
+}
 
 
 
