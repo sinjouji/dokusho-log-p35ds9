@@ -40,6 +40,9 @@ body{
   touch-action: pan-y;
   
   color:#74492b;
+  
+  /*「↑」ちゃん対策*/
+  padding-bottom:80px;
 }
 
 header{

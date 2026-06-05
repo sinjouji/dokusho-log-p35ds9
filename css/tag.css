@@ -312,4 +312,23 @@ tag.css
   background:#fffffc;
 }
 
+.selected-hidden-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
 
+  max-height:82px;
+  overflow-y:auto;
+
+  padding:6px;
+  border:1px solid #ead2c2;
+  border-radius:12px;
+  background:#fffffc;
+}
+
+.hidden-tag-suggest:empty{
+  display:none;
+}
+.hidden-tag-list:empty{
+  display:none;
+}
