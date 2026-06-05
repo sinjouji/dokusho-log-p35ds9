@@ -7,6 +7,58 @@ COMMON.CSS
 */
 
 
+/*==========
+使ってないっぽいやつ
+==========*/
+
+/*#book-title{
+font-size:18px;
+font-weight:600;
+}
+
+
+.search-area{
+  position:relative;
+  margin-bottom:14px;
+}/*
+
+
+/*カレンダーの高さ調整*/
+/*.stats-block{
+  margin-bottom:24px;
+  clear:both;
+}*/
+
+
+
+/*==========
+ページ全体
+==========*/
+body{
+  font-family:sans-serif;
+  background:#f3e9be;/*蒸し栗*/
+  touch-action: pan-y;
+  
+  color:#74492b;
+}
+
+header{
+  background:#fffffc;
+  color:#646364;
+  padding:16px;
+  font-size:20px;
+}
+
+/*main{
+  padding:16px;
+}どこに効いてるかわからんやつ*/
+
+
+
+
+/*==========
+タグ、チップ型
+==========*/
 .select-chip{
   padding:6px 10px;
   border-radius:999px;
@@ -30,6 +82,70 @@ COMMON.CSS
 }
 
 
+
+/*==========
+メインメニューボタン
+==========*/
+.menulist{
+  display: flex; 
+  align-items:flex-end;   gap:5px;
+  overflow-wrap: anywhere;
+}
+
+.btn-me{
+border:none;
+background:#f4a57a;
+/*↑はねず*/
+font-size:12px;
+color:#646364;
+/*↑燻銀*/
+}
+.btn-me.active{
+background:#f3e9be;
+/*蒸栗*/
+font-weight:bold;
+}
+
+#page-stats{
+ margin:20px;
+}
+
+
+.card{
+  background:#fffffc;   border-radius:10px;
+  padding:8px;   margin:5px 10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  border:1px solid #f4a57a;
+}
+
+
+#loading{
+  position:fixed;
+  inset:0;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999; 
+}
+
+
+/* ★これ重要 */
+#loading.hidden{
+  display:none;
+}
+
+
+/*区切り用デザインHR*/
+.kugiri{
+ border:1px dashed #f4a57a;
+ width:100%;
+}
+
+#page-home{
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
 
 
 /*==========
@@ -76,6 +192,29 @@ button{
   background:#fff7f5;
   color:#9a5a4f;
 }/*削除，初期化*/
+
+
+/* 追加ボタン */
+
+.add-btn{
+  width:100px;
+  padding:8px;
+  margin:10px;
+  border:1px solid #f4a57a;
+  border-radius:10px;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+
+
+.mini-delete-btn{
+  border:none;
+  background:none;
+
+  color:#f4a57a;
+  font-size:12px;
+}
 
 
 /*==========
@@ -157,10 +296,168 @@ button{
 }
 
 
+
+
+/*==========
+フィルターとか検索とか
+==========*/
+
+
+/*＝＝＝＝＝フィルターちゃん＝＝＝＝＝*/
+.filter-mode button.active {
+  background: #333;
+  color: white;
+}
+
+/*＝＝＝＝＝絞込みの色分け＝＝＝＝＝*/
+.filter-mode-btn{
+
+  border:none;
+  border-radius:999px;
+
+  padding:4px 10px;
+
+  font-weight:bold;
+
+  color:white;
+}
+
+.mode-and{
+  background:#4a90e2;
+}
+
+.mode-or{
+  background:#53b36b;
+}
+
+.mode-not{
+  background:#d9534f;
+}
+
+.mode-off{
+  background:#999;
+}
+
+
+
+
 /*ホームのフィルター状態表示テキスト*/
 .active-filter-view{
   font-size:10px;
   overflow-wrap:break-word;
 }
+
+
+
+#search{
+flex:1 1 160px;
+min-width:120px;
+border:1px solid #f4a57a;
+border-radius:10px;
+font-size:13px;
+background:#fffffc;
+color:#333;
+margin-left:10px;
+}
+
+#sort-mode, #view-mode{
+display:flex;
+flex-wrap:nowrap;
+gap:4px;
+}
+
+#sort-mode button,
+#view-mode button{
+white-space:nowrap;
+flex:0 0 auto;
+}
+
+#sort-mode::after,
+#view-mode::after,
+#color-mode::after{
+content:" / ";
+margin:0 4px;
+color: #999;
+}
+
+
+#type-filter button{
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #fffffc;
+  cursor: pointer;
+  color:#ccc
+  font-size:13px;
+}
+
+#type-filter button.active{
+  background: #333;
+  color: #fffffc;
+  font-size:13px;
+}
+
+
+/* 検索エリア */
+
+
+#search,#series-search,
+#chars-search{
+  width:200px;
+  box-sizing:border-box;
+
+  padding:8px 10px;
+
+  border-radius:10px;
+  border:1px solid #f4a57a;
+
+  font-size:16px;
+  background:#fffffc;
+}
+
+
+.search-item{
+  padding:10px 14px;
+  cursor:pointer;
+}
+
+.search-item:hover{
+  background:#e4e5e6;
+}
+
+/* 絞込みタグエリア整頓用 */
+.view-switch{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.view-switch button.active{
+  background:#f4a57a;
+  color:#fffffc;
+  
+  border:none;
+}
+
+.list-row{
+  background:#fffffc;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:8px;
+}
+
+
+/* toggle */
+
+.toggle-content {
+  display: none !important;
+}
+
+.toggle-content.open {
+  display:flex !important;
+  gap:4px;
+  flex-wrap:wrap;
+}
+
 
 

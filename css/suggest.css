@@ -62,3 +62,15 @@
   font-size:9px;
   color:#888;
 }
+
+
+.search-item{
+
+  padding:8px 10px;
+
+  cursor:pointer;
+
+  border-bottom:
+    1px solid #eee;
+
+}
