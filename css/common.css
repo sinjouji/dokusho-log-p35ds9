@@ -222,7 +222,7 @@ box-shadow:
  width:100%;
 }
 
-#page-home{
+#current-page-title{
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
@@ -554,4 +554,3 @@ color: #999;
 .hidden{
   display:none !important;
 }
-
