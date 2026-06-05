@@ -1055,8 +1055,11 @@ function renderSearchArea(){
      >🏷️タグ表示
        </button>
        
-            <div id="active-filter-view" style="font-size:10px;white-space:break-word;"></div>
-            </div>
+         <div
+           id="active-filter-view"
+           class="active-filter-view"
+         ></div>
+       </div>
        
    
 <div class="
