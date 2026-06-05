@@ -191,9 +191,9 @@ let showHiddenItems = false;
 
 function go(page){
   
-  document.querySelectorAll("[id^='page-']").forEach(el=>{
-    el.style.display = "none";
-  });
+  document.querySelectorAll(".page").forEach(el=>{
+  el.style.display = "none";
+});
 
   const target = document.getElementById("page-" + page);
   if(target) target.style.display = "block";
