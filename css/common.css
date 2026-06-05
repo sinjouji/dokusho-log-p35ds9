@@ -222,8 +222,24 @@ box-shadow:
  width:100%;
 }
 
+
+#page-home{
+  display:block;
+}
+
+#home-fixed-bar,
+#home-top,
+#home-main{
+  width:100%;
+}
+#home-main.shelf-view{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  gap:6px;
+}
 #current-page-title{
-  gap:10px;
+  margin-left:12px;
 }
 
 
