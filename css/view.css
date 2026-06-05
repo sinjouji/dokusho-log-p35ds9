@@ -267,3 +267,17 @@
   letter-spacing:0.03em;
   line-height:1.35;
 }
+
+
+.wish-book{
+  opacity:0.65;
+  filter:grayscale(0.15);
+}
+
+
+.shelf-wrap{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+}
+
