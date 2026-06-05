@@ -194,19 +194,16 @@ function go(page){
   .querySelectorAll("[id^='page-']")
   .forEach(el=>{
     if(el.id !== "page-title"){
-      el.classList.add("hidden");
+      el.style.display = "none";
     }
   });
 
-  const target =
-    document.getElementById(
-      "page-" + page
-    );
+const target =
+  document.getElementById("page-" + page);
 
-  if(target){
-    target.classList.remove("hidden");
-    target.style.display = "";
-  }
+if(target){
+  target.style.display = "block";
+}
 
   if(page === "settings") renderSettings();
   if(page === "home") renderHome();
@@ -648,7 +645,7 @@ function renderHome(){
 
   setActiveMenu("menu-home");
 
-  const el = document.getElementById("page-home");
+  const el = document.getElementById("current-page-title");
   if(!el) return;
 
 el.classList.add("page");
