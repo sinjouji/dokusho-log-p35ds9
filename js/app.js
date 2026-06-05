@@ -311,9 +311,8 @@ function createBookSpine(b, mode="main"){
   applySpineColor(d, b);
 
   if(b.type === "wish"){
-	d.style.opacity = "0.65";
-	d.style.filter = "grayscale(0.15)";
-	}
+  d.classList.add("wish-book");
+}
 
   const title = document.createElement('div');
   title.textContent = b.title;
@@ -881,10 +880,11 @@ function renderShelfView(main, list){
 function renderShelf(el, list, mode = "main"){
   el.innerHTML = "";
 
-  const wrap = document.createElement("div");
-  wrap.style.display = "flex";
-  wrap.style.flexWrap = "wrap";
-  wrap.style.alignItems = "flex-end";
+  const wrap =
+  document.createElement("div");
+
+wrap.className =
+  "shelf-wrap";
 
   list.forEach(b=>{
     const spine = createBookSpine(b, mode);
