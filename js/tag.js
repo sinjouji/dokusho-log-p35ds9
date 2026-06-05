@@ -651,6 +651,16 @@ function renderAddBookHiddenTags(){
     );
 
   if(!list) return;
+  
+  const title =
+  document.getElementById(
+    "add-book-hidden-tag-title"
+  );
+
+if(title){
+  title.textContent =
+    `管理タグ（${newBookHiddenTagIds.length}）`;
+}
 
   list.innerHTML = "";
 

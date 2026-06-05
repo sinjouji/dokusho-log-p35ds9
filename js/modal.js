@@ -181,8 +181,16 @@ function openAddBookModal(){
 	}).join("")}	
 			</div>
 			
-	<div class="hidden-tag-input-area">
 
+	
+	<div
+  id="add-book-hidden-tag-title"
+  class="t-labels"
+>
+  管理タグ（${newBookHiddenTagIds.length}）
+</div>
+
+	<div class="hidden-tag-input-area">
 <div
     id="add-book-hidden-tag-list"
     class="hidden-tag-list selected-hidden-tags"
@@ -548,7 +556,6 @@ id="open-book-tags">
   
 </div>
       
-       <div class="hidden-tag-input-area">
        
        ${
   hiddenTagIds.length
@@ -556,9 +563,9 @@ id="open-book-tags">
       <div class="hidden-tag-area">
 
         <div class="hidden-tag-title">
-          管理タグ
-        </div>
-
+  管理タグ（${hiddenTagIds.length}）
+</div>
+  <div class="hidden-tag-input-area">
     <div class="hidden-tag-list selected-hidden-tags">
 
       ${
