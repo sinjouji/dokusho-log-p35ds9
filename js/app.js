@@ -729,7 +729,13 @@ const filteredBooks = books.filter(b => {
 //==============================
 function renderCardView(main, books){
 
-  main.className = "card-view";
+  main.classList.remove(
+  "card-view",
+  "list-view",
+  "shelf-view"
+);
+
+main.classList.add("card-view");
 
   books.forEach(b=>{
 
@@ -843,7 +849,13 @@ function renderCardView(main, books){
 //==============================
 function renderListView(main, books){
 
-  main.className = "list-view";
+  main.classList.remove(
+  "card-view",
+  "list-view",
+  "shelf-view"
+);
+
+main.classList.add("list-view");
 
   books.forEach(b=>{
 
