@@ -26,36 +26,6 @@ tag.css
   margin-top:12px;
 }
 
-/*多分旧カラーパレット
-.color-dot{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  border:none;
-  
-  margin-bottom:2px;
-  padding:0;
-  aspect-ratio:1/1;
-  
-  appearance:none;
-  -webkit-appearance:none;
-  
-  flex-shrink:0;
-}
-
-.color-dot.active{
-  outline:2px solid #333;
-  transform:scale(1.15);
-}
-
-.color-dot.active{
-  transform:scale(1.1);
-  border:2px solid #fff;
-  box-shadow:
-    0 0 0 2px #333;
-}
-*/
-
 
 /*＝＝＝＝＝タグの絞込み変化＝＝＝＝＝*/
 .tag-mode-and{
@@ -228,6 +198,10 @@ tag.css
   margin:3px 0 6px;
 }
 
+.visible-tag-row{
+  display:flex;
+  vertical-align:bottom;
+}
 
 .tags-header{
   display:flex;
@@ -289,6 +263,7 @@ tag.css
   gap:8px;
 
   margin-bottom:12px;
+  max-width:300px;
 
 }
 
