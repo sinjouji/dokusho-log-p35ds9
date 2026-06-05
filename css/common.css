@@ -246,7 +246,17 @@ button{
   align-items:center;
 }
 
+/*右寄せ*/
+.right-yose{
+  display:flex;
+  margin-left:auto;
+}
 
+/*左寄せ*/
+.left-yose{
+  display:flex;
+  margin-right:auto;
+}
 
 
 /*==========
