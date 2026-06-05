@@ -183,6 +183,11 @@ function openAddBookModal(){
 			
 	<div class="hidden-tag-input-area">
 
+<div
+    id="add-book-hidden-tag-list"
+    class="hidden-tag-list selected-hidden-tags"
+  ></div>
+
   <input
     class="input-common imput-small"
     id="add-book-hidden-tag-input"
@@ -202,12 +207,7 @@ function openAddBookModal(){
     <div id="add-book-hidden-tag-suggest"></div>
   </div>
 
-  <div
-    id="add-book-hidden-tag-list"
-    class="hidden-tag-list selected-hidden-tags"
-  ></div>
-
-</div>
+  </div>
       
       
       
@@ -549,26 +549,8 @@ id="open-book-tags">
 </div>
       
        <div class="hidden-tag-input-area">
-  <input
-  class="input-common input-small"
-  id="hidden-tag-input-${book.id}"
-  type="text"
-  placeholder="管理タグを追加"
-  oninput="renderHiddenTagSuggest('${book.id}')"
-  onkeydown="
-    if(event.key==='Enter'){
-      addHiddenTag('${book.id}', this.value);
-    }
-  "
->
-
-</div>
- <div
-  id="hidden-tag-suggest-${book.id}"
-  class="hidden-tag-suggest"
-></div>
- 
-  ${
+       
+       ${
   hiddenTagIds.length
     ? `
       <div class="hidden-tag-area">
@@ -624,10 +606,28 @@ id="open-book-tags">
       `
     : ""
 }
+       
+       
+  <input
+  class="input-common input-small"
+  id="hidden-tag-input-${book.id}"
+  type="text"
+  placeholder="管理タグを追加"
+  oninput="renderHiddenTagSuggest('${book.id}')"
+  onkeydown="
+    if(event.key==='Enter'){
+      addHiddenTag('${book.id}', this.value);
+    }
+  "
+>
 
-      
-      
-      
+</div>
+ <div
+  id="hidden-tag-suggest-${book.id}"
+  class="hidden-tag-suggest"
+></div>
+ 
+   
 
       <hr class="kugiri">
 
