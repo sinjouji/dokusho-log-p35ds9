@@ -223,7 +223,6 @@ box-shadow:
 }
 
 #current-page-title{
-  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
