@@ -441,13 +441,13 @@ color: #999;
 }
 
 /* 絞込みタグエリア整頓用 */
-.view-switch{
+.filter-actions{
   display:flex;
   gap:8px;
   margin-top:10px;
 }
 
-.view-switch button.active{
+.filter-actions button.active{
   background:#f4a57a;
   color:#fffffc;
   
