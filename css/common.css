@@ -99,8 +99,8 @@ header{
   font-style:italic;
 }
 .app-watermark{
-  font-size:60px;
-  color:rgba(96,86,79,0.04);
+  font-size:50px;
+  color:rgba(96,86,79,0.03);
   font-weight:800;
   position:absolute;
   right:24px;
@@ -111,13 +111,13 @@ header{
   "Hiragino Maru Gothic ProN",
   "ヒラギノ丸ゴ ProN",
   sans-serif;*/
-  font-family:
+  /*font-family:
   "Yu Mincho",
   "游明朝",
-  serif;
-  /*font-family:
+  serif*/;
+  font-family:
   "Hiragino Sans",
-  sans-serif;*/
+  sans-serif;
 }
 
 .header-menu-row{
