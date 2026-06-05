@@ -107,17 +107,17 @@ header{
   top:4px;
   z-index:0;
   font-style:italic;
-    /*font-family:
+    font-family:
   "Hiragino Maru Gothic ProN",
   "ヒラギノ丸ゴ ProN",
-  sans-serif;*/
+  sans-serif;
   /*font-family:
   "Yu Mincho",
   "游明朝",
-  serif*/;
-  font-family:
+  serif;*/
+/*  font-family:
   "Hiragino Sans",
-  sans-serif;
+  sans-serif;*/
 }
 
 .header-menu-row{
