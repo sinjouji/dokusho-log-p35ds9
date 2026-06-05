@@ -98,6 +98,17 @@ header{
   color:rgba(96,86,79,0.04);
   font-weight:800;
   font-style:italic;
+    /*font-family:
+  "Hiragino Maru Gothic ProN",
+  "ヒラギノ丸ゴ ProN",
+  sans-serif;*/
+  font-family:
+  "Yu Mincho",
+  "游明朝",
+  serif;
+  /*font-family:
+  "Hiragino Sans",
+  sans-serif;*/
 }
 
 
