@@ -48,14 +48,56 @@ body{
 header{
   background:#fffffc;
   color:#646364;
-  padding:16px;
+  padding:15px;
   font-size:20px;
 }
 
-/*main{
-  padding:16px;
-}どこに効いてるかわからんやつ*/
 
+
+/*==========
+ヘッダー〜〜〜〜
+==========*/
+.app-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+
+.page-title{
+  font-size:30px;
+  font-weight:800;
+  color:#60564f;
+}
+
+.app-watermark{
+  font-size:36px;
+  color:rgba(96,86,79,0.08);
+  font-weight:800;
+}
+
+
+/*==========
+メインメニューボタン
+==========*/
+.menulist{
+  display: flex; 
+  align-items:flex-end;   gap:5px;
+  overflow-wrap: anywhere;
+}
+
+.btn-me{
+border:none;
+background:#f4a57a;
+/*↑はねず*/
+font-size:12px;
+color:#646364;
+/*↑燻銀*/
+}
+.btn-me.active{
+background:#f3e9be;
+/*蒸栗*/
+font-weight:bold;
+}
 
 
 
@@ -84,30 +126,6 @@ header{
   border:1px solid #ead2c2;
 }
 
-
-
-/*==========
-メインメニューボタン
-==========*/
-.menulist{
-  display: flex; 
-  align-items:flex-end;   gap:5px;
-  overflow-wrap: anywhere;
-}
-
-.btn-me{
-border:none;
-background:#f4a57a;
-/*↑はねず*/
-font-size:12px;
-color:#646364;
-/*↑燻銀*/
-}
-.btn-me.active{
-background:#f3e9be;
-/*蒸栗*/
-font-weight:bold;
-}
 
 #page-stats{
  margin:20px;
