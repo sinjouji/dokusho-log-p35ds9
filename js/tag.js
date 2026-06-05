@@ -369,24 +369,27 @@ const hiddenTags =
 
   area.innerHTML = `
     <div class="hidden-tag-panel">
-
+    <div class="flex-between">
       <div class="hidden-tag-header">
-
+       <div class="left-yose">
         <h3># 管理タグ</h3>
 
         <div class="hidden-tag-count">
           (${hiddenTags.length})
         </div>
-
- <input
-  id="hidden-tag-search"
-  class="input-common input-small right-yose"
-  placeholder="管理タグ検索"
-  oninput="
-    hiddenTagSearchKeyword = this.value;
-    renderHiddenTagList();
-  "
->
+       </div>
+      <div class="right-yose">
+       <input
+        id="hidden-tag-search"
+        class="input-common input-small"
+        placeholder="管理タグ検索"
+        oninput="
+          hiddenTagSearchKeyword = this.value;
+          renderHiddenTagList();
+        "
+       >
+      </div>
+     </div>
 
       </div>
       
