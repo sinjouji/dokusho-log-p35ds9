@@ -62,13 +62,25 @@ header{
   justify-content:space-between;
   align-items:flex-end;
 }
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
 
-.page-title{
-  font-size:30px;
-  font-weight:800;
-  color:#60564f;
+  margin-bottom:12px;
 }
 
+#page-title{
+  font-size:28px;
+  font-weight:800;
+  color:#646364;
+}
+
+.app-name{
+  font-size:14px;
+  color:#d9cfc6;
+  font-style:italic;
+}
 .app-watermark{
   font-size:36px;
   color:rgba(96,86,79,0.08);
@@ -87,16 +99,21 @@ header{
 
 .btn-me{
 border:none;
-background:#f4a57a;
-/*↑はねず*/
+background:#f6d2bd;
 font-size:12px;
 color:#646364;
 /*↑燻銀*/
+opacity:0.85;
+transition:.2s;
 }
 .btn-me.active{
 background:#f3e9be;
 /*蒸栗*/
 font-weight:bold;
+opacity:1;
+transform:translateY(-2px);
+box-shadow:
+  0 2px 6px rgba(0,0,0,.08);
 }
 
 
