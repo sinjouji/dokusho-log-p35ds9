@@ -700,7 +700,11 @@ const filteredBooks = books.filter(b => {
 
   const sorted = sortBooks(filteredBooks);
 
-  main.className = "";
+  main.classList.remove(
+  "card-view",
+  "list-view",
+  "shelf-view"
+);
 
   if(viewMode === "card"){
     renderCardView(main, sorted);
