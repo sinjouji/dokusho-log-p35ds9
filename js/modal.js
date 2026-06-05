@@ -204,7 +204,7 @@ function openAddBookModal(){
 
   <div
     id="add-book-hidden-tag-list"
-    class="hidden-tag-list"
+    class="hidden-tag-list selected-hidden-tags"
   ></div>
 
 </div>
@@ -574,11 +574,7 @@ id="open-book-tags">
       <br>
       <div class="hidden-tag-area">
 
-        <div class="hidden-tag-title">
-          管理タグ
-        </div>
-
-    <div class="hidden-tag-list">
+    <div class="hidden-tag-list selected-hidden-tags">
 
       ${
         (book.tagIds || [])
