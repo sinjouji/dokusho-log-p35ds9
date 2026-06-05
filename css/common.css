@@ -72,9 +72,20 @@ header{
 
 #page-title{
   display:block;
-  font-size:28px;
+  font-size:44px;
   font-weight:800;
   color:#917347;
+  /*font-family:
+  "Hiragino Maru Gothic ProN",
+  "ヒラギノ丸ゴ ProN",
+  sans-serif;*/
+  font-family:
+  "Yu Mincho",
+  "游明朝",
+  serif;
+  /*font-family:
+  "Hiragino Sans",
+  sans-serif;*/
 }
 
 .app-name{
@@ -83,9 +94,10 @@ header{
   font-style:italic;
 }
 .app-watermark{
-  font-size:36px;
-  color:rgba(96,86,79,0.08);
+  font-size:60px;
+  color:rgba(96,86,79,0.04);
   font-weight:800;
+  font-style:italic;
 }
 
 
@@ -106,6 +118,7 @@ color:#646364;
 /*↑燻銀*/
 opacity:0.85;
 transition:.2s;
+min-width:84px;
 }
 .btn-me.active{
 background:#f3e9be;
