@@ -224,14 +224,13 @@ const title =
 
 if(title){
   title.textContent =
-    titles[name] || "📚 読書ログ";
+    titles[page] || "📚 読書ログ";
 }
-  
+    
   localStorage.setItem(
     "lastPage",
     page
   );
-  
   
 }
 //==============================
