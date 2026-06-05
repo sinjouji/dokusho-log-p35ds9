@@ -188,7 +188,7 @@ function openAddBookModal(){
   </div>
 
   <input
-    class="input-common"
+    class="input-common imput-small"
     id="add-book-hidden-tag-input"
     type="text"
     placeholder="管理タグを追加"
@@ -555,7 +555,7 @@ id="open-book-tags">
       
        <div class="hidden-tag-input-area">
   <input
-  class="input-common"
+  class="input-common input-small"
   id="hidden-tag-input-${book.id}"
   type="text"
   placeholder="管理タグを追加"
