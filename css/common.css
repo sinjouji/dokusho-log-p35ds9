@@ -66,13 +66,17 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  text-align:center;
 
   margin-bottom:12px;
+  
+  position:relative;
+  min-height:72px;
 }
 
 #page-title{
   display:block;
+  position:relative;
+  z-index:1;
   font-size:44px;
   font-weight:600;
   color:#917347;
@@ -98,6 +102,10 @@ header{
   font-size:60px;
   color:rgba(96,86,79,0.04);
   font-weight:800;
+  position:absolute;
+  right:24px;
+  top:4px;
+  z-index:0;
   font-style:italic;
     /*font-family:
   "Hiragino Maru Gothic ProN",
@@ -112,6 +120,12 @@ header{
   sans-serif;*/
 }
 
+.header-menu-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
 
 /*==========
 メインメニューボタン
@@ -132,7 +146,7 @@ opacity:0.85;
 transition:.2s;
 min-width:60px;
 min-height:30px;
-text-align:center;
+align-items:center;
 }
 .btn-me.active{
 background:#f3e9be;
