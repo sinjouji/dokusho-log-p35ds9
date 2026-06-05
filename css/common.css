@@ -129,8 +129,9 @@ color:#646364;
 /*↑燻銀*/
 opacity:0.85;
 transition:.2s;
-min-width:80px;
-min-height:20px;
+min-width:60px;
+min-height:30px;
+align:center;
 }
 .btn-me.active{
 background:#f3e9be;
