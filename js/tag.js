@@ -309,6 +309,7 @@ function renderVisibleTags(){
       }else{
 
         card.innerHTML = `
+        <div class="visible-tag-row">
           <div class="tag-card-name">
             ${tag.name}
           </div>
@@ -316,6 +317,7 @@ function renderVisibleTags(){
           <div class="tag-card-count">
             (${count})
           </div>
+        </div>
 
           <button
             onclick="startTagPageEdit('${tag.id}')"
