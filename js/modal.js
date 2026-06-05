@@ -176,8 +176,12 @@ function openAddBookModal(){
 				${tag.name}
 			</span>
 			
-			
-			<div class="hidden-tag-input-area">
+		`;
+
+	}).join("")}
+	
+	
+	<div class="hidden-tag-input-area">
 
   <div class="t-labels">
     管理タグ
@@ -208,11 +212,6 @@ function openAddBookModal(){
   </div>
 
 </div>
-			
-			
-		`;
-
-	}).join("")}
 			</div>
       
       
