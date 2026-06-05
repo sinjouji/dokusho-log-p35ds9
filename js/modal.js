@@ -136,37 +136,6 @@ function openAddBookModal(){
   >
   ▶︎タグ表示</div>
   
-  <div class="hidden-tag-input-area">
-
-  <div class="t-labels">
-    管理タグ
-  </div>
-
-  <div
-    id="add-book-hidden-tag-list"
-    class="hidden-tag-list"
-  ></div>
-
-  <input
-    class="input-common"
-    id="add-book-hidden-tag-input"
-    type="text"
-    placeholder="管理タグを追加"
-    oninput="
-      renderAddBookHiddenTagSuggest()
-    "
-    onkeydown="
-      if(event.key === 'Enter'){
-        addHiddenTagToNewBook(this.value);
-      }
-    "
-  >
-
-  <div class="suggest-box">
-    <div id="add-book-hidden-tag-suggest"></div>
-  </div>
-
-</div>
   
       	<div class="toggle-content"
       	  id="add-book-tags">
@@ -206,6 +175,39 @@ function openAddBookModal(){
 				>
 				${tag.name}
 			</span>
+			
+			
+			<div class="hidden-tag-input-area">
+
+  <div class="t-labels">
+    管理タグ
+  </div>
+
+  <div
+    id="add-book-hidden-tag-list"
+    class="hidden-tag-list"
+  ></div>
+
+  <input
+    class="input-common"
+    id="add-book-hidden-tag-input"
+    type="text"
+    placeholder="管理タグを追加"
+    oninput="
+      renderAddBookHiddenTagSuggest()
+    "
+    onkeydown="
+      if(event.key === 'Enter'){
+        addHiddenTagToNewBook(this.value);
+      }
+    "
+  >
+
+  <div class="suggest-box">
+    <div id="add-book-hidden-tag-suggest"></div>
+  </div>
+
+</div>
 			
 			
 		`;
