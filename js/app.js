@@ -645,10 +645,8 @@ function renderHome(){
 
   setActiveMenu("menu-home");
 
-  const el = document.getElementById("current-page-title");
+  const el = document.getElementById("page-home");
   if(!el) return;
-
-el.classList.add("page");
 
   el.innerHTML = `
     <div id="home-fixed-bar"></div>
