@@ -571,8 +571,11 @@ id="open-book-tags">
   ${
   hiddenTagIds.length
     ? `
-      <br>
       <div class="hidden-tag-area">
+
+        <div class="hidden-tag-title">
+          管理タグ
+        </div>
 
     <div class="hidden-tag-list selected-hidden-tags">
 
