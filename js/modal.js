@@ -36,8 +36,8 @@ function openAddBookModal(){
   modal.innerHTML = `
     <div class="modal-box">
  <div class="flex-between">
-         <span style="font-size:20px;font-weight:bold;margin-right:auto;">本を追加</span>
-         <button class="btn-sub" onclick="closeModal('add-book-modal')" style="margin-left:auto;">✖️</button></div>
+         <span class="left-yose">本を追加</span>
+         <button class="btn-sub" onclick="closeModal('add-book-modal')">✖️</button></div>
 
       <input class="input-title"
        id="add-title"
@@ -51,9 +51,9 @@ function openAddBookModal(){
       
       
       <div class="flex-between">
-        <div class="field-label" style="padding:0;margin-right:2px;">読了日：</div>
+        <div class="field-label">読了日：</div>
 
-        <input type="date" id="add-date" class="input-common input-small" style="margin-right:auto;">
+        <input type="date" id="add-date" class="input-common input-small left-yose">
         
         
 	  			<button
@@ -62,7 +62,7 @@ function openAddBookModal(){
 				  class="fav-cycle-btn"
 			  		onclick="cycleNewBookFav()"
 				>
-				  評価：0
+				  評価：★★
 				</button>
 
         
@@ -77,27 +77,8 @@ function openAddBookModal(){
         placeholder="メモ">` : ""}
 
       
-      
-      
-     <div class="actions-row"> 
-      
-   
-      <div style="font-size:11px"
-      class="toggle-head"
-      data-open="▽タグ非表示"
-      data-close="▶︎タグ表示"
-      onclick="
-        togglesSection(
-        'add-book-tags',
-        this
-      )
-    "
-  >
-  ▶︎タグ表示</div>
-  
-  
-   <div style="font-size:11px"
-      class="toggle-head"
+    <div
+      class="toggle-head t-labels"
       data-open="▽関連シリーズ"
       data-close="▶︎関連シリーズ"
       onclick="
@@ -107,10 +88,6 @@ function openAddBookModal(){
       )
     "
   >▶︎関連シリーズ</div>
-  
-  
-  </div>
-
 
      <div
        class="toggle-content"
@@ -143,6 +120,21 @@ function openAddBookModal(){
       </div>      
      </div>
   
+  
+  
+  
+      <div
+      class="toggle-head t-labels"
+      data-open="▽タグ非表示"
+      data-close="▶︎タグ表示"
+      onclick="
+        togglesSection(
+        'add-book-tags',
+        this
+      )
+    "
+  >
+  ▶︎タグ表示</div>
   
       	<div class="toggle-content"
       	  id="add-book-tags">
