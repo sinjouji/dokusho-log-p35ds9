@@ -191,11 +191,12 @@ let showHiddenItems = false;
 function go(page){
 
   document
-    .querySelectorAll(".page")
-    .forEach(el=>{
+  .querySelectorAll("[id^='page-']")
+  .forEach(el=>{
+    if(el.id !== "page-title"){
       el.classList.add("hidden");
-      el.style.display = "";
-    });
+    }
+  });
 
   const target =
     document.getElementById(
@@ -649,6 +650,8 @@ function renderHome(){
 
   const el = document.getElementById("page-home");
   if(!el) return;
+
+el.classList.add("page");
 
   el.innerHTML = `
     <div id="home-fixed-bar"></div>
