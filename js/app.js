@@ -191,19 +191,17 @@ let showHiddenItems = false;
 function go(page){
 
   document
-  .querySelectorAll("[id^='page-']")
-  .forEach(el=>{
-    if(el.id !== "page-title"){
-      el.style.display = "none";
-    }
-  });
+    .querySelectorAll(".page")
+    .forEach(el=>{
+      el.classList.add("hidden");
+    });
 
-const target =
-  document.getElementById("page-" + page);
+  const target =
+    document.getElementById("page-" + page);
 
-if(target){
-  target.style.display = "block";
-}
+  if(target){
+    target.classList.remove("hidden");
+  }
 
   if(page === "settings") renderSettings();
   if(page === "home") renderHome();
@@ -229,7 +227,6 @@ if(target){
   if(title){
     title.textContent =
       titles[page] || "読書ログ";
-    title.style.display = "block";
   }
 
   localStorage.setItem(
