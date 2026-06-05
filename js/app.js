@@ -971,7 +971,17 @@ function renderHomeFixedBar(){
       <option value="normal" ${typeFilter === "normal" ? "selected" : ""}>本棚</option>
       <option value="wish" ${typeFilter === "wish" ? "selected" : ""}>ウィッシュ</option>
     </select>
+    
+    
+    <button
+  class="filter-reset-btn"
+  onclick="resetHomeSearchFilter()"
+>
+  🧹リセット
+</button>
+    
   `;
+  
 }
 
 
@@ -1017,16 +1027,6 @@ function renderSearchArea(){
 
       </select>
       
-      
-       <div class="filter-actions">
-       
-       <button
-  class="filter-reset-btn"
-  onclick="resetHomeSearchFilter()"
->
-  🧹リセット
-</button>
-
       <button class="tag-chip"
         data-open="🏷️タグ非表示"
         data-close="🏷️タグ表示"
@@ -1038,6 +1038,8 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
+      
+       <div class="filter-actions">
        
          <div
            id="active-filter-view"
