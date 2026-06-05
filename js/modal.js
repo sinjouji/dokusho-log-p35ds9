@@ -182,10 +182,6 @@ function openAddBookModal(){
 			</div>
 			
 	<div class="hidden-tag-input-area">
-<div class="flex-between">
-  <div class="t-labels">
-    管理タグ
-  </div>
 
   <input
     class="input-common imput-small"
@@ -201,7 +197,6 @@ function openAddBookModal(){
       }
     "
   >
-  </div>
 
   <div class="suggest-box">
     <div id="add-book-hidden-tag-suggest"></div>
