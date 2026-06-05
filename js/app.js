@@ -190,49 +190,47 @@ let showHiddenItems = false;
 //==============================
 
 function go(page){
-  
+
   document.querySelectorAll(".page").forEach(el=>{
-  el.style.display = "none";
-});
+    el.classList.add("hidden");
+  });
 
-  const target = document.getElementById("page-" + page);
-  if(target) target.style.display = "block";
+  const target =
+    document.getElementById("page-" + page);
 
-  // ここ追加
-//  updateUIVisibility(page);
+  if(target){
+    target.classList.remove("hidden");
+  }
 
-  if(page === 'settings') renderSettings();
-  if(page === 'home') renderHome();
-  if(page === 'series') renderSeries();
-  if(page === 'characters') renderCharacters();
-  if(page === 'stats') renderStats();
-  if(page === 'tags') renderTags();
-  
+  if(page === "settings") renderSettings();
+  if(page === "home") renderHome();
+  if(page === "series") renderSeries();
+  if(page === "characters") renderCharacters();
+  if(page === "stats") renderStats();
+  if(page === "tags") renderTags();
+
   currentPage = page;
-  
+
   const titles = {
-  home:"ホーム",
-  series:"シリーズ",
-  characters:"人物",
-  stats:"統計",
-  tags:"タグ",
-  settings:"設定"
-};
+    home:"ホーム",
+    series:"シリーズ",
+    characters:"人物",
+    stats:"統計",
+    tags:"タグ",
+    settings:"設定"
+  };
 
-const title =
-  document.getElementById("page-title");
+  const title =
+    document.getElementById("page-title");
 
-if(title){
-  title.textContent =
-    titles[page] || "読書ログ";
+  if(title){
+    title.textContent =
+      titles[page] || "読書ログ";
+  }
+
+  localStorage.setItem("lastPage", page);
 }
-    
-  localStorage.setItem(
-    "lastPage",
-    page
-  );
-  
-}
+
 //==============================
 //====🔑データの保存処理：超重要！！
 //==============================
