@@ -188,13 +188,13 @@ let showHiddenItems = false;
 //==============================
 //go、ページ切り替え
 //==============================
-
 function go(page){
 
   document
-    .querySelectorAll("[id^='page-'].page")
+    .querySelectorAll(".page")
     .forEach(el=>{
-      el.style.display = "none";
+      el.classList.add("hidden");
+      el.style.display = "";
     });
 
   const target =
@@ -203,7 +203,8 @@ function go(page){
     );
 
   if(target){
-    target.style.display = "block";
+    target.classList.remove("hidden");
+    target.style.display = "";
   }
 
   if(page === "settings") renderSettings();
@@ -225,14 +226,11 @@ function go(page){
   };
 
   const title =
-    document.getElementById(
-      "page-title"
-    );
+    document.getElementById("page-title");
 
   if(title){
     title.textContent =
       titles[page] || "読書ログ";
-
     title.style.display = "block";
   }
 
