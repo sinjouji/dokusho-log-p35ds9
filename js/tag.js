@@ -379,8 +379,8 @@ const hiddenTags =
         </div>
 
  <input
-  id="hidden-tag-search" style="margin-left:auto;"
-  class="input-common input-small"
+  id="hidden-tag-search"
+  class="input-common input-small right-yose"
   placeholder="管理タグ検索"
   oninput="
     hiddenTagSearchKeyword = this.value;
