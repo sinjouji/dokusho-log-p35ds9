@@ -560,11 +560,12 @@ id="open-book-tags">
        ${
   hiddenTagIds.length
     ? `
-      <div class="hidden-tag-area">
-
+    
+    
         <div class="hidden-tag-title">
-  管理タグ（${hiddenTagIds.length}）
-</div>
+          管理タグ（${hiddenTagIds.length}）
+        </div>
+      <div class="hidden-tag-area"></div>
   <div class="hidden-tag-input-area">
     <div class="hidden-tag-list selected-hidden-tags">
 
@@ -706,7 +707,7 @@ newSeriesCharacterIds = [];
 			
 			
 				<div class="flex-between">関連登録
-				<input class="input-common"
+				<input class="input-common input-small"
 				 id="series-for-one"
 					type="text"
 					placeholder="作品／人物を追加"
@@ -815,7 +816,7 @@ function openSeriesEditModal(id){
 
       <input
         id="edit-series-name"
-        class="input-common"
+        class="input-title"
         value="${series.name || ""}"
       >
       
