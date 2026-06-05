@@ -319,7 +319,7 @@ function renderVisibleTags(){
           </div>
         </div>
 
-          <button
+          <button class="right-yose"
             onclick="startTagPageEdit('${tag.id}')"
           >
             編集
