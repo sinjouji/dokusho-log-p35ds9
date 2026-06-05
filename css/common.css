@@ -71,6 +71,7 @@ header{
 }
 
 #page-title{
+  display:block;
   font-size:28px;
   font-weight:800;
   color:#646364;
