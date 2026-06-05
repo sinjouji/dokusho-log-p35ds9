@@ -513,7 +513,26 @@ const hiddenTags =
 
   </div>
 `;
+
+setTimeout(()=>{
+
+  const card =
+    document.querySelector(
+      ".hidden-tag-edit-card"
+    );
+
+  if(card){
+    card.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
   }
+
+}, 0);
+
+  }
+  
+  
 }
 
 
