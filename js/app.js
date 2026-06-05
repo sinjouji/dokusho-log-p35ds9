@@ -960,9 +960,6 @@ function renderSearchArea(){
   );
  
   top.innerHTML = `
-    <button onclick="openAddBookModal()" class="add-btn">
-      ➕ 本
-    </button>
 
     <input class="input-common"
       id="search"
@@ -970,8 +967,6 @@ function renderSearchArea(){
       value="${searchKeyword}"
       oninput="handleSearchInput()"
     >
-    
-    
     
     
       <select id="sort-select" class="select-chip"
@@ -988,53 +983,8 @@ function renderSearchArea(){
 
       </select>
       
-
-      <button class="${viewMode === 'card'
-      ? 'active'
-      : ''}"
-      onclick="changeViewMode('card')">
-        ■ 
-      </button>
-
-      <button class="${viewMode === 'list'
-      ? 'active'
-      : ''}"
-      onclick="changeViewMode('list')">
-        ☰ 
-      </button>
-
-      <button class="${viewMode === 'shelf'
-      ? 'active'
-      : ''}"
-      onclick="changeViewMode('shelf')">
-        ‖‖ 
-      </button>
-      <select
-  id="type-filter" class="select-chip"
-  onchange="changeTypeFilter()">
-
-  <option value="all"
-    ${typeFilter === "all" ? "selected" : ""}
-  >
-    全部
-  </option>
-
-  <option value="normal"
-    ${typeFilter === "normal" ? "selected" : ""}
-  >
-    本棚
-  </option>
-
-  <option value="wish"
-    ${typeFilter === "wish" ? "selected" : ""}
-  >
-    ウィッシュ
-  </option>
-
-  </select>
-  
       
-       <div class="view-switch">
+       <div class="filter-actions">
        
        <button
   class="filter-reset-btn"

@@ -630,7 +630,6 @@ id="open-book-tags">
   class="hidden-tag-suggest"
 ></div>
  
-   
 
       <hr class="kugiri">
 
