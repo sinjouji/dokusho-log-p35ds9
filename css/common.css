@@ -551,5 +551,7 @@ color: #999;
   flex-wrap:wrap;
 }
 
-
+.hidden{
+  display:none !important;
+}
 
