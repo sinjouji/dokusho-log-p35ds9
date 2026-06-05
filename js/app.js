@@ -211,12 +211,12 @@ function go(page){
   currentPage = page;
   
   const titles = {
-  home:"🏠 ホーム",
-  series:"📚 シリーズ",
-  characters:"👤 人物",
-  stats:"📊 統計",
-  tags:"🏷️ タグ",
-  settings:"⚙️ 設定"
+  home:"ホーム",
+  series:"シリーズ",
+  characters:"人物",
+  stats:"統計",
+  tags:"タグ",
+  settings:"設定"
 };
 
 const title =
@@ -224,7 +224,7 @@ const title =
 
 if(title){
   title.textContent =
-    titles[page] || "📚 読書ログ";
+    titles[page] || "読書ログ";
 }
     
   localStorage.setItem(
