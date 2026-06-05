@@ -157,3 +157,10 @@ button{
 }
 
 
+/*ホームのフィルター状態表示テキスト*/
+.active-filter-view{
+  font-size:10px;
+  overflow-wrap:break-word;
+}
+
+
