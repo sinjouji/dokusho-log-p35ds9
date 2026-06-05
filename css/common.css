@@ -107,14 +107,14 @@ header{
   top:4px;
   z-index:0;
   font-style:italic;
-    font-family:
+  /*font-family:
   "Hiragino Maru Gothic ProN",
   "ヒラギノ丸ゴ ProN",
-  sans-serif;
-  /*font-family:
+  sans-serif;*/
+  font-family:
   "Yu Mincho",
   "游明朝",
-  serif;*/
+  serif;
 /*  font-family:
   "Hiragino Sans",
   sans-serif;*/
@@ -145,7 +145,7 @@ color:#646364;
 opacity:0.85;
 transition:.2s;
 min-width:60px;
-min-height:30px;
+min-height:40px;
 align-items:center;
 }
 .btn-me.active{
