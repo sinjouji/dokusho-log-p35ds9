@@ -7,6 +7,7 @@
 
 //非表示タグの削除用変数
 let pendingHiddenTagRemove = null;
+let newBookHiddenTagIds = [];
 
 //==============================
 //====モーダルを閉じる（汎用）
@@ -28,6 +29,7 @@ function openAddBookModal(){
   editingBookSeriesIds = [];
   newBookTagIds = [];
   newBookFav = 0;
+  newBookHiddenTagIds = [];
 
   const modal = document.createElement("div");
   modal.className = "modal-bg";
@@ -62,13 +64,11 @@ function openAddBookModal(){
 				  class="fav-cycle-btn"
 			  		onclick="cycleNewBookFav()"
 				>
-				  評価：★★
+				  評価：0
 				</button>
 
         
       </div>
-      
-      
       
       
       
@@ -135,6 +135,38 @@ function openAddBookModal(){
     "
   >
   ▶︎タグ表示</div>
+  
+  <div class="hidden-tag-input-area">
+
+  <div class="t-labels">
+    管理タグ
+  </div>
+
+  <div
+    id="add-book-hidden-tag-list"
+    class="hidden-tag-list"
+  ></div>
+
+  <input
+    class="input-common"
+    id="add-book-hidden-tag-input"
+    type="text"
+    placeholder="管理タグを追加"
+    oninput="
+      renderAddBookHiddenTagSuggest()
+    "
+    onkeydown="
+      if(event.key === 'Enter'){
+        addHiddenTagToNewBook(this.value);
+      }
+    "
+  >
+
+  <div class="suggest-box">
+    <div id="add-book-hidden-tag-suggest"></div>
+  </div>
+
+</div>
   
       	<div class="toggle-content"
       	  id="add-book-tags">
@@ -300,7 +332,7 @@ function openBookDetailModal(book){
  
  
  <div class="detail-row" style="width:85%;">
-      <label class="reread-check" style="margin-left:auto;">
+      <label class="reread-check right-yose">
 
   <input
     type="checkbox"
@@ -374,7 +406,7 @@ function openBookDetailModal(book){
       
       
       <div
-  class="toggle-history toggle-head"
+  class="toggle-history toggle-head t-labels"
   data-open="▽ 読了履歴"
   data-close="▶︎ 読了履歴"
   onclick="
@@ -416,8 +448,8 @@ function openBookDetailModal(book){
       
       
       
-      <div style="font-size:11px"
-        class="toggle-head"
+      <div
+        class="toggle-head t-labels"
         data-open="▽関連シリーズ"
         data-close="▶︎関連シリーズ"
         onclick="
@@ -1030,31 +1062,6 @@ editingCharacterSeriesIds =
 	  "character-edit-series"
 	);
 }
-
-
-
-
-//==============================
-//タグ追加モーダル
-//==============================
-//function openAddTagModal(){
-
-//  document.getElementById(
-//    "new-tag-name"
-//  ).value = "";
-
-//  document.getElementById(
-//    "new-tag-hidden"
-//  ).checked = false;
-
-//  openModal(
-//    "add-tag-modal"
-//  );
-//}
-
-
-
-
 
 
 

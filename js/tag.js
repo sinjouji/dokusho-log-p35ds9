@@ -631,6 +631,96 @@ function hasHiddenTag(book){
 
 
 //==============================
+//非表示タグを新規本に描画
+//==============================
+function renderAddBookHiddenTags(){
+
+  const list =
+    document.getElementById(
+      "add-book-hidden-tag-list"
+    );
+
+  const input =
+    document.getElementById(
+      "add-book-hidden-tag-input"
+    );
+
+  const suggest =
+    document.getElementById(
+      "add-book-hidden-tag-suggest"
+    );
+
+  if(!list) return;
+
+  list.innerHTML = "";
+
+  newBookHiddenTagIds.forEach(tagId=>{
+
+    const tag =
+      tagMaster.find(t =>
+        String(t.id) === String(tagId)
+      );
+
+    if(!tag) return;
+
+    const chip =
+      document.createElement("span");
+
+    chip.className =
+      "hidden-tag-chip";
+
+    chip.textContent =
+      "#" + tag.name;
+
+    chip.onclick = ()=>{
+
+      newBookHiddenTagIds =
+        newBookHiddenTagIds.filter(id =>
+          String(id) !== String(tagId)
+        );
+
+      renderAddBookHiddenTags();
+    };
+
+    list.appendChild(chip);
+  });
+
+  if(input) input.value = "";
+  if(suggest) suggest.innerHTML = "";
+}
+
+//==============================
+//非表示タグを新規本に追加
+//==============================
+function addHiddenTagToNewBook(tagName){
+
+  const name =
+    (tagName || "").trim();
+
+  if(!name) return;
+
+  const tag =
+    tagMaster.find(t =>
+      t.isHidden &&
+      t.name === name
+    );
+
+  if(!tag) return;
+
+  if(
+    !newBookHiddenTagIds
+      .map(String)
+      .includes(String(tag.id))
+  ){
+    newBookHiddenTagIds.push(tag.id);
+  }
+
+  renderAddBookHiddenTags();
+}
+
+
+
+//==============================
 //非表示タグを本に追加
 //==============================
 function addHiddenTag(bookId, tagName){
@@ -768,6 +858,58 @@ function refreshBookDetailModal(book){
 
   openBookDetailModal(book);
 }
+
+
+//==============================
+//表示タグサジェスト
+//==============================
+function renderAddBookHiddenTagSuggest(){
+
+  const input =
+    document.getElementById(
+      "add-book-hidden-tag-input"
+    );
+
+  const area =
+    document.getElementById(
+      "add-book-hidden-tag-suggest"
+    );
+
+  if(!input || !area) return;
+
+  const keyword =
+    input.value.trim().toLowerCase();
+
+  area.innerHTML = "";
+
+  if(!keyword) return;
+
+  tagMaster
+    .filter(tag => tag.isHidden)
+    .filter(tag =>
+      (tag.name || "")
+        .toLowerCase()
+        .includes(keyword)
+    )
+    .forEach(tag=>{
+
+      const chip =
+        document.createElement("button");
+
+      chip.className =
+        "hidden-tag-suggest-chip";
+
+      chip.textContent =
+        "#" + tag.name;
+
+      chip.onclick = ()=>{
+        addHiddenTagToNewBook(tag.name);
+      };
+
+      area.appendChild(chip);
+    });
+}
+
 
 
 //==============================

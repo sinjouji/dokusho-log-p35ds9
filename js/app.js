@@ -1761,7 +1761,10 @@ async function saveNewBook(){
     memo: memo,
     fav: newBookFav,
     readDates: date ? [date] : [],
-    tagIds: [...newBookTagIds],
+    tagIds: [
+      ...newBookTagIds,
+      ...newBookHiddenTagIds
+    ],
     seriesIds:
       editingBookSeriesIds.map(String),
     type: date ? "normal" : "wish"
