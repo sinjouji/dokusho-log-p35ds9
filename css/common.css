@@ -250,12 +250,14 @@ button{
 .right-yose{
   display:flex;
   margin-left:auto;
+  align-items:center;
 }
 
 /*左寄せ*/
 .left-yose{
   display:flex;
   margin-right:auto;
+  vertical-align:bottom;
 }
 
 
