@@ -1055,7 +1055,6 @@ function renderSearchArea(){
      >🏷️タグ表示
        </button>
        
-       
             <div id="active-filter-view" style="font-size:10px;white-space:break-word;"></div>
             </div>
        
@@ -1867,8 +1866,8 @@ setActiveMenu("menu-settings");
  
   
   el.innerHTML = `
-    <button onclick="go('home')" style="margin:16px;">← 戻る</button>
-    <h2 style="padding:12px;">設定</h2>
+    <button onclick="go('home')">← 戻る</button>
+    <h2>設定</h2>
 
   <div class="setting-card">
     <div class="setting-card-title" onclick="toggleSettingSection('home')">
@@ -1974,11 +1973,10 @@ setActiveMenu("menu-settings");
         onclick="toggleGoal(event)"></div>
       <div class="settings-item">
         目標冊数
-        <input class="input-common"
+        <input class="input-common input-small"
           type="number" 
           value="${yearlyGoal}" 
           min="1"
-          style="width:80px;"
           onchange="changeGoal(this.value)">
        </div>
     </div>  
