@@ -846,7 +846,8 @@ const characterCount =
         this
       )
     "
-  >▶︎関連作品(${editingSeriesBookIds.length})</div>
+  >
+  ▶︎関連作品(${editingSeriesBookIds.length})</div>
       
       <div id="series-edit-books"
        class="
