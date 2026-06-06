@@ -12,7 +12,7 @@ let seriesViewMode =
 //シリーズ名を取得
 //==============================
 function openSeriesById(id){
-console.log("byid~~");
+
   const series = seriesMaster.find(
     s => String(s.id) === String(id)
   );
@@ -166,17 +166,21 @@ const bookCount =
 function renderSeriesDetail(s){
 
   const relatedBooks = books.filter(b =>
-    (s.bookIds || []).map(String).includes(String(b.id))
+    (s.bookIds || [])
+      .map(String)
+      .includes(String(b.id))
   );
 
-
   const relatedCharacters = characters.filter(c =>
-    (s.characterIds || []).map(String).includes(String(c.id))
+    (s.characterIds || [])
+      .map(String)
+      .includes(String(c.id))
   );
 
   const seriesId =
-    series.id;
-
+    s.id;
+    
+    
   safeRender({
     mountId: "page-detail",
     html: `
@@ -495,96 +499,102 @@ async function saveSeriesEdit(id){
       "edit-series-name"
     ).value;
 
+  const editBookIds =
+    [...new Set(
+      editingSeriesBookIds.map(String)
+    )];
+
+  const editCharacterIds =
+    [...new Set(
+      editingSeriesCharacterIds.map(String)
+    )];
+
   series.bookIds =
-    editingSeriesBookIds.map(String);
-    
-  books.forEach(function(book){
-
-  const shouldHaveSeries =
-    editingSeriesBookIds.includes(
-      String(book.id)
-    );
-
-  if(shouldHaveSeries){
-
-    const currentIds =
-      (book.seriesIds || []);
-
-    if(
-      !currentIds.includes(
-        String(series.id)
-      )
-    ){
-
-      book.seriesIds =
-        currentIds.concat(
-          String(series.id)
-        );
-    }
-
-  }else{
-
-    book.seriesIds =
-      (book.seriesIds || []).filter(
-        function(seriesId){
-
-          return (
-            String(seriesId)
-            !== String(series.id)
-          );
-
-        }
-      );
-  }
-});
+    editBookIds;
 
   series.characterIds =
-    editingSeriesCharacterIds.map(String);
-    
+    editCharacterIds;
+
+  books.forEach(book=>{
+
+    const shouldHaveSeries =
+      editBookIds.includes(
+        String(book.id)
+      );
+
+    if(shouldHaveSeries){
+
+      const currentIds =
+        (book.seriesIds || [])
+          .map(String);
+
+      if(
+        !currentIds.includes(
+          String(series.id)
+        )
+      ){
+        book.seriesIds =
+          currentIds.concat(
+            String(series.id)
+          );
+      }
+
+    }else{
+
+      book.seriesIds =
+        (book.seriesIds || [])
+          .map(String)
+          .filter(seriesId =>
+            seriesId !== String(series.id)
+          );
+    }
+  });
+
   characters.forEach(character=>{
 
-  const shouldHaveSeries =
-    editingSeriesCharacterIds.includes(
-      String(character.id)
-    );
+    const shouldHaveSeries =
+      editCharacterIds.includes(
+        String(character.id)
+      );
 
-  if(shouldHaveSeries){
+    if(shouldHaveSeries){
 
-    if(
-      !(character.seriesIds || [])
-        .includes(String(series.id))
-    ){
+      const currentIds =
+        (character.seriesIds || [])
+          .map(String);
+
+      if(
+        !currentIds.includes(
+          String(series.id)
+        )
+      ){
+        character.seriesIds =
+          currentIds.concat(
+            String(series.id)
+          );
+      }
+
+    }else{
 
       character.seriesIds =
-  (character.seriesIds || []).concat(
-    String(series.id)
-  );
+        (character.seriesIds || [])
+          .map(String)
+          .filter(seriesId =>
+            seriesId !== String(series.id)
+          );
     }
-
-  }else{
-
-    character.seriesIds =
-      (character.seriesIds || [])
-        .filter(seriesId =>
-
-          String(seriesId)
-          !== String(series.id)
-
-        );
-  }
-});
+  });
 
   await saveData();
 
   closeModal("edit-series-modal");
 
   renderSeries();
-  
+
   renderSeriesDetail(series);
 
   showToast("保存しました！");
 }
-
 
 
 //==============================
