@@ -4,7 +4,13 @@
 // 本一覧とか、本に関する処理ちゃんたち
 //
 
+let openAfterDuplicate =
+  localStorage.getItem("openAfterDuplicate");
 
+openAfterDuplicate =
+  openAfterDuplicate === null
+    ? false
+    : openAfterDuplicate === "true";
 
 //==============================
 //====最新読了日を取得するやつ
@@ -533,6 +539,9 @@ async function duplicateBook(id){
 
     title:
       incrementVolumeTitle(book.title || ""),
+      
+    volume:
+      Number(book.volume || 0) + 1,
 
     memo: "",
 
@@ -579,9 +588,13 @@ async function duplicateBook(id){
 
   renderHome();
 
-  showToast(
-    `「${newBook.title}」を追加しました`
-  );
+if(openAfterDuplicate){
+  openBookDetailModal(newBook);
+}
+
+showToast(
+  `「${newBook.title}」を追加しました`
+);
 }
 
 //最後をこう↓すると、追加した後に新規本の詳細を開ける
