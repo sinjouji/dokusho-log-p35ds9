@@ -674,7 +674,6 @@ id="open-book-tags">
 function openAddSeriesModal(){
 
 newSeriesBookIds = [];
-
 newSeriesCharacterIds = [];
 
 	const modal = document.createElement("div");
@@ -682,7 +681,10 @@ newSeriesCharacterIds = [];
 	modal.id = "add-series-modal";
 	
 	const bookCount =
-  editingSeriesBookIds.length;
+    newSeriesBookIds.length;
+  
+  const characterCount =
+    newSeriesCharacterIds.length;
 	
 	modal.innerHTML = `
 		<div class="modal-box">
@@ -723,15 +725,15 @@ newSeriesCharacterIds = [];
 				
       <div
       class="toggle-head"
-      data-open="▽関連作品(${bookCount})"
-      data-close="▶︎関連作品(${bookCount})"
+      data-open="▽関連作品(${newSeriesBookIds.length})"
+      data-close="▶︎関連作品(${newSeriesBookIds.length})"
       onclick="
         togglesSection(
         'series-new-books',
         this
       )
     "
-  >▶︎関連作品(${bookCount})</div>
+  >▶︎関連作品(${newSeriesBookIds.length})</div>
       
      <div id="series-new-books"
        class="
@@ -742,15 +744,15 @@ newSeriesCharacterIds = [];
       
       <div
       class="toggle-head"
-      data-open="▽関連人物"
-      data-close="▶︎関連人物"
+      data-open="▽関連人物(${newSeriesCharacterIds.length})"
+      data-close="▶︎関連人物(${newSeriesCharacterIds.length})"
       onclick="
         togglesSection(
         'series-new-characters',
         this
       )
     "
-  >▶︎関連人物</div>
+  >▶︎関連人物(${newSeriesCharacterIds.length})</div>
 
      <div id="series-new-characters"
        class="
@@ -789,8 +791,6 @@ function openSeriesEditModal(id){
 
   editingSeriesCharacterIds =
     [...(series.characterIds || [])];
-    
-
 
   modal.className = "modal-bg";
   modal.id = "edit-series-modal";
