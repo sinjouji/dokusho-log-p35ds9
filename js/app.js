@@ -511,15 +511,13 @@ function renderActiveFilterView(){
 
   if(!filterState.tags.length){
 
-    area.innerHTML = `
-      <div class="filter-empty">
-        絞り込みなし<br>
-        タグタップでAND/OR/NOT/OFF切替え
-      </div>
-    `;
+  area.innerHTML = "";
+  area.style.display = "none";
 
-    return;
-  }
+  return;
+}
+
+area.style.display = "block";
     
     
   function getTagNames(tagIds){
