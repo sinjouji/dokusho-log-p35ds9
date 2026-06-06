@@ -681,6 +681,9 @@ newSeriesCharacterIds = [];
 	modal.className = "modal-bg";
 	modal.id = "add-series-modal";
 	
+	const bookCount =
+  editingSeriesBookIds.length;
+	
 	modal.innerHTML = `
 		<div class="modal-box">
 		<div class="flex-between">
@@ -720,15 +723,15 @@ newSeriesCharacterIds = [];
 				
       <div
       class="toggle-head"
-      data-open="▽関連作品を閉じる"
-      data-close="▶︎関連作品を開く"
+      data-open="▽関連作品(${bookCount})"
+      data-close="▶︎関連作品(${bookCount})"
       onclick="
         togglesSection(
         'series-new-books',
         this
       )
     "
-  >▶︎関連作品を開く</div>
+  >▶︎関連作品(${bookCount})</div>
       
      <div id="series-new-books"
        class="
@@ -739,15 +742,15 @@ newSeriesCharacterIds = [];
       
       <div
       class="toggle-head"
-      data-open="▽関連人物を閉じる"
-      data-close="▶︎関連人物を開く"
+      data-open="▽関連人物"
+      data-close="▶︎関連人物"
       onclick="
         togglesSection(
         'series-new-characters',
         this
       )
     "
-  >▶︎関連人物を開く</div>
+  >▶︎関連人物</div>
 
      <div id="series-new-characters"
        class="
@@ -943,7 +946,7 @@ function openAddCharacterModal(){
 				</div>
 				
 				<div class="left-yose mini-text">
-				関連編集エリア</div>
+				関連シリーズ</div>
 			<div id="add-character-series-list" class="series-edit-list detail-row"></div>
 			
 			
@@ -1026,7 +1029,7 @@ editingCharacterSeriesIds =
     <div class="suggest-box">
       <div id="character-series-suggest"></div>
     </div>
-    <div class="left-yose mini-text">関連一覧編集エリア</div>
+    <div class="left-yose mini-text">関連シリーズ</div>
     
     <div id="character-edit-series" class="series-edit-list detail-row"></div>
          <hr class="kugiri">
