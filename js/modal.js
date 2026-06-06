@@ -700,7 +700,7 @@ newSeriesCharacterIds = [];
 			
 			
 			
-				<div class="detail-row">関連登録
+				<div class="left-yose">関連登録</div>
 				<input class="input-common input-small"
 				 id="series-for-one"
 					type="text"
@@ -708,7 +708,7 @@ newSeriesCharacterIds = [];
 					oninput="renderSeriesNewBookSuggest();
 						renderSeriesNewCharacterSuggest();">
 				
-				</div>
+				
 				
 				<div class="suggest-box">
 					<div id="series-book-suggest"></div>
@@ -806,11 +806,11 @@ function openSeriesEditModal(id){
         value="${series.name || ""}"
       >
       
-     
+     <div class="left-yose">関連登録</div>
       <input class="input-common"
         id="series-related-search"
         type="text"
-        placeholder="本・人物を追加"
+        placeholder="作品／人物を追加"
         oninput="
           renderSeriesBookSuggest();
           renderSeriesCharacterSuggest();
@@ -941,10 +941,10 @@ function openAddCharacterModal(){
 				<div id="add-character-series-suggest"></div>
 				</div>
 				
-				<div class="flex-between">
-				関連：<br>
-			<div id="add-character-series-list" class="series-edit-list"></div>
-			</div>
+				<div class="left-yose">
+				関連：</div>
+			<div id="add-character-series-list" class="series-edit-list detail-row"></div>
+			
 			
 			     <hr class="kugiri">
 			
@@ -993,13 +993,11 @@ editingCharacterSeriesIds =
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
 			
-						
+			<div class="left-yose mini-text">メモ</div>
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
 		
-		      
-      <div style="font-size:10px">
+		<div class="left-yose mini-text">関連シリーズ</div>
       ${relatedSeries.map(s=>`
-        シリーズ : 
         <button class="detail-series"
 				  onclick="
 				    closeModal('open-chars-modal');
@@ -1009,10 +1007,9 @@ editingCharacterSeriesIds =
  				 ${s.name}
 				</button>
       `).join(", ") || ""}
-    </div>
     
     
-    
+    <div class="left-yose mini-text">関連シリーズを追加</div>
    <input class="input-common"
         id="character-related-search"
         type="text"
@@ -1028,10 +1025,9 @@ editingCharacterSeriesIds =
     <div class="suggest-box">
       <div id="character-series-suggest"></div>
     </div>
-    <div class="flex-between">
-    関連：<br>
-    <div id="character-edit-series" class="series-edit-list"></div>
-   </div>
+    <div class="left-yose mini-text">関連一覧編集エリア</div>
+    
+    <div id="character-edit-series" class="series-edit-list detail-row"></div>
          <hr class="kugiri">
 		
 		<div class="actions-row">
