@@ -1038,6 +1038,12 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
+       <div class="filter-empty">
+        タグタップで切替<br>
+        AND/OR/NOT/OFF
+      </div>
+       
+       
       
        <div class="filter-actions">
        
