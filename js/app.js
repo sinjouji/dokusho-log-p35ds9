@@ -763,8 +763,13 @@ main.classList.add("card-view");
     d.innerHTML = `
 
       <div class="title">
-        ${b.title}
-      </div>
+  ${b.title}
+  ${
+    b.volume
+      ? `<span class="book-volume-label">${b.volume}巻</span>`
+      : ""
+  }
+</div>
 
       <div class="card-sub-row">
 
