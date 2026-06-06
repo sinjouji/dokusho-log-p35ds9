@@ -151,7 +151,7 @@
 
   align-items:center;
   text-align:right;
-  padding-bottom:10px;
+  padding-bottom:5px;
 }
 
 .shelf-view{
@@ -162,6 +162,14 @@
   overflow-x:auto;
   padding:10px 0;
 }
+
+.book-volume-label{
+  margin-left:6px;
+  font-size:11px;
+  color:#9a7b5a;
+  white-space:nowrap;
+}
+
 
 
 
