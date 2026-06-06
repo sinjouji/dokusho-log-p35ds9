@@ -729,15 +729,15 @@ const characterCount =
 				
       <div
       class="toggle-head"
-      data-open="▽関連作品(${newSeriesBookIds.length})"
-      data-close="▶︎関連作品(${newSeriesBookIds.length})"
+      data-open="▽関連作品(${bookCount})"
+      data-close="▶︎関連作品(${bookCount})"
       onclick="
         togglesSection(
         'series-new-books',
         this
       )
     "
-  >▶︎関連作品(${newSeriesBookIds.length})</div>
+  >▶︎関連作品(${bookCount})</div>
       
      <div id="series-new-books"
        class="
@@ -748,15 +748,15 @@ const characterCount =
       
       <div
       class="toggle-head"
-      data-open="▽関連人物(${newSeriesCharacterIds.length})"
-      data-close="▶︎関連人物(${newSeriesCharacterIds.length})"
+      data-open="▽関連人物(${characterCount})"
+      data-close="▶︎関連人物(${characterCount})"
       onclick="
         togglesSection(
         'series-new-characters',
         this
       )
     "
-  >▶︎関連人物(${newSeriesCharacterIds.length})</div>
+  >▶︎関連人物(${characterCount})</div>
 
      <div id="series-new-characters"
        class="
