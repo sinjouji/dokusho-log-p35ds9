@@ -285,13 +285,15 @@ function openBookDetailModal(book){
     <div class="modal-box detail-modal">
     <div class="flex-between">
       <input id="detail-title" class="input-title"
-        value="${book.title || ""}">
-        
+        value="${book.title || ""}">        
     
       <button class="btn-sub" onclick="closeModal('open-book-modal')" style="margin-left:auto;">
         ✖️
       </button>
     </div>
+    <div class="detail-volume">
+  巻数：${book.volume || ""}
+</div>
     
     
             
