@@ -369,7 +369,9 @@ function openBookDetailModal(book){
             >
               ✕
             </button>
-      </div>
+      </div>`
+    : "未読"
+  }
       
     </div>
       
@@ -443,9 +445,7 @@ function openBookDetailModal(book){
           </div>
         
         `).join("")}
-    `
-    : "未読"
-  }</div>
+    </div>
       
       
       
