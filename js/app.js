@@ -1036,9 +1036,9 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
-       <div class="mini-text">
-        タグタップで切替<br>
-        AND/OR/NOT/OFF
+       <div class="mini-text usui-text">
+        タグ切替<br>
+        AND/OR/NOT
       </div>
        </div>
        
