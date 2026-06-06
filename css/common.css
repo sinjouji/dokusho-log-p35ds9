@@ -569,3 +569,7 @@ color: #999;
 .hidden{
   display:none !important;
 }
+
+.mini-text{
+  font-size:10px;
+}
