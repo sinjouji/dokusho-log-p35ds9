@@ -366,7 +366,7 @@ button{
   box-sizing:border-box;
   border:1px solid #f4a57a;
   border-radius:10px;
-  background:#e4e5e6;
+  background:#fbfbf8;
   font-size:13px;
   color:#646364;
 }
@@ -383,7 +383,7 @@ button{
   box-sizing:border-box;
   border:1px solid #f4a57a;
   border-radius:10px;
-  background:#e4e5e6;
+  background:#fbfbf8;
   font-size:16px;
   font-weight:600;
   color:#646364;
@@ -394,7 +394,7 @@ button{
   min-height:72px;
   padding:8px;
   box-sizing:border-box;
-  border:1px solid #f4a57a;
+  border:1px solid #fbfbf8;
   border-radius:10px;
   background:#e4e5e6;
   font-size:13px;
