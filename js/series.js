@@ -174,6 +174,9 @@ function renderSeriesDetail(s){
     (s.characterIds || []).map(String).includes(String(c.id))
   );
 
+  const seriesId =
+    series.id;
+
   safeRender({
     mountId: "page-detail",
     html: `
@@ -194,11 +197,7 @@ function renderSeriesDetail(s){
   seriesSections.books =
     !seriesSections.books;
 
-  openSeries(
-    seriesMaster.find(s =>
-      String(s.id) === String('${series.id}')
-    )
-  );
+  openSeriesById('${seriesId}');
 "
 >
   ${seriesSections.books ? "▽" : "▶︎"} 関連作品
@@ -218,11 +217,7 @@ function renderSeriesDetail(s){
   seriesSections.chars =
     !seriesSections.chars;
 
-  openSeries(
-    seriesMaster.find(s =>
-      String(s.id) === String('${series.id}')
-    )
-  );
+  openSeriesById('${seriesId}');
 "
 >
   ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
