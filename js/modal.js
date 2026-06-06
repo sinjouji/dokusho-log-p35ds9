@@ -791,6 +791,13 @@ function openSeriesEditModal(id){
 
   editingSeriesCharacterIds =
     [...(series.characterIds || [])];
+    
+    
+  const bookCount =
+  editingSeriesBookIds.length;
+
+const characterCount =
+  editingSeriesCharacterIds.length;
 
   modal.className = "modal-bg";
   modal.id = "edit-series-modal";
@@ -831,15 +838,15 @@ function openSeriesEditModal(id){
       
        <div
       class="toggle-head"
-      data-open="▽関連作品を閉じる"
-      data-close="▶︎関連作品を開く"
+      data-open="▽関連作品(${editingSeriesBookIds.length})"
+      data-close="▶︎関連作品(${editingSeriesBookIds.length})"
       onclick="
         togglesSection(
         'series-edit-books',
         this
       )
     "
-  >▶︎関連作品を開く</div>
+  >▶︎関連作品(${editingSeriesBookIds.length})</div>
       
       <div id="series-edit-books"
        class="
@@ -849,15 +856,15 @@ function openSeriesEditModal(id){
       
        <div
       class="toggle-head"
-      data-open="▽関連人物を閉じる"
-      data-close="▶︎関連人物を開く"
+      data-open="▽関連人物(${editingSeriesCharacterIds.length})"
+      data-close="▶︎関連人物(${editingSeriesCharacterIds.length})"
       onclick="
         togglesSection(
         'series-edit-characters',
         this
       )
     "
-  >▶︎関連人物を開く</div>
+  >▶︎関連人物(${editingSeriesCharacterIds.length})</div>
       
       
      <div id="series-edit-characters"
