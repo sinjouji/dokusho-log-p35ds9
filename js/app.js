@@ -1004,7 +1004,7 @@ function renderSearchArea(){
   );
  
   top.innerHTML = `
-  <div class="left-yose">
+  <div class="filter-actions">
     <input class="input-common input-small"
       id="search"
       placeholder="検索..."
