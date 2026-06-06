@@ -807,11 +807,16 @@ function renderSeriesNewBooks(){
 
     ${relatedBooks.map(b=>`
 
-      <div class="related-chip">
+     <div class="related-chip">
 
-        ${b.title}
+  ${b.title}
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
 
-      </div>
+</div>
 
     `).join("")}
 

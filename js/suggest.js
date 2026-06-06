@@ -315,8 +315,13 @@ function renderSeriesNewBookSuggest(){
             onclick="addBookToNewSeries('${b.id}')"
           >
             <div>
-              ${b.title}
-            </div>
+  ${b.title}
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
+</div>
 
             ${
               relatedSeries.length
@@ -490,8 +495,13 @@ function renderSeriesBookSuggest(){
             onclick="addBookToSeries('${b.id}')"
           >
             <div>
-              ${b.title}
-            </div>
+  ${b.title}
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
+</div>
 
             ${
               relatedSeries.length
