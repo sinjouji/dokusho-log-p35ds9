@@ -191,13 +191,11 @@ function renderSeriesDetail(s){
           <div
   class="series-section-title"
   onclick="
-    seriesSections.books =
-      !seriesSections.books;
+  seriesSections.books =
+    !seriesSections.books;
 
-    openSeries(
-      currentSeriesId
-    );
-  "
+  openSeriesById('${series.id}');
+"
 >
   ${seriesSections.books ? "▽" : "▶︎"} 関連作品
 </div>
@@ -213,13 +211,11 @@ function renderSeriesDetail(s){
           <div
   class="series-section-title"
   onclick="
-    seriesSections.chars =
-      !seriesSections.chars;
+  seriesSections.chars =
+    !seriesSections.chars;
 
-    openSeries(
-      currentSeriesId
-    );
-  "
+  openSeriesById('${series.id}');
+"
 >
   ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
 </div>
