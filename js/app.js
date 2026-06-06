@@ -1004,7 +1004,7 @@ function renderSearchArea(){
   );
  
   top.innerHTML = `
-
+  <div class="filter-actions">
     <input class="input-common"
       id="search"
       placeholder="検索..."
@@ -1038,11 +1038,11 @@ function renderSearchArea(){
       "
      >🏷️タグ表示
        </button>
-       <div class="filter-empty">
+       <div class="mini-text">
         タグタップで切替<br>
         AND/OR/NOT/OFF
       </div>
-       
+       </div>
        
       
        <div class="filter-actions">
