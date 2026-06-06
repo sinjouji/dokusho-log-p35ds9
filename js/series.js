@@ -201,7 +201,11 @@ function renderSeriesDetail(s){
   seriesSections.books =
     !seriesSections.books;
 
-  openSeriesById('${seriesId}');
+  renderSeriesDetail(
+    seriesMaster.find(s =>
+      String(s.id) === String('${seriesId}')
+    )
+  );
 "
 >
   ${seriesSections.books ? "▽" : "▶︎"} 関連作品
@@ -221,7 +225,11 @@ function renderSeriesDetail(s){
   seriesSections.chars =
     !seriesSections.chars;
 
-  openSeriesById('${seriesId}');
+  renderSeriesDetail(
+    seriesMaster.find(s =>
+      String(s.id) === String('${seriesId}')
+    )
+  );
 "
 >
   ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
