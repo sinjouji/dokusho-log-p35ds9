@@ -148,11 +148,10 @@
   
   color:#fffffc;
   height:30px;
-  writing-mode:vertical-rl;
 
   align-items:center;
   text-align:right;
-  padding-bottom:5px;
+  padding-bottom:10px;
 }
 
 .shelf-view{
