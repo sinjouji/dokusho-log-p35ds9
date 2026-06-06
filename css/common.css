@@ -376,6 +376,11 @@ button{
   min-width:150px;
 }
 
+.input-small-ex{
+  width:auto;
+  min-width:80px;
+}
+
 .input-title{
   width:100%;
   min-height:34px;
