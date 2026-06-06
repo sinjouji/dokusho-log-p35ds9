@@ -857,15 +857,15 @@ const characterCount =
       
        <div
       class="toggle-head"
-      data-open="▽関連人物(${characterCoutn})"
-      data-close="▶︎関連人物(${characterCoutn})"
+      data-open="▽関連人物(${characterCount})"
+      data-close="▶︎関連人物(${characterCount})"
       onclick="
         togglesSection(
         'series-edit-characters',
         this
       )
     "
-  >▶︎関連人物(${characterCoutn})</div>
+  >▶︎関連人物(${characterCount})</div>
       
       
      <div id="series-edit-characters"
