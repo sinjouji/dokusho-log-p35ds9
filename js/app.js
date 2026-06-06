@@ -867,10 +867,15 @@ main.classList.add("list-view");
       b.readDates?.length || 0;
 
    row.innerHTML = `
-
-  <div class="list-title">
-    ${b.title}
-  </div>
+   
+<div class="list-title">
+  ${b.title}
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
+</div>
 
   <div class="list-meta">
 
