@@ -681,14 +681,10 @@ newSeriesCharacterIds = [];
 	modal.id = "add-series-modal";
 	
 	const bookCount =
-  [...new Set(
-    (series.bookIds || []).map(String)
-  )].length;
+  newSeriesBookIds.length;
 
 const characterCount =
-  [...new Set(
-    (series.characterIds || []).map(String)
-  )].length;
+  newSeriesCharacterIds.length;
 	
 	modal.innerHTML = `
 		<div class="modal-box">
