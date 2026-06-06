@@ -268,9 +268,14 @@ function renderSeriesDetail(s){
   d.className = "card mini-s-card";
 
   d.innerHTML = `
-    <span class="mini-s-title">
-      ${b.title}
-    </span><br>
+   <span class="mini-s-title">
+  ${b.title}
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
+</span>
 
     <span class="
       mini-read-status
