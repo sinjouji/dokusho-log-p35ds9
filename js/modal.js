@@ -720,15 +720,15 @@ newSeriesCharacterIds = [];
 				
       <div
       class="toggle-head"
-      data-open="▽作品一覧を閉じる"
-      data-close="▶︎作品一覧を開く"
+      data-open="▽関連作品を閉じる"
+      data-close="▶︎関連作品を開く"
       onclick="
         togglesSection(
         'series-new-books',
         this
       )
     "
-  >▶︎作品一覧を開く</div>
+  >▶︎関連作品を開く</div>
       
      <div id="series-new-books"
        class="
@@ -739,15 +739,15 @@ newSeriesCharacterIds = [];
       
       <div
       class="toggle-head"
-      data-open="▽人物一覧を閉じる"
-      data-close="▶︎人物一覧を開く"
+      data-open="▽関連人物を閉じる"
+      data-close="▶︎関連人物を開く"
       onclick="
         togglesSection(
         'series-new-characters',
         this
       )
     "
-  >▶︎人物一覧を開く</div>
+  >▶︎関連人物を開く</div>
 
      <div id="series-new-characters"
        class="
@@ -828,15 +828,15 @@ function openSeriesEditModal(id){
       
        <div
       class="toggle-head"
-      data-open="▽作品一覧を閉じる"
-      data-close="▶︎作品一覧を開く"
+      data-open="▽関連作品を閉じる"
+      data-close="▶︎関連作品を開く"
       onclick="
         togglesSection(
         'series-edit-books',
         this
       )
     "
-  >▶︎作品一覧を開く</div>
+  >▶︎関連作品を開く</div>
       
       <div id="series-edit-books"
        class="
@@ -846,15 +846,15 @@ function openSeriesEditModal(id){
       
        <div
       class="toggle-head"
-      data-open="▽人物一覧を閉じる"
-      data-close="▶︎人物一覧を開く"
+      data-open="▽関連人物を閉じる"
+      data-close="▶︎関連人物を開く"
       onclick="
         togglesSection(
         'series-edit-characters',
         this
       )
     "
-  >▶︎人物一覧を開く</div>
+  >▶︎関連人物を開く</div>
       
       
      <div id="series-edit-characters"
@@ -999,7 +999,7 @@ editingCharacterSeriesIds =
 		
 		
       ${relatedSeries.map(s=>`
-        <button class="detail-series"
+        <button class="detail-series left-yose"
 				  onclick="
 				    closeModal('open-chars-modal');
 				    openSeriesById('${s.id}');
