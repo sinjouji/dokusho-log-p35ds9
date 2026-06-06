@@ -751,6 +751,23 @@ if(!confirm("削除しますか？")){
 }
 
 
+//==============================
+//新規：関連削除（本）
+//==============================
+function removeNewBookFromSeries(bookId){
+
+if(!confirm("削除しますか？")){
+  return;
+}
+
+  newSeriesBookIds =
+    newSeriesBookIds.filter(
+      id => String(id) !== String(bookId)
+    );
+
+  renderSeriesNewBooks();
+}
+
 
 //==============================
 //関連キャラの追加処理
@@ -786,6 +803,22 @@ if(!confirm("削除しますか？")){
 }
 
 
+//==============================
+//新規：関連削除（人物）
+//==============================
+function removeNewCharacterFromSeries(characterId){
+if(!confirm("削除しますか？")){
+  return;
+}
+  newSeriesCharacterIds =
+    newSeriesCharacterIds.filter(
+      id =>
+        String(id) !==
+        String(characterId)
+    );
+
+  renderSeriesNewCharacters();
+}
 
 
 
@@ -816,6 +849,17 @@ function renderSeriesNewBooks(){
       : ""
   }
 
+  <button
+    class="mini-delete-btn"
+    onclick="
+      removeNewBookFromSeries(
+        '${b.id}'
+      )
+    "
+  >
+    ✕
+  </button>
+
 </div>
 
     `).join("")}
@@ -842,11 +886,22 @@ function renderSeriesNewCharacters(){
 
     ${relatedCharacters.map(c=>`
 
-      <div class="related-chip">
+     <div class="related-chip">
 
-        ${c.name}
+  ${c.name}
 
-      </div>
+  <button
+    class="mini-delete-btn"
+    onclick="
+      removeNewCharacterFromSeries(
+        '${c.id}'
+      )
+    "
+  >
+    ✕
+  </button>
+
+</div>
 
     `).join("")}
 
