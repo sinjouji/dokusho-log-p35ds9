@@ -336,22 +336,22 @@ function createBookSpine(b, mode="main"){
   title.textContent = b.title;
 
   title.className = "spine-title";
-
-  const fav = document.createElement('div');
-  const val = Math.min(b.fav || 0, 4);
   
-  fav.className = "spine-fav";
   
-  fav.textContent = val === 4 ? "👑" : "★".repeat(val)
-//  +"\n"+${book.readDates?.length || 0}+"回読了";
 
-   if(mode === "detail"){
-    d.style.width = (base + extra - 10) + "px";
-    d.classList.add("mini-s-spine");
-    fav.style.fontSize = "5px";
-    fav.style.height = "15px";
-    fav.style.paddingBottom = "1px";
-  }
+  const fav =
+  document.createElement('div');
+
+const volume =
+  b.volume ? String(b.volume) : "";
+
+fav.className =
+  "spine-fav";
+
+fav.textContent =
+  volume;
+  
+  
   
   if(b.reread){
   
