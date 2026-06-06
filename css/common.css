@@ -537,6 +537,7 @@ color: #999;
   display:flex;
   gap:8px;
   margin-top:10px;
+  
 }
 
 .filter-actions button.active{
@@ -572,4 +573,8 @@ color: #999;
 
 .mini-text{
   font-size:10px;
+}
+
+.usui-text{
+  opacity: 0.6;
 }
