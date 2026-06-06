@@ -100,7 +100,7 @@ header{
 }
 .app-watermark{
   font-size:50px;
-  color:rgba(96,86,79,0.04);
+  color:rgba(96,86,79,0.05);
   font-weight:800;
   position:absolute;
   right:24px;
