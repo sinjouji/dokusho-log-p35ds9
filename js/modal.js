@@ -919,12 +919,13 @@ function openAddCharacterModal(){
 				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
-			
+				
+				<div class="mini-text">メモ</div>
 				<textarea class="textarea-common" id="add-chars-memo"
 				placeholder="メモ"></textarea>
 				
 				
-			<div>関連シリーズを登録</div>
+			<div class="mini-text">関連シリーズを登録</div>
 			
 		
 			<input class="input-common"
@@ -941,8 +942,8 @@ function openAddCharacterModal(){
 				<div id="add-character-series-suggest"></div>
 				</div>
 				
-				<div class="left-yose">
-				関連：</div>
+				<div class="left-yose mini-text">
+				関連編集エリア</div>
 			<div id="add-character-series-list" class="series-edit-list detail-row"></div>
 			
 			
@@ -996,7 +997,7 @@ editingCharacterSeriesIds =
 			<div class="left-yose mini-text">メモ</div>
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
 		
-		<div class="left-yose mini-text">関連シリーズ</div>
+		
       ${relatedSeries.map(s=>`
         <button class="detail-series"
 				  onclick="
