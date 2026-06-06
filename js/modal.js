@@ -684,8 +684,8 @@ newSeriesCharacterIds = [];
 	modal.innerHTML = `
 		<div class="modal-box">
 		<div class="flex-between">
-					<span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズを追加</span>
-						<button class="btn-sub" onclick="closeModal('add-series-modal')" style="margin-left:auto;">✖️</button></div>
+					<span class="left-yose">シリーズを追加</span>
+						<button class="btn-sub right-yose" onclick="closeModal('add-series-modal')">✖️</button></div>
 			
 			<input
   class="input-common"
@@ -700,7 +700,7 @@ newSeriesCharacterIds = [];
 			
 			
 			
-				<div class="flex-between">関連登録
+				<div class="detail-row">関連登録
 				<input class="input-common input-small"
 				 id="series-for-one"
 					type="text"
@@ -717,7 +717,7 @@ newSeriesCharacterIds = [];
 				
 				
 				
-				<div class="actions-row">
+				
       <div
       class="toggle-head"
       data-open="▽作品一覧を閉じる"
@@ -729,6 +729,12 @@ newSeriesCharacterIds = [];
       )
     "
   >▶︎作品一覧を開く</div>
+      
+     <div id="series-new-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
       
       
       <div
@@ -742,20 +748,6 @@ newSeriesCharacterIds = [];
       )
     "
   >▶︎人物一覧を開く</div>
-      
-      
-      </div>
-      
- 
-      
-      
- 
-      
-     <div id="series-new-books"
-       class="
-         toggle-content
-         series-edit-list
-       "></div>
 
      <div id="series-new-characters"
        class="
@@ -804,8 +796,8 @@ function openSeriesEditModal(id){
     <div class="modal-box">
 
       <div class="flex-between">
-      <span style="font-size:20px;font-weight:bold;margin-right:auto;">シリーズ編集</span>
-      <button onclick="closeModal('edit-series-modal')" style="margin-left:auto;" class="btn-sub">✖️</button>
+      <span class="left-yose">シリーズ編集</span>
+      <button onclick="closeModal('edit-series-modal')" class="btn-sub right-yose">✖️</button>
       </div>
 
       <input
@@ -831,7 +823,7 @@ function openSeriesEditModal(id){
   <div id="series-character-suggest"></div>
 
 </div>
-      <div class="actions-row">
+      
       
       
        <div
@@ -846,6 +838,11 @@ function openSeriesEditModal(id){
     "
   >▶︎作品一覧を開く</div>
       
+      <div id="series-edit-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
       
        <div
       class="toggle-head"
@@ -860,19 +857,13 @@ function openSeriesEditModal(id){
   >▶︎人物一覧を開く</div>
       
       
-      </div>
-      
-      
-     <div id="series-edit-books"
-       class="
-         toggle-content
-         series-edit-list
-       "></div>
      <div id="series-edit-characters"
        class="
          toggle-content
          series-edit-list
        "></div>
+       
+       
      
      <hr class="kugiri">
 
