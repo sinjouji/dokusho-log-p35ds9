@@ -680,11 +680,6 @@ newSeriesCharacterIds = [];
 	modal.className = "modal-bg";
 	modal.id = "add-series-modal";
 	
-	const bookCount =
-    newSeriesBookIds.length;
-  
-  const characterCount =
-    newSeriesCharacterIds.length;
 	
 	modal.innerHTML = `
 		<div class="modal-box">
@@ -792,12 +787,6 @@ function openSeriesEditModal(id){
   editingSeriesCharacterIds =
     [...(series.characterIds || [])];
     
-    
-  const bookCount =
-  editingSeriesBookIds.length;
-
-const characterCount =
-  editingSeriesCharacterIds.length;
 
   modal.className = "modal-bg";
   modal.id = "edit-series-modal";
