@@ -638,20 +638,25 @@ function renderSeriesEditBooks(){
 
         <div class="related-chip">
 
-          ${b.title}
+  ${b.title}
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
 
-          <button
-            class="mini-delete-btn"
-            onclick="
-              removeBookFromSeries(
-                '${b.id}'
-              )
-            "
-          >
-            ✕
-          </button>
+  <button
+    class="mini-delete-btn"
+    onclick="
+      removeBookFromSeries(
+        '${b.id}'
+      )
+    "
+  >
+    ✕
+  </button>
 
-        </div>
+</div>
 
       `).join("")}
 
