@@ -2358,7 +2358,27 @@ async function loadData(){
 //    setupTagToggle();
 
 //    renderCalendar();
-    go(lastPage);
+    if(lastPage === "detail"){
+
+  const savedSeriesId =
+    localStorage.getItem("currentSeriesId");
+
+  const series =
+    seriesMaster.find(s =>
+      String(s.id) === String(savedSeriesId)
+    );
+
+  if(series){
+    openSeries(series);
+  }else{
+    go("series");
+  }
+
+}else{
+
+  go(lastPage);
+
+}
 
 
   }catch(e){

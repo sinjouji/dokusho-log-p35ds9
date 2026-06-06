@@ -395,11 +395,15 @@ function changeSeriesSortMode(){
 function openSeries(series){
 
   currentSeriesId = series.id;
-  
-  go('detail');
+
+  localStorage.setItem(
+    "currentSeriesId",
+    String(series.id)
+  );
+
+  go("detail");
 
   renderSeriesDetail(series);
-
 }
 
 
