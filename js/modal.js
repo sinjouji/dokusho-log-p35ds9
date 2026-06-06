@@ -787,10 +787,10 @@ function openSeriesEditModal(id){
   if(!series) return;
 
   editingSeriesBookIds =
-    [...(series.bookIds || [])];
+  (s.bookIds || []).map(String);
 
-  editingSeriesCharacterIds =
-    [...(series.characterIds || [])];
+editingSeriesCharacterIds =
+  (s.characterIds || []).map(String);
     
     
   const bookCount =
