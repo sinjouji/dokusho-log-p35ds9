@@ -1004,8 +1004,8 @@ function renderSearchArea(){
   );
  
   top.innerHTML = `
-  <div class="filter-actions">
-    <input class="input-common"
+  <div class="left-yose">
+    <input class="input-common input-small"
       id="search"
       placeholder="検索..."
       value="${searchKeyword}"
