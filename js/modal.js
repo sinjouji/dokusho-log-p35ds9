@@ -787,10 +787,10 @@ function openSeriesEditModal(id){
   if(!series) return;
 
   editingSeriesBookIds =
-  (s.bookIds || []).map(String);
+  (series.bookIds || []).map(String);
 
 editingSeriesCharacterIds =
-  (s.characterIds || []).map(String);
+  (series.characterIds || []).map(String);
     
     
   const bookCount =
@@ -838,8 +838,8 @@ const characterCount =
       
        <div
       class="toggle-head"
-      data-open="▽関連作品(${editingSeriesBookIds.length})"
-      data-close="▶︎関連作品(${editingSeriesBookIds.length})"
+      data-open="▽関連作品(${bookCount})"
+      data-close="▶︎関連作品(${bookCount})"
       onclick="
         togglesSection(
         'series-edit-books',
@@ -847,7 +847,7 @@ const characterCount =
       )
     "
   >
-  ▶︎関連作品(${editingSeriesBookIds.length})</div>
+  ▶︎関連作品(${bookCount})</div>
       
       <div id="series-edit-books"
        class="
@@ -857,15 +857,15 @@ const characterCount =
       
        <div
       class="toggle-head"
-      data-open="▽関連人物(${editingSeriesCharacterIds.length})"
-      data-close="▶︎関連人物(${editingSeriesCharacterIds.length})"
+      data-open="▽関連人物(${characterCoutn})"
+      data-close="▶︎関連人物(${characterCoutn})"
       onclick="
         togglesSection(
         'series-edit-characters',
         this
       )
     "
-  >▶︎関連人物(${editingSeriesCharacterIds.length})</div>
+  >▶︎関連人物(${characterCoutn})</div>
       
       
      <div id="series-edit-characters"

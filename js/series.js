@@ -188,9 +188,19 @@ function renderSeriesDetail(s){
       <div class="series-detail-layout">
 
         <div class="series-section">
-          <div class="series-section-title">
-            ${seriesSections.books ? "▽" : "▶︎"} 関連作品
-          </div>
+          <div
+  class="series-section-title"
+  onclick="
+    seriesSections.books =
+      !seriesSections.books;
+
+    openSeries(
+      currentSeriesId
+    );
+  "
+>
+  ${seriesSections.books ? "▽" : "▶︎"} 関連作品
+</div>
 
           ${
             seriesSections.books
@@ -200,9 +210,19 @@ function renderSeriesDetail(s){
         </div>
 
         <div class="series-section">
-          <div class="series-section-title">
-            ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
-          </div>
+          <div
+  class="series-section-title"
+  onclick="
+    seriesSections.chars =
+      !seriesSections.chars;
+
+    openSeries(
+      currentSeriesId
+    );
+  "
+>
+  ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+</div>
 
           ${
             seriesSections.chars
