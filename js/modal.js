@@ -291,8 +291,17 @@ function openBookDetailModal(book){
         ✖️
       </button>
     </div>
-    <div class="detail-volume">
-  巻数：${book.volume || ""}
+    
+    <div class="detail-row">
+  巻数：
+  <input
+    class="input-common input-small"
+    id="detail-volume"
+    type="number"
+    min="0"
+    value="${book.volume || ""}"
+    placeholder="巻数"
+  >
 </div>
     
     

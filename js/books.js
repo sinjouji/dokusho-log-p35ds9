@@ -300,6 +300,13 @@ seriesMaster.forEach(series=>{
 
   book.title =
     document.getElementById("detail-title").value;
+    
+  book.volume =
+  Number(
+    document.getElementById(
+      "detail-volume"
+    )?.value || 0
+  );
 
  if(enableMemo){
    const memoEl =
