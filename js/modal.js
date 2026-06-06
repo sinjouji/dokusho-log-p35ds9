@@ -295,7 +295,7 @@ function openBookDetailModal(book){
     <div class="detail-row">
   巻数：
   <input
-    class="input-common input-small"
+    class="input-common input-small-ex"
     id="detail-volume"
     type="number"
     min="0"
