@@ -148,7 +148,21 @@ if(!detailSearch.targets.series){
 if(!detailSearch.targets.characters){
   characterResults = [];
 }
-  
+
+//タイプフィルター
+if(
+  !detailSearch.types.normal &&
+  b.type === "normal"
+){
+  return false;
+}
+
+if(
+  !detailSearch.types.wish &&
+  b.type === "wish"
+){
+  return false;
+}
 
 
   safeRender({
@@ -161,7 +175,7 @@ if(!detailSearch.targets.characters){
 
      <input
   id="detail-search-keyword"
-  class="input-common search-search right-yose"
+  class="input-common input-small search-search right-yose"
   value="${detailSearch.keyword || ""}"
 
   oninput="
