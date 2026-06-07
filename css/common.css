@@ -140,6 +140,10 @@ header{
 .menulist{
   display:flex;
   gap:8px;
+  
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+  
   flex-wrap:nowrap;
   overflow-x:auto;
   overflow-y:hidden;
