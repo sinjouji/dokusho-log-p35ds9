@@ -107,39 +107,33 @@ const keyword =
     .toLowerCase();
 
 //本
-const bookResults =
+let bookResults =
   books.filter(b=>{
-
     if(!keyword) return true;
 
     return (b.title || "")
       .toLowerCase()
       .includes(keyword);
-
   });
-  
-  //シリーズ
-  const seriesResults =
-  seriesMaster.filter(s=>{
 
+//シリーズ
+let seriesResults =
+  seriesMaster.filter(s=>{
     if(!keyword) return true;
 
     return (s.name || "")
       .toLowerCase()
       .includes(keyword);
-
   });
-  
-  //人物
-  const characterResults =
-  characters.filter(c=>{
 
+//人物
+let characterResults =
+  characters.filter(c=>{
     if(!keyword) return true;
 
     return (c.name || "")
       .toLowerCase()
       .includes(keyword);
-
   });
   
   //本・シリーズ・人物のチェック判定
