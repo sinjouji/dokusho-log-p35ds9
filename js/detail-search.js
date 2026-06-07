@@ -37,15 +37,7 @@ let detailSearch = {
 
   noVolume:false
   
-    
-  if(!detailSearch.types){
 
-  detailSearch.types = {
-    normal:true,
-    wish:true
-  };
-
-}
 };
 
 
@@ -77,6 +69,16 @@ if(saved){
 //描画
 //==============================
 function renderDetailSearch(){
+
+    
+  if(!detailSearch.types){
+
+  detailSearch.types = {
+    normal:true,
+    wish:true
+  };
+
+}
 
   safeRender({
     mountId:"page-detail-search",
