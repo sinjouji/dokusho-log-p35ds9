@@ -102,20 +102,22 @@ function renderDetailSearch(){
   };
 }
 
+//キーワード検索の部分
 const keyword =
   (detailSearch.keyword || "")
+    .trim()
     .toLowerCase();
 
 const bookResults =
-  books.filter(b =>
+  books.filter(b=>{
 
-    !keyword ||
+    if(!keyword) return true;
 
-    (b.title || "")
+    return (b.title || "")
       .toLowerCase()
-      .includes(keyword)
+      .includes(keyword);
 
-  );
+  });
 
 
   safeRender({
@@ -135,7 +137,8 @@ const bookResults =
   oninput="
     detailSearch.keyword =
       this.value;
-
+    
+    renderDetailSearch();
     saveDetailSearchState();
   "
 >
