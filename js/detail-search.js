@@ -22,9 +22,7 @@ let detailSearchUi = {
 let detailSearchResults = {
 
   books:true,
-
   series:true,
-
   characters:true
 
 };
@@ -127,6 +125,18 @@ const bookResults =
     if(!keyword) return true;
 
     return (s.name || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  });
+  
+  //人物
+  const characterResults =
+  characters.filter(c=>{
+
+    if(!keyword) return true;
+
+    return (c.name || "")
       .toLowerCase()
       .includes(keyword);
 
@@ -422,38 +432,52 @@ ${
   </div>
 
   <div class="detail-result-section">
-    <div class="detail-result-title">
-      📖 シリーズ（${seriesResults.length}件）
-    </div>
-    
+
+  <div
+    class="detail-result-title"
+    onclick="
+      detailSearchResults.series =
+        !detailSearchResults.series;
+
+      renderDetailSearch();
+    "
+  >
     ${
-  detailSearchResults.series
-    ? `
-      <div class="detail-result-list">
-        ${
-          seriesResults.length
-            ? seriesResults.map(s=>`
-              <div
-                class="detail-result-item"
-                onclick="
-                  openSeriesById('${s.id}')
-                "
-              >
-                ${s.name}
-              </div>
-            `).join("")
-            : `検索結果なし`
-        }
-      </div>
-    `
-    : ""
-}
-    
+      detailSearchResults.series
+        ? "▽"
+        : "▶︎"
+    }
+    📖 シリーズ（${seriesResults.length}件）
   </div>
+
+  ${
+    detailSearchResults.series
+      ? `
+        <div class="detail-result-list">
+          ${
+            seriesResults.length
+              ? seriesResults.map(s=>`
+                <div
+                  class="detail-result-item"
+                  onclick="
+                    openSeriesById('${s.id}')
+                  "
+                >
+                  ${s.name}
+                </div>
+              `).join("")
+              : `検索結果なし`
+          }
+        </div>
+      `
+      : ""
+  }
+
+</div>
 
   <div class="detail-result-section">
     <div class="detail-result-title">
-      👤 人物（0件）
+      👤 人物（${characterResults.length}件）
     </div>
   </div>
 
