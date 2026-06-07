@@ -110,6 +110,8 @@ const keyword =
 let bookResults =
   books.filter(b=>{
 
+    // タイプ
+
     if(
       !detailSearch.types.normal &&
       b.type !== "wish"
@@ -123,6 +125,17 @@ let bookResults =
     ){
       return false;
     }
+
+    // 再読予定
+
+    if(
+      detailSearch.reread &&
+      !b.reread
+    ){
+      return false;
+    }
+
+    // キーワード
 
     if(!keyword) return true;
 
