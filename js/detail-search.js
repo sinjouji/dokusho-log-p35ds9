@@ -194,6 +194,29 @@ function renderDetailSearch(){
 
 <div class="detail-search-group">
 
+<div class="detail-search-group-title">
+    再読
+  </div>
+<label>
+
+  <input
+    type="checkbox"
+    ${detailSearch.reread ? "checked" : ""}
+    onchange="
+      detailSearch.reread =
+        this.checked;
+
+      saveDetailSearchState();
+    "
+  >
+
+  再読予定
+
+</label>
+</div>
+
+<div class="detail-search-group">
+
   <div class="detail-search-group-title">
     データ整備
   </div>
@@ -257,22 +280,7 @@ function renderDetailSearch(){
 </div>
 
 
-<label>
 
-  <input
-    type="checkbox"
-    ${detailSearch.reread ? "checked" : ""}
-    onchange="
-      detailSearch.reread =
-        this.checked;
-
-      saveDetailSearchState();
-    "
-  >
-
-  再読予定
-
-</label>
 
 
 
