@@ -410,7 +410,7 @@ ${
     bookResults.map(b=>`
 
       <div
-        class="card mini-s-card"
+        class="detail-result-item"
         onclick="
           openBookDetailModalById(
             '${b.id}'
@@ -477,8 +477,29 @@ ${
 
   <div class="detail-result-section">
     <div class="detail-result-title">
+     ${
+      detailSearchResults.characters
+        ? "▽"
+        : "▶︎"
+    }
       👤 人物（${characterResults.length}件）
     </div>
+    
+    ${
+  characterResults.length
+    ? characterResults.map(c=>`
+      <div
+        class="detail-result-item"
+        onclick="
+          openCharacterById('${c.id}')
+        "
+      >
+        ${c.name}
+      </div>
+    `).join("")
+    : "検索結果なし"
+}
+    
   </div>
 
 </div>

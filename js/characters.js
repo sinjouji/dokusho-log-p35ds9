@@ -263,6 +263,23 @@ async function saveCharacter(id){
 
 
 //==============================
+//詳細表示用
+//==============================
+
+function openCharacterById(id){
+
+  const character =
+    characters.find(c =>
+      String(c.id) === String(id)
+    );
+
+  if(!character) return;
+
+  openCharacterModal(character);
+}
+
+
+//==============================
 //新規人物追加処理
 //==============================
 async function saveNewCharacter(){
