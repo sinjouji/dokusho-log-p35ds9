@@ -109,11 +109,27 @@ const keyword =
 //本
 let bookResults =
   books.filter(b=>{
+
+    if(
+      !detailSearch.types.normal &&
+      b.type !== "wish"
+    ){
+      return false;
+    }
+
+    if(
+      !detailSearch.types.wish &&
+      b.type === "wish"
+    ){
+      return false;
+    }
+
     if(!keyword) return true;
 
     return (b.title || "")
       .toLowerCase()
       .includes(keyword);
+
   });
 
 //シリーズ
@@ -148,22 +164,6 @@ if(!detailSearch.targets.series){
 if(!detailSearch.targets.characters){
   characterResults = [];
 }
-
-//タイプフィルター
-if(
-  !detailSearch.types.normal &&
-  b.type === "normal"
-){
-  return false;
-}
-
-if(
-  !detailSearch.types.wish &&
-  b.type === "wish"
-){
-  return false;
-}
-
 
   safeRender({
     mountId:"page-detail-search",
