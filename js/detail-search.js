@@ -422,8 +422,11 @@ function renderDetailSearchResults(
 ){
   return `
   
+    
     <div class="detail-search-results">
-
+${detailSearch.targets.books ? `
+  <div class="detail-result-section">
+ 
     <div
   class="toggle-head detail-result-title"
   onclick="
@@ -472,10 +475,10 @@ ${
   </div>
 ` : ""}
 
-  
-  ${detailSearch.targets.series ? `
-  <div class="detail-result-section">
 
+
+${detailSearch.targets.series ? `
+  <div class="detail-result-section">
   <div
     class="detail-result-title"
     onclick="
@@ -519,7 +522,7 @@ ${
 ` : ""}
 
 
-  ${detailSearch.targets.characters ? `
+${detailSearch.targets.characters ? `
   <div class="detail-result-section">
 
   <div
