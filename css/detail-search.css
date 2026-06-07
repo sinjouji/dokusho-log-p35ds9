@@ -1,0 +1,20 @@
+/*
+
+PAGE-SEARCH.CSS
+詳細検索ページ用CSS
+
+*/
+
+
+
+.detail-search-group{
+
+  border:1px solid #ddd;
+
+  border-radius:8px;
+
+  padding:10px;
+
+  margin-bottom:10px;
+
+}
