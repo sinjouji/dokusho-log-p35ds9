@@ -82,19 +82,55 @@ function renderDetailSearch(){
         ▶︎ 条件を絞り込む
       </div>
 
-      <div>
-      <input
-  type="checkbox"
-  ${detailSearch.targets.books ? "checked" : ""}
-  onchange="
-    detailSearch.targets.books =
-      this.checked;
+      <div class="detail-search-group">
 
-    saveDetailSearchState();
-  "
->
-本
-      </div>
+  <div class="detail-search-group-title">
+    検索対象
+  </div>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.targets.books ? "checked" : ""}
+      onchange="
+        detailSearch.targets.books =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    本
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.targets.series ? "checked" : ""}
+      onchange="
+        detailSearch.targets.series =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    シリーズ
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.targets.characters ? "checked" : ""}
+      onchange="
+        detailSearch.targets.characters =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    人物
+  </label>
+
+</div>
 
     `
   });
