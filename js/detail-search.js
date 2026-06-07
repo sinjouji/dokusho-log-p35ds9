@@ -150,21 +150,26 @@ const bookResults =
 
       <h2>🔍 詳細検索</h2>
 
-      <input
+     <input
+  id="detail-search-keyword"
+  value="${detailSearch.keyword || ""}"
   class="input-common search-search"
 
   placeholder="キーワード検索"
 
-  value="${detailSearch.keyword || ""}"
-
   oninput="
     detailSearch.keyword =
-      this.value;
-    
-    renderDetailSearch();
-    saveDetailSearchState();
+  this.value;
+
+saveDetailSearchState();
   "
 >
+
+<button
+  onclick="runDetailSearch()"
+>
+  検索
+</button>
 
       <div class="detail-search-control-box">
 
@@ -537,5 +542,22 @@ function saveDetailSearchState(){
     "detailSearchState",
     JSON.stringify(detailSearch)
   );
+
+}
+
+
+//==============================
+//キーワード検索ボタン
+//==============================
+function runDetailSearch(){
+
+  detailSearch.keyword =
+    document.getElementById(
+      "detail-search-keyword"
+    ).value;
+
+  saveDetailSearchState();
+
+  renderDetailSearch();
 
 }
