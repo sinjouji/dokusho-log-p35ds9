@@ -153,24 +153,30 @@ const bookResults =
 
      <input
   id="detail-search-keyword"
-  value="${detailSearch.keyword || ""}"
   class="input-common input-small search-search right-yose"
-
-  placeholder="キーワード検索"
+  value="${detailSearch.keyword || ""}"
 
   oninput="
     detailSearch.keyword =
-  this.value;
+      this.value;
 
-saveDetailSearchState();
+    saveDetailSearchState();
+  "
+
+  onkeydown="
+    if(event.key === 'Enter'){
+      runDetailSearch();
+    }
   "
 >
 
 <button
+  class="btn-main"
   onclick="runDetailSearch()"
 >
-  検索
+  🔍 検索
 </button>
+
 </div>
 
       <div class="detail-search-control-box">
@@ -563,3 +569,6 @@ function runDetailSearch(){
   renderDetailSearch();
 
 }
+
+
+
