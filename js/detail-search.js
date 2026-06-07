@@ -22,7 +22,10 @@ let detailSearch = {
 
   tagStates:{},
 
-  type:"all",
+  types:{
+    normal:true,
+    wish:true
+  },
 
   reread:"all",
 
@@ -43,6 +46,7 @@ let detailSearch = {
 const saved =
   localStorage.getItem(
     "detailSearchState"
+    
   );
 
 if(saved){
@@ -132,8 +136,64 @@ function renderDetailSearch(){
 
 </div>
 
+
+
+<div class="detail-search-group">
+
+  <div class="detail-search-group-title">
+    タイプ
+  </div>
+
+  <label>
+
+    <input
+      type="checkbox"
+      ${detailSearch.types.normal ? "checked" : ""}
+      onchange="
+        detailSearch.types.normal =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+
+    本棚
+
+  </label>
+
+  <label>
+
+    <input
+      type="checkbox"
+      ${detailSearch.types.wish ? "checked" : ""}
+      onchange="
+        detailSearch.types.wish =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+
+    ウィッシュ
+
+  </label>
+
+</div>
+
+
+
+
     `
   });
+  
+  if(!detailSearch.types){
+
+  detailSearch.types = {
+    normal:true,
+    wish:true
+  };
+
+}
 
 }
 
