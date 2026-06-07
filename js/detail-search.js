@@ -338,11 +338,26 @@ ${
 
 
 
+const keyword =
+  (detailSearch.keyword || "")
+    .toLowerCase();
+
+const bookResults =
+  books.filter(b =>
+
+    !keyword ||
+
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword)
+
+  );
+
 <div class="detail-search-results">
 
   <div class="detail-result-section">
     <div
-  class="toggle-head"
+  class="toggle-head detail-result-title"
   onclick="
     detailSearchResults.books =
       !detailSearchResults.books;
@@ -357,7 +372,7 @@ ${
       : "▶︎"
   }
 
-  📚 本（0件）
+  📚 本（${bookResults.length}件）
 
 </div>
 
@@ -365,8 +380,27 @@ ${
   detailSearchResults.books
     ? `
       <div class="detail-result-list">
-        検索結果なし
+
+  ${
+    bookResults.map(b=>`
+
+      <div
+        class="card mini-s-card"
+        onclick="
+          openBookDetailModalById(
+            '${b.id}'
+          )
+        "
+      >
+
+        ${b.title}
+
       </div>
+
+    `).join("")
+  }
+
+</div>
     `
     : ""
 }
