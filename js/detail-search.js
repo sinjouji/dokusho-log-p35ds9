@@ -36,6 +36,16 @@ let detailSearch = {
   noTags:false,
 
   noVolume:false
+  
+    
+  if(!detailSearch.types){
+
+  detailSearch.types = {
+    normal:true,
+    wish:true
+  };
+
+}
 };
 
 
@@ -185,15 +195,6 @@ function renderDetailSearch(){
 
     `
   });
-  
-  if(!detailSearch.types){
-
-  detailSearch.types = {
-    normal:true,
-    wish:true
-  };
-
-}
 
 }
 
