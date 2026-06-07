@@ -147,13 +147,14 @@ const bookResults =
     mountId:"page-detail-search",
 
     html:`
-
-      <h2>🔍 詳細検索</h2>
+    
+    <div class="detail-row">
+      <h2 class="left-yose">🔍 詳細検索</h2>
 
      <input
   id="detail-search-keyword"
   value="${detailSearch.keyword || ""}"
-  class="input-common input-small search-search"
+  class="input-common input-small search-search right-yose"
 
   placeholder="キーワード検索"
 
@@ -165,11 +166,12 @@ saveDetailSearchState();
   "
 >
 
-<button
+<button class="right-yose"
   onclick="runDetailSearch()"
 >
   検索
 </button>
+</div>
 
       <div class="detail-search-control-box">
 
