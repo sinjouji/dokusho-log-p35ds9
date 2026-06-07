@@ -7,13 +7,13 @@ PAGE-SEARCH.CSS
 
 .search-search{
  background:#fffffb;
- border:1px solid #fffbeb;
+ border:1px solid #eac897; /*丁子*/
 }
 
 .detail-search-group{
 
-  border:1px solid #eac897; /*丁子*/
   background:#fffbeb;/*鳥の子*/
+  border:1px solid #eac897; /*丁子*/
 
   border-radius:8px;
 
