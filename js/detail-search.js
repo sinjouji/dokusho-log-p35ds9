@@ -72,7 +72,7 @@ function renderDetailSearch(){
       <h2>🔍 詳細検索</h2>
 
       <input
-        class="input-common"
+        class="input-common search-search"
         placeholder="キーワード検索"
       >
 
