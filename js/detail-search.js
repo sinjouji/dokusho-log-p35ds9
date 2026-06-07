@@ -182,6 +182,14 @@ let seriesResults =
 //人物
 let characterResults =
   characters.filter(c=>{
+  
+  if(
+  detailSearch.noSeriesCharacter &&
+  (c.seriesIds || []).length > 0
+){
+  return false;
+}
+  
     if(!keyword) return true;
 
     return (c.name || "")
@@ -360,7 +368,7 @@ if(!detailSearch.targets.characters){
 <div class="detail-search-group">
 
   <div class="detail-search-group-title">
-    🔖 再読
+    再読
   </div>
 <label>
 
@@ -375,7 +383,7 @@ if(!detailSearch.targets.characters){
     "
   >
 
-  再読予定
+  🔖 再読予定
 
 </label>
 </div>
@@ -397,7 +405,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    📖シリーズ未設定の📘本
+    📖シリーズ未設定の📘<b>本</b>
   </label>
 
   <label>
@@ -411,7 +419,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    📖シリーズ未設定の👤人物
+    📖シリーズ未設定の👤<b>人物</b>
   </label>
 
   <label>
@@ -425,7 +433,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    🏷️タグ未設定の📘本
+    🏷️タグ未設定の📘<b>本</b>
   </label>
 
   <label>
@@ -439,7 +447,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    #️⃣巻数未設定の📘本
+    #️⃣巻数未設定
   </label>
   </div>
 </div>
