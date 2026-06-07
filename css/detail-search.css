@@ -68,3 +68,13 @@ PAGE-SEARCH.CSS
   padding-right:4px;
 }
 
+.detail-result-item{
+  border:1px solid #ead2c2;
+  border-radius:12px;
+  padding:10px;
+  margin-bottom:6px;
+  background:#fffffc;
+  cursor:pointer;
+}
+
+
