@@ -87,9 +87,19 @@ function renderDetailSearch(){
       <h2>🔍 詳細検索</h2>
 
       <input
-        class="input-common search-search"
-        placeholder="キーワード検索"
-      >
+  class="input-common"
+
+  placeholder="キーワード検索"
+
+  value="${detailSearch.keyword || ""}"
+
+  oninput="
+    detailSearch.keyword =
+      this.value;
+
+    saveDetailSearchState();
+  "
+>
 
       <div
         class="toggle-head"
