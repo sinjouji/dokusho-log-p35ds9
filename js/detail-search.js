@@ -88,10 +88,6 @@ function renderDetailSearch(){
   };
 }
 
-  detailSearchUi = {
-  conditionsOpen:true
-};
-
   safeRender({
     mountId:"page-detail-search",
 
