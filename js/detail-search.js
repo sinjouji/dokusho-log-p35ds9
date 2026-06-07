@@ -161,7 +161,7 @@ if(!detailSearch.targets.characters){
 
      <input
   id="detail-search-keyword"
-  class="input-common input-small search-search right-yose"
+  class="input-common search-search right-yose"
   value="${detailSearch.keyword || ""}"
 
   oninput="
@@ -421,9 +421,9 @@ function renderDetailSearchResults(
   characterResults
 ){
   return `
+  
     <div class="detail-search-results">
 
-  <div class="detail-result-section">
     <div
   class="toggle-head detail-result-title"
   onclick="
@@ -470,7 +470,10 @@ ${
     : ""
 }
   </div>
+` : ""}
 
+  
+  ${detailSearch.targets.series ? `
   <div class="detail-result-section">
 
   <div
@@ -512,9 +515,11 @@ ${
       `
       : ""
   }
+  </div>
+` : ""}
 
-</div>
 
+  ${detailSearch.targets.characters ? `
   <div class="detail-result-section">
 
   <div
@@ -556,8 +561,8 @@ ${
       `
       : ""
   }
-
-</div>
+  </div>
+` : ""}
   `;
 }
 
