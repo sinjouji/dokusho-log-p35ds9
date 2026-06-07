@@ -10,6 +10,15 @@
 //==============================
 //初期設定
 //==============================
+
+//条件トグル用
+let detailSearchUi = {
+
+  conditionsOpen:false
+
+};
+
+//検索条件
 let detailSearch = {
 
   keyword:"",
@@ -36,6 +45,7 @@ let detailSearch = {
   noTags:false,
 
   noVolume:false
+  
   
 
 };
@@ -76,8 +86,11 @@ function renderDetailSearch(){
     normal:true,
     wish:true
   };
-
 }
+
+  detailSearchUi = {
+  conditionsOpen:true
+};
 
   safeRender({
     mountId:"page-detail-search",
@@ -87,7 +100,7 @@ function renderDetailSearch(){
       <h2>🔍 詳細検索</h2>
 
       <input
-  class="input-common"
+  class="input-common search-search"
 
   placeholder="キーワード検索"
 
@@ -102,10 +115,30 @@ function renderDetailSearch(){
 >
 
       <div
-        class="toggle-head"
-      >
-        ▶︎ 条件を絞り込む
-      </div>
+  class="toggle-head"
+
+  onclick="
+    detailSearchUi.conditionsOpen =
+      !detailSearchUi.conditionsOpen;
+
+    renderDetailSearch();
+  "
+>
+
+  ${
+    detailSearchUi.conditionsOpen
+      ? "▽"
+      : "▶︎"
+  }
+
+  条件を絞り込む
+
+</div>
+
+
+${
+  detailSearchUi.conditionsOpen
+    ? `
 
       <div class="detail-search-group">
 
@@ -288,7 +321,9 @@ function renderDetailSearch(){
   </label>
 
 </div>
-
+  `
+    : ""
+}
 
 
 
