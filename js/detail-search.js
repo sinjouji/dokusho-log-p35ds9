@@ -350,7 +350,7 @@ const bookResults =
       `
       : ""
   }
-</div>
+</div></div>
         </div>
 
 
