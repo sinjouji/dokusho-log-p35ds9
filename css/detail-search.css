@@ -58,7 +58,7 @@ PAGE-SEARCH.CSS
   padding:8px;
   border:1px solid #ead2c2;
   border-radius:14px;
-  background:#fffaf3;
+  background:#fffaf0;
 }
 
 .detail-search-condition-head{
@@ -83,5 +83,11 @@ PAGE-SEARCH.CSS
   background:#fffffc;
   cursor:pointer;
 }
+
+.detail-result-list{
+  max-height:35vh;
+  overflow-y:auto;
+}
+
 
 
