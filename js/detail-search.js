@@ -143,6 +143,14 @@ let bookResults =
   return false;
 }
 
+//タグ未設定
+if(
+  detailSearch.noTags &&
+  (b.tagIds || []).length > 0
+){
+  return false;
+}
+
     // キーワード
 
     if(!keyword) return true;
