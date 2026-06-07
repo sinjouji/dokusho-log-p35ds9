@@ -18,6 +18,18 @@ let detailSearchUi = {
 
 };
 
+//結果エリア用
+let detailSearchResults = {
+
+  books:true,
+
+  series:true,
+
+  characters:true
+
+};
+
+
 //検索条件
 let detailSearch = {
 
@@ -329,9 +341,35 @@ ${
 <div class="detail-search-results">
 
   <div class="detail-result-section">
-    <div class="detail-result-title">
-      📚 本（0件）
-    </div>
+    <div
+  class="toggle-head"
+  onclick="
+    detailSearchResults.books =
+      !detailSearchResults.books;
+
+    renderDetailSearch();
+  "
+>
+
+  ${
+    detailSearchResults.books
+      ? "▽"
+      : "▶︎"
+  }
+
+  📚 本（0件）
+
+</div>
+
+${
+  detailSearchResults.books
+    ? `
+      <div class="detail-result-list">
+        検索結果なし
+      </div>
+    `
+    : ""
+}
   </div>
 
   <div class="detail-result-section">
