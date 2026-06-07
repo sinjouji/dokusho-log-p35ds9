@@ -61,7 +61,15 @@ function renderDetailSearch(){
       </div>
 
       <div>
-        工事中😆
+        <input
+  type="checkbox"
+  checked
+  onchange="
+    detailSearch.targets.books =
+      this.checked
+  "
+>
+本
       </div>
 
     `
@@ -71,3 +79,15 @@ function renderDetailSearch(){
 
 
 
+
+//==============================
+//保存
+//==============================
+function saveDetailSearchState(){
+
+  localStorage.setItem(
+    "detailSearchState",
+    JSON.stringify(detailSearch)
+  );
+
+}
