@@ -141,6 +141,20 @@ const bookResults =
       .includes(keyword);
 
   });
+  
+  //本・シリーズ・人物のチェック判定
+  if(!detailSearch.targets.books){
+  bookResults = [];
+}
+
+if(!detailSearch.targets.series){
+  seriesResults = [];
+}
+
+if(!detailSearch.targets.characters){
+  characterResults = [];
+}
+  
 
 
   safeRender({
@@ -389,9 +403,31 @@ const bookResults =
   }
 </div>
 
+${renderDetailSearchResults(
+    bookResults,
+    seriesResults,
+    characterResults
+  )}
+
+    `
+  });
 
 
-<div class="detail-search-results">
+
+}
+
+
+
+//==============================
+//検索結果エリア
+//==============================
+function renderDetailSearchResults(
+  bookResults,
+  seriesResults,
+  characterResults
+){
+  return `
+    <div class="detail-search-results">
 
   <div class="detail-result-section">
     <div
@@ -531,13 +567,8 @@ ${
   }
 
 </div>
-
-
-    `
-  });
-
+  `;
 }
-
 
 
 
