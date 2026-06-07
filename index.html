@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="css/detail-search.css">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -36,6 +37,9 @@
       <button class="btn-me" id="menu-series" onclick="go('series')">シリーズ</button>
       <button class="btn-me" id="menu-characters" onclick="go('characters')">人物</button>
       <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
+      <button class="btn-me" id="menu-detail-search" onclick="go('detail-search')">
+  検索
+</button>
       <button class="btn-me" id="menu-tags" onclick="go('tags')">タグ</button>
       <button class="btn-me" id="menu-settings" onclick="go('settings')">設定</button>
     </nav>
@@ -52,6 +56,8 @@
 <div id="page-series" class="page hidden"></div>
 <div id="page-characters" class="page hidden"></div>
 <div id="page-stats" class="page hidden"></div>
+
+<div id="page-detail-search" class="page hidden"></div>
 
 <div id="page-tags" class="page hidden">
   <div id="tags-main"></div>
@@ -127,6 +133,7 @@ window.saveData = async function(){
 <script src="js/series.js"></script>
 <script src="js/characters.js"></script>
 <script src="js/tag.js"></script>
+<script src="js/detail-search.js"></script>
 <!--<script src="js/main.js"></script>まだ未実装-->
 <script src="js/app.js"></script>
 </body>
