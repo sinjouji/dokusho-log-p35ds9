@@ -347,6 +347,7 @@ const bookResults =
   </label>
 
 </div>
+        </div>
       `
       : ""
   }
