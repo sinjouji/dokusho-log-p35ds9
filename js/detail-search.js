@@ -79,6 +79,8 @@ if(saved){
 //描画
 //==============================
 function renderDetailSearch(){
+
+  setActiveMenu("menu-detail-search");
     
   if(!detailSearch.types){
 
