@@ -5,11 +5,15 @@ PAGE-SEARCH.CSS
 
 */
 
-
+.search-search{
+ background:#fcfaf2; /*白練*/
+ border:1px solid #e4e5e6; /*白金*/
+}
 
 .detail-search-group{
 
-  border:1px solid #ddd;
+  border:1px solid #eac897; /*丁子*/
+  background:#fffbeb;/*鳥の子*/
 
   border-radius:8px;
 
