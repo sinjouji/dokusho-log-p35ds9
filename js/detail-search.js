@@ -108,12 +108,25 @@ const keyword =
     .trim()
     .toLowerCase();
 
+//本
 const bookResults =
   books.filter(b=>{
 
     if(!keyword) return true;
 
     return (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
+
+  });
+  
+  //シリーズ
+  const seriesResults =
+  seriesMaster.filter(s=>{
+
+    if(!keyword) return true;
+
+    return (s.name || "")
       .toLowerCase()
       .includes(keyword);
 
@@ -410,8 +423,32 @@ ${
 
   <div class="detail-result-section">
     <div class="detail-result-title">
-      📖 シリーズ（0件）
+      📖 シリーズ（${seriesResults.length}件）
     </div>
+    
+    ${
+  detailSearchResults.series
+    ? `
+      <div class="detail-result-list">
+        ${
+          seriesResults.length
+            ? seriesResults.map(s=>`
+              <div
+                class="detail-result-item"
+                onclick="
+                  openSeriesById('${s.id}')
+                "
+              >
+                ${s.name}
+              </div>
+            `).join("")
+            : `検索結果なし`
+        }
+      </div>
+    `
+    : ""
+}
+    
   </div>
 
   <div class="detail-result-section">
