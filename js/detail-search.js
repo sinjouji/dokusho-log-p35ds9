@@ -476,7 +476,8 @@ ${
 </div>
 
   <div class="detail-result-section">
-    <div
+
+  <div
     class="detail-result-title"
     onclick="
       detailSearchResults.characters =
@@ -485,30 +486,36 @@ ${
       renderDetailSearch();
     "
   >
-     ${
+    ${
       detailSearchResults.characters
         ? "▽"
         : "▶︎"
     }
-      👤 人物（${characterResults.length}件）
-    </div>
-    
-    ${
-  characterResults.length
-    ? characterResults.map(c=>`
-      <div
-        class="detail-result-item"
-        onclick="
-          openCharacterById('${c.id}')
-        "
-      >
-        ${c.name}
-      </div>
-    `).join("")
-    : "検索結果なし"
-}
-    
+    👤 人物（${characterResults.length}件）
   </div>
+
+  ${
+    detailSearchResults.characters
+      ? `
+        <div class="detail-result-list">
+          ${
+            characterResults.length
+              ? characterResults.map(c=>`
+                <div
+                  class="detail-result-item"
+                  onclick="
+                    openCharacterById('${c.id}')
+                  "
+                >
+                  ${c.name}
+                </div>
+              `).join("")
+              : "検索結果なし"
+          }
+        </div>
+      `
+      : ""
+  }
 
 </div>
 
