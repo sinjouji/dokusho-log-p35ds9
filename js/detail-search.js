@@ -165,7 +165,8 @@ const bookResults =
     detailSearchUi.conditionsOpen
       ? `
         <div class="detail-search-condition-body">
-      
+
+          <!-- ここに今作った検索対象/タイプ/再読/データ整備を全部入れる -->
       <div class="detail-search-group">
 
   <div class="detail-search-group-title">
@@ -345,13 +346,12 @@ const bookResults =
     >
     巻数未設定の本
   </label>
-
+  </div>
 </div>
       `
       : ""
   }
-</div></div>
-        </div>
+</div>
 
 
 
