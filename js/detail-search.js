@@ -151,6 +151,14 @@ if(
   return false;
 }
 
+//巻数未設定
+if(
+  detailSearch.noVolume &&
+  b.volume
+){
+  return false;
+}
+
     // キーワード
 
     if(!keyword) return true;
