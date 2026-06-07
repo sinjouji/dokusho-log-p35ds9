@@ -27,7 +27,7 @@ let detailSearch = {
     wish:true
   },
 
-  reread:"all",
+  reread:false,
 
   noSeriesBook:false,
 
@@ -255,6 +255,24 @@ function renderDetailSearch(){
   </label>
 
 </div>
+
+
+<label>
+
+  <input
+    type="checkbox"
+    ${detailSearch.reread ? "checked" : ""}
+    onchange="
+      detailSearch.reread =
+        this.checked;
+
+      saveDetailSearchState();
+    "
+  >
+
+  再読予定
+
+</label>
 
 
 
