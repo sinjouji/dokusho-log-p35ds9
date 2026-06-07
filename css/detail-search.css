@@ -8,6 +8,7 @@ PAGE-SEARCH.CSS
 .search-search{
  background:#fffffb;
  border:1px solid #fcd697; /*密陀僧*/
+ margin:0 5px;
 }
 
 .detail-search-group{
