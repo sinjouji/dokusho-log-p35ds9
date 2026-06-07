@@ -448,27 +448,24 @@ ${
   detailSearchResults.books
     ? `
       <div class="detail-result-list">
-
-  ${
-    bookResults.map(b=>`
-
-      <div
-        class="detail-result-item"
-        onclick="
-          openBookDetailModalById(
-            '${b.id}'
-          )
-        "
-      >
-
-        ${b.title}
-
+        ${
+          bookResults.length
+            ? bookResults.map(b=>`
+              <div
+                class="detail-result-item"
+                onclick="openBookDetailModalById('${b.id}')"
+              >
+                ${b.title}
+                ${
+                  b.volume
+                    ? ` ${b.volume}`
+                    : ""
+                }
+              </div>
+            `).join("")
+            : "検索結果なし"
+        }
       </div>
-
-    `).join("")
-  }
-
-</div>
     `
     : ""
 }
