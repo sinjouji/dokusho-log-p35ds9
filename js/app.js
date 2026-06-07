@@ -218,7 +218,6 @@ function go(page){
     series:"シリーズ",
     characters:"人物",
     stats:"統計",
-    detail-search:"詳細検索",
     tags:"タグ",
     settings:"設定"
   };
