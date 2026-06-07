@@ -7,6 +7,21 @@
 
 
 //==============================
+//状態保存
+//==============================
+const saved =
+  localStorage.getItem(
+    "detailSearchState"
+  );
+
+if(saved){
+
+  detailSearch =
+    JSON.parse(saved);
+
+}
+
+//==============================
 //初期設定
 //==============================
 let detailSearch = {
@@ -35,20 +50,6 @@ let detailSearch = {
 };
 
 
-//==============================
-//状態保存
-//==============================
-const saved =
-  localStorage.getItem(
-    "detailSearchState"
-  );
-
-if(saved){
-
-  detailSearch =
-    JSON.parse(saved);
-
-}
 
 
 
