@@ -151,7 +151,7 @@ const bookResults =
       <h2>🔍 詳細検索</h2>
 
      <input
-  id="detail-search-keyword"
+  id="detail-search-keyword input-small"
   value="${detailSearch.keyword || ""}"
   class="input-common search-search"
 
