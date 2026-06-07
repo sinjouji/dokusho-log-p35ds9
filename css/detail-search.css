@@ -41,3 +41,30 @@ PAGE-SEARCH.CSS
   font-weight:bold;
   font-size:13px;
 }
+
+.detail-search-toggle{
+  margin:12px 0;
+}
+
+.detail-search-control-box{
+  margin:10px 0 14px;
+  padding:8px;
+  border:1px solid #ead2c2;
+  border-radius:14px;
+  background:#fffaf3;
+}
+
+.detail-search-condition-head{
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  padding:6px 4px;
+}
+
+.detail-search-condition-body{
+  margin-top:8px;
+  max-height:42vh;
+  overflow-y:auto;
+  padding-right:4px;
+}
+
