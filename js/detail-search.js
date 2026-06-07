@@ -134,6 +134,14 @@ let bookResults =
     ){
       return false;
     }
+    
+    //シリーズ未設定
+    if(
+  detailSearch.noSeriesBook &&
+  (b.seriesIds || []).length > 0
+){
+  return false;
+}
 
     // キーワード
 
