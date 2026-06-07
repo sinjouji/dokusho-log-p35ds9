@@ -34,10 +34,12 @@ font-weight:600;
 /*==========
 ページ全体
 ==========*/
+html,
 body{
   font-family:sans-serif;
   background:#f3e9be;/*蒸し栗*/
   touch-action: pan-y;
+  overflow-x:hidden;
   
   color:#74492b;
   
@@ -130,12 +132,30 @@ header{
 /*==========
 メインメニューボタン
 ==========*/
-.menulist{
-  display: flex; 
-  align-items:flex-end;   gap:5px;
-  overflow-wrap: anywhere;
+
+.header-menu-row{
+  overflow:hidden;
 }
 
+.menulist{
+  display:flex;
+  gap:8px;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:8px 4px 12px;
+  padding-bottom:16px;
+  -webkit-overflow-scrolling:touch;
+}
+
+.menulist::-webkit-scrollbar{
+  display:none;
+}
+
+.menulist .btn-me{
+  flex:0 0 auto;
+  min-width:72px;
+}
 .btn-me{
 border:none;
 background:#f6d2bd;
@@ -159,24 +179,6 @@ box-shadow:
 }
 
 
-.menu-list{
-
-  display:flex;
-
-  gap:8px;
-
-  overflow-x:auto;
-
-  flex-wrap:nowrap;
-
-  -webkit-overflow-scrolling:touch;
-
-}
-.menu-list button{
-
-  flex-shrink:0;
-
-}
 
 
 /*==========
