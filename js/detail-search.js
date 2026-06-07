@@ -324,6 +324,28 @@ ${
 
 
 
+<div class="detail-search-results">
+
+  <div class="detail-result-section">
+    <div class="detail-result-title">
+      📚 本（0件）
+    </div>
+  </div>
+
+  <div class="detail-result-section">
+    <div class="detail-result-title">
+      📖 シリーズ（0件）
+    </div>
+  </div>
+
+  <div class="detail-result-section">
+    <div class="detail-result-title">
+      👤 人物（0件）
+    </div>
+  </div>
+
+</div>
+
 
     `
   });
