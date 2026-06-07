@@ -23,6 +23,12 @@ PAGE-SEARCH.CSS
 
 }
 
+.detail-search-group label{
+
+  white-space: nowrap;
+
+}
+
 
 /*検索結果エリア*/
 .detail-search-results{
