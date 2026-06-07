@@ -613,3 +613,18 @@ function incrementVolumeTitle(title){
   );
 }
 
+
+//==============================
+//本詳細を開くやつ
+//==============================
+function openBookDetailModalById(id){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(id)
+    );
+
+  if(!book) return;
+
+  openBookDetailModal(book);
+}
