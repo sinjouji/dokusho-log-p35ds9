@@ -69,7 +69,6 @@ if(saved){
 //描画
 //==============================
 function renderDetailSearch(){
-
     
   if(!detailSearch.types){
 
@@ -192,6 +191,70 @@ function renderDetailSearch(){
 
 </div>
 
+
+<div class="detail-search-group">
+
+  <div class="detail-search-group-title">
+    データ整備
+  </div>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.noSeriesBook ? "checked" : ""}
+      onchange="
+        detailSearch.noSeriesBook =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    シリーズ未設定の本
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.noSeriesCharacter ? "checked" : ""}
+      onchange="
+        detailSearch.noSeriesCharacter =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    シリーズ未設定の人物
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.noTags ? "checked" : ""}
+      onchange="
+        detailSearch.noTags =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    タグ未設定の本
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.noVolume ? "checked" : ""}
+      onchange="
+        detailSearch.noVolume =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    巻数未設定の本
+  </label>
+
+</div>
 
 
 
