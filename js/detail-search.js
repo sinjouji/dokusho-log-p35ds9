@@ -35,6 +35,22 @@ let detailSearch = {
 };
 
 
+//==============================
+//状態保存
+//==============================
+const saved =
+  localStorage.getItem(
+    "detailSearchState"
+  );
+
+if(saved){
+
+  detailSearch =
+    JSON.parse(saved);
+
+}
+
+
 
 
 //==============================
@@ -66,7 +82,9 @@ function renderDetailSearch(){
   checked
   onchange="
     detailSearch.targets.books =
-      this.checked
+      this.checked;
+      
+    saveDetailSearchState();
   "
 >
 本
