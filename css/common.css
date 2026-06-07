@@ -159,6 +159,25 @@ box-shadow:
 }
 
 
+.menu-list{
+
+  display:flex;
+
+  gap:8px;
+
+  overflow-x:auto;
+
+  flex-wrap:nowrap;
+
+  -webkit-overflow-scrolling:touch;
+
+}
+.menu-list button{
+
+  flex-shrink:0;
+
+}
+
 
 /*==========
 タグ、チップ型
