@@ -476,7 +476,15 @@ ${
 </div>
 
   <div class="detail-result-section">
-    <div class="detail-result-title">
+    <div
+    class="detail-result-title"
+    onclick="
+      detailSearchResults.characters =
+        !detailSearchResults.characters;
+
+      renderDetailSearch();
+    "
+  >
      ${
       detailSearchResults.characters
         ? "▽"
