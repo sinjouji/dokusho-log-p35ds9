@@ -263,7 +263,7 @@ const bookResults =
 
 <div class="detail-search-group">
 
-<div class="detail-search-group-title">
+  <div class="detail-search-group-title">
     再読
   </div>
 <label>
@@ -347,7 +347,6 @@ const bookResults =
   </label>
 
 </div>
-        </div>
       `
       : ""
   }
