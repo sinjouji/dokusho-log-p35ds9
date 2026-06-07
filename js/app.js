@@ -208,6 +208,7 @@ function go(page){
   if(page === "series") renderSeries();
   if(page === "characters") renderCharacters();
   if(page === "stats") renderStats();
+  if(page === "detail-search") renderDetailSearch();
   if(page === "tags") renderTags();
 
   currentPage = page;
