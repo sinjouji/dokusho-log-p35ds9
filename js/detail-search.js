@@ -143,32 +143,29 @@ const bookResults =
   "
 >
 
-      <div
-  class="toggle-head"
+      <div class="detail-search-control-box">
 
-  onclick="
-    detailSearchUi.conditionsOpen =
-      !detailSearchUi.conditionsOpen;
-
-    renderDetailSearch();
-  "
->
+  <div
+    class="detail-search-condition-head"
+    onclick="
+      detailSearchUi.conditionsOpen =
+        !detailSearchUi.conditionsOpen;
+      renderDetailSearch();
+    "
+  >
+    ${
+      detailSearchUi.conditionsOpen
+        ? "▽"
+        : "▶︎"
+    }
+    条件を絞り込む
+  </div>
 
   ${
     detailSearchUi.conditionsOpen
-      ? "▽"
-      : "▶︎"
-  }
-
-  条件を絞り込む
-
-</div>
-
-
-${
-  detailSearchUi.conditionsOpen
-    ? `
-
+      ? `
+        <div class="detail-search-condition-body">
+      
       <div class="detail-search-group">
 
   <div class="detail-search-group-title">
@@ -350,10 +347,12 @@ ${
   </label>
 
 </div>
-  `
-    : ""
-}
+        </div>
+      `
+      : ""
+  }
 
+</div>
 
 
 
