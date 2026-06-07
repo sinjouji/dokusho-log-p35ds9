@@ -166,7 +166,7 @@ saveDetailSearchState();
   "
 >
 
-<button class="right-yose"
+<button
   onclick="runDetailSearch()"
 >
   検索
