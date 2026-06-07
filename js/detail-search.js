@@ -279,7 +279,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    本
+    📘 本
   </label>
 
   <label>
@@ -293,7 +293,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    シリーズ
+    📖 シリーズ
   </label>
 
   <label>
@@ -307,7 +307,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    人物
+    👤 人物
   </label>
 
 </div>
@@ -333,7 +333,7 @@ if(!detailSearch.targets.characters){
       "
     >
 
-    本棚
+    📚 本棚
 
   </label>
 
@@ -350,7 +350,7 @@ if(!detailSearch.targets.characters){
       "
     >
 
-    ウィッシュ
+    ❤️ ウィッシュ
 
   </label>
 
@@ -360,7 +360,7 @@ if(!detailSearch.targets.characters){
 <div class="detail-search-group">
 
   <div class="detail-search-group-title">
-    再読
+    🔖 再読
   </div>
 <label>
 
@@ -397,7 +397,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    シリーズ未設定の本
+    📖シリーズ未設定の📘本
   </label>
 
   <label>
@@ -411,7 +411,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    シリーズ未設定の人物
+    📖シリーズ未設定の👤人物
   </label>
 
   <label>
@@ -425,7 +425,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    タグ未設定の本
+    🏷️タグ未設定の📘本
   </label>
 
   <label>
@@ -439,7 +439,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    巻数未設定の本
+    #️⃣巻数未設定の📘本
   </label>
   </div>
 </div>
