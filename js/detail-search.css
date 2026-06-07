@@ -1,0 +1,86 @@
+/*
+
+PAGE-SEARCH.CSS
+詳細検索ページ用CSS
+
+*/
+
+.search-search{
+ background:#fffffb;
+ border:1px solid #fcd697; /*密陀僧*/
+}
+
+.detail-search-group{
+
+  background:#fffbeb;/*鳥の子*/
+  border:1px solid #fcd697; /*密陀僧*/
+
+  border-radius:8px;
+
+  padding:10px;
+
+  margin-bottom:10px;
+
+}
+
+.detail-search-group label{
+
+  white-space: nowrap;
+
+}
+
+
+/*検索結果エリア*/
+.detail-search-results{
+  margin-top:12px;
+}
+
+.detail-result-section{
+  border:1px solid #ead2c2;
+  border-radius:12px;
+  padding:8px;
+  margin-bottom:8px;
+  background:#fffffc;
+}
+
+.detail-result-title{
+  font-weight:bold;
+  font-size:13px;
+}
+
+.detail-search-toggle{
+  margin:12px 0;
+}
+
+.detail-search-control-box{
+  margin:10px 0 14px;
+  padding:8px;
+  border:1px solid #ead2c2;
+  border-radius:14px;
+  background:#fffaf3;
+}
+
+.detail-search-condition-head{
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  padding:6px 4px;
+}
+
+.detail-search-condition-body{
+  margin-top:8px;
+  max-height:42vh;
+  overflow-y:auto;
+  padding-right:4px;
+}
+
+.detail-result-item{
+  border:1px solid #ead2c2;
+  border-radius:11px;
+  padding:10px;
+  margin-bottom:6px;
+  background:#fffffc;
+  cursor:pointer;
+}
+
+
