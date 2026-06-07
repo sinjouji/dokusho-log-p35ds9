@@ -102,6 +102,22 @@ function renderDetailSearch(){
   };
 }
 
+const keyword =
+  (detailSearch.keyword || "")
+    .toLowerCase();
+
+const bookResults =
+  books.filter(b =>
+
+    !keyword ||
+
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword)
+
+  );
+
+
   safeRender({
     mountId:"page-detail-search",
 
@@ -337,21 +353,6 @@ ${
 
 
 
-
-const keyword =
-  (detailSearch.keyword || "")
-    .toLowerCase();
-
-const bookResults =
-  books.filter(b =>
-
-    !keyword ||
-
-    (b.title || "")
-      .toLowerCase()
-      .includes(keyword)
-
-  );
 
 <div class="detail-search-results">
 
