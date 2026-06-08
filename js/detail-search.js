@@ -142,7 +142,7 @@ function overwriteSavedDetailSearch(index){
 function renderSavedDetailSearchCards(){
 
   return `
-    <div class="saved-search-area">
+    <div class="saved-search-area detail-row">
       ${savedDetailSearches.map((saved,index)=>`
         <div class="saved-search-card">
           <button
@@ -151,12 +151,38 @@ function renderSavedDetailSearchCards(){
           >
             📌 ${saved.name}
           </button>
+          <button
+  class="btn-sub"
+  onclick="renameSavedDetailSearch(${index})"
+>
+  ✏️
+</button>
         </div>
       `).join("")}
     </div>
   `;
 }
 
+//==============================
+//保存条件の名前変更
+//==============================
+function renameSavedDetailSearch(index){
+
+  const name =
+    prompt(
+      "保存条件の名前",
+      savedDetailSearches[index].name
+    );
+
+  if(!name) return;
+
+  savedDetailSearches[index].name =
+    name.trim();
+
+  saveSavedDetailSearches();
+
+  renderDetailSearch();
+}
 
 
 
