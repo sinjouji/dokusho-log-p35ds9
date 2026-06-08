@@ -25,9 +25,9 @@ PAGE-SEARCH.CSS
 }
 
 .detail-search-group-title{
-  font-size:14px;
-  font-weight:600;
-  margin:10px 0;
+  font-size:16px;
+  font-weight:bold;
+  margin:5px 0;
 }
 
 .detail-search-group label{
