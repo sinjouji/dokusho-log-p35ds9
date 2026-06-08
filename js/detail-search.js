@@ -440,15 +440,7 @@ if(!detailSearch.targets.characters){
 
 </div>
 
-<div class="detail-row">
 ${renderSavedDetailSearchCards()}
-<button
-  class="btn-sub right-yose"
-  onclick="resetDetailSearch()"
->
-  🧹 条件リセット
-</button>
-</div>
 
   ${renderDetailSearchConditions()}
 
@@ -487,6 +479,13 @@ function renderDetailSearchConditions(){
         : "▶︎"
     }
     条件を絞り込む
+    
+    <button
+  class="btn-sub right-yose"
+  onclick="resetDetailSearch()"
+>
+  🧹 条件リセット
+</button>
   </div>
 
   ${
