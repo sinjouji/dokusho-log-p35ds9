@@ -467,39 +467,49 @@ if(!detailSearch.targets.characters){
   <div class="tag-filter-area">
 
     ${
-      tagMaster
-        .filter(tag => !tag.isHidden)
-        .map(tag=>`
+  tagMaster
+    .filter(tag => !tag.isHidden)
+    .map(tag=>{
 
-          <button
-            class="
-  tag-chip
-  ${
-    mode
-      ? `tag-mode-${mode.toLowerCase()}`
-      : ""
-  }
-"
+      const mode =
+        detailSearch.tagStates[
+          String(tag.id)
+        ];
 
-            onclick="
-              cycleDetailSearchTagState(
-                '${tag.id}'
-              )
-            "
-          >
+      return `
 
-            ${tag.name}
+        <button
 
-${
-  mode
-    ? ` (${mode})`
-    : ""
+          class="
+            tag-chip
+            ${
+              mode
+                ? `tag-mode-${mode.toLowerCase()}`
+                : ""
+            }
+          "
+
+          onclick="
+            cycleDetailSearchTagState(
+              '${tag.id}'
+            )
+          "
+        >
+
+          ${tag.name}
+
+          ${
+            mode
+              ? ` (${mode})`
+              : ""
+          }
+
+        </button>
+
+      `;
+
+    }).join("")
 }
-
-          </button>
-
-        `).join("")
-    }
 
   </div>
 
@@ -768,13 +778,6 @@ function matchDetailSearchTags(book){
       id => states[id] === "AND"
     );
     
-     //表示タグ絞込み
-  const mode =
-    detailSearch.tagStates[
-      String(tag.id)
-    ];
-
-
   if(
     !andTags.every(id =>
       itemTags.includes(id)
