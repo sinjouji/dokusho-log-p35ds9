@@ -459,9 +459,9 @@ if(!detailSearch.targets.characters){
 </div>
 
 
-<div class="detail-search-sort-row detail-low">
+<div class="detail-search-sort-row flex-between">
  <button
-  class="btn-sub left-yose"
+  class="btn-sub"
   onclick="resetDetailSearch()"
 >
   🧹 条件リセット
