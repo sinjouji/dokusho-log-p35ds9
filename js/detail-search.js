@@ -326,8 +326,15 @@ if(!detailSearch.targets.characters){
 
 </div>
 
+<div class="detail-row">
 ${renderSavedDetailSearchCards()}
-
+<button
+  class="btn-sub"
+  onclick="resetDetailSearch()"
+>
+  🧹 条件リセット
+</button>
+</div>
 
   ${renderDetailSearchConditions()}
 
@@ -1007,4 +1014,42 @@ function matchDetailSearchTags(book){
 }
 
 
+
+//==============================
+//検索条件リセットボタン
+//==============================
+function resetDetailSearch(){
+
+  detailSearch = {
+
+    keyword:"",
+
+    targets:{
+      books:true,
+      series:true,
+      characters:true
+    },
+
+    tagStates:{},
+
+    types:{
+      normal:true,
+      wish:true
+    },
+
+    reread:false,
+
+    noSeriesBook:false,
+
+    noSeriesCharacter:false,
+
+    noTags:false,
+
+    noVolume:false
+  };
+
+  saveDetailSearchState();
+
+  renderDetailSearch();
+}
 
