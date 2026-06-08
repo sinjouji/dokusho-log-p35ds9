@@ -86,7 +86,7 @@ if(saved){
 
 
 //==============================
-//描画
+//★描画
 //==============================
 function renderDetailSearch(){
 
@@ -156,6 +156,11 @@ if(
   detailSearch.noVolume &&
   b.volume
 ){
+  return false;
+}
+
+//表示タグ
+if(!matchDetailSearchTags(b)){
   return false;
 }
 
@@ -447,7 +452,7 @@ if(!detailSearch.targets.characters){
         saveDetailSearchState();
       "
     >
-    #️⃣巻数未設定
+    #️⃣巻数未設定📘<b>本</b>
   </label>
   </div>
 </div>
@@ -657,6 +662,96 @@ function runDetailSearch(){
 
   renderDetailSearch();
 
+}
+
+
+
+
+
+//==============================
+// 詳細検索：タグ
+//==============================
+//==============================
+//表示タグ絞込み
+//==============================
+function cycleDetailSearchTagState(tagId){
+
+  const strId = String(tagId);
+
+  const current =
+    detailSearch.tagStates[strId];
+
+  if(!current){
+    detailSearch.tagStates[strId] = "AND";
+
+  }else if(current === "AND"){
+    detailSearch.tagStates[strId] = "OR";
+
+  }else if(current === "OR"){
+    detailSearch.tagStates[strId] = "NOT";
+
+  }else{
+    delete detailSearch.tagStates[strId];
+  }
+
+  saveDetailSearchState();
+
+  renderDetailSearch();
+}
+
+
+//==============================
+//表示タグ絞込みのタグ判定
+//==============================
+function matchDetailSearchTags(book){
+
+  const itemTags =
+    (book.tagIds || []).map(String);
+
+  const states =
+    detailSearch.tagStates || {};
+
+  const andTags =
+    Object.keys(states).filter(
+      id => states[id] === "AND"
+    );
+
+  if(
+    !andTags.every(id =>
+      itemTags.includes(id)
+    )
+  ){
+    return false;
+  }
+
+  const orTags =
+    Object.keys(states).filter(
+      id => states[id] === "OR"
+    );
+
+  if(
+    orTags.length &&
+    !orTags.some(id =>
+      itemTags.includes(id)
+    )
+  ){
+    return false;
+  }
+
+  const notTags =
+    Object.keys(states).filter(
+      id => states[id] === "NOT"
+    );
+
+  if(
+    notTags.some(id =>
+      itemTags.includes(id)
+    )
+  ){
+    return false;
+  }
+
+  return true;
 }
 
 
