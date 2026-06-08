@@ -680,7 +680,7 @@ function renderDetailSearchConditions(){
 
 </div>
 
-<div class="flex-between">
+<div class="detail-row search-min-rows">
 <div class="detail-search-group">
 
   <div class="detail-search-group-title">
