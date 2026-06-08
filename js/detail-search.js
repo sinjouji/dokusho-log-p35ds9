@@ -105,6 +105,12 @@ const keyword =
   (detailSearch.keyword || "")
     .trim()
     .toLowerCase();
+    
+//表示タグ絞込み
+const mode =
+  detailSearch.tagStates[
+    String(tag.id)
+  ];
 
 //本
 let bookResults =
@@ -472,7 +478,14 @@ if(!detailSearch.targets.characters){
         .map(tag=>`
 
           <button
-            class="tag-chip"
+            class="
+  tag-chip
+  ${
+    mode
+      ? `tag-mode-${mode.toLowerCase()}`
+      : ""
+  }
+"
 
             onclick="
               cycleDetailSearchTagState(
@@ -482,6 +495,12 @@ if(!detailSearch.targets.characters){
           >
 
             ${tag.name}
+
+${
+  mode
+    ? ` (${mode})`
+    : ""
+}
 
           </button>
 
