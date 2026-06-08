@@ -393,6 +393,7 @@ if(!detailSearch.targets.characters){
 </label>
 </div>
 
+
 <div class="detail-search-group">
 
   <div class="detail-search-group-title">
@@ -467,10 +468,45 @@ ${renderDetailSearchResults(
     characterResults
   )}
 
+
+<div class="detail-search-group">
+
+  <div class="detail-search-group-title">
+    タグ
+  </div>
+
+  <div class="tag-filter-area">
+
+    ${
+      tagMaster
+        .filter(tag => !tag.isHidden)
+        .map(tag=>`
+
+          <button
+            class="tag-chip"
+
+            onclick="
+              cycleDetailSearchTagState(
+                '${tag.id}'
+              )
+            "
+          >
+
+            ${tag.name}
+
+          </button>
+
+        `).join("")
+    }
+
+  </div>
+
+</div>
+
+
+
     `
   });
-
-
 
 }
 
