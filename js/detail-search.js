@@ -542,7 +542,7 @@ ${renderDetailSearchResults(
 
 
 //==============================
-//検索結果エリア
+//検索結果エリア描画枠
 //==============================
 function renderDetailSearchResults(
   bookResults,
@@ -563,50 +563,9 @@ function renderDetailSearchResults(
     )}
 
 
-${detailSearch.targets.characters ? `
-  <div class="detail-result-section">
-
-  <div
-    class="detail-result-title"
-    onclick="
-      detailSearchResults.characters =
-        !detailSearchResults.characters;
-
-      renderDetailSearch();
-    "
-  >
-    ${
-      detailSearchResults.characters
-        ? "▽"
-        : "▶︎"
-    }
-    👤 人物（${characterResults.length}件）
-  </div>
-
-  ${
-    detailSearchResults.characters
-      ? `
-        <div class="detail-result-list">
-          ${
-            characterResults.length
-              ? characterResults.map(c=>`
-                <div
-                  class="detail-result-item"
-                  onclick="
-                    openCharacterById('${c.id}')
-                  "
-                >
-                  ${c.name}
-                </div>
-              `).join("")
-              : "検索結果なし"
-          }
-        </div>
-      `
-      : ""
-  }
-  </div>
-` : ""}
+    ${renderCharacterSearchResults(
+      characterResults
+    )}
 
   `;
 }
@@ -739,7 +698,59 @@ function renderSeriesSearchResults(
 //==============================
 //結果表示エリア：👤人物
 //==============================
+function renderCharacterSearchResults(
+  characterResults
+){
 
+  return `
+
+    ${detailSearch.targets.characters ? `
+  <div class="detail-result-section">
+
+  <div
+    class="detail-result-title"
+    onclick="
+      detailSearchResults.characters =
+        !detailSearchResults.characters;
+
+      renderDetailSearch();
+    "
+  >
+    ${
+      detailSearchResults.characters
+        ? "▽"
+        : "▶︎"
+    }
+    👤 人物（${characterResults.length}件）
+  </div>
+
+  ${
+    detailSearchResults.characters
+      ? `
+        <div class="detail-result-list">
+          ${
+            characterResults.length
+              ? characterResults.map(c=>`
+                <div
+                  class="detail-result-item"
+                  onclick="
+                    openCharacterById('${c.id}')
+                  "
+                >
+                  ${c.name}
+                </div>
+              `).join("")
+              : "検索結果なし"
+          }
+        </div>
+      `
+      : ""
+  }
+  </div>
+` : ""}
+
+  `;
+}
 
 
 
