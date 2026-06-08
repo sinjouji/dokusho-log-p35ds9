@@ -549,62 +549,14 @@ function renderDetailSearchResults(
   seriesResults,
   characterResults
 ){
+
   return `
-  
+
+    ${renderBookSearchResults(
+      bookResults
+    )}
+
     
-    <div class="detail-search-results">
-${detailSearch.targets.books ? `
-  <div class="detail-result-section">
- 
-    <div
-  class="toggle-head detail-result-title"
-  onclick="
-    detailSearchResults.books =
-      !detailSearchResults.books;
-
-    renderDetailSearch();
-  "
->
-
-  ${
-    detailSearchResults.books
-      ? "▽"
-      : "▶︎"
-  }
-
-  📚 本（${bookResults.length}件）
-
-</div>
-
-${
-  detailSearchResults.books
-    ? `
-      <div class="detail-result-list">
-        ${
-          bookResults.length
-            ? bookResults.map(b=>`
-              <div
-                class="detail-result-item"
-                onclick="openBookDetailModalById('${b.id}')"
-              >
-                ${b.title}
-                ${
-                  b.volume
-                    ? ` ${b.volume}`
-                    : ""
-                }
-              </div>
-            `).join("")
-            : "検索結果なし"
-        }
-      </div>
-    `
-    : ""
-}
-  </div>
-` : ""}
-
-
 
 ${detailSearch.targets.series ? `
   <div class="detail-result-section">
@@ -695,9 +647,72 @@ ${detailSearch.targets.characters ? `
   }
   </div>
 ` : ""}
+
   `;
 }
 
+
+//==============================
+//検索結果：📘本
+//==============================
+function renderBookSearchResults(
+  bookResults
+){
+
+  return `
+
+      ${detailSearch.targets.books ? `
+  <div class="detail-result-section">
+ 
+    <div
+  class="toggle-head detail-result-title"
+  onclick="
+    detailSearchResults.books =
+      !detailSearchResults.books;
+
+    renderDetailSearch();
+  "
+>
+
+  ${
+    detailSearchResults.books
+      ? "▽"
+      : "▶︎"
+  }
+
+  📚 本（${bookResults.length}件）
+
+</div>
+
+${
+  detailSearchResults.books
+    ? `
+      <div class="detail-result-list">
+        ${
+          bookResults.length
+            ? bookResults.map(b=>`
+              <div
+                class="detail-result-item"
+                onclick="openBookDetailModalById('${b.id}')"
+              >
+                ${b.title}
+                ${
+                  b.volume
+                    ? ` ${b.volume}`
+                    : ""
+                }
+              </div>
+            `).join("")
+            : "検索結果なし"
+        }
+      </div>
+    `
+    : ""
+}
+  </div>
+` : ""}
+
+}
 
 
 //==============================
