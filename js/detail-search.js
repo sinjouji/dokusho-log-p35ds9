@@ -456,20 +456,9 @@ if(!detailSearch.targets.characters){
     #️⃣巻数未設定📘<b>本</b>
   </label>
   </div>
-</div>
-      `
-      : ""
-  }
-</div>
-
-${renderDetailSearchResults(
-    bookResults,
-    seriesResults,
-    characterResults
-  )}
-
-
-<div class="detail-search-group">
+  
+  
+  <div class="detail-search-group">
 
   <div class="detail-search-group-title">
     タグ
@@ -502,8 +491,22 @@ ${renderDetailSearchResults(
   </div>
 
 </div>
+  
+  
+</div>
+
+      `
+      : ""
+  }
+</div>
 
 
+
+${renderDetailSearchResults(
+    bookResults,
+    seriesResults,
+    characterResults
+  )}
 
     `
   });
