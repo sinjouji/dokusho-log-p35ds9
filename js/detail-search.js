@@ -272,8 +272,10 @@ if(!detailSearch.targets.characters){
   ${
     detailSearchUi.conditionsOpen
       ? `
-        <div class="detail-search-condition-body"
-         id="detail-search-condition-body">
+        <div
+  id="detail-search-condition-body"
+  class="detail-search-condition-body"
+>
 
           <!-- ここに今作った検索対象/タイプ/再読/データ整備を全部入れる -->
       <div class="detail-search-group">
@@ -743,10 +745,9 @@ function cycleDetailSearchTagState(tagId){
     document.getElementById(
       "detail-search-condition-body"
     );
-    
+
   const scrollTop =
     body ? body.scrollTop : 0;
-
 
   const strId = String(tagId);
 
@@ -769,17 +770,18 @@ function cycleDetailSearchTagState(tagId){
   saveDetailSearchState();
 
   renderDetailSearch();
-  
+
   setTimeout(()=>{
-  
+
     const newBody =
       document.getElementById(
         "detail-search-condition-body"
       );
-    
+
     if(newBody){
-      newBody.scrollTop = scrollTol;
+      newBody.scrollTop = scrollTop;
     }
+
   }, 0);
 }
 
