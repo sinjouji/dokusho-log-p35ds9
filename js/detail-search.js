@@ -59,6 +59,16 @@ let detailSearch = {
   
 
 };
+//検索条件保存枠
+let savedDetailSearches =
+  JSON.parse(
+    localStorage.getItem("savedDetailSearches")
+    || "null"
+  )
+  || [
+    { name:"保存条件1", state:null },
+    { name:"保存条件2", state:null }
+  ];
 
 
 
@@ -78,9 +88,74 @@ if(saved){
 
 }
 
+//==============================
+//検索条件の保存
+//==============================
+function saveSavedDetailSearches(){
+
+  localStorage.setItem(
+    "savedDetailSearches",
+    JSON.stringify(savedDetailSearches)
+  );
+}
+
+//==============================
+//保存済みの検索条件の呼び出し
+//==============================
+function loadSavedDetailSearch(index){
+
+  const saved =
+    savedDetailSearches[index];
+
+  if(!saved || !saved.state) return;
+
+  detailSearch =
+    JSON.parse(
+      JSON.stringify(saved.state)
+    );
+
+  saveDetailSearchState();
+  renderDetailSearch();
+}
 
 
 
+//==============================
+//保存済みの検索条件の上書き保存
+//==============================
+function overwriteSavedDetailSearch(index){
+
+  savedDetailSearches[index].state =
+    JSON.parse(
+      JSON.stringify(detailSearch)
+    );
+
+  saveSavedDetailSearches();
+
+  renderDetailSearch();
+}
+
+
+//==============================
+//保存条件の表示カード
+//==============================
+function renderSavedDetailSearchCards(){
+
+  return `
+    <div class="saved-search-area">
+      ${savedDetailSearches.map((saved,index)=>`
+        <div class="saved-search-card">
+          <button
+            class="btn-sub"
+            onclick="loadSavedDetailSearch(${index})"
+          >
+            📌 ${saved.name}
+          </button>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
 
 
 
@@ -251,6 +326,8 @@ if(!detailSearch.targets.characters){
 
 </div>
 
+${renderSavedDetailSearchCards()}
+
 
   ${renderDetailSearchConditions()}
 
@@ -299,7 +376,30 @@ function renderDetailSearchConditions(){
   class="detail-search-condition-body"
 >
 
-          <!-- ここに今作った検索対象/タイプ/再読/データ整備を全部入れる -->
+<!-- ここに今作った検索対象/タイプ/再読/データ整備を全部入れる -->
+
+
+<div class="detail-search-group">
+  <div class="detail-search-group-title">
+    条件保存
+  </div>
+
+  <button
+    class="btn-sub"
+    onclick="overwriteSavedDetailSearch(0)"
+  >
+    条件1に上書き保存
+  </button>
+
+  <button
+    class="btn-sub"
+    onclick="overwriteSavedDetailSearch(1)"
+  >
+    条件2に上書き保存
+  </button>
+</div>
+
+
       <div class="detail-search-group">
 
   <div class="detail-search-group-title">
