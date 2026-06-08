@@ -146,13 +146,17 @@ function renderSavedDetailSearchCards(){
   return `
     <div class="saved-search-area detail-row">
       ${savedDetailSearches.map((saved,index)=>`
-        <div class="saved-search-card card-common">
+        <div class="saved-search-card">
+        
+        <div class="saved-search-card-head">
           <button
             class="btn-sub"
             onclick="loadSavedDetailSearch(${index})"
           >
             📌 ${saved.name}
           </button>
+          
+
           <button
   class="btn-sub"
   onclick="renameSavedDetailSearch(${index})"
@@ -175,6 +179,8 @@ function renderSavedDetailSearchCards(){
       : "表示"
   }
 </button>
+</div>
+
 
 ${
   savedSearchSummaryOpen[index]
@@ -437,7 +443,7 @@ if(!detailSearch.targets.characters){
 <div class="detail-row">
 ${renderSavedDetailSearchCards()}
 <button
-  class="btn-sub"
+  class="btn-sub right-yose"
   onclick="resetDetailSearch()"
 >
   🧹 条件リセット
