@@ -54,7 +54,7 @@ let detailSearch = {
 
   noTags:false,
 
-  noVolume:false
+  noVolume:false,
   
   sort:"date"
 
