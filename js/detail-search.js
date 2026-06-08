@@ -70,6 +70,8 @@ let savedDetailSearches =
     { name:"保存条件2", state:null }
   ];
 
+//保存条件の概要トグル
+let savedSearchSummaryOpen = {};
 
 
 //==============================
@@ -144,7 +146,7 @@ function renderSavedDetailSearchCards(){
   return `
     <div class="saved-search-area detail-row">
       ${savedDetailSearches.map((saved,index)=>`
-        <div class="saved-search-card">
+        <div class="saved-search-card card-common">
           <button
             class="btn-sub"
             onclick="loadSavedDetailSearch(${index})"
@@ -157,6 +159,32 @@ function renderSavedDetailSearchCards(){
 >
   ✏️
 </button>
+
+<button
+  class="btn-sub"
+  onclick="
+    savedSearchSummaryOpen[${index}] =
+      !savedSearchSummaryOpen[${index}];
+
+    renderDetailSearch();
+  "
+>
+  ${
+    savedSearchSummaryOpen[index]
+      ? "閉じる"
+      : "表示"
+  }
+</button>
+
+${
+  savedSearchSummaryOpen[index]
+    ? `
+      <div class="saved-search-summary">
+        ${getDetailSearchSummary(saved.state)}
+      </div>
+    `
+    : ""
+}
         </div>
       `).join("")}
     </div>
@@ -183,6 +211,60 @@ function renameSavedDetailSearch(index){
 
   renderDetailSearch();
 }
+
+//==============================
+//保存条件の概要トグル
+//==============================
+function getDetailSearchSummary(state){
+
+  if(!state) return "未保存";
+
+  const list = [];
+
+  if(state.keyword){
+    list.push(`キーワード：${state.keyword}`);
+  }
+
+  if(state.targets){
+    const targets = [];
+    if(state.targets.books) targets.push("本");
+    if(state.targets.series) targets.push("シリーズ");
+    if(state.targets.characters) targets.push("人物");
+    list.push(`対象：${targets.join(" / ")}`);
+  }
+
+  if(state.types){
+    if(!state.types.normal) list.push("ウィッシュのみ");
+    if(!state.types.wish) list.push("本棚のみ");
+  }
+
+  if(state.reread) list.push("再読予定");
+
+  if(state.noSeriesBook) list.push("シリーズ未設定本");
+  if(state.noSeriesCharacter) list.push("シリーズ未設定人物");
+  if(state.noTags) list.push("タグ未設定本");
+  if(state.noVolume) list.push("巻数未設定本");
+
+  const tagTexts =
+    Object.keys(state.tagStates || {}).map(tagId=>{
+
+      const tag =
+        tagMaster.find(t =>
+          String(t.id) === String(tagId)
+        );
+
+      return `${tag?.name || "？"}(${state.tagStates[tagId]})`;
+    });
+
+  if(tagTexts.length){
+    list.push(`タグ：${tagTexts.join(" / ")}`);
+  }
+
+  return list.length
+    ? list.join("、")
+    : "条件なし";
+}
+
 
 
 
