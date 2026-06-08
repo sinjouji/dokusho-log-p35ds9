@@ -362,6 +362,9 @@ if(!matchDetailSearchTags(b)){
       .toLowerCase()
       .includes(keyword);
 
+  });
+  
+  
   //ソート
   if(detailSearch.sort === "title"){
 
@@ -376,9 +379,6 @@ if(!matchDetailSearchTags(b)){
   );
 }
 
-  });
-  
-  
 
 
 //シリーズ
