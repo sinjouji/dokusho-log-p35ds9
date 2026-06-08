@@ -223,7 +223,35 @@ if(!detailSearch.targets.characters){
     <div class="detail-row">
       <h2 class="left-yose">🔍 詳細検索</h2>
 
-     <input
+    ${renderDetailSearchConditions()}
+
+     
+</div>
+
+
+
+
+
+${renderDetailSearchResults(
+    bookResults,
+    seriesResults,
+    characterResults
+  )}
+
+    `
+  });
+
+}
+
+
+//==============================
+//詳細条件
+//==============================
+function renderDetailSearchConditions(){
+
+  return `
+  
+  <input
   id="detail-search-keyword"
   class="input-common input-small search-search right-yose"
   value="${detailSearch.keyword || ""}"
@@ -248,10 +276,8 @@ if(!detailSearch.targets.characters){
 >
   🔍 検索
 </button>
-
-</div>
-
-      <div class="detail-search-control-box">
+  
+    <div class="detail-search-control-box">
 
   <div
     class="detail-search-condition-head"
@@ -525,18 +551,7 @@ if(!detailSearch.targets.characters){
       : ""
   }
 </div>
-
-
-
-${renderDetailSearchResults(
-    bookResults,
-    seriesResults,
-    characterResults
-  )}
-
-    `
-  });
-
+  `;
 }
 
 
