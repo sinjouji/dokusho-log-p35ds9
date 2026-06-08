@@ -56,7 +56,7 @@ let detailSearch = {
 
   noVolume:false
   
-  
+  sort:"date"
 
 };
 //検索条件保存枠
@@ -298,6 +298,20 @@ const keyword =
 //本
 let bookResults =
   books.filter(b=>{
+  
+  //ソート
+  if(detailSearch.sort === "title"){
+
+  bookResults.sort(
+    (a,b)=>
+
+      (a.title || "")
+        .localeCompare(
+          b.title || "",
+          "ja"
+        )
+  );
+}
 
     // タイプ
 
@@ -573,6 +587,47 @@ function renderDetailSearchConditions(){
 
 </div>
 
+
+<div class="detail-search-group">
+
+  <div class="detail-search-group-title">
+    並び順
+  </div>
+
+  <select
+    onchange="
+      detailSearch.sort =
+        this.value;
+
+      saveDetailSearchState();
+    "
+  >
+
+    <option
+      value="date"
+      ${
+        detailSearch.sort === "date"
+          ? "selected"
+          : ""
+      }
+    >
+      読了日順
+    </option>
+
+    <option
+      value="title"
+      ${
+        detailSearch.sort === "title"
+          ? "selected"
+          : ""
+      }
+    >
+      タイトル順
+    </option>
+
+  </select>
+
+</div>
 
 
 <div class="detail-search-group">
