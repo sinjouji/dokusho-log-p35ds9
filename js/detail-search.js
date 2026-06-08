@@ -652,10 +652,6 @@ ${detailSearch.targets.characters ? `
   `;
 }
     
-    
-  `;
-}
-
 
 
 //==============================
