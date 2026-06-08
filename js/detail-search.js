@@ -251,8 +251,7 @@ if(!detailSearch.targets.characters){
 
 </div>
 
-      <div id="detail-search-control-box"
-       class="detail-search-control-box">
+      <div class="detail-search-control-box">
 
   <div
     class="detail-search-condition-head"
@@ -273,7 +272,8 @@ if(!detailSearch.targets.characters){
   ${
     detailSearchUi.conditionsOpen
       ? `
-        <div class="detail-search-condition-body">
+        <div class="detail-search-condition-body"
+         id="detail-search-condition-body">
 
           <!-- ここに今作った検索対象/タイプ/再読/データ整備を全部入れる -->
       <div class="detail-search-group">
@@ -741,7 +741,7 @@ function cycleDetailSearchTagState(tagId){
 
   const body =
     document.getElementById(
-      "detail-search-control-box"
+      "detail-search-condition-body"
     );
     
   const scrollTop =
@@ -774,7 +774,7 @@ function cycleDetailSearchTagState(tagId){
   
     const newBody =
       document.getElementById(
-        "detail-search-control-box"
+        "detail-search-condition-body"
       );
     
     if(newBody){
