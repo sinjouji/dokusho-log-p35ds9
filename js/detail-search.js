@@ -56,6 +56,8 @@ let detailSearch = {
 
   noVolume:false,
   
+  fav:"all",
+  
   sort:"date"
 
 };
@@ -351,6 +353,13 @@ if(
 
 //表示タグ
 if(!matchDetailSearchTags(b)){
+  return false;
+}
+
+if(
+  detailSearch.fav !== "all" &&
+  Number(b.fav || 0) !== Number(detailSearch.fav)
+){
   return false;
 }
 
@@ -668,6 +677,51 @@ function renderDetailSearchConditions(){
     ❤️ ウィッシュ
 
   </label>
+
+</div>
+
+
+<div class="detail-search-group">
+
+  <div class="detail-search-group-title">
+    評価
+  </div>
+
+  <select
+    class="input-common input-small"
+    onchange="
+      detailSearch.fav =
+        this.value;
+
+      saveDetailSearchState();
+
+      renderDetailSearch();
+    "
+  >
+    <option value="all" ${detailSearch.fav === "all" ? "selected" : ""}>
+      全部
+    </option>
+
+    <option value="0" ${detailSearch.fav === "0" ? "selected" : ""}>
+      0
+    </option>
+
+    <option value="1" ${detailSearch.fav === "1" ? "selected" : ""}>
+      ★
+    </option>
+
+    <option value="2" ${detailSearch.fav === "2" ? "selected" : ""}>
+      ★★
+    </option>
+
+    <option value="3" ${detailSearch.fav === "3" ? "selected" : ""}>
+      ★★★
+    </option>
+
+    <option value="4" ${detailSearch.fav === "4" ? "selected" : ""}>
+      👑
+    </option>
+  </select>
 
 </div>
 
