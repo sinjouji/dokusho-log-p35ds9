@@ -762,7 +762,10 @@ function renderDetailSearchConditions(){
   </div>
 
 </div>
-  
+
+
+${renderManagementTagSection()}
+
   
 </div>
 
@@ -1129,6 +1132,79 @@ function matchDetailSearchTags(book){
   return true;
 }
 
+
+//==============================
+//管理タグエリア表示内容
+//==============================
+function renderManagementTagSection(){
+
+  return `
+
+    <div class="detail-search-group">
+
+      <div
+        class="detail-search-group-title"
+      >
+        管理タグ
+      </div>
+
+      <div class="tag-filter-area">
+
+        ${
+          tagMaster
+
+            .filter(
+              tag => tag.isHidden
+            )
+
+            .map(tag=>{
+
+              const mode =
+                detailSearch.tagStates[
+                  String(tag.id)
+                ];
+
+              return `
+
+                <button
+
+                  class="
+                    tag-chip
+                    ${
+                      mode
+                        ? `tag-mode-${mode.toLowerCase()}`
+                        : ""
+                    }
+                  "
+
+                  onclick="
+                    cycleDetailSearchTagState(
+                      '${tag.id}'
+                    )
+                  "
+                >
+
+                  ${tag.name}
+
+                  ${
+                    mode
+                      ? ` (${mode})`
+                      : ""
+                  }
+
+                </button>
+
+              `;
+
+            }).join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+}
 
 
 //==============================
