@@ -106,12 +106,6 @@ const keyword =
     .trim()
     .toLowerCase();
     
-//表示タグ絞込み
-const mode =
-  detailSearch.tagStates[
-    String(tag.id)
-  ];
-
 //本
 let bookResults =
   books.filter(b=>{
@@ -768,11 +762,18 @@ function matchDetailSearchTags(book){
 
   const states =
     detailSearch.tagStates || {};
-
+    
   const andTags =
     Object.keys(states).filter(
       id => states[id] === "AND"
     );
+    
+     //表示タグ絞込み
+  const mode =
+    detailSearch.tagStates[
+      String(tag.id)
+    ];
+
 
   if(
     !andTags.every(id =>
