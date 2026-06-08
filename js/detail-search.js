@@ -251,7 +251,8 @@ if(!detailSearch.targets.characters){
 
 </div>
 
-      <div class="detail-search-control-box">
+      <div id="detail-search-control-box"
+       class="detail-search-control-box">
 
   <div
     class="detail-search-condition-head"
@@ -738,6 +739,15 @@ function runDetailSearch(){
 //==============================
 function cycleDetailSearchTagState(tagId){
 
+  const body =
+    document.getElementById(
+      "detail-search-control-box"
+    );
+    
+  const scrollTop =
+    body ? body.scrollTop : 0;
+
+
   const strId = String(tagId);
 
   const current =
@@ -759,6 +769,18 @@ function cycleDetailSearchTagState(tagId){
   saveDetailSearchState();
 
   renderDetailSearch();
+  
+  setTimeout(()=>{
+  
+    const newBody =
+      document.getElementById(
+        "detail-search-control-box"
+      );
+    
+    if(newBody){
+      newBody.scrollTop = scrollTol;
+    }
+  }, 0);
 }
 
 
