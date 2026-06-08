@@ -129,3 +129,8 @@ PAGE-SEARCH.CSS
   line-height:1.6;
   color:#6f4f38;
 }
+
+.search-min-rows{
+  min-height:80px;
+  margin:0 3px;
+}
