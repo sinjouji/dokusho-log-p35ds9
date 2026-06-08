@@ -680,8 +680,8 @@ function renderDetailSearchConditions(){
 
 </div>
 
-<div class="detail-row search-min-rows">
-<div class="detail-search-group">
+<div class="detail-row">
+<div class="detail-search-group search-min-rows">
 
   <div class="detail-search-group-title">
     評価
@@ -726,7 +726,7 @@ function renderDetailSearchConditions(){
 </div>
 
 
-<div class="detail-search-group">
+<div class="detail-search-group search-min-rows">
 
   <div class="detail-search-group-title">
     再読
