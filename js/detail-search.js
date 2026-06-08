@@ -680,7 +680,7 @@ function renderDetailSearchConditions(){
 
 </div>
 
-
+<div class="detail-row">
 <div class="detail-search-group">
 
   <div class="detail-search-group-title">
@@ -748,7 +748,7 @@ function renderDetailSearchConditions(){
 
 </label>
 </div>
-
+</div>
 
 <div class="detail-search-group">
 
