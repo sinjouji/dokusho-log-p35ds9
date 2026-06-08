@@ -24,6 +24,12 @@ PAGE-SEARCH.CSS
 
 }
 
+.detail-search-group-title{
+  font-size:14px;
+  font-weight:600;
+  margin:10px 0;
+}
+
 .detail-search-group label{
 
   white-space: nowrap;
@@ -48,7 +54,7 @@ PAGE-SEARCH.CSS
 .detail-result-title{
   font-weight:bold;
   font-size:13px;
-  margin-bottom:15px;
+  margin:10px 0;
 }
 
 .detail-search-toggle{
