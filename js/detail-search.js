@@ -299,19 +299,6 @@ const keyword =
 let bookResults =
   books.filter(b=>{
   
-  //ソート
-  if(detailSearch.sort === "title"){
-
-  bookResults.sort(
-    (a,b)=>
-
-      (a.title || "")
-        .localeCompare(
-          b.title || "",
-          "ja"
-        )
-  );
-}
 
     // タイプ
 
@@ -375,7 +362,24 @@ if(!matchDetailSearchTags(b)){
       .toLowerCase()
       .includes(keyword);
 
+  //ソート
+  if(detailSearch.sort === "title"){
+
+  bookResults.sort(
+    (a,b)=>
+
+      (a.title || "")
+        .localeCompare(
+          b.title || "",
+          "ja"
+        )
+  );
+}
+
   });
+  
+  
+
 
 //シリーズ
 let seriesResults =
