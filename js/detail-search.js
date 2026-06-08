@@ -459,7 +459,15 @@ if(!detailSearch.targets.characters){
 </div>
 
 
-<div class="detail-search-sort-row">
+<div class="detail-search-sort-row detail-low">
+ <button
+  class="btn-sub left-yose"
+  onclick="resetDetailSearch()"
+>
+  🧹 条件リセット
+</button>
+
+<span class="right-yose">
   並び順：
   <select
     onchange="
@@ -492,19 +500,12 @@ if(!detailSearch.targets.characters){
     </option>
 
   </select>
+  </span>
+  
 </div>
 
 
-<div class="detail-row">
 ${renderSavedDetailSearchCards()}
- <button
-  class="btn-sub right-yose"
-  onclick="resetDetailSearch()"
->
-  🧹 条件リセット
-</button>
-</div>
-
 
 
   ${renderDetailSearchConditions()}
