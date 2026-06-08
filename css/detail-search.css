@@ -131,6 +131,6 @@ PAGE-SEARCH.CSS
 }
 
 .search-min-rows{
-  min-height:120px;
-  width:50%;
+  min-height:80px;
+  width:45%;
 }
