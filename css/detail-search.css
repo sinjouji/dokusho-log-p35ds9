@@ -48,6 +48,7 @@ PAGE-SEARCH.CSS
 .detail-result-title{
   font-weight:bold;
   font-size:13px;
+  margin-bottom:15px;
 }
 
 .detail-search-toggle{
