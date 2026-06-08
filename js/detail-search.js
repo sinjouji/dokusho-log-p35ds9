@@ -223,35 +223,7 @@ if(!detailSearch.targets.characters){
     <div class="detail-row">
       <h2 class="left-yose">🔍 詳細検索</h2>
 
-    ${renderDetailSearchConditions()}
-
-     
-</div>
-
-
-
-
-
-${renderDetailSearchResults(
-    bookResults,
-    seriesResults,
-    characterResults
-  )}
-
-    `
-  });
-
-}
-
-
-//==============================
-//詳細条件
-//==============================
-function renderDetailSearchConditions(){
-
-  return `
-  
-  <input
+     <input
   id="detail-search-keyword"
   class="input-common input-small search-search right-yose"
   value="${detailSearch.keyword || ""}"
@@ -276,7 +248,31 @@ function renderDetailSearchConditions(){
 >
   🔍 検索
 </button>
-  
+
+</div>
+
+
+  ${renderDetailSearchConditions()}
+
+
+${renderDetailSearchResults(
+    bookResults,
+    seriesResults,
+    characterResults
+  )}
+
+    `
+  });
+
+}
+
+
+//==============================
+//詳細条件
+//==============================
+function renderDetailSearchConditions(){
+
+  return `
     <div class="detail-search-control-box">
 
   <div
