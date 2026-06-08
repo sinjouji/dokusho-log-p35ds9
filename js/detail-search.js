@@ -458,6 +458,43 @@ if(!detailSearch.targets.characters){
 
 </div>
 
+
+<div class="detail-search-sort-row">
+  並び順：
+  <select
+    onchange="
+      detailSearch.sort = this.value;
+      saveDetailSearchState();
+      renderDetailSearch();
+    "
+  >
+
+    <option
+      value="date"
+      ${
+        detailSearch.sort === "date"
+          ? "selected"
+          : ""
+      }
+    >
+      読了日順
+    </option>
+
+    <option
+      value="title"
+      ${
+        detailSearch.sort === "title"
+          ? "selected"
+          : ""
+      }
+    >
+      タイトル順
+    </option>
+
+  </select>
+</div>
+
+
 <div class="detail-row">
 ${renderSavedDetailSearchCards()}
  <button
@@ -590,49 +627,6 @@ function renderDetailSearchConditions(){
   </label>
 
 </div>
-
-
-<div class="detail-search-group">
-
-  <div class="detail-search-group-title">
-    並び順
-  </div>
-
-  <select
-    onchange="
-      detailSearch.sort =
-        this.value;
-
-      saveDetailSearchState();
-    "
-  >
-
-    <option
-      value="date"
-      ${
-        detailSearch.sort === "date"
-          ? "selected"
-          : ""
-      }
-    >
-      読了日順
-    </option>
-
-    <option
-      value="title"
-      ${
-        detailSearch.sort === "title"
-          ? "selected"
-          : ""
-      }
-    >
-      タイトル順
-    </option>
-
-  </select>
-
-</div>
-
 
 <div class="detail-search-group">
 
