@@ -551,12 +551,13 @@ function renderDetailSearchResults(
 ){
 
   return `
+  
+     <div class="detail-search-results">
 
     ${renderBookSearchResults(
       bookResults
     )}
 
-    
 
 ${detailSearch.targets.series ? `
   <div class="detail-result-section">
@@ -650,10 +651,15 @@ ${detailSearch.targets.characters ? `
 
   `;
 }
+    
+    
+  `;
+}
+
 
 
 //==============================
-//検索結果：📘本
+//結果表示エリア：📘本
 //==============================
 function renderBookSearchResults(
   bookResults
@@ -661,7 +667,7 @@ function renderBookSearchResults(
 
   return `
 
-      ${detailSearch.targets.books ? `
+   ${detailSearch.targets.books ? `
   <div class="detail-result-section">
  
     <div
@@ -712,7 +718,9 @@ ${
   </div>
 ` : ""}
 
+  `;
 }
+
 
 
 //==============================
