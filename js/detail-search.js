@@ -558,50 +558,9 @@ function renderDetailSearchResults(
       bookResults
     )}
 
-
-${detailSearch.targets.series ? `
-  <div class="detail-result-section">
-  <div
-    class="detail-result-title"
-    onclick="
-      detailSearchResults.series =
-        !detailSearchResults.series;
-
-      renderDetailSearch();
-    "
-  >
-    ${
-      detailSearchResults.series
-        ? "▽"
-        : "▶︎"
-    }
-    📖 シリーズ（${seriesResults.length}件）
-  </div>
-
-  ${
-    detailSearchResults.series
-      ? `
-        <div class="detail-result-list">
-          ${
-            seriesResults.length
-              ? seriesResults.map(s=>`
-                <div
-                  class="detail-result-item"
-                  onclick="
-                    openSeriesById('${s.id}')
-                  "
-                >
-                  ${s.name}
-                </div>
-              `).join("")
-              : `検索結果なし`
-          }
-        </div>
-      `
-      : ""
-  }
-  </div>
-` : ""}
+    ${renderSeriesSearchResults(
+      seriesResults
+    )}
 
 
 ${detailSearch.targets.characters ? `
@@ -716,6 +675,72 @@ ${
 
   `;
 }
+
+
+
+//==============================
+//結果表示エリア：📖シリーズ
+//==============================
+function renderSeriesSearchResults(
+  seriesResults
+){
+
+  return `
+
+    ${detailSearch.targets.series ? `
+  <div class="detail-result-section">
+  <div
+    class="detail-result-title"
+    onclick="
+      detailSearchResults.series =
+        !detailSearchResults.series;
+
+      renderDetailSearch();
+    "
+  >
+    ${
+      detailSearchResults.series
+        ? "▽"
+        : "▶︎"
+    }
+    📖 シリーズ（${seriesResults.length}件）
+  </div>
+
+  ${
+    detailSearchResults.series
+      ? `
+        <div class="detail-result-list">
+          ${
+            seriesResults.length
+              ? seriesResults.map(s=>`
+                <div
+                  class="detail-result-item"
+                  onclick="
+                    openSeriesById('${s.id}')
+                  "
+                >
+                  ${s.name}
+                </div>
+              `).join("")
+              : `検索結果なし`
+          }
+        </div>
+      `
+      : ""
+  }
+  </div>
+` : ""}
+
+
+  `;
+}
+
+
+//==============================
+//結果表示エリア：👤人物
+//==============================
+
+
 
 
 
