@@ -51,23 +51,12 @@ function openAddBookModal(){
       
       <div class="detail-row">
       	<span class="mini-text">サブタイトル：</span>
-      <input class="input-title"
+      <input class="input-title input-small"
         id="add-subtitle"
         type="text"
         placeholder="サブタイトル（任意）"
       >
       </div>
-      
-      <div class="detail-row">
-      <span class="mini-text">巻数：</span>
-      <input class="input-title input-small"
-        id="add-volume"
-        type="number"
-        min="0"
-        placeholder="巻数"
-      >
-      </div>
-      
       
       
       <div class="flex-between">
