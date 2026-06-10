@@ -322,8 +322,17 @@ function applySpineColor(d, b){
 function createBookSpine(b, mode="main"){
   const d = document.createElement('div');
 
-  const base = 20;
-  const extra = Math.min((b.title || "").length * 2, 55);
+  const spineTitleText =
+  [
+    b.title,
+    b.subtitle
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+const base = 20;
+const extra =
+  Math.min(spineTitleText.length * 2, 55);
   
   d.className = "spine";
   d.style.width = (base + extra + 4) + "px";
@@ -334,13 +343,19 @@ function createBookSpine(b, mode="main"){
   d.classList.add("wish-book");
 }
 
-  const title = document.createElement('div');
-  title.textContent = b.title;
+  const titleText =
+  [
+    b.title,
+    b.subtitle
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  title.className = "spine-title";
+const title = document.createElement('div');
+title.textContent = spineTitleText;
+title.className = "spine-title";
   
   
-
   const fav =
   document.createElement('div');
 
@@ -882,6 +897,15 @@ main.classList.add("list-view");
    
 <div class="list-title">
   ${b.title}
+  ${
+  b.subtitle
+    ? `
+      <span class="book-subtitle">
+        ${b.subtitle}
+      </span>
+    `
+    : ""
+}
   ${
     b.volume
       ? ` ${b.volume}`
