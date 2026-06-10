@@ -238,5 +238,8 @@ border-radius:10px;
 }
 
 .hidden-tag-input-area{
-  margin-bottom:8px;
+  margin-bottom:4px;
+}
+#add-book-hidden-tags{
+  flex-direction:column;
 }
