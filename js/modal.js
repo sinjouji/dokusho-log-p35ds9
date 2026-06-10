@@ -324,16 +324,18 @@ function openBookDetailModal(book){
     placeholder="巻数"
   >
  </div> 
-  
-  <div class="book-stat">
-      ${
-        (
-          book.readDates ||
-          book.dates ||
-          []
-        ).length
-      }回読了</div>
-  
+ 
+ <div class="detail-fav-wrap">
+
+       <button
+         class="fav-cycle-btn"
+         onclick="cycleFav('${book.id}')">評価：
+           ${
+              ["0","★","★★","★★★","👑"][book.fav || 0]
+            }
+       </button>
+
+        </div>
   
   <label class="reread-check right-yose">
 
@@ -370,7 +372,7 @@ function openBookDetailModal(book){
     
     
     
-      <div class="detail-row actions-row">
+      <div class="actions-row">
         状態 ＝ 
         ${
           book.type === "wish"
@@ -378,17 +380,16 @@ function openBookDetailModal(book){
           : "📚本棚"
         }
    
-        <div class="detail-fav-wrap">
-
-       <button
-         class="fav-cycle-btn"
-         onclick="cycleFav('${book.id}')">評価：
-           ${
-              ["0","★","★★","★★★","👑"][book.fav || 0]
-            }
-       </button>
-
-        </div>
+     
+  <div class="book-stat">
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
+  
       </div>
  
      <div class="detail-row">
