@@ -327,19 +327,18 @@ function openBookDetailModal(book){
     
     
             
-            <div class="label-text">
-      ${relatedSeries.map(s=>`
-        シリーズ : 
-        <button class="detail-series"
-				  onclick="
-				    closeModal('open-book-modal');
-				    openSeriesById('${s.id}');
-				  "
-				>
- 				 ${s.name}
-				</button>
-      `).join(", ") || ""}
-    </div>
+      <div class="detail-series-area">
+  ${relatedSeries.map(s=>`
+    <button class="detail-series"
+      onclick="
+        closeModal('open-book-modal');
+        openSeriesById('${s.id}');
+      "
+    >
+      シリーズ：${s.name}
+    </button>
+  `).join("")}
+</div>
 
     
     
