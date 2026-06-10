@@ -367,9 +367,18 @@ if(
 
     if(!keyword) return true;
 
-    return (b.title || "")
-      .toLowerCase()
-      .includes(keyword);
+    const bookText =
+  [
+    b.title,
+    b.subtitle
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+if(!keyword) return true;
+
+return bookText.includes(keyword);
 
   });
   
