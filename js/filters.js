@@ -345,4 +345,312 @@ function resetHomeSearchFilter(){
   renderHome();
 }
 
+//======🔍検索用エリア===========
+//★====検索UIだけの役割
+//==============================
+function renderSearchArea(){
+
+  const top = document.getElementById("home-top");
+  if(!top) return;
+  
+  const items = books;//応急処置、後で変更
+  
+  const visibleItems = items.filter(item =>
+  shouldShowByType(item) &&
+  matchTags(item)
+  );
+ 
+  top.innerHTML = `
+  <div class="filter-actions">
+    <input class="input-common input-small"
+      id="search"
+      placeholder="検索..."
+      value="${searchKeyword}"
+      oninput="handleSearchInput()"
+    >
+    
+    
+      <select id="sort-select" class="select-chip"
+        onchange="changeSortMode()">
+
+      <option value="read-desc">読了日新</option>
+      <option value="read-asc">読了日古</option>
+
+      <option value="title-asc">タイトル↓</option>
+      <option value="title-desc">タイトル↑</option>
+
+      <option value="rating-desc">高評価</option>
+      <option value="rating-asc">低評価</option>
+
+      </select>
+      
+      <button class="tag-chip"
+        data-open="🏷️タグ非表示"
+        data-close="🏷️タグ表示"
+
+        onclick="togglesSection(
+        'tag-filter',
+        this
+        )
+      "
+     >🏷️タグ表示
+       </button>
+       <div class="mini-text usui-text">
+        タグ切替<br>
+        AND/OR/NOT
+      </div>
+       </div>
+       
+      
+       <div class="filter-actions">
+       
+         <div
+           id="active-filter-view"
+           class="active-filter-view"
+         ></div>
+       </div>
+       
+   
+<div class="
+  toggle-content
+  ${homeSections.tags ? "open" : ""}
+  "
+  id="tag-filter"></div>
+
+    <div id="suggest"></div>
+  `;
+  
+  renderSuggest();
+}
+
+   // toggleTagFilter()
+
+
+
+//==============================
+//★絞込み現状表示ちゃん
+//==============================
+function renderActiveFilterView(){
+
+  const area =
+    document.getElementById(
+      "active-filter-view"
+    );
+
+  if(!area) return;
+
+  if(!filterState.tags.length){
+
+  area.innerHTML = "";
+  area.style.display = "none";
+
+  return;
+}
+
+area.style.display = "block";
+    
+    
+  function getTagNames(tagIds){
+
+  return tagIds.map(tagId=>{
+
+    const tag =
+      tagMaster.find(
+        t => String(t.id) === String(tagId)
+      );
+
+    return tag?.name || "？";
+
+  }).join(" / ");
+
+}
+
+  //AND選択中タグ抽出
+  const andTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "AND"
+  );
+  
+  //OR抽出
+  const orTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "OR"
+  );
+  
+  //NOT抽出
+  const notTags = Object.keys(
+    filterState.tagStates
+  ).filter(
+
+    tagId =>
+
+    filterState.tagStates[tagId]
+      === "NOT"
+  );
+
+  area.innerHTML = `
+
+    <div class="active-filter-row">
+
+      <span class="filter-mode-label">
+
+        ${andTags.length ? `
+          <div>
+            AND：${getTagNames(andTags)}
+         </div>
+         ` : ""}
+         
+        ${orTags.length ? `
+          <div>
+            OR：${getTagNames(orTags)}
+           </div>
+        ` : ""}
+         
+        ${notTags.length ? `
+          <div>
+            NOT：${getTagNames(notTags)}
+          </div>
+        ` : ""}
+       
+        </span>
+
+      <span class="filter-tag-list">
+
+      </span>
+
+    </div>
+
+  `;
+}
+
+
+
+//==============================
+//====キーワード検索（ホーム本棚用）
+//==============================
+function handleSearchInput(){
+
+  searchKeyword =
+    (document.getElementById(
+    "search"
+    )?.value || "")
+    .toLowerCase();
+
+  renderSuggest();
+  renderBookList();
+}
+
+
+//==============================
+//====ソートモードの切替え（本）
+//==============================
+function changeSortMode(){
+
+  sortMode =
+    document.getElementById("sort-select").value;
+
+  renderBookList();
+}
+
+
+//==============================
+//====★タグフィルター描画※旧になる予定20260519
+//==============================
+function renderTagFilter(){
+
+  const area =
+    document.getElementById("tag-filter");
+
+  if(!area) return;
+
+  area.innerHTML = "";
+
+  tagMaster
+    .filter(tag => !tag.isHidden)
+    .forEach(tag=>{
+
+    const btn =
+      document.createElement("button");
+
+    btn.className = "tag-chip";
+    btn.textContent = tag.name;
+
+    btn.style.background = "#fffffc";
+    btn.style.color = tag.color || "#666";
+    btn.style.border = `1px solid ${tag.color || "#ccc"}`;
+    btn.style.borderRadius = "999px";
+
+    const isActive =
+      filterState.tags.includes(String(tag.id));
+      
+    const mode =
+      filterState.tagStates[String(tag.id)];
+
+    if(isActive){
+      btn.classList.add("active");
+      
+       if(mode){
+         btn.classList.add(
+          `tag-mode-${mode.toLowerCase()}`
+         );
+       }
+      
+      btn.style.background = tag.color;
+      btn.style.color = "#fffffc";
+    }
+
+  btn.onclick = () => {
+
+    cycleTagState(tag.id);
+
+    renderHome();
+  };
+
+    area.appendChild(btn);
+  });
+}
+
+
+//==============================
+//★フィルタの状態
+//==============================
+const filterState = {
+  tags: [],        // 選択中タグID
+  tagMode: "AND",  // AND / OR / NOT
+  tagStates: {},
+  types: {
+    book: true,
+    series: true,
+    character: true
+  },
+  search: ""
+};
+
+
+
+
+//==============================
+//タグ収納トグル※旧になる予定20260519
+//==============================
+function toggleTagFilter(){
+
+  showTagFilter = !showTagFilter;
+  
+  localStorage.setItem(
+    "showTagFilter",
+    showTagFilter
+  );
+
+  renderHome();
+}
 
