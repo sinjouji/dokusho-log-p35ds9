@@ -529,8 +529,8 @@ id="open-book-series">
       
       
 		
-			<div style="font-size:11px"
-        class="toggle-head"
+			<div
+        class="toggle-head t-labels"
         data-open="▽タグ非表示"
         data-close="▶︎タグ表示"
         onclick="
@@ -754,7 +754,7 @@ const characterCount =
 				
 				
       <div
-      class="toggle-head"
+      class="toggle-head t-labels"
       data-open="▽関連作品(${bookCount})"
       data-close="▶︎関連作品(${bookCount})"
       onclick="
@@ -773,7 +773,7 @@ const characterCount =
       
       
       <div
-      class="toggle-head"
+      class="toggle-head t-labels"
       data-open="▽関連人物(${characterCount})"
       data-close="▶︎関連人物(${characterCount})"
       onclick="
@@ -871,7 +871,7 @@ const characterCount =
       
       
        <div
-      class="toggle-head"
+      class="toggle-head t-labels"
       data-open="▽関連作品(${bookCount})"
       data-close="▶︎関連作品(${bookCount})"
       onclick="
@@ -890,7 +890,7 @@ const characterCount =
        "></div>
       
        <div
-      class="toggle-head"
+      class="toggle-head t-labels"
       data-open="▽関連人物(${characterCount})"
       data-close="▶︎関連人物(${characterCount})"
       onclick="
