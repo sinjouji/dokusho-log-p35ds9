@@ -766,13 +766,12 @@ main.classList.add("card-view");
 
       <div class="title">
   ${b.title}
-  ${book.title}
 
 ${
-  book.subtitle
+  b.subtitle
     ? `
       <span class="book-subtitle">
-        ${book.subtitle}
+        ${b.subtitle}
       </span>
     `
     : ""
