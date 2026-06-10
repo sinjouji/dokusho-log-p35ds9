@@ -172,7 +172,11 @@ let homeSections = {
 
 let addBookTagSections = { tags: false };
 let addBookSeriesSections = { series: false };
-let detailSections = { tags:  false };
+let detailSections = {
+  tags:false,
+  series:false,
+  hiddenTags:false
+ };
 
 //人物検索用
 let characterSearchKeyword = "";

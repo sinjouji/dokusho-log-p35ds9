@@ -586,61 +586,30 @@ id="open-book-tags">
   
 </div>
       
-       
-       ${
-  hiddenTagIds.length
-    ? `
-      <div class="hidden-tag-area">
+      
+      <div
+  class="detail-toggle-head"
+  data-open="▽ 管理タグ（${hiddenTagIds.length}）"
+  data-close="▶︎ 管理タグ（${hiddenTagIds.length}）"
+  onclick="
+    togglesSection(
+      'open-book-hidden-tags',
+      this
+    )
+  "
+>
+  ▶︎ 管理タグ（${hiddenTagIds.length}）
+</div>
 
-        <div class="hidden-tag-title">
-          管理タグ（${hiddenTagIds.length}）
-        </div>
-
-        <div class="hidden-tag-list selected-hidden-tags">
-          ${
-            hiddenTagIds.map(tagId=>{
-
-              const tag =
-                tagMaster.find(t =>
-                  String(t.id) === String(tagId)
-                );
-
-              if(!tag) return "";
-
-              const isRemoveReady =
-                pendingHiddenTagRemove ===
-                `${book.id}-${tag.id}`;
-
-              return `
-                <span
-                  class="
-                    hidden-tag-chip
-                    ${isRemoveReady ? "remove-ready" : ""}
-                  "
-                  onclick="
-                    confirmRemoveHiddenTag(
-                      '${book.id}',
-                      '${tag.id}'
-                    )
-                  "
-                >
-                  ${
-                    isRemoveReady
-                      ? `削除？ ${tag.name}`
-                      : tag.name
-                  }
-                </span>
-              `;
-            }).join("")
-          }
-        </div>
-
-      </div>
-    `
-    : ""
-}
-
-<div class="hidden-tag-input-area">
+<div
+  class="
+    toggle-content
+    ${detailSections.hiddenTags ? "open" : ""}
+  "
+  id="open-book-hidden-tags"
+>
+      
+       <div class="hidden-tag-input-area">
   <input
     class="input-common input-small"
     id="hidden-tag-input-${book.id}"
@@ -659,7 +628,8 @@ id="open-book-tags">
   id="hidden-tag-suggest-${book.id}"
   class="hidden-tag-suggest"
 ></div>
- 
+
+</div>
 
       <hr class="kugiri">
 
