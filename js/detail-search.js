@@ -291,6 +291,10 @@ function renderDetailSearch(){
   };
 }
 
+if(!detailSearch.fav){
+  detailSearch.fav = "all";
+}
+
 //キーワード検索の部分
 const keyword =
   (detailSearch.keyword || "")
@@ -364,10 +368,9 @@ if(
 }
 
     // キーワード
+if(!keyword) return true;
 
-    if(!keyword) return true;
-
-    const bookText =
+const bookText =
   [
     b.title,
     b.subtitle
@@ -376,10 +379,7 @@ if(
     .join(" ")
     .toLowerCase();
 
-if(!keyword) return true;
-
 return bookText.includes(keyword);
-
   });
   
   
