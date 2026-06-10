@@ -301,19 +301,19 @@ function openBookDetailModal(book){
     
     
     <div class="detail-row">
-    <span class="mini-text">
+    <span class="label-text">
     サブタイトル：</span>
     <input
-      class="input-common input-small"
+      class="input-common"
       id="edit-subtitle"
       type="text"
       value="${book.subtitle || ""}"
-      placeholder="サブタイトル"
+      placeholder="サブタイトル（任意）"
     >
     </div>
     
     <div class="detail-row">
-    <span class="mini-text">
+    <span class="label-text">
   巻数：</span>
   <input
     class="input-common input-small-ex"
@@ -327,7 +327,7 @@ function openBookDetailModal(book){
     
     
             
-            <div style="font-size:10px">
+            <div class="label-text">
       ${relatedSeries.map(s=>`
         シリーズ : 
         <button class="detail-series"
@@ -345,7 +345,7 @@ function openBookDetailModal(book){
     
     
     
-      <div class="detail-row actions-row">
+      <div class="label-text detail-row actions-row">
         状態 ＝ 
         ${
           book.type === "wish"
@@ -386,7 +386,7 @@ function openBookDetailModal(book){
       
       
 
-     <div class="detail-row">
+     <div class="label-text detail-row">
      
   読了日：
 
@@ -410,7 +410,7 @@ function openBookDetailModal(book){
       
       <div class="flex-between">
       <div class="detail-row ">
-       <input type="date" id="readDate-${book.id}" class="input-common input-small">
+       <input placeholder="日付入力" type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
