@@ -609,12 +609,32 @@ id="open-book-tags">
   id="open-book-hidden-tags"
 >
 
+  <div class="hidden-tag-input-area">
+    <input
+      class="input-common input-small"
+      id="hidden-tag-input-${book.id}"
+      type="text"
+      placeholder="管理タグを追加"
+      oninput="renderHiddenTagSuggest('${book.id}')"
+      onkeydown="
+        if(event.key==='Enter'){
+          addHiddenTag('${book.id}', this.value);
+        }
+      "
+    >
+  </div>
+
+  <div
+    id="hidden-tag-suggest-${book.id}"
+    class="hidden-tag-suggest"
+  ></div>
+
   ${
     hiddenTagIds.length
       ? `
         <div class="hidden-tag-area">
-
           <div class="hidden-tag-list selected-hidden-tags">
+            
             ${
               hiddenTagIds.map(tagId=>{
 
@@ -657,26 +677,6 @@ id="open-book-tags">
       `
       : ""
   }
-
-  <div class="hidden-tag-input-area">
-    <input
-      class="input-common input-small"
-      id="hidden-tag-input-${book.id}"
-      type="text"
-      placeholder="管理タグを追加"
-      oninput="renderHiddenTagSuggest('${book.id}')"
-      onkeydown="
-        if(event.key==='Enter'){
-          addHiddenTag('${book.id}', this.value);
-        }
-      "
-    >
-  </div>
-
-  <div
-    id="hidden-tag-suggest-${book.id}"
-    class="hidden-tag-suggest"
-  ></div>
 
 </div>
 
