@@ -617,4 +617,5 @@ color: #999;
 .label-text{
   font-size:11px;
   white-space:nowrap;
+  align-items:center;
 }
