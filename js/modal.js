@@ -215,13 +215,9 @@ function openAddBookModal(){
   
 
 	<div class="hidden-tag-input-area">
-<div
-    id="add-book-hidden-tag-list"
-    class="hidden-tag-list selected-hidden-tags"
-  ></div>
 
   <input
-    class="input-common imput-small"
+    class="input-common"
     id="add-book-hidden-tag-input"
     type="text"
     placeholder="管理タグを追加"
@@ -238,7 +234,11 @@ function openAddBookModal(){
   <div class="suggest-box">
     <div id="add-book-hidden-tag-suggest"></div>
   </div>
-
+  
+<div
+    id="add-book-hidden-tag-list"
+    class="hidden-tag-list selected-hidden-tags"
+  ></div>
   </div>
       
       
@@ -630,7 +630,7 @@ id="open-book-tags">
 
   <div class="hidden-tag-input-area">
     <input
-      class="input-common input-small"
+      class="input-common"
       id="hidden-tag-input-${book.id}"
       type="text"
       placeholder="管理タグを追加"
