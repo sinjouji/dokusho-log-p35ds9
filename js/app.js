@@ -766,6 +766,17 @@ main.classList.add("card-view");
 
       <div class="title">
   ${b.title}
+  ${book.title}
+
+${
+  book.subtitle
+    ? `
+      <span class="book-subtitle">
+        ${book.subtitle}
+      </span>
+    `
+    : ""
+}
   ${
     b.volume
       ? `<span class="book-volume-label">${b.volume}巻</span>`
