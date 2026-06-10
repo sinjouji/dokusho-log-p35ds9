@@ -970,11 +970,16 @@ ${
                 onclick="openBookDetailModalById('${b.id}')"
               >
                 ${b.title}
-                ${
-                  b.volume
-                    ? ` ${b.volume}`
-                    : ""
-                }
+${
+  b.subtitle
+    ? ` <span class="book-subtitle">${b.subtitle}</span>`
+    : ""
+}
+${
+  b.volume
+    ? ` ${b.volume}`
+    : ""
+}
               </div>
             `).join("")
             : "検索結果なし"
