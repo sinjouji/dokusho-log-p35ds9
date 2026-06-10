@@ -157,6 +157,11 @@ async function saveNewBook(){
     return;
   }
 
+  const subtitle =
+  document.getElementById("add-subtitle")
+    ?.value
+    .trim() || "";
+
   const date =
     document.getElementById("add-date").value;
 
@@ -187,6 +192,7 @@ const nextVolume =
   const book = {
     id: Date.now().toString(),
     title,
+    subtitle,
     volume: nextVolume,
     memo: memo,
     fav: newBookFav,
@@ -306,6 +312,14 @@ seriesMaster.forEach(series=>{
 
   book.title =
     document.getElementById("detail-title").value;
+    
+  book.subtitle =
+  document
+    .getElementById(
+      "edit-subtitle"
+    )
+    .value
+    .trim();
     
   book.volume =
   Number(
@@ -539,6 +553,8 @@ async function duplicateBook(id){
 
     title:
       incrementVolumeTitle(book.title || ""),
+    
+    subtitle: "",
       
     volume:
       Number(book.volume || 0) + 1,

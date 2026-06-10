@@ -49,6 +49,24 @@ function openAddBookModal(){
         >
       <div id="title-suggest"></div>
       
+      <div class="detail-row">
+      	<span class="mini-text">サブタイトル：</span>
+      <input class="input-title"
+        id="add-subtitle"
+        type="text"
+        placeholder="サブタイトル（任意）"
+      >
+      </div>
+      
+      <div class="detail-row">
+      <span class="mini-text">巻数：</span>
+      <input class="input-title input-small"
+        id="add-volume"
+        type="number"
+        min="0"
+        placeholder="巻数"
+      >
+      </div>
       
       
       
@@ -292,8 +310,22 @@ function openBookDetailModal(book){
       </button>
     </div>
     
+    
     <div class="detail-row">
-  巻数：
+    <span class="mini-text">
+    サブタイトル：</span>
+    <input
+      class="input-common input-small"
+      id="edit-subtitle"
+      type="text"
+      value="${book.subtitle || ""}"
+      placeholder="サブタイトル"
+    >
+    </div>
+    
+    <div class="detail-row">
+    <span class="mini-text">
+  巻数：</span>
   <input
     class="input-common input-small-ex"
     id="detail-volume"
