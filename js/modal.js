@@ -316,7 +316,7 @@ function openBookDetailModal(book){
     <span class="label-text">
   巻数：</span>
   <input
-    class="input-common input-small-ex"
+    class="input-common volume-input"
     id="detail-volume"
     type="number"
     min="0"
@@ -345,7 +345,7 @@ function openBookDetailModal(book){
     
     
     
-      <div class="label-text detail-row actions-row">
+      <div class="detail-row actions-row">
         状態 ＝ 
         ${
           book.type === "wish"
