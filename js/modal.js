@@ -312,17 +312,43 @@ function openBookDetailModal(book){
     >
     </div>
     
-    <div class="detail-row">
-    <span class="label-text">
+    <div class="flex-between">
+    <span class="label-text left-yose">
   巻数：</span>
   <input
-    class="input-common volume-input"
+    class="input-common volume-input left-yose"
     id="detail-volume"
     type="number"
     min="0"
     value="${book.volume || ""}"
     placeholder="巻数"
   >
+  
+  
+  <div class="book-stat">
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
+  
+  
+  <label class="reread-check right-yose">
+
+  <input
+    type="checkbox"
+    id="reread-check"
+    ${book.reread ? "checked" : ""}
+
+    onchange="
+      toggleReread('${book.id}')
+    "
+  >
+
+  再読予定
+</label>
 </div>
     
     
@@ -365,34 +391,14 @@ function openBookDetailModal(book){
         </div>
       </div>
  
- 
- <div class="detail-row" style="width:85%;">
-      <label class="reread-check right-yose">
-
-  <input
-    type="checkbox"
-    id="reread-check"
-    ${book.reread ? "checked" : ""}
-
-    onchange="
-      toggleReread('${book.id}')
-    "
-  >
-
-  再読予定
-</label>
-</div>
-      
-      
-
-     <div class="label-text detail-row">
-     
-  読了日：
+     <div class="detail-row">
+     <span class="left-yose">
+  読了日：</span>
 
   ${
     latestDate
     ? `
-      <div class="date-tag">
+      <div class="date-tag left-yose">
         ${latestDate}
         <button
               class="mini-delete-btn"
@@ -404,27 +410,18 @@ function openBookDetailModal(book){
     : "未読"
   }
       
-    </div>
-      
-      
-      <div class="flex-between">
-      <div class="detail-row ">
+      <div class="right-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
       </div>
-            
+    </div>
       
-        <div class="book-stat">
-      ${
-        (
-          book.readDates ||
-          book.dates ||
-          []
-        ).length
-      }回読了</div>
-      </div>
+      
+  
+            
+     
       
       
       
