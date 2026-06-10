@@ -170,7 +170,12 @@
   white-space:nowrap;
 }
 
+.book-subtitle{
 
+  opacity:0.75;
+  font-size:0.9em;
+
+}
 
 
 /*再読はしおり描画*/
