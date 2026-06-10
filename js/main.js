@@ -170,7 +170,10 @@ let homeSections = {
   tags: false
 };
 
-let addBookTagSections = { tags: false };
+let addBookTagSections = {
+  tags: false,
+  hiddenTags:false
+ };
 let addBookSeriesSections = { series: false };
 let detailSections = {
   tags:false,

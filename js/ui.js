@@ -108,6 +108,9 @@ function togglesSection(id, btn){
   if(id === "open-book-hidden-tags"){
   detailSections.hiddenTags = opened;
 }
+if(id === "add-book-hidden-tags"){
+  addBookTagSections.hiddenTags = opened;
+}
 }
 
 

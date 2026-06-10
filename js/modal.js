@@ -191,11 +191,28 @@ function openAddBookModal(){
 
 	
 	<div
-  id="add-book-hidden-tag-title"
-  class="t-labels"
+  class="detail-toggle-head t-labels"
+  data-open="▽ 管理タグ（${newBookHiddenTagIds.length}）"
+  data-close="▶︎ 管理タグ（${newBookHiddenTagIds.length}）"
+  onclick="
+    togglesSection(
+      'add-book-hidden-tags',
+      this
+    )
+  "
 >
-  管理タグ（${newBookHiddenTagIds.length}）
+  ▶︎ 管理タグ（${newBookHiddenTagIds.length}）
 </div>
+
+<div
+  class="
+    toggle-content
+    ${addBookTagSections.hiddenTags ? "open" : ""}
+  "
+  id="add-book-hidden-tags"
+>
+
+  
 
 	<div class="hidden-tag-input-area">
 <div
@@ -225,7 +242,9 @@ function openAddBookModal(){
   </div>
       
       
-      
+   <!-- 今の新規本用 管理タグ入力・選択済み・サジェスト -->
+
+</div>   
       
       <hr class="kugiri">
 
