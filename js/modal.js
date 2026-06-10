@@ -49,9 +49,9 @@ function openAddBookModal(){
         >
       <div id="title-suggest"></div>
       
-      <div class="flex-between">
-      	<div class="mini-text">サブタイトル：</div>
-      <input class="input-title input-small-ex"
+      <div class="detail-row">
+      	<div class="field-label">サブ：</div>
+      <input class="input-title input-small"
         id="add-subtitle"
         type="text"
         placeholder="サブタイトル（任意）"
