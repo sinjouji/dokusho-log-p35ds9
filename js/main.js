@@ -178,9 +178,9 @@ let addBookSeriesSections = { series: false };
 let detailSections = {
   tags:false,
   series:false,
-  hiddenTags:false
- };
-
+  hiddenTags:false,
+  quotes:false
+};
 //人物検索用
 let characterSearchKeyword = "";
 

@@ -699,6 +699,36 @@ id="open-book-tags">
 
 </div>
 
+
+<div
+  class="detail-toggle-head t-labels"
+  data-open="▽ 引用メモ（0）"
+  data-close="▶︎ 引用メモ（0）"
+  onclick="
+    togglesSection(
+      'open-book-quotes',
+      this
+    )
+  "
+>
+  ▶︎ 引用メモ（0）
+</div>
+
+<div
+  class="
+    toggle-content
+    ${detailSections.quotes ? "open" : ""}
+  "
+  id="open-book-quotes"
+>
+
+  <div class="empty-note">
+    引用はまだありません
+  </div>
+
+</div>
+
+
       <hr class="kugiri">
 
 
