@@ -313,8 +313,8 @@ function openBookDetailModal(book){
     </div>
     
     <div class="flex-between">
-    <span class="label-text left-yose">
-  巻数：</span>
+    <div class="label-text left-yose">
+  巻数：
   <input
     class="input-common volume-input left-yose"
     id="detail-volume"
@@ -323,7 +323,7 @@ function openBookDetailModal(book){
     value="${book.volume || ""}"
     placeholder="巻数"
   >
-  
+ </div> 
   
   <div class="book-stat">
       ${
@@ -392,8 +392,8 @@ function openBookDetailModal(book){
       </div>
  
      <div class="detail-row">
-     <span class="left-yose">
-  読了日：</span>
+     <div class="left-yose">
+  読了日：
 
   ${
     latestDate
@@ -409,6 +409,7 @@ function openBookDetailModal(book){
       </div>`
     : "未読"
   }
+  </div>
       
       <div class="right-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
