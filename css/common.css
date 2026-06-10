@@ -613,3 +613,8 @@ color: #999;
 .usui-text{
   opacity: 0.6;
 }
+
+.label-text{
+  font-size:11px;
+  white-space:nowrap;
+}
