@@ -50,8 +50,8 @@ function openAddBookModal(){
       <div id="title-suggest"></div>
       
       <div class="detail-row">
-      	<div class="field-label">サブタイトル：</div>
-      <input class="input-title input-maxlimit"
+      	<div class="label-text">サブタイトル：</div>
+      <input class="input-title"
         id="add-subtitle"
         type="text"
         placeholder="サブタイトル（任意）"
@@ -60,7 +60,7 @@ function openAddBookModal(){
       
       
       <div class="flex-between">
-        <div class="field-label">読了日：</div>
+        <div class="label-text">読了日：</div>
 
         <input type="date" id="add-date" class="input-common input-small left-yose">
         
