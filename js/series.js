@@ -271,6 +271,11 @@ function renderSeriesDetail(s){
    <span class="mini-s-title">
   ${b.title}
   ${
+    b.subtitle
+      ? `<span class="book-subtitle">${b.subtitle}</span>`
+      : ""
+  }
+  ${
     b.volume
       ? ` ${b.volume}`
       : ""
