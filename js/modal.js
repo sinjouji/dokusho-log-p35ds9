@@ -51,7 +51,7 @@ function openAddBookModal(){
       
       <div class="detail-row">
       	<div class="field-label">サブタイトル：</div>
-      <input class="input-title input-small"
+      <input class="input-title input-small right-yose"
         id="add-subtitle"
         type="text"
         placeholder="サブタイトル（任意）"
