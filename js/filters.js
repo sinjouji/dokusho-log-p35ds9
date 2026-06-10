@@ -654,3 +654,24 @@ function toggleTagFilter(){
   renderHome();
 }
 
+
+
+//==============================
+//★フィルタの状態読み込みちゃん
+//==============================
+const savedFilterState =
+  localStorage.getItem(
+    "filterState"
+  );
+
+if(savedFilterState){
+
+  Object.assign(
+
+    filterState,
+
+    JSON.parse(savedFilterState)
+
+  );
+
+}
