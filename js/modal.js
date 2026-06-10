@@ -50,7 +50,7 @@ function openAddBookModal(){
       <div id="title-suggest"></div>
       
       <div class="detail-row">
-      	<span class="mini-text">サブタイトル：</span>
+      	<div class="field-label">サブタイトル：</div>
       <input class="input-title input-small"
         id="add-subtitle"
         type="text"
