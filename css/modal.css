@@ -126,6 +126,10 @@ border:1px solid #f4a57a;
 background:#fffffc;
 padding:3px 8px;
 border-radius:10px;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:break-word;
 }
 
 .detail-tags{
@@ -215,5 +219,12 @@ border-radius:10px;
 
 .volume-input{
   max-width:50px;
+}
+
+.detail-series-area{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  max-width:100%;
 }
 
