@@ -549,17 +549,18 @@ id="open-book-series">
       
 		
 			<div
-        class="toggle-head t-labels"
-        data-open="▽タグ非表示"
-        data-close="▶︎タグ表示"
-        onclick="
-          togglesSection(
-          'open-book-tags',
-          this
-          )
-        "
-      >
-      ▶︎タグ表示</div>
+  class="toggle-head t-labels"
+  data-open="▽タグ非表示"
+  data-close="▶︎タグ表示"
+  onclick="
+    togglesSection(
+      'open-book-tags',
+      this
+    )
+  "
+>
+  ${detailSections.tags ? "▽タグ非表示" : "▶︎タグ表示"}
+</div>
       
       <div class="
   toggle-content
