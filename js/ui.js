@@ -100,11 +100,13 @@ function togglesSection(id, btn){
   if(id === "open-book-tags"){
     detailSections.tags = opened;
   }
+if(id.startsWith("date-history-")){
+  detailSections.readHistory = opened;
+}
 
-  if(id === "open-book-series"){
-    detailSections.series = opened;
-  }
-  
+if(id === "open-book-series"){
+  detailSections.series = opened;
+}  
   if(id === "open-book-hidden-tags"){
   detailSections.hiddenTags = opened;
 }

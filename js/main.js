@@ -179,7 +179,8 @@ let detailSections = {
   tags:false,
   series:false,
   hiddenTags:false,
-  quotes:false
+  quotes:false,
+  readHistory:false
 };
 //人物検索用
 let characterSearchKeyword = "";
