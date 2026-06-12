@@ -66,9 +66,6 @@
 /* 詳細表示モーダル */
 .detail-modal{
   max-width: 400px;
-  
-  max-height:88vh;
-  overflow-y:auto;
 }
 
 
@@ -254,6 +251,7 @@ border-radius:10px;
 .modal-box.detail-modal,
 .modal-box.add-book-modal{
   max-height:88vh;
+  overflow-y:auto;
   display:flex;
   flex-direction:column;
   overflow:hidden;
