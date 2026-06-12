@@ -460,15 +460,15 @@ function openBookDetailModal(book){
       ` : ""}</div>
       
       
-     <div
+    <div
   class="toggle-history toggle-head t-labels"
   data-open="▽ 読了履歴"
   data-close="▶︎ 読了履歴"
   onclick="
-    detailSections.readHistory =
-      !detailSections.readHistory;
-
-    openBookDetailModal(book);
+    toggleDateHistory(
+      '${book.id}',
+      this
+    )
   "
 >
   ${
@@ -483,12 +483,12 @@ function openBookDetailModal(book){
   id="date-history-${book.id}"
   class="date-history-grid"
   style="
-    display:${
-      detailSections.readHistory
-        ? 'grid'
-        : 'none'
-    };
-  "
+  display:${
+    detailSections.readHistory
+      ? 'grid'
+      : 'none'
+  };
+"
 >
        
         ${sortedDates.slice(1).map(date=>`
