@@ -66,6 +66,9 @@
 /* 詳細表示モーダル */
 .detail-modal{
   max-width: 400px;
+  
+  max-height:88vh;
+  overflow-y:auto;
 }
 
 
@@ -157,8 +160,7 @@ border-radius:10px;
 
 /*読了履歴*/
 .date-history-grid{
-  display:grid;
-
+  display:none;
   grid-template-columns:
     1fr 1fr 1fr;
 
@@ -169,6 +171,10 @@ border-radius:10px;
   max-height:120px;
   overflow-y:auto;
 
+}
+
+.date-history-grid.open{
+  display:grid;
 }
 
 .mini-date-row{
