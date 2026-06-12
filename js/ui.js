@@ -103,7 +103,9 @@ function togglesSection(id, btn){
 if(id.startsWith("date-history-")){
   detailSections.readHistory = opened;
 }
-
+if(id === "open-book-read-history"){
+  detailSections.readHistory = opened;
+}
 if(id === "open-book-series"){
   detailSections.series = opened;
 }  

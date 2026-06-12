@@ -461,12 +461,12 @@ function openBookDetailModal(book){
       
       
     <div
-  class="toggle-history toggle-head t-labels"
+  class="detail-toggle-head t-labels"
   data-open="▽ 読了履歴"
   data-close="▶︎ 読了履歴"
   onclick="
-    toggleDateHistory(
-      '${book.id}',
+    togglesSection(
+      'open-book-read-history',
       this
     )
   "
@@ -480,31 +480,26 @@ function openBookDetailModal(book){
 </div>
 
 <div
-  id="date-history-${book.id}"
-  class="date-history-grid"
-  style="
-  display:${
-    detailSections.readHistory
-      ? 'grid'
-      : 'none'
-  };
-"
+  class="
+    toggle-content detail-inner-scroll
+    ${detailSections.readHistory ? "open" : ""}
+  "
+  id="open-book-read-history"
 >
-       
-        ${sortedDates.slice(1).map(date=>`
-        
-          <div class="mini-date-row">
-            ${date}
-            <button
-              class="mini-delete-btn"
-              onclick="removeReadDate('${book.id}','${date}')"
-            >
-              ✕
-            </button>
-          </div>
-        
-        `).join("")}
-    </div>
+  <div class="date-history-grid">
+    ${sortedDates.slice(1).map(date=>`
+      <div class="mini-date-row">
+        ${date}
+        <button
+          class="mini-delete-btn"
+          onclick="removeReadDate('${book.id}','${date}')"
+        >
+          ✕
+        </button>
+      </div>
+    `).join("")}
+  </div>
+</div>
       
       
       
