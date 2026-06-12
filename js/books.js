@@ -1313,6 +1313,9 @@ function cycleNewBookFav(){
 //==============================
 function toggleDateHistory(bookId, head){
 
+  detailSections.readHistory =
+    !detailSections.readHistory;
+
   const body =
     document.getElementById(
       `date-history-${bookId}`
@@ -1320,17 +1323,14 @@ function toggleDateHistory(bookId, head){
 
   if(!body) return;
 
-  const isOpening =
-    body.style.display === "none";
-
   body.style.display =
-    isOpening
+    detailSections.readHistory
       ? "grid"
       : "none";
 
   if(head){
     head.textContent =
-      isOpening
+      detailSections.readHistory
         ? head.dataset.open
         : head.dataset.close;
   }

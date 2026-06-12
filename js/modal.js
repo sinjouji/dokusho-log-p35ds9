@@ -481,9 +481,13 @@ function openBookDetailModal(book){
 
 <div
   id="date-history-${book.id}"
-  class="
-    date-history-grid
-    ${detailSections.readHistory ? "open" : ""}
+  class="date-history-grid"
+  style="
+    display:${
+      detailSections.readHistory
+        ? 'grid'
+        : 'none'
+    };
   "
 >
        
