@@ -389,17 +389,6 @@ function openBookDetailModal(book){
           ? "❤️ウィッシュ"
           : "📚本棚"
         }
-   
-     
-  <div class="book-stat">
-      ${
-        (
-          book.readDates ||
-          book.dates ||
-          []
-        ).length
-      }回読了</div>
-  
   
  <div class="detail-fav-wrap">
 
@@ -412,8 +401,9 @@ function openBookDetailModal(book){
        </button>
 
         </div>
-  
       </div>
+      
+      
  
      <div class="detail-row">
      <div class="left-yose">
@@ -435,15 +425,24 @@ function openBookDetailModal(book){
   }
   </div>
       
-      <div class="right-yose">
+      
+  <div class="book-stat">
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
+     
+    </div>
+      
+    <div class="right-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
-      </div>
     </div>
-      
-      
   
             
      
