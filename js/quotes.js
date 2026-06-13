@@ -59,7 +59,7 @@ function renderQuotes(){
         </select>
       </div>
       
-      <label class="check-row">
+      <label class="quote-favorite-filter">
 
   <input
     type="checkbox"
@@ -71,7 +71,7 @@ function renderQuotes(){
     }
 
     onchange="
-      quotePage.favoriteOnly=
+      quotePage.favoriteOnly =
         this.checked;
 
       renderQuotes();
@@ -101,7 +101,16 @@ const allQuotes =
 const filteredQuotes =
   allQuotes.filter(item=>{
 
-    if(!keyword) return true;
+    if(
+      quotePage.favoriteOnly &&
+      !item.quote.favorite
+    ){
+      return false;
+    }
+
+    if(!keyword){
+      return true;
+    }
 
     return [
       item.quote.text,
@@ -114,13 +123,6 @@ const filteredQuotes =
       .includes(keyword);
 
   });
-  
-  if(
-  quotePage.favoriteOnly &&
-  !item.quote.favorite
-){
-  return false;
-}
 
   filteredQuotes.sort((a,b)=>{
  
