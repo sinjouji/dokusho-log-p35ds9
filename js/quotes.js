@@ -104,7 +104,7 @@ const filteredQuotes =
     </div>
   `).join("");
 
-console.log(allQuotes);
+console.log(filteredQuotes);
 }
 
 
