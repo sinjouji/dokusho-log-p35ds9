@@ -35,60 +35,11 @@ function renderQuotes(){
       </div>
 
       <div id="quote-list-page">
-      
-      document.getElementById(
-  "quote-list-page"
-).innerHTML =
 
-allQuotes.map(item=>`
-
-  <div class="quote-card">
-
-    ${
-      item.quote.favorite
-        ? "⭐"
-        : ""
-    }
-
-    <div class="quote-text">
-
-      ${
-        item.quote.text.length > 60
-
-          ? item.quote.text.slice(0,60) + "..."
-
-          : item.quote.text
-      }
-
-    </div>
-
-    <div class="quote-book">
-
-      ${item.bookTitle}
-      ${item.volume ? ` ${item.volume}巻` : ""}
-
-    </div>
-
-    ${
-      item.quote.memo
-
-        ? `
-          <div class="quote-memo">
-            ${item.quote.memo}
-          </div>
-        `
-
-        : ""
-    }
-
-  </div>
-
-`).join("");
       
       </div>
     `
   });
-
 const allQuotes =
   getAllQuotes();
 
