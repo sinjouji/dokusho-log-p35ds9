@@ -378,8 +378,6 @@ function openBookDetailModal(book){
   `).join("")}
 </div>
 
-<div class="yohaku5 t-white">.</div>
-
 
     <div class="book-status-area">
       <div class="flex-between yohaku15">
@@ -405,7 +403,7 @@ function openBookDetailModal(book){
       
       
    <div class="flex-between">
-    <div class="book-stat yohaku10">
+    <div class="book-stat yohaku15">
     読了回数 ： 
       ${
         (
