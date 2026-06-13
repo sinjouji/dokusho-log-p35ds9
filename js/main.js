@@ -219,6 +219,7 @@ function go(page){
   if(page === "home") renderHome();
   if(page === "series") renderSeries();
   if(page === "characters") renderCharacters();
+  if(page === "quotes") renderQuotes();
   if(page === "stats") renderStats();
   if(page === "detail-search") renderDetailSearch();
   if(page === "tags") renderTags();
@@ -229,6 +230,7 @@ function go(page){
     home:"ホーム",
     series:"シリーズ",
     characters:"人物",
+    quotes:"引用",
     stats:"統計",
     "detail-search":"詳細検索",
     tags:"タグ",
