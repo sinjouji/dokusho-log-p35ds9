@@ -116,6 +116,13 @@ const filteredQuotes =
   });
   
   filteredQuotes.sort((a,b)=>{
+  if(
+  quotePage.favoriteOnly &&
+  !item.quote.favorite
+){
+  return false;
+}
+
 
   switch(quotePage.sort){
 
@@ -165,14 +172,7 @@ const filteredQuotes =
 
       return 0;
 
-if(
-  quotePage.favoriteOnly &&
-  !item.quote.favorite
-){
-  return false;
-}
   }
-  
 
 });
   
