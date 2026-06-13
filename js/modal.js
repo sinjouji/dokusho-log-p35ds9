@@ -256,7 +256,7 @@ function openAddBookModal(){
       <hr class="kugiri">
 
  
-        <button onclick="saveNewBook()" class="btn-main">
+        <button onclick="saveNewBook()" class="btn-main" style="width:100%">
           ➕保存
         </button>
             </div>
