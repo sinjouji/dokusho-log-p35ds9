@@ -297,7 +297,8 @@ border-radius:10px;
   background:rgba(255,248,238,.5);
   border-radius:12px;
   padding:6px 10px;
-  max-width:80%;
+  max-width:90%;
+  align-items:center;
 }
 
 /*引用メモ*/
