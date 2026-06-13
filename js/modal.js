@@ -44,7 +44,7 @@ function openAddBookModal(){
          <span>本を追加</span>
          <button class="btn-sub" onclick="closeModal('add-book-modal')">✖️</button></div>
 
-      <input class="input-title"
+      <input class="input-title yohaku10"
        id="add-title"
         type="text"
         placeholder="タイトル"
@@ -52,7 +52,7 @@ function openAddBookModal(){
         >
       <div id="title-suggest"></div>
       
-      <div class="detail-row">
+      <div class="detail-row yohaku10">
       	<div class="label-text">サブタイトル：</div>
       <input class="input-title"
         id="add-subtitle"
@@ -62,7 +62,7 @@ function openAddBookModal(){
       </div>
       
       
-      <div class="flex-between">
+      <div class="flex-between yohaku15">
         <div class="label-text">読了日：</div>
 
         <input type="date" id="add-date" class="input-common input-small left-yose">
@@ -85,7 +85,7 @@ function openAddBookModal(){
       <div class="detail-modal-body">
       
             ${enableMemo ? `
-      <input type="text" class="input-common" id="add-memo"
+      <input type="text" class="input-common yohaku15" id="add-memo"
         placeholder="メモ">` : ""}
 
       
