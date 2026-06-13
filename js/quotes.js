@@ -165,13 +165,14 @@ const filteredQuotes =
 
       return 0;
 
-  }
-  if(
+if(
   quotePage.favoriteOnly &&
   !item.quote.favorite
 ){
   return false;
 }
+  }
+  
 
 });
   
