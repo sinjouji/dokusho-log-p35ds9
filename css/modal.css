@@ -284,6 +284,10 @@ border-radius:10px;
   margin:15px 5px;
 }
 
+.t-white{
+  color:#fff;
+}
+
 #open-book-read-history{
   max-height:140px;
   overflow-y:auto;
