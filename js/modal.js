@@ -377,9 +377,6 @@ function openBookDetailModal(book){
     </button>
   `).join("")}
 </div>
-
-    
-    <div class="yohaku10 t-white">.</div>
     
       <div class="flex-between yohaku15">
         状態 ＝ 
@@ -404,7 +401,8 @@ function openBookDetailModal(book){
       
    
    <div class="flex-between">
-    <div class="book-stat yohaku15">
+    <div class="book-stat yohaku10">
+    読了回数 ： 
       ${
         (
           book.readDates ||
@@ -416,14 +414,14 @@ function openBookDetailModal(book){
  
       
  
-     <div class="detail-row">
-     <div class="left-yose yohaku15">
+     <div class="detail-row yohaku15">
+     <div class="left-yose">
   読了日：
 
   ${
     latestDate
     ? `
-      <div class="date-tag left-yose yohaku15">
+      <div class="date-tag left-yose">
         ${latestDate}
         <button
               class="mini-delete-btn"
@@ -438,17 +436,14 @@ function openBookDetailModal(book){
      
     </div>
       
-    <div class="detail-row">
+    <div class="detail-row yohaku15">
     <div class="right-yose">
-       <input type="date" id="readDate-${book.id}" class="input-common input-small yohaku15">
-      <button onclick="addReadDate('${book.id}')" style="margin-left:5px;" class="yohaku15">
+       <input type="date" id="readDate-${book.id}" class="input-common input-small">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
       </div>
     </div>
-  
-            
-     
       
       
       
