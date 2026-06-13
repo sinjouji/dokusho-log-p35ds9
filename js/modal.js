@@ -402,6 +402,7 @@ function openBookDetailModal(book){
         </div>
       </div>
    
+   <div class="flex-between">
     <div class="book-stat yohaku15">
       ${
         (
@@ -410,6 +411,7 @@ function openBookDetailModal(book){
           []
         ).length
       }回読了</div>
+      </div>
  
       
  
