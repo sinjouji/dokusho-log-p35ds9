@@ -1352,4 +1352,47 @@ function changeViewMode(mode){
 }
 
 
+//==============================
+// 引用メモ追加
+//==============================
+function addQuoteToBook(bookId){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book) return;
+
+  if(!Array.isArray(book.quotes)){
+    book.quotes = [];
+  }
+
+  const text =
+    document
+      .getElementById(`quote-text-${bookId}`)
+      ?.value
+      .trim() || "";
+
+  const memo =
+    document
+      .getElementById(`quote-memo-${bookId}`)
+      ?.value
+      .trim() || "";
+
+  if(!text) return;
+
+  book.quotes.unshift({
+    id: "q" + Date.now().toString(),
+    text,
+    memo,
+    favorite:false,
+    createdAt:new Date().toISOString()
+  });
+
+  saveData();
+
+  closeModal("open-book-modal");
+  openBookDetailModal(book);
+}
 

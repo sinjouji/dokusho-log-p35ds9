@@ -278,6 +278,10 @@ function openBookDetailModal(book){
 
   currentDetailFav = book.fav || 0;
   
+  if(!Array.isArray(book.quotes)){
+  book.quotes = [];
+}
+  
   const relatedSeries =
   seriesMaster.filter(s=>{
 
@@ -723,8 +727,8 @@ id="open-book-tags">
 
 <div
   class="detail-toggle-head t-labels"
-  data-open="▽ 引用メモ（0）"
-  data-close="▶︎ 引用メモ（0）"
+  data-open="▽ 引用メモ（${book.quotes.length}）"
+  data-close="▶︎ 引用メモ（${book.quotes.length}）"
   onclick="
     togglesSection(
       'open-book-quotes',
@@ -732,7 +736,7 @@ id="open-book-tags">
     )
   "
 >
-  ▶︎ 引用メモ（0）
+  ▶︎ 引用メモ（${book.quotes.length}）
 </div>
 
 <div
@@ -743,9 +747,49 @@ id="open-book-tags">
   id="open-book-quotes"
 >
 
-  <div class="empty-note">
-    引用はまだありません
-  </div>
+  <div class="quote-add-box">
+
+  <textarea
+    id="quote-text-${book.id}"
+    class="input-common quote-textarea"
+    placeholder="引用文"
+  ></textarea>
+
+  <input
+    id="quote-memo-${book.id}"
+    class="input-common"
+    placeholder="メモ（章・書写用など）"
+  >
+
+  <button
+    class="btn-sub"
+    onclick="addQuoteToBook('${book.id}')"
+  >
+    ＋引用を追加
+  </button>
+
+</div>
+
+<div class="quote-list">
+  ${
+    book.quotes.length
+      ? book.quotes.map(q=>`
+        <div class="quote-card">
+          <div class="quote-text">
+            ${q.favorite ? "⭐ " : ""}
+            ${q.text}
+          </div>
+
+          ${
+            q.memo
+              ? `<div class="quote-memo">${q.memo}</div>`
+              : ""
+          }
+        </div>
+      `).join("")
+      : `<div class="empty-note">引用はまだありません</div>`
+  }
+</div>
 
 </div>
 </div>
