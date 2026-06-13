@@ -254,7 +254,7 @@ border-radius:10px;
 
 /*本用モーダルちゃん高さ制限*/
 .modal-box.detail-modal{
-  max-height:75vh;
+  max-height:70vh;
   display:flex;
   flex-direction:column;
   overflow:hidden;
@@ -303,5 +303,22 @@ border-radius:10px;
 
 /*引用メモ*/
 
+.quote-card{
+  background:#fffdf8;
+  border:1px solid #f0e6d5;
+  border-radius:12px;
+  padding:10px;
+  margin:8px 0;
+}
 
+.quote-text{
+  font-weight:bold;
+  line-height:1.6;
+}
+
+.quote-memo{
+  font-size:12px;
+  opacity:.75;
+  margin-top:6px;
+}
 
