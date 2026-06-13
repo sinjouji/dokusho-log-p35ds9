@@ -21,6 +21,7 @@ function renderQuotes(){
           class="input-common input-small"
           id="quote-search"
           placeholder="引用・メモを検索"
+          oninput="renderQuotes()"
         >
 
         <select
@@ -73,7 +74,7 @@ const filteredQuotes =
   document.getElementById(
   "quote-list-page"
 ).innerHTML =
-  allQuotes.map(item=>`
+  filteredQuotes.map(item=>`
     <div class="quote-card">
 
       <div class="quote-text">
