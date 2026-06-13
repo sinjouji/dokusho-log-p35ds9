@@ -788,12 +788,21 @@ id="open-book-tags">
   >
     ${q.favorite ? "⭐" : "☆"}
   </button>
-
+<button
+  class="quote-delete-btn"
+  onclick="
+    deleteQuoteFromBook(
+      '${book.id}',
+      '${q.id}'
+    )
+  "
+>
+  🗑
+</button>
+</div>
   <div class="quote-text">
     ${q.text}
   </div>
-
-</div>
 
           ${
             q.memo

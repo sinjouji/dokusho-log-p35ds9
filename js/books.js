@@ -1439,3 +1439,28 @@ function toggleQuoteFavorite(bookId, quoteId){
 
   }, 0);
 }
+
+
+
+//==============================
+// 引用メモ削除
+//==============================
+function deleteQuoteFromBook(bookId, quoteId){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book || !Array.isArray(book.quotes)) return;
+
+  book.quotes =
+    book.quotes.filter(q =>
+      String(q.id) !== String(quoteId)
+    );
+
+  saveData();
+
+  closeModal("open-book-modal");
+  openBookDetailModal(book);
+}
