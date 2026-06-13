@@ -115,15 +115,16 @@ const filteredQuotes =
 
   });
   
-  filteredQuotes.sort((a,b)=>{
- 
-  switch(quotePage.sort){
-   if(
+  if(
   quotePage.favoriteOnly &&
   !item.quote.favorite
 ){
   return false;
 }
+
+  filteredQuotes.sort((a,b)=>{
+ 
+  switch(quotePage.sort){
 
     case "created-desc":
 
