@@ -4,8 +4,11 @@
 //
 
 let quotePage = {
+
   keyword:"",
-  sort:"created-desc"
+  sort:"created-desc",
+  favoriteOnly:false
+
 };
 
 
@@ -55,6 +58,30 @@ function renderQuotes(){
           <option value="book-desc">本タイトル降順</option>
         </select>
       </div>
+      
+      <label class="check-row">
+
+  <input
+    type="checkbox"
+
+    ${
+      quotePage.favoriteOnly
+        ? "checked"
+        : ""
+    }
+
+    onchange="
+      quotePage.favoriteOnly=
+        this.checked;
+
+      renderQuotes();
+    "
+  >
+
+  ⭐ お気に入りのみ
+
+</label>
+      
 
       <div id="quote-list-page">
       </div>
@@ -139,6 +166,12 @@ const filteredQuotes =
       return 0;
 
   }
+  if(
+  quotePage.favoriteOnly &&
+  !item.quote.favorite
+){
+  return false;
+}
 
 });
   
