@@ -36,9 +36,12 @@ function openAddBookModal(){
   modal.id = "add-book-modal";
 
   modal.innerHTML = `
-    <div class="modal-box">
+    <div class="modal-box detail-modal">
+    
+    <div class="detail-modal-header">
+    
  <div class="flex-between">
-         <span class="left-yose">本を追加</span>
+         <span>本を追加</span>
          <button class="btn-sub" onclick="closeModal('add-book-modal')">✖️</button></div>
 
       <input class="input-title"
@@ -76,8 +79,10 @@ function openAddBookModal(){
 
         
       </div>
+      </div>
       
       
+      <div class="detail-modal-body">
       
             ${enableMemo ? `
       <input type="text" class="input-common" id="add-memo"
@@ -85,7 +90,7 @@ function openAddBookModal(){
 
       
     <div
-      class="toggle-head t-labels"
+      class="detail-toggle-head t-labels"
       data-open="▽関連シリーズ"
       data-close="▶︎関連シリーズ"
       onclick="
@@ -131,7 +136,7 @@ function openAddBookModal(){
   
   
       <div
-      class="toggle-head t-labels"
+      class="detail-toggle-head t-labels"
       data-open="▽タグ非表示"
       data-close="▶︎タグ表示"
       onclick="
@@ -245,13 +250,16 @@ function openAddBookModal(){
    <!-- 今の新規本用 管理タグ入力・選択済み・サジェスト -->
 
 </div>   
+</div>
       
+      <div class="detail-modal-footer">
       <hr class="kugiri">
 
  
         <button onclick="saveNewBook()" class="btn-main">
           ➕保存
         </button>
+            </div>
             </div>
   `;
 
