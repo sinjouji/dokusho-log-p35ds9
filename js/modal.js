@@ -381,7 +381,7 @@ function openBookDetailModal(book){
     
     <div class="yohaku10 t-white">.</div>
     
-      <div class="flex-between">
+      <div class="flex-between yohaku15">
         状態 ＝ 
         ${
           book.type === "wish"
@@ -389,7 +389,7 @@ function openBookDetailModal(book){
           : "📚本棚"
         }
   
- <div class="detail-fav-wrap">
+     <div class="detail-fav-wrap">
 
        <button
          class="fav-cycle-btn"
@@ -401,6 +401,7 @@ function openBookDetailModal(book){
 
         </div>
       </div>
+      
    
    <div class="flex-between">
     <div class="book-stat yohaku15">
