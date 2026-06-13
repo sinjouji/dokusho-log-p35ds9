@@ -1,0 +1,295 @@
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  overflow-y:auto;
+  padding:20px 0;
+
+  z-index:9999;
+}
+
+.modal-box{
+  width:90%;
+  max-width:400px;
+
+  background:#fffffc;
+  border-radius:10px;
+
+  padding:16px;
+
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus{
+  outline:none;
+  border-color:#9cc9ff;
+  box-shadow:0 0 0 3px rgba(156,201,255,.2);
+
+  width:100%;
+  box-sizing:border-box;
+
+  padding:12px;
+  border-radius:10px;
+
+  border:1px solid #ddd;
+  background:#fffffc;
+
+  font-size:14px;
+}
+
+.modal-box textarea{
+  min-height:100px;
+  resize:vertical;
+  font-size:14px;
+  padding:5px 0;
+}
+
+.modal-actions{
+  margin-top:20px;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+
+
+/* 詳細表示モーダル */
+.detail-modal{
+  max-width: 400px;
+  
+  max-height:88vh;
+  overflow-y:auto;
+}
+
+
+
+.field-label{
+  font-size:13px;
+  color:#777;
+  margin:10px 0 6px;
+}
+
+
+
+/* 評価切替えボタン */
+.fav-cycle-btn{
+  font-size:14px;
+  padding:2px 8px;
+  border:none;
+  border-radius:999px;
+  background:#f3e9be;
+}
+
+/* タグ風読了日表示 */
+.date-tag{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  text-align:center;
+
+  padding:1px 6px;
+  margin:3px;
+
+  background:#fbf6e8;
+  border-radius:999px;
+
+  font-size:11px;
+/*  border:1px solid #f4a57a;*/
+  color:#e3a29c;
+}
+
+
+
+.close-btn{
+  border:1px solid white;
+  background:white;
+  font-size:20px;
+  cursor:pointer;
+  padding:5px;
+
+/*  position:absolute;
+  top:16px;
+  right:20px;*/
+}
+
+
+/* 詳細表示モーダル */
+
+.detail-series{
+font-size:10px;
+color:#f4a57a;
+border:1px solid #f4a57a;
+background:#fffffc;
+padding:3px 8px;
+border-radius:10px;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+.detail-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+
+/*  margin-top:5px;*/
+}
+
+.detail-memo{
+  margin-top:10px;
+
+  padding:16px;
+
+  background:#fffffc;
+  border-radius:10px;
+
+  white-space:pre-wrap;
+}
+
+
+/*読了履歴*/
+.date-history-grid{
+  grid-template-columns:
+    1fr 1fr 1fr;
+
+  gap:2px;
+
+  margin-top:1px;
+/*一定以上の量だとスクロールエリアになる*/
+  max-height:120px;
+  overflow-y:auto;
+
+}
+
+.date-history-grid.open{
+  display:grid;
+}
+
+.mini-date-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  
+  font-size:10px;
+  color:#f4a57a;
+  padding:1px 4px;
+  gap:2px;
+  background:#fbf6e8;
+  border:1px solid #f4a57a;
+
+  border-radius:10px;
+}
+
+/*本詳細モーダル内表示の設定など*/
+.book-stat{
+  background:#7ebeab;
+  color:#fffffc;
+  font-size:12px;
+  font-weight:bold;
+  border-radius:10px;
+  padding:1px 10px;
+  align-items:center;
+}
+
+.reread-check{
+  font-size:13px;
+  color:#e0803a;
+  border:1px solid #e0803a;
+  border-radius:10px;
+  padding:1px 10px;
+  margin:3px;
+}
+
+.inate{
+  border:1px solid #f4a57a;
+  padding:3px 1px;
+  font-size:12px;
+}
+
+
+/*トグルラベル*/
+.t-labels{
+  font-size:13px;
+  font-weight:bold;
+  text-align:center;
+  padding:6px 8px;
+  margin:4px 0;
+  border-radius:999px;
+  background:#fff8ee;
+}
+
+
+.volume-input{
+  max-width:50px;
+}
+
+.detail-series-area{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  max-width:100%;
+}
+
+#open-book-hidden-tags{
+  flex-direction:column;
+}
+
+.hidden-tag-input-area{
+  margin-bottom:4px;
+}
+#add-book-hidden-tags{
+  flex-direction:column;
+}
+
+/*本用モーダルちゃん高さ制限*/
+.modal-box.detail-modal{
+  max-height:60vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.detail-modal-header{
+  flex:0 0 auto;
+}
+
+.detail-modal-body{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  padding:6px 2px;
+}
+
+.detail-modal-footer{
+  flex:0 0 auto;
+}
+
+.detail-inner-scroll{
+  max-height:120px;
+  overflow-y:auto;
+}
+
+.detail-toggle-head{
+  margin:15px 5px;
+}
+
+#open-book-read-history{
+  max-height:140px;
+  overflow-y:auto;
+}
+
+/*引用メモ*/
+
+
+
