@@ -116,15 +116,14 @@ const filteredQuotes =
   });
   
   filteredQuotes.sort((a,b)=>{
-  if(
+ 
+  switch(quotePage.sort){
+   if(
   quotePage.favoriteOnly &&
   !item.quote.favorite
 ){
   return false;
 }
-
-
-  switch(quotePage.sort){
 
     case "created-desc":
 
