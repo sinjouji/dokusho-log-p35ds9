@@ -52,27 +52,23 @@ function renderQuotes(){
   
 const allQuotes =
   getAllQuotes();
-  
+
+const filteredQuotes =
   allQuotes.filter(item=>{
 
-  if(!keyword) return true;
+    if(!keyword) return true;
 
-  return [
+    return [
+      item.quote.text,
+      item.quote.memo,
+      item.bookTitle,
+      item.subtitle
+    ]
+      .join(" ")
+      .toLowerCase()
+      .includes(keyword);
 
-    item.quote.text,
-
-    item.quote.memo,
-
-    item.bookTitle,
-
-    item.subtitle
-
-  ]
-  .join(" ")
-  .toLowerCase()
-  .includes(keyword);
-
-});
+  });
   
   document.getElementById(
   "quote-list-page"
