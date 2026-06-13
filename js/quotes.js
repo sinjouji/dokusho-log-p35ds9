@@ -182,7 +182,15 @@ const filteredQuotes =
   "quote-list-page"
 ).innerHTML =
   filteredQuotes.map(item=>`
-    <div class="quote-card">
+    <div
+  class="quote-card"
+
+  onclick="
+    openBookDetailModalById(
+      '${item.bookId}'
+    )
+  "
+>
 
       <div class="quote-text">
         ${

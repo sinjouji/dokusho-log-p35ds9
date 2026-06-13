@@ -720,8 +720,8 @@ function incrementVolumeTitle(title){
 function openBookDetailModalById(id){
 
   const book =
-    books.find(b =>
-      String(b.id) === String(id)
+    books.find(
+      b => String(b.id) === String(id)
     );
 
   if(!book) return;
