@@ -332,9 +332,7 @@ function openBookDetailModal(book){
       placeholder="サブタイトル（任意）"
     >
     </div>
-    </div>
     
-  <div class="detail-modal-body">
     <div class="flex-between">
     <div class="label-text left-yose">
   巻数：
@@ -348,17 +346,6 @@ function openBookDetailModal(book){
   >
  </div> 
  
- <div class="detail-fav-wrap">
-
-       <button
-         class="fav-cycle-btn"
-         onclick="cycleFav('${book.id}')">評価：
-           ${
-              ["0","★","★★","★★★","👑"][book.fav || 0]
-            }
-       </button>
-
-        </div>
   
   <label class="reread-check right-yose">
 
@@ -375,9 +362,9 @@ function openBookDetailModal(book){
   再読予定
 </label>
 </div>
-
+</div>
     
-            
+     <div class="detail-modal-body">
       <div class="detail-series-area">
   ${relatedSeries.map(s=>`
     <button class="detail-series"
@@ -395,7 +382,7 @@ function openBookDetailModal(book){
     
     
     
-      <div class="actions-row">
+      <div class="flex-between">
         状態 ＝ 
         ${
           book.type === "wish"
@@ -412,6 +399,19 @@ function openBookDetailModal(book){
           []
         ).length
       }回読了</div>
+  
+  
+ <div class="detail-fav-wrap">
+
+       <button
+         class="fav-cycle-btn"
+         onclick="cycleFav('${book.id}')">評価：
+           ${
+              ["0","★","★★","★★★","👑"][book.fav || 0]
+            }
+       </button>
+
+        </div>
   
       </div>
  
@@ -546,7 +546,7 @@ id="open-book-series">
       <div id="book-series-suggest"></div>
     </div>
     
-    <div class="flex-between">
+    <div class="detail-low">
     関連：
 
     <div id="book-edit-series" class="series-edit-list"></div>
