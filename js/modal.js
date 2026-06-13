@@ -399,6 +399,7 @@ function openBookDetailModal(book){
         </div>
       </div>
       
+      <div class="yohaku10 t-white">.</div>
    
    <div class="flex-between">
     <div class="book-stat yohaku10">
@@ -414,7 +415,7 @@ function openBookDetailModal(book){
  
       
  
-     <div class="detail-row yohaku15">
+     <div class="detail-row yohaku10">
      <div class="left-yose">
   読了日：
 
@@ -437,7 +438,7 @@ function openBookDetailModal(book){
     </div>
       
     <div class="detail-row yohaku15">
-    <div class="right-yose">
+    <div class="left-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
