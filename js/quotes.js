@@ -38,8 +38,41 @@ function renderQuotes(){
       </div>
     `
   });
+  
+  const keyword =
+  (
+    document.getElementById(
+      "quote-search"
+    )?.value || ""
+  )
+  .trim()
+  .toLowerCase();
+  
+  
+  
 const allQuotes =
   getAllQuotes();
+  
+  allQuotes.filter(item=>{
+
+  if(!keyword) return true;
+
+  return [
+
+    item.quote.text,
+
+    item.quote.memo,
+
+    item.bookTitle,
+
+    item.subtitle
+
+  ]
+  .join(" ")
+  .toLowerCase()
+  .includes(keyword);
+
+});
   
   document.getElementById(
   "quote-list-page"
