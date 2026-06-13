@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-<!--<link rel="stylesheet" href="css/base.css">まだ未実装-->
 <link rel="stylesheet" href="css/modal.css">
 <link rel="stylesheet" href="css/tag.css">
 <link rel="stylesheet" href="css/suggest.css">
@@ -11,6 +10,7 @@
 <link rel="stylesheet" href="css/view.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/quote.css">
 <link rel="stylesheet" href="css/settings.css">
 <link rel="stylesheet" href="css/detail-search.css">
 <head>
@@ -36,6 +36,9 @@
       <button class="btn-me" id="menu-home" onclick="go('home')">ホーム</button>
       <button class="btn-me" id="menu-series" onclick="go('series')">シリーズ</button>
       <button class="btn-me" id="menu-characters" onclick="go('characters')">人物</button>
+      <button onclick="go('quotes')" id="menu-quotes" class="btn-me">
+  引用
+</button>
       <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
       <button class="btn-me" id="menu-detail-search" onclick="go('detail-search')">
   検索
@@ -55,6 +58,7 @@
 <div id="page-home" class="page"></div>
 <div id="page-series" class="page hidden"></div>
 <div id="page-characters" class="page hidden"></div>
+<div id="page-quotes" class="page hidden"></div>
 <div id="page-stats" class="page hidden"></div>
 
 <div id="page-detail-search" class="page hidden"></div>
@@ -133,6 +137,7 @@ window.saveData = async function(){
 <script src="js/series.js"></script>
 <script src="js/characters.js"></script>
 <script src="js/tag.js"></script>
+<script src="js/quotes.js"></script>
 <script src="js/detail-search.js"></script>
 <script src="js/settings.js"></script>
 <script src="js/main.js"></script>
