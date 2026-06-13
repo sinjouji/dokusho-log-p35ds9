@@ -309,15 +309,17 @@ function openBookDetailModal(book){
 	
   modal.innerHTML = `
     <div class="modal-box detail-modal">
-    <div class="flex-between">
-      <input id="detail-title" class="input-title"
+    
+    <div class="detail-modal-header">
+    
+    <div class="detail-row">
+    <input id="detail-title" class="input-title"
         value="${book.title || ""}">        
     
-      <button class="btn-sub" onclick="closeModal('open-book-modal')" style="margin-left:auto;">
+      <button class="btn-sub right-yose" onclick="closeModal('open-book-modal')">
         ✖️
       </button>
     </div>
-    
     
     <div class="detail-row">
     <span class="label-text">
@@ -330,7 +332,9 @@ function openBookDetailModal(book){
       placeholder="サブタイトル（任意）"
     >
     </div>
+    </div>
     
+  <div class="detail-modal-body">
     <div class="flex-between">
     <div class="label-text left-yose">
   巻数：
@@ -371,7 +375,7 @@ function openBookDetailModal(book){
   再読予定
 </label>
 </div>
-    
+
     
             
       <div class="detail-series-area">
@@ -733,8 +737,9 @@ id="open-book-tags">
   </div>
 
 </div>
+</div>
 
-
+<div class="detail-modal-footer">
       <hr class="kugiri">
 
 
@@ -755,6 +760,7 @@ id="open-book-tags">
       
     </div>
       
+    </div>
     </div>
   `;
 
