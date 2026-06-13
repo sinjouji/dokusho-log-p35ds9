@@ -1399,30 +1399,43 @@ function addQuoteToBook(bookId){
 //==============================
 // 引用メモお気に入り切替え
 //==============================
-function toggleQuoteFavorite(
-  bookId,
-  quoteId
-){
+function toggleQuoteFavorite(bookId, quoteId){
+
+  const body =
+    document.querySelector(".detail-modal-body");
+
+  const scrollTop =
+    body ? body.scrollTop : 0;
 
   const book =
-    books.find(
-      b => String(b.id) === String(bookId)
+    books.find(b =>
+      String(b.id) === String(bookId)
     );
 
   if(!book) return;
 
   const quote =
-    book.quotes.find(
-      q => q.id === quoteId
+    book.quotes.find(q =>
+      String(q.id) === String(quoteId)
     );
 
   if(!quote) return;
 
-  quote.favorite =
-    !quote.favorite;
+  quote.favorite = !quote.favorite;
 
   saveData();
 
   closeModal("open-book-modal");
   openBookDetailModal(book);
+
+  setTimeout(()=>{
+
+    const newBody =
+      document.querySelector(".detail-modal-body");
+
+    if(newBody){
+      newBody.scrollTop = scrollTop;
+    }
+
+  }, 0);
 }
