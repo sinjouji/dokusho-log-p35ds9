@@ -347,7 +347,7 @@ function openBookDetailModal(book){
  </div> 
  
   
-  <label class="reread-check right-yose">
+  <label class="reread-check right-yose yohaku15">
 
   <input
     type="checkbox"
@@ -379,7 +379,7 @@ function openBookDetailModal(book){
 </div>
 
     
-    
+    <div class="yohaku10"> </div>
     
       <div class="flex-between">
         状態 ＝ 
@@ -407,7 +407,7 @@ function openBookDetailModal(book){
       
  
      <div class="detail-row">
-     <div class="left-yose">
+     <div class="left-yose yohaku15">
   読了日：
 
   ${
@@ -427,7 +427,7 @@ function openBookDetailModal(book){
   </div>
       
       
-  <div class="book-stat">
+  <div class="book-stat yohaku15">
       ${
         (
           book.readDates ||
@@ -441,7 +441,7 @@ function openBookDetailModal(book){
     <div class="detail-row">
     <div class="right-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small yohaku15">
-      <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:5px;" class="yohaku15">
        ➕読了日
       </button>
       </div>
