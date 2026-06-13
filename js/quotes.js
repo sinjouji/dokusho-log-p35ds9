@@ -3,7 +3,10 @@
 // 引用
 //
 
-
+let quotePage = {
+  keyword:"",
+  sort:"created-desc"
+};
 
 
 
@@ -18,11 +21,15 @@ function renderQuotes(){
 
       <div class="quote-page-tools">
         <input
-          class="input-common input-small"
-          id="quote-search"
-          placeholder="引用・メモを検索"
-          
-        >
+  class="input-common input-small"
+  id="quote-search"
+  placeholder="引用・メモを検索"
+  value="${quotePage.keyword}"
+  oninput="
+    quotePage.keyword = this.value;
+    renderQuotes();
+  "
+>
 
         <select
           class="select-chip"
@@ -41,13 +48,9 @@ function renderQuotes(){
   });
   
   const keyword =
-  (
-    document.getElementById(
-      "quote-search"
-    )?.value || ""
-  )
-  .trim()
-  .toLowerCase();
+  (quotePage.keyword || "")
+    .trim()
+    .toLowerCase();
   
   
   
