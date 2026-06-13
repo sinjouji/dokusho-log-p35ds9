@@ -32,10 +32,24 @@ function renderQuotes(){
 >
 
         <select
-          class="select-chip"
-          id="quote-sort"
-        >
-          <option value="created-desc">新しい順</option>
+  class="select-chip"
+  id="quote-sort"
+
+  onchange="
+    quotePage.sort=this.value;
+    renderQuotes();
+  "
+>
+          <option
+  value="created-desc"
+  ${
+    quotePage.sort === "created-desc"
+      ? "selected"
+      : ""
+  }
+>
+  新しい順
+</option>
           <option value="created-asc">古い順</option>
           <option value="book-asc">本タイトル昇順</option>
           <option value="book-desc">本タイトル降順</option>
@@ -73,6 +87,60 @@ const filteredQuotes =
       .includes(keyword);
 
   });
+  
+  filteredQuotes.sort((a,b)=>{
+
+  switch(quotePage.sort){
+
+    case "created-desc":
+
+      return (
+        new Date(
+          b.quote.createdAt || 0
+        )
+        -
+        new Date(
+          a.quote.createdAt || 0
+        )
+      );
+
+    case "created-asc":
+
+      return (
+        new Date(
+          a.quote.createdAt || 0
+        )
+        -
+        new Date(
+          b.quote.createdAt || 0
+        )
+      );
+
+    case "book-asc":
+
+      return (
+        a.bookTitle || ""
+      ).localeCompare(
+        b.bookTitle || "",
+        "ja"
+      );
+
+    case "book-desc":
+
+      return (
+        b.bookTitle || ""
+      ).localeCompare(
+        a.bookTitle || "",
+        "ja"
+      );
+
+    default:
+
+      return 0;
+
+  }
+
+});
   
   document.getElementById(
   "quote-list-page"
