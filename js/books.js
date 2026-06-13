@@ -1396,3 +1396,33 @@ function addQuoteToBook(bookId){
   openBookDetailModal(book);
 }
 
+//==============================
+// 引用メモお気に入り切替え
+//==============================
+function toggleQuoteFavorite(
+  bookId,
+  quoteId
+){
+
+  const book =
+    books.find(
+      b => String(b.id) === String(bookId)
+    );
+
+  if(!book) return;
+
+  const quote =
+    book.quotes.find(
+      q => q.id === quoteId
+    );
+
+  if(!quote) return;
+
+  quote.favorite =
+    !quote.favorite;
+
+  saveData();
+
+  closeModal("open-book-modal");
+  openBookDetailModal(book);
+}

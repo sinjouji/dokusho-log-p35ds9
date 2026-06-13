@@ -775,10 +775,25 @@ id="open-book-tags">
     book.quotes.length
       ? book.quotes.map(q=>`
         <div class="quote-card yohaku10">
-          <div class="quote-text">
-            ${q.favorite ? "⭐ " : ""}
-            ${q.text}
-          </div>
+          <div class="quote-head">
+
+  <button
+    class="quote-fav-btn"
+    onclick="
+      toggleQuoteFavorite(
+        '${book.id}',
+        '${q.id}'
+      )
+    "
+  >
+    ${q.favorite ? "⭐" : "☆"}
+  </button>
+
+  <div class="quote-text">
+    ${q.text}
+  </div>
+
+</div>
 
           ${
             q.memo
