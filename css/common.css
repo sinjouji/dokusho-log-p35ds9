@@ -346,6 +346,7 @@ button{
   font-size:14px;
   display:flex;
   align-items:center;
+  padding:10px 0;
 }
 
 /*元：title-line*/
