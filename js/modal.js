@@ -437,11 +437,13 @@ function openBookDetailModal(book){
      
     </div>
       
+    <div class="detail-row">
     <div class="right-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
+      </div>
     </div>
   
             
@@ -510,7 +512,7 @@ function openBookDetailModal(book){
       
       
       <div
-        class="toggle-head t-labels"
+        class="detail-toggle-head t-labels"
         data-open="▽関連シリーズ"
         data-close="▶︎関連シリーズ"
         onclick="
@@ -557,7 +559,7 @@ id="open-book-series">
       
 		
 			<div
-  class="toggle-head t-labels"
+  class="detail-toggle-head t-labels"
   data-open="▽タグ非表示"
   data-close="▶︎タグ表示"
   onclick="
