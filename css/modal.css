@@ -253,38 +253,27 @@ border-radius:10px;
 }
 
 /*本用モーダルちゃん高さ制限*/
-.modal-box.detail-modal,
-.modal-box.add-book-modal{
+.modal-box.detail-modal{
+  height:88vh;
   max-height:88vh;
-  overflow-y:auto;
   display:flex;
   flex-direction:column;
   overflow:hidden;
 }
 
-.modal-header{
+.detail-modal-header{
   flex:0 0 auto;
-  position:sticky;
-  top:0;
-  z-index:2;
-  background:#fffffc;
-  padding-bottom:6px;
 }
 
-.modal-scroll-body{
+.detail-modal-body{
   flex:1 1 auto;
-  overflow-y:auto;
-  padding:4px 2px 8px;
   min-height:0;
+  overflow-y:auto;
+  padding:6px 2px;
 }
 
-.modal-footer{
+.detail-modal-footer{
   flex:0 0 auto;
-  position:sticky;
-  bottom:0;
-  z-index:2;
-  background:#fffffc;
-  padding-top:8px;
 }
 
 .detail-inner-scroll{
@@ -292,6 +281,10 @@ border-radius:10px;
   overflow-y:auto;
 }
 
+#open-book-read-history{
+  max-height:140px;
+  overflow-y:auto;
+}
 
 /*引用メモ*/
 
