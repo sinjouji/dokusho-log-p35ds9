@@ -313,7 +313,7 @@ function openBookDetailModal(book){
     <div class="detail-modal-header">
     
     <div class="detail-row">
-    <input id="detail-title" class="input-title"
+    <input id="detail-title" class="input-title yohaku10"
         value="${book.title || ""}">        
     
       <button class="btn-sub right-yose" onclick="closeModal('open-book-modal')">
@@ -325,7 +325,7 @@ function openBookDetailModal(book){
     <span class="label-text">
     サブタイトル：</span>
     <input
-      class="input-common"
+      class="input-common yohaku15"
       id="edit-subtitle"
       type="text"
       value="${book.subtitle || ""}"
@@ -337,7 +337,7 @@ function openBookDetailModal(book){
     <div class="label-text left-yose">
   巻数：
   <input
-    class="input-common volume-input left-yose"
+    class="input-common volume-input left-yose yohaku15"
     id="detail-volume"
     type="number"
     min="0"
@@ -367,7 +367,7 @@ function openBookDetailModal(book){
      <div class="detail-modal-body">
       <div class="detail-series-area">
   ${relatedSeries.map(s=>`
-    <button class="detail-series"
+    <button class="detail-series yohaku15"
       onclick="
         closeModal('open-book-modal');
         openSeriesById('${s.id}');
@@ -378,7 +378,6 @@ function openBookDetailModal(book){
   `).join("")}
 </div>
 
-    
     
     
     
@@ -403,6 +402,8 @@ function openBookDetailModal(book){
         </div>
       </div>
       
+      <div class="yohaku10"> </div>
+      <div class="yohaku10"> </div>
       
  
      <div class="detail-row">
@@ -412,7 +413,7 @@ function openBookDetailModal(book){
   ${
     latestDate
     ? `
-      <div class="date-tag left-yose">
+      <div class="date-tag left-yose yohaku15">
         ${latestDate}
         <button
               class="mini-delete-btn"
@@ -439,7 +440,7 @@ function openBookDetailModal(book){
       
     <div class="detail-row">
     <div class="right-yose">
-       <input type="date" id="readDate-${book.id}" class="input-common input-small">
+       <input type="date" id="readDate-${book.id}" class="input-common input-small yohaku15">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
@@ -454,7 +455,7 @@ function openBookDetailModal(book){
        <div class="detail-row">
       ${enableMemo ? `
       <input
-        class="input-common"
+        class="input-common yohaku15"
         type="text"
         id="editMemo"
         
@@ -464,6 +465,7 @@ function openBookDetailModal(book){
       >
       ` : ""}</div>
       
+      <div class="yohaku10"> </div>
       
     <div
   class="detail-toggle-head t-labels"
