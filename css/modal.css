@@ -280,6 +280,10 @@ border-radius:10px;
   overflow-y:auto;
 }
 
+.detail-toggle-head{
+  margin:15px 5px;
+}
+
 #open-book-read-history{
   max-height:140px;
   overflow-y:auto;
