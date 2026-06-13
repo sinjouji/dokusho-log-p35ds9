@@ -379,7 +379,7 @@ function openBookDetailModal(book){
 </div>
 
     
-    <div class="yohaku10"> </div>
+    <div class="yohaku10 t-white">.</div>
     
       <div class="flex-between">
         状態 ＝ 
@@ -401,9 +401,16 @@ function openBookDetailModal(book){
 
         </div>
       </div>
-      
-      <div class="yohaku10"> </div>
-      <div class="yohaku10"> </div>
+   
+    <div class="book-stat yohaku15">
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
+ 
       
  
      <div class="detail-row">
@@ -425,16 +432,6 @@ function openBookDetailModal(book){
     : "未読"
   }
   </div>
-      
-      
-  <div class="book-stat yohaku15">
-      ${
-        (
-          book.readDates ||
-          book.dates ||
-          []
-        ).length
-      }回読了</div>
      
     </div>
       
