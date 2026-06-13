@@ -21,7 +21,7 @@ function renderQuotes(){
           class="input-common input-small"
           id="quote-search"
           placeholder="引用・メモを検索"
-          oninput="renderQuotes()"
+          
         >
 
         <select
