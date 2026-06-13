@@ -751,18 +751,18 @@ id="open-book-tags">
 
   <textarea
     id="quote-text-${book.id}"
-    class="input-common quote-textarea"
+    class="input-common quote-textarea yohaku10"
     placeholder="引用文"
   ></textarea>
 
   <input
     id="quote-memo-${book.id}"
-    class="input-common"
+    class="input-common yohaku10"
     placeholder="メモ（章・書写用など）"
   >
 
   <button
-    class="btn-sub"
+    class="btn-sub yohaku15"
     onclick="addQuoteToBook('${book.id}')"
   >
     ＋引用を追加
@@ -774,7 +774,7 @@ id="open-book-tags">
   ${
     book.quotes.length
       ? book.quotes.map(q=>`
-        <div class="quote-card">
+        <div class="quote-card yohaku10">
           <div class="quote-text">
             ${q.favorite ? "⭐ " : ""}
             ${q.text}
