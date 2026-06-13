@@ -342,11 +342,10 @@ button{
 ==========*/
 
 .detail-row{
-  margin-top:5px;
   font-size:14px;
   display:flex;
   align-items:center;
-  padding:10px 0;
+  margin:10px 0;
 }
 
 /*元：title-line*/
@@ -354,6 +353,7 @@ button{
   display: flex;
   justify-content: space-between;
   gap:3px;
+  margin:10px 0;
 }
 
 
