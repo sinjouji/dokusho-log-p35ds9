@@ -341,7 +341,9 @@ button{
 コンテンツ配置（主にモーダル内）
 ==========*/
 
-
+.yohaku5{
+ margin-bottom:5px;
+}
 .yohaku10{
  margin-bottom:10px;
 }

@@ -293,6 +293,13 @@ border-radius:10px;
   overflow-y:auto;
 }
 
+.book-status-area{
+  background:rgba(255,248,238,.5);
+  border-radius:12px;
+  padding:6px 10px;
+  max-width:80%;
+}
+
 /*引用メモ*/
 
 
