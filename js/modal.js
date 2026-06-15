@@ -896,7 +896,8 @@ const characterCount =
 	
 	modal.innerHTML = `
 		<div class="modal-box fixed-scroll-modal book-detail-modal">
-		<div class="flex-between">
+		<div class="detail-modal-head">
+		 <div class="flex-between">
 					<span class="left-yose">シリーズを追加</span>
 						<button class="btn-sub right-yose" onclick="closeModal('add-series-modal')">✖️</button></div>
 			
@@ -975,7 +976,7 @@ const characterCount =
 				
 			<div class="detail-modal-footer">
 			     <hr class="kugiri">
-     			 <button class="btn-main" onclick="saveNewSeries()">➕追加</button></div>
+     			 <button class="btn-main" style="width:100%" onclick="saveNewSeries()">➕追加</button></div>
 			
 			
 			
@@ -1021,7 +1022,7 @@ const characterCount =
 
   modal.innerHTML = `
     <div class="modal-box fixed-scroll-modal book-detail-modal">
-
+      <div class="detail-modal-head">
       <div class="flex-between">
       <span class="left-yose">シリーズ編集</span>
       <button onclick="closeModal('edit-series-modal')" class="btn-sub right-yose">✖️</button>
@@ -1223,12 +1224,10 @@ editingCharacterSeriesIds =
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-		<div class="detail-modal-header">
+		<div class="detail-modal-header flex-between">
 			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
-			
-			</div>
 			
 			<div class="detail-modal-body">
 			<div class="left-yose">メモ</div>
