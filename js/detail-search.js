@@ -37,6 +37,8 @@ let detailSearch = {
     books:true,
     series:true,
     characters:true
+    hasQuotes:false,
+    hasFavoriteQuotes:false,
   },
 
   tagStates:{},
@@ -345,6 +347,27 @@ if(
   (b.tagIds || []).length > 0
 ){
   return false;
+}
+//引用メモ
+if(
+  detailSearch.hasQuotes &&
+  (!b.quotes || b.quotes.length === 0)
+){
+  return false;
+}
+if(
+  detailSearch.hasFavoriteQuotes
+){
+
+  const hasFavorite =
+    (b.quotes || []).some(
+      q => q.favorite
+    );
+
+  if(!hasFavorite){
+    return false;
+  }
+
 }
 
 //巻数未設定
@@ -764,7 +787,39 @@ function renderDetailSearchConditions(){
   <div class="detail-search-group-title">
     データ整備
   </div>
+<label class="check-row">
+  <input
+    type="checkbox"
+    ${
+      detailSearch.hasQuotes
+        ? "checked"
+        : ""
+    }
+    onchange="
+      detailSearch.hasQuotes =
+        this.checked;
+      renderDetailSearch();
+    "
+  >
+  引用あり
+</label>
 
+<label class="check-row">
+  <input
+    type="checkbox"
+    ${
+      detailSearch.hasFavoriteQuotes
+        ? "checked"
+        : ""
+    }
+    onchange="
+      detailSearch.hasFavoriteQuotes =
+        this.checked;
+      renderDetailSearch();
+    "
+  >
+  ⭐お気に入り引用あり
+</label>
   <label>
     <input
       type="checkbox"
