@@ -13,6 +13,8 @@ let seriesViewMode =
 //==============================
 function openSeriesById(id){
 
+  closeDetailModals();
+
   const series = seriesMaster.find(
     s => String(s.id) === String(id)
   );

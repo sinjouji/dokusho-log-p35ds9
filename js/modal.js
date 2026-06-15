@@ -1616,3 +1616,20 @@ function openQuoteViewModal(bookId, quoteId){
   document.body.appendChild(modal);
 }
 
+
+//==============================
+// モーダルリレー対策：モーダル閉じるやつ
+//==============================
+function closeDetailModals(){
+
+  [
+    "open-book-modal",
+    "series-detail-modal",
+    "character-modal",
+    "quote-view-modal",
+    "quote-edit-modal"
+  ].forEach(id=>{
+    closeModal(id);
+  });
+
+}
