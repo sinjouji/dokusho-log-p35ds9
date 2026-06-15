@@ -146,15 +146,24 @@ setActiveMenu("menu-settings");
     <div class="setting-row">
   <span>JSONインポート</span>
 
-  <label class="btn-sub">
-    読み込み
-    <input class="btn-sub"
-      type="file"
-      accept="application/json"
-      style="display:none"
-      onchange="importJsonData(this)"
-    >
-  </label>
+  <button
+  class="btn-sub"
+  onclick="
+    document.getElementById(
+      'import-json-file'
+    ).click();
+  "
+>
+  読み込み
+</button>
+
+<input
+  id="import-json-file"
+  type="file"
+  accept="application/json"
+  style="display:none"
+  onchange="importJsonData(this)"
+>
 </div>
 
 `
