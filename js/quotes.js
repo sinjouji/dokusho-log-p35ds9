@@ -245,6 +245,8 @@ case "favorite-desc":
           `
           : ""
       }
+      
+      <div class="detail-row">
 <button
   class="quote-book-btn right-yose"
   onclick="
@@ -269,7 +271,7 @@ case "favorite-desc":
   "
 >
   ✏️
-</button>
+</button></div>
     </div>
   `).join("");
 
