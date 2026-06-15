@@ -250,6 +250,8 @@ function getDetailSearchSummary(state){
 
   if(state.reread) list.push("再読予定");
 
+  if(state.hasQuotes) list.push("引用あり");
+  if(state.hasFavoriteQuotes) list.push("お気に入り引用あり")
   if(state.noSeriesBook) list.push("シリーズ未設定本");
   if(state.noSeriesCharacter) list.push("シリーズ未設定人物");
   if(state.noTags) list.push("タグ未設定本");
@@ -393,10 +395,23 @@ if(
     // キーワード
 if(!keyword) return true;
 
+const quoteText =
+  (b.quotes || [])
+    .map(q =>
+      [
+        q.text,
+        q.memo
+      ]
+        .filter(Boolean)
+        .join(" ")
+    )
+    .join(" ");
+
 const bookText =
   [
     b.title,
-    b.subtitle
+    b.subtitle,
+    quoteText
   ]
     .filter(Boolean)
     .join(" ")
@@ -787,6 +802,43 @@ function renderDetailSearchConditions(){
   <div class="detail-search-group-title">
     データ整備
   </div>
+  
+  <label class="check-row">
+  <input
+    type="checkbox"
+    ${
+      detailSearch.hasQuotes
+        ? "checked"
+        : ""
+    }
+    onchange="
+  detailSearch.hasQuotes =
+    this.checked;
+
+  saveDetailSearchState();
+"
+  >
+  引用あり
+</label>
+
+<label class="check-row">
+  <input
+    type="checkbox"
+    ${
+      detailSearch.hasFavoriteQuotes
+        ? "checked"
+        : ""
+    }
+    onchange="
+  detailSearch.hasFavoriteQuotes =
+    this.checked;
+
+  saveDetailSearchState();
+"
+  >
+  ⭐お気に入り引用あり
+</label>
+  
   <label>
     <input
       type="checkbox"
@@ -828,42 +880,6 @@ function renderDetailSearchConditions(){
     >
     🏷️タグ未設定の📘<b>本</b>
   </label>
-<label class="check-row">
-  <input
-    type="checkbox"
-    ${
-      detailSearch.hasQuotes
-        ? "checked"
-        : ""
-    }
-    onchange="
-  detailSearch.hasQuotes =
-    this.checked;
-
-  saveDetailSearchState();
-"
-  >
-  引用あり
-</label>
-
-<label class="check-row">
-  <input
-    type="checkbox"
-    ${
-      detailSearch.hasFavoriteQuotes
-        ? "checked"
-        : ""
-    }
-    onchange="
-  detailSearch.hasFavoriteQuotes =
-    this.checked;
-
-  saveDetailSearchState();
-"
-  >
-  ⭐お気に入り引用あり
-</label>
-
 
   <label>
     <input
