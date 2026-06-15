@@ -254,7 +254,7 @@ border-radius:10px;
 
 /*本用モーダルちゃん高さ制限*/
 .modal-box.detail-modal{
-  height:50vh;
+  height:40vh;
   max-height:70vh;
   display:flex;
   flex-direction:column;
@@ -304,7 +304,7 @@ border-radius:10px;
 
 .modal-box{
   max-width:50vw;
-  max-height:70vh;
+  max-height:60vh;
 }
 
 .fixed-scroll-modal{
@@ -322,12 +322,12 @@ border-radius:10px;
 
 /*引用モーダル用*/
 .quote-view-modal{
-  max-height:88vh;
+  max-height:65vh;
 }
 
 .quote-view-text.vertical{
   writing-mode:vertical-rl;
-  height:60vh;
+  height:65vh;
 }
 
 
