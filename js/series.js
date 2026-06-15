@@ -154,7 +154,7 @@ const bookCount =
   `;
 }
 			
-		d.onclick = ()=> openSeries(s);
+		d.onclick = ()=> openSeriesDetailModal(s);
 		main.appendChild(d);
 	});
 	
