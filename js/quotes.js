@@ -204,6 +204,20 @@ const filteredQuotes =
         ${item.quote.favorite ? "⭐ " : ""}
         ${item.bookTitle}
         ${item.volume ? ` ${item.volume}巻` : ""}
+        
+        
+        <button
+  class="quote-edit-btn right-yose"
+  onclick="
+    event.stopPropagation();
+    openQuoteEditModal(
+      '${item.bookId}',
+      '${item.quote.id}'
+    );
+  "
+>
+  ✏️
+</button>
       </div>
 
       ${
@@ -364,4 +378,140 @@ function deleteQuoteFromBook(bookId, quoteId){
 
   closeModal("open-book-modal");
   openBookDetailModal(book);
+}
+
+
+//==============================
+// 引用メモ編集モーダル
+//==============================
+function openQuoteEditModal(bookId, quoteId){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book || !Array.isArray(book.quotes)) return;
+
+  const quote =
+    book.quotes.find(q =>
+      String(q.id) === String(quoteId)
+    );
+
+  if(!quote) return;
+
+  const modal =
+    document.createElement("div");
+
+  modal.className = "modal-bg";
+  modal.id = "quote-edit-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box quote-edit-modal">
+
+      <div class="modal-header flex-between">
+        <strong>引用メモ編集</strong>
+
+        <button
+          class="btn-sub"
+          onclick="closeModal('quote-edit-modal')"
+        >
+          ✖️
+        </button>
+      </div>
+
+      <div class="modal-scroll-body">
+
+        <textarea
+          id="edit-quote-text"
+          class="input-common quote-textarea"
+          placeholder="引用文"
+        >${quote.text || ""}</textarea>
+
+        <input
+          id="edit-quote-memo"
+          class="input-common"
+          placeholder="メモ"
+          value="${quote.memo || ""}"
+        >
+
+        <label class="check-row">
+          <input
+            type="checkbox"
+            id="edit-quote-favorite"
+            ${quote.favorite ? "checked" : ""}
+          >
+          ⭐ お気に入り
+        </label>
+
+      </div>
+
+      <div class="modal-footer">
+        <button
+          class="btn-main"
+          onclick="
+            saveQuoteEdit(
+              '${bookId}',
+              '${quoteId}'
+            )
+          "
+        >
+          保存
+        </button>
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+
+
+//==============================
+// 引用メモ編集保存関数
+//==============================
+function saveQuoteEdit(bookId, quoteId){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book || !Array.isArray(book.quotes)) return;
+
+  const quote =
+    book.quotes.find(q =>
+      String(q.id) === String(quoteId)
+    );
+
+  if(!quote) return;
+
+  quote.text =
+    document
+      .getElementById("edit-quote-text")
+      ?.value
+      .trim() || "";
+
+  quote.memo =
+    document
+      .getElementById("edit-quote-memo")
+      ?.value
+      .trim() || "";
+
+  quote.favorite =
+    document
+      .getElementById("edit-quote-favorite")
+      ?.checked || false;
+
+  saveData();
+
+  closeModal("quote-edit-modal");
+
+  if(currentPage === "quotes"){
+    renderQuotes();
+  }else{
+    closeModal("open-book-modal");
+    openBookDetailModal(book);
+  }
 }

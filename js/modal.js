@@ -799,10 +799,29 @@ id="open-book-tags">
 >
   🗑
 </button>
+
+<button
+  class="quote-edit-btn"
+  onclick="
+    event.stopPropagation();
+    openQuoteEditModal(
+      '${item.bookId}',
+      '${item.quote.id}'
+    );
+  "
+>
+  ✏️
+</button>
+
 </div>
+
+
+
   <div class="quote-text">
     ${q.text}
   </div>
+
+
 
           ${
             q.memo
