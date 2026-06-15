@@ -204,20 +204,6 @@ const filteredQuotes =
         ${item.quote.favorite ? "⭐ " : ""}
         ${item.bookTitle}
         ${item.volume ? ` ${item.volume}巻` : ""}
-        
-        
-        <button
-  class="quote-edit-btn right-yose"
-  onclick="
-    event.stopPropagation();
-    openQuoteEditModal(
-      '${item.bookId}',
-      '${item.quote.id}'
-    );
-  "
->
-  ✏️
-</button>
       </div>
 
       ${
@@ -229,7 +215,18 @@ const filteredQuotes =
           `
           : ""
       }
-
+<button
+  class="quote-edit-btn right-yose"
+  onclick="
+    event.stopPropagation();
+    openQuoteEditModal(
+      '${item.bookId}',
+      '${item.quote.id}'
+    );
+  "
+>
+  ✏️
+</button>
     </div>
   `).join("");
 
