@@ -38,7 +38,7 @@ let detailSearch = {
     series:true,
     characters:true
     hasQuotes:false,
-    hasFavoriteQuotes:false,
+    hasFavoriteQuotes:false
   },
 
   tagStates:{},
