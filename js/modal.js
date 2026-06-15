@@ -805,8 +805,8 @@ id="open-book-tags">
   onclick="
     event.stopPropagation();
     openQuoteEditModal(
-      '${item.bookId}',
-      '${item.quote.id}'
+      '${book.id}',
+      '${q.id}'
     );
   "
 >
