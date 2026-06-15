@@ -53,10 +53,38 @@ function renderQuotes(){
 >
   新しい順
 </option>
-          <option value="created-asc">古い順</option>
-          <option value="book-asc">本タイトル昇順</option>
-          <option value="book-desc">本タイトル降順</option>
+          <option value="created-asc"
+          ${
+            quotePage.sort === "created-asc"
+              ? "selected"
+              : ""
+          }
+          >古い順</option>
+          <option value="book-asc"
+          ${
+            quotePage.sort === "book-asc"
+              ? "selected"
+              : ""
+          }
+          >本タイトル昇順</option>
+          <option value="book-desc"
+          ${
+            quotePage.sort === "book-desc"
+              ? "selected"
+              : ""
+          }
+          >本タイトル降順</option>
         </select>
+        <option
+  value="favorite-desc"
+  ${
+    quotePage.sort === "favorite-desc"
+      ? "selected"
+      : ""
+  }
+>
+  ⭐お気に入り優先
+</option>
       </div>
       
       <label class="quote-favorite-filter">
@@ -169,6 +197,13 @@ const filteredQuotes =
         a.bookTitle || "",
         "ja"
       );
+case "favorite-desc":
+
+  return (
+    Number(b.quote.favorite || false)
+    -
+    Number(a.quote.favorite || false)
+  );
 
     default:
 
