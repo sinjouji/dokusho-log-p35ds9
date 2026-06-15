@@ -147,7 +147,6 @@ setActiveMenu("menu-settings");
   <span>JSONインポート</span>
 
   <button
-  class="btn-sub"
   onclick="
     document.getElementById(
       'import-json-file'
