@@ -148,7 +148,7 @@ setActiveMenu("menu-settings");
 
   <label class="btn-sub">
     読み込み
-    <input
+    <input class="btn-sub"
       type="file"
       accept="application/json"
       style="display:none"
