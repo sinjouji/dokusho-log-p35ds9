@@ -1119,7 +1119,7 @@ function renderSeriesSearchResults(
                 <div
                   class="detail-result-item"
                   onclick="
-                    openSeriesById('${s.id}')
+                    openSeriesDetailModal(s)
                   "
                 >
                   ${s.name}

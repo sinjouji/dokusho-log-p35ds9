@@ -1127,10 +1127,21 @@ renderSeriesEditCharacters();
 //==============================
 // シリーズ詳細 2026/06/15移植開始
 //==============================
-function openSeriesDetailModal(series){
+function openSeriesDetailModal(s){
 
-  const modal =
-    document.createElement("div");
+  const relatedBooks = books.filter(b =>
+    (s.bookIds || [])
+      .map(String)
+      .includes(String(b.id))
+  );
+
+  const relatedCharacters = characters.filter(c =>
+    (s.characterIds || [])
+      .map(String)
+      .includes(String(c.id))
+  );
+
+  const modal = document.createElement("div");
 
   modal.className = "modal-bg";
   modal.id = "series-detail-modal";
@@ -1139,11 +1150,10 @@ function openSeriesDetailModal(series){
     <div class="modal-box fixed-scroll-modal series-detail-modal">
 
       <div class="modal-header flex-between">
-        <input
-          id="series-detail-name"
-          class="input-title"
-          value="${series.name || ""}"
-        >
+        <div>
+          <div class="input-title">${s.name}</div>
+          <div class="satu">登録：${relatedBooks.length}冊</div>
+        </div>
 
         <button
           class="btn-sub"
@@ -1155,16 +1165,66 @@ function openSeriesDetailModal(series){
 
       <div class="fixed-scroll-body">
 
-        <!-- ここに関連本・関連人物・メモを入れる -->
+        <div class="series-section">
+          <div
+            class="series-section-title"
+            onclick="
+              seriesSections.books =
+                !seriesSections.books;
+
+              closeModal('series-detail-modal');
+
+              openSeriesDetailModal(
+                seriesMaster.find(x =>
+                  String(x.id) === String('${s.id}')
+                )
+              );
+            "
+          >
+            ${seriesSections.books ? "▽" : "▶︎"} 関連作品
+          </div>
+
+          ${
+            seriesSections.books
+              ? `<div id="modal-series-books"></div>`
+              : ""
+          }
+        </div>
+
+        <div class="series-section">
+          <div
+            class="series-section-title"
+            onclick="
+              seriesSections.chars =
+                !seriesSections.chars;
+
+              closeModal('series-detail-modal');
+
+              openSeriesDetailModal(
+                seriesMaster.find(x =>
+                  String(x.id) === String('${s.id}')
+                )
+              );
+            "
+          >
+            ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+          </div>
+
+          ${
+            seriesSections.chars
+              ? `<div id="modal-series-chars"></div>`
+              : ""
+          }
+        </div>
 
       </div>
 
       <div class="modal-footer">
         <button
-          class="btn-main"
-          onclick="saveSeriesDetail('${series.id}')"
+          class="btn-sub"
+          onclick="openSeriesEditModal('${s.id}')"
         >
-          保存
+          ✏️ 編集
         </button>
       </div>
 
@@ -1172,8 +1232,71 @@ function openSeriesDetailModal(series){
   `;
 
   document.body.appendChild(modal);
-}
 
+  const list =
+    document.getElementById("modal-series-books");
+
+  if(list){
+    relatedBooks.forEach(b=>{
+
+      const d = document.createElement("div");
+
+      const latestDate =
+        getLatestReadDate(b);
+
+      d.className = "card mini-s-card";
+
+      d.innerHTML = `
+        <span class="mini-s-title">
+          ${b.title}
+          ${
+            b.subtitle
+              ? `<span class="book-subtitle">${b.subtitle}</span>`
+              : ""
+          }
+          ${
+            b.volume
+              ? ` ${b.volume}`
+              : ""
+          }
+        </span>
+
+        <span class="
+          mini-read-status
+          ${latestDate ? "read" : "unread"}
+        ">
+          ${
+            latestDate
+              ? `既読：${latestDate}`
+              : "未読"
+          }
+        </span>
+      `;
+
+      d.onclick = () => openBookDetailModal(b);
+
+      list.appendChild(d);
+    });
+  }
+
+  const list2 =
+    document.getElementById("modal-series-chars");
+
+  if(list2){
+    if(!relatedCharacters.length){
+      list2.innerHTML =
+        `<div style="color:gray;">（人物なし）</div>`;
+    }else{
+      relatedCharacters.forEach(c=>{
+        const d = document.createElement("div");
+        d.className = "card mini-s-card";
+        d.textContent = c.name;
+        d.onclick = () => openCharacterModal(c);
+        list2.appendChild(d);
+      });
+    }
+  }
+}
 
 //==============================
 //キャラクター
