@@ -136,9 +136,11 @@ setActiveMenu("menu-settings");
     ? `
     <!--エクスポート-->
     <div class="setting-row">
-      <span>インポート</span>
-      ---
-    </div>  
+  <span>JSONエクスポート</span>
+  <button onclick="exportJsonData()">
+    書き出し
+  </button>
+</div>
 
     <!--インポートー-->
     <div class="setting-row">
@@ -581,4 +583,43 @@ function cycleSeriesViewMode(){
   renderSettings();
 
 }
+
+
+//==============================
+// JSONエクスポート
+//==============================
+function exportJsonData(){
+
+  const data = {
+    books,
+    characters,
+    tagMaster,
+    seriesMaster
+  };
+
+  const blob =
+    new Blob(
+      [JSON.stringify(data, null, 2)],
+      { type:"application/json" }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+
+  a.download =
+    `book-log-backup-${new Date()
+      .toISOString()
+      .slice(0,10)}.json`;
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+
 
