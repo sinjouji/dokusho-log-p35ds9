@@ -57,14 +57,7 @@ setActiveMenu("menu-settings");
         ${getTypeModeLabel()}
       </button>
     </div>
-    
-      <!--シリーズ初期表示-->
-    <div class="setting-row">
-      <span>シリーズ初期表示</span>
-      <button>シリーズ初期表示
-      </button>
-    </div>
-    
+
       <!--引用モーダル初期表示-->
     <div class="setting-row">
   <span>引用表示</span>
@@ -72,6 +65,23 @@ setActiveMenu("menu-settings");
     ${getQuoteViewModeLabel()}
   </button>
 </div>
+    
+      <div class="setting-row">
+
+  <span>
+    シリーズ一覧
+  </span>
+
+  <button
+    onclick="
+      cycleSeriesViewMode()
+    "
+  >
+    ${getSeriesViewModeLabel()}
+  </button>
+
+</div>
+    
     
 `
 : ""}
@@ -514,5 +524,61 @@ function getQuoteViewModeLabel(){
   return quoteViewMode === "vertical"
     ? "縦書き"
     : "横書き";
+}
+
+
+
+//==============================
+// シリーズ一覧初期表示ラベル
+// ※changeSeriesViewMode は series.js
+//==============================
+function getSeriesViewModeLabel(){
+
+  switch(seriesViewMode){
+
+    case "card":
+      return "カード";
+
+    case "compact":
+      return "リスト";
+
+    case "spine":
+      return "背表紙";
+
+    default:
+      return "カード";
+
+  }
+
+}
+//==============================
+// シリーズ一覧初期表示ラベル切替トグル
+//==============================
+function cycleSeriesViewMode(){
+
+  if(seriesViewMode === "card"){
+
+    changeSeriesViewMode(
+      "compact"
+    );
+
+  }else if(
+    seriesViewMode === "compact"
+  ){
+
+    changeSeriesViewMode(
+      "spine"
+    );
+
+  }else{
+
+    changeSeriesViewMode(
+      "card"
+    );
+
+  }
+
+  renderSettings();
+
 }
 

@@ -2,10 +2,10 @@
 // SERIE.JS シリーズ関連の処理
 //
 
+//設定Pシリーズ初期表示モード
 let seriesViewMode =
-  localStorage.getItem("seriesViewMode") || "card";
-  
-  
+  localStorage.getItem("seriesViewMode")
+  || "card";  
   
 
 //==============================
