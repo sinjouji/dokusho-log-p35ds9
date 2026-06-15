@@ -184,10 +184,10 @@ const filteredQuotes =
   filteredQuotes.map(item=>`
     <div
   class="quote-card"
-
   onclick="
-    openBookDetailModalById(
-      '${item.bookId}'
+    openQuoteViewModal(
+      '${item.bookId}',
+      '${item.quote.id}'
     )
   "
 >
@@ -200,11 +200,19 @@ const filteredQuotes =
         }
       </div>
 
-      <div class="quote-book">
-        ${item.quote.favorite ? "⭐ " : ""}
-        ${item.bookTitle}
-        ${item.volume ? ` ${item.volume}巻` : ""}
-      </div>
+      <button
+  class="quote-book-btn"
+  onclick="
+    event.stopPropagation();
+    openBookDetailModalById(
+      '${item.bookId}'
+    )
+  "
+>
+  ${item.quote.favorite ? "⭐ " : ""}
+  ${item.bookTitle}
+  ${item.volume ? ` ${item.volume}巻` : ""}
+</button>
 
       ${
         item.quote.memo
@@ -512,3 +520,8 @@ function saveQuoteEdit(bookId, quoteId){
     openBookDetailModal(book);
   }
 }
+
+
+
+
+

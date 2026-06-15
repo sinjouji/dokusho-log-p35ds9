@@ -1327,5 +1327,94 @@ function openDayModal(dateStr, list){
 }
 
 
+//==============================
+// 引用メモ表示専用モーダル
+//==============================
+let quoteViewMode = "horizontal";
 
+function openQuoteViewModal(bookId, quoteId){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book || !Array.isArray(book.quotes)) return;
+
+  const quote =
+    book.quotes.find(q =>
+      String(q.id) === String(quoteId)
+    );
+
+  if(!quote) return;
+
+  const modal =
+    document.createElement("div");
+
+  modal.className = "modal-bg";
+  modal.id = "quote-view-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box quote-view-modal">
+
+      <div class="modal-header flex-between">
+        <button
+          class="btn-sub"
+          onclick="
+            quoteViewMode =
+              quoteViewMode === 'vertical'
+                ? 'horizontal'
+                : 'vertical';
+
+            closeModal('quote-view-modal');
+
+            openQuoteViewModal(
+              '${bookId}',
+              '${quoteId}'
+            );
+          "
+        >
+          ${
+            quoteViewMode === "vertical"
+              ? "横書き"
+              : "縦書き"
+          }
+        </button>
+
+        <button
+          class="btn-sub"
+          onclick="closeModal('quote-view-modal')"
+        >
+          ✖️
+        </button>
+      </div>
+
+      <div
+        class="
+          quote-view-text
+          ${
+            quoteViewMode === "vertical"
+              ? "vertical"
+              : "horizontal"
+          }
+        "
+      >
+        ${quote.text || ""}
+      </div>
+
+      ${
+        quote.memo
+          ? `
+            <div class="quote-view-memo">
+              ${quote.memo}
+            </div>
+          `
+          : ""
+      }
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
 
