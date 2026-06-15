@@ -413,7 +413,7 @@ function openSeries(series){
 
   go("detail");
 
-  openSeriesDetailModal(s);
+  openSeriesDetailModal(series);
 }
 
 
@@ -613,7 +613,7 @@ async function saveSeriesEdit(id){
 
   renderSeries();
 
-  openSeriesDetailModal(s);
+  openSeriesDetailModal(series);
 
   showToast("保存しました！");
 }
