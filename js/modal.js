@@ -1149,19 +1149,12 @@ function openSeriesDetailModal(s){
   modal.innerHTML = `
     <div class="modal-box fixed-scroll-modal series-detail-modal">
 
-      <div class="modal-header flex-between">
-        <div>
+      <div class="modal-header">
+        
           <div class="input-title">${s.name}</div>
           <div class="satu">登録：${relatedBooks.length}冊</div>
         </div>
-
-        <button
-          class="btn-sub"
-          onclick="closeModal('series-detail-modal')"
-        >
-          ✖️
-        </button>
-      </div>
+      
 
       <div class="fixed-scroll-body">
 
@@ -1220,12 +1213,23 @@ function openSeriesDetailModal(s){
       </div>
 
       <div class="modal-footer">
+      <hr class="kugiri">
+      
+      <div class="flex-between">
         <button
           class="btn-sub"
           onclick="openSeriesEditModal('${s.id}')"
         >
           ✏️ 編集
         </button>
+        
+        <button
+          class="btn-sub"
+          onclick="closeModal('series-detail-modal')"
+        >
+          ✖️
+        </button>
+        </div>
       </div>
 
     </div>
