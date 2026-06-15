@@ -163,7 +163,7 @@ const bookCount =
 //============================
 // シリーズ：詳細画面の表示
 //============================
-function renderSeriesDetail(s){
+/*function renderSeriesDetail(s){
 
   const relatedBooks = books.filter(b =>
     (s.bookIds || [])
@@ -318,7 +318,7 @@ function renderSeriesDetail(s){
     }
   });
 }
-
+openSeriesDetailModal(...を多分変えんと使えん */
 //==============================
 //シリーズソート
 //==============================
@@ -411,7 +411,6 @@ function openSeries(series){
     String(series.id)
   );
 
-  go("detail");
 
   openSeriesDetailModal(series);
 }
