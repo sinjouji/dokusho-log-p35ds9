@@ -1091,6 +1091,8 @@ async function deleteSeries(id){
     await saveData();
 
     closeModal("edit-series-modal");
+    closeModal("series-detail-modal");
+
     go('series');
     renderSeries();
 
