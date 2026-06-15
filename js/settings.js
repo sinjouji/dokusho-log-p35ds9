@@ -144,9 +144,18 @@ setActiveMenu("menu-settings");
 
     <!--インポートー-->
     <div class="setting-row">
-      <span>インポート</span>
-      ---
-    </div>
+  <span>JSONインポート</span>
+
+  <label class="btn-sub">
+    読み込み
+    <input
+      type="file"
+      accept="application/json"
+      style="display:none"
+      onchange="importJsonData(this)"
+    >
+  </label>
+</div>
 
 `
 : ""}
@@ -622,4 +631,72 @@ function exportJsonData(){
 }
 
 
+//==============================
+// JSONインポート
+//==============================
+function importJsonData(input){
 
+  const file =
+    input.files?.[0];
+
+  if(!file) return;
+
+  if(
+    !confirm(
+      "現在のデータを上書きします。\n続行しますか？"
+    )
+  ){
+    input.value = "";
+    return;
+  }
+
+  const reader =
+    new FileReader();
+
+  reader.onload = async e => {
+
+    try{
+
+      const data =
+        JSON.parse(e.target.result);
+
+      if(
+        !Array.isArray(data.books) ||
+        !Array.isArray(data.characters) ||
+        !Array.isArray(data.tagMaster) ||
+        !Array.isArray(data.seriesMaster)
+      ){
+        alert(
+          "JSONの形式が違うため、インポートできません。"
+        );
+        return;
+      }
+
+      books = data.books;
+      characters = data.characters;
+      tagMaster = data.tagMaster;
+      seriesMaster = data.seriesMaster;
+
+      await saveData();
+
+      alert(
+        "インポートが完了しました。"
+      );
+
+      location.reload();
+
+    }catch(err){
+
+      console.error(err);
+
+      alert(
+        "読み込みに失敗しました。\nJSONファイルを確認してください。"
+      );
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+}
