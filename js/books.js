@@ -968,12 +968,19 @@ function renderBookList(){
 
 const filteredBooks = books.filter(b => {
 
-  const matchSearch =
-    !keyword
-    ||
-    (b.title || "")
-      .toLowerCase()
-      .includes(keyword);
+  const bookSearchText =
+  [
+    b.title,
+    b.subtitle
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+const matchSearch =
+  !keyword
+  ||
+  bookSearchText.includes(keyword);
 
   const matchType =
     typeFilter === "all"
