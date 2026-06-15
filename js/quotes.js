@@ -74,8 +74,7 @@ function renderQuotes(){
               : ""
           }
           >本タイトル降順</option>
-        </select>
-        <option
+           <option
   value="favorite-desc"
   ${
     quotePage.sort === "favorite-desc"
@@ -85,6 +84,7 @@ function renderQuotes(){
 >
   ⭐お気に入り優先
 </option>
+        </select>
       </div>
       
       <label class="quote-favorite-filter">
