@@ -36,7 +36,7 @@ function openAddBookModal(){
   modal.id = "add-book-modal";
 
   modal.innerHTML = `
-    <div class="modal-box detail-modal">
+    <div class="modal-box fixed-scroll-modal book-detail-modal">
     
     <div class="detail-modal-header">
     
@@ -82,7 +82,7 @@ function openAddBookModal(){
       </div>
       
       
-      <div class="detail-modal-body">
+      <div class="fixed-scroll-body">
       
             ${enableMemo ? `
       <input type="text" class="input-common yohaku15" id="add-memo"
@@ -320,7 +320,7 @@ function openBookDetailModal(book){
   modal.id = "open-book-modal";
 	
   modal.innerHTML = `
-    <div class="modal-box detail-modal">
+    <div class="modal-box fixed-scroll-modal book-detail-modal">
     
     <div class="detail-modal-header">
     
@@ -376,7 +376,7 @@ function openBookDetailModal(book){
 </div>
 </div>
     
-     <div class="detail-modal-body">
+     <div class="fixed-scroll-body">
       <div class="detail-series-area">
   ${relatedSeries.map(s=>`
     <button class="detail-series yohaku15"
@@ -895,7 +895,7 @@ const characterCount =
   newSeriesCharacterIds.length;
 	
 	modal.innerHTML = `
-		<div class="modal-box">
+		<div class="modal-box fixed-scroll-modal book-detail-modal">
 		<div class="flex-between">
 					<span class="left-yose">シリーズを追加</span>
 						<button class="btn-sub right-yose" onclick="closeModal('add-series-modal')">✖️</button></div>
@@ -907,6 +907,10 @@ const characterCount =
   placeholder="シリーズタイトル"
   oninput="renderSeriesTitleSuggest()"
 >
+</div>
+
+
+<div class="fixed-scroll-body">
 
 <div id="series-title-suggest"></div>
 			
@@ -967,10 +971,11 @@ const characterCount =
          toggle-content
          series-edit-list
        "></div>
+       </div>
 				
-			
+			<div class="detail-modal-footer">
 			     <hr class="kugiri">
-     			 <button class="btn-main" onclick="saveNewSeries()">➕追加</button>
+     			 <button class="btn-main" onclick="saveNewSeries()">➕追加</button></div>
 			
 			
 			
@@ -1015,7 +1020,7 @@ const characterCount =
   modal.id = "edit-series-modal";
 
   modal.innerHTML = `
-    <div class="modal-box">
+    <div class="modal-box fixed-scroll-modal book-detail-modal">
 
       <div class="flex-between">
       <span class="left-yose">シリーズ編集</span>
@@ -1027,7 +1032,9 @@ const characterCount =
         class="input-title"
         value="${series.name || ""}"
       >
+      </div>
       
+      <div class="fixed-scroll-body">
      <div class="left-yose">関連登録</div>
       <input class="input-common"
         id="series-related-search"
@@ -1085,9 +1092,9 @@ const characterCount =
          toggle-content
          series-edit-list
        "></div>
+       </div>
        
-       
-     
+     <div class="detail-modal-footer">
      <hr class="kugiri">
 
     <div class="actions-row">
@@ -1133,7 +1140,7 @@ function openAddCharacterModal(){
 	modal.id = "add-chars-modal";
 	
 	modal.innerHTML = `
-		<div class="modal-box">
+		<div class="modal-box detail-modal">
 			<div class="flex-between">
 			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
 					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;" class="btn-sub">✖️</button></div>
@@ -1142,7 +1149,9 @@ function openAddCharacterModal(){
 				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
+				</div>
 				
+				<div class="detail-modal-body">
 				<div class="mini-text">メモ</div>
 				<textarea class="textarea-common" id="add-chars-memo"
 				placeholder="メモ"></textarea>
@@ -1168,8 +1177,9 @@ function openAddCharacterModal(){
 				<div class="left-yose mini-text">
 				関連シリーズ</div>
 			<div id="add-character-series-list" class="series-edit-list detail-row"></div>
+			</div>
 			
-			
+			<div class="detail-modal-footer">
 			     <hr class="kugiri">
 			
 			<button onclick="saveNewCharacter()" class="btn-main">➕追加</button>
@@ -1217,6 +1227,9 @@ editingCharacterSeriesIds =
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
 			
+			</div>
+			
+			<div class="detail-modal-body">
 			<div class="left-yose mini-text">メモ</div>
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
 		
@@ -1252,6 +1265,9 @@ editingCharacterSeriesIds =
     <div class="left-yose mini-text">関連シリーズ</div>
     
     <div id="character-edit-series" class="series-edit-list detail-row"></div>
+    </div>
+    
+    <div class="detail-modal-footer">
          <hr class="kugiri">
 		
 		<div class="actions-row">
