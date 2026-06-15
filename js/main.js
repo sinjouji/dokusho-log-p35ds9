@@ -189,7 +189,10 @@ let characterSearchKeyword = "";
 let currentPage = localStorage.getItem("lastPage") || "home";
 
 let showHiddenItems = false;
-
+//設定P引用初期表示
+let quoteViewMode =
+  localStorage.getItem("quoteViewMode")
+  || "horizontal";
 
 
 

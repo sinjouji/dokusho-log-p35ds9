@@ -1330,7 +1330,6 @@ function openDayModal(dateStr, list){
 //==============================
 // 引用メモ表示専用モーダル
 //==============================
-let quoteViewMode = "horizontal";
 
 function openQuoteViewModal(bookId, quoteId){
 
@@ -1365,6 +1364,11 @@ function openQuoteViewModal(bookId, quoteId){
               quoteViewMode === 'vertical'
                 ? 'horizontal'
                 : 'vertical';
+                
+            localStorage.setItem(
+              "quoteViewMode",
+              quoteViewMode
+            );
 
             closeModal('quote-view-modal');
 

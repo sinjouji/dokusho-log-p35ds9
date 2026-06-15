@@ -67,11 +67,11 @@ setActiveMenu("menu-settings");
     
       <!--引用モーダル初期表示-->
     <div class="setting-row">
-      <span>引用モーダル初期表示</span>
-      <button>
-        引用初期表示
-      </button>
-    </div>
+  <span>引用表示</span>
+  <button onclick="changeQuoteViewMode()">
+    ${getQuoteViewModeLabel()}
+  </button>
+</div>
     
 `
 : ""}
@@ -488,4 +488,31 @@ function renderViewMode(targetId = "view-mode"){
 }
 
 
+//==============================
+// 引用表示モーダル初期表示
+//==============================
+function changeQuoteViewMode(){
+
+  quoteViewMode =
+    quoteViewMode === "vertical"
+      ? "horizontal"
+      : "vertical";
+
+  localStorage.setItem(
+    "quoteViewMode",
+    quoteViewMode
+  );
+
+  renderSettings();
+}
+
+//==============================
+// 引用表示モーダル初期表示ラベル
+//==============================
+function getQuoteViewModeLabel(){
+
+  return quoteViewMode === "vertical"
+    ? "縦書き"
+    : "横書き";
+}
 
