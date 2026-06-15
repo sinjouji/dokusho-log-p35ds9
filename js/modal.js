@@ -1382,7 +1382,7 @@ function openQuoteViewModal(bookId, quoteId){
                 : 'vertical';
                 
             localStorage.setItem(
-              "quoteViewMode",
+              'quoteViewMode',
               quoteViewMode
             );
 
