@@ -1054,6 +1054,17 @@ ${
     ? ` ${b.volume}`
     : ""
 }
+${
+  (b.quotes || []).length
+    ? `<span class="mini-info">📝引用${b.quotes.length}</span>`
+    : ""
+}
+
+${
+  (b.quotes || []).some(q => q.favorite)
+    ? `<span class="mini-info">⭐引用</span>`
+    : ""
+}
               </div>
             `).join("")
             : "検索結果なし"
