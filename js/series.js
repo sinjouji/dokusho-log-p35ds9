@@ -413,7 +413,7 @@ function openSeries(series){
 
   go("detail");
 
-  renderSeriesDetail(series);
+  openSeriesDetailModal(s);
 }
 
 
