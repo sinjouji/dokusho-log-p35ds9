@@ -1125,6 +1125,57 @@ renderSeriesEditCharacters();
 
 
 //==============================
+// シリーズ詳細 2026/06/15移植開始
+//==============================
+function openSeriesDetailModal(series){
+
+  const modal =
+    document.createElement("div");
+
+  modal.className = "modal-bg";
+  modal.id = "series-detail-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box fixed-scroll-modal series-detail-modal">
+
+      <div class="modal-header flex-between">
+        <input
+          id="series-detail-name"
+          class="input-title"
+          value="${series.name || ""}"
+        >
+
+        <button
+          class="btn-sub"
+          onclick="closeModal('series-detail-modal')"
+        >
+          ✖️
+        </button>
+      </div>
+
+      <div class="fixed-scroll-body">
+
+        <!-- ここに関連本・関連人物・メモを入れる -->
+
+      </div>
+
+      <div class="modal-footer">
+        <button
+          class="btn-main"
+          onclick="saveSeriesDetail('${series.id}')"
+        >
+          保存
+        </button>
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+
+//==============================
 //キャラクター
 //==============================
 
