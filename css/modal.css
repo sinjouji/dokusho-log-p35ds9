@@ -254,7 +254,7 @@ border-radius:10px;
 
 /*本用モーダルちゃん高さ制限*/
 .modal-box.detail-modal{
-  height:70vh;
+  height:50vh;
   max-height:70vh;
   display:flex;
   flex-direction:column;
@@ -300,6 +300,34 @@ border-radius:10px;
   padding:6px 10px;
   max-width:80%;
   margin:auto;
+}
+
+.modal-box{
+  max-width:92vw;
+  max-height:88vh;
+}
+
+.fixed-scroll-modal{
+  height:88vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.fixed-scroll-body{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+}
+
+/*引用モーダル用*/
+.quote-view-modal{
+  max-height:88vh;
+}
+
+.quote-view-text.vertical{
+  writing-mode:vertical-rl;
+  height:60vh;
 }
 
 
