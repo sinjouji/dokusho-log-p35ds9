@@ -1141,8 +1141,9 @@ function openAddCharacterModal(){
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-			<div class="flex-between">
-			<span style="font-size:20px;font-weight:bold;margin-right:auto;">人物を追加</span>
+			<div class="detail-modal-header">
+			 <div class="flex-between">
+			<span class="left-yose">人物を追加</span>
 					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;" class="btn-sub">✖️</button></div>
 			
 			<input class="input-title"
@@ -1185,7 +1186,7 @@ function openAddCharacterModal(){
 			<button onclick="saveNewCharacter()" class="btn-main">➕追加</button>
 			
 	
-		</div>
+		</div></div>
 	`;
 
 	document.body.appendChild(modal);
@@ -1222,7 +1223,7 @@ editingCharacterSeriesIds =
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-		<div class="flex-between">
+		<div class="detail-modal-header">
 			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
@@ -1230,7 +1231,7 @@ editingCharacterSeriesIds =
 			</div>
 			
 			<div class="detail-modal-body">
-			<div class="left-yose mini-text">メモ</div>
+			<div class="left-yose">メモ</div>
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
 		
 		
@@ -1246,7 +1247,7 @@ editingCharacterSeriesIds =
       `).join(", ") || ""}
     
     
-    <div class="left-yose mini-text">関連シリーズを追加</div>
+    <div class="left-yose">関連シリーズを追加</div>
    <input class="input-common"
         id="character-related-search"
         type="text"
@@ -1276,7 +1277,7 @@ editingCharacterSeriesIds =
 </button>
 			<button onclick="saveCharacter('${c.id}')" class="btn-main">🪎 保存</button>
 		</div>
-	
+
 		</div>
 	`;
 	document.body.appendChild(modal);
