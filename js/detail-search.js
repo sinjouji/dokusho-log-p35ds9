@@ -36,7 +36,7 @@ let detailSearch = {
   targets:{
     books:true,
     series:true,
-    characters:true
+    characters:true,
     hasQuotes:false,
     hasFavoriteQuotes:false
   },
