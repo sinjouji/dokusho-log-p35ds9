@@ -45,5 +45,35 @@
 
 }
 
+/*メモ表示専用モーダル*/
+.quote-view-modal{
+  max-height:88vh;
+  overflow:hidden;
+}
 
+.quote-view-text{
+  padding:16px;
+  line-height:1.9;
+  font-size:16px;
+  background:#fffdf8;
+  border-radius:14px;
+  overflow:auto;
+  max-height:60vh;
+}
 
+.quote-view-text.horizontal{
+  writing-mode:horizontal-tb;
+}
+
+.quote-view-text.vertical{
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  height:60vh;
+  max-width:100%;
+}
+
+.quote-view-memo{
+  margin-top:10px;
+  font-size:12px;
+  opacity:.75;
+}
