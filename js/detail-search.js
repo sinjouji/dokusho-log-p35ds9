@@ -788,38 +788,6 @@ function renderDetailSearchConditions(){
     データ整備
   </div>
 <label class="check-row">
-  <input
-    type="checkbox"
-    ${
-      detailSearch.hasQuotes
-        ? "checked"
-        : ""
-    }
-    onchange="
-      detailSearch.hasQuotes =
-        this.checked;
-      renderDetailSearch();
-    "
-  >
-  引用あり
-</label>
-
-<label class="check-row">
-  <input
-    type="checkbox"
-    ${
-      detailSearch.hasFavoriteQuotes
-        ? "checked"
-        : ""
-    }
-    onchange="
-      detailSearch.hasFavoriteQuotes =
-        this.checked;
-      renderDetailSearch();
-    "
-  >
-  ⭐お気に入り引用あり
-</label>
   <label>
     <input
       type="checkbox"
@@ -861,6 +829,40 @@ function renderDetailSearchConditions(){
     >
     🏷️タグ未設定の📘<b>本</b>
   </label>
+
+  <input
+    type="checkbox"
+    ${
+      detailSearch.hasQuotes
+        ? "checked"
+        : ""
+    }
+    onchange="
+      detailSearch.hasQuotes =
+        this.checked;
+      renderDetailSearch();
+    "
+  >
+  引用あり
+</label>
+
+<label class="check-row">
+  <input
+    type="checkbox"
+    ${
+      detailSearch.hasFavoriteQuotes
+        ? "checked"
+        : ""
+    }
+    onchange="
+      detailSearch.hasFavoriteQuotes =
+        this.checked;
+      renderDetailSearch();
+    "
+  >
+  ⭐お気に入り引用あり
+</label>
+
 
   <label>
     <input
