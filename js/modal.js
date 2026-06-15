@@ -1150,7 +1150,7 @@ function openSeriesDetailModal(s){
     <div class="modal-box fixed-scroll-modal series-detail-modal">
 
       <div class="modal-header">
-        <div class="flex-between">
+        <div class="flex-between yohaku10">
         <button
           class="btn-sub"
           onclick="openSeriesEditModal('${s.id}')"
@@ -1165,14 +1165,14 @@ function openSeriesDetailModal(s){
           ✖️
         </button>
         </div>
-          <div class="input-title">${s.name}</div>
+          <div class="input-title yohaku15">${s.name}</div>
           
         </div>
       
 
       <div class="fixed-scroll-body">
 
-        <div class="series-section">
+        <div class="series-section yohaku10">
           <div
             class="series-section-title"
             onclick="
@@ -1227,8 +1227,8 @@ function openSeriesDetailModal(s){
       </div>
 
       <div class="modal-footer">
-      <hr class="kugiri">
-      <div class="satu">登録：${relatedBooks.length}冊</div>
+      <hr class="kugiri yohaku15">
+      <div class="satu yohaku10">登録：${relatedBooks.length}冊</div>
       
       </div>
 
