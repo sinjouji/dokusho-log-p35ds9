@@ -124,8 +124,10 @@ function openAddBookModal(){
         <div id="add-book-series-suggest"></div>
        </div><br>
      
-     <div class="flex-between">
-     関連：<br>
+     <div class="detail-series-area">
+      <div class="detail-label">
+     関連：
+      </div>
       	 <div
       	  id="add-book-series-list"
       	  class="series-edit-list"></div>
@@ -561,8 +563,10 @@ id="open-book-series">
       <div id="book-series-suggest"></div>
     </div>
     
-    <div class="detail-low">
+    <div class="detail-series-area">
+     <div class="detail-label">
     関連：
+     </div>
 
     <div id="book-edit-series" class="series-edit-list"></div>
     </div>

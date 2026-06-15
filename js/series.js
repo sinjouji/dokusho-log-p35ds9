@@ -1090,15 +1090,14 @@ async function deleteSeries(id){
 
     await saveData();
 
-    closeModal("edit-series-modal");
-    closeModal("series-detail-modal");
+    closeDetailModals();
 
     go('series');
     renderSeries();
 
     showToast(
-    `「${series.name}」を削除しました`
-  );
+  `「${series.name}」を削除しました`
+);
 }
 
 
