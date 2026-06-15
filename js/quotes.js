@@ -200,8 +200,18 @@ const filteredQuotes =
         }
       </div>
 
-      <button
-  class="quote-book-btn"
+
+      ${
+        item.quote.memo
+          ? `
+            <div class="quote-memo">
+              ${item.quote.memo}
+            </div>
+          `
+          : ""
+      }
+<button
+  class="quote-book-btn right-yose"
   onclick="
     event.stopPropagation();
     openBookDetailModalById(
@@ -213,16 +223,6 @@ const filteredQuotes =
   ${item.bookTitle}
   ${item.volume ? ` ${item.volume}巻` : ""}
 </button>
-
-      ${
-        item.quote.memo
-          ? `
-            <div class="quote-memo">
-              ${item.quote.memo}
-            </div>
-          `
-          : ""
-      }
 <button
   class="quote-edit-btn right-yose"
   onclick="
