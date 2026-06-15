@@ -30,7 +30,7 @@ setActiveMenu("menu-settings");
     ${settingSections.home
     ? "▽"
     : "▶︎"}
-    ホーム表示設定</div>
+    表示設定</div>
     
     ${settingSections.home
     ? `
@@ -58,17 +58,21 @@ setActiveMenu("menu-settings");
       </button>
     </div>
     
-    <!--最近の本-->
+      <!--シリーズ初期表示-->
     <div class="setting-row">
-      <span>最近の本</span>
-      ---
+      <span>シリーズ初期表示</span>
+      <button>シリーズ初期表示
+      </button>
     </div>
     
-    <!--サマリー-->
+      <!--引用モーダル初期表示-->
     <div class="setting-row">
-      <span>サマリー</span>
-      ---
+      <span>引用モーダル初期表示</span>
+      <button>
+        引用初期表示
+      </button>
     </div>
+    
 `
 : ""}
   </div>
@@ -92,37 +96,8 @@ setActiveMenu("menu-settings");
           }
         </button>
       </div>
-  
-    <!--タグの使用-->
-    <div class="setting-row">
-      <span>タグの使用</span>
-      ---
-    </div>
-
-    <!--引用-->
-    <div class="setting-row">
-      <span>引用</span>
-      ---
-    </div>
-
-    <!--再読チェック-->
-    <div class="setting-row">
-      <span>再読チェック</span>
-      ---
-    </div>
-`
-: ""}
-  </div>
-
-  <div class="setting-card">
-    <div class="setting-card-title" onclick="toggleSettingSection('stats')">
-    ${settingSections.stats
-    ? "▽"
-    : "▶︎"}統計設定</div>
-  
-      ${settingSections.stats
-    ? `
-    <!--年間目標-->
+      
+     <!--年間目標-->
     <div class="setting-row">
       <span>年間目標</span>
       <div class="switch ${enableGoal ? "on" : ""}"             
@@ -136,22 +111,10 @@ setActiveMenu("menu-settings");
           onchange="changeGoal(this.value)">
        </div>
     </div>  
-
-    <!--カレンダー-->
-    <div class="setting-row">
-      <span>カレンダー</span>
-      ---
-    </div>
-
-    <!--グラフ-->
-    <div class="setting-row">
-      <span>グラフ</span>
-      ---
-    </div>
 `
 : ""}
   </div>
-   
+
 
   <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('datas')">
@@ -173,17 +136,6 @@ setActiveMenu("menu-settings");
       ---
     </div>
 
-    <!--バックアップ-->
-    <div class="setting-row">
-      <span>バックアップ</span>
-      ---
-    </div>
-    
-    <!--同期-->
-    <div class="setting-row">
-      <span>Firestore同期</span>
-      ---
-    </div>
 `
 : ""}
   </div>
