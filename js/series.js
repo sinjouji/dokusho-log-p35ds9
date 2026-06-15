@@ -201,7 +201,7 @@ function renderSeriesDetail(s){
   seriesSections.books =
     !seriesSections.books;
 
-  renderSeriesDetail(
+  openSeriesDetailModal(
     seriesMaster.find(s =>
       String(s.id) === String('${seriesId}')
     )
@@ -225,7 +225,7 @@ function renderSeriesDetail(s){
   seriesSections.chars =
     !seriesSections.chars;
 
-  renderSeriesDetail(
+  openSeriesDetailModal(
     seriesMaster.find(s =>
       String(s.id) === String('${seriesId}')
     )
@@ -413,7 +413,7 @@ function openSeries(series){
 
   go("detail");
 
-  renderSeriesDetail(series);
+  openSeriesDetailModal(s);
 }
 
 
@@ -613,7 +613,7 @@ async function saveSeriesEdit(id){
 
   renderSeries();
 
-  renderSeriesDetail(series);
+  openSeriesDetailModal(s);
 
   showToast("保存しました！");
 }
