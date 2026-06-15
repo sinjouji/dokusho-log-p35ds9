@@ -254,8 +254,8 @@ border-radius:10px;
 
 /*本用モーダルちゃん高さ制限*/
 .modal-box.detail-modal{
-  height:70vh
-  max-height:70vh;
+  height:65vh
+  max-height:65vh;
   display:flex;
   flex-direction:column;
   overflow:hidden;
