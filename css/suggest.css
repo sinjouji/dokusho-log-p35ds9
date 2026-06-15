@@ -31,15 +31,13 @@
 .suggest-box{
 
   max-height:140px;
-
   overflow-y:auto;
 
   margin-top:8px;
+  width:100%;
 
   background:#fff;
-
   border-radius:10px;
-
   font-size:10px;
 }
 
