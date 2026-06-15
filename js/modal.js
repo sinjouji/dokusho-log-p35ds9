@@ -1150,9 +1150,23 @@ function openSeriesDetailModal(s){
     <div class="modal-box fixed-scroll-modal series-detail-modal">
 
       <div class="modal-header">
+        <div class="flex-between">
+        <button
+          class="btn-sub"
+          onclick="openSeriesEditModal('${s.id}')"
+        >
+          ✏️ 編集
+        </button>
         
+        <button
+          class="btn-sub"
+          onclick="closeModal('series-detail-modal')"
+        >
+          ✖️
+        </button>
+        </div>
           <div class="input-title">${s.name}</div>
-          <div class="satu">登録：${relatedBooks.length}冊</div>
+          
         </div>
       
 
@@ -1214,22 +1228,8 @@ function openSeriesDetailModal(s){
 
       <div class="modal-footer">
       <hr class="kugiri">
+      <div class="satu">登録：${relatedBooks.length}冊</div>
       
-      <div class="flex-between">
-        <button
-          class="btn-sub"
-          onclick="openSeriesEditModal('${s.id}')"
-        >
-          ✏️ 編集
-        </button>
-        
-        <button
-          class="btn-sub"
-          onclick="closeModal('series-detail-modal')"
-        >
-          ✖️
-        </button>
-        </div>
       </div>
 
     </div>
