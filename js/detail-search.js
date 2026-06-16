@@ -632,10 +632,16 @@ ${renderDetailSearchResults(
   </h4>
 
   <input
-    id="bulk-tag-name"
-    class="input-common"
-    placeholder="タグ名"
-  >
+  id="bulk-tag-name"
+  class="input-common"
+  placeholder="タグ名"
+  oninput="renderBulkTagSuggest()"
+>
+
+<div
+  id="bulk-tag-suggest"
+  class="suggest-box"
+></div>
 
   <label>
     <input
@@ -1693,6 +1699,8 @@ function addBulkTag(){
     tagType === "hidden"
   );
 
+if(!tag) return;
+
   books.forEach(book=>{
 
     if(
@@ -1742,6 +1750,15 @@ function findOrCreateBulkTag(name, isHidden){
 
   if(tag) return tag;
 
+  const ok =
+    confirm(
+      `「${name}」を新規${
+        isHidden ? "管理タグ" : "表示タグ"
+      }として作成しますか？`
+    );
+
+  if(!ok) return null;
+
   tag = {
     id:"t" + Date.now().toString(),
     name,
@@ -1752,6 +1769,64 @@ function findOrCreateBulkTag(name, isHidden){
   tagMaster.push(tag);
 
   return tag;
+}
+
+
+
+//==============================
+// タグ一括追加用：タグ検索サジェスト
+//==============================
+function renderBulkTagSuggest(){
+
+  const input =
+    document.getElementById("bulk-tag-name");
+
+  const box =
+    document.getElementById("bulk-tag-suggest");
+
+  if(!input || !box) return;
+
+  const keyword =
+    input.value.trim().toLowerCase();
+
+  if(!keyword){
+    box.innerHTML = "";
+    return;
+  }
+
+  const tagType =
+    document.querySelector(
+      'input[name="bulk-tag-type"]:checked'
+    )?.value;
+
+  const isHidden =
+    tagType === "hidden";
+
+  const hits =
+    tagMaster
+      .filter(t =>
+        !!t.isHidden === isHidden &&
+        (t.name || "")
+          .toLowerCase()
+          .includes(keyword)
+      )
+      .slice(0,8);
+
+  box.innerHTML =
+    hits.map(t=>`
+      <div
+        class="suggest-item"
+        onclick="
+          document.getElementById('bulk-tag-name').value =
+            '${t.name}';
+
+          document.getElementById('bulk-tag-suggest').innerHTML =
+            '';
+        "
+      >
+        ${t.name}
+      </div>
+    `).join("");
 }
 
 /*function getHiddenTagSuggestionsForBook(book){
