@@ -349,6 +349,10 @@ border-radius:10px;
 }
 
 .quote-view-text.vertical{
+  padding-top:0;
+  padding-right:16px;
+  padding-bottom:16px;
+  padding-left:16px;
   line-height:1.8;
   letter-spacing:0;
   writing-mode:vertical-rl;
