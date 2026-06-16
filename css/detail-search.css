@@ -142,7 +142,8 @@ PAGE-SEARCH.CSS
   border:2px solid #CAE5CD;/*薄緑*/
 }
 .or-bar{
-  background:#F9F1C0;/*淡黄蘗*/
+  background:#FFFDF6;/*乳白色*/
+/*  background:#F9F1C0;*//*淡黄蘗*/
   border:2px solid #f7ed92;/*承和*/
 }
 .not-bar{
