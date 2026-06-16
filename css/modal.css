@@ -323,10 +323,12 @@ border-radius:10px;
 /*引用モーダル用*/
 .quote-view-modal{
   max-height:65vh;
+  white-space: pre-wrap;
 }
 
 .quote-view-text.vertical{
   writing-mode:vertical-rl;
+  white-space: pre-wrap;
   height:65vh;
 }
 
