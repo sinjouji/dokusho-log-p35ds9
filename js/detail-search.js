@@ -633,7 +633,7 @@ ${renderDetailSearchResults(
 
   <input
   id="bulk-tag-name"
-  class="input-common"
+  class="input-common yohaku15"
   placeholder="タグ名"
   oninput="renderBulkTagSuggest()"
 >
