@@ -402,12 +402,23 @@ const quoteText =
         .join(" ")
     )
     .join(" ");
+    //キーワード：シリーズ名
+    const seriesText =
+  (b.seriesIds || [])
+    .map(id =>
+      seriesMaster.find(
+        s =>
+          String(s.id) === String(id)
+      )?.name || ""
+    )
+    .join(" ");
 
 const bookText =
   [
     b.title,
     b.subtitle,
-    quoteText
+    quoteText,
+    seriesText
   ]
     .filter(Boolean)
     .join(" ")
