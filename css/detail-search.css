@@ -141,15 +141,25 @@ PAGE-SEARCH.CSS
   background:#EBF4F4;/*青白磁*/
   border:2px solid #CAE5CD;/*薄緑*/
 }
+.and-bar:forcus{
+  box-shadow:0 0 0 3px rgba(120,190,150,.25);
+}
 .or-bar{
   background:#FFFDF6;/*乳白色*/
 /*  background:#F9F1C0;*//*淡黄蘗*/
   border:2px solid #f7ed92;/*承和*/
 }
+.or-bar:forcus{
+ box-shadow:0 0 0 3px rgba(230,210,90,.30);
+}
 .not-bar{
   background:#fae8e5;/*淡紅*/
   border:2px solid #F4B2BA;/*薄紅*/
 }
+.not-bar:forcus{
+  box-shadow:0 0 0 3px rgba(230,130,150,.25);
+}
 .ken-btn{
  background:#d9c5b6;
 }
+

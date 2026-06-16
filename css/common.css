@@ -640,3 +640,13 @@ color: #999;
   margin-bottom:6px;
 }
 
+
+.white-input{
+  background:#fffaf0;
+  border:none;
+}
+
+.white-input:focus{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(230,170,130,.25);
+}
