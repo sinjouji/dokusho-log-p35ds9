@@ -1552,7 +1552,7 @@ function openQuoteViewModal(bookId, quoteId){
   modal.id = "quote-view-modal";
 
   modal.innerHTML = `
-    <div class="modal-box quote-view-modal">
+    <div class="quote-view-modal">
 
       <div class="modal-header flex-between">
         <button
