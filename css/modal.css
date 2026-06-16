@@ -323,13 +323,34 @@ border-radius:10px;
 /*引用モーダル用*/
 .quote-view-modal{
   max-height:65vh;
+  max-width:65vw;
+
+  background:#fffffc;
+  border-radius:10px;
+
+  padding:16px;
 }
 
 
+.quote-view-text{
+  align-self:stretch;
+  box-sizing:border-box;
+  padding:12px;
+  background:#fffdf8;
+  border-radius:10px;
+  overflow:auto;
+}
+
 .quote-view-text.vertical{
   writing-mode:vertical-rl;
-  white-space: pre-wrap;
-  height:auto;
+  white-space:pre-wrap;
+  text-orientation:mixed;
+
+  height:55vh;
+  width:100%;
+
+  text-align:start;
+  align-content:start;
 }
 
 
