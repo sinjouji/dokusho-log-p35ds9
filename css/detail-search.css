@@ -134,3 +134,21 @@ PAGE-SEARCH.CSS
   min-height:70px;
   width:48%;
 }
+
+
+/*キーワード検索欄の色*/
+.and-bar{
+  background:#bdd7ca;/*浅緑*/
+  border:none;
+}
+.or-bar{
+  background:#f7ed92;/*承和*/
+  border:none;
+}
+.not-bar{
+  background:#fae8e5;/*淡紅*/
+  border:none;
+}
+.ken-btn{
+ background:#d9c5b6;
+}
