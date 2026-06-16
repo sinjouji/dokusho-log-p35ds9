@@ -32,6 +32,8 @@ let detailSearchResults = {
 let detailSearch = {
 
   keyword:"",
+  keywordOr:"",
+  keywordNot:"",
 
   targets:{
     books:true,
@@ -300,11 +302,7 @@ if(!detailSearch.fav){
 }
 
 //キーワード検索の部分
-const keyword =
-  (detailSearch.keyword || "")
-    .trim()
-    .toLowerCase();
-    
+   
 //本
 let bookResults =
   books.filter(b=>{
@@ -393,8 +391,6 @@ if(
 }
 
     // キーワード
-if(!keyword) return true;
-
 const quoteText =
   (b.quotes || [])
     .map(q =>
@@ -417,7 +413,7 @@ const bookText =
     .join(" ")
     .toLowerCase();
 
-return bookText.includes(keyword);
+return matchKeywordGroups(bookText);
   });
   
   
@@ -486,43 +482,17 @@ if(!detailSearch.targets.characters){
     <div class="detail-row">
       <h2 class="left-yose">🔍 詳細検索</h2>
 
-     <input
-  id="detail-search-keyword"
-  class="input-common input-small search-search right-yose"
-  value="${detailSearch.keyword || ""}"
 
-  oninput="
-    detailSearch.keyword =
-      this.value;
-
-    saveDetailSearchState();
-  "
-
-  onkeydown="
-    if(event.key === 'Enter'){
-      runDetailSearch();
-    }
-  "
->
-
-<button
-  class="btn-main"
-  onclick="runDetailSearch()"
->
-  🔍 検索
-</button>
-
-</div>
-
-
-<div class="detail-search-sort-row flex-between">
  <button
-  class="btn-sub"
+  class="btn-sub right-yose"
   onclick="resetDetailSearch()"
 >
   🧹 条件リセット
 </button>
+</div>
 
+
+<div class="detail-search-sort-row flex-between">
 <span class="right-yose">
   並び順：
   <select
@@ -559,6 +529,65 @@ if(!detailSearch.targets.characters){
   </span>
   
 </div>
+
+
+     <input
+  id="detail-search-keyword"
+  class="input-common"
+  value="${detailSearch.keyword || ""}"
+  
+  placeholder="AND検索：全てを含む（, またはスペース区切り）"
+
+  oninput="
+    detailSearch.keyword =
+      this.value;
+
+    saveDetailSearchState();
+  "
+
+  onkeydown="
+    if(event.key === 'Enter'){
+      runDetailSearch();
+    }
+  "
+>
+
+<input
+  class="input-common"
+  placeholder="OR検索：どれか含む（, またはスペース区切り）"
+  value="${detailSearch.keywordOr || ""}"
+  oninput="
+    detailSearch.keywordOr = this.value;
+    saveDetailSearchState();
+  "
+  onkeydown="
+    if(event.key === 'Enter'){
+      runDetailSearch();
+    }
+  "
+>
+
+<input
+  class="input-common"
+  placeholder="NOT検索：含めない（, またはスペース区切り）"
+  value="${detailSearch.keywordNot || ""}"
+  oninput="
+    detailSearch.keywordNot = this.value;
+    saveDetailSearchState();
+  "
+  onkeydown="
+    if(event.key === 'Enter'){
+      runDetailSearch();
+    }
+  "
+>
+
+<button
+  class="btn-main"
+  onclick="runDetailSearch()"
+>
+  🔍 検索
+</button>
 
 
 ${renderSavedDetailSearchCards()}
@@ -1452,3 +1481,71 @@ function resetDetailSearch(){
   renderDetailSearch();
 }
 
+
+//==============================
+//キーワード複数検索用のつなぎ部分
+//==============================
+function splitSearchWords(text){
+
+  return (text || "")
+    .trim()
+    .toLowerCase()
+    .split(/[,\s]+/)
+    .filter(Boolean);
+}
+
+
+//==============================
+//キーワード検索（AND、OR、NOT）
+//==============================
+function matchKeywordGroups(searchText){
+
+  const text =
+    (searchText || "").toLowerCase();
+
+  const andWords =
+    splitSearchWords(detailSearch.keyword);
+
+  const orWords =
+    splitSearchWords(detailSearch.keywordOr);
+
+  const notWords =
+    splitSearchWords(detailSearch.keywordNot);
+
+  // 全部空なら通す
+  if(
+    !andWords.length &&
+    !orWords.length &&
+    !notWords.length
+  ){
+    return true;
+  }
+
+  if(
+    andWords.length &&
+    !andWords.every(word =>
+      text.includes(word)
+    )
+  ){
+    return false;
+  }
+
+  if(
+    orWords.length &&
+    !orWords.some(word =>
+      text.includes(word)
+    )
+  ){
+    return false;
+  }
+
+  if(
+    notWords.some(word =>
+      text.includes(word)
+    )
+  ){
+    return false;
+  }
+
+  return true;
+}
