@@ -643,7 +643,7 @@ color: #999;
 
 .white-input{
   background:#fffffc;
-  border:none;
+  border:1px dashed #a5a0a0;
 }
 
 .white-input:focus{
