@@ -436,29 +436,33 @@ return matchKeywordGroups(bookText);
 //シリーズ
 let seriesResults =
   seriesMaster.filter(s=>{
-    if(!keyword) return true;
 
-    return (s.name || "")
-      .toLowerCase()
-      .includes(keyword);
+    const seriesText =
+      (s.name || "")
+        .toLowerCase();
+
+    return matchKeywordGroups(seriesText);
+
   });
+
 
 //人物
 let characterResults =
   characters.filter(c=>{
   
-  if(
-  detailSearch.noSeriesCharacter &&
-  (c.seriesIds || []).length > 0
-){
-  return false;
-}
-  
-    if(!keyword) return true;
+    if(
+      detailSearch.noSeriesCharacter &&
+      (c.seriesIds || []).length > 0
+    ){
+      return false;
+    }
 
-    return (c.name || "")
-      .toLowerCase()
-      .includes(keyword);
+    const characterText =
+      (c.name || "")
+        .toLowerCase();
+
+    return matchKeywordGroups(characterText);
+
   });
   
   //本・シリーズ・人物のチェック判定
