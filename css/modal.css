@@ -342,6 +342,8 @@ border-radius:10px;
 }
 
 .quote-view-text.vertical{
+  line-height:1.8;
+  letter-spacing:0;
   writing-mode:vertical-rl;
   white-space:pre-wrap;
   text-orientation:mixed;
