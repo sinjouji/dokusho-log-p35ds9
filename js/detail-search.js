@@ -496,7 +496,7 @@ if(!detailSearch.targets.characters){
 </div>
 
 
-<div class="detail-search-sort-row flex-between">
+<div class="detail-search-sort-row flex-between yohaku15">
 <span class="right-yose">
   並び順：
   <select
@@ -537,7 +537,7 @@ if(!detailSearch.targets.characters){
 
      <input
   id="detail-search-keyword"
-  class="input-common"
+  class="input-common yohaku10"
   value="${detailSearch.keyword || ""}"
   
   placeholder="AND検索：全てを含む（, またはスペース区切り）"
@@ -557,7 +557,7 @@ if(!detailSearch.targets.characters){
 >
 
 <input
-  class="input-common"
+  class="input-common yohaku10"
   placeholder="OR検索：どれか含む（, またはスペース区切り）"
   value="${detailSearch.keywordOr || ""}"
   oninput="
@@ -572,7 +572,7 @@ if(!detailSearch.targets.characters){
 >
 
 <input
-  class="input-common"
+  class="input-common yohaku10"
   placeholder="NOT検索：含めない（, またはスペース区切り）"
   value="${detailSearch.keywordNot || ""}"
   oninput="
@@ -587,7 +587,7 @@ if(!detailSearch.targets.characters){
 >
 
 <button
-  class="btn-main"
+  class="btn-main right-yose yohaku15"
   onclick="runDetailSearch()"
 >
   🔍 検索
