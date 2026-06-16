@@ -370,7 +370,7 @@ border-radius:10px;
 
 .quote-view-text.horizontal{
   writing-mode:horizontal-tb;
-  white-space:pre-wrap;
+  white-space:pre-line;
 }
 
 .quote-view-memo{
