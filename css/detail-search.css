@@ -163,7 +163,11 @@ PAGE-SEARCH.CSS
  background:#d9c5b6;
 }
 
+#bulk-tag-suggest{
+  display:none;
+}
 .bulk-tag-suggest{
+  max-height:140px;
   padding:10px 12px;
   font-size:14px;
   min-height:36px;
