@@ -79,6 +79,9 @@ let savedDetailSearches =
 //保存条件の概要トグル
 let savedSearchSummaryOpen = {};
 
+//タグ一括追加用
+let selectedBooks = [];
+
 
 //==============================
 //状態保存
@@ -615,11 +618,52 @@ ${renderSavedDetailSearchCards()}
   ${renderDetailSearchConditions()}
 
 
+
 ${renderDetailSearchResults(
     bookResults,
     seriesResults,
     characterResults
   )}
+
+<div class="bulk-tag-area">
+
+  <h4>
+    🏷️ 一括タグ追加
+  </h4>
+
+  <input
+    id="bulk-tag-name"
+    class="input-common"
+    placeholder="タグ名"
+  >
+
+  <label>
+    <input
+      type="radio"
+      name="bulk-tag-type"
+      value="display"
+      checked
+    >
+    表示タグ
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="bulk-tag-type"
+      value="hidden"
+    >
+    管理タグ
+  </label>
+
+  <button
+    onclick="addBulkTag()"
+  >
+    選択した本へ追加
+  </button>
+
+</div>
+
 
     `
   });
@@ -1113,6 +1157,23 @@ ${
     ? `<span class="mini-info">⭐引用</span>`
     : ""
 }
+
+<label class="book-select-row">
+  <input
+    type="checkbox"
+    ${
+      selectedBooks.includes(String(b.id))
+        ? "checked"
+        : ""
+    }
+    onchange="
+      toggleBookSelect(
+        '${b.id}'
+      );
+    "
+  >
+  選択
+</label>
               </div>
             `).join("")
             : "検索結果なし"
@@ -1568,3 +1629,106 @@ function matchKeywordGroups(searchText){
 
   return true;
 }
+
+
+
+//==============================
+// タグ一括追加用：選択
+//==============================
+function toggleBookSelect(bookId){
+
+  const id = String(bookId);
+
+  if(
+    selectedBooks.includes(id)
+  ){
+    selectedBooks =
+      selectedBooks.filter(
+        x => x !== id
+      );
+  }else{
+    selectedBooks.push(id);
+  }
+
+}
+
+
+
+//==============================
+// タグ一括追加処理
+//==============================
+function addBulkTag(){
+
+  const tagName =
+    document
+      .getElementById(
+        "bulk-tag-name"
+      )
+      ?.value
+      ?.trim();
+
+  if(!tagName){
+    alert("タグ名を入力してください");
+    return;
+  }
+
+  if(
+    selectedBooks.length === 0
+  ){
+    alert(
+      "本を選択してください"
+    );
+    return;
+  }
+
+  const tagType =
+    document.querySelector(
+      'input[name="bulk-tag-type"]:checked'
+    )?.value;
+
+  const tag =
+    findOrCreateTag(
+      tagName,
+      tagType === "hidden"
+    );
+
+  books.forEach(book=>{
+
+    if(
+      !selectedBooks.includes(
+        String(book.id)
+      )
+    ){
+      return;
+    }
+
+    book.tagIds =
+      book.tagIds || [];
+
+    if(
+      !book.tagIds.includes(
+        tag.id
+      )
+    ){
+      book.tagIds.push(
+        tag.id
+      );
+    }
+
+  });
+
+  saveData();
+
+  showToast(
+    `${selectedBooks.length}冊に追加`
+  );
+
+}
+
+
+/*function getHiddenTagSuggestionsForBook(book){
+  // 1. 類似タイトル
+  // 2. 選択済み管理タグとの共起
+  // 3. 重複除外
+  // 4. 多い順
+}*/
