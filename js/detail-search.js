@@ -1158,12 +1158,7 @@ ${
     : ""
 }
 
-              </div>
-            `).join("")
-            : "検索結果なし"
-        }
-      </div> 
- <label class="book-select-row">
+              </div> <label class="book-select-row">
   <input
     type="checkbox"
     ${
@@ -1179,6 +1174,10 @@ ${
   >
   選択
 </label>
+            `).join("")
+            : "検索結果なし"
+        }
+      </div> 
     `
     : ""
 }
