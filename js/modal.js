@@ -454,7 +454,7 @@ function openBookDetailModal(book){
       
     <div class="detail-row yohaku15">
     <div class="left-yose">
-       <input type="date" id="readDate-${book.id}" class="input-common input-small">
+       <input type="date" id="readDate-${book.id}" class="input-common input-small white-input">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
        ➕読了日
       </button>
