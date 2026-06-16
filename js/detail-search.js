@@ -1790,9 +1790,12 @@ function renderBulkTagSuggest(){
     input.value.trim().toLowerCase();
 
   if(!keyword){
-    box.innerHTML = "";
-    return;
-  }
+
+  box.innerHTML = "";
+  box.style.display = "none";
+
+  return;
+}
 
   const tagType =
     document.querySelector(
@@ -1811,18 +1814,29 @@ function renderBulkTagSuggest(){
           .includes(keyword)
       )
       .slice(0,8);
+      
+      if(hits.length === 0){
 
+  box.innerHTML = "";
+  box.style.display = "none";
+
+  return;
+}
+  
   box.innerHTML =
     hits.map(t=>`
       <div
         class="suggest-item"
         onclick="
-          document.getElementById('bulk-tag-name').value =
-            '${t.name}';
+  document.getElementById('bulk-tag-name').value =
+    '${t.name}';
 
-          document.getElementById('bulk-tag-suggest').innerHTML =
-            '';
-        "
+  document.getElementById('bulk-tag-suggest').innerHTML =
+    '';
+
+  document.getElementById('bulk-tag-suggest').style.display =
+    'none';
+"
       >
         ${t.name}
       </div>
