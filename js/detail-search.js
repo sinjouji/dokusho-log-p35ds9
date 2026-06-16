@@ -483,20 +483,11 @@ if(!detailSearch.targets.characters){
 
     html:`
     
-    <div class="detail-row">
-      <h2 class="left-yose">🔍 詳細検索</h2>
+    <div class="flex-between">
+      <h2>🔍 詳細検索</h2>
 
 
- <button
-  class="btn-sub right-yose"
-  onclick="resetDetailSearch()"
->
-  🧹 条件リセット
-</button>
-</div>
-
-
-<div class="detail-search-sort-row flex-between yohaku15">
+<div class="detail-search-sort-row">
 <span class="right-yose">
   並び順：
   <select
@@ -533,11 +524,14 @@ if(!detailSearch.targets.characters){
   </span>
   
 </div>
+ 
+</div>
+
 
 
      <input
   id="detail-search-keyword"
-  class="input-common yohaku10"
+  class="input-common yohaku10 and-bar"
   value="${detailSearch.keyword || ""}"
   
   placeholder="AND検索：全てを含む（, またはスペース区切り）"
@@ -557,7 +551,7 @@ if(!detailSearch.targets.characters){
 >
 
 <input
-  class="input-common yohaku10"
+  class="input-common yohaku10 or-bar"
   placeholder="OR検索：どれか含む（, またはスペース区切り）"
   value="${detailSearch.keywordOr || ""}"
   oninput="
@@ -572,7 +566,7 @@ if(!detailSearch.targets.characters){
 >
 
 <input
-  class="input-common yohaku10"
+  class="input-common yohaku10 not-bar"
   placeholder="NOT検索：含めない（, またはスペース区切り）"
   value="${detailSearch.keywordNot || ""}"
   oninput="
@@ -586,13 +580,23 @@ if(!detailSearch.targets.characters){
   "
 >
 
+<div class="flex-between">
 <button
-  class="btn-main right-yose yohaku15"
+  class="btn-sub right-yose"
+  onclick="resetDetailSearch()"
+>
+  🧹 条件リセット
+</button>
+
+<button
+  class="btn-main right-yose yohaku15 ken-btn"
   onclick="runDetailSearch()"
 >
   🔍 検索
 </button>
+</div>
 
+<hr class="kugiri">
 
 ${renderSavedDetailSearchCards()}
 
