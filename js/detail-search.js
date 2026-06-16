@@ -640,7 +640,7 @@ ${renderDetailSearchResults(
 
 <div
   id="bulk-tag-suggest"
-  class="suggest-box"
+  class="suggest-box bulk-tag-suggest"
 ></div>
 
   <label>
