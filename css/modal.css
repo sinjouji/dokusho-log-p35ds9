@@ -325,10 +325,20 @@ border-radius:10px;
   max-height:65vh;
 }
 
+
 .quote-view-text.vertical{
   writing-mode:vertical-rl;
   white-space: pre-wrap;
-  height:65vh;
+  height:auto;
 }
 
+
+.quote-view-text.horizontal{
+  writing-mode:horizontal-tb;
+  white-space:pre-wrap;
+}
+
+.quote-view-memo{
+  white-space:pre-wrap;
+}
 
