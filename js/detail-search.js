@@ -580,16 +580,16 @@ if(!detailSearch.targets.characters){
   "
 >
 
-<div class="flex-between">
+<div class="flex-between yohaku15">
 <button
-  class="btn-sub right-yose"
+  class="btn-sub"
   onclick="resetDetailSearch()"
 >
   🧹 条件リセット
 </button>
 
 <button
-  class="btn-main right-yose yohaku15 ken-btn"
+  class="btn-main ken-btn"
   onclick="runDetailSearch()"
 >
   🔍 検索
