@@ -139,15 +139,15 @@ PAGE-SEARCH.CSS
 /*キーワード検索欄の色*/
 .and-bar{
   background:#EBF4F4;/*青白磁*/
-  border:none;
+  border:2px solid #CAE5CD;/*薄緑*/
 }
 .or-bar{
-  background:#f7ed92;/*承和*/
-  border:none;
+  background:#F9F1C0;/*淡黄蘗*/
+  border:2px solid #f7ed92;/*承和*/
 }
 .not-bar{
   background:#fae8e5;/*淡紅*/
-  border:none;
+  border:2px solid #F4B2BA;/*薄紅*/
 }
 .ken-btn{
  background:#d9c5b6;
