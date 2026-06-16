@@ -1822,7 +1822,7 @@ function renderBulkTagSuggest(){
 
   return;
 }
-  
+
   box.innerHTML =
     hits.map(t=>`
       <div
