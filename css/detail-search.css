@@ -166,7 +166,8 @@ PAGE-SEARCH.CSS
 .bulk-tag-suggest{
   max-height:140px;
   padding:10px 12px;
-  font-size:14px;
+  font-size:15px;
   min-height:36px;
+  border:1px dashed #b9b9b9;
 }
 
