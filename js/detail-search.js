@@ -640,7 +640,7 @@ ${renderDetailSearchResults(
 
 <div
   id="bulk-tag-suggest"
-  class="suggest-box bulk-tag-suggest"
+  class="suggest-box bulk-tag-suggest yohaku15"
   style="display:none;"
 ></div>
 
@@ -1823,7 +1823,7 @@ function renderBulkTagSuggest(){
   box.innerHTML =
     hits.map(t=>`
       <div
-        class="suggest-item"
+        class="suggest-item bulk-suggest-items"
         onclick="
           document.getElementById('bulk-tag-name').value =
             '${t.name}';
