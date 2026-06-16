@@ -1158,9 +1158,10 @@ ${
     : ""
 }
 
-              </div> <label class="book-select-row">
+ <label class="book-select-row">
   <input
     type="checkbox"
+    onclick="event.stopPropagation()"
     ${
       selectedBooks.includes(String(b.id))
         ? "checked"
@@ -1174,6 +1175,7 @@ ${
   >
   選択
 </label>
+              </div>
             `).join("")
             : "検索結果なし"
         }
