@@ -172,6 +172,6 @@ PAGE-SEARCH.CSS
 }
 
 .bulk-suggest-items{
-  border:1px dashed #b9b9b9;
+  border-bottom:1px dashed #b9b9b9;
 }
 
