@@ -1688,10 +1688,10 @@ function addBulkTag(){
     )?.value;
 
   const tag =
-    findOrCreateTag(
-      tagName,
-      tagType === "hidden"
-    );
+  findOrCreateBulkTag(
+    tagName,
+    tagType === "hidden"
+  );
 
   books.forEach(book=>{
 
@@ -1720,12 +1720,39 @@ function addBulkTag(){
 
   saveData();
 
-  showToast(
-    `${selectedBooks.length}冊に追加`
-  );
+showToast(
+  `${selectedBooks.length}冊に追加しました`
+);
+
+renderDetailSearch();
 
 }
 
+
+//==============================
+// タグ一括追加用：タグ検索or追加
+//==============================
+function findOrCreateBulkTag(name, isHidden){
+
+  let tag =
+    tagMaster.find(t =>
+      t.name === name &&
+      !!t.isHidden === !!isHidden
+    );
+
+  if(tag) return tag;
+
+  tag = {
+    id:"t" + Date.now().toString(),
+    name,
+    color:"#d8c7b8",
+    isHidden
+  };
+
+  tagMaster.push(tag);
+
+  return tag;
+}
 
 /*function getHiddenTagSuggestionsForBook(book){
   // 1. 類似タイトル
