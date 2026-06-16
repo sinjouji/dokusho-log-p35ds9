@@ -332,10 +332,17 @@ border-radius:10px;
 }
 
 
+
+
 .quote-view-text{
+  padding:16px;
+  line-height:1.9;
+  font-size:16px;
+
+  max-height:60vh;
+
   align-self:stretch;
   box-sizing:border-box;
-  padding:12px;
   background:#fffdf8;
   border-radius:10px;
   overflow:auto;
@@ -348,7 +355,7 @@ border-radius:10px;
   white-space:pre-wrap;
   text-orientation:mixed;
 
-/*  height:55vh;*/
+  height:55vh;
   width:100%;
 
   text-align:start;
@@ -363,5 +370,7 @@ border-radius:10px;
 
 .quote-view-memo{
   white-space:pre-wrap;
+  margin-top:10px;
+  font-size:12px;
+  opacity:.75;
 }
-
