@@ -1629,6 +1629,8 @@ function closeDetailModals(){
   [
     "open-book-modal",
     "series-detail-modal",
+    "edit-series-modal",
+    "series-edit-modal",
     "character-modal",
     "quote-view-modal",
     "quote-edit-modal"
