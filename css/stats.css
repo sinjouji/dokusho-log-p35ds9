@@ -11,6 +11,7 @@
   grid-template-columns:repeat(7, 1fr);
   gap:4px;
   max-width:800px;
+  margin:0 auto;
 
 }
 
@@ -103,7 +104,8 @@
   display:flex;
   grid-template-columns:repeat(auto-fit, minmax(90px, 1fr));
   gap:12px;
-  margin:14px 0 18px;
+  margin:14px auto 18px;
+  max-width:900px;
   
   overflow-x:auto;
   overflow-y:hidden;
@@ -149,7 +151,7 @@
 
 
 .monthly-graph{
-  margin-top:20px;
+  margin-top:20px auto 0;
   max-width:800px;
   width:100%;
 }
@@ -219,7 +221,9 @@
 }
 
 .year-goal{
-  margin:16px 0;
+  margin:16px auto 0;
+  max-width:800px;
+  width:100%;
 }
 
 .year-goal-label{
