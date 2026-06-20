@@ -463,6 +463,9 @@ function renderYearGoal(main, year){
       100
     );
 
+  const achieved =
+    yearlyCount >= yearlyGoal;
+
   const goal =
     document.createElement("div");
 
@@ -472,11 +475,12 @@ function renderYearGoal(main, year){
     <div class="year-goal-label">
       年間目標：
       ${yearlyCount} / ${yearlyGoal}冊
+      ${achieved ? "🎉年間目標達成！" : ""}
     </div>
 
     <div class="year-goal-bar-bg">
       <div
-        class="year-goal-bar"
+        class="year-goal-bar ${achieved ? "achieved" : ""}"
         style="width:${percent}%;"
       ></div>
     </div>
@@ -484,7 +488,6 @@ function renderYearGoal(main, year){
 
   main.appendChild(goal);
 }
-
 
 //==============================
 //年ヘッダー部分
