@@ -32,7 +32,7 @@ HOME.CSS
 }
 
 #home-fixed-bar button.active{
-  background:#f4a57a;
+  background:var(--color-border);
   color:#fffffc;
 }
 

@@ -29,6 +29,22 @@ font-weight:600;
   clear:both;
 }*/
 
+/*==========
+ルートカラー：まとめて変えるぜ〜〜〜
+2026/06/22時点のカラー：COOLな青磁
+==========*/
+:root{
+  --color-main:#c7d7d4;       /* メイン青磁 */
+  --color-main-dark:#9bb8b3;  /* active */
+  --color-accent:#6f8f89;     /* 濃い線 */
+
+  --color-bg:#f8f7f3;         /* 紙背景 */
+  --color-card:#ffffff;
+
+  --color-border:#8b7e74;     /* 茶系枠線 */
+  --color-text:#646364;
+  --color-shadow:rgba(0,0,0,.08);
+}
 
 
 /*==========
@@ -162,7 +178,7 @@ header{
 }
 .btn-me{
 border:none;
-background:#f6d2bd;
+background:#c7d7d4;
 font-size:12px;
 color:#646364;
 /*↑燻銀*/
@@ -173,7 +189,7 @@ min-height:40px;
 align-items:center;
 }
 .btn-me.active{
-background:#f3e9be;
+background:#9bb8b3;
 /*蒸栗*/
 font-weight:bold;
 opacity:1;
@@ -220,7 +236,7 @@ box-shadow:
   background:#fffffc;   border-radius:10px;
   padding:8px;   margin:5px 10px;
   box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  border:1px solid #f4a57a;
+  border:1px solid var(--color-border);
 }
 
 
@@ -243,7 +259,7 @@ box-shadow:
 
 /*区切り用デザインHR*/
 .kugiri{
- border:1px dashed #f4a57a;
+ border:1px dashed var(--color-border);
  width:100%;
 }
 
@@ -274,8 +290,8 @@ box-shadow:
 button{
   display: inline-block;   padding: 5px 10px;
   border-radius: 10px;   text-decoration: none;
-  color: #f4a57a;   background-color:#fffffc;
-  border:1px solid #f4a57a;  font-size:13px;
+  color: var(--color-border);   background-color:#fffffc;
+  border:1px solid var(--color-border);  font-size:13px;
 }
 
 .common-button{
@@ -320,7 +336,7 @@ button{
   width:100px;
   padding:8px;
   margin:10px;
-  border:1px solid #f4a57a;
+  border:1px solid var(--color-border);
   border-radius:10px;
   font-size:14px;
   margin-bottom:12px;
@@ -332,7 +348,7 @@ button{
   border:none;
   background:none;
 
-  color:#f4a57a;
+  color:var(--color-border);
   font-size:12px;
 }
 
@@ -503,7 +519,7 @@ button{
 #search{
 flex:1 1 160px;
 min-width:120px;
-border:1px solid #f4a57a;
+border:1px solid var(--color-border);
 border-radius:10px;
 font-size:13px;
 background:#fffffc;
@@ -560,7 +576,7 @@ color: #999;
   padding:8px 10px;
 
   border-radius:10px;
-  border:1px solid #f4a57a;
+  border:1px solid var(--color-border);
 
   font-size:16px;
   background:#fffffc;
@@ -585,7 +601,7 @@ color: #999;
 }
 
 .filter-actions button.active{
-  background:#f4a57a;
+  background:var(--color-border);
   color:#fffffc;
   
   border:none;
