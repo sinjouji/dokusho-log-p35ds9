@@ -129,7 +129,7 @@ if(id === "open-book-quotes"){
 function setActiveMenu(menuId){
 
   document
-    .querySelectorAll(".btn-me")
+    .querySelectorAll(".menulist .btn-me, .bottom-nav .btn-me")
     .forEach(btn=>{
 
       btn.classList.remove("active");
