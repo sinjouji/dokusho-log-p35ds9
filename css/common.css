@@ -8,33 +8,11 @@ COMMON.CSS
 
 
 /*==========
-使ってないっぽいやつ
-==========*/
-
-/*#book-title{
-font-size:18px;
-font-weight:600;
-}
-
-
-.search-area{
-  position:relative;
-  margin-bottom:14px;
-}/*
-
-
-/*カレンダーの高さ調整*/
-/*.stats-block{
-  margin-bottom:24px;
-  clear:both;
-}*/
-
-/*==========
 ルートカラー：まとめて変えるぜ〜〜〜
 2026/06/22時点のカラー：COOLな青磁
 ==========*/
 :root{
-  --color-main:var(--color-main-dark);       /* メイン青磁 */
+  --color-main:#c7d7d4;       /* メイン青磁 */
   --color-main-dark:#9bb8b3;  /* active */
   --color-accent:#6f8f89;     /* 濃い線 */
 
@@ -180,8 +158,7 @@ header{
 border:none;
 background:var(--color-main);
 font-size:12px;
-color:#646364;
-/*↑燻銀*/
+color:#fffffb;
 opacity:0.85;
 transition:.2s;
 min-width:60px;
