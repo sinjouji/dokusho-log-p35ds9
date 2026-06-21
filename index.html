@@ -34,10 +34,18 @@
 </header>
 
     <nav class="bottom-nav">
-      <button class="btn-me" id="menu-home" onclick="go('home')">ホーム</button>
-      <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
-      <button class="btn-me" id="menu-detail-search" onclick="go('detail-search')">検索</button>
-    </nav>
+  <button class="btn-me" onclick="go('home')">ホーム</button>
+  <button class="btn-me" onclick="go('stats')">統計</button>
+  <button class="btn-me" onclick="go('detail-search')">検索</button>
+
+  <button
+    class="btn-me"
+    id="menu-more"
+    onclick="toggleMoreMenu()"
+  >
+    ☰
+  </button>
+</nav>
       
     <div id="more-menu" class="more-menu hidden">
       <button class="btn-me" id="menu-series" onclick="go('series')">シリーズ</button>
