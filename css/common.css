@@ -34,12 +34,12 @@ font-weight:600;
 2026/06/22時点のカラー：COOLな青磁
 ==========*/
 :root{
-  --color-main:#c7d7d4;       /* メイン青磁 */
+  --color-main:var(--color-main-dark);       /* メイン青磁 */
   --color-main-dark:#9bb8b3;  /* active */
   --color-accent:#6f8f89;     /* 濃い線 */
 
   --color-bg:#f8f7f3;         /* 紙背景 */
-  --color-card:#ffffff;
+  --color-card:#fffffb;
 
   --color-border:#8b7e74;     /* 茶系枠線 */
   --color-text:#646364;
@@ -52,7 +52,7 @@ font-weight:600;
 ==========*/
 body{
   font-family:sans-serif;
-  background:#f3e9be;/*蒸し栗*/
+  background:var(--color-bg);/*蒸し栗*/
   touch-action: pan-y;
   overflow-x:hidden;
   
@@ -178,7 +178,7 @@ header{
 }
 .btn-me{
 border:none;
-background:#c7d7d4;
+background:var(--color-main);
 font-size:12px;
 color:#646364;
 /*↑燻銀*/
@@ -189,8 +189,7 @@ min-height:40px;
 align-items:center;
 }
 .btn-me.active{
-background:#9bb8b3;
-/*蒸栗*/
+background:var(--color-main-dark);
 font-weight:bold;
 opacity:1;
 transform:translateY(-2px);
