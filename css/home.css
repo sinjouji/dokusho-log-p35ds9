@@ -67,7 +67,7 @@ main{
 /*バーガーメニュー用*/
 .more-menu{
   position:fixed;
-  bottom:80px;
+  bottom:84px;
   right:12px;
 
   display:flex;
@@ -76,8 +76,12 @@ main{
 
   background:#fff;
   padding:12px;
+
   border:1px solid #ddd;
   border-radius:12px;
+
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
+
   z-index:1000;
 }
 
