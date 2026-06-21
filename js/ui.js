@@ -142,6 +142,14 @@ function setActiveMenu(menuId){
 }
 
 
+//==============================                                                                                                       
+// ホームページのバーガーメニュー
+//==============================
+function toggleMoreMenu(){
+  document
+    .getElementById("more-menu")
+    .classList.toggle("hidden");
+}
 
 //==============================                                                                                                       
 //====背表紙のカラー設定
