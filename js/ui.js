@@ -143,12 +143,21 @@ function setActiveMenu(menuId){
 
 
 //==============================                                                                                                       
-// ホームページのバーガーメニュー
+// ホームページのバーガーメニュー開く
 //==============================
 function toggleMoreMenu(){
   document
     .getElementById("more-menu")
     .classList.toggle("hidden");
+}
+
+//==============================                                                                                                       
+// ホームページのバーガーメニュー閉じる
+//==============================
+function closeMoreMenu(){
+  document
+    .getElementById("more-menu")
+    .classList.add("hidden");
 }
 
 //==============================                                                                                                       
