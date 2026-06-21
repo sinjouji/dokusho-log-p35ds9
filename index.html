@@ -31,25 +31,22 @@
     <div class="app-watermark">Reading Log</div>
   </div>
 
-  <div class="header-menu-row menu-list">
-    <nav class="menulist">
+</header>
+
+    <nav class="bottom-nav">
       <button class="btn-me" id="menu-home" onclick="go('home')">ホーム</button>
+      <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
+      <button class="btn-me" id="menu-detail-search" onclick="go('detail-search')">検索</button>
+    </nav>
+      
+    <div id="more-menu" class="more-menu hidden">
       <button class="btn-me" id="menu-series" onclick="go('series')">シリーズ</button>
       <button class="btn-me" id="menu-characters" onclick="go('characters')">人物</button>
-      <button onclick="go('quotes')" id="menu-quotes" class="btn-me">
-  引用
-</button>
-      <button class="btn-me" id="menu-stats" onclick="go('stats')">統計</button>
-      <button class="btn-me" id="menu-detail-search" onclick="go('detail-search')">
-  検索
-</button>
+      <button onclick="go('quotes')" id="menu-quotes" class="btn-me">引用</button>
       <button class="btn-me" id="menu-tags" onclick="go('tags')">タグ</button>
       <button class="btn-me" id="menu-settings" onclick="go('settings')">設定</button>
-    </nav>
-
-    <button class="btn-me" onclick="loadData()">更新</button>
-  </div>
-</header>
+      <button class="btn-me" onclick="loadData()">更新</button>
+    </div>
 
 <button id="scroll-top-btn" onclick="scrollToTop()">
   ↑
