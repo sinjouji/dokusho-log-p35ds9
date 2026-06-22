@@ -42,8 +42,7 @@ function renderStats(){
 //==============================
 //====小さめ表示のカレンダー（統計ページ用）
 //==============================
-// TODO:
-// ヒートマップ色と連動したチップ化
+
 function renderMiniCalendar(main){
 
   const year =
@@ -144,6 +143,9 @@ renderStats();
 
     const count =
       map[dateStr]?.length || 0;
+      
+    const dailyCount =
+      dailyLogs[dateStr]?.length || 0;
 
     const cell =
       document.createElement("div");
@@ -180,6 +182,16 @@ renderStats();
       `
       : ""
   }
+  
+  ${
+  dailyCount
+    ? `
+      <div class="mini-day-daily">
+        📅
+      </div>
+    `
+    : ""
+}
 `;
 
 
