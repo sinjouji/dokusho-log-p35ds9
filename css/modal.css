@@ -379,3 +379,34 @@ border-radius:10px;
   font-size:12px;
   opacity:.75;
 }
+
+
+/*デイリーモーダル*/
+.day-book-title{
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.4;
+}
+
+.day-log-section{
+  margin-bottom:14px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--color-border);
+}
+
+.day-log-section h4{
+  margin:0 0 6px;
+  font-size:13px;
+}
+
+.day-log-section div{
+  font-size:12px;
+  opacity:.85;
+}
+
+.day-empty{
+  font-size:12px;
+  opacity:.7;
+  margin-top:10px;
+}
+
