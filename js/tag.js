@@ -477,7 +477,6 @@ const hiddenTags =
 
     <div class="hidden-tag-edit-title">
       #${editingTag.name}
-      ${tag.isDailyLog ? " 📅" : ""}
       <span class="hidden-tag-edit-count">
         (${count})
       </span>
