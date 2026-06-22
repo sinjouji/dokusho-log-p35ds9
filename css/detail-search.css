@@ -175,3 +175,7 @@ PAGE-SEARCH.CSS
   border-bottom:1px dashed #b9b9b9;
 }
 
+.main-tag-text{
+  border:none;
+  color:#fffffb;
+}
