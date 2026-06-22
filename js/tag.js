@@ -128,6 +128,14 @@ ${
           >
           管理タグ
         </label>
+        
+        <label class="tag-page-check">
+          <input
+            id="new-tag-daily"
+            type="checkbox"
+          >
+          デイリーログ用
+        </label>
 
         <div class="tag-page-actions">
           <button class="btn-main" onclick="saveNewTag()">
@@ -279,6 +287,15 @@ function renderVisibleTags(){
               ${tag.isHidden ? "checked" : ""}
             >
             管理タグにする
+          </label>
+          
+          <label class="tag-page-check">
+            <input
+              type="checkbox"
+              id="tag-page-daily-${tag.id}"
+              ${tag.isDailyLog ? "checked" : ""}
+            >
+            デイリーログ用
           </label>
 
           <div class="tag-page-actions">
@@ -603,7 +620,7 @@ function renderHiddenTagList(){
 
 
 //==============================
-//非表示タグ
+//非表示タグ判定
 //==============================
 function isHiddenTag(tagId){
 
@@ -615,6 +632,19 @@ function isHiddenTag(tagId){
   return !!tag?.isHidden;
 }
 
+
+//==============================
+// デイリーログ用タグ判定
+//==============================
+function isDailyLogTag(tagId){
+
+  const tag =
+    tagMaster.find(t =>
+      String(t.id) === String(tagId)
+    );
+
+  return !!tag?.isDailyLog;
+}
 
 
 //==============================
@@ -1045,6 +1075,13 @@ async function saveTagPageEdit(id){
       hiddenInput.checked;
   }
   
+  tag.isDailyLog =
+  document
+    .getElementById(
+      `tag-page-daily-${tag.id}`
+    )
+    ?.checked || false;
+  
   tag.color =
     editingTagPageColor || tag.color;
 
@@ -1090,7 +1127,12 @@ async function saveNewTag(){
         )
         .checked,
      
-     isDailyLog: false
+     isDailyLog:
+  document
+    .getElementById(
+      "new-tag-daily"
+    )
+    ?.checked || false
 
   });
 
