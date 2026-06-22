@@ -149,6 +149,22 @@ async function removeReadDate(bookId,date){
 //ホーム画面の「骨組みだけ」にする！
 //==============================
 function renderHome(){
+  
+  //デイリータグ取得
+  const dailyTags =
+  tagMaster.filter(tag =>
+    tag.isDailyLog
+  );
+  
+  //今日の日付を取得
+  const today =
+  new Date()
+    .toISOString()
+    .split("T")[0];
+    
+  //今日の選択ずみタグ取得
+  const todayLogs =
+  dailyLogs[today] || [];
 
   setActiveMenu("menu-home");
 
@@ -156,6 +172,35 @@ function renderHome(){
   if(!el) return;
 
   el.innerHTML = `
+  <div class="daily-log-area">
+
+  <div class="daily-log-title">
+    今日のログ
+  </div>
+
+  <div class="daily-log-tags">
+    ${
+      dailyTags.map(tag => `
+        <button
+          class="
+            daily-log-chip
+            ${
+              todayLogs.includes(tag.id)
+                ? "active"
+                : ""
+            }
+          "
+          onclick="
+            toggleDailyLog('${tag.id}')
+          "
+        >
+          ${tag.name}
+        </button>
+      `).join("")
+    }
+  </div>
+
+</div>
     <div id="home-fixed-bar"></div>
     <div id="home-top"></div>
     <div id="home-main"></div>
