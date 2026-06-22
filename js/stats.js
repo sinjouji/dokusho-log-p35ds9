@@ -161,6 +161,14 @@ renderStats();
       
     const dailyCount =
       dailyLogs[dateStr]?.length || 0;
+      
+    const firstDailyTagId =
+  dailyLogs[dateStr]?.[0];
+
+const firstDailyTag =
+  tagMaster.find(t =>
+    String(t.id) === String(firstDailyTagId)
+  );
 
     const cell =
       document.createElement("div");
@@ -203,8 +211,12 @@ renderStats();
   dailyCount
     ? `
       <div class="mini-day-daily">
-        📅
-      </div>
+  ${
+    firstDailyTag
+      ? firstDailyTag.name[0]
+      : "📅"
+  }
+</div>
     `
     : ""
 }
