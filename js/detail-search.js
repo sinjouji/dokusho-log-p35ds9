@@ -502,9 +502,9 @@ if(!detailSearch.targets.characters){
 
 
 <div class="detail-search-sort-row">
-<span class="right-yose select-chip">
+<span class="right-yose">
   並び順：
-  <select
+  <select class="select-chip"
     onchange="
       detailSearch.sort = this.value;
       saveDetailSearchState();
