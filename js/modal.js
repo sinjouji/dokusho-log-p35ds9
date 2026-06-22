@@ -1491,25 +1491,28 @@ function openDayModal(dateStr, list, logs = []){
   m.style.alignItems = "center";
   m.style.justifyContent = "center";
 
-  const box = document.createElement("div");
-  
-  const title =
+const box = document.createElement("div");
+
+box.style.background = "#fffffc";
+box.style.padding = "20px";
+box.style.maxHeight = "80%";
+box.style.overflow = "auto";
+box.style.borderRadius = "12px";
+box.style.minWidth = "200px";
+
+
+// タイトル
+const title =
   document.createElement("h3");
 
 title.textContent = dateStr;
 title.style.marginBottom = "12px";
-box.appendChild(title);
-  
-  box.style.background = "#fffffc";
-  box.style.padding = "20px";
-  box.style.maxHeight = "80%";
-  box.style.overflow = "auto";
-  box.style.borderRadius = "12px";
-  box.style.minWidth = "200px";
 
-  list.forEach(b=>{
-    const d = document.createElement("div");
-    if(logs.length){
+box.appendChild(title);
+
+
+// デイリーログ表示
+if(logs.length){
 
   const logBox =
     document.createElement("div");
@@ -1537,7 +1540,10 @@ box.appendChild(title);
   box.appendChild(logBox);
 
 }
-    if(
+
+
+// 読了本なしメッセージ
+if(
   list.length === 0 &&
   logs.length > 0
 ){
@@ -1554,21 +1560,31 @@ box.appendChild(title);
   box.appendChild(empty);
 
 }
-    
-    d.style.padding = "6px 0";
-    d.style.borderBottom = "1px solid #eee";
-    
-    d.innerHTML = `
-    
-      <div style="font-weight:bold">${b.title}</div>`;
 
-    d.onclick = ()=>{
-      m.remove();
-      openBookDetailModal(b);
-    };
-    
-    box.appendChild(d);
-  });
+
+// 本一覧
+list.forEach(b=>{
+
+  const d =
+    document.createElement("div");
+
+  d.style.padding = "6px 0";
+  d.style.borderBottom = "1px solid #eee";
+
+  d.innerHTML = `
+    <div style="font-weight:bold">
+      ${b.title}
+    </div>
+  `;
+
+  d.onclick = ()=>{
+    m.remove();
+    openBookDetailModal(b);
+  };
+
+  box.appendChild(d);
+
+});
 
   m.appendChild(box);
   m.onclick = ()=> m.remove();
