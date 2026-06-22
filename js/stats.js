@@ -213,13 +213,25 @@ renderStats();
 
 
     cell.onclick = ()=>{
-      if(!map[dateStr]) return;
 
-      openDayModal(
-        dateStr,
-        map[dateStr]
-      );
-    };
+  const booksOnDay =
+    map[dateStr] || [];
+
+  const logsOnDay =
+    dailyLogs[dateStr] || [];
+
+  if(
+    booksOnDay.length === 0 &&
+    logsOnDay.length === 0
+  ) return;
+
+  openDayModal(
+    dateStr,
+    booksOnDay,
+    logsOnDay
+  );
+
+};
 
     grid.appendChild(cell);
   }

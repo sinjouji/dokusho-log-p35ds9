@@ -1479,7 +1479,7 @@ editingCharacterSeriesIds =
 //==============================
 //カレンダーの日モーダル設定====
 //==============================
-function openDayModal(dateStr, list){
+function openDayModal(dateStr, list, logs = []){
   const m = document.createElement("div");
   m.style.position = "fixed";
   m.style.top = 0;
@@ -1501,10 +1501,41 @@ function openDayModal(dateStr, list){
 
   list.forEach(b=>{
     const d = document.createElement("div");
+    if(logs.length){
+
+  const logBox =
+    document.createElement("div");
+
+  logBox.innerHTML = `
+    <div class="day-log-section">
+      <h4>デイリーログ</h4>
+      ${
+        logs.map(id=>{
+
+          const tag =
+            tagMaster.find(t =>
+              String(t.id) === String(id)
+            );
+
+          return tag
+            ? `<div>${tag.name}</div>`
+            : "";
+
+        }).join("")
+      }
+    </div>
+  `;
+
+  box.appendChild(logBox);
+
+}
+    
+    
     d.style.padding = "6px 0";
     d.style.borderBottom = "1px solid #eee";
     
     d.innerHTML = `
+    
       <div style="font-weight:bold">${b.title}</div>`;
 
     d.onclick = ()=>{
