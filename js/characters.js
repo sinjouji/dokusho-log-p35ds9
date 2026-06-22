@@ -96,7 +96,7 @@ function renderCharacterSearchArea(){
 	
 	<button onclick="openAddCharacterModal()"
 		class="add-btn">
-		➕ 人物
+		＋ 人物
 	</button>
 	
 	<input

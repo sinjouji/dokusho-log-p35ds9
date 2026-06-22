@@ -60,7 +60,7 @@ setActiveMenu("menu-tags");
     <div class="tags-header">
 
   <button
-  class="add-tag-btn"
+  class="add-tag-btn add-btn"
   onclick="toggleAddTagForm()"
 >
   ＋タグ
@@ -524,7 +524,7 @@ setTimeout(()=>{
   if(card){
     card.scrollIntoView({
       behavior: "smooth",
-      block: "nearest"
+      block: "end"
     });
   }
 
