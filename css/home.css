@@ -108,6 +108,22 @@ main{
 
 
 /*デイリーログ用*/
+.daily-log-area{
+  padding:8px 0;
+  margin-bottom:12px;
+}
+
+.daily-log-title{
+  font-size:12px;
+  opacity:.7;
+  margin-bottom:6px;
+}
+
+.daily-log-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
 .daily-log-chip{
   border:none;
   padding:6px 12px;
