@@ -1018,8 +1018,8 @@ function renderDetailSearchConditions(){
 
         <button
 
-          class="
-            tag-chip main-tag-text
+          class="main-tag-text
+            tag-chip
             ${
               mode
                 ? `tag-mode-${mode.toLowerCase()}`
