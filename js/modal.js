@@ -1537,7 +1537,23 @@ box.appendChild(title);
   box.appendChild(logBox);
 
 }
-    
+    if(
+  list.length === 0 &&
+  logs.length > 0
+){
+
+  const empty =
+    document.createElement("div");
+
+  empty.textContent =
+    "この日は読了作品はありません";
+
+  empty.style.opacity = "0.7";
+  empty.style.marginTop = "12px";
+
+  box.appendChild(empty);
+
+}
     
     d.style.padding = "6px 0";
     d.style.borderBottom = "1px solid #eee";
