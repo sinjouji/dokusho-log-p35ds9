@@ -1492,6 +1492,14 @@ function openDayModal(dateStr, list, logs = []){
   m.style.justifyContent = "center";
 
   const box = document.createElement("div");
+  
+  const title =
+  document.createElement("h3");
+
+title.textContent = dateStr;
+title.style.marginBottom = "12px";
+box.appendChild(title);
+  
   box.style.background = "#fffffc";
   box.style.padding = "20px";
   box.style.maxHeight = "80%";
