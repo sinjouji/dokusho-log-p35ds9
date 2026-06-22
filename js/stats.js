@@ -5,6 +5,21 @@
 //==============================
 
 
+//==============================
+//日時取得の共通化
+//==============================
+function getTodayLocal(){
+
+  const now = new Date();
+
+  return `${now.getFullYear()}-${
+    String(now.getMonth()+1).padStart(2,"0")
+  }-${
+    String(now.getDate()).padStart(2,"0")
+  }`;
+
+}
+
 
 //==============================
 //====カレンダー、統計ページの表示
@@ -160,8 +175,9 @@ renderStats();
     }
 
     // 今日
-    const today =
-      new Date().toISOString().slice(0,10);
+    const now = new Date();
+
+    const today = getTodayLocal();
 
     if(dateStr === today){
       cell.style.border =

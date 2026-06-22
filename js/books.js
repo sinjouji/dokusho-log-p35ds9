@@ -157,10 +157,7 @@ function renderHome(){
   );
   
   //今日の日付を取得
-  const today =
-  new Date()
-    .toISOString()
-    .split("T")[0];
+  const today = getTodayLocal();
     
   //今日の選択ずみタグ取得
   const todayLogs =
@@ -661,8 +658,7 @@ async function duplicateBook(id){
 
   if(!book) return;
 
-  const today =
-    new Date().toISOString().slice(0, 10);
+  const today = getTodayLocal();
     
   const originalReadDates =
     book.readDates || [];
@@ -1394,10 +1390,7 @@ function toggleDateHistory(bookId, head){
 //==============================
 async function toggleDailyLog(tagId){
 
-  const today =
-    new Date()
-      .toISOString()
-      .split("T")[0];
+  const today = getTodayLocal();
 
   if(!dailyLogs[today]){
     dailyLogs[today] = [];
