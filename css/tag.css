@@ -48,6 +48,17 @@ tag.css
   opacity:0.7;
 }
 
+.tag-mode-include{
+  outline:2px solid #6b8e23;
+  outline-offset:2px;
+}
+
+.tag-mode-exclude{
+  outline:2px solid #b94a48;
+  outline-offset:2px;
+  opacity:.6;
+}
+
 .tag-select-area{
   display:flex;
   flex-wrap:wrap;
