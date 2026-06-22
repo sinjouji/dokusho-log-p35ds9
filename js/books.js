@@ -1389,6 +1389,37 @@ function toggleDateHistory(bookId, head){
 }
 
 
+//==============================
+// デイリータグのトグル関数
+//==============================
+async function toggleDailyLog(tagId){
+
+  const today =
+    new Date()
+      .toISOString()
+      .split("T")[0];
+
+  if(!dailyLogs[today]){
+    dailyLogs[today] = [];
+  }
+
+  const logs = dailyLogs[today];
+
+  if(logs.includes(tagId)){
+
+    dailyLogs[today] =
+      logs.filter(id => id !== tagId);
+
+  }else{
+
+    dailyLogs[today].push(tagId);
+
+  }
+
+  await saveData();
+
+  renderHome();
+}
 
 
 //==============================
