@@ -12,6 +12,9 @@ let books = [];
 let characters = [];
 let tagMaster = [];
 
+//デイリーログ・ハビット
+let dailyLogs = {};
+
 let selectedTagId = null;
 //if(!selectedTagId) selectedTagId = null;
 
@@ -262,7 +265,8 @@ async function saveData(){
     books,
     characters,
     tagMaster,
-    seriesMaster
+    seriesMaster,
+    dailyLogs
   };
 
   // ローカル保存
@@ -314,6 +318,7 @@ async function loadData(){
           .concat(
             data.seriesMaster || []
           );
+      dailyLogs = data.dailyLogs || {};
 
 
       // ローカルにも保存（バックアップ）
@@ -333,6 +338,7 @@ async function loadData(){
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
         seriesMaster = data.seriesMaster || [];
+        dailyLogs = data.dailyLogs || {};
 
         console.log("◆ローカルから読み込み");
 
@@ -346,6 +352,7 @@ async function loadData(){
         characters = data.characters || [];
         tagMaster = data.tagMaster || [];
         seriesMaster = data.seriesMaster || [];
+        dailyLogs = data.dailyLogs || {};
 
         await saveData();
 

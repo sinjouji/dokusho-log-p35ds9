@@ -1088,7 +1088,9 @@ async function saveNewTag(){
         .getElementById(
           "new-tag-hidden"
         )
-        .checked
+        .checked,
+     
+     isDailyLog: false
 
   });
 
