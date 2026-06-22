@@ -901,7 +901,7 @@ const characterCount =
 	modal.innerHTML = `
 		<div class="modal-box fixed-scroll-modal book-detail-modal">
 		<div class="detail-modal-head">
-		 <div class="flex-between">
+		 <div class="flex-between yohaku10">
 					<span class="left-yose">シリーズを追加</span>
 						<button class="btn-sub right-yose" onclick="closeModal('add-series-modal')">✖️</button></div>
 			
@@ -1027,7 +1027,7 @@ const characterCount =
   modal.innerHTML = `
     <div class="modal-box fixed-scroll-modal book-detail-modal">
       <div class="detail-modal-head">
-      <div class="flex-between">
+      <div class="flex-between yohaku10">
       <span class="left-yose">シリーズ編集</span>
       <button onclick="closeModal('edit-series-modal')" class="btn-sub right-yose">✖️</button>
       </div>
@@ -1325,9 +1325,9 @@ function openAddCharacterModal(){
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
 			<div class="detail-modal-header">
-			 <div class="flex-between">
+			 <div class="flex-between yohaku10">
 			<span class="left-yose">人物を追加</span>
-					<button onclick="closeModal('add-chars-modal')" style="margin-left:auto;" class="btn-sub">✖️</button></div>
+					<button onclick="closeModal('add-chars-modal')" class="btn-sub right-yose">✖️</button></div>
 			
 			<input class="input-title"
 				id="add-chars-name"
