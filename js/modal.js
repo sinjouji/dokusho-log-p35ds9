@@ -40,7 +40,7 @@ function openAddBookModal(){
     
     <div class="detail-modal-header">
     
- <div class="flex-between">
+ <div class="flex-between yohaku10">
          <span>本を追加</span>
          <button class="btn-sub" onclick="closeModal('add-book-modal')">✖️</button></div>
 
@@ -326,8 +326,8 @@ function openBookDetailModal(book){
     
     <div class="detail-modal-header">
     
-    <div class="detail-row">
-    <input id="detail-title" class="input-title yohaku10"
+    <div class="detail-row yohaku10">
+    <input id="detail-title" class="input-title"
         value="${book.title || ""}">        
     
       <button class="btn-sub right-yose" onclick="closeModal('open-book-modal')">
