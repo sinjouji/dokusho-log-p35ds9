@@ -247,4 +247,10 @@
   background:#f4c542;
 }
 
+/*デイリーログ用*/
+.mini-day-daily{
+  font-size:10px;
+  line-height:1;
+  margin-top:2px;
+}
 
