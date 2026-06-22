@@ -476,7 +476,7 @@ const hiddenTags =
   <div class="hidden-tag-edit-card">
 
     <div class="hidden-tag-edit-title">
-      #${editingTag.name}
+  #${editingTag.name}${editingTag.isDailyLog ? " 📅" : ""}
       <span class="hidden-tag-edit-count">
         (${count})
       </span>
@@ -611,7 +611,7 @@ function renderHiddenTagList(){
     }
 
     chip.textContent =
-      `#${tag.name} (${count})`;
+      `#${tag.name}${tag.isDailyLog ? " 📅" : ""} (${count})`;
 
     chip.onclick = ()=>{
       editingHiddenTagId =
