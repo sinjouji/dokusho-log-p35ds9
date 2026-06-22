@@ -22,7 +22,7 @@ setActiveMenu("menu-settings");
  
   
   el.innerHTML = `
-    <button onclick="go('home')" class="btn-main">← 戻る</button>
+    <button onclick="go('home')" class="common-button">← 戻る</button>
     <h2>設定</h2>
 
   <div class="setting-card">
