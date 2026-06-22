@@ -329,6 +329,7 @@ function renderVisibleTags(){
         <div class="visible-tag-row">
           <div class="tag-card-name">
             ${tag.name}
+            ${tag.isDailyLog ? " 📅" : ""}
           </div>
 
           <div class="tag-card-count">
@@ -476,6 +477,7 @@ const hiddenTags =
 
     <div class="hidden-tag-edit-title">
       #${editingTag.name}
+      ${tag.isDailyLog ? " 📅" : ""}
       <span class="hidden-tag-edit-count">
         (${count})
       </span>
@@ -494,6 +496,15 @@ const hiddenTags =
     id="hidden-tag-edit-visible-${editingTag.id}"
   >
   表示タグにする
+</label>
+
+<label class="tag-page-check">
+  <input
+    type="checkbox"
+    id="hidden-tag-edit-daily-${editingTag.id}"
+    ${editingTag.isDailyLog ? "checked" : ""}
+  >
+  デイリーログ用
 </label>
     
       <button class="btn-main"
@@ -875,6 +886,13 @@ async function saveHiddenTagEdit(id){
   document.getElementById(
     `hidden-tag-edit-visible-${id}`
   );
+  
+  tag.isDailyLog =
+  document
+    .getElementById(
+      `hidden-tag-edit-daily-${id}`
+    )
+    ?.checked || false;
 
 if(visibleCheck && visibleCheck.checked){
   tag.isHidden = false;
