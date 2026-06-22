@@ -8,13 +8,13 @@ SETTINGS.CSS
 
 /*カード風設定*/
 .setting-card{
-  background:#fffffc;
+  background:var(--color-card);
   border-radius:10px;
   padding:16px;
   margin-bottom:18px;
   box-shadow:
     0 2px 10px
-    rgba(0,0,0,0.05);
+    var(--color-shadow);
 /*  min-width:600px;*/
 }
 
@@ -31,7 +31,7 @@ SETTINGS.CSS
     space-between;
   align-items:center;
   margin:12px 0;
-  border-bottom:1px dashed #7f9698;
+  border-bottom:1px dashed var(--color-border);
   font-size:12px;
   padding-bottom:10px;
 }
