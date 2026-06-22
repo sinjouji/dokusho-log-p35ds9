@@ -1026,6 +1026,8 @@ function renderDetailSearchConditions(){
                 : ""
             }
           "
+          
+          style="background:${tag.color}"
 
           onclick="
             cycleDetailSearchTagState(
