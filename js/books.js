@@ -1416,9 +1416,10 @@ async function toggleDailyLog(tagId){
 
   }
 
-  await saveData();
 
   renderHome();
+  await saveData();
+
 }
 
 
