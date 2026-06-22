@@ -20,7 +20,7 @@
   aspect-ratio:auto;
   min-height:52px;
   font-size:10px;
-  color:#60564f;
+  color:var(--color-text);
   font-weight:bold;
 
   display:flex;
@@ -28,7 +28,7 @@
   justify-content:center;
 
   border-radius:10px;
-  background:#eee;
+  background:var(--color-bg);
 }
 
 .heat-max .mini-day-date{
@@ -52,7 +52,7 @@
 .mini-day-count{
   font-size:18px;
   font-weight:bold;
-  color:#60564f;
+  color:var(--color-text);
   line-height:1;
 }
 
@@ -74,7 +74,7 @@
  top:4px;
  left:6px;
  font-size:10px;
- color:#999;
+ color:var(--color-text);
 }
 .calendar-count{
 
@@ -90,7 +90,7 @@
 
   font-weight:bold;
 
-  color:#60564f;
+  color:var(--color-text);
 
 }
 
@@ -121,7 +121,7 @@
 
 .stats-card{
   background:#fffffc;
-  border:1px solid #e8b8a0;
+  border:1px solid var(--color-border);
   border-radius:16px;
   padding:10px 8px;
   text-align:center;
@@ -140,13 +140,13 @@
   margin-top:4px;
   font-size:22px;
   font-weight:bold;
-  color:#60564f;
+  color:var(--color-text);
 }
 
 .stats-label{
   margin-top:2px;
   font-size:10px;
-  color:#888;
+  color:var(--color-accent);
 }
 
 
@@ -172,7 +172,7 @@
 .monthly-bar-bg{
   flex:1;
   height:12px;
-  background:#eee;
+  background:var(--color-bg);
   border-radius:999px;
   overflow:hidden;
 }
@@ -188,7 +188,7 @@
 .stats-calendar-card{
   margin:18px 0;
   padding:16px;
-  border:1px solid #ead2c2;
+  border:1px solid var(--color-border);
   border-radius:18px;
   background:#fffffc;
   box-shadow:0 2px 8px rgba(0,0,0,0.04);
@@ -216,7 +216,7 @@
 .stats-sub{
   margin-top:2px;
   font-size:11px;
-  color:#8aa35b;
+  color:var(--color-text);
   font-weight:bold;
 }
 
@@ -233,7 +233,7 @@
 
 .year-goal-bar-bg{
   height:14px;
-  background:#eee;
+  background:var(--color-bg);
   border-radius:999px;
   overflow:hidden;
 }
