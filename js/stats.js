@@ -644,7 +644,18 @@ function toggleEditDailyTag(tagId){
     editingDailyLogTags.push(tagId);
   }
 
-  renderStats();
+  document
+  .querySelector(".day-modal-overlay")
+  ?.remove();
+
+openDayModal(
+  editingDailyLogDate,
+  books.filter(b =>
+    (b.readDates || [])
+      .includes(editingDailyLogDate)
+  ),
+  editingDailyLogTags
+);
 
 }
 
