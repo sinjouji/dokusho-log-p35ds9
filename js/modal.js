@@ -1555,7 +1555,9 @@ if(logs.length){
         }).join("")
       }
     </div>
-    if(
+    
+  `;
+if(
   editingDailyLogDate === dateStr
 ){
 
@@ -1620,8 +1622,7 @@ if(logs.length){
   box.appendChild(editBox);
 
 }
-    
-  `;
+
 
   box.appendChild(logBox);
 
