@@ -1541,12 +1541,12 @@ if(editingDailyLogDate !== dateStr){
 
   };
 
+
+header.appendChild(title);
   header.appendChild(editBtn);
 
 }
 
-
-header.appendChild(title);
 
 box.appendChild(header);
 
