@@ -9,6 +9,10 @@
 let pendingHiddenTagRemove = null;
 let newBookHiddenTagIds = [];
 
+//デイリータグ編集用
+let editingDailyLogDate = null;
+let editingDailyLogTags = [];
+
 //==============================
 //====モーダルを閉じる（汎用）
 //==============================
@@ -1519,7 +1523,16 @@ if(logs.length){
 
   logBox.innerHTML = `
     <div class="day-log-section">
-      <h4>デイリーログ</h4>
+      <div class="non-kai"><h4>デイリーログ</h4>
+      <button
+  class="btn-sub hidari-ake"
+  onclick="
+    startDailyLogEdit('${dateStr}')
+  "
+>
+  編集
+</button>
+</div>
       ${
         logs.map(id=>{
 

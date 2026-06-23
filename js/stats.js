@@ -600,3 +600,64 @@ function renderStatsYearCard(main, year){
 
   main.appendChild(yearCard);
 }
+
+
+
+//==============================
+//　デイリーモーダル編集
+//==============================
+function startDailyLogEdit(dateStr){
+
+  editingDailyLogDate = dateStr;
+
+  editingDailyLogTags =
+    [...(dailyLogs[dateStr] || [])];
+
+  renderStats();
+
+}
+
+
+//==============================
+//　デイリーモーダルトグル
+//==============================
+function toggleEditDailyTag(tagId){
+
+  const idx =
+    editingDailyLogTags.indexOf(tagId);
+
+  if(idx >= 0){
+    editingDailyLogTags.splice(idx,1);
+  }else{
+    editingDailyLogTags.push(tagId);
+  }
+
+  renderStats();
+
+}
+
+//==============================
+//　デイリーモーダル編集保存
+//==============================
+async function saveDailyLogEdit(){
+
+  if(!editingDailyLogDate) return;
+
+  dailyLogs[editingDailyLogDate] =
+    [...editingDailyLogTags];
+
+  if(
+    dailyLogs[editingDailyLogDate].length === 0
+  ){
+    delete dailyLogs[editingDailyLogDate];
+  }
+
+  editingDailyLogDate = null;
+  editingDailyLogTags = [];
+
+  await saveData();
+
+  renderStats();
+  renderHome();
+
+}
