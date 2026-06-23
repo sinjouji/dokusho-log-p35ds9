@@ -664,12 +664,15 @@ async function saveDailyLogEdit(){
     delete dailyLogs[editingDailyLogDate];
   }
 
-  editingDailyLogDate = null;
-  editingDailyLogTags = [];
-
   await saveData();
 
-  renderStats();
-  renderHome();
+editingDailyLogDate = null;
+editingDailyLogTags = [];
 
+document
+  .querySelector(".day-modal-overlay")
+  ?.remove();
+
+renderStats();
+renderHome();
 }
