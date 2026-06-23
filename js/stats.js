@@ -198,25 +198,35 @@ const firstDailyTag =
   </div>
 
   ${
-    count
-      ? `
-        <div class="mini-day-count">
-          ${count}
-        </div>
-      `
-      : ""
-  }
-  
-  ${
-  dailyCount
+  count
     ? `
-      <div class="mini-day-daily">
-  ${
-    firstDailyTag
-      ? firstDailyTag.name[0]
-      : "📅"
-  }
-</div>
+      <div class="mini-day-count">
+        ${count}
+      </div>
+    `
+    : ""
+}
+
+${
+  dailyLogs[dateStr]?.length
+    ? `
+      <div class="mini-day-daily-row">
+        ${
+          dailyLogs[dateStr]
+            .map(id=>{
+
+              const tag =
+                tagMaster.find(t =>
+                  String(t.id) === String(id)
+                );
+
+              return tag
+                ? `<span class="mini-day-daily">${tag.name[0]}</span>`
+                : "";
+
+            }).join("")
+        }
+      </div>
     `
     : ""
 }

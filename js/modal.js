@@ -1529,8 +1529,15 @@ if(logs.length){
             );
 
           return tag
-            ? `<div>${tag.name}</div>`
-            : "";
+  ? `
+    <span
+      class="day-log-chip"
+      style="background:${tag.color}"
+    >
+      ${tag.name}
+    </span>
+  `
+  : "";
 
         }).join("")
       }
@@ -1572,7 +1579,7 @@ list.forEach(b=>{
   d.style.borderBottom = "1px solid #eee";
 
   d.innerHTML = `
-    <div style="font-weight:bold">
+    <div class="day-book-title">
       ${b.title}
     </div>
   `;
