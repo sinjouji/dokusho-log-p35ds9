@@ -1485,6 +1485,7 @@ editingCharacterSeriesIds =
 //==============================
 function openDayModal(dateStr, list, logs = []){
   const m = document.createElement("div");
+  m.className = "day-modal-overlay";
   m.style.position = "fixed";
   m.style.top = 0;
   m.style.left = 0;
@@ -1633,22 +1634,7 @@ if(
       </button>
 
       <button
-        class="btn-sub"
-        onclick="
-          editingDailyLogDate = null;
-editingDailyLogTags = [];
-
-document
-  .querySelector(".day-modal-overlay")
-  ?.remove();
-
-openDayModal(
-  dateStr,
-  list,
-  logs
-);
-        "
-      >
+        class="btn-sub">
         キャンセル
       </button>
 
@@ -1659,7 +1645,25 @@ openDayModal(
 
 }
 
+const cancelBtn =
+  editBox.querySelector(".btn-sub");
 
+cancelBtn.onclick = ()=>{
+
+  editingDailyLogDate = null;
+  editingDailyLogTags = [];
+
+  document
+    .querySelector(".day-modal-overlay")
+    ?.remove();
+
+  openDayModal(
+    dateStr,
+    list,
+    logs
+  );
+
+};
 
 // 読了本なしメッセージ
 if(
