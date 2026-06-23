@@ -1515,6 +1515,30 @@ title.style.marginBottom = "12px";
 
 box.appendChild(title);
 
+  const editBtn =
+    document.createElement("button");
+
+  editBtn.className =
+    "btn-sub";
+
+  editBtn.textContent =
+    "編集";
+
+  editBtn.onclick = ()=>{
+
+    startDailyLogEdit(
+      dateStr,
+      list,
+      logs
+    );
+
+  };
+
+
+  logBox
+    .querySelector(".flex-between")
+    .appendChild(editBtn);
+
 
 // デイリーログ表示
 if(logs.length){
@@ -1556,29 +1580,7 @@ if(logs.length){
   `;
 
 
-  const editBtn =
-    document.createElement("button");
 
-  editBtn.className =
-    "btn-sub";
-
-  editBtn.textContent =
-    "編集";
-
-  editBtn.onclick = ()=>{
-
-    startDailyLogEdit(
-      dateStr,
-      list,
-      logs
-    );
-
-  };
-
-
-  logBox
-    .querySelector(".flex-between")
-    .appendChild(editBtn);
 
   box.appendChild(logBox);
 
@@ -1606,6 +1608,7 @@ if(
           <button
             class="
               tag-chip
+              daily-edit-chip
               ${
                 editingDailyLogTags.includes(tag.id)
                   ? "active"
