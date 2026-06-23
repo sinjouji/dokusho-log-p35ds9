@@ -1557,6 +1557,9 @@ if(logs.length){
     </div>
     
   `;
+  box.appendChild(logBox);
+
+}
 if(
   editingDailyLogDate === dateStr
 ){
@@ -1623,10 +1626,6 @@ if(
 
 }
 
-
-  box.appendChild(logBox);
-
-}
 
 
 // 読了本なしメッセージ
