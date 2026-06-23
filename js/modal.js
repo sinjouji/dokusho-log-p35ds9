@@ -1520,18 +1520,34 @@ if(logs.length){
 
   const logBox =
     document.createElement("div");
+    
+  
 
   logBox.innerHTML = `
     <div class="day-log-section">
       <div class="flex-between"><h4>デイリーログ</h4>
-      <button
-  class="btn-sub hidari-ake"
-  onclick="
-    startDailyLogEdit('${dateStr}')
-  "
->
-  編集
-</button>
+      
+      const editBtn =
+  document.createElement("button");
+
+editBtn.className =
+  "btn-sub";
+
+editBtn.textContent =
+  "編集";
+
+editBtn.onclick = ()=>{
+
+  startDailyLogEdit(
+    dateStr,
+    list,
+    logs
+  );
+
+};
+
+box.appendChild(editBtn);
+      
 </div>
       ${
         logs.map(id=>{

@@ -606,14 +606,26 @@ function renderStatsYearCard(main, year){
 //==============================
 //　デイリーモーダル編集
 //==============================
-function startDailyLogEdit(dateStr){
+function startDailyLogEdit(
+  dateStr,
+  list,
+  logs
+){
 
   editingDailyLogDate = dateStr;
 
   editingDailyLogTags =
     [...(dailyLogs[dateStr] || [])];
 
-  renderStats();
+  document
+    .querySelector(".day-modal-overlay")
+    ?.remove();
+
+  openDayModal(
+    dateStr,
+    list,
+    logs
+  );
 
 }
 
