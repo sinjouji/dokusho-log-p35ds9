@@ -1540,13 +1540,13 @@ editBtn.onclick = ()=>{
 
 };
 
+box.appendChild(editBtn);
 
   logBox.innerHTML = `
     <div class="day-log-section">
       <div class="flex-between"><h4>デイリーログ</h4>
       
       
-box.appendChild(editBtn);
 </div>
       ${
         logs.map(id=>{
