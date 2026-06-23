@@ -424,3 +424,11 @@ border-radius:10px;
   background:var(--color-main-dark);
   color:#fff;
 }
+
+
+.day-modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
