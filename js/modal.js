@@ -1523,7 +1523,7 @@ if(logs.length){
 
   logBox.innerHTML = `
     <div class="day-log-section">
-      <div class="non-kai"><h4>デイリーログ</h4>
+      <div class="flex-between"><h4>デイリーログ</h4>
       <button
   class="btn-sub hidari-ake"
   onclick="
@@ -1555,6 +1555,72 @@ if(logs.length){
         }).join("")
       }
     </div>
+    if(
+  editingDailyLogDate === dateStr
+){
+
+  const editBox =
+    document.createElement("div");
+
+  editBox.className =
+    "daily-log-edit-card";
+
+  editBox.innerHTML = `
+    <h4>デイリーログ編集</h4>
+
+    ${
+      tagMaster
+        .filter(tag => tag.isDailyLog)
+        .map(tag=>`
+
+          <button
+            class="
+              tag-chip
+              ${
+                editingDailyLogTags.includes(tag.id)
+                  ? "active"
+                  : ""
+              }
+            "
+            onclick="
+              toggleEditDailyTag(
+                '${tag.id}'
+              )
+            "
+          >
+            ${tag.name}
+          </button>
+
+        `).join("")
+    }
+
+    <div class="tag-page-actions">
+
+      <button
+        class="btn-main"
+        onclick="saveDailyLogEdit()"
+      >
+        保存
+      </button>
+
+      <button
+        class="btn-sub"
+        onclick="
+          editingDailyLogDate = null;
+          editingDailyLogTags = [];
+          renderStats();
+        "
+      >
+        キャンセル
+      </button>
+
+    </div>
+  `;
+
+  box.appendChild(editBox);
+
+}
+    
   `;
 
   box.appendChild(logBox);
