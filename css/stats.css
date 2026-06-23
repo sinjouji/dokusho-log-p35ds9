@@ -56,7 +56,7 @@
 .mini-day-count{
   font-size:11px;
   font-weight:bold;
-  margin-top:2px;
+  margin-top:4px;
   color:var(--color-text);
   line-height:1;
 }
@@ -266,3 +266,19 @@
   flex-wrap:wrap;
   margin-top:2px;
 }
+
+
+/*マス内の余白調整*/
+.mini-day-date{
+  margin-bottom:2px;
+}
+
+.mini-day-count{
+  margin-bottom:2px;
+}
+
+.mini-day-daily-row{
+  margin-top:2px;
+}
+
+
