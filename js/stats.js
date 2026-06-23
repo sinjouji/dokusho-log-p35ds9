@@ -242,10 +242,6 @@ ${
   const logsOnDay =
     dailyLogs[dateStr] || [];
 
-  if(
-    booksOnDay.length === 0 &&
-    logsOnDay.length === 0
-  ) return;
 
   openDayModal(
     dateStr,
