@@ -1679,17 +1679,19 @@ cancelBtn.onclick = ()=>{
 // 読了本なしメッセージ
 if(
   list.length === 0 &&
-  logs.length > 0
+  logs.length === 0
 ){
 
   const empty =
-    document.createElement("div");
+  document.createElement("div");
 
-  empty.textContent =
-    "この日は読了作品はありません";
+empty.textContent =
+  "この日の読了作品・ログはありません";
 
-  empty.style.opacity = "0.7";
-  empty.style.marginTop = "12px";
+empty.className =
+  "day-empty-message";
+
+box.appendChild(empty);
 
   box.appendChild(empty);
 
