@@ -254,3 +254,15 @@
   margin-top:2px;
 }
 
+.mini-day-daily-row{
+  display:flex;
+  gap:2px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:2px;
+}
+
+.mini-day-daily{
+  font-size:10px;
+  line-height:1;
+}

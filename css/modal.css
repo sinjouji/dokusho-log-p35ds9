@@ -410,3 +410,13 @@ border-radius:10px;
   margin-top:10px;
 }
 
+
+.day-log-chip{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:11px;
+  margin:2px;
+  color:#fff;
+}
+
