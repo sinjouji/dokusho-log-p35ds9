@@ -1507,32 +1507,41 @@ box.style.minWidth = "200px";
 
 
 // タイトル
+const header =
+  document.createElement("div");
+
+header.className =
+  "day-modal-header";
+
+
 const title =
   document.createElement("h3");
 
 title.textContent = dateStr;
 
+
 const editBtn =
-    document.createElement("button");
+  document.createElement("button");
 
-  editBtn.className =
-    "btn-sub";
+editBtn.className =
+  "btn-sub";
 
-  editBtn.textContent =
-    "編集";
+editBtn.textContent =
+  "編集";
 
-  editBtn.onclick = ()=>{
+editBtn.onclick = ()=>{
 
-    startDailyLogEdit(
-      dateStr,
-      list,
-      logs
-    );
+  startDailyLogEdit(
+    dateStr,
+    list,
+    logs
+  );
 
-  };
+};
 
-box.appendChild(title);
-box.appendChild(editBtn);
+
+header.appendChild(title);
+header.appendChild(editBtn);
 
 box.appendChild(header);
 
