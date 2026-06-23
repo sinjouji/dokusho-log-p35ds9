@@ -64,7 +64,7 @@ COMMON.CSS
 
 /*==========
 ルートカラー：まとめて変えるぜ〜〜〜
-2026/06/22時点のカラー：COOLな青磁
+2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
 :root{
   --color-main:#c7d7d4;       /* メイン青磁 */
@@ -75,7 +75,7 @@ COMMON.CSS
   --color-card:#fffffb;
 
   --color-border:#8b7e74;     /* 茶系枠線 */
-  --color-text:#646364;
+  --color-text:#917347;
   --color-shadow:rgba(0,0,0,.08);
 }
 
@@ -347,6 +347,14 @@ button{
 }
 .yohaku15{
  margin-bottom:15px;
+}
+
+.migi-ake{
+ margin-right:5px;
+}
+
+.hidari-ake{
+ margin-left:5px;
 }
 
 .detail-row{
