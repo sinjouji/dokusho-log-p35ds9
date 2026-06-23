@@ -1578,11 +1578,7 @@ const editBtn =
 
   };
 
-
-  logBox
-    .querySelector(".flex-between")
-    .appendChild(editBtn);
-
+box.appendChild(editBtn);
 
 if(
   editingDailyLogDate === dateStr
