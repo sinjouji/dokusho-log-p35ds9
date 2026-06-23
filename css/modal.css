@@ -420,10 +420,7 @@ border-radius:10px;
   color:#fff;
 }
 
-
-.non-kai{
-  display:flex;
-  align-items:center;
+.daily-edit-chip.active{
+  background:var(--color-main-dark);
+  color:#fff;
 }
-
-
