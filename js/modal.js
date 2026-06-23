@@ -1520,34 +1520,16 @@ if(logs.length){
 
   const logBox =
     document.createElement("div");
-    
-  const editBtn =
-  document.createElement("button");
 
-editBtn.className =
-  "btn-sub";
-
-editBtn.textContent =
-  "編集";
-
-editBtn.onclick = ()=>{
-
-  startDailyLogEdit(
-    dateStr,
-    list,
-    logs
-  );
-
-};
-
-box.appendChild(editBtn);
+  logBox.className =
+    "day-log-section";
 
   logBox.innerHTML = `
-    <div class="day-log-section">
-      <div class="flex-between"><h4>デイリーログ</h4>
-      
-      
-</div>
+    <div class="flex-between">
+      <h4>デイリーログ</h4>
+    </div>
+
+    <div class="day-log-chip-row">
       ${
         logs.map(id=>{
 
@@ -1557,24 +1539,51 @@ box.appendChild(editBtn);
             );
 
           return tag
-  ? `
-    <span
-      class="day-log-chip"
-      style="background:${tag.color}"
-    >
-      ${tag.name}
-    </span>
-  `
-  : "";
+            ? `
+              <span
+                class="day-log-chip"
+                style="background:${tag.color}"
+              >
+                ${tag.name}
+              </span>
+            `
+            : "";
 
         }).join("")
       }
     </div>
-    
   `;
+
+
+  const editBtn =
+    document.createElement("button");
+
+  editBtn.className =
+    "btn-sub";
+
+  editBtn.textContent =
+    "編集";
+
+  editBtn.onclick = ()=>{
+
+    startDailyLogEdit(
+      dateStr,
+      list,
+      logs
+    );
+
+  };
+
+
+  logBox
+    .querySelector(".flex-between")
+    .appendChild(editBtn);
+
   box.appendChild(logBox);
 
 }
+
+
 if(
   editingDailyLogDate === dateStr
 ){
@@ -1627,8 +1636,17 @@ if(
         class="btn-sub"
         onclick="
           editingDailyLogDate = null;
-          editingDailyLogTags = [];
-          renderStats();
+editingDailyLogTags = [];
+
+document
+  .querySelector(".day-modal-overlay")
+  ?.remove();
+
+openDayModal(
+  dateStr,
+  list,
+  logs
+);
         "
       >
         キャンセル
