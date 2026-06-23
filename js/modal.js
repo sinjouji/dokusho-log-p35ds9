@@ -1555,6 +1555,7 @@ if(logs.length){
     </div>
   `;
 
+  box.appendChild(logBox);
 
 }
 
@@ -1581,8 +1582,6 @@ const editBtn =
   logBox
     .querySelector(".flex-between")
     .appendChild(editBtn);
-
-  box.appendChild(logBox);
 
 
 if(
