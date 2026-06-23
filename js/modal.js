@@ -1511,10 +1511,30 @@ const title =
   document.createElement("h3");
 
 title.textContent = dateStr;
-title.style.marginBottom = "12px";
+
+const editBtn =
+    document.createElement("button");
+
+  editBtn.className =
+    "btn-sub";
+
+  editBtn.textContent =
+    "編集";
+
+  editBtn.onclick = ()=>{
+
+    startDailyLogEdit(
+      dateStr,
+      list,
+      logs
+    );
+
+  };
 
 box.appendChild(title);
+box.appendChild(editBtn);
 
+box.appendChild(header);
 
 // デイリーログ表示
 if(logs.length){
@@ -1558,27 +1578,6 @@ if(logs.length){
   box.appendChild(logBox);
 
 }
-
-const editBtn =
-    document.createElement("button");
-
-  editBtn.className =
-    "btn-sub";
-
-  editBtn.textContent =
-    "編集";
-
-  editBtn.onclick = ()=>{
-
-    startDailyLogEdit(
-      dateStr,
-      list,
-      logs
-    );
-
-  };
-
-box.appendChild(editBtn);
 
 if(
   editingDailyLogDate === dateStr
