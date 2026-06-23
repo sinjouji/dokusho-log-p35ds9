@@ -1520,28 +1520,33 @@ const title =
 title.textContent = dateStr;
 
 
-const editBtn =
-  document.createElement("button");
+if(editingDailyLogDate !== dateStr){
 
-editBtn.className =
-  "btn-sub";
+  const editBtn =
+    document.createElement("button");
 
-editBtn.textContent =
-  "編集";
+  editBtn.className =
+    "btn-sub";
 
-editBtn.onclick = ()=>{
+  editBtn.textContent =
+    "編集";
 
-  startDailyLogEdit(
-    dateStr,
-    list,
-    logs
-  );
+  editBtn.onclick = ()=>{
 
-};
+    startDailyLogEdit(
+      dateStr,
+      list,
+      logs
+    );
+
+  };
+
+  header.appendChild(editBtn);
+
+}
 
 
 header.appendChild(title);
-header.appendChild(editBtn);
 
 box.appendChild(header);
 
