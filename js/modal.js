@@ -1643,7 +1643,6 @@ if(
 
   box.appendChild(editBox);
 
-}
 
 const cancelBtn =
   editBox.querySelector(".btn-sub");
@@ -1664,6 +1663,9 @@ cancelBtn.onclick = ()=>{
   );
 
 };
+
+
+}
 
 // 読了本なしメッセージ
 if(
