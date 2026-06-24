@@ -1000,13 +1000,15 @@ const characterCount =
 function openSeriesEditModal(id){
 
   const modal = document.createElement("div");
-  
+
   const series =
     seriesMaster.find(
       s => String(s.id) === String(id)
     );
-    
+
   if(!series) return;
+
+  closeModal("series-detail-modal"); // ←追加
 
   editingSeriesBookIds =
   [...new Set(
