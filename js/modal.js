@@ -1710,10 +1710,15 @@ list.forEach(b=>{
   d.style.borderBottom = "1px solid #eee";
 
   d.innerHTML = `
-    <div class="day-book-title">
-      ${b.title}
-    </div>
-  `;
+  <div class="day-book-title">
+    ${b.title}
+    ${
+      b.volume
+        ? ` ${b.volume}巻`
+        : ""
+    }
+  </div>
+`;
 
   d.onclick = ()=>{
     m.remove();
