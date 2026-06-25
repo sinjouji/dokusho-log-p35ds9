@@ -77,6 +77,8 @@ COMMON.CSS
   --color-border:#8b7e74;     /* 茶系枠線 */
   --color-text:#917347;
   --color-shadow:rgba(0,0,0,.08);
+  
+  --color-text-white:#fffffc; /* 白文字 */
 }
 
 
