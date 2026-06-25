@@ -221,8 +221,17 @@ ${
                 );
 
               return tag
-                ? `<span class="mini-day-daily">${tag.name[0]}</span>`
-                : "";
+  ? `
+    <span
+      class="
+        mini-day-daily
+        ${count >= 5 ? "dark" : ""}
+      "
+    >
+      ${tag.name[0]}
+    </span>
+  `
+  : "";
 
             }).join("")
         }
