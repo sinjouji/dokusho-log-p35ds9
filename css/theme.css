@@ -244,14 +244,14 @@
   /* 検索バー */
   --color-control-box:#968a71;
   
-  --color-and:#eef9fa;
-  --color-and-border:#bfe0da;
+  --color-and:#2b4f6b;         /* 夜のラムネ瓶 */
+  --color-and-border:#5d8fa0; /* 青提灯 */
 
-  --color-or:#fff9ef;
-  --color-or-border:#f2dd8c;
+  --color-or:#6a4f1d;          /* 屋台の灯り */
+  --color-or-border:#d6b04c;   /* 金灯り */
 
-  --color-not:#fff0ed;
-  --color-not-border:#f2b1aa;
+  --color-not:#6b2f2f;         /* 金魚鉢の赤影 */
+  --color-not-border:#d86c3d;  /* 朱赤提灯 */
 
   --color-search-btn:#b88a44; /* 屋台木札 */
 
