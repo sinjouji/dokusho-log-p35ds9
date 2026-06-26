@@ -172,14 +172,14 @@
   /* 検索バー */
   --color-control-box:#fffaf0;
   
-  --color-and:#eef9fa;
-  --color-and-border:#bfe0da;
+  --color-and:#d9ece8;         /* 薄い青緑ガラス */
+  --color-and-border:#6fb7b0; /* 青磁ラムネ */
 
-  --color-or:#fff9ef;
-  --color-or-border:#f2dd8c;
+  --color-or:#f7f0da;          /* 古いメニュー札 */
+  --color-or-border:#d9bf72;   /* 砂浜金 */
 
-  --color-not:#fff0ed;
-  --color-not-border:#f2b1aa;
+  --color-not:#f8e4de;         /* スイカ果肉薄桃 */
+  --color-not-border:#d97b6d;  /* スイカ赤皮寄り */
 
   --color-search-btn:#d8c3a4; /* 木の札 */
 
