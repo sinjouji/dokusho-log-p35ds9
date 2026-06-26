@@ -184,9 +184,9 @@ function openAddBookModal(){
  						
 					style="
 						background:
-							${isActive ? tag.color : '#fffffc'};
+							${isActive ? tag.color : 'var(--color-card)'};
 						color:
-							${isActive ? '#fffffc' : tag.color};
+							${isActive ? 'var(--color-card)' : tag.color};
 						border:
 							1px solid ${tag.color};
 					"
@@ -620,10 +620,10 @@ id="open-book-tags">
             )"
             style="
               background:
-                ${isActive ? tag.color : '#fffffc'};
+                ${isActive ? tag.color : 'var(--color-card)'};
 
               color:
-                ${isActive ? '#fffffc' : tag.color};
+                ${isActive ? 'var(--color-card)' : tag.color};
 
               border:
                 1px solid ${tag.color};
