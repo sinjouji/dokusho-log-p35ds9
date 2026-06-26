@@ -1497,10 +1497,11 @@ function openDayModal(dateStr, list, logs = []){
   m.style.display = "flex";
   m.style.alignItems = "center";
   m.style.justifyContent = "center";
+  m.style.color = "var(--color-text)";
 
 const box = document.createElement("div");
 
-box.style.background = "#fffffc";
+box.style.background = "var(--color-card)";
 box.style.padding = "20px";
 box.style.maxHeight = "80%";
 box.style.overflow = "auto";
@@ -1707,7 +1708,7 @@ list.forEach(b=>{
     document.createElement("div");
 
   d.style.padding = "6px 0";
-  d.style.borderBottom = "1px solid #eee";
+  d.style.borderBottom = "1px solid var(--color-border-sub)";
 
   d.innerHTML = `
   <div class="day-book-title">
