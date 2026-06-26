@@ -322,6 +322,7 @@ tag.css
   border-radius:999px;
   border:1px solid var(--color-border);
   background:var(--color-chip);
+  color:var(--color-text);
 }
 
 .selected-hidden-tags{
