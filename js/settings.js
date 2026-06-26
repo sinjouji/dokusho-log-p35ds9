@@ -39,7 +39,7 @@ setActiveMenu("menu-settings");
       <span>テーマ切替</span>
        <select
     id="theme-select"
-    class="white-input"
+    class="select-chip"
     onchange="
       applyTheme(this.value)
     "
