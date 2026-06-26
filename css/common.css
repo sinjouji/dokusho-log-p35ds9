@@ -67,7 +67,7 @@ COMMON.CSS
 ==========*/
 body{
   font-family:sans-serif;
-  background:var(--color-bg);
+  background:var(--color-bg) !important;
   touch-action: pan-y;
   overflow-x:hidden;
   
