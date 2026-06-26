@@ -31,7 +31,6 @@
   --color-btn-text-d:#9a5a4f;
   --color-btn-border-d:#e0b0a0;
   
-  --color-object-bg:#fffffc;
   --color-input-common:#f5f4eb;
   
   --color-search-hover:#e4e5e6;
@@ -58,7 +57,117 @@
 }
 
 
+:root[data-theme="ajisai"]{
+    --color-header-bg:#fffffc;
+  --color-header-watermark-rgb: 96,86,79;
+  --opacity-header-watermark:0.05;
 
+  --color-main:#c7d7d4;       /* メイン青磁 */
+  --color-main-dark:#9bb8b3;  /* active */
+  --color-border:#6f8f89;     /* 濃い線 */
+
+  --color-bg:#f8f7f3;         /* 紙背景 */
+  --color-card:#fffffc;
+
+  --color-border-sub:#8b7e74;     /* 茶系枠線 */
+  --color-text:#917347;
+  --color-shadow:rgba(0,0,0,.08);
+  
+  --color-opacity:0.8;
+  
+  --color-text-sub:#fffffc; /* サブ文字色 */
+  --color-read-text:#6f9f5f;
+  --color-unread-text:#aaa;
+  
+  /* モーダルボタン */
+  --color-btn-main:#7A89A8;
+  --color-btn-text-s:#60564f;
+  --color-btn-danger:#fff7f5;
+  --color-btn-text-d:#9a5a4f;
+  --color-btn-border-d:#e0b0a0;
+  
+  --color-input-common:#f5f4eb;
+  
+  --color-search-hover:#e4e5e6;
+  
+  --color-chip:#f7f0ea;
+  
+  --color-bookmark:#d94b4b;
+  
+  /* 検索ページ・検索バー */
+  --color-and:#EBF4F4;/*青白磁*/
+  --color-and-border:#CAE5CD;/*薄緑*/
+  --color-or:#FFFDF6;/*乳白色*/
+  --color-or-border:#f7ed92;/*承和*/
+  --color-not:#fae8e5;/*淡紅*/
+  --color-not-border:#F4B2BA;/*薄紅*/
+  --color-search-btn:#d9c5b6;
+  
+  --color-year-bar:#aacf53;
+  --color-year-achieved:#f4c542;
+  
+  /* タグ選択状態？未使用かも */
+  --color-tag-include:#6b8e23;
+  --color-tag-exclude:#b94a48;
+}
+
+:root[data-theme="marin"]{
+  --color-header-bg:#fffdf6;
+  --color-header-watermark-rgb: 83,117,135;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#9ed8df;       /* ラムネ水色 */
+  --color-main-dark:#6bbbc7;  /* 深ラムネ */
+  --color-border:#5d8fa0;     /* 海松色寄り */
+
+  --color-bg:#f9f6ee;         /* 砂浜 */
+  --color-card:#fffef9;       /* 白波 */
+
+  --color-border-sub:#b59a74; /* 流木色 */
+  --color-text:#6b5a43;       /* 焼けた木の茶 */
+  --color-shadow:rgba(0,0,0,.08);
+
+  --color-opacity:0.8;
+
+  --color-text-sub:#fffffc;
+  --color-read-text:#5fa07d;  /* 蚊遣り豚の緑 */
+  --color-unread-text:#aaa;
+
+  /* ボタン */
+  --color-btn-main:#78b7c5;   /* ラムネ瓶 */
+  --color-btn-text-s:#60564f;
+
+  --color-btn-danger:#fff1ef;
+  --color-btn-text-d:#c65b4b; /* スイカ赤 */
+  --color-btn-border-d:#f1b0a3;
+
+  --color-input-common:#f6f1e4; /* 古いメニュー紙 */
+
+  --color-search-hover:#dff1f5;
+
+  --color-chip:#f8f3e8;
+
+  --color-bookmark:#d94b4b;   /* スイカ */
+
+  /* 検索バー */
+  --color-and:#eef9fa;
+  --color-and-border:#bfe0da;
+
+  --color-or:#fff9ef;
+  --color-or-border:#f2dd8c;
+
+  --color-not:#fff0ed;
+  --color-not-border:#f2b1aa;
+
+  --color-search-btn:#d8c3a4; /* 木の札 */
+
+  --color-year-bar:#79b98d;   /* 青竹 */
+  --color-year-achieved:#f4c96a; /* 提灯黄 */
+}
+
+:root[data-theme="natsumatsuri"]{
+  ...
+}
 
 
 
