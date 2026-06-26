@@ -45,9 +45,12 @@ setActiveMenu("menu-settings");
       applyTheme(this.value)
     "
   >
+    <option value="harunoniwa">春の庭</option>
     <option value="ajisai">紫陽花</option>
     <option value="marin">海の家</option>
     <option value="natsumatsuri">夏祭り</option>
+    <option value="ekisha">駅舎</option>
+    <option value="yukimishoji">雪見障子</option>
   </select></span>
     </div>
     
