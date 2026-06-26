@@ -7,7 +7,7 @@
 
 
 #title-suggest{
-  background:#fbf6e8;
+  background:var(--color-card);
 }
 
 #search-suggest,
@@ -18,7 +18,7 @@
   left:0;
   right:0;
 
-  background:var(--color-color);
+  background:var(--color-card);
 
   border-radius:10px;
   box-shadow:0 4px 12px var(--color-shadow);
@@ -36,7 +36,7 @@
   margin-top:8px;
   width:100%;
 
-  background:var(--color-color);
+  background:var(--color-card);
   border-radius:10px;
   font-size:10px;
 }

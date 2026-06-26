@@ -119,8 +119,8 @@ tag.css
 
 
 .hidden-tag-chip.remove-ready{
-  background:#f8d8c6;
-  color:#8a4b4b;
+  background:var(--color-btn-danger);
+  color:var(--color-btn-text-d);
 }
 
 .hidden-tag-chip.active{
@@ -169,7 +169,7 @@ tag.css
   padding:3px 8px;
   border-radius:999px;
   border:1px solid var(--color-border-sub);
-  background:var(--color-color);
+  background:var(--color-chip);
   color:var(--color-text);
   opacity:var(--color-opacity);
 }
@@ -321,7 +321,7 @@ tag.css
   padding:6px 10px;
   border-radius:999px;
   border:1px solid var(--color-border);
-  background:var(--color-color);
+  background:var(--color-chip);
 }
 
 .selected-hidden-tags{
@@ -335,7 +335,7 @@ tag.css
   padding:6px;
   border:1px solid var(--color-border);
   border-radius:12px;
-  background:var(--color-color);
+  background:var(--color-chip);
 }
 
 .hidden-tag-suggest:empty{

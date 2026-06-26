@@ -295,7 +295,7 @@ border-radius:10px;
 }
 
 .book-status-area{
-  background:rgba(255,248,238,.7);
+  background:var(--color-bg);
   border-radius:12px;
   padding:6px 10px;
   max-width:80%;
