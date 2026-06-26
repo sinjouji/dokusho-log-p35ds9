@@ -31,6 +31,7 @@ tag.css
 .tag-mode-and{
 
   filter:brightness(0.9);
+  background:var(--color-and);
   border:2px solid var(--color-and-border);
 
 }
@@ -39,11 +40,12 @@ tag.css
 
   box-shadow:
     0 0 0 3px var(--color-shadow);
+  background:var(--color-or);
   border:2px solid var(--color-or-border);
 }
 
 .tag-mode-not{
-
+  background:var(--color-not);
   text-decoration:line-through;
   border:2px solid var(--color-not-border);
 
