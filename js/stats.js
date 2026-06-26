@@ -395,14 +395,30 @@ function changeStatsYear(diff){
 //====ヒートマップカラー
 //==============================
 function getHeatColor(count){
-  if(count === 0) return "#e1e5e4"; //蕎麦切
-  if(count === 1) return "#f2c3ca"; //撫子
-  if(count === 2) return "#fcd475"; //卵
-  if(count === 3) return "#efecad"; //女郎花
-  
-  if(count === 4) return "#c7dc68"; //若苗
-  return "#4f8a5d";//緑青
-  }
+
+  const root =
+    getComputedStyle(
+      document.documentElement
+    );
+
+  if(count === 0)
+    return root.getPropertyValue("--color-heat-0").trim();
+
+  if(count === 1)
+    return root.getPropertyValue("--color-heat-1").trim();
+
+  if(count === 2)
+    return root.getPropertyValue("--color-heat-2").trim();
+
+  if(count === 3)
+    return root.getPropertyValue("--color-heat-3").trim();
+
+  if(count === 4)
+    return root.getPropertyValue("--color-heat-4").trim();
+
+  return root.getPropertyValue("--color-heat-5").trim();
+
+}
 
 
 
