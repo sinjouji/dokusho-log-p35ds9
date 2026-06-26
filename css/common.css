@@ -199,13 +199,34 @@ box-shadow:
   color:var(--color-text);
   font-size:12px;
 
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+
   cursor:pointer;
   transition:.15s;
+}
+
+.select-chip-wrap{
+  position:relative;
+  display:inline-block;
+}
+
+.select-chip-wrap::after{
+  content:"▽";
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--color-text);
+  pointer-events:none;
+  font-size:12px;
 }
 
 .select-chip:hover{
   transform:translateY(-1px);
 }
+
 
 .card-common{
   background:var(--color-card);
