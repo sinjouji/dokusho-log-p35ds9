@@ -73,7 +73,7 @@
   font-size:28px;
   font-weight:bold;
 
-  color: var(--color-text-sub);
+  color: var(--color-text);
   opacity:var(--opacity-header-watermark);
 
   line-height:1;
