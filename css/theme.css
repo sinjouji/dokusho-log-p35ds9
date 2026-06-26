@@ -165,6 +165,9 @@
 
   --color-year-bar:#79b98d;   /* 青竹 */
   --color-year-achieved:#f4c96a; /* 提灯黄 */
+  
+  --color-chip-read-bg:#78b7c5;
+  --color-chip-read-text:#fffffc;
 }
 
 
@@ -196,6 +199,8 @@
 
   --color-year-bar:#4f8c74;   /* 青竹 */
   --color-year-achieved:#f0c34d; /* 花火金 */
+  --color-chip-read-bg:#d86c3d;
+  --color-chip-read-text:#fff7e8;
 }
 
 

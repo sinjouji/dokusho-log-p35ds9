@@ -201,8 +201,8 @@ text-align:center;
 
 .progress-chip.read{
 
-  background:var(--color-text);
-  color:var(--color-text-sub);
+  background:var(--color-chip-read-bg);
+  color:var(--color-chip-read-text);
 
 }
 
