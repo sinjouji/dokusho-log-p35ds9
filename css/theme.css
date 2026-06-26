@@ -128,9 +128,14 @@
 --color-heat-5:#6d9a57;
 }
 
+.header > *{
+  position:relative;
+  z-index:1;
+}
 /*テーマ別ヘッダー*/
 [data-theme="haru"] .header::before{
-  opacity:.65;
+  background:red !important;
+  opacity:1 !important;
 
   background:
     radial-gradient(
