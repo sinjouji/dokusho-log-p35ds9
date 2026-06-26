@@ -73,7 +73,10 @@
   font-size:28px;
   font-weight:bold;
 
-  color:rgba(0,0,0,0.08);
+  color:rgba(
+    var(--color-text-sub),
+    var(--opacity-header-watermark)
+  );
 
   line-height:1;
   pointer-events:none;

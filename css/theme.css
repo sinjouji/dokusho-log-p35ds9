@@ -200,6 +200,7 @@
 
 :root[data-theme="natsumatsuri"]{
   --color-header-bg:#1a1a28;
+  --opacity-header-watermark:0.05;
 
   --color-main:#3a436d;       /* 夜空紺 */
   --color-main-dark:#5a628f;
@@ -213,6 +214,8 @@
   --color-text:#f4e7c8;       /* 提灯紙 */
 
   --color-text-sub:#1e1f2b;
+  
+  --color-opacity:0.8;
 
   --color-btn-main:#d86c3d;   /* 朱赤 */
   --color-btn-text-s:var(--color-text);
