@@ -134,8 +134,8 @@ main{
 }
 
 .daily-log-chip.active{
-  background:var(--color-bookmark);
-  color:var(--color-text-sub);
+  background:var(--color-chip-read-bg);
+  color:var(color-chip-read-text);
   font-weight:bold;
 }
 
