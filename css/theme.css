@@ -286,6 +286,7 @@
 :root[data-theme="harunoniwa"]{
 --color-header-bg:#fff9f8;
 --color-header-watermark-rgb:167, 138, 127;
+--opacity-header-watermark:0.05;
 
 --color-main:#dca8a8;        /* 桜鼠 */
 --color-main-dark:#b98585;
@@ -297,10 +298,16 @@
 
 --color-border-sub:#b89b8a;
 --color-text:#7f6a58;
+--color-shadow:rgba(0,0,0,.08);
+
 --color-text-sub:#fffaf4;
 
+--color-opacity:0.8;
+
 --color-btn-main:#8aa36f;
+--color-btn-text-s:var(--color-text);
 --color-btn-danger:#f8e6e6;
+--color-btn-text-d:var(--color-text);
 
 --color-chip:#f4e2e2;
 
@@ -326,6 +333,11 @@
 
 --color-chip-read-bg:#b88f8f;
 --color-chip-read-text:#fffaf4;
+
+  --color-calendar-date:#a98d7a;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
 
 --color-heat-0:#f8f4ea;
 --color-heat-1:#f8dede;
@@ -382,6 +394,12 @@
 --color-chip-read-bg:#b86b4d;
 --color-chip-read-text:#fff1de;
 
+
+  --color-calendar-date:#b89b7a;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
 --color-heat-0:#2a2520;
 --color-heat-1:#5a3a2a;
 --color-heat-2:#8b4a3a;
@@ -437,6 +455,11 @@
 
 --color-chip-read-bg:#7f98b8;
 --color-chip-read-text:#ffffff;
+
+  --color-calendar-date:#7f8ca3;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
 
 --color-heat-0:#eef3f8;
 --color-heat-1:#dde5ee;
