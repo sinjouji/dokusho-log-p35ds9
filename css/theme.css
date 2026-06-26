@@ -12,13 +12,17 @@
   --color-border:#6f8f89;     /* 濃い線 */
 
   --color-bg:#f8f7f3;         /* 紙背景 */
-  --color-card:#fffffb;
+  --color-card:#fffffc;
 
-  --color-border:#8b7e74;     /* 茶系枠線 */
+  --color-border-sub:#8b7e74;     /* 茶系枠線 */
   --color-text:#917347;
   --color-shadow:rgba(0,0,0,.08);
   
-  --color-text-sub:#fffffc; /* サブ文字色（大体反対色） */
+  --color-opacity:0.8;
+  
+  --color-text-sub:#fffffc; /* サブ文字色 */
+  --color-read-text:#6f9f5f;
+  --color-unread-text:#aaa;
   
   /* モーダルボタン */
   --color-btn-main:#7A89A8;
@@ -32,6 +36,26 @@
   --color-input-common:#f5f4eb;
   
   --color-search-hover:#e4e5e6;
+  
+  --color-chip:#f7f0ea;
+  
+  --color-bookmark:#d94b4b;
+  
+  /* 検索ページ・検索バー */
+  --color-and:#EBF4F4;/*青白磁*/
+  --color-and-border:#CAE5CD;/*薄緑*/
+  --color-or:#FFFDF6;/*乳白色*/
+  --color-or-border:#f7ed92;/*承和*/
+  --color-not:#fae8e5;/*淡紅*/
+  --color-not-border:#F4B2BA;/*薄紅*/
+  --color-search-btn:#d9c5b6;
+  
+  --color-year-bar:#aacf53;
+  --color-year-achieved:#f4c542;
+  
+  /* タグ選択状態？未使用かも */
+  --color-tag-include:#6b8e23;
+  --color-tag-exclude:#b94a48;
 }
 
 

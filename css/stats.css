@@ -125,7 +125,7 @@
 }
 
 .stats-card{
-  background:#fffffc;
+  background:var(--color-card);
   border:1px solid var(--color-border);
   border-radius:16px;
   padding:10px 8px;
@@ -184,7 +184,7 @@
 
 .monthly-bar{
   height:100%;
-  background:#78ccd2;
+  background:var(--color-bg);
   border-radius:999px;
 }
 
@@ -245,11 +245,11 @@
 
 .year-goal-bar{
   height:100%;
-  background:#aacf53;
+  background:var(--color-year-bar);
 }
 
 .year-goal-bar.achieved{
-  background:#f4c542;
+  background:var(--color-year-achieved);
 }
 
 /*デイリーログ用*/

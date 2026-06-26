@@ -16,8 +16,8 @@ UIのやつ
     translateX(-50%)
     translateY(20px);
 
-  background:#333;
-  color:#fffffc;
+  background:var(--color-bg);
+  color:var(--color-text-sub);
 
   padding:12px 18px;
 
@@ -45,11 +45,11 @@ UIのやつ
 /*本詳細モーダルの日付履歴*/
 .toggle-history{
   font-size:11px;
-  color:var(--color-border);
+  color:var(--color-text);
   cursor:pointer;
   margin-bottom:2px;
   border-radius:10px;
-  background:#fbf6e8;
+  background:var(--color-chip);
 /*  border:1px solid #fef4f4;*/
 }
 

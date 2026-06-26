@@ -52,13 +52,13 @@ grid-template-columns:1fr 1fr;
   }
   
 .satu{
-background:#fffffc;
-color:#60564f;
+background:var(--color-object-bg);
+color:var(--color-text);
 font-size:15px;
 font-weight:bold;
 padding:5px 30px;
 border-radius:10px;
-border:1px solid #60564f;
+border:1px solid var(--color-border-sub);
 text-align:center;
 }
 
@@ -66,16 +66,16 @@ text-align:center;
 .stitle{
   width:90%;
   margin:10px 20px;
-  background: linear-gradient(transparent 70%, #eddbd8 70%);
+  background: linear-gradient(transparent 70%, var(--color-bg) 70%);
 }
 
 .series-section{
-  background:#fffffc;
+  background:var(--color-card);
   border-radius:10px;
   padding:12px;
   margin:5px;
-  border:1px solid #60564f;
-  color:#60564f;
+  border:1px solid var(--color-border);
+  color:var(--color-text);
 }
 .series-section-title{
   font-weight:bold;
@@ -101,7 +101,7 @@ text-align:center;
   padding:2px 5px;
   margin:2px;
 
-  background:#f3f3f3;
+  background:var(--color-related-chip);
 
   border-radius:999px;
 
@@ -138,7 +138,7 @@ text-align:center;
 .series-list-date{
   margin-top:3px;
   font-size:10px;
-  color:#888;
+  color:var(--color-read-text);
 }
 
 /*詳細での読了状態など表示*/
@@ -150,16 +150,16 @@ text-align:center;
 .mini-read-status{
   margin-top:3px;
   font-size:9px;
-  color:#999;
+  color:var(--color-read-text);
   display:block;
 }
 
 .mini-read-status.read{
-  color:#6f9f5f;
+  color:var(--color-read-text);
 }
 
 .mini-read-status.unread{
-  color:#aaa;
+  color:var(--color-unread-text);
 }
 
 .series-progress{
@@ -194,15 +194,15 @@ text-align:center;
 
 .progress-chip.unread{
 
-  border:1px solid #c8b8aa;
-  color:#8c8178;
+  border:1px solid var(--color-border-sub);
+  color:var(--color-unread-text);
 
 }
 
 .progress-chip.read{
 
-  background:#8c8178;
-  color:white;
+  background:var(--color-text);
+  color:var(--color-text-sub);
 
 }
 
@@ -212,7 +212,7 @@ text-align:center;
   align-items:center;
 
   padding:7px 10px;
-  border-bottom:1px solid #ead2c2;
+  border-bottom:1px solid var(--color-border-sub);
   font-size:13px;
   
   border-radius:8px;
@@ -229,16 +229,17 @@ text-align:center;
   margin-left:8px;
   flex-shrink:0;
   font-size:11px;
-  color:#888;
+  color:var(--color-read-text);
+  opacity:var(--color-opacity);
 }
 
 /*コンパクトリストの行色変更*/
 .series-compact-card:nth-child(even){
-  background:#fffffc;
+  background:var(--color-card);
 }
 
 .series-compact-card:nth-child(odd){
-  background:#f7f0ea;
+  background:var(--color-chip);
 }
 
 #series-main.compact-mode{
@@ -257,8 +258,8 @@ text-align:center;
   min-height:150px;
   padding:6px 4px;
   border-radius:10px;
-  background:#fffffc;
-  border:1px solid #ead2c2;
+  background:var(--color-card);
+  border:1px solid var(--color-border-sub);
 
   display:flex;
   flex-direction:column;
@@ -286,9 +287,10 @@ text-align:center;
   margin-top:6px;
   padding:2px 5px;
   border-radius:999px;
-  background:#f7f0ea;
+  background:var(--color-chip);
   font-weight:600;
   font-size:9px;
-  color:#60564f;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
 }
 

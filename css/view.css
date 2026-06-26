@@ -136,12 +136,6 @@
   text-align:left;
   white-space:nomal;
   
-/*使うか分からん調整部分
-  word-break:break-all;
-  flex:1;
-  max-height:100%;
-*/
-}
 
 .spine-fav{
   font-size:10px;
@@ -166,13 +160,14 @@
 .book-volume-label{
   margin-left:6px;
   font-size:11px;
-  color:#9a7b5a;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
   white-space:nowrap;
 }
 
 .book-subtitle{
 
-  opacity:0.75;
+  opacity:var(--color-opacity);
   font-size:0.9em;
 
 }
@@ -189,7 +184,7 @@
   width:14px;
   height:28px;
 
-  background:#d94b4b;
+  background:var(--color-bookmark);
 
   border-radius:0 0 4px 4px;
 
@@ -206,7 +201,7 @@
 
   border-left:7px solid transparent;
   border-right:7px solid transparent;
-  border-top:8px solid #d94b4b;
+  border-top:8px solid var(--color-bookmark);
 
 }
 
@@ -234,7 +229,8 @@
 
   font-size:12px;
 
-  color:#666;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
 
   margin-top:4px;
 
@@ -254,7 +250,8 @@
 
   font-size:11px;
 
-  color:#999;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
 
 }
 

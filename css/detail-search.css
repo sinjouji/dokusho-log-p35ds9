@@ -6,14 +6,14 @@ PAGE-SEARCH.CSS
 */
 
 .search-search{
- background:#fffffb;
+ background:var(--color-object-bg);
  border:1px solid var(--color-border);
  margin:0 5px;
 }
 
 .detail-search-group{
 
-  background:#fffffb;
+  background:var(--color-object-bg);
   border:1px solid var(--color-border);
 
   border-radius:8px;
@@ -48,7 +48,7 @@ PAGE-SEARCH.CSS
   border-radius:12px;
   padding:8px;
   margin-bottom:8px;
-  background:#fffffc;
+  background:var(--color-object-bg);
 }
 
 .detail-result-title{
@@ -88,7 +88,7 @@ PAGE-SEARCH.CSS
   border-radius:11px;
   padding:10px;
   margin-bottom:6px;
-  background:#fffffc;
+  background:var(--color-object-bg);
   cursor:pointer;
 }
 
@@ -108,7 +108,7 @@ PAGE-SEARCH.CSS
   flex:1 1 260px;
   border:1px solid var(--color-border);
   border-radius:14px;
-  background:#fffffc;
+  background:var(--color-card);
   padding:8px;
 }
 
@@ -124,10 +124,10 @@ PAGE-SEARCH.CSS
   width:100%;
   margin-top:6px;
   padding-top:6px;
-  border-top:1px dashed #ead2c2;
+  border-top:1px dashed var(--color-border-sub);
   font-size:12px;
   line-height:1.6;
-  color:#6f4f38;
+  color:var(--color-text);
 }
 
 .search-min-rows{
@@ -136,31 +136,30 @@ PAGE-SEARCH.CSS
 }
 
 
-/*キーワード検索欄の色*/
+/*キーワード検索欄の色（基本的に固定）*/
 .and-bar{
-  background:#EBF4F4;/*青白磁*/
-  border:2px solid #CAE5CD;/*薄緑*/
+  background:var(--color-and);
+  border:2px solid var(--color-and-border);
 }
 .and-bar:forcus{
   box-shadow:0 0 0 3px rgba(120,190,150,.25);
 }
 .or-bar{
-  background:#FFFDF6;/*乳白色*/
-/*  background:#F9F1C0;*//*淡黄蘗*/
-  border:2px solid #f7ed92;/*承和*/
+  background:var(--color-or);
+  border:2px solid var(--color-or-border);
 }
 .or-bar:forcus{
  box-shadow:0 0 0 3px rgba(230,210,90,.30);
 }
 .not-bar{
-  background:#fae8e5;/*淡紅*/
-  border:2px solid #F4B2BA;/*薄紅*/
+  background:var(--color-not);
+  border:2px solid var(--color-not-border);
 }
 .not-bar:forcus{
   box-shadow:0 0 0 3px rgba(230,130,150,.25);
 }
 .ken-btn{
- background:#d9c5b6;
+ background:var(--color-search-btn);
 }
 
 .bulk-tag-suggest{
@@ -172,10 +171,10 @@ PAGE-SEARCH.CSS
 }
 
 .bulk-suggest-items{
-  border-bottom:1px dashed #b9b9b9;
+  border-bottom:1px dashed var(--color-border-sub);
 }
 
 .main-tag-text{
   border:none;
-  color:#fffffc;
+  color:var(--color-text-sub);
 }

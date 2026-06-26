@@ -6,13 +6,13 @@ tag.css
 .tag{
   display:inline-block;   font-size:10px;
   padding:2px 6px;   border-radius:999px;
-  color:#fffffc;   margin-right:4px;
+  color:var(--color-text-sub);   margin-right:4px;
 }
 
 
 /*タグ編集エリア*/
 .tag-edit-area{
-  background:#f7f7f7;
+  background:var(--color-card);
   padding:8px;
   border-radius:10px;
   margin-top:8px;
@@ -37,7 +37,7 @@ tag.css
 .tag-mode-or{
 
   box-shadow:
-    0 0 0 3px #ff338d;
+    0 0 0 3px var(--color-shadow);
 
 }
 
@@ -45,16 +45,16 @@ tag.css
 
   text-decoration:line-through;
 
-  opacity:0.7;
+  opacity:var(--color-opacity);
 }
 
 .tag-mode-include{
-  outline:2px solid #6b8e23;
+  outline:2px solid var(--color-tag-include);
   outline-offset:2px;
 }
 
 .tag-mode-exclude{
-  outline:2px solid #b94a48;
+  outline:2px solid var(--color-tag-exclude);
   outline-offset:2px;
   opacity:.6;
 }
@@ -79,7 +79,7 @@ tag.css
 }
 
 .tag-chip.active{
-  color:#fffffc;
+  color:var(--color-text-sub);
   transform:scale(1.05);
 }
 
@@ -97,7 +97,8 @@ tag.css
 
 .hidden-tag-title{
   font-size:10px;
-  color:#888;
+  color:var(--color-text);
+  opacity:var(--color-opacity)
   margin-bottom:4px;
 }
 
@@ -112,8 +113,8 @@ tag.css
   font-size:10px;
   padding:3px 7px;
   border-radius:999px;
-  background:#eeeeee;
-  color:#666;
+  background:var(--color-chip);
+  color:var(--color-text);
 }
 
 
@@ -123,8 +124,8 @@ tag.css
 }
 
 .hidden-tag-chip.active{
-  background:#b9b9b9;
-  color:#fffffc;
+  background:var(--color-chip);
+  color:var(--color-text-sub);
 }
 
 .hidden-tag-edit-card{
@@ -132,7 +133,7 @@ tag.css
   padding:12px;
   border:1px solid var(--color-border);
   border-radius:14px;
-  background:#fffffc;
+  background:var(--color-card);
 }
 
 .hidden-tag-edit-title{
@@ -143,7 +144,8 @@ tag.css
 
 .hidden-tag-edit-count{
   margin-left:4px;
-  color:#999;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
   font-size:12px;
 }
 
@@ -166,9 +168,10 @@ tag.css
   font-size:10px;
   padding:3px 8px;
   border-radius:999px;
-  border:1px solid #ccc;
-  background:#fffffc;
-  color:#666;
+  border:1px solid var(--color-border-sub);
+  background:var(--color-object-bg);
+  color:var(--color-text);
+  opacity:var(--color-opacity);
 }
 
 #hidden-tag-search{
@@ -190,7 +193,7 @@ tag.css
   border:1px solid var(--color-border);
   border-radius:14px;
 
-  background:#fffffc;
+  background:var(--color-card);
   min-height:auto;
 }
 
@@ -201,7 +204,8 @@ tag.css
 
 .tag-card-count{
   font-size:11px;
-  color:#999;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
   margin:3px 0 6px;
 }
 
@@ -224,8 +228,8 @@ tag.css
   padding:14px;
   border:1px solid var(--color-border);
   border-radius:14px;
-  background:#fffffc;
-  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  background:var(--color-card);
+  box-shadow:0 2px 8px var(--color-shadow);
 }
 
 .add-tag-card h3{
@@ -257,7 +261,7 @@ tag.css
 
   border-radius:18px;
 
-  background:#fffffc;
+  background:var(--color-card);
 }
 
 .hidden-tag-header{
@@ -277,7 +281,8 @@ tag.css
 
   font-size:12px;
 
-  color:#999;
+  color:var(--color-text);
+  opacity:var(--color-opacity);
   vertical-align:bottom;
 
 }
@@ -293,20 +298,20 @@ tag.css
   width:24px;
   height:24px;
   border-radius:50%;
-  border:1px solid #ddd;
+  border:1px solid var(--color-border);
   
   transition:all .15s;
 }
 
 .tag-color-dot.active{
-  outline:2px solid #60564f;
+  outline:2px solid var(--color-border);
   outline-offset:2px;
   transform:scale(1.15);
 
-  border:2px solid #60564f;
+  border:2px solid var(--color-border);
 
   box-shadow:
-    0 0 0 2px #fffffc;
+    0 0 0 2px var(--color-text-sub);
 
 }
 
@@ -316,7 +321,7 @@ tag.css
   padding:6px 10px;
   border-radius:999px;
   border:1px solid var(--color-border);
-  background:#fffffc;
+  background:var(--color-object-bg);
 }
 
 .selected-hidden-tags{
@@ -330,7 +335,7 @@ tag.css
   padding:6px;
   border:1px solid var(--color-border);
   border-radius:12px;
-  background:#fffffc;
+  background:var(--color-object-bg);
 }
 
 .hidden-tag-suggest:empty{

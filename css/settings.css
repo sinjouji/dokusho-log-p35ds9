@@ -21,7 +21,7 @@ SETTINGS.CSS
 .setting-card-title{
   font-size:14px;
   font-weight:bold;
-  color:#60564f;
+  color:var(--color-text);
   margin-bottom:12px;
 }
 
@@ -47,7 +47,7 @@ SETTINGS.CSS
 .switch{
   width:40px;
   height:22px;
-  background:#ccc;
+  background:var(--color-bg);
   border-radius:10px;
   position:relative;
   transition:0.2s;
@@ -57,7 +57,7 @@ SETTINGS.CSS
   content:"";
   width:18px;
   height:18px;
-  background:#fffffc;
+  background:var(--color-object-bg);
   border-radius:50%;
   position:absolute;
   top:2px;
@@ -66,7 +66,7 @@ SETTINGS.CSS
 }
 
 .switch.on{
-  background:var(--color-border);
+  background:var(--color-main);
 }
 
 .switch.on::after{

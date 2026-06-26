@@ -41,5 +41,5 @@ gap:5px;
 .character-list-series{
   margin-top:3px;
   font-size:10px;
-  color:#888;
+  color:var(--color-text);
 }
