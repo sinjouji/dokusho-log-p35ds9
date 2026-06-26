@@ -279,6 +279,10 @@
   --color-tag-exclude:#b94a48;
 }
 
+
+
+
+
 :root[data-theme="harunoniwa"]{
 --color-header-bg:#fff9f8;
 --color-header-watermark-rgb:167, 138, 127;
@@ -293,7 +297,7 @@
 
 --color-border-sub:#b89b8a;
 --color-text:#7f6a58;
---color-text-sub:#fffdf8;
+--color-text-sub:#fffaf4;
 
 --color-btn-main:#8aa36f;
 --color-btn-danger:#f8e6e6;
@@ -320,6 +324,9 @@
 --color-year-bar:#8aa36f;
 --color-year-achieved:#f3c86b;
 
+--color-chip-read-bg:#b88f8f;
+--color-chip-read-text:#fffaf4;
+
 --color-heat-0:#f8f4ea;
 --color-heat-1:#f8dede;
 --color-heat-2:#f3c9c9;
@@ -327,6 +334,8 @@
 --color-heat-4:#a7c87a;
 --color-heat-5:#6d9a57;
 }
+
+
 
 
 :root[data-theme="ekisha"]{
@@ -343,7 +352,7 @@
 
 --color-border-sub:#7a5a46;
 --color-text:#e6d2b5;
---color-text-sub:#f5e8d5;
+--color-text-sub:#3a2c22;
 
 --color-btn-main:#8b4a3a;
 --color-btn-danger:#4a2a22;
@@ -370,6 +379,9 @@
 --color-year-bar:#6b7a4d;
 --color-year-achieved:#d6a34d;
 
+--color-chip-read-bg:#b86b4d;
+--color-chip-read-text:#fff1de;
+
 --color-heat-0:#2a2520;
 --color-heat-1:#5a3a2a;
 --color-heat-2:#8b4a3a;
@@ -377,6 +389,10 @@
 --color-heat-4:#d09a5a;
 --color-heat-5:#f0c36d;
 }
+
+
+
+
 
 :root[data-theme="yukimishoji"]{
 --color-header-bg:#f8fbfd;
@@ -418,6 +434,9 @@
 
 --color-year-bar:#7fa0b8;
 --color-year-achieved:#d8d2a0;
+
+--color-chip-read-bg:#7f98b8;
+--color-chip-read-text:#ffffff;
 
 --color-heat-0:#eef3f8;
 --color-heat-1:#dde5ee;
