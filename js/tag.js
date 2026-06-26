@@ -68,8 +68,9 @@ setActiveMenu("menu-tags");
 
   <h2>🏷️ タグ</h2>
   
+  <span class="select-chip-wrap">
       <select
-  class="tag-sort-select"
+  class="tag-sort-select select-chip"
   onchange="
     tagSortMode = this.value;
     renderTags();
@@ -105,7 +106,7 @@ setActiveMenu("menu-tags");
   </option>
 
 </select>
-
+</span>
 </div>
 
 ${

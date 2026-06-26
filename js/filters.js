@@ -369,7 +369,7 @@ function renderSearchArea(){
       oninput="handleSearchInput()"
     >
     
-    
+    <span class="select-chip-wrap">
       <select id="sort-select" class="select-chip"
         onchange="changeSortMode()">
 
@@ -382,7 +382,7 @@ function renderSearchArea(){
       <option value="rating-desc">高評価</option>
       <option value="rating-asc">低評価</option>
 
-      </select>
+      </select></span>
       
       <button class="tag-chip"
         data-open="🏷️タグ非表示"

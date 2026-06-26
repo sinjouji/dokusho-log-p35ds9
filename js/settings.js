@@ -37,6 +37,7 @@ setActiveMenu("menu-settings");
     <!--テーマ設定-->
     <div class="setting-row">
       <span>テーマ切替</span>
+      <span class="select-chip-wrap">
        <select
     id="theme-select"
     class="select-chip"
@@ -47,7 +48,7 @@ setActiveMenu("menu-settings");
     <option value="ajisai">紫陽花</option>
     <option value="marin">海の家</option>
     <option value="natsumatsuri">夏祭り</option>
-  </select>
+  </select></span>
     </div>
     
     <!--背表紙-->

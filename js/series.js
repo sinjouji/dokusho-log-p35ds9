@@ -440,6 +440,7 @@ function renderSeriesSearchArea(){
 			oninput="handleSeriesSearchInput()"
 		>
 		
+		<span class="select-chip-wrap">
 			<select id="series-sort-select" class="select-chip"
 				onchange="changeSeriesSortMode()">
 			
@@ -450,6 +451,7 @@ function renderSeriesSearchArea(){
 			<option value="sread-asc">読了日古</option>
 			
 			</select>
+			</span>
 			
 			<button onclick="changeSeriesViewMode('card')">
   ⬜︎

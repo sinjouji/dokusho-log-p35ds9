@@ -34,6 +34,7 @@ function renderQuotes(){
   "
 >
 
+   <span class="select-chip-wrap">
         <select
   class="select-chip"
   id="quote-sort"
@@ -84,7 +85,7 @@ function renderQuotes(){
 >
   ⭐お気に入り優先
 </option>
-        </select>
+        </select></span>
       </div>
       
       <label class="quote-favorite-filter">

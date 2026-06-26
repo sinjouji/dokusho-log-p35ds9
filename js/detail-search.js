@@ -502,7 +502,7 @@ if(!detailSearch.targets.characters){
 
 
 <div class="detail-search-sort-row">
-<span class="right-yose">
+<span class="right-yose select-chip-wrap">
   並び順：
   <select class="select-chip"
     onchange="

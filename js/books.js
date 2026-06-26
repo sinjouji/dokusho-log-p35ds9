@@ -248,12 +248,13 @@ function renderHomeFixedBar(){
       ‖‖
     </button>
 
+<span class="select-chip-wrap">
     <select class="select-chip" id="type-filter-fixed" onchange="changeTypeFilterFromFixed()">
       <option value="all" ${typeFilter === "all" ? "selected" : ""}>全部</option>
       <option value="normal" ${typeFilter === "normal" ? "selected" : ""}>本棚</option>
       <option value="wish" ${typeFilter === "wish" ? "selected" : ""}>ウィッシュ</option>
     </select>
-    
+    </span>
     
     <button
   class="filter-reset-btn"

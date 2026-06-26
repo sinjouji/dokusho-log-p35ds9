@@ -109,6 +109,7 @@ function renderCharacterSearchArea(){
 		"
 	>
 	
+	<span class="select-chip-wrap">
 		<select id="characters-sort-select" class="select-chip"
 			onchange="changeCharactersSortMode()">
 			
@@ -117,7 +118,7 @@ function renderCharacterSearchArea(){
 		
 		<option value="series-asc">シリーズ↓</option>
 		<option value="series-desc">シリーズ↑</option>
-		</select>
+		</select></span>
 		
 	
 	`;
