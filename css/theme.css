@@ -62,6 +62,108 @@
 }
 
 
+
+
+:root[data-theme="harunoniwa"]{
+--color-header-bg:#fff9f8;
+--color-header-watermark-rgb:167, 138, 127;
+--opacity-header-watermark:0.05;
+
+--color-main:#dca8a8;        /* 桜鼠 */
+--color-main-dark:#b98585;
+
+--color-border:#8aa36f;      /* 抹茶 */
+
+--color-bg:#f8f4ea;          /* 和紙 */
+--color-card:#fffdf8;
+
+--color-border-sub:#b89b8a;
+--color-text:#7f6a58;
+--color-shadow:rgba(0,0,0,.08);
+
+--color-text-sub:#fffaf4;
+
+--color-opacity:0.8;
+
+--color-btn-main:#8aa36f;
+--color-btn-text-s:var(--color-text);
+--color-btn-danger:#f8e6e6;
+--color-btn-text-d:var(--color-text);
+
+--color-chip:#f4e2e2;
+
+--color-input-common:#f6f0ea;
+
+--color-bookmark:#d87070;
+
+--color-control-box:#ddd5c7;
+
+--color-and:#edf5e8;
+--color-and-border:#8aa36f;
+
+--color-or:#f8f4df;
+--color-or-border:#d6c26a;
+
+--color-not:#f8e8e4;
+--color-not-border:#d88f8f;
+
+--color-search-btn:#b8a89b;
+
+--color-year-bar:#8aa36f;
+--color-year-achieved:#f3c86b;
+
+--color-chip-read-bg:#b88f8f;
+--color-chip-read-text:#fffaf4;
+
+  --color-calendar-date:#a98d7a;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+--color-heat-0:#f8f4ea;
+--color-heat-1:#f8dede;
+--color-heat-2:#f3c9c9;
+--color-heat-3:#d9d98c;
+--color-heat-4:#a7c87a;
+--color-heat-5:#6d9a57;
+}
+
+/*テーマ別ヘッダー*/
+[data-theme="haru"] .header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.22;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      var(--color-chip-read-bg) 0 6px,
+      transparent 7px
+    ),
+    radial-gradient(
+      circle at 60% 20%,
+      var(--color-chip-read-bg) 0 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 80% 60%,
+      var(--color-chip-read-bg) 0 4px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 35% 75%,
+      var(--color-chip-read-bg) 0 5px,
+      transparent 6px
+    );
+}
+
+
+
+
+
+
 :root[data-theme="ajisai"]{
   --color-header-bg:#fffffc;
   --color-header-watermark-rgb: 96,86,79;
@@ -283,69 +385,6 @@
 
 
 
-:root[data-theme="harunoniwa"]{
---color-header-bg:#fff9f8;
---color-header-watermark-rgb:167, 138, 127;
---opacity-header-watermark:0.05;
-
---color-main:#dca8a8;        /* 桜鼠 */
---color-main-dark:#b98585;
-
---color-border:#8aa36f;      /* 抹茶 */
-
---color-bg:#f8f4ea;          /* 和紙 */
---color-card:#fffdf8;
-
---color-border-sub:#b89b8a;
---color-text:#7f6a58;
---color-shadow:rgba(0,0,0,.08);
-
---color-text-sub:#fffaf4;
-
---color-opacity:0.8;
-
---color-btn-main:#8aa36f;
---color-btn-text-s:var(--color-text);
---color-btn-danger:#f8e6e6;
---color-btn-text-d:var(--color-text);
-
---color-chip:#f4e2e2;
-
---color-input-common:#f6f0ea;
-
---color-bookmark:#d87070;
-
---color-control-box:#ddd5c7;
-
---color-and:#edf5e8;
---color-and-border:#8aa36f;
-
---color-or:#f8f4df;
---color-or-border:#d6c26a;
-
---color-not:#f8e8e4;
---color-not-border:#d88f8f;
-
---color-search-btn:#b8a89b;
-
---color-year-bar:#8aa36f;
---color-year-achieved:#f3c86b;
-
---color-chip-read-bg:#b88f8f;
---color-chip-read-text:#fffaf4;
-
-  --color-calendar-date:#a98d7a;
-  --color-calendar-tag-dark:var(--color-text-sub);
-  --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
-
---color-heat-0:#f8f4ea;
---color-heat-1:#f8dede;
---color-heat-2:#f3c9c9;
---color-heat-3:#d9d98c;
---color-heat-4:#a7c87a;
---color-heat-5:#6d9a57;
-}
 
 
 
