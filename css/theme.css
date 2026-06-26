@@ -130,10 +130,6 @@
 
 /*テーマ別ヘッダー*/
 [data-theme="haru"] .header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
   opacity:.22;
 
   background:

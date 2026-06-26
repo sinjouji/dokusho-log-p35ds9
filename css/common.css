@@ -83,6 +83,9 @@ header{
   color:var(--color-text);
   padding:15px;
   font-size:20px;
+}
+
+.header{
   position:relative;
   overflow:hidden;
 }
@@ -93,7 +96,6 @@ header{
   inset:0;
   pointer-events:none;
 }
-
 
 
 
