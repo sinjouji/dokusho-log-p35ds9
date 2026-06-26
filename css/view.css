@@ -74,7 +74,7 @@
   font-weight:bold;
 
   color:rgba(
-    var(--color-text-sub),
+    var(--color-text),
     var(--opacity-header-watermark)
   );
 
