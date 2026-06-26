@@ -130,7 +130,7 @@
 
 /*テーマ別ヘッダー*/
 [data-theme="haru"] .header::before{
-  opacity:.22;
+  opacity:.38;
 
   background:
     radial-gradient(
