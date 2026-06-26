@@ -1,8 +1,7 @@
-/*
-// VIEW.CSS
-// 本棚表示関係
-// カード・リスト・背表紙
-/*/
+/* VIEW.CSS
+ 本棚表示関係
+ カード・リスト・背表紙
+*/
 
 
 
@@ -134,7 +133,7 @@
   max-height:150px;
   
   text-align:left;
-  white-space:nomal;
+  white-space:normal;
   
 
 .spine-fav{
