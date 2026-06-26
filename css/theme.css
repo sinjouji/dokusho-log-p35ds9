@@ -176,12 +176,12 @@
   --color-chip-read-bg:#78b7c5;
   --color-chip-read-text:#fffffc;
   
-  --heat-0:#f6f1e4;
-  --heat-1:#dff1f5;
-  --heat-2:#bfe5eb;
-  --heat-3:#8fd1db;
-  --heat-4:#5bb9c8;
-  --heat-5:#2e8ea4;
+  --color-heat-0:#f6f1e4;
+  --color-heat-1:#dff1f5;
+  --color-heat-2:#bfe5eb;
+  --color-heat-3:#8fd1db;
+  --color-heat-4:#5bb9c8;
+  --color-heat-5:#2e8ea4;
 }
 
 
@@ -217,12 +217,12 @@
   --color-chip-read-text:#fff7e8;
   
   /*ヒートマップ*/
-  --heat-0:#1a1a28;
-  --heat-1:#5a3d2b;
-  --heat-2:#9c4f4f;
-  --heat-3:#c86b5a;
-  --heat-4:#e09b52;
-  --heat-5:#f4d06f;
+  --color-heat-0:#1a1a28;
+  --color-heat-1:#5a3d2b;
+  --color-heat-2:#9c4f4f;
+  --color-heat-3:#c86b5a;
+  --color-heat-4:#e09b52;
+  --color-heat-5:#f4d06f;
 }
 
 
