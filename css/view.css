@@ -73,10 +73,8 @@
   font-size:28px;
   font-weight:bold;
 
-  color:rgba(
-    var(--color-text),
-    var(--opacity-header-watermark)
-  );
+  color: var(--color-text-sub);
+  opacity:var(--opacity-header-watermark);
 
   line-height:1;
   pointer-events:none;
