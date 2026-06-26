@@ -178,7 +178,7 @@ const firstDailyTag =
     cell.style.background =
       getHeatColor(count);
 
-    if(count >= 5){
+    if(count >= 4){
       cell.classList.add("heat-max");
     }
 
@@ -189,7 +189,7 @@ const firstDailyTag =
 
     if(dateStr === today){
       cell.style.border =
-        "4px solid #d9a27c"
+        "4px solid var(--color-main)"
     }
 
     cell.innerHTML = `
