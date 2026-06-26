@@ -279,6 +279,129 @@
   --color-tag-exclude:#b94a48;
 }
 
+:root[data-theme="harunoniwa"]{
+--color-header-bg:#fff9f8;
+--color-header-watermark-rgb:167, 138, 127;
+
+--color-main:#dca8a8;        /* 桜鼠 */
+--color-main-dark:#b98585;
+
+--color-border:#8aa36f;      /* 抹茶 */
+
+--color-bg:#f8f4ea;          /* 和紙 */
+--color-card:#fffdf8;
+
+--color-border-sub:#b89b8a;
+--color-text:#7f6a58;
+--color-text-sub:#fffdf8;
+
+--color-btn-main:#8aa36f;
+--color-btn-danger:#f8e6e6;
+
+--color-chip:#f4e2e2;
+
+--color-input-common:#f6f0ea;
+
+--color-bookmark:#d87070;
+
+--color-control-box:#ddd5c7;
+
+--color-and:#fceff1;
+--color-and-border:#dca8a8;
+
+--color-or:#f8f4df;
+--color-or-border:#d6c26a;
+
+--color-not:#f8e8e4;
+--color-not-border:#d88f8f;
+
+--color-search-btn:#b8a89b;
+
+--color-year-bar:#8aa36f;
+--color-year-achieved:#f3c86b;
+}
 
 
+:root[data-theme="ekisha"]{
+--color-header-bg:#2b211c;
+--color-header-watermark-rgb:210, 180, 140;
 
+--color-main:#8b4a3a;        /* 煉瓦 */
+--color-main-dark:#6f382d;
+
+--color-border:#c08a4d;      /* 真鍮 */
+
+--color-bg:#2a2520;          /* 古木 */
+--color-card:#3a3129;
+
+--color-border-sub:#7a5a46;
+--color-text:#e6d2b5;
+--color-text-sub:#2a2520;
+
+--color-btn-main:#8b4a3a;
+--color-btn-danger:#4a2a22;
+
+--color-chip:#4a3a2f;
+
+--color-input-common:#5a4a3d;
+
+--color-bookmark:#b85a3d;
+
+--color-control-box:#6b5849;
+
+--color-and:#4a5b5a;
+--color-and-border:#7f9c96;
+
+--color-or:#6b5130;
+--color-or-border:#d0a35a;
+
+--color-not:#5a2f2f;
+--color-not-border:#b85a3d;
+
+--color-search-btn:#a57b4d;
+
+--color-year-bar:#6b7a4d;
+--color-year-achieved:#d6a34d;
+}
+
+:root[data-theme="yukimishoji"]{
+--color-header-bg:#f8fbfd;
+--color-header-watermark-rgb:110, 120, 140;
+
+--color-main:#a9b8d0;        /* 冬空 */
+--color-main-dark:#8393af;
+
+--color-border:#5d6b82;      /* 書斎紺 */
+
+--color-bg:#eef3f8;          /* 雪床 */
+--color-card:#ffffff;
+
+--color-border-sub:#9aa8b8;
+--color-text:#4a5568;
+--color-text-sub:#ffffff;
+
+--color-btn-main:#6b7c9d;
+--color-btn-danger:#f5f0f0;
+
+--color-chip:#dde5ee;
+
+--color-input-common:#f7fafc;
+
+--color-bookmark:#9d6b6b;
+
+--color-control-box:#d6dee8;
+
+--color-and:#e8f2f8;
+--color-and-border:#9bb8d0;
+
+--color-or:#f8f8f0;
+--color-or-border:#d6d0a5;
+
+--color-not:#f8eeee;
+--color-not-border:#c99b9b;
+
+--color-search-btn:#b8c4d6;
+
+--color-year-bar:#7fa0b8;
+--color-year-achieved:#d8d2a0;
+}
