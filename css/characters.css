@@ -42,4 +42,5 @@ gap:5px;
   margin-top:3px;
   font-size:10px;
   color:var(--color-text);
+  opacity:var(--color-opacity);
 }
