@@ -216,6 +216,11 @@
   --color-chip-read-bg:#d86c3d;
   --color-chip-read-text:#fff7e8;
   
+  --color-calendar-date:#d8c79a;
+  --color-calendar-tag-dark:#fff7e8;
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+  
   /*ヒートマップ*/
   --color-heat-0:#1a1a28;
   --color-heat-1:#5a3d2b;
