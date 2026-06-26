@@ -306,8 +306,8 @@
 
 --color-control-box:#ddd5c7;
 
---color-and:#fceff1;
---color-and-border:#dca8a8;
+--color-and:#edf5e8;
+--color-and-border:#8aa36f;
 
 --color-or:#f8f4df;
 --color-or-border:#d6c26a;
@@ -319,6 +319,13 @@
 
 --color-year-bar:#8aa36f;
 --color-year-achieved:#f3c86b;
+
+--color-heat-0:#f8f4ea;
+--color-heat-1:#f8dede;
+--color-heat-2:#f3c9c9;
+--color-heat-3:#d9d98c;
+--color-heat-4:#a7c87a;
+--color-heat-5:#6d9a57;
 }
 
 
@@ -336,12 +343,12 @@
 
 --color-border-sub:#7a5a46;
 --color-text:#e6d2b5;
---color-text-sub:#2a2520;
+--color-text-sub:#f5e8d5;
 
 --color-btn-main:#8b4a3a;
 --color-btn-danger:#4a2a22;
 
---color-chip:#4a3a2f;
+--color-chip:#c08a4d;
 
 --color-input-common:#5a4a3d;
 
@@ -362,6 +369,13 @@
 
 --color-year-bar:#6b7a4d;
 --color-year-achieved:#d6a34d;
+
+--color-heat-0:#2a2520;
+--color-heat-1:#5a3a2a;
+--color-heat-2:#8b4a3a;
+--color-heat-3:#b86b4d;
+--color-heat-4:#d09a5a;
+--color-heat-5:#f0c36d;
 }
 
 :root[data-theme="yukimishoji"]{
@@ -404,4 +418,11 @@
 
 --color-year-bar:#7fa0b8;
 --color-year-achieved:#d8d2a0;
+
+--color-heat-0:#eef3f8;
+--color-heat-1:#dde5ee;
+--color-heat-2:#c5d2e2;
+--color-heat-3:#a9b8d0;
+--color-heat-4:#7f98b8;
+--color-heat-5:#5d6b82;
 }
