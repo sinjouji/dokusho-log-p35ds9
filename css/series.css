@@ -52,7 +52,7 @@ grid-template-columns:1fr 1fr;
   }
   
 .satu{
-background:var(--color-object-bg);
+background:var(--color-color);
 color:var(--color-text);
 font-size:15px;
 font-weight:bold;

@@ -17,7 +17,7 @@ COMMON.CSS
   padding:6px 10px;
   border-radius:12px;
   border:1px solid var(--color-border);
-  background:var(--color-btn-sub);
+  background:var(--color-card);
   color:var(--color-btn-text-s);
 }/*編集，閉じる，キャンセル*/
 
@@ -195,7 +195,7 @@ box-shadow:
   padding:4px 10px;
   border-radius:999px;
   border:1px solid var(--color-border);
-  background:var(--color-object-bg);
+  background:var(--color-card);
   color:var(color-text);
   font-size:12px;
 
@@ -277,7 +277,7 @@ box-shadow:
 button{
   display: inline-block;   padding: 5px 10px;
   border-radius: 10px;   text-decoration: none;
-  color: var(--color-text);   background:var(--color-object-bg);
+  color: var(--color-text);   background:var(--color-card);
   border:1px solid var(--color-border);  font-size:13px;
 }
 
@@ -287,7 +287,7 @@ button{
   border-radius:999px;
   border:1px solid var(--color-border);
 
-  background:var(--color-object-bg);
+  background:var(--color-card);
   color:var(--color-text);
  
   cursor:pointer;
@@ -474,7 +474,7 @@ button{
 }
 
 .mode-off{
-  background:var(--color-object-bg);
+  background:var(--color-card);
 }
 
 
@@ -494,7 +494,7 @@ min-width:120px;
 border:1px solid var(--color-border);
 border-radius:10px;
 font-size:13px;
-background:var(--color-object-bg);
+background:var(--color-card);
 color:var(--color-text);
 margin-left:10px;
 }
@@ -524,7 +524,7 @@ color: var(--color-text);
   padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid var(--color-border);
-  background: var(--color-object-bg);
+  background: var(--color-card);
   cursor: pointer;
   color:var(--color-text);
   font-size:13px;
@@ -551,7 +551,7 @@ color: var(--color-text);
   border:1px solid var(--color-border);
 
   font-size:16px;
-  background:var(--color-object-bg);
+  background:var(--color-card);
 }
 
 
@@ -580,7 +580,7 @@ color: var(--color-text);
 }
 
 .list-row{
-  background:var(--color-object-bg);
+  background:var(--color-card);
   padding:12px;
   border-radius:10px;
   margin-bottom:8px;
@@ -630,7 +630,7 @@ color: var(--color-text);
 
 
 .white-input{
-  background:var(--color-object-bg);
+  background:var(--color-card);
   border:1px solid var(--color-border);
 }
 

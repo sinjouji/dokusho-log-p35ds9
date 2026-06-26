@@ -57,7 +57,7 @@ SETTINGS.CSS
   content:"";
   width:18px;
   height:18px;
-  background:var(--color-object-bg);
+  background:var(--color-color);
   border-radius:50%;
   position:absolute;
   top:2px;

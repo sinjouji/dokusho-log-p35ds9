@@ -169,7 +169,7 @@ tag.css
   padding:3px 8px;
   border-radius:999px;
   border:1px solid var(--color-border-sub);
-  background:var(--color-object-bg);
+  background:var(--color-color);
   color:var(--color-text);
   opacity:var(--color-opacity);
 }
@@ -321,7 +321,7 @@ tag.css
   padding:6px 10px;
   border-radius:999px;
   border:1px solid var(--color-border);
-  background:var(--color-object-bg);
+  background:var(--color-color);
 }
 
 .selected-hidden-tags{
@@ -335,7 +335,7 @@ tag.css
   padding:6px;
   border:1px solid var(--color-border);
   border-radius:12px;
-  background:var(--color-object-bg);
+  background:var(--color-color);
 }
 
 .hidden-tag-suggest:empty{
