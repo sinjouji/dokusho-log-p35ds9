@@ -6,10 +6,9 @@ COMMON.CSS
 
 */
 
-/*===== 基本的に色変更対応 =====*/
 .btn-main{
-  background:#7A89A8;
-  color:#fffffc;
+  background:var(--color-btn-main);
+  color:var(--color-text-sub);
 
   border:none;
 }/*保存，追加*/
@@ -18,28 +17,31 @@ COMMON.CSS
   padding:6px 10px;
   border-radius:12px;
   border:1px solid var(--color-border);
-  background:#fffffc;
-  color:#60564f;
+  background:var(--color-btn-sub);
+  color:var(--color-btn-text-s);
 }/*編集，閉じる，キャンセル*/
 
 .btn-danger{
   padding:6px 10px;
   border-radius:12px;
-  border:1px solid #e0b0a0;
-  background:#fff7f5;
-  color:#9a5a4f;
+  border:1px solid var(--color-btn-border-d);
+  background;var(--color-btn-danger);
+  color:;var(--color-btn-text-d);
 }/*削除，初期化*/
 
 
 
 .app-name{
   font-size:14px;
-  color:#d9cfc6;
+  color:var(--color-text);
   font-style:italic;
 }
 .app-watermark{
   font-size:50px;
-  color:rgba(96,86,79,0.05);
+  color:rgba(
+    var(--color-header-watermark-rgb),
+    var(--opacity-header-watermark)
+  );
   font-weight:800;
   position:absolute;
   right:24px;
@@ -57,28 +59,6 @@ COMMON.CSS
 /*  font-family:
   "Hiragino Sans",
   sans-serif;*/
-}
-
-/*===== ここまで色個別エリア =====*/
-
-
-/*==========
-ルートカラー：まとめて変えるぜ〜〜〜
-2026/06/22時点のカラー：COOLな青磁寄り
-==========*/
-:root{
-  --color-main:#c7d7d4;       /* メイン青磁 */
-  --color-main-dark:#9bb8b3;  /* active */
-  --color-border:#6f8f89;     /* 濃い線 */
-
-  --color-bg:#f8f7f3;         /* 紙背景 */
-  --color-card:#fffffb;
-
-  --color-border:#8b7e74;     /* 茶系枠線 */
-  --color-text:#917347;
-  --color-shadow:rgba(0,0,0,.08);
-  
-  --color-text-white:#fffffc; /* 白文字 */
 }
 
 
@@ -99,8 +79,8 @@ body{
 }
 
 header{
-  background:#fffffc;
-  color:#74492b;
+  background:var(--color-header-bg);
+  color:var(--color-text);
   padding:15px;
   font-size:20px;
 }
@@ -215,7 +195,7 @@ box-shadow:
   padding:4px 10px;
   border-radius:999px;
   border:1px solid var(--color-border);
-  background:#fffffc;
+  background:var(--color-object-bg);
   color:var(color-text);
   font-size:12px;
 
@@ -297,7 +277,7 @@ box-shadow:
 button{
   display: inline-block;   padding: 5px 10px;
   border-radius: 10px;   text-decoration: none;
-  color: var(--color-text);   background-color:#fffffc;
+  color: var(--color-text);   background:var(--color-object-bg);
   border:1px solid var(--color-border);  font-size:13px;
 }
 
@@ -307,7 +287,7 @@ button{
   border-radius:999px;
   border:1px solid var(--color-border);
 
-  background:#fffffc;
+  background:var(--color-object-bg);
   color:var(--color-text);
  
   cursor:pointer;
@@ -408,9 +388,9 @@ button{
   box-sizing:border-box;
   border:1px solid var(--color-border);
   border-radius:10px;
-  background:#f5f4eb;
+  background:var(--color-input-common);
   font-size:13px;
-  color:#646364;
+  color:var(--color-text);
 }
 
 .input-small{
@@ -435,10 +415,10 @@ button{
   box-sizing:border-box;
   border:1px solid var(--color-border);
   border-radius:10px;
-  background:#f5f4eb;
+  background:var(--color-input-common);
   font-size:16px;
   font-weight:600;
-  color:#646364;
+  color:var(--color-text);
 }
 
 .textarea-common{
@@ -448,9 +428,9 @@ button{
   box-sizing:border-box;
   border:1px solid var(--color-border);
   border-radius:10px;
-  background:#f5f4eb;
+  background:var(--color-input-common);
   font-size:13px;
-  color:#646364;
+  color:var(--color-text);
   resize:vertical;
 }
 
@@ -464,8 +444,8 @@ button{
 
 /*＝＝＝＝＝フィルターちゃん＝＝＝＝＝*/
 .filter-mode button.active {
-  background: #333;
-  color: white;
+  background: var(--color-bg);
+  color: var(--color-text-sub);
 }
 
 /*＝＝＝＝＝絞込みの色分け＝＝＝＝＝*/
@@ -478,23 +458,23 @@ button{
 
   font-weight:bold;
 
-  color:white;
+  color:var(--color-text-sub);
 }
 
 .mode-and{
-  background:#4a90e2;
+  background:var(--color-bg);
 }
 
 .mode-or{
-  background:#53b36b;
+  background:var(--color-bg);
 }
 
 .mode-not{
-  background:#d9534f;
+  background:var(--color-bg);
 }
 
 .mode-off{
-  background:#999;
+  background:var(--color-object-bg);
 }
 
 
@@ -514,8 +494,8 @@ min-width:120px;
 border:1px solid var(--color-border);
 border-radius:10px;
 font-size:13px;
-background:#fffffc;
-color:#333;
+background:var(--color-object-bg);
+color:var(--color-text);
 margin-left:10px;
 }
 
@@ -536,7 +516,7 @@ flex:0 0 auto;
 #color-mode::after{
 content:" / ";
 margin:0 4px;
-color: #999;
+color: var(--color-text);
 }
 
 
@@ -544,15 +524,15 @@ color: #999;
   padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid var(--color-border);
-  background: #fffffc;
+  background: var(--color-object-bg);
   cursor: pointer;
-  color:#ccc
+  color:var(--color-text);
   font-size:13px;
 }
 
 #type-filter button.active{
-  background: #333;
-  color: #fffffc;
+  background: var(--color-bg);
+  color: var(--color-text-sub);
   font-size:13px;
 }
 
@@ -571,7 +551,7 @@ color: #999;
   border:1px solid var(--color-border);
 
   font-size:16px;
-  background:#fffffc;
+  background:var(--color-object-bg);
 }
 
 
@@ -581,7 +561,7 @@ color: #999;
 }
 
 .search-item:hover{
-  background:#e4e5e6;
+  background:var(--color-search-hover);
 }
 
 /* 絞込みタグエリア整頓用 */
@@ -594,13 +574,13 @@ color: #999;
 
 .filter-actions button.active{
   background:var(--color-border);
-  color:#fffffc;
+  color:var(--color-text-sub);
   
   border:none;
 }
 
 .list-row{
-  background:#fffffc;
+  background:var(--color-object-bg);
   padding:12px;
   border-radius:10px;
   margin-bottom:8px;
@@ -650,7 +630,7 @@ color: #999;
 
 
 .white-input{
-  background:#fffffc;
+  background:var(--color-object-bg);
   border:1px solid var(--color-border);
 }
 

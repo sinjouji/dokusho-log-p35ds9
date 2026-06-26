@@ -1,0 +1,41 @@
+/*==========
+ルートカラー：まとめて変えるぜ〜〜〜
+2026/06/22時点のカラー：COOLな青磁寄り
+==========*/
+:root{
+  --color-header-bg:#fffffc;
+  --color-header-watermark-rgb: 96,86,79;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#c7d7d4;       /* メイン青磁 */
+  --color-main-dark:#9bb8b3;  /* active */
+  --color-border:#6f8f89;     /* 濃い線 */
+
+  --color-bg:#f8f7f3;         /* 紙背景 */
+  --color-card:#fffffb;
+
+  --color-border:#8b7e74;     /* 茶系枠線 */
+  --color-text:#917347;
+  --color-shadow:rgba(0,0,0,.08);
+  
+  --color-text-sub:#fffffc; /* サブ文字色（大体反対色） */
+  
+  /* モーダルボタン */
+  --color-btn-main:#7A89A8;
+  --color-btn-sub:#fffffc;
+  --color-btn-text-s:#60564f;
+  --color-btn-danger::#fff7f5;
+  --color-btn-text-d:#9a5a4f;
+  --color-btn-border-d:#e0b0a0;
+  
+  --color-object-bg:#fffffc;
+  --color-input-common:#f5f4eb;
+  
+  --color-search-hover:#e4e5e6;
+}
+
+
+
+
+
+

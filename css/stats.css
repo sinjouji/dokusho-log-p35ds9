@@ -38,7 +38,7 @@
 }
 
 .heat-max .mini-day-count{
-  color:var(--color-text-white);
+  color:var(--color-text-sub);
 }
 
 .mini-day-date{
@@ -283,5 +283,5 @@
 
 
 .mini-day-daily.dark{
-  color:var(--color-text-white);
+  color:var(--color-text-sub);
 }
