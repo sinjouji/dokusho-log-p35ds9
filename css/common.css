@@ -196,7 +196,7 @@ box-shadow:
   border-radius:999px;
   border:1px solid var(--color-border);
   background:var(--color-card);
-  color:var(color-text);
+  color:var(--color-text);
   font-size:12px;
 
   cursor:pointer;
