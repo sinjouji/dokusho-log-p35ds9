@@ -291,9 +291,15 @@ async function saveData(){
 //==============================
 //⑥ロード
 //==============================
+let themeLoaded = false;
+
 async function loadData(){
 
-  // ここに入れる（関数の一番上）
+  if(!themeLoaded){
+    loadTheme();
+    themeLoaded = true;
+  }
+
   if(!window.db || !window.doc || !window.getDoc){
     console.log("⏳ Firebase待機中...");
     setTimeout(loadData, 100);

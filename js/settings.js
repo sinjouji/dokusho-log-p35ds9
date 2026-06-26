@@ -34,6 +34,22 @@ setActiveMenu("menu-settings");
     
     ${settingSections.home
     ? `
+    <!--テーマ設定-->
+    <div class="setting-row">
+      <span>テーマ切替</span>
+       <select
+    id="theme-select"
+    class="white-input"
+    onchange="
+      applyTheme(this.value)
+    "
+  >
+    <option value="ajisai">紫陽花</option>
+    <option value="marin">海の家</option>
+    <option value="natsumatsuri">夏祭り</option>
+  </select>
+    </div>
+    
     <!--背表紙-->
     <div class="setting-row">
       <span>背表紙カラー</span>
@@ -171,6 +187,25 @@ setActiveMenu("menu-settings");
 
 
   `;  
+
+
+
+
+const themeSelect =
+  document.getElementById(
+    "theme-select"
+  );
+
+if(themeSelect){
+
+  themeSelect.value =
+    localStorage.getItem(
+      "selectedTheme"
+    ) || "ajisai";
+
+}
+
+
 }
 
 
