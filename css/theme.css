@@ -201,6 +201,10 @@
   --color-heat-3:#8fd1db;
   --color-heat-4:#5bb9c8;
   --color-heat-5:#2e8ea4;
+  
+  
+  --color-tag-include:#6b8e23;
+  --color-tag-exclude:#b94a48;
 }
 
 
@@ -269,6 +273,10 @@
   --color-heat-3:#c86b5a;
   --color-heat-4:#e09b52;
   --color-heat-5:#f4d06f;
+  
+  
+  --color-tag-include:#6b8e23;
+  --color-tag-exclude:#b94a48;
 }
 
 
