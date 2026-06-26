@@ -189,7 +189,7 @@ const firstDailyTag =
 
     if(dateStr === today){
       cell.style.border =
-        "4px solid var(--color-main)"
+        "4px solid var(--color-border)"
     }
 
     cell.innerHTML = `
