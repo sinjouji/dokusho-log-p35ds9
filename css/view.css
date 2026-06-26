@@ -1,8 +1,8 @@
-//
+/*
 // VIEW.CSS
 // 本棚表示関係
 // カード・リスト・背表紙
-//
+/*/
 
 
 
@@ -10,7 +10,7 @@
 
 @media(max-width:768px){
 .honlist{
-  background:#fffffc;
+  background:var(--color-card);
   border-radius:10px;
   padding:8px;
   margin:5px 10px;
@@ -61,7 +61,7 @@
   margin-top:3px;
 
   font-size:11px;
-  color:#888;
+  color:var(--color-main);
 }
 
 .list-count-watermark{
@@ -91,7 +91,7 @@
 .list-date{
   margin-top:3px;
   font-size:11px;
-  color:#888;
+  color:var(--color-main);
 }
 
 
@@ -126,7 +126,7 @@
   
   letter-spacing:0.05em;
   
-  color:#fffffc;
+  color:var(--color-card);
   
   padding:15px 6px 3px 8px;
   
@@ -140,7 +140,7 @@
 .spine-fav{
   font-size:10px;
   
-  color:#fffffc;
+  color:var(--color-card);
   height:30px;
 
   align-items:center;
