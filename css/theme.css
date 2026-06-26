@@ -112,7 +112,7 @@
 --color-year-bar:#8aa36f;
 --color-year-achieved:#f3c86b;
 
---color-chip-read-bg:#b88f8f;
+--color-chip-read-bg:#c97d8d;
 --color-chip-read-text:#fffaf4;
 
   --color-calendar-date:#a98d7a;
@@ -135,23 +135,23 @@
   background:
     radial-gradient(
       circle at 20% 30%,
+      var(--color-chip-read-bg) 0 8px,
+      transparent 9px
+    ),
+    radial-gradient(
+      circle at 60% 20%,
+      var(--color-chip-read-bg) 0 7px,
+      transparent 8px
+    ),
+    radial-gradient(
+      circle at 80% 60%,
       var(--color-chip-read-bg) 0 6px,
       transparent 7px
     ),
     radial-gradient(
-      circle at 60% 20%,
-      var(--color-chip-read-bg) 0 5px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 80% 60%,
-      var(--color-chip-read-bg) 0 4px,
-      transparent 5px
-    ),
-    radial-gradient(
       circle at 35% 75%,
-      var(--color-chip-read-bg) 0 5px,
-      transparent 6px
+      var(--color-chip-read-bg) 0 7px,
+      transparent 8px
     );
 }
 
