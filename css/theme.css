@@ -106,6 +106,13 @@
   --color-year-bar:#aacf53;
   --color-year-achieved:#f4c542;
   
+  --color-heat-0:#e1e5e4;
+  --color-heat-1:#f2c3ca;
+  --color-heat-2:#fcd475;
+  --color-heat-3:#efecad;
+  --color-heat-4:#c7dc68;
+  --color-heat-5:#4f8a5d;
+  
   /* タグ選択状態？未使用かも */
   --color-tag-include:#6b8e23;
   --color-tag-exclude:#b94a48;
@@ -168,6 +175,13 @@
   
   --color-chip-read-bg:#78b7c5;
   --color-chip-read-text:#fffffc;
+  
+  --heat-0:#f6f1e4;
+  --heat-1:#dff1f5;
+  --heat-2:#bfe5eb;
+  --heat-3:#8fd1db;
+  --heat-4:#5bb9c8;
+  --heat-5:#2e8ea4;
 }
 
 
@@ -201,6 +215,14 @@
   --color-year-achieved:#f0c34d; /* 花火金 */
   --color-chip-read-bg:#d86c3d;
   --color-chip-read-text:#fff7e8;
+  
+  /*ヒートマップ*/
+  --heat-0:#1a1a28;
+  --heat-1:#5a3d2b;
+  --heat-2:#9c4f4f;
+  --heat-3:#c86b5a;
+  --heat-4:#e09b52;
+  --heat-5:#f4d06f;
 }
 
 
