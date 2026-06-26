@@ -462,15 +462,15 @@ button{
 }
 
 .mode-and{
-  background:var(--color-bg);
+  background:var(--color-and);
 }
 
 .mode-or{
-  background:var(--color-bg);
+  background:var(--color-or);
 }
 
 .mode-not{
-  background:var(--color-bg);
+  background:var(--color-not);
 }
 
 .mode-off{
