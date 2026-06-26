@@ -1,7 +1,7 @@
 .modal-bg{
   position:fixed;
   inset:0;
-  background:var(--color-bg);
+  background:rgba(0,0,0,0.45);
 
   display:flex;
   align-items:flex-start;
@@ -100,7 +100,7 @@
   padding:1px 6px;
   margin:3px;
 
-  background:var(--color-main-dark);
+  background:var(--color-main);
   border-radius:999px;
 
   font-size:11px;
@@ -182,7 +182,7 @@ border-radius:10px;
   align-items:center;
   
   font-size:10px;
-  color:var(--color-text);
+  color:var(--color-text-sub);
   padding:1px 4px;
   gap:2px;
   background:var(--color-main);
@@ -193,7 +193,7 @@ border-radius:10px;
 
 /*本詳細モーダル内表示の設定など*/
 .book-stat{
-  background:var(--color-bg);
+  background:var(--color-main-dark);
   color:var(--color-text-sub);
   font-size:12px;
   font-weight:bold;
