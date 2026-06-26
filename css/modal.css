@@ -417,7 +417,7 @@ border-radius:10px;
   border-radius:999px;
   font-size:11px;
   margin:2px;
-  color:var(--color-text-sub);
+  color:var(--color-text);
 }
 
 .daily-edit-chip.active{

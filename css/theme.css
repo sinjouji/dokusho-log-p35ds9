@@ -215,7 +215,9 @@
   --color-text-sub:#1e1f2b;
 
   --color-btn-main:#d86c3d;   /* 朱赤 */
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#402626;
+  --color-btn-text-d:var(--color-text);
 
   --color-chip:#2a2230;
 
