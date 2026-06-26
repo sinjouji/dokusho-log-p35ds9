@@ -1158,7 +1158,7 @@ ${
       <span
         class="card-tag"
         style="
-          color:${tag?.color || "#999"};
+          color:${tag?.color || 'var(--color-text)'};
         "
       >
         #${tagName}
@@ -1316,7 +1316,7 @@ function toggleNewBookTag(tagId, el, color){
 
     el.classList.remove("active");
     
-    el.style.background = "#fffffc";
+    el.style.background = "var(--color-card)";
     el.style.color = color;
 
   }else{
@@ -1326,7 +1326,7 @@ function toggleNewBookTag(tagId, el, color){
     el.classList.add("active");
     
     el.style.background = color;
-    el.style.color = "#fffffc";
+    el.style.color = "var(--color-card)";
 
   }
 

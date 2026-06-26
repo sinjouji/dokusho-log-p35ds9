@@ -56,7 +56,7 @@ let enableMemo = localStorage.getItem("enableMemo");
    : enableMemo === "true";
 
 //テーマカラーの設定
-let themeColor = localStorage.getItem("themeColor") || "#f5f5f5";
+let themeColor = localStorage.getItem("themeColor") || "var(--color-main)";
  document.body.style.background = themeColor;
 
 let sortKey = localStorage.getItem("sortKey") || "title"; //なにで並べるか

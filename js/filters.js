@@ -585,7 +585,7 @@ function renderTagFilter(){
     btn.className = "tag-chip";
     btn.textContent = tag.name;
 
-    btn.style.background = "#fffffc";
+    btn.style.background = "var(--color-card)";
     btn.style.color = tag.color || "#666";
     btn.style.border = `1px solid ${tag.color || "#ccc"}`;
     btn.style.borderRadius = "999px";
@@ -606,7 +606,7 @@ function renderTagFilter(){
        }
       
       btn.style.background = tag.color;
-      btn.style.color = "#fffffc";
+      btn.style.color = "var(--color-card)";
     }
 
   btn.onclick = () => {
