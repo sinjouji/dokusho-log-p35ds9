@@ -129,7 +129,7 @@
 }
 
 /*格子×桜*/
-[data-theme="haru"] header::before{
+[data-theme="harunoniwa"] header::before{
   content:"";
   position:absolute;
   inset:0;
@@ -271,6 +271,9 @@
   --color-tag-include:#6b8e23;
   --color-tag-exclude:#b94a48;
 }
+
+
+
 
 
 
