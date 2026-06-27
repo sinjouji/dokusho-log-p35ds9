@@ -128,7 +128,51 @@
 --color-heat-5:#6d9a57;
 }
 
-/*テーマ別ヘッダー*/
+/*格子×桜*/
+[data-theme="haru"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.22;
+
+  background:
+    /* 左格子 */
+    linear-gradient(
+      to bottom,
+      var(--color-chip-read-bg) 1px,
+      transparent 1px
+    ) left center / 18% 24px repeat,
+
+    linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 1px,
+      transparent 1px
+    ) left center / 18% 24px repeat,
+
+    /* 右格子 */
+    linear-gradient(
+      to bottom,
+      var(--color-chip-read-bg) 1px,
+      transparent 1px
+    ) right center / 18% 24px repeat,
+
+    linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 1px,
+      transparent 1px
+    ) right center / 18% 24px repeat,
+
+    /* 中央桜ドット */
+    radial-gradient(
+      circle,
+      var(--color-chip-read-bg) 0 4px,
+      transparent 5px
+    ) center center / 30px 30px repeat;
+}
+
+
+/*桜のみ
 [data-theme="harunoniwa"] header::before{
   opacity:.22;
 
@@ -153,7 +197,7 @@
       var(--color-chip-read-bg) 0 5px,
       transparent 6px
     );
-}
+}*/
 
 
 
