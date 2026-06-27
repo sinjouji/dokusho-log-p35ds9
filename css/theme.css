@@ -549,6 +549,51 @@ center 62% / 100% 2px no-repeat,
     radial-gradient(circle at 85% 60%, var(--color-chip-read-bg) 0 4px, transparent 9px);
 }
 
+[data-theme="natsumatsuri"] header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+/* ===== ① 最初だけ打ち上がる花火 ===== */
+[data-theme="natsumatsuri"] header::after{
+  background:
+    radial-gradient(circle, rgba(255,220,120,.9) 0 2px, transparent 6px) center 30%;
+  opacity:0;
+  animation: firework-burst 1.2s ease-out forwards;
+}
+
+@keyframes firework-burst{
+  0%{
+    opacity:0;
+    transform: scale(0.2);
+    filter: blur(0px);
+  }
+  20%{
+    opacity:1;
+  }
+  60%{
+    opacity:1;
+    transform: scale(2.5);
+  }
+  100%{
+    opacity:0;
+    transform: scale(3.5);
+  }
+}
+
+[data-theme="natsumatsuri"] header::after{
+  animation-delay: 1.3s;
+  animation-fill-mode: forwards;
+
+  background:
+    radial-gradient(circle at 70% 35%,
+      rgba(255,230,160,.8) 0 3px,
+      rgba(255,230,160,.2) 8px,
+      transparent 14px);
+}
+
 
 /*yoke
 [data-theme="natsumatsuri"] header::before{
