@@ -505,19 +505,19 @@
 }
 
 [data-theme="yukimishoji"] header::before{
-  opacity:.08;
+  opacity:.15;
 
   background-image:
-linear-gradient(
-  to right,
-  rgba(140,110,85,.22) 4px,
-  transparent 4px
-),
-linear-gradient(
-  to bottom,
-  rgba(140,110,85,.22) 4px,
-  transparent 4px
-);
+    linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 4px,
+      transparent 4px
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-chip-read-bg) 4px,
+      transparent 4px
+    );
 
   background-size:32px 32px;
 }
