@@ -325,6 +325,24 @@
   pointer-events:none;
 
   background:
+
+    /* ===== 紫陽花（右下） ===== */
+    radial-gradient(ellipse 12px 8px at 85% 85%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 87% 83%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 83% 87%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 85% 89%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 12px 8px at 78% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 80% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 76% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 78% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 12px 8px at 72% 82%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 74% 80%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 70% 84%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 12px 8px at 72% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    /* ===== 波紋（背景） ===== */
     repeating-radial-gradient(
       circle at 0 100%,
       transparent 0 12px,
@@ -332,6 +350,7 @@
       transparent 16px 28px
     );
 }
+
 
 
 
