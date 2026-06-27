@@ -306,6 +306,21 @@
 }
 
 
+[data-theme="marin"] header::before{
+  opacity:.22;
+
+  background:
+    repeating-radial-gradient(
+      circle at 0 100%,
+      transparent 0 12px,
+      var(--color-chip-read-bg) 13px 15px,
+      transparent 16px 28px
+    );
+}
+
+
+
+
 
 :root[data-theme="natsumatsuri"]{
   --color-header-bg:#1a1a28;
@@ -377,7 +392,26 @@
   --color-tag-exclude:#b94a48;
 }
 
+[data-theme="natsumatsuri"] header::before{
+  opacity:.2;
 
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      var(--color-chip-read-bg) 0 8px,
+      transparent 10px
+    ),
+    radial-gradient(
+      circle at 70% 20%,
+      var(--color-chip-read-bg) 0 6px,
+      transparent 8px
+    ),
+    radial-gradient(
+      circle at 60% 70%,
+      var(--color-chip-read-bg) 0 10px,
+      transparent 12px
+    );
+}
 
 
 
@@ -459,7 +493,7 @@
       to bottom,
       transparent 0px,
       transparent 8px,
-      rgba(255,255,255,.08) 9px,
+      rgba(255,255,255,.1) 9px,
       transparent 10px
     );
 }
