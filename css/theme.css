@@ -304,6 +304,7 @@
   --color-calendar-dark-text:var(--color-text-sub);
   
   --color-chip-read-bg:#78b7c5;
+  --color-chip-read-bg-rgb: 120, 183, 197;
   --color-chip-read-text:#fffffc;
 
   --color-heat-0:#e1e5e4;
@@ -327,28 +328,32 @@
   background:
 
     /* ===== 紫陽花（右下） ===== */
-    radial-gradient(ellipse 12px 8px at 85% 85%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 87% 83%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 83% 87%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 85% 89%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    /* 房① */
+radial-gradient(ellipse 14px 6px at 85% 85%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 87% 83%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 83% 87%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 85% 89%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-    radial-gradient(ellipse 12px 8px at 78% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 80% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 76% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 78% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+/* 房② */
+radial-gradient(ellipse 14px 6px at 78% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 80% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 76% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 78% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-    radial-gradient(ellipse 12px 8px at 72% 82%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 74% 80%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 70% 84%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-    radial-gradient(ellipse 12px 8px at 72% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+/* 房③ */
+radial-gradient(ellipse 14px 6px at 72% 82%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 74% 80%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 70% 84%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 72% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
 
     /* ===== 波紋（背景） ===== */
     repeating-radial-gradient(
-      circle at 0 100%,
-      transparent 0 12px,
-      var(--color-chip-read-bg) 13px 15px,
-      transparent 16px 28px
-    );
+  circle at 0 100%,
+  transparent 0 12px,
+  rgba(var(--color-chip-read-bg-rgb), .22) 13px 15px,
+  transparent 16px 28px
+);
 }
 
 
