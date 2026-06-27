@@ -410,10 +410,20 @@
   opacity:.22;
 
   background:
+    linear-gradient(
+  to right,
+  transparent 0%,
+  transparent 15%,
+  var(--color-chip-read-bg) 20%,
+  var(--color-chip-read-bg) 80%,
+  transparent 85%
+)
+center 62% / 100% 2px no-repeat,
+  
     radial-gradient(
-      140% 22px at 70% 88%,
+      140% 25px at 70% 88%,
       transparent 70%,
-      var(--color-chip-read-bg) 72% 75%,
+      var(--color-chip-read-bg) 72% 78%,
       transparent 77%
     ),
 
@@ -425,16 +435,16 @@
     ),
 
     radial-gradient(
-      110% 28px at 75% 104%,
+      110% 24px at 75% 104%,
       transparent 70%,
-      var(--color-chip-read-bg) 72% 75%,
+      var(--color-chip-read-bg) 70% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      130% 14px at 65% 112%,
+      130% 12px at 65% 112%,
       transparent 70%,
-      var(--color-chip-read-bg) 72% 75%,
+      var(--color-chip-read-bg) 70% 78%,
       transparent 77%
     );
 }
