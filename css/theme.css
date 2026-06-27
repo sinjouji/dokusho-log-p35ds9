@@ -557,37 +557,40 @@ center 62% / 100% 2px no-repeat,
 
   background:
 
-    /* 中心ドット */
+    /* 中心 */
     radial-gradient(circle at 60% 30%,
       rgba(255,255,255,.95) 0 3px,
-      transparent 4px
+      transparent 6px
     ),
 
-    /* 第1波 */
+    /* 第1波（少し強め） */
     radial-gradient(circle at 60% 30%,
       rgba(255,120,200,.7) 0 6px,
-      transparent 7px
+      rgba(255,120,200,.25) 10px,
+      transparent 14px
     ),
 
+    /* 第2波（なめらか接続） */
     radial-gradient(circle at 60% 30%,
-      rgba(120,200,255,.6) 0 10px,
-      transparent 11px
+      rgba(120,200,255,.55) 0 10px,
+      rgba(120,200,255,.2) 15px,
+      transparent 20px
     ),
 
+    /* 第3波（薄く広がる） */
     radial-gradient(circle at 60% 30%,
-      rgba(255,200,120,.5) 0 14px,
-      transparent 15px
+      rgba(255,200,120,.4) 0 14px,
+      rgba(255,200,120,.15) 20px,
+      transparent 28px
     ),
 
+    /* 外側の空気 */
     radial-gradient(circle at 60% 30%,
-      rgba(180,255,180,.4) 0 18px,
-      transparent 19px
-    ),
-
-    radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.2) 0 24px,
-      transparent 25px
+      rgba(255,255,255,.1) 0 22px,
+      transparent 40px
     );
+
+  filter: blur(0.3px);
 }
 
 
