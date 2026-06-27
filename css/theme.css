@@ -555,9 +555,6 @@ center 62% / 100% 2px no-repeat,
   inset:0;
   pointer-events:none;
 
-  opacity:1;
-  filter: blur(0.5px);
-
   background:
 
     /* ===== 中心 ===== */
@@ -566,61 +563,28 @@ center 62% / 100% 2px no-repeat,
       transparent 6px
     ),
 
-    /* ===== 第1層（内側・強め） ===== */
+    /* ===== 内側の光（全部同じ中心） ===== */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.7) 0 1.5px,
-      transparent 10px
-    ),
-    radial-gradient(circle at 63% 28%,
-      rgba(255,255,255,.65) 0 1.5px,
-      transparent 11px
-    ),
-    radial-gradient(circle at 57% 32%,
-      rgba(255,255,255,.6) 0 1.5px,
-      transparent 11px
+      rgba(255,255,255,.6) 0 6px,
+      transparent 12px
     ),
 
-    /* ===== 第2層（中間） ===== */
-    radial-gradient(circle at 66% 30%,
-      rgba(255,255,255,.5) 0 1px,
-      transparent 14px
-    ),
-    radial-gradient(circle at 54% 30%,
-      rgba(255,255,255,.48) 0 1px,
-      transparent 15px
-    ),
-    radial-gradient(circle at 60% 38%,
-      rgba(255,255,255,.45) 0 1px,
-      transparent 16px
-    ),
-    radial-gradient(circle at 60% 22%,
-      rgba(255,255,255,.43) 0 1px,
-      transparent 16px
-    ),
-
-    /* ===== 第3層（外側・薄い） ===== */
-    radial-gradient(circle at 70% 30%,
-      rgba(255,255,255,.28) 0 1px,
-      transparent 22px
-    ),
-    radial-gradient(circle at 50% 30%,
-      rgba(255,255,255,.26) 0 1px,
-      transparent 23px
-    ),
-    radial-gradient(circle at 60% 42%,
-      rgba(255,255,255,.24) 0 1px,
-      transparent 24px
-    ),
-    radial-gradient(circle at 60% 18%,
-      rgba(255,255,255,.22) 0 1px,
-      transparent 24px
-    ),
-
-    /* ===== 霧（花火の“空気感”） ===== */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.08) 0 18px,
+      rgba(255,255,255,.45) 0 12px,
+      transparent 20px
+    ),
+
+    radial-gradient(circle at 60% 30%,
+      rgba(255,255,255,.3) 0 18px,
+      transparent 28px
+    ),
+
+    radial-gradient(circle at 60% 30%,
+      rgba(255,255,255,.15) 0 26px,
       transparent 40px
     );
+
+  filter: blur(0.6px);
 }
 
 
