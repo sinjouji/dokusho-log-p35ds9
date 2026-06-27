@@ -140,13 +140,13 @@
     /* 左格子 */
     linear-gradient(
       to bottom,
-      var(--color-chip-read-bg) 1px,
+      rgba(var(--color-header-watermark-rgb), .22) 1px,
       transparent 1px
     ) left center / 18% 24px repeat,
 
     linear-gradient(
       to right,
-      var(--color-chip-read-bg) 1px,
+      rgba(var(--color-header-watermark-rgb), .22) 1px,
       transparent 1px
     ) left center / 18% 24px repeat,
 
@@ -164,11 +164,12 @@
     ) right center / 18% 24px repeat,
 
     /* 中央桜ドット */
-    radial-gradient(
-      circle,
-      var(--color-chip-read-bg) 0 4px,
-      transparent 5px
-    ) center center / 30px 30px repeat;
+    /* 中央桜ドット */
+radial-gradient(
+  circle,
+  var(--color-chip-read-bg) 0 4px,
+  transparent 5px
+) center center / 64% 30px repeat;
 }
 
 
