@@ -370,16 +370,12 @@ radial-gradient(
 ),
 
 
-
-
-
-    /* ===== 波紋（背景） ===== */
-    repeating-radial-gradient(
-  circle at 0 100%,
-  transparent 0 12px,
-  rgba(var(--color-chip-read-bg-rgb), .22) 13px 15px,
-  transparent 16px 28px
-);
+    repeating-linear-gradient(
+      -12deg,
+      transparent 0 18px,
+      rgba(var(--color-chip-read-bg-rgb), .12) 19px 21px,
+      transparent 22px 38px
+    );
 }
 
 
