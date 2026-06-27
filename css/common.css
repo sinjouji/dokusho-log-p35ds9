@@ -83,11 +83,24 @@ header{
   color:var(--color-text);
   padding:15px;
   font-size:20px;
-}
 
-header{
   position:relative;
   overflow:hidden;
+}
+
+.header-pattern-center{
+  position:absolute;
+  top:0;
+  left:18%;
+  width:64%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+
+.header-top{
+  position:relative;
+  z-index:1;
 }
 
 header::before{
