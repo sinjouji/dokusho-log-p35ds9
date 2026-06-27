@@ -567,7 +567,7 @@ center 62% / 100% 2px no-repeat,
   --dots:
     conic-gradient(
       from 0deg at var(--cx) var(--cy),
-      #fff 0deg 2deg, transparent 2deg 10deg,
+      #fff 0deg 4deg, transparent 4deg 10deg,
       #ff99cc 10deg 12deg, transparent 12deg 20deg,
       #99ddff 20deg 22deg, transparent 22deg 30deg,
       #ffcc66 30deg 32deg, transparent 32deg 40deg,
