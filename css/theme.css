@@ -328,23 +328,24 @@
   background:
 
     /* ===== 紫陽花（右下） ===== */
-   /* 房①（上） */
-radial-gradient(ellipse 14px 6px at 82% 78%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 84% 76%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 80% 80%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 82% 82%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* ===== 房①（上の頂点） ===== */
+radial-gradient(ellipse 14px 6px at 82% 72%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 84% 70%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 80% 74%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 82% 76%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-/* 房②（左下） */
-radial-gradient(ellipse 14px 6px at 75% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 77% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 73% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 75% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+/* ===== 房②（左下） ===== */
+radial-gradient(ellipse 14px 6px at 76% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 78% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 74% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 76% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-/* 房③（右下） */
+/* ===== 房③（右下） ===== */
 radial-gradient(ellipse 14px 6px at 88% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 90% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 86% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 88% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
 
 
 
