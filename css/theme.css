@@ -555,51 +555,37 @@ center 62% / 100% 2px no-repeat,
   inset:0;
   pointer-events:none;
 
-  /* 花火の中心位置 */
   --cx: 60%;
   --cy: 30%;
 
   background:
+
+    /* 中心 */
     radial-gradient(circle 3px at var(--cx) var(--cy),
-      #fff 0 3px,
-      transparent 4px
+      #fff 0 3px, transparent 4px
     ),
 
-    /* 円周上の点（等間隔） */
-    conic-gradient(
-      from 0deg at var(--cx) var(--cy),
-      #ff99cc 0deg 5deg,
-      transparent 5deg 30deg,
-      #99ddff 30deg 35deg,
-      transparent 35deg 60deg,
-      #ffcc66 60deg 65deg,
-      transparent 65deg 90deg,
-      #ffeeaa 90deg 95deg,
-      transparent 95deg 120deg,
-      #ff99cc 120deg 125deg,
-      transparent 125deg 150deg,
-      #99ddff 150deg 155deg,
-      transparent 155deg 180deg,
-      #ffcc66 180deg 185deg,
-      transparent 185deg 210deg,
-      #ffeeaa 210deg 215deg,
-      transparent 215deg 240deg,
-      #ff99cc 240deg 245deg,
-      transparent 245deg 270deg,
-      #99ddff 270deg 275deg,
-      transparent 275deg 300deg,
-      #ffcc66 300deg 305deg,
-      transparent 305deg 330deg,
-      #ffeeaa 330deg 335deg,
-      transparent 335deg 360deg
-    );
-
-  mask:
-    radial-gradient(circle at var(--cx) var(--cy),
-      transparent 0 40px,
-      #000 41px
+    /* ランダム風の点（花火っぽい粒） */
+    radial-gradient(circle 2px at calc(var(--cx) + 18px) calc(var(--cy) - 6px),
+      #ff99cc 0 2px, transparent 3px
+    ),
+    radial-gradient(circle 3px at calc(var(--cx) - 22px) calc(var(--cy) + 4px),
+      #99ddff 0 3px, transparent 4px
+    ),
+    radial-gradient(circle 2px at calc(var(--cx) + 8px) calc(var(--cy) + 20px),
+      #ffcc66 0 2px, transparent 3px
+    ),
+    radial-gradient(circle 1.5px at calc(var(--cx) - 14px) calc(var(--cy) - 18px),
+      #ffeeaa 0 1.5px, transparent 2px
+    ),
+    radial-gradient(circle 2.5px at calc(var(--cx) + 25px) calc(var(--cy) + 10px),
+      #99ddff 0 2.5px, transparent 3px
+    ),
+    radial-gradient(circle 2px at calc(var(--cx) - 5px) calc(var(--cy) + 28px),
+      #ff99cc 0 2px, transparent 3px
     );
 }
+
 
 
 
