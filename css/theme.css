@@ -474,16 +474,7 @@ radial-gradient(
   background:
 
     /* ===== ★追加：空→白→砂浜の縦グラデ ===== */
- /*   linear-gradient(
-      to bottom,
-      #4aa3ff 0%,     
-      #bfe6ff 35%,    
-      #f7fbff 55%,    
-      #ffe7b3 75%,    
-      #f2c98a 100%    
-    ),
-    
-    background:*/
+
   linear-gradient(
     to bottom,
     rgba(74,163,255,.4) 0%,
@@ -746,33 +737,6 @@ radial-gradient(
 
 
 
-/*yoke
-[data-theme="natsumatsuri"] header::before{
-  opacity:.2;
-
-  background:
-    radial-gradient(
-      circle at 20% 30%,
-      var(--color-chip-read-bg) 0 8px,
-      transparent 10px
-    ),
-    radial-gradient(
-      circle at 70% 20%,
-      var(--color-chip-read-bg) 0 6px,
-      transparent 8px
-    ),
-    radial-gradient(
-      circle at 60% 70%,
-      var(--color-chip-read-bg) 0 10px,
-      transparent 12px
-    );
-}
-*/
-
-
-
-
-
 
 :root[data-theme="ekisha"]{
 --color-header-bg:#2b211c;
@@ -832,7 +796,7 @@ radial-gradient(
 --color-heat-5:#f0c36d;
 }
 
-/*線路*/
+/*線路
 [data-theme="ekisha"] header::before{
   opacity:.18;
 
@@ -851,9 +815,9 @@ radial-gradient(
       rgba(255,255,255,.2) 12px,
       transparent 13px
     );
-}
+}*/
 
-/* 横罫線
+/* 横罫線*/
 [data-theme="ekisha"] header::before{
   opacity:.22;
 
@@ -866,7 +830,7 @@ repeating-linear-gradient(
   var(--color-chip-read-bg) 10px,
   transparent 11px
 );
-}*/
+}
 
 
 
