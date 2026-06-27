@@ -557,34 +557,38 @@ center 62% / 100% 2px no-repeat,
 
   background:
 
-    /* ===== 中心 ===== */
+    /* ===== 中心（強い1点） ===== */
     radial-gradient(circle at 60% 30%,
       rgba(255,255,255,.95) 0 2px,
+      transparent 5px
+    ),
+
+    /* ===== 粒（ここが重要） ===== */
+    radial-gradient(circle at 63% 28%,
+      rgba(255,255,255,.8) 0 1px,
       transparent 6px
     ),
-
-    /* ===== 内側の光（全部同じ中心） ===== */
-    radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.6) 0 6px,
-      transparent 12px
+    radial-gradient(circle at 57% 31%,
+      rgba(255,255,255,.7) 0 1px,
+      transparent 7px
+    ),
+    radial-gradient(circle at 66% 33%,
+      rgba(255,255,255,.6) 0 1px,
+      transparent 8px
+    ),
+    radial-gradient(circle at 54% 34%,
+      rgba(255,255,255,.55) 0 1px,
+      transparent 9px
     ),
 
+    /* ===== 外側（薄すぎ禁止ゾーン） ===== */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.45) 0 12px,
-      transparent 20px
-    ),
-
-    radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.3) 0 18px,
-      transparent 28px
-    ),
-
-    radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.15) 0 26px,
-      transparent 40px
+      rgba(255,255,255,.2) 0 10px,
+      transparent 18px
     );
 
-  filter: blur(0.6px);
+  /* ←ここ重要：強すぎるblurは月化する */
+  filter: blur(0.2px);
 }
 
 
