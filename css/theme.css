@@ -557,34 +557,96 @@ center 62% / 100% 2px no-repeat,
 
   --cx: 60%;
   --cy: 30%;
+  --r: 40px; /* 花火の半径 */
 
+  /* ① conic-gradient で等間隔の点を作る */
   background:
+    conic-gradient(
+      from 0deg at var(--cx) var(--cy),
+      #fff 0deg 2deg,
+      transparent 2deg 10deg,
+      #ff99cc 10deg 12deg,
+      transparent 12deg 20deg,
+      #99ddff 20deg 22deg,
+      transparent 22deg 30deg,
+      #ffcc66 30deg 32deg,
+      transparent 32deg 40deg,
+      #ffeeaa 40deg 42deg,
+      transparent 42deg 50deg,
+      #fff 50deg 52deg,
+      transparent 52deg 60deg,
+      #ff99cc 60deg 62deg,
+      transparent 62deg 70deg,
+      #99ddff 70deg 72deg,
+      transparent 72deg 80deg,
+      #ffcc66 80deg 82deg,
+      transparent 82deg 90deg,
+      #ffeeaa 90deg 92deg,
+      transparent 92deg 100deg,
+      #fff 100deg 102deg,
+      transparent 102deg 110deg,
+      #ff99cc 110deg 112deg,
+      transparent 112deg 120deg,
+      #99ddff 120deg 122deg,
+      transparent 122deg 130deg,
+      #ffcc66 130deg 132deg,
+      transparent 132deg 140deg,
+      #ffeeaa 140deg 142deg,
+      transparent 142deg 150deg,
+      #fff 150deg 152deg,
+      transparent 152deg 160deg,
+      #ff99cc 160deg 162deg,
+      transparent 162deg 170deg,
+      #99ddff 170deg 172deg,
+      transparent 172deg 180deg,
+      #ffcc66 180deg 182deg,
+      transparent 182deg 190deg,
+      #ffeeaa 190deg 192deg,
+      transparent 192deg 200deg,
+      #fff 200deg 202deg,
+      transparent 202deg 210deg,
+      #ff99cc 210deg 212deg,
+      transparent 212deg 220deg,
+      #99ddff 220deg 222deg,
+      transparent 222deg 230deg,
+      #ffcc66 230deg 232deg,
+      transparent 232deg 240deg,
+      #ffeeaa 240deg 242deg,
+      transparent 242deg 250deg,
+      #fff 250deg 252deg,
+      transparent 252deg 260deg,
+      #ff99cc 260deg 262deg,
+      transparent 262deg 270deg,
+      #99ddff 270deg 272deg,
+      transparent 272deg 280deg,
+      #ffcc66 280deg 282deg,
+      transparent 282deg 290deg,
+      #ffeeaa 290deg 292deg,
+      transparent 292deg 300deg,
+      #fff 300deg 302deg,
+      transparent 302deg 310deg,
+      #ff99cc 310deg 312deg,
+      transparent 312deg 320deg,
+      #99ddff 320deg 322deg,
+      transparent 322deg 330deg,
+      #ffcc66 330deg 332deg,
+      transparent 332deg 340deg,
+      #ffeeaa 340deg 342deg,
+      transparent 342deg 350deg,
+      #fff 350deg 352deg,
+      transparent 352deg 360deg
+    );
 
-    /* 中心 */
-    radial-gradient(circle 3px at var(--cx) var(--cy),
-      #fff 0 3px, transparent 4px
-    ),
-
-    /* ランダム風の点（花火っぽい粒） */
-    radial-gradient(circle 2px at calc(var(--cx) + 18px) calc(var(--cy) - 6px),
-      #ff99cc 0 2px, transparent 3px
-    ),
-    radial-gradient(circle 3px at calc(var(--cx) - 22px) calc(var(--cy) + 4px),
-      #99ddff 0 3px, transparent 4px
-    ),
-    radial-gradient(circle 2px at calc(var(--cx) + 8px) calc(var(--cy) + 20px),
-      #ffcc66 0 2px, transparent 3px
-    ),
-    radial-gradient(circle 1.5px at calc(var(--cx) - 14px) calc(var(--cy) - 18px),
-      #ffeeaa 0 1.5px, transparent 2px
-    ),
-    radial-gradient(circle 2.5px at calc(var(--cx) + 25px) calc(var(--cy) + 10px),
-      #99ddff 0 2.5px, transparent 3px
-    ),
-    radial-gradient(circle 2px at calc(var(--cx) - 5px) calc(var(--cy) + 28px),
-      #ff99cc 0 2px, transparent 3px
+  /* ② radial-gradient のマスクで「円周の細いリング」だけ残す */
+  mask:
+    radial-gradient(circle at var(--cx) var(--cy),
+      transparent calc(var(--r) - 4px),
+      #000 calc(var(--r) - 3px),
+      #000 calc(var(--r) + 3px),
+      transparent calc(var(--r) + 4px)
     );
 }
+
 
 
 
