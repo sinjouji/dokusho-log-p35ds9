@@ -330,59 +330,23 @@
       transparent 16px 28px
     ),
 
-    /* ===== 紫陽花ドット群① ===== */
-    radial-gradient(circle at 72% 70%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 74% 68%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 70% 72%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 72% 74%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
+   /* ===== 紫陽花の花びら（房①） ===== */
+radial-gradient(ellipse 60% 40% at 85% 85%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 87% 83%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 83% 87%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 85% 89%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-    /* ===== 紫陽花ドット群② ===== */
-    radial-gradient(circle at 82% 78%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 84% 76%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 80% 80%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 82% 82%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
+/* ===== 房②（少し左） ===== */
+radial-gradient(ellipse 60% 40% at 78% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 80% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 76% 90%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 78% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-    /* ===== 紫陽花ドット群③ ===== */
-    radial-gradient(circle at 88% 86%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 90% 84%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 86% 88%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle at 88% 90%,
-      var(--color-chip-read-bg) 0 2px,
-      transparent 3px
-    );
+/* ===== 房③（さらに左上） ===== */
+radial-gradient(ellipse 60% 40% at 72% 82%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 74% 80%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 70% 84%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 60% 40% at 72% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%);
 }
 
 
