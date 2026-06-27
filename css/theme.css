@@ -550,16 +550,16 @@ center 62% / 100% 2px no-repeat,
 }
 
 [data-theme="natsumatsuri"] header::after {
-  opacity: 0.55;
-  filter: blur(0.4px);
+  opacity: 0.65;
+  filter: blur(0.8px);
   
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
 
-  --cx: 30%;
-  --cy: 35%;
+  --cx: 25%;
+  --cy: 25%;
 
   /* 花火の半径（外→中→内） */
   --r1: 40px;
