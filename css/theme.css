@@ -505,7 +505,7 @@
 }
 
 [data-theme="yukimishoji"] header::before{
-  opacity:.15;
+  opacity:.1;
 
   background-image:
     linear-gradient(
