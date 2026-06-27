@@ -447,13 +447,14 @@
   opacity:.22;
 
   background-image:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 8px,
-      var(--color-chip-read-bg) 9px,
-      transparent 10px
-    );
+repeating-linear-gradient(
+  to bottom,
+  transparent 0px,
+  transparent 8px,
+  var(--color-chip-read-bg) 9px,
+  var(--color-chip-read-bg) 10px,
+  transparent 11px
+);
 }
 
 
