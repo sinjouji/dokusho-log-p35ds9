@@ -319,7 +319,6 @@
 }
 
 [data-theme="ajisai"] header::before{
-  background-color: var(--color-chip-read-bg);
   content:"";
   position:absolute;
   inset:0;
@@ -347,7 +346,7 @@
     repeating-radial-gradient(
       circle at 0 100%,
       transparent 0 12px,
-      rgba(255,255,255,.22) 13px 15px,
+      var(--color-chip-read-bg) 13px 15px,
       transparent 16px 28px
     );
 }
