@@ -560,33 +560,47 @@ center 62% / 100% 2px no-repeat,
   --cy: 30%;
 
   background:
-    /* 中心の点 */
-    radial-gradient(circle 2px at var(--cx) var(--cy),
-      #fff 0 2px,
-      transparent 3px
+    radial-gradient(circle 3px at var(--cx) var(--cy),
+      #fff 0 3px,
+      transparent 4px
     ),
 
-    /* 外側の点（ランダム配置風） */
-    radial-gradient(circle 2px at calc(var(--cx) + 20px) calc(var(--cy) - 10px),
-      #ff99cc 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle 2px at calc(var(--cx) - 25px) calc(var(--cy) + 5px),
-      #99ddff 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle 2px at calc(var(--cx) + 10px) calc(var(--cy) + 25px),
-      #ffcc66 0 2px,
-      transparent 3px
-    ),
-    radial-gradient(circle 2px at calc(var(--cx) - 15px) calc(var(--cy) - 20px),
-      #ffeeaa 0 2px,
-      transparent 3px
+    /* 円周上の点（等間隔） */
+    conic-gradient(
+      from 0deg at var(--cx) var(--cy),
+      #ff99cc 0deg 5deg,
+      transparent 5deg 30deg,
+      #99ddff 30deg 35deg,
+      transparent 35deg 60deg,
+      #ffcc66 60deg 65deg,
+      transparent 65deg 90deg,
+      #ffeeaa 90deg 95deg,
+      transparent 95deg 120deg,
+      #ff99cc 120deg 125deg,
+      transparent 125deg 150deg,
+      #99ddff 150deg 155deg,
+      transparent 155deg 180deg,
+      #ffcc66 180deg 185deg,
+      transparent 185deg 210deg,
+      #ffeeaa 210deg 215deg,
+      transparent 215deg 240deg,
+      #ff99cc 240deg 245deg,
+      transparent 245deg 270deg,
+      #99ddff 270deg 275deg,
+      transparent 275deg 300deg,
+      #ffcc66 300deg 305deg,
+      transparent 305deg 330deg,
+      #ffeeaa 330deg 335deg,
+      transparent 335deg 360deg
     );
 
-  /* ボカシなし */
-  filter: none;
+  mask:
+    radial-gradient(circle at var(--cx) var(--cy),
+      transparent 0 40px,
+      #000 41px
+    );
 }
+
 
 
 
