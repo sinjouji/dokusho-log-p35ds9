@@ -128,15 +128,10 @@
 --color-heat-5:#6d9a57;
 }
 
-.header > *{
-  position:relative;
-  z-index:1;
-}
 
 /*テーマ別ヘッダー*/
-[data-theme="harunoniwa"] .header::before{
-  background:red !important;
-  opacity:1 !important;
+[data-theme="harunoniwa"] header::before{
+  opacity:.38;
 
   background:
     radial-gradient(
