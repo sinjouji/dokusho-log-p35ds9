@@ -203,7 +203,7 @@
     transparent 6px
   ) 3px 30px / 52px 46px repeat;
 
-  background-size:48px 42px;
+  background-size:58px 52px;
 }
 
 /*桜のみ
@@ -307,6 +307,18 @@
 }
 
 
+[data-theme="ajisai"] header::before{
+  opacity:.22;
+
+  background:
+    repeating-radial-gradient(
+      circle at 0 100%,
+      transparent 0 12px,
+      var(--color-chip-read-bg) 13px 15px,
+      transparent 16px 28px
+    );
+}
+
 
 
 
@@ -386,16 +398,40 @@
   --color-tag-exclude:#b94a48;
 }
 
-
-[data-theme="marin"] header::before{
+[data-theme="marin"] .header-pattern-center{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
   opacity:.22;
 
   background:
-    repeating-radial-gradient(
-      circle at 0 100%,
-      transparent 0 12px,
-      var(--color-chip-read-bg) 13px 15px,
-      transparent 16px 28px
+    radial-gradient(
+      80% 22px at 50% 110%,
+      transparent 70%,
+      var(--color-chip-read-bg) 72% 75%,
+      transparent 77%
+    ),
+
+    radial-gradient(
+      70% 18px at 50% 118%,
+      transparent 70%,
+      var(--color-chip-read-bg) 72% 75%,
+      transparent 77%
+    ),
+
+    radial-gradient(
+      90% 28px at 50% 126%,
+      transparent 70%,
+      var(--color-chip-read-bg) 72% 75%,
+      transparent 77%
+    ),
+
+    radial-gradient(
+      60% 14px at 50% 134%,
+      transparent 70%,
+      var(--color-chip-read-bg) 72% 75%,
+      transparent 77%
     );
 }
 
