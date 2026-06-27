@@ -443,6 +443,28 @@
 --color-heat-5:#f0c36d;
 }
 
+/*線路*/
+[data-theme="ekisha"] header::before{
+  opacity:.18;
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 0px,
+      var(--color-chip-read-bg) 3px,
+      transparent 3px,
+      transparent 28px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 8px,
+      rgba(255,255,255,.08) 9px,
+      transparent 10px
+    );
+}
+
+/* 横罫線
 [data-theme="ekisha"] header::before{
   opacity:.22;
 
@@ -455,7 +477,7 @@ repeating-linear-gradient(
   var(--color-chip-read-bg) 10px,
   transparent 11px
 );
-}
+}*/
 
 
 
