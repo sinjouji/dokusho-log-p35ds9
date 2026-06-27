@@ -565,13 +565,13 @@ center 62% / 100% 2px no-repeat,
   
   /* ① conic-gradient：点の並び（共通） */
   --dots:
-    /* いちばん上に追加する */
+    conic-gradient(
+        /* いちばん上に追加する */
 radial-gradient(circle at var(--cx) var(--cy),
   rgba(255,255,255,0.9) 0 6px,
   rgba(255,255,255,0.4) 6px 12px,
   transparent 12px 20px
 ),
-    conic-gradient(
       from 0deg at var(--cx) var(--cy),
       #fff 0deg 2deg, transparent 2deg 10deg,
       #ff99cc 10deg 12deg, transparent 12deg 20deg,
