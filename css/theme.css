@@ -319,6 +319,7 @@
 }
 
 [data-theme="ajisai"] header::before{
+  background-color: var(--color-chip-read-bg);
   content:"";
   position:absolute;
   inset:0;
