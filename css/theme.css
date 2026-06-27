@@ -419,17 +419,27 @@
   width:100%;
   opacity:.22;
 
+
+
   background:
 
     /* ===== ★追加：空→白→砂浜の縦グラデ ===== */
-    linear-gradient(
+ /*   linear-gradient(
       to bottom,
-      #4aa3ff 0%,     /* 夏の青空 */
-      #bfe6ff 35%,    /* 白っぽい空気 */
-      #f7fbff 55%,    /* まぶしい白 */
-      #ffe7b3 75%,    /* 砂浜の明るい色 */
-      #f2c98a 100%    /* 砂浜の影 */
+      #4aa3ff 0%,     
+      #bfe6ff 35%,    
+      #f7fbff 55%,    
+      #ffe7b3 75%,    
+      #f2c98a 100%    
     ),
+    
+    background:*/
+  linear-gradient(
+    to bottom,
+    rgba(74,163,255,.2) 0%,
+    rgba(255,255,255,.1) 60%,
+    rgba(242,201,138,.25) 100%
+  ),
 
     /* ===== 中央ライン ===== */
     linear-gradient(
