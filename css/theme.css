@@ -409,28 +409,28 @@
 
   background:
     radial-gradient(
-      140% 22px at 50% 88%,
+      140% 22px at 70% 88%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      120% 18px at 50% 96%,
+      120% 18px at 65% 96%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      110% 28px at 50% 104%,
+      110% 28px at 75% 104%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      130% 14px at 50% 112%,
+      130% 14px at 65% 112%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
