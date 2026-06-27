@@ -550,7 +550,7 @@ center 62% / 100% 2px no-repeat,
 }
 
 [data-theme="natsumatsuri"] header::after {
-  opacity: 0.85;
+  opacity: 0.55;
   filter: blur(0.4px);
   
   content:"";
