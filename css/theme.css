@@ -563,14 +563,14 @@ center 62% / 100% 2px no-repeat,
     radial-gradient(circle at 72% 28%, rgba(255,255,255,.9) 0 1.5px, transparent 4px),
 
     /* 周囲に散る粒 */
-    radial-gradient(circle at 68% 24%, rgba(255255255,.55) 0 1px, transparent 5px),
-    radial-gradient(circle at 76% 24%, rgba(255255255,.5) 0 1px, transparent 6px),
-    radial-gradient(circle at 70% 32%, rgba(255255255,.45) 0 1px, transparent 6px),
-    radial-gradient(circle at 78% 30%, rgba(255255255,.4) 0 1px, transparent 7px),
-    radial-gradient(circle at 74% 36%, rgba(255255255,.35) 0 1px, transparent 8px),
+    radial-gradient(circle at 68% 24%, rgba(255,255,255,.55) 0 1px, transparent 5px),
+    radial-gradient(circle at 76% 24%, rgba(255,255,255,.5) 0 1px, transparent 6px),
+    radial-gradient(circle at 70% 32%, rgba(255,255,255,.45) 0 1px, transparent 6px),
+    radial-gradient(circle at 78% 30%, rgba(255,255,255,.4) 0 1px, transparent 7px),
+    radial-gradient(circle at 74% 36%, rgba(255,255,255,.35) 0 1px, transparent 8px),
 
     /* さらに薄い外側の“余韻” */
-    radial-gradient(circle at 72% 28%, rgba(255255255,.15) 0 10px, transparent 18px);
+    radial-gradient(circle at 72% 28%, rgba(255,255,255,.15) 0 10px, transparent 18px);
 }
 
 
