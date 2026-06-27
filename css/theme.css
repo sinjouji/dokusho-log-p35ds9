@@ -555,41 +555,39 @@ center 62% / 100% 2px no-repeat,
   inset:0;
   pointer-events:none;
 
+  /* 花火の中心位置 */
+  --cx: 60%;
+  --cy: 30%;
+
   background:
-
-    /* 中心（白） */
-    radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,1) 0 3px,
-      transparent 4px
+    /* 中心の点 */
+    radial-gradient(circle 2px at var(--cx) var(--cy),
+      #fff 0 2px,
+      transparent 3px
     ),
 
-    /* 第1波（ピンク） */
-    radial-gradient(circle at 60% 30%,
-      rgba(255,120,200,1) 0 6px,
-      transparent 7px
+    /* 外側の点（ランダム配置風） */
+    radial-gradient(circle 2px at calc(var(--cx) + 20px) calc(var(--cy) - 10px),
+      #ff99cc 0 2px,
+      transparent 3px
     ),
-
-    /* 第2波（シアン） */
-    radial-gradient(circle at 60% 30%,
-      rgba(120,200,255,1) 0 10px,
-      transparent 11px
+    radial-gradient(circle 2px at calc(var(--cx) - 25px) calc(var(--cy) + 5px),
+      #99ddff 0 2px,
+      transparent 3px
     ),
-
-    /* 第3波（オレンジ） */
-    radial-gradient(circle at 60% 30%,
-      rgba(255,200,120,1) 0 14px,
-      transparent 15px
+    radial-gradient(circle 2px at calc(var(--cx) + 10px) calc(var(--cy) + 25px),
+      #ffcc66 0 2px,
+      transparent 3px
     ),
-
-    /* 第4波（外側の空気感） */
-    radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,0.25) 0 20px,
-      transparent 22px
+    radial-gradient(circle 2px at calc(var(--cx) - 15px) calc(var(--cy) - 20px),
+      #ffeeaa 0 2px,
+      transparent 3px
     );
 
-  /* ボカシなしなので blur は不要（残してもOK） */
-  filter: blur(0);
+  /* ボカシなし */
+  filter: none;
 }
+
 
 
 
