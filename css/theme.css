@@ -330,7 +330,7 @@
       transparent 16px 28px
     );
 }
-[data-theme="ajisai"] header::before{
+[data-theme="ajisai"] header::after{
   opacity:.22;
 
   background:
