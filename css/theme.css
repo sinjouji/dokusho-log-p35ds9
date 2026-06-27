@@ -557,40 +557,44 @@ center 62% / 100% 2px no-repeat,
 
   background:
 
-    /* ===== 中心（強い1点） ===== */
+    /* ===== 中心 ===== */
     radial-gradient(circle at 60% 30%,
       rgba(255,255,255,.95) 0 2px,
-      transparent 5px
-    ),
-
-    /* ===== 粒（ここが重要） ===== */
-    radial-gradient(circle at 63% 28%,
-      rgba(255,255,255,.8) 0 1px,
       transparent 6px
     ),
-    radial-gradient(circle at 57% 31%,
-      rgba(255,255,255,.7) 0 1px,
-      transparent 7px
-    ),
-    radial-gradient(circle at 66% 33%,
+
+    /* ===== 花火の骨格（広がり） ===== */
+    radial-gradient(circle at 62% 28%,
       rgba(255,255,255,.6) 0 1px,
-      transparent 8px
+      transparent 10px
     ),
-    radial-gradient(circle at 54% 34%,
+    radial-gradient(circle at 58% 32%,
       rgba(255,255,255,.55) 0 1px,
-      transparent 9px
+      transparent 12px
+    ),
+    radial-gradient(circle at 65% 35%,
+      rgba(255,255,255,.5) 0 1px,
+      transparent 14px
+    ),
+    radial-gradient(circle at 55% 36%,
+      rgba(255,255,255,.45) 0 1px,
+      transparent 16px
     ),
 
-    /* ===== 外側（薄すぎ禁止ゾーン） ===== */
+    /* ===== ここが“dotted風の正体” ===== */
+    radial-gradient(circle at 61% 29%, rgba(255,255,255,.25) 0 1px, transparent 8px),
+    radial-gradient(circle at 59% 31%, rgba(255,255,255,.2) 0 1px, transparent 9px),
+    radial-gradient(circle at 63% 33%, rgba(255,255,255,.18) 0 1px, transparent 10px),
+    radial-gradient(circle at 57% 34%, rgba(255,255,255,.15) 0 1px, transparent 11px),
+
+    /* ===== 外側の空気 ===== */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.2) 0 10px,
-      transparent 18px
+      rgba(255,255,255,.08) 0 20px,
+      transparent 40px
     );
 
-  /* ←ここ重要：強すぎるblurは月化する */
-  filter: blur(0.2px);
+  filter: blur(0.4px);
 }
-
 
 
 
