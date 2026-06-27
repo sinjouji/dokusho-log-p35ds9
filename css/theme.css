@@ -503,3 +503,21 @@
 --color-heat-4:#7f98b8;
 --color-heat-5:#5d6b82;
 }
+
+[data-theme="yukimi"] header::before{
+  opacity:.18;
+
+  background-image:
+    linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-chip-read-bg) 1px,
+      transparent 1px
+    );
+
+  background-size:32px 32px;
+}
