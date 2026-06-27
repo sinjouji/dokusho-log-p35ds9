@@ -135,7 +135,8 @@
 
 /*テーマ別ヘッダー*/
 [data-theme="harunoniwa"] .header::before{
-  opacity:.45;
+  background:red !important;
+  opacity:1 !important;
 
   background:
     radial-gradient(
