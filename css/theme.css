@@ -318,10 +318,13 @@
   --color-tag-exclude:#b94a48;
 }
 
-
 [data-theme="ajisai"] header::before{
-  opacity:.22;
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
 
+  /* 紫陽花は不透明のまま */
   background:
 
     /* ===== 紫陽花（右下） ===== */
@@ -347,7 +350,7 @@
     repeating-radial-gradient(
       circle at 0 100%,
       transparent 0 12px,
-      var(--color-chip-read-bg) 13px 15px,
+      rgba(var(--color-chip-read-bg-rgb), .22) 13px 15px,
       transparent 16px 28px
     );
 }
