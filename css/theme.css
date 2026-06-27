@@ -541,12 +541,12 @@ center 62% / 100% 2px no-repeat,
   filter: blur(0.8px);
 
   background:
-    radial-gradient(circle at 10% 20%, var(--color-chip-read-bg) 0 6px, transparent 12px),
-    radial-gradient(circle at 25% 65%, var(--color-chip-read-bg) 0 4px, transparent 7px),
-    radial-gradient(circle at 40% 30%, var(--color-chip-read-bg) 0 7px, transparent 13px),
-    radial-gradient(circle at 55% 75%, var(--color-chip-read-bg) 0 5px, transparent 10px),
-    radial-gradient(circle at 70% 25%, var(--color-chip-read-bg) 0 6px, transparent 11px),
-    radial-gradient(circle at 85% 60%, var(--color-chip-read-bg) 0 4px, transparent 9px);
+    radial-gradient(circle at 12% 18%, var(--color-chip-read-bg) 0 6px, transparent 12px),
+    radial-gradient(circle at 28% 72%, var(--color-chip-read-bg) 0 4px, transparent 9px),
+    radial-gradient(circle at 33% 35%, var(--color-chip-read-bg) 0 7px, transparent 13px),
+    radial-gradient(circle at 51% 60%, var(--color-chip-read-bg) 0 5px, transparent 10px),
+    radial-gradient(circle at 67% 28%, var(--color-chip-read-bg) 0 6px, transparent 11px),
+    radial-gradient(circle at 83% 78%, var(--color-chip-read-bg) 0 4px, transparent 10px);
 }
 
 [data-theme="natsumatsuri"] header::after{
