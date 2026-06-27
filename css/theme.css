@@ -329,10 +329,10 @@
 
     /* ===== 紫陽花（右下） ===== */
   /* ===== 房①（左上寄せ＋自然な角度＋飛び出し花びら） ===== */
-radial-gradient(ellipse 14px 6px at 86% 66%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 88% 64%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 84% 70%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 88% 72%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 82% 66%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 84% 64%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 80% 70%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 84% 72%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 /* ===== 房①（飛び出し済） ===== */
 radial-gradient(ellipse 13px 5px at 82% 60%, var(--color-chip-read-bg) 0 100%, transparent 100%),
@@ -341,7 +341,7 @@ radial-gradient(ellipse 13px 5px at 82% 60%, var(--color-chip-read-bg) 0 100%, t
 radial-gradient(ellipse 13px 5px at 75% 84%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 /* ===== 房③（右下）に飛び出し追加 ===== */
-radial-gradient(ellipse 13px 5px at 85% 81%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 13px 5px at 89% 81%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 
 
@@ -352,10 +352,10 @@ radial-gradient(ellipse 14px 6px at 74% 92%, var(--color-chip-read-bg) 0 100%, t
 radial-gradient(ellipse 14px 6px at 78% 94%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 /* ===== 房③（右下） ===== */
-radial-gradient(ellipse 14px 6px at 86% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 88% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 84% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 88% 94%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 90% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 92% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 88% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 14px 6px at 92% 94%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 /* ===== 葉っぱ ===== */
 radial-gradient(
