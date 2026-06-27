@@ -330,24 +330,24 @@
     /* ===== 紫陽花（右下） ===== */
   /* ===== 房①（左上寄せ＋自然な角度＋飛び出し花びら） ===== */
 radial-gradient(ellipse 14px 6px at 80% 70%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 82% 68%, var(--color-chip-read-bg) 0 100%, transparent 78%),
+radial-gradient(ellipse 14px 6px at 82% 68%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 78% 74%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 82% 76%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 /* ← 追加の飛び出し花びら */
-radial-gradient(ellipse 13px 5px at 79% 68%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+radial-gradient(ellipse 13px 5px at 78% 67%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 
 /* ===== 房②（左下） ===== */
 radial-gradient(ellipse 14px 6px at 76% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 78% 86%, var(--color-chip-read-bg) 0 100%, transparent 80%),
+radial-gradient(ellipse 14px 6px at 78% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 74% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 78% 94%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 /* ===== 房③（右下） ===== */
-radial-gradient(ellipse 14px 6px at 88% 88%, var(--color-chip-read-bg) 0 100%, transparent 90%),
+radial-gradient(ellipse 14px 6px at 88% 88%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 90% 86%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 86% 92%, var(--color-chip-read-bg) 0 100%, transparent 850%),
+radial-gradient(ellipse 14px 6px at 86% 92%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 radial-gradient(ellipse 14px 6px at 90% 94%, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
 
