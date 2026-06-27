@@ -558,8 +558,8 @@ center 62% / 100% 2px no-repeat,
   inset:0;
   pointer-events:none;
 
-  --cx: 40%;
-  --cy: 40%;
+  --cx: 30%;
+  --cy: 35%;
 
   /* 花火の半径（外→中→内） */
   --r1: 40px;
