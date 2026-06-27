@@ -292,8 +292,10 @@
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:var(--color-text-sub);
-
   
+  --color-chip-read-bg:#78b7c5;
+  --color-chip-read-text:#fffffc;
+
   --color-heat-0:#e1e5e4;
   --color-heat-1:#f2c3ca;
   --color-heat-2:#fcd475;
@@ -407,28 +409,28 @@
 
   background:
     radial-gradient(
-      80% 22px at 50% 80%,
+      140% 22px at 50% 88%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      70% 18px at 50% 88%,
+      120% 18px at 50% 96%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      90% 28px at 50% 96%,
+      110% 28px at 50% 104%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
     ),
 
     radial-gradient(
-      60% 14px at 50% 104%,
+      130% 14px at 50% 112%,
       transparent 70%,
       var(--color-chip-read-bg) 72% 75%,
       transparent 77%
