@@ -318,19 +318,72 @@
   --color-tag-exclude:#b94a48;
 }
 
-
 [data-theme="ajisai"] header::before{
   opacity:.22;
 
   background:
+    /* ===== 紫陽花の波紋 ===== */
     repeating-radial-gradient(
       circle at 0 100%,
       transparent 0 12px,
       var(--color-chip-read-bg) 13px 15px,
       transparent 16px 28px
+    ),
+
+    /* ===== 紫陽花ドット群① ===== */
+    radial-gradient(circle at 72% 70%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 74% 68%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 70% 72%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 72% 74%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+
+    /* ===== 紫陽花ドット群② ===== */
+    radial-gradient(circle at 82% 78%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 84% 76%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 80% 80%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 82% 82%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+
+    /* ===== 紫陽花ドット群③ ===== */
+    radial-gradient(circle at 88% 86%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 90% 84%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 86% 88%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 88% 90%,
+      var(--color-chip-read-bg) 0 2px,
+      transparent 3px
     );
 }
-
 
 
 
