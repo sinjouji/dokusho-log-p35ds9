@@ -492,9 +492,9 @@
     repeating-linear-gradient(
       to bottom,
       transparent 0px,
-      transparent 8px,
-      rgba(255,255,255,.1) 9px,
-      transparent 10px
+      transparent 9px,
+      rgba(255,255,255,.2) 12px,
+      transparent 13px
     );
 }
 
