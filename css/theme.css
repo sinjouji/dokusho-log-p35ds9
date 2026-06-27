@@ -615,13 +615,13 @@ center 62% / 100% 2px no-repeat,
   transparent 12px
 ),
 
-  /* ★ これが中心の光（強め・黄色寄り・軽いぼかし） */
-  radial-gradient(circle at var(--cx) var(--cy),
+ /* ★ これが中心の光（強め・黄色寄り・軽いぼかし） */
+/*  radial-gradient(circle at var(--cx) var(--cy),
     rgba(255,240,150,1) 0 8px,
     rgba(255,220,120,0.6) 8px 16px,
     rgba(255,200,100,0.3) 16px 26px,
     transparent 26px
-  ),
+  ),*/
 
   /* ★ ここから下は今までの三重リング */
   var(--dots),
