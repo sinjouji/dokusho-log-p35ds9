@@ -573,6 +573,31 @@ center 62% / 100% 2px no-repeat,
     radial-gradient(circle at 72% 28%, rgba(255,255,255,.15) 0 10px, transparent 18px);
 }
 
+[data-theme="natsumatsuri"] header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  /* 既存の灯りを壊さず上に重ねる */
+  background:
+    /* 中心の爆発 */
+    radial-gradient(circle at 60% 35%, rgba(255,255,255,.9) 0 2px, transparent 6px),
+
+    /* 花火の粒（広がり） */
+    radial-gradient(circle at 58% 32%, rgba(255,255,255,.6) 0 1px, transparent 7px),
+    radial-gradient(circle at 62% 32%, rgba(255,255,255,.55) 0 1px, transparent 7px),
+    radial-gradient(circle at 56% 38%, rgba(255,255,255,.5) 0 1px, transparent 8px),
+    radial-gradient(circle at 64% 38%, rgba(255,255,255,.45) 0 1px, transparent 8px),
+    radial-gradient(circle at 60% 42%, rgba(255,255,255,.4) 0 1px, transparent 9px),
+
+    /* 外側の余韻リング */
+    radial-gradient(circle at 60% 35%, rgba(255,255,255,.12) 0 16px, transparent 26px);
+
+  filter: blur(0.4px);
+  opacity: 0.9;
+}
+
 
 /*yoke
 [data-theme="natsumatsuri"] header::before{
