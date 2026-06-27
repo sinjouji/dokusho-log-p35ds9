@@ -187,23 +187,23 @@
   background:
   radial-gradient(
     circle,
-    var(--color-chip-read-bg) 0 4px,
+    var(--color-chip-read-bg) 0 2px,
     transparent 5px
-  ) 10px 8px / 32px 30px repeat,
+  ) 15px 5px / 36px 34px repeat,
+
+  radial-gradient(
+    circle,
+    var(--color-chip-read-bg) 0 4px,
+    transparent 4px
+  ) 28px 22px / 44px 40px repeat,
 
   radial-gradient(
     circle,
     var(--color-chip-read-bg) 0 3px,
-    transparent 4px
-  ) 22px 18px / 38px 34px repeat,
-
-  radial-gradient(
-    circle,
-    var(--color-chip-read-bg) 0 5px,
     transparent 6px
-  ) 6px 24px / 45px 40px repeat;
+  ) 3px 30px / 52px 46px repeat;
 
-  background-size:30px 30px;
+  background-size:48px 42px;
 }
 
 /*桜のみ
