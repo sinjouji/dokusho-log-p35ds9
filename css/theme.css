@@ -318,19 +318,8 @@
   --color-tag-exclude:#b94a48;
 }
 
-[data-theme="ajisai"] header::before{
-  opacity:.22;
 
-  background:
-    /* ===== 紫陽花の波紋 ===== */
-    repeating-radial-gradient(
-      circle at 0 100%,
-      transparent 0 12px,
-      var(--color-chip-read-bg) 13px 15px,
-      transparent 16px 28px
-    );
-}
-[data-theme="ajisai"] header::after{
+[data-theme="ajisai"] header::before{
   opacity:.22;
 
   background:
