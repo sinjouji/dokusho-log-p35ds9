@@ -557,41 +557,40 @@ center 62% / 100% 2px no-repeat,
 
   background:
 
-    /* 中心 */
+    /* 中心（白） */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.95) 0 3px,
-      transparent 6px
+      rgba(255,255,255,1) 0 3px,
+      transparent 4px
     ),
 
-    /* 第1波（少し強め） */
+    /* 第1波（ピンク） */
     radial-gradient(circle at 60% 30%,
-      rgba(255,120,200,.7) 0 6px,
-      rgba(255,120,200,.25) 10px,
-      transparent 14px
+      rgba(255,120,200,1) 0 6px,
+      transparent 7px
     ),
 
-    /* 第2波（なめらか接続） */
+    /* 第2波（シアン） */
     radial-gradient(circle at 60% 30%,
-      rgba(120,200,255,.55) 0 10px,
-      rgba(120,200,255,.2) 15px,
-      transparent 20px
+      rgba(120,200,255,1) 0 10px,
+      transparent 11px
     ),
 
-    /* 第3波（薄く広がる） */
+    /* 第3波（オレンジ） */
     radial-gradient(circle at 60% 30%,
-      rgba(255,200,120,.4) 0 14px,
-      rgba(255,200,120,.15) 20px,
-      transparent 28px
+      rgba(255,200,120,1) 0 14px,
+      transparent 15px
     ),
 
-    /* 外側の空気 */
+    /* 第4波（外側の空気感） */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.1) 0 22px,
-      transparent 40px
+      rgba(255,255,255,0.25) 0 20px,
+      transparent 22px
     );
 
-  filter: blur(0.3px);
+  /* ボカシなしなので blur は不要（残してもOK） */
+  filter: blur(0);
 }
+
 
 
 /*yoke
