@@ -374,7 +374,7 @@ radial-gradient(
     repeating-linear-gradient(
       -12deg,
       transparent 0 18px,
-      rgba(var(--color-chip-read-bg-rgb), .12) 19px 21px,
+      rgba(var(--color-chip-read-bg-rgb), .2) 19px 21px,
       transparent 22px 38px
     );
 }
