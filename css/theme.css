@@ -557,43 +557,38 @@ center 62% / 100% 2px no-repeat,
 
   background:
 
-    /* ===== 中心 ===== */
+    /* 中心ドット */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.95) 0 2px,
-      transparent 6px
+      rgba(255,255,255,.95) 0 3px,
+      transparent 4px
     ),
 
-    /* ===== 内側（円状に散る） ===== */
-    radial-gradient(circle at 62% 30%,
-      rgba(255,255,255,.6) 0 1px,
-      transparent 10px
+    /* 第1波 */
+    radial-gradient(circle at 60% 30%,
+      rgba(255,120,200,.7) 0 6px,
+      transparent 7px
     ),
-    radial-gradient(circle at 58% 28%,
-      rgba(255,255,255,.55) 0 1px,
+
+    radial-gradient(circle at 60% 30%,
+      rgba(120,200,255,.6) 0 10px,
       transparent 11px
     ),
-    radial-gradient(circle at 64% 32%,
-      rgba(255,255,255,.5) 0 1px,
-      transparent 12px
-    ),
-    radial-gradient(circle at 56% 34%,
-      rgba(255,255,255,.45) 0 1px,
-      transparent 13px
-    ),
-    radial-gradient(circle at 60% 36%,
-      rgba(255,255,255,.4) 0 1px,
-      transparent 14px
-    ),
 
-    /* ===== 外側（半径感） ===== */
     radial-gradient(circle at 60% 30%,
-      rgba(255,255,255,.2) 0 16px,
-      transparent 28px
+      rgba(255,200,120,.5) 0 14px,
+      transparent 15px
+    ),
+
+    radial-gradient(circle at 60% 30%,
+      rgba(180,255,180,.4) 0 18px,
+      transparent 19px
+    ),
+
+    radial-gradient(circle at 60% 30%,
+      rgba(255,255,255,.2) 0 24px,
+      transparent 25px
     );
-
-  filter: blur(0.4px);
 }
-
 
 
 /*yoke
