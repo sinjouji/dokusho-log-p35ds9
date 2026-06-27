@@ -504,8 +504,8 @@
 --color-heat-5:#5d6b82;
 }
 
-[data-theme="yukimi"] header::before{
-  opacity:.25;
+[data-theme="yukimishoji"] header::before{
+  opacity:.18;
 
   background-image:
     linear-gradient(
