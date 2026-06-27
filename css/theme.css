@@ -443,6 +443,19 @@
 --color-heat-5:#f0c36d;
 }
 
+[data-theme="ekisha"] header::before{
+  opacity:.22;
+
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 8px,
+      var(--color-chip-read-bg) 9px,
+      transparent 10px
+    );
+}
+
 
 
 
@@ -519,5 +532,5 @@ linear-gradient(
   transparent 4px
 );
 
-  background-size:32px 32px;
+  background-size:45px 45px;
 }
