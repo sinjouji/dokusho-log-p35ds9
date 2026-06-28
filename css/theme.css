@@ -803,7 +803,7 @@
 
 
 [data-theme="yuuyakekomichi"] header::before{
-  opacity:.18;
+ /* opacity:.18;*/
 
   background:
     radial-gradient(
