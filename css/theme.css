@@ -1136,6 +1136,113 @@ linear-gradient(
 
 
 
+[data-theme="asatsuyu"]{
+  --color-header-bg:#f5f8fb;
+
+  --color-header-watermark-rgb:180, 195, 210;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#a8c6d8;       /* 薄氷青 */
+  --color-main-dark:#7f9daf;
+
+  --color-border:#d9cda8;     /* 新年の金 */
+
+  --color-bg:#ffffff;
+  --color-card:#fdfefe;
+
+  --color-border-sub:#d7e1e8;
+
+  --color-text:#4d5a66;       /* 冬朝の影 */
+  --color-text-sub:#ffffff;
+
+  --color-opacity:0.85;
+
+  --color-btn-main:#c8d9e8;
+  --color-btn-text-s:#4d5a66;
+
+  --color-btn-danger:#f4e7df;
+  --color-btn-text-d:#8a6558;
+
+  --color-chip:#dce9f2;
+
+  --color-input-common:#f3f8fb;
+
+  --color-bookmark:#d9b97a;
+
+  --color-control-box:#edf4f8;
+
+  --color-and:#e6f4f8;
+  --color-and-border:#a8c6d8;
+
+  --color-or:#f8f2e6;
+  --color-or-border:#d9cda8;
+
+  --color-not:#f6eaea;
+  --color-not-border:#d2b2b2;
+
+  --color-search-btn:#c8d9e8;
+
+  --color-year-bar:#a8c6d8;
+  --color-year-achieved:#d9cda8;
+
+  --color-chip-read-bg:#d9b97a;
+  --color-chip-read-bg-rgb:217,185,122;
+  --color-chip-read-text:#ffffff;
+
+  --color-calendar-date:#8fa4b5;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  --color-heat-0:#ffffff;
+  --color-heat-1:#edf4f8;
+  --color-heat-2:#dce9f2;
+  --color-heat-3:#c8d9e8;
+  --color-heat-4:#a8c6d8;
+  --color-heat-5:#7f9daf;
+}
+
+
+[data-theme="asatsuyu"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+
+  background:
+    radial-gradient(
+      circle at 18% 34%,
+      rgba(255,255,255,.55) 0 3px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 42% 26%,
+      rgba(255,255,255,.45) 0 2px,
+      transparent 3px
+    ),
+    radial-gradient(
+      circle at 66% 38%,
+      rgba(255,255,255,.5) 0 3px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 84% 22%,
+      rgba(255,255,255,.42) 0 2px,
+      transparent 3px
+    ),
+
+    repeating-linear-gradient(
+      18deg,
+      transparent 0 16px,
+      rgba(255,255,255,.18) 17px 18px,
+      transparent 19px 34px
+    );
+}
+
+
+
+
 
 
 :root[data-theme="yukimishoji"]{
