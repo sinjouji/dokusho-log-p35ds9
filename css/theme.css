@@ -617,6 +617,11 @@
   rgba(122,163,72,.35) 0%,
   rgba(122,163,72,.18) 18%,
   transparent 38%
+),
+linear-gradient(
+  -8deg,
+  rgba(95,125,50,.12) 0%,
+  transparent 30%
 );
 }
 
