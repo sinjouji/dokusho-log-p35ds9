@@ -914,15 +914,15 @@ linear-gradient(
   --color-card:#fffaf3;
 
   --color-border-sub:#a58a74;
-  --color-text:#fffaf3;
-  --color-text-sub:#6b4b3a;
+  --color-text:#6b4b3a;
+  --color-text-sub:#fffaf3;
 
   --color-shadow:rgba(0,0,0,.08);
 
   --color-opacity:0.8;
 
   --color-btn-main:#8b5e4a;
-  --color-btn-text-s:#fffaf3;
+  --color-btn-text-s:#4f3729;
   --color-btn-danger:#f5e7df;
   --color-btn-text-d:#8b4a3a;
   --color-btn-border-d:#d9b39a;
