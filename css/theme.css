@@ -1597,9 +1597,16 @@ linear-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.75;
 
   background:
+    /* 闇 */
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.35) 0%,
+      rgba(0,0,0,.15) 20%,
+      transparent 40%
+    ),
+
     /* 光輪 */
     radial-gradient(
       circle at 78% 24%,
@@ -1608,26 +1615,18 @@ linear-gradient(
       transparent 52px
     ),
 
-    /* 月本体 */
+    /* 削り（三日月化）← 月より先に描く */
+    radial-gradient(
+      circle at 86% 24%,
+      rgba(18,16,21,1) 0 18px,
+      transparent 19px
+    ),
+
+    /* 月本体（一番手前） */
     radial-gradient(
       circle at 78% 24%,
       rgba(240,225,185,.75) 0 20px,
       transparent 21px
-    ),
-
-    /* 削り（三日月化） */
-    radial-gradient(
-  circle at 86% 24%,
-  rgba(18,16,21,1) 0 18px,
-  transparent 19px
-),
-
-    /* 下の闇 */
-    linear-gradient(
-      to top,
-      rgba(0,0,0,.35) 0%,
-      rgba(0,0,0,.15) 20%,
-      transparent 40%
     );
 }
 
