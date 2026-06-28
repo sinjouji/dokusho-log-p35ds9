@@ -1601,7 +1601,7 @@ linear-gradient(
   background:
     /* 削り */
     radial-gradient(
-      circle at calc(100% - 72px) 34px,
+      circle at calc(100% - 78px) 34px,
       #121015 0 15px,
       transparent 16px
     ),
