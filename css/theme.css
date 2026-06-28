@@ -318,68 +318,63 @@
 }
 
 [data-theme="ajisai"] header::before{
-  left:24px;
-  bottom:10px;
-  width:120px;
-  height:90px;
-
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:0.6;
+  opacity:.6;
 
   background:
 
-    /* ===== 紫陽花（右下） =====  左：左右、右：上下*/
-  /* ===== 房①（左上寄せ＋自然な角度＋飛び出し花びら） ===== */
-radial-gradient(ellipse 14px 6px at 84% 62%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 86% 60%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 82% 66%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 86% 68%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* ===== 房①（上） ===== */
+  radial-gradient(ellipse 14px 6px at 90px 28px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 104px 24px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 82px 38px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 100px 42px, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-/* ===== 房①（飛び出し済） ===== */
-radial-gradient(ellipse 13px 5px at 84% 58%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* 飛び出し */
+  radial-gradient(ellipse 13px 5px at 96px 16px, var(--color-heat-2) 0 100%, transparent 100%),
 
-/* ===== 房②（左下）に飛び出し追加 ===== */
-radial-gradient(ellipse 13px 5px at 79% 84%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* ===== 房②（左下） ===== */
+  radial-gradient(ellipse 14px 6px at 62px 58px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 76px 54px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 54px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 72px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
-/* ===== 房③（右下）に飛び出し追加 ===== */
-radial-gradient(ellipse 13px 5px at 87% 78%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* 飛び出し */
+  radial-gradient(ellipse 13px 5px at 46px 58px, var(--color-heat-2) 0 100%, transparent 100%),
 
+  /* ===== 房③（右下） ===== */
+  radial-gradient(ellipse 14px 6px at 112px 58px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 126px 54px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 104px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 122px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
+  /* 飛び出し */
+  radial-gradient(ellipse 13px 5px at 136px 60px, var(--color-heat-2) 0 100%, transparent 100%),
 
-/* ===== 房②（左下） ===== */
-radial-gradient(ellipse 14px 6px at 80% 87%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 82% 85%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 78% 91%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 82% 93%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* ===== 葉っぱ ===== */
+  radial-gradient(
+    ellipse 38px 18px at 58px 84px,
+    color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
+    transparent 100%
+  ),
+  radial-gradient(
+    ellipse 42px 20px at 128px 84px,
+    color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
+    transparent 100%
+  ),
 
-/* ===== 房③（右下） ===== */
-radial-gradient(ellipse 14px 6px at 88% 85%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 90% 83%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 86% 89%, var(--color-chip-read-bg) 0 100%, transparent 100%),
-radial-gradient(ellipse 14px 6px at 90% 91%, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* 雨 */
+  repeating-linear-gradient(
+    -12deg,
+    transparent 0 18px,
+    rgba(var(--color-chip-read-bg-rgb), .2) 19px 21px,
+    transparent 22px 38px
+  );
 
-/* ===== 葉っぱ ===== */
-radial-gradient(
-  ellipse 40px 20px at 92% 95%,
-  color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
-  transparent 100%
-),
-radial-gradient(
-  ellipse 36px 18px at 75% 94%,
-  color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
-  transparent 100%
-),
-
-
-    repeating-linear-gradient(
-      -12deg,
-      transparent 0 18px,
-      rgba(var(--color-chip-read-bg-rgb), .2) 19px 21px,
-      transparent 22px 38px
-    );
+  background-repeat:no-repeat;
+  background-position:left bottom;
 }
 
 
