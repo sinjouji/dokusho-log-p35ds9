@@ -260,7 +260,7 @@
     linear-gradient(
       105deg,
       rgba(255, 230, 235, 0.3) 0%,   /* 左は薄いピンク */
-      rgba(255, 240, 170, 0.8) 50%,  /* 中央ははっきりとした黄金色（陽光） */
+      rgba(255, 240, 170, 0.6) 50%,  /* 中央ははっきりとした黄金色（陽光） */
       rgba(255, 230, 235, 0.3) 100%  /* 右は薄いピンク */
     );
 }
@@ -340,64 +340,114 @@
   --color-tag-exclude:#b94a48;
 }
 
-[data-theme="ajisai"] header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:.6;
 
-  background:
 
-  /* ===== 房①（上） =====左右×上下  */
-  radial-gradient(ellipse 11px 5px at 90px 36px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 11px 5px at 105px 32px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 11px 5px at 85px 46px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 11px 5px at 100px 42px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+/* ==========================================
+   1. 雨のレイヤー（ヘッダー全体に降らせる）
+   ========================================== */
+[data-theme="ajisai"] header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .4; /* 雨は少ししっとりめに */
+  z-index: 1;
 
-  /* 飛び出し */
-  radial-gradient(ellipse 13px 5px at 106px 48px, var(--color-heat-2) 0 100%, transparent 100%),
-
-  /* ===== 房②（左下） =====左右×上下 */
-  radial-gradient(ellipse 12px 5px at 68px 55px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 12px 5px at 83px 59px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 12px 5px at 73px 65px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 12px 5px at 88px 69px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-
-  /* 飛び出し */
-  radial-gradient(ellipse 13px 5px at 90px 50px, var(--color-heat-2) 0 100%, transparent 100%),
-
-  /* ===== 房③（右下） =====左右×上下 */
-  radial-gradient(ellipse 14px 6px at 116px 57px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 131px 61px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 108px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 123px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-
-  /* 飛び出し */
-  radial-gradient(ellipse 13px 5px at 125px 45px, var(--color-heat-2) 0 100%, transparent 100%),
-
-  /* ===== 葉っぱ ===== */
-  radial-gradient(
-    ellipse 33px 15px at 55px 80px,
-    color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
-    transparent 100%
-  ),
-  radial-gradient(
-    ellipse 30px 14px at 112px 88px,
-    color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
-    transparent 100%
-  ),
-
-  /* 雨 */
-  repeating-linear-gradient(
+  background: repeating-linear-gradient(
     -10deg,
     transparent 0 18px,
-    rgba(var(--color-chip-read-bg-rgb), .2) 19px 21px,
-    transparent 22px 38px
+    var(--color-chip-read-bg) 19px 20px,
+    transparent 21px 38px
   );
+}
 
-  background-repeat:no-repeat;
-  background-position:left bottom;
+/* ==========================================
+   2. 【新設】紫陽花（花＋葉）のレイヤー
+      左下に200px×150pxのキャンバスを作って、そこに描く
+   ========================================== */
+[data-theme="ajisai"] header::after {
+  content: "";
+  position: absolute;
+  /* 左下にピッタリ固定！ */
+  left: 10px;
+  bottom: 0;
+  width: 200px;
+  height: 120px;
+  pointer-events: none;
+  opacity: .85; /* お花はハッキリ見せたいので不透明度アップ */
+  z-index: 2;
+
+  background:
+    /* ==========================================
+       ★花びらの「十字」表現
+       同じ中心点（at）に「横長」と「縦長」を重ねています
+       ========================================== */
+
+    /* ===== 房①（上） ===== */
+    /* 花1 (90px 36px) */
+    radial-gradient(ellipse 11px 5px at 90px 36px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 11px at 90px 36px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    /* 花2 (105px 32px) */
+    radial-gradient(ellipse 11px 5px at 105px 32px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 11px at 105px 32px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    /* 花3 (85px 46px) */
+    radial-gradient(ellipse 11px 5px at 85px 46px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 11px at 85px 46px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    /* 花4 (100px 42px) */
+    radial-gradient(ellipse 11px 5px at 100px 42px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 11px at 100px 42px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    /* 飛び出し（アクセント色：ここも十字に） */
+    radial-gradient(ellipse 12px 5px at 106px 48px, var(--color-heat-2) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 106px 48px, var(--color-heat-2) 0 100%, transparent 100%),
+
+    /* ===== 房②（左下） ===== */
+    radial-gradient(ellipse 12px 5px at 68px 55px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 68px 55px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 12px 5px at 83px 59px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 83px 59px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 12px 5px at 73px 65px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 73px 65px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 12px 5px at 88px 69px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 88px 69px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    /* 飛び出し */
+    radial-gradient(ellipse 12px 5px at 90px 50px, var(--color-heat-2) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 90px 50px, var(--color-heat-2) 0 100%, transparent 100%),
+
+    /* ===== 房③（右下） ===== */
+    radial-gradient(ellipse 13px 5px at 116px 57px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 13px at 116px 57px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 13px 5px at 131px 61px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 13px at 131px 61px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 13px 5px at 108px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 13px at 108px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    radial-gradient(ellipse 13px 5px at 123px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 13px at 123px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+
+    /* 飛び出し */
+    radial-gradient(ellipse 12px 5px at 125px 45px, var(--color-heat-2) 0 100%, transparent 100%),
+    radial-gradient(ellipse 5px 12px at 125px 45px, var(--color-heat-2) 0 100%, transparent 100%),
+
+    /* ===== 葉っぱ（一番下に敷く） ===== */
+    radial-gradient(
+      ellipse 33px 15px at 55px 80px,
+      color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 30px 14px at 112px 88px,
+      color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
+      transparent 100%
+    );
+
+  background-repeat: no-repeat;
 }
 
 
