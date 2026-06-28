@@ -355,19 +355,19 @@
 
   /* ===== 葉っぱ ===== */
   radial-gradient(
-    ellipse 33px 15px at 55px 88px,
+    ellipse 33px 15px at 55px 80px,
     color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
     transparent 100%
   ),
   radial-gradient(
-    ellipse 30px 14px at 112px 96px,
+    ellipse 30px 14px at 112px 88px,
     color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
     transparent 100%
   ),
 
   /* 雨 */
   repeating-linear-gradient(
-    -12deg,
+    -10deg,
     transparent 0 18px,
     rgba(var(--color-chip-read-bg-rgb), .2) 19px 21px,
     transparent 22px 38px
@@ -795,7 +795,6 @@
 --color-heat-5:#f0c36d;
 }
 
-/*線路
 [data-theme="ekisha"] header::before{
   opacity:.18;
 
@@ -814,22 +813,8 @@
       rgba(255,255,255,.2) 12px,
       transparent 13px
     );
-}*/
-
-/* 横罫線*/
-[data-theme="ekisha"] header::before{
-  opacity:.22;
-
-  background-image:
-repeating-linear-gradient(
-  to bottom,
-  transparent 0px,
-  transparent 8px,
-  var(--color-chip-read-bg) 9px,
-  var(--color-chip-read-bg) 10px,
-  transparent 11px
-);
 }
+
 
 
 
@@ -909,3 +894,103 @@ linear-gradient(
 
   background-size:45px 45px;
 }
+
+
+
+
+
+
+[data-theme="coffeebunko"]{
+  --color-header-bg:#f7f2ea;
+  --color-header-watermark-rgb:139, 98, 74;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#8b5e4a;
+  --color-main-dark:#6f4a3a;
+
+  --color-border:#b88a64;
+
+  --color-bg:#f4eee6;
+  --color-card:#fffaf3;
+
+  --color-border-sub:#a58a74;
+  --color-text:#6b4b3a;
+  --color-text-sub:#fffaf3;
+
+  --color-shadow:rgba(0,0,0,.08);
+
+  --color-opacity:0.8;
+
+  --color-btn-main:#8b5e4a;
+  --color-btn-text-s:#fffaf3;
+  --color-btn-danger:#f5e7df;
+  --color-btn-text-d:#8b4a3a;
+  --color-btn-border-d:#d9b39a;
+
+  --color-chip:#d8b89a;
+
+  --color-input-common:#efe6da;
+
+  --color-bookmark:#b85a3d;
+
+  --color-control-box:#e7dccd;
+
+  --color-and:#dbe8df;
+  --color-and-border:#a8c0b1;
+
+  --color-or:#f5ecd9;
+  --color-or-border:#d8b56f;
+
+  --color-not:#f4dfdb;
+  --color-not-border:#c98b7b;
+
+  --color-search-btn:#c7a27a;
+
+  --color-year-bar:#8a9a74;
+  --color-year-achieved:#d8b56f;
+
+  --color-chip-read-bg:#b86b4d;
+  --color-chip-read-bg-rgb:184,107,77;
+  --color-chip-read-text:#fffaf3;
+
+  --color-calendar-date:#b89b7a;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  /* ヒートマップ */
+  --color-heat-0:#f4eee6;
+  --color-heat-1:#d8c2aa;
+  --color-heat-2:#b88a64;
+  --color-heat-3:#a56f4f;
+  --color-heat-4:#8b5e4a;
+  --color-heat-5:#6b4b3a;
+
+  --color-tag-include:#6b8e23;
+  --color-tag-exclude:#b94a48;
+}
+
+/* 横罫線 */
+[data-theme="coffeebunko"] header::before{
+  opacity:.12;
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 0px,
+      var(--color-chip-read-bg) 4px,
+      transparent 4px,
+      transparent 34px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 12px,
+      rgba(139,94,74,.12) 14px,
+      transparent 15px
+    );
+}
+
+
+
+
