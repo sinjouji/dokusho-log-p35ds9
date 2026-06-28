@@ -1524,5 +1524,110 @@ linear-gradient(
 
 
 
+[data-theme="yoiyami"]{
+  --color-header-bg:#121015;
 
+  --color-header-watermark-rgb:220, 190, 140;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#5d3d6b;       /* 深紫 */
+  --color-main-dark:#41284c;
+
+  --color-border:#c9a54a;     /* 金 */
+
+  --color-bg:#18141d;
+  --color-card:#221b28;
+
+  --color-border-sub:#4d3b58;
+
+  --color-text:#f2e7d8;       /* 蝋燭色 */
+  --color-text-sub:#8d7a98;   /* 影紫 */
+
+  --color-opacity:0.85;
+
+  --color-btn-main:#7a2f4a;   /* ワイン赤 */
+  --color-btn-text-s:#f2e7d8;
+
+  --color-btn-danger:#34242d;
+  --color-btn-text-d:#e8d7df;
+
+  --color-chip:#c9a54a;
+
+  --color-input-common:#2b2232;
+
+  --color-bookmark:#b85c7b;
+
+  --color-control-box:#2e2435;
+
+  --color-and:#3a2d43;
+  --color-and-border:#8d7a98;
+
+  --color-or:#4b3a24;
+  --color-or-border:#c9a54a;
+
+  --color-not:#4a2730;
+  --color-not-border:#b85c7b;
+
+  --color-search-btn:#5d3d6b;
+
+  --color-year-bar:#41284c;
+  --color-year-achieved:#c9a54a;
+
+  --color-chip-read-bg:#7a2f4a;
+  --color-chip-read-bg-rgb:122,47,74;
+  --color-chip-read-text:#f8f1e8;
+
+  --color-calendar-date:#bba98e;
+  --color-calendar-tag-dark:var(--color-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text);
+
+  --color-heat-0:#18141d;
+  --color-heat-1:#2e2435;
+  --color-heat-2:#41284c;
+  --color-heat-3:#5d3d6b;
+  --color-heat-4:#7a2f4a;
+  --color-heat-5:#c9a54a;
+}
+
+
+
+[data-theme="yoiyami"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.75;
+
+  background:
+    /* 光輪 */
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(255,235,180,.08) 0 28px,
+      rgba(255,235,180,.03) 29px 48px,
+      transparent 52px
+    ),
+
+    /* 月本体 */
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(240,225,185,.75) 0 20px,
+      transparent 21px
+    ),
+
+    /* 月を削って三日月化 */
+    radial-gradient(
+      circle at 82% 22%,
+      var(--color-header-bg) 0 18px,
+      transparent 19px
+    ),
+
+    /* 下の闇グラデ */
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.35) 0%,
+      rgba(0,0,0,.15) 20%,
+      transparent 40%
+    );
+}
 
