@@ -1233,7 +1233,7 @@ linear-gradient(
   --color-border-sub:#556456;
 
   --color-text:#d9e2d4;       /* 月光 */
-  --color-text-sub:#394739;
+  --color-text-sub:#6f826f;
 
   --color-opacity:0.85;
 
@@ -1294,7 +1294,7 @@ linear-gradient(
     /* 月のぼかし光輪 */
     radial-gradient(
       circle at 76% 26%,
-      rgba(255,255,220,.08) 0 34px,
+      rgba(255,255,220,.18) 0 34px,
       rgba(255,255,220,.04) 35px 60px,
       transparent 65px
     ),
@@ -1302,7 +1302,7 @@ linear-gradient(
     /* 満月本体 */
     radial-gradient(
       circle at 76% 26%,
-      rgba(245,248,230,.72) 0 24px,
+      rgba(245,248,230,.62) 0 24px,
       rgba(220,230,205,.55) 25px 28px,
       transparent 29px
     ),
