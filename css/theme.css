@@ -380,6 +380,69 @@
 
 
 
+[data-theme="yuusuzumi"]{
+  --color-header-bg:#d8eef2;
+
+  --color-main:#6aa7b8;       /* ラムネ瓶 */
+  --color-main-dark:#4f8796;
+
+  --color-border:#f4c96d;     /* 風鈴金 */
+
+  --color-bg:#f9ffff;
+  --color-card:#ffffff;
+
+  --color-border-sub:#b9d9df;
+
+  --color-text:#4d5f68;       /* 夕空灰青 */
+  --color-text-sub:#ffffff;
+
+  --color-btn-main:#f0907d;   /* 水風船赤 */
+  --color-btn-text-s:#4d5f68;
+
+  --color-btn-danger:#f7d7c8;
+  --color-btn-text-d:#6b5048;
+
+  --color-chip:#9ad7e0;
+
+  --color-input-common:#edf8fa;
+
+  --color-bookmark:#f0a55d;
+
+  --color-control-box:#dff0f4;
+
+  --color-and:#d7f4ef;
+  --color-and-border:#8bc8b8;
+
+  --color-or:#fff2c7;
+  --color-or-border:#e3c772;
+
+  --color-not:#ffdede;
+  --color-not-border:#e39a9a;
+
+  --color-search-btn:#8fc9d6;
+
+  --color-year-bar:#7db9c6;
+  --color-year-achieved:#f4c96d;
+
+  --color-chip-read-bg:#f0907d;
+  --color-chip-read-bg-rgb:240,144,125;
+  --color-chip-read-text:#ffffff;
+
+  --color-calendar-date:#7ba8b5;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  /* ヒートマップ */
+  --color-heat-0:#f9ffff;
+  --color-heat-1:#d8eef2;
+  --color-heat-2:#9ad7e0;
+  --color-heat-3:#6aa7b8;
+  --color-heat-4:#f0a55d;
+  --color-heat-5:#f0907d;
+}
+
+
 
 
 
@@ -476,9 +539,9 @@
 
   linear-gradient(
     to bottom,
-    rgba(74,163,255,.4) 0%,
+    rgba(74,163,255,.6) 0%,
     rgba(255,255,255,.25) 60%,
-    rgba(242,201,138,.45) 100%
+    rgba(242,201,138,.55) 100%
   ),
 
     /* ===== 中央ライン ===== */
