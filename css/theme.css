@@ -326,14 +326,14 @@
 
   background:
 
-  /* ===== 房①（上） ===== */
+  /* ===== 房①（上） =====左右×上下  */
   radial-gradient(ellipse 14px 6px at 90px 28px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 104px 24px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 82px 38px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 100px 42px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 105px 24px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 85px 38px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 100px 34px, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
   /* 飛び出し */
-  radial-gradient(ellipse 13px 5px at 96px 16px, var(--color-heat-2) 0 100%, transparent 100%),
+  radial-gradient(ellipse 13px 5px at 106px 45px, var(--color-heat-2) 0 100%, transparent 100%),
 
   /* ===== 房②（左下） ===== */
   radial-gradient(ellipse 14px 6px at 62px 58px, var(--color-chip-read-bg) 0 100%, transparent 100%),
