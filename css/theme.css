@@ -127,8 +127,9 @@
 --color-heat-4:#a7c87a;
 --color-heat-5:#6d9a57;
 }
-
-/*格子×桜*/
+/* ==========================================
+   左の障子（和紙の質感をプラス）
+   ========================================== */
 [data-theme="harunoniwa"] header::before{
   content:"";
   position:absolute;
@@ -145,24 +146,31 @@
       var(--color-chip-read-bg) 3px,
       transparent 3px
     ),
-
     /* ② グリッド横線 */
     linear-gradient(
       to bottom,
       var(--color-chip-read-bg) 3px,
       transparent 3px
     ),
-
-    /* ③ ★追加：右端の境界線 */
+    /* ③ 右端の境界線 */
     linear-gradient(
       to right,
       transparent calc(100% - 3px),
       var(--color-chip-read-bg) calc(100% - 3px)
+    ),
+    /* ★追加：障子の和紙（ほんのり白く、中央に向けて透過） */
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.3) 100%
     );
 
-  background-size: 30px 30px, 30px 30px, 100% 100%;
+  background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
 }
 
+/* ==========================================
+   右の障子
+   ========================================== */
 [data-theme="harunoniwa"] header::after{
   content:"";
   position:absolute;
@@ -182,38 +190,70 @@
       to bottom,
       var(--color-chip-read-bg) 3px,
       transparent 3px
+    ),
+    /* ★追加：左端の境界線（右の引き戸の締まり） */
+    linear-gradient(
+      to left,
+      transparent calc(100% - 3px),
+      var(--color-chip-read-bg) calc(100% - 3px)
+    ),
+    /* ★追加：障子の和紙 */
+    linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.3) 100%
     );
 
-  background-size:30px 30px;
+  background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
 }
 
+/* ==========================================
+   中央エリア：ランダムな桜吹雪と春の光グラデ
+   ========================================== */
 [data-theme="harunoniwa"] .header-pattern-center{
   position:absolute;
   inset:0;
   left:18%;
   width:64%;
-  opacity:.22;
+  opacity:.25; /* 桜を見えやすくするため少しだけアップ */
 
   background:
-  radial-gradient(
-    circle,
-    var(--color-chip-read-bg) 0 2px,
-    transparent 5px
-  ) 15px 5px / 36px 34px repeat,
+    /* 桜1：小さめの花びら（斜めに潰した楕円でひらひら感を出す） */
+    radial-gradient(
+      ellipse 3px 1.5px at 20% 30%,
+      var(--color-chip-read-bg) 0%,
+      transparent 100%
+    ) 0 0 / 71px 63px repeat,
 
-  radial-gradient(
-    circle,
-    var(--color-chip-read-bg) 0 4px,
-    transparent 4px
-  ) 28px 22px / 44px 40px repeat,
+    /* 桜2：中くらいの花びら（タイルのサイズをズラして重なりをランダムに） */
+    radial-gradient(
+      ellipse 4px 2px at 60% 70%,
+      var(--color-chip-read-bg) 0%,
+      transparent 100%
+    ) 15px 25px / 113px 89px repeat,
 
-  radial-gradient(
-    circle,
-    var(--color-chip-read-bg) 0 3px,
-    transparent 6px
-  ) 3px 30px / 52px 46px repeat;
+    /* 桜3：少し大きめの舞い散る花びら */
+    radial-gradient(
+      ellipse 5px 2.5px at 40% 50%,
+      var(--color-chip-read-bg) 0%,
+      transparent 100%
+    ) 40px 10px / 157px 131px repeat,
 
-  background-size:58px 52px;
+    /* 桜4：アクセント（少しボカした、遠くの舞い散る桜） */
+    radial-gradient(
+      circle 3px at 80% 15%,
+      var(--color-chip-read-bg) 0%,
+      transparent 70%
+    ) 60px 45px / 97px 113px repeat,
+
+    /* ★追加：春の庭の「空気感」を出すベースグラデーション
+       （左から右へ、柔らかなピンクから薄い黄金色へ） */
+    linear-gradient(
+      105deg,
+      rgba(255, 235, 240, 0.4) 0%,
+      rgba(255, 245, 225, 0.3) 50%,
+      rgba(255, 230, 240, 0.4) 100%
+    );
 }
 
 /*桜のみ
