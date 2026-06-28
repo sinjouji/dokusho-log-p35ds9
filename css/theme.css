@@ -1541,7 +1541,7 @@ linear-gradient(
   --color-border-sub:#4d3b58;
 
   --color-text:#f2e7d8;       /* 蝋燭色 */
-  --color-text-sub:#8d7a98;   /* 影紫 */
+  --color-text-sub:#4a3552;   /* 闇紫 */
 
   --color-opacity:0.85;
 
@@ -1615,14 +1615,14 @@ linear-gradient(
       transparent 21px
     ),
 
-    /* 月を削って三日月化 */
+    /* 削り（三日月化） */
     radial-gradient(
-      circle at 82% 22%,
+      circle at 86% 24%,
       var(--color-header-bg) 0 18px,
       transparent 19px
     ),
 
-    /* 下の闇グラデ */
+    /* 下の闇 */
     linear-gradient(
       to top,
       rgba(0,0,0,.35) 0%,
