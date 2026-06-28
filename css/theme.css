@@ -448,7 +448,7 @@
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.22;
+  opacity:.5;
 
   background:
     /* 左上 */
