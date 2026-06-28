@@ -905,8 +905,8 @@ linear-gradient(
   --color-header-watermark-rgb:139, 98, 74;
   --opacity-header-watermark:0.05;
 
-  --color-main:#5f3d2c;
-  --color-main-dark:#472b1f;
+  --color-main:#b88a64;
+  --color-main-dark:#9b7454;
 
   --color-border:#b88a64;
 
@@ -914,7 +914,7 @@ linear-gradient(
   --color-card:#fffaf3;
 
   --color-border-sub:#a58a74;
-  --color-text:#6b4b3a;
+  --color-text:#4a3024;
   --color-text-sub:#fffaf3;
 
   --color-shadow:rgba(0,0,0,.08);
