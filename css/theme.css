@@ -531,8 +531,8 @@
   --color-header-watermark-rgb:78, 117, 45;
   --opacity-header-watermark:0.05;
 
-  --color-main:#5f8f3f;       /* 葉緑 */
-  --color-main-dark:#476d2f;
+  --color-main:#7aa348;       /* 葉緑 */
+  --color-main-dark:#5f7d32;
 
   --color-border:#d8a925;     /* 向日葵芯 */
 
@@ -540,7 +540,7 @@
   --color-card:#fffef5;
 
   --color-border-sub:#b8c47a;
-  --color-text:#4a5f22;       /* 茎色 */
+  --color-text:#5a3d1f;       /* 茎色 */
   --color-shadow:rgba(0,0,0,.08);
 
   --color-text-sub:#fffef5;
@@ -597,7 +597,7 @@
 
 
 [data-theme="himawarihatake"] header::before{
-  opacity:.18;
+  /*opacity:.18;*/
 
   background:
     radial-gradient(circle at 20% 50%, rgba(255,255,255,.20) 0 10px, transparent 12px),
