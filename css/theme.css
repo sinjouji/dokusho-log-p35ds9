@@ -808,17 +808,17 @@
   background:
     radial-gradient(
       ellipse 120px 40px at 20% 35%,
-      rgba(255,255,255,.18),
+      rgba(255,255,255,.22),
       transparent 70%
     ),
     radial-gradient(
       ellipse 160px 50px at 70% 25%,
-      rgba(255,255,255,.14),
+      rgba(255,255,255,.18),
       transparent 70%
     ),
     radial-gradient(
       ellipse 140px 35px at 50% 55%,
-      rgba(255,255,255,.12),
+      rgba(255,255,255,.16),
       transparent 70%
     );
 }
