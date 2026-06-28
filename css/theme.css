@@ -1541,7 +1541,7 @@ linear-gradient(
   --color-border-sub:#4d3b58;
 
   --color-text:#f2e7d8;       /* 蝋燭色 */
-  --color-text-sub:#4a3552;   /* 闇紫 */
+  --color-text-sub:#8d7a98;   /* 影紫 */
 
   --color-opacity:0.85;
 
@@ -1578,9 +1578,9 @@ linear-gradient(
   --color-chip-read-text:#f8f1e8;
 
   --color-calendar-date:#bba98e;
-  --color-calendar-tag-dark:var(--color-text);
+  --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
 
   --color-heat-0:#18141d;
   --color-heat-1:#2e2435;
