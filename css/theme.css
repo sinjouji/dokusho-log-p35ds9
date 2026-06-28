@@ -525,6 +525,91 @@
 
 
 
+
+[data-theme="himawarihatake"]{
+  --color-header-bg:#f7d94c;
+  --color-header-watermark-rgb:78, 117, 45;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#5f8f3f;       /* 葉緑 */
+  --color-main-dark:#476d2f;
+
+  --color-border:#d8a925;     /* 向日葵芯 */
+
+  --color-bg:#fffbea;         /* 日差し白 */
+  --color-card:#fffef5;
+
+  --color-border-sub:#b8c47a;
+  --color-text:#4a5f22;       /* 茎色 */
+  --color-shadow:rgba(0,0,0,.08);
+
+  --color-text-sub:#fffef5;
+
+  --color-opacity:0.8;
+
+  --color-btn-main:#5f8f3f;
+  --color-btn-text-s:#4a5f22;
+  --color-btn-danger:#f8e0b8;
+  --color-btn-text-d:#7a5422;
+
+  --color-chip:#f0c542;
+
+  --color-input-common:#f5f0cf;
+
+  --color-bookmark:#d87d1f;   /* 橙花芯 */
+
+  --color-control-box:#efe6b4;
+
+  --color-and:#dff2c7;
+  --color-and-border:#9dbf64;
+
+  --color-or:#fff2b2;
+  --color-or-border:#d8b42a;
+
+  --color-not:#f8d9a8;
+  --color-not-border:#d88a35;
+
+  --color-search-btn:#e0b635;
+
+  --color-year-bar:#7aa348;
+  --color-year-achieved:#f2c63d;
+
+  --color-chip-read-bg:#d87d1f;
+  --color-chip-read-bg-rgb:216,125,31;
+  --color-chip-read-text:#fffef5;
+
+  --color-calendar-date:#b8962f;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  /* ヒートマップ */
+  --color-heat-0:#fffbea;
+  --color-heat-1:#f8e27d;
+  --color-heat-2:#f0c542;
+  --color-heat-3:#d8a925;
+  --color-heat-4:#8cab42;
+  --color-heat-5:#4f6d24;
+
+  --color-tag-include:#6f9a2a;
+  --color-tag-exclude:#c87d28;
+}
+
+
+[data-theme="himawarihatake"] header::before{
+  opacity:.18;
+
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,.20) 0 10px, transparent 12px),
+    radial-gradient(circle at 38% 35%, rgba(255,255,255,.16) 0 12px, transparent 14px),
+    radial-gradient(circle at 58% 52%, rgba(255,255,255,.18) 0 11px, transparent 13px),
+    radial-gradient(circle at 76% 38%, rgba(255,255,255,.16) 0 13px, transparent 15px);
+}
+
+
+
+
+
 :root[data-theme="natsumatsuri"]{
   --color-header-bg:#1a1a28;
   --color-header-watermark-rgb:244, 231, 200;
@@ -806,21 +891,21 @@
   background:
     /* 土台の大きな白雲 */
     radial-gradient(
-      ellipse 500px 95px at 30% 58%,
-      rgba(255,248,235,.55),
+      ellipse 500px 95px at 40% 58%,
+      rgba(255,248,235,.8),
       transparent 72%
     ),
 
     /* 左寄りの朱 */
     radial-gradient(
-      ellipse 130px 20px at 30% 54%,
+      ellipse 130px 20px at 40% 54%,
       rgba(232,120,82,.30),
       transparent 72%
     ),
 
     /* 右寄りの紫 */
     radial-gradient(
-      ellipse 110px 10px at 45% 60%,
+      ellipse 110px 15px at 45% 60%,
       rgba(142,92,168,.20),
       transparent 72%
     );
