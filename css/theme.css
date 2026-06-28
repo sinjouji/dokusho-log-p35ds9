@@ -807,18 +807,18 @@
 
   background:
     radial-gradient(
-      ellipse 120px 40px at 20% 35%,
-      rgba(255,255,255,.3),
+      ellipse 180px 60px at 20% 35%,
+      rgba(255,255,255,.45),
       transparent 70%
     ),
     radial-gradient(
-      ellipse 160px 50px at 70% 25%,
-      rgba(255,255,255,.25),
+      ellipse 220px 70px at 70% 25%,
+      rgba(255,255,255,.35),
       transparent 70%
     ),
     radial-gradient(
-      ellipse 140px 35px at 50% 55%,
-      rgba(255,255,255,.2),
+      ellipse 190px 55px at 50% 55%,
+      rgba(255,255,255,.28),
       transparent 70%
     );
 }
