@@ -49,6 +49,7 @@ setActiveMenu("menu-settings");
     <option value="ajisai">紫陽花</option>
     <option value="marin">海の家</option>
     <option value="natsumatsuri">夏祭り</option>
+    <option value="yuuyakekomichi">夕焼け小径</option>
     <option value="ekisha">駅舎</option>
     <option value="yukimishoji">雪見障子</option>
     <option value="coffeebunko">珈琲文庫</option>
