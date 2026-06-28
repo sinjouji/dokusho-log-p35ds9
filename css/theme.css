@@ -335,7 +335,7 @@
   /* 飛び出し */
   radial-gradient(ellipse 13px 5px at 106px 45px, var(--color-heat-2) 0 100%, transparent 100%),
 
-  /* ===== 房②（左下） ===== */
+  /* ===== 房②（左下） =====左右×上下 */
   radial-gradient(ellipse 14px 6px at 62px 58px, var(--color-chip-read-bg) 0 100%, transparent 100%),
   radial-gradient(ellipse 14px 6px at 76px 54px, var(--color-chip-read-bg) 0 100%, transparent 100%),
   radial-gradient(ellipse 14px 6px at 54px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
@@ -344,14 +344,14 @@
   /* 飛び出し */
   radial-gradient(ellipse 13px 5px at 46px 58px, var(--color-heat-2) 0 100%, transparent 100%),
 
-  /* ===== 房③（右下） ===== */
-  radial-gradient(ellipse 14px 6px at 112px 58px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 126px 54px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  /* ===== 房③（右下） =====左右×上下 */
+  radial-gradient(ellipse 14px 6px at 112px 54px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 127px 58px, var(--color-chip-read-bg) 0 100%, transparent 100%),
   radial-gradient(ellipse 14px 6px at 104px 68px, var(--color-chip-read-bg) 0 100%, transparent 100%),
-  radial-gradient(ellipse 14px 6px at 122px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
+  radial-gradient(ellipse 14px 6px at 119px 72px, var(--color-chip-read-bg) 0 100%, transparent 100%),
 
   /* 飛び出し */
-  radial-gradient(ellipse 13px 5px at 136px 60px, var(--color-heat-2) 0 100%, transparent 100%),
+  radial-gradient(ellipse 13px 5px at 125px 50px, var(--color-heat-2) 0 100%, transparent 100%),
 
   /* ===== 葉っぱ ===== */
   radial-gradient(
@@ -360,7 +360,7 @@
     transparent 100%
   ),
   radial-gradient(
-    ellipse 42px 20px at 128px 84px,
+    ellipse 42px 20px at 128px 90px,
     color-mix(in srgb, var(--color-chip-read-bg) 40%, black) 0 100%,
     transparent 100%
   ),
