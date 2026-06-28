@@ -980,13 +980,13 @@ linear-gradient(
       var(--color-chip-read-bg) 0px,
       var(--color-chip-read-bg) 4px,
       transparent 4px,
-      transparent 34px
+      transparent 60px
     ),
     repeating-linear-gradient(
       to bottom,
       transparent 0px,
       transparent 12px,
-      rgba(139,94,74,.12) 14px,
+      rgba(139,94,74,.18) 14px,
       transparent 15px
     );
 }
