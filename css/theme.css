@@ -732,6 +732,97 @@
 
 
 
+[data-theme="yuuyakekomichi"]{
+  --color-header-bg:#f6c28b;
+  --color-header-watermark-rgb:163, 74, 45;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#d97a3c;       /* 橙陽 */
+  --color-main-dark:#b85a2d;
+
+  --color-border:#f0b45c;     /* 金夕陽 */
+
+  --color-bg:#fff4e6;         /* 夕空霞 */
+  --color-card:#fffaf2;
+
+  --color-border-sub:#d6a87c;
+  --color-text:#7a3f26;       /* 赤土 */
+  --color-shadow:rgba(0,0,0,.08);
+
+  --color-text-sub:#fffaf2;
+
+  --color-opacity:0.8;
+
+  --color-btn-main:#d97a3c;
+  --color-btn-text-s:#7a3f26;
+  --color-btn-danger:#f4d8cf;
+  --color-btn-text-d:#7a3f26;
+
+  --color-chip:#f2b25f;
+
+  --color-input-common:#f5e3cf;
+
+  --color-bookmark:#e04e39;   /* 夕焼け赤 */
+
+  --color-control-box:#f0dcc5;
+
+  --color-and:#f6e3c3;
+  --color-and-border:#e0b56b;
+
+  --color-or:#f8d2a2;
+  --color-or-border:#d98b4a;
+
+  --color-not:#f4d0c9;
+  --color-not-border:#d76a55;
+
+  --color-search-btn:#e2a04d;
+
+  --color-year-bar:#c98f4d;
+  --color-year-achieved:#f2c14e;
+
+  --color-chip-read-bg:#d76a55;
+  --color-chip-read-bg-rgb:215,106,85;
+  --color-chip-read-text:#fffaf2;
+
+  --color-calendar-date:#d89a5c;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  /* ヒートマップ */
+  --color-heat-0:#fff4e6;
+  --color-heat-1:#f8d2a2;
+  --color-heat-2:#f2b25f;
+  --color-heat-3:#d97a3c;
+  --color-heat-4:#c85d35;
+  --color-heat-5:#8f3f2d;
+
+  --color-tag-include:#8a9a4d;
+  --color-tag-exclude:#c45a3d;
+}
+
+
+[data-theme="yuuyakekomichi"] header::before{
+  opacity:.18;
+
+  background:
+    radial-gradient(
+      ellipse 120px 40px at 20% 35%,
+      rgba(255,255,255,.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 160px 50px at 70% 25%,
+      rgba(255,255,255,.14),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 140px 35px at 50% 55%,
+      rgba(255,255,255,.12),
+      transparent 70%
+    );
+}
+
 
 
 
