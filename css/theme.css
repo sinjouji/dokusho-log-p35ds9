@@ -318,6 +318,11 @@
 }
 
 [data-theme="ajisai"] header::before{
+  left:24px;
+  bottom:10px;
+  width:120px;
+  height:90px;
+
   content:"";
   position:absolute;
   inset:0;
