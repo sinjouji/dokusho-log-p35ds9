@@ -1027,30 +1027,78 @@ linear-gradient(
 }
 
 
+[data-theme="yuuyakekomichi"] header::before {
+  background:
+    /* 1. 雲のハイライト（夕日を強く受けて光る中心部） */
+    radial-gradient(
+      ellipse 120px 30px at 38% 32%,
+      rgba(255, 250, 220, 0.9) 0%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 80px 20px at 43% 30%,
+      rgba(255, 240, 180, 0.8) 0%,
+      transparent 80%
+    ),
+
+    /* 2. 土台の大きな白雲（少し形をシャープにして立体感アップ） */
+    radial-gradient(
+      ellipse 450px 100px at 40% 30%,
+      rgba(255, 245, 230, 0.75) 0%,
+      transparent 75%
+    ),
+
+    /* 3. 左寄りの朱（夕日の照り返し：範囲を広げて少し鮮やかに） */
+    radial-gradient(
+      ellipse 160px 50px at 39% 45%,
+      rgba(235, 95, 45, 0.35) 0%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 220px 60px at 35% 55%,
+      rgba(220, 80, 60, 0.20) 0%,
+      transparent 80%
+    ),
+
+    /* 4. 右寄りの紫（雲の影・夕闇への移り変わり：少し横に引き伸ばす） */
+    radial-gradient(
+      ellipse 160px 35px at 46% 52%,
+      rgba(120, 80, 150, 0.25) 0%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 100px 25px at 48% 60%,
+      rgba(80, 50, 120, 0.15) 0%,
+      transparent 80%
+    );
+}
+
+
+/*
 [data-theme="yuuyakekomichi"] header::before{
   background:
-    /* 土台の大きな白雲 */
+    /* 土台の大きな白雲 
     radial-gradient(
       ellipse 500px 120px at 40% 28%,
       rgba(255,248,235,.8),
       transparent 72%
     ),
 
-    /* 左寄りの朱 */
+    /* 左寄りの朱 
     radial-gradient(
       ellipse 130px 40px at 40% 54%,
       rgba(232,120,82,.30),
       transparent 72%
     ),
 
-    /* 右寄りの紫 */
+    /* 右寄りの紫 
     radial-gradient(
       ellipse 110px 25px at 45% 60%,
       rgba(142,92,168,.20),
       transparent 72%
     );
 }
-
+*/
 
 
 
