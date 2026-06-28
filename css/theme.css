@@ -597,13 +597,20 @@
 
 
 [data-theme="himawarihatake"] header::before{
-  /*opacity:.18;*/
+ /* opacity:.18;*/
 
   background:
-    radial-gradient(circle at 20% 50%, rgba(255,255,255,.20) 0 10px, transparent 12px),
-    radial-gradient(circle at 38% 35%, rgba(255,255,255,.16) 0 12px, transparent 14px),
-    radial-gradient(circle at 58% 52%, rgba(255,255,255,.18) 0 11px, transparent 13px),
-    radial-gradient(circle at 76% 38%, rgba(255,255,255,.16) 0 13px, transparent 15px);
+    /* 花びら */
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,.22) 0 14px, transparent 16px),
+    radial-gradient(circle at 38% 35%, rgba(255,255,255,.18) 0 16px, transparent 18px),
+    radial-gradient(circle at 58% 52%, rgba(255,255,255,.20) 0 15px, transparent 17px),
+    radial-gradient(circle at 76% 38%, rgba(255,255,255,.18) 0 17px, transparent 19px),
+
+    /* 芯 */
+    radial-gradient(circle at 20% 50%, rgba(120,75,28,.32) 0 4px, transparent 5px),
+    radial-gradient(circle at 38% 35%, rgba(120,75,28,.28) 0 5px, transparent 6px),
+    radial-gradient(circle at 58% 52%, rgba(120,75,28,.30) 0 4px, transparent 5px),
+    radial-gradient(circle at 76% 38%, rgba(120,75,28,.28) 0 5px, transparent 6px);
 }
 
 
