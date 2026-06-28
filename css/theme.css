@@ -793,41 +793,77 @@
 }
 
 
+
 [data-theme="himawarihatake"] header::before{
- /* opacity:.18;*/
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 
   background:
-  /*青空*/
-    linear-gradient(
-  to bottom,
-  rgba(165,215,245,.5) 0%,
-  rgba(165,215,245,.4) 18%,
-  transparent 38%
-),
-    /* 花びら */
-    radial-gradient(circle at 20% 50%, rgba(255,255,255,.22) 0 14px, transparent 16px),
-    radial-gradient(circle at 38% 35%, rgba(255,255,255,.18) 0 16px, transparent 18px),
-    radial-gradient(circle at 58% 52%, rgba(255,255,255,.20) 0 15px, transparent 17px),
-    radial-gradient(circle at 76% 38%, rgba(255,255,255,.18) 0 17px, transparent 19px),
+    /* ==========================================
+       1. 夏の強い日差し（右上から差し込む光のレイヤー）
+       ========================================== */
+    radial-gradient(
+      circle at 90% -10%,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 240, 180, 0.2) 40%,
+      transparent 70%
+    ),
 
-    /* 芯 */
-    radial-gradient(circle at 20% 50%, rgba(120,75,28,.32) 0 4px, transparent 5px),
-    radial-gradient(circle at 38% 35%, rgba(120,75,28,.28) 0 5px, transparent 6px),
-    radial-gradient(circle at 58% 52%, rgba(120,75,28,.30) 0 4px, transparent 5px),
-    radial-gradient(circle at 76% 38%, rgba(120,75,28,.28) 0 5px, transparent 6px),
-    
-    /*草むら*/
+    /* ==========================================
+       2. 手前の大きくて鮮烈なひまわり（4輪）
+          花びらの色を元気な「黄色」に変更！
+       ========================================== */
+    /* 芯（手前） */
+    radial-gradient(circle at 20% 50%, rgba(90,45,10,.6) 0 4px, transparent 6px),
+    radial-gradient(circle at 38% 35%, rgba(90,45,10,.5) 0 5px, transparent 7px),
+    radial-gradient(circle at 58% 52%, rgba(90,45,10,.55) 0 4px, transparent 6px),
+    radial-gradient(circle at 76% 38%, rgba(90,45,10,.5) 0 5px, transparent 7px),
+
+    /* 花びら（手前：不透明度を少し上げて黄色をハッキリ） */
+    radial-gradient(circle at 20% 50%, rgba(255,190,0,.6) 0 14px, transparent 17px),
+    radial-gradient(circle at 38% 35%, rgba(255,200,0,.5) 0 16px, transparent 19px),
+    radial-gradient(circle at 58% 52%, rgba(255,195,0,.55) 0 15px, transparent 18px),
+    radial-gradient(circle at 76% 38%, rgba(255,200,0,.5) 0 17px, transparent 20px),
+
+    /* ==========================================
+       3. 【追加】奥にある小さなひまわり（畑の密度と遠近感を出す）
+       ========================================== */
+    /* 奥の小さな芯 */
+    radial-gradient(circle at 28% 42%, rgba(120,75,28,.3) 0 2px, transparent 3px),
+    radial-gradient(circle at 48% 45%, rgba(120,75,28,.3) 0 2px, transparent 3px),
+    radial-gradient(circle at 68% 40%, rgba(120,75,28,.3) 0 2.5px, transparent 3.5px),
+
+    /* 奥の小さな花びら */
+    radial-gradient(circle at 28% 42%, rgba(255,200,0,.35) 0 7px, transparent 9px),
+    radial-gradient(circle at 48% 45%, rgba(255,200,0,.35) 0 8px, transparent 10px),
+    radial-gradient(circle at 68% 40%, rgba(255,200,0,.4) 0 8px, transparent 10px),
+
+    /* ==========================================
+       4. 空と草むらのベースグラデーション
+       ========================================== */
+    /* 青空 */
     linear-gradient(
-  to top,
-  rgba(122,163,72,.35) 0%,
-  rgba(122,163,72,.18) 18%,
-  transparent 38%
-),
-linear-gradient(
-  -8deg,
-  rgba(95,125,50,.12) 0%,
-  transparent 30%
-);
+      to bottom,
+      rgba(145,205,245,.6) 0%,
+      rgba(175,225,255,.4) 25%,
+      transparent 50%
+    ),
+    
+    /* 草むら（下からの緑） */
+    linear-gradient(
+      to top,
+      rgba(110,155,60,.45) 0%,
+      rgba(122,163,72,.2) 20%,
+      transparent 45%
+    ),
+    /* 大地の傾き・陰影 */
+    linear-gradient(
+      -8deg,
+      rgba(80,110,40,.18) 0%,
+      transparent 35%
+    );
 }
 
 
