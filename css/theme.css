@@ -1599,23 +1599,23 @@ linear-gradient(
   pointer-events:none;
 
   background:
-    /* 削り（三日月化） ← 一番手前 */
+    /* 削り */
     radial-gradient(
-      circle at 79% 24%,
+      circle at calc(100% - 72px) 34px,
       #121015 0 15px,
       transparent 16px
     ),
 
-    /* 月本体 ← 後ろ */
+    /* 月本体 */
     radial-gradient(
-      circle at 78% 24%,
+      circle at calc(100% - 86px) 34px,
       rgba(240,225,185,.82) 0 18px,
       transparent 19px
     ),
 
     /* 光輪 */
     radial-gradient(
-      circle at 78% 24%,
+      circle at calc(100% - 86px) 34px,
       rgba(255,235,180,.10) 0 32px,
       transparent 33px
     ),
