@@ -1031,21 +1031,21 @@ linear-gradient(
   background:
     /* 土台の大きな白雲 */
     radial-gradient(
-      ellipse 500px 95px at 40% 58%,
+      ellipse 500px 120px at 40% 28%,
       rgba(255,248,235,.8),
       transparent 72%
     ),
 
     /* 左寄りの朱 */
     radial-gradient(
-      ellipse 130px 20px at 40% 54%,
+      ellipse 130px 40px at 40% 54%,
       rgba(232,120,82,.30),
       transparent 72%
     ),
 
     /* 右寄りの紫 */
     radial-gradient(
-      ellipse 110px 15px at 45% 60%,
+      ellipse 110px 25px at 45% 60%,
       rgba(142,92,168,.20),
       transparent 72%
     );
