@@ -1601,9 +1601,9 @@ linear-gradient(
   background:
     /* 削り（三日月化） ← 一番手前 */
     radial-gradient(
-      circle at 78% 24%,
-      #121015 0 17px,
-      transparent 18px
+      circle at 79% 24%,
+      #121015 0 15px,
+      transparent 16px
     ),
 
     /* 月本体 ← 後ろ */
