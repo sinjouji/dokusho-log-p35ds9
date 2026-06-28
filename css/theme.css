@@ -374,7 +374,7 @@
   width: 200px;
   height: 120px;
   pointer-events: none;
-  opacity: .85; /* お花はハッキリ見せたいので不透明度アップ */
+  opacity: .65; /* お花はハッキリ見せたいので不透明度アップ */
   z-index: 2;
 
   background:
@@ -1559,7 +1559,7 @@
   pointer-events: none;
   /* 背景の雪景色グラデーションを綺麗に見せるため、opacityを1にして
      各グラデーション側のRGBAで直接透明度をコントロールします */
-  opacity: 1;
+  opacity: .6;
 
   background-image:
     /* ① 格子の縦線（木枠の茶色） */
@@ -1940,9 +1940,9 @@ opacity:.6;
           完全に背景に溶け込ませて綺麗な三日月にします
        ========================================== */
     radial-gradient(
-      circle at calc(100% - 72px) 30px, /* ずらし具合をわずかに調整して綺麗なシャープさに */
-      #0d0813 0 16px,
-      transparent 18px
+      circle at calc(100% - 77px) 32px, /* ずらし具合をわずかに調整して綺麗なシャープさに */
+      #0d0813 0 14px,
+      transparent 16px
     ),
 
     /* ==========================================
