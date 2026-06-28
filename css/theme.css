@@ -806,21 +806,21 @@
   background:
     /* 土台の大きな白雲 */
     radial-gradient(
-      ellipse 300px 95px at 50% 58%,
+      ellipse 500px 95px at 30% 58%,
       rgba(255,248,235,.55),
       transparent 72%
     ),
 
     /* 左寄りの朱 */
     radial-gradient(
-      ellipse 130px 30px at 38% 54%,
+      ellipse 130px 20px at 30% 54%,
       rgba(232,120,82,.30),
       transparent 72%
     ),
 
     /* 右寄りの紫 */
     radial-gradient(
-      ellipse 110px 25px at 62% 60%,
+      ellipse 110px 10px at 45% 60%,
       rgba(142,92,168,.20),
       transparent 72%
     );
