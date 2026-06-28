@@ -47,13 +47,17 @@ setActiveMenu("menu-settings");
   >
     <option value="harunoniwa">春の庭</option>
     <option value="ajisai">紫陽花</option>
+    <option value="yuusuzumi">夕涼み</option>
     <option value="marin">海の家</option>
     <option value="himawarihatake">ひまわり畑</option>
     <option value="natsumatsuri">夏祭り</option>
     <option value="yuuyakekomichi">夕焼け小径</option>
     <option value="ekisha">駅舎</option>
+    <option value="asatsuyu">朝露</option>
     <option value="yukimishoji">雪見障子</option>
+    <option value="tsukikage">月影</option>
     <option value="coffeebunko">珈琲文庫</option>
+    <option value="yoiyami">宵闇</option>
   </select></span>
     </div>
     
