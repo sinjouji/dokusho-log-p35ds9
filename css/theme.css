@@ -803,26 +803,28 @@
 
 
 [data-theme="yuuyakekomichi"] header::before{
- /* opacity:.18;*/
-
   background:
+    /* 土台の大きな白雲 */
     radial-gradient(
-      ellipse 180px 60px at 20% 35%,
-      rgba(255,245,240,.42),
-      transparent 70%
+      ellipse 260px 95px at 50% 58%,
+      rgba(255,248,235,.48),
+      transparent 72%
     ),
+
+    /* 左寄りの朱 */
     radial-gradient(
-      ellipse 220px 70px at 70% 25%,
-      rgba(232,120,82,.26),
-      transparent 70%
+      ellipse 130px 48px at 38% 54%,
+      rgba(232,120,82,.30),
+      transparent 72%
     ),
+
+    /* 右寄りの紫 */
     radial-gradient(
-      ellipse 190px 55px at 50% 55%,
-      rgba(142,92,168,.18),
-      transparent 70%
+      ellipse 120px 42px at 62% 60%,
+      rgba(142,92,168,.20),
+      transparent 72%
     );
 }
-
 
 
 
