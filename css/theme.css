@@ -610,7 +610,14 @@
     radial-gradient(circle at 20% 50%, rgba(120,75,28,.32) 0 4px, transparent 5px),
     radial-gradient(circle at 38% 35%, rgba(120,75,28,.28) 0 5px, transparent 6px),
     radial-gradient(circle at 58% 52%, rgba(120,75,28,.30) 0 4px, transparent 5px),
-    radial-gradient(circle at 76% 38%, rgba(120,75,28,.28) 0 5px, transparent 6px);
+    radial-gradient(circle at 76% 38%, rgba(120,75,28,.28) 0 5px, transparent 6px)
+    
+    linear-gradient(
+  to top,
+  rgba(122,163,72,.35) 0%,
+  rgba(122,163,72,.18) 18%,
+  transparent 38%
+);
 }
 
 
