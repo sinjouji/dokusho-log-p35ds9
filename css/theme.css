@@ -1208,7 +1208,7 @@ linear-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.35;
+  opacity:.55;
 
   background:
     radial-gradient(
