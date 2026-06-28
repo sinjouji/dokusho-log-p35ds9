@@ -972,22 +972,23 @@ linear-gradient(
 
 /* 横罫線 */
 [data-theme="coffeebunko"] header::before{
-  opacity:.12;
+  opacity:.22;
 
   background-image:
-    repeating-linear-gradient(
-      to right,
-      var(--color-chip-read-bg) 0px,
-      var(--color-chip-read-bg) 4px,
-      transparent 4px,
-      transparent 60px
-    ),
+  linear-gradient(
+  to right,
+  transparent 22px,
+  rgba(184,138,100,.18) 24px,
+  transparent 26px
+),
     repeating-linear-gradient(
       to bottom,
       transparent 0px,
-      transparent 12px,
-      rgba(139,94,74,.18) 14px,
-      transparent 15px
+      transparent 14px,
+      rgba(184,138,100,.32) 15px,
+      rgba(184,138,100,.32) 17px,
+      transparent 18px,
+      transparent 34px
     );
 }
 
