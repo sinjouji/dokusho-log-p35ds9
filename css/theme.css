@@ -278,11 +278,8 @@
   --color-btn-border-d:#e0b0a0;
   
   --color-input-common:#f5f4eb;
-  
   --color-search-hover:#e4e5e6;
-  
   --color-chip:#f7f0ea;
-  
   --color-bookmark:#d94b4b;
   
   /* 検索ページ・検索バー */
@@ -307,12 +304,13 @@
   --color-chip-read-bg-rgb: 157, 140, 201;
   --color-chip-read-text:#fffffc;
 
-  --color-heat-0:#e1e5e4;
-  --color-heat-1:#f2c3ca;
-  --color-heat-2:#fcd475;
-  --color-heat-3:#efecad;
-  --color-heat-4:#c7dc68;
-  --color-heat-5:#4f8a5d;
+  /* ヒートマップ */
+--color-heat-0:#e5eaef;  /* 雨雲白 */
+--color-heat-1:#cfd9e8;  /* 霧雨 */
+--color-heat-2:#b8a6d9;  /* 藤色 */
+--color-heat-3:#9d8cc9;  /* 紫陽花 */
+--color-heat-4:#7f88c9;  /* 青紫陽花 */
+--color-heat-5:#5f5b9c;  /* 夜露紫 */
   
   /* タグ選択状態？未使用かも */
   --color-tag-include:#6b8e23;
