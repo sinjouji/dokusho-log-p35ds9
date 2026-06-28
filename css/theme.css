@@ -1615,18 +1615,17 @@ linear-gradient(
       transparent 52px
     ),
 
-    /* 削り（三日月化）← 月より先に描く */
-    radial-gradient(
-      circle at 86% 24%,
-      rgba(18,16,21,1) 0 18px,
-      transparent 19px
-    ),
-
-    /* 月本体（一番手前） */
+    /* 月本体 */
     radial-gradient(
       circle at 78% 24%,
       rgba(240,225,185,.75) 0 20px,
       transparent 21px
+    ),
+
+    /* 削り */
+    radial-gradient(
+      circle at 92% 24%,
+      rgba(18,16,21,1) 0 19px,
+      transparent 20px
     );
 }
-
