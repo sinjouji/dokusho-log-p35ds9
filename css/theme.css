@@ -1270,9 +1270,9 @@ linear-gradient(
   --color-chip-read-text:#f6faf3;
 
   --color-calendar-date:#a7b39b;
-  --color-calendar-tag-dark:var(--color-text);
+  --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
 
   --color-heat-0:#141915;
   --color-heat-1:#253026;
