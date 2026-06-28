@@ -1599,33 +1599,32 @@ linear-gradient(
   pointer-events:none;
 
   background:
+    /* 光輪 */
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(255,235,180,.10) 0 32px,
+      transparent 33px
+    ),
+
+    /* 三日月（本体） */
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(240,225,185,.82) 0 18px,
+      transparent 19px
+    ),
+
+    /* 削り（かなり重ねる） */
+    radial-gradient(
+      circle at 84% 24%,
+      #121015 0 17px,
+      transparent 18px
+    ),
+
     /* 闇 */
     linear-gradient(
       to top,
       rgba(0,0,0,.35) 0%,
       rgba(0,0,0,.15) 20%,
       transparent 40%
-    ),
-
-    /* 光輪 */
-    radial-gradient(
-      circle at 78% 24%,
-      rgba(255,235,180,.08) 0 28px,
-      rgba(255,235,180,.03) 29px 48px,
-      transparent 52px
-    ),
-
-    /* 月本体 */
-    radial-gradient(
-      circle at 78% 24%,
-      rgba(240,225,185,.75) 0 20px,
-      transparent 21px
-    ),
-
-    /* 削り */
-    radial-gradient(
-      circle at 92% 24%,
-      rgba(18,16,21,1) 0 19px,
-      transparent 20px
     );
 }
