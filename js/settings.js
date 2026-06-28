@@ -51,6 +51,7 @@ setActiveMenu("menu-settings");
     <option value="natsumatsuri">夏祭り</option>
     <option value="ekisha">駅舎</option>
     <option value="yukimishoji">雪見障子</option>
+    <option value="coffeebunko">珈琲文庫</option>
   </select></span>
     </div>
     
