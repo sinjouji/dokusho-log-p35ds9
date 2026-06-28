@@ -941,21 +941,17 @@
 }
 
 
+/* ==========================================
+   1. 背景の灯り（蛍・屋台の光のイメージをそのまま活かします）
+   ========================================== */
 [data-theme="natsumatsuri"] header::before{
   animation: natsu-lights 6s ease-in-out infinite;
-}
-
-@keyframes natsu-lights{
-  0%,100% { opacity:.22; transform: translateY(0); }
-  50%     { opacity:.28; transform: translateY(-2px); }
-}
-
-[data-theme="natsumatsuri"] header::before{
   content:"";
   position:absolute;
   inset:0;
   opacity:.25;
   filter: blur(0.8px);
+  z-index: 1;
 
   background:
     radial-gradient(circle at 12% 18%, var(--color-chip-read-bg) 0 6px, transparent 12px),
@@ -966,91 +962,108 @@
     radial-gradient(circle at 83% 78%, var(--color-chip-read-bg) 0 4px, transparent 10px);
 }
 
+@keyframes natsu-lights{
+  0%,100% { opacity:.22; transform: translateY(0); }
+  50%     { opacity:.28; transform: translateY(-2px); }
+}
+
+/* ==========================================
+   2. 花火（中心の光を復活させ、夜空に馴染ませる）
+   ========================================== */
 [data-theme="natsumatsuri"] header::after {
-  opacity: 0.65;
-  filter: blur(0.8px);
-  
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
+  opacity: 0.8; /* 花火をより鮮烈に見せるため少しアップ */
+  filter: blur(0.5px); /* ぼかしを少しだけシャープにして火花感をアップ */
+  z-index: 2;
+  
+  /* ★追加：花火のまたたきアニメーション（3秒周期で健気に光る） */
+  animation: hanabi-twinkle 3s ease-in-out infinite;
 
   --cx: 25%;
   --cy: 25%;
-
-  /* 花火の半径（外→中→内） */
   --r1: 40px;
   --r2: 28px;
   --r3: 16px;
   
-  /* ① conic-gradient：点の並び（共通） */
-  --dots:
-    conic-gradient(
-      from 0deg at var(--cx) var(--cy),
-      #fff 0deg 2deg, transparent 2deg 10deg,
-      #ff99cc 10deg 12deg, transparent 12deg 20deg,
-      #99ddff 20deg 22deg, transparent 22deg 30deg,
-      #ffcc66 30deg 32deg, transparent 32deg 40deg,
-      #ffeeaa 40deg 42deg, transparent 42deg 50deg,
-      #fff 50deg 52deg, transparent 52deg 60deg,
-      #ff99cc 60deg 62deg, transparent 62deg 70deg,
-      #99ddff 70deg 72deg, transparent 72deg 80deg,
-      #ffcc66 80deg 82deg, transparent 82deg 90deg,
-      #ffeeaa 90deg 92deg, transparent 92deg 100deg,
-      #fff 100deg 102deg, transparent 102deg 110deg,
-      #ff99cc 110deg 112deg, transparent 112deg 120deg,
-      #99ddff 120deg 122deg, transparent 122deg 130deg,
-      #ffcc66 130deg 132deg, transparent 132deg 140deg,
-      #ffeeaa 140deg 142deg, transparent 142deg 150deg,
-      #fff 150deg 152deg, transparent 152deg 160deg,
-      #ff99cc 160deg 162deg, transparent 162deg 170deg,
-      #99ddff 170deg 172deg, transparent 172deg 180deg,
-      #ffcc66 180deg 182deg, transparent 182deg 190deg,
-      #ffeeaa 190deg 192deg, transparent 192deg 200deg,
-      #fff 200deg 202deg, transparent 202deg 210deg,
-      #ff99cc 210deg 212deg, transparent 212deg 220deg,
-      #99ddff 220deg 222deg, transparent 222deg 230deg,
-      #ffcc66 230deg 232deg, transparent 232deg 240deg,
-      #ffeeaa 240deg 242deg, transparent 242deg 250deg,
-      #fff 250deg 252deg, transparent 252deg 260deg,
-      #ff99cc 260deg 262deg, transparent 262deg 270deg,
-      #99ddff 270deg 272deg, transparent 272deg 280deg,
-      #ffcc66 280deg 282deg, transparent 282deg 290deg,
-      #ffeeaa 290deg 292deg, transparent 292deg 300deg,
-      #fff 300deg 302deg, transparent 302deg 310deg,
-      #ff99cc 310deg 312deg, transparent 312deg 320deg,
-      #99ddff 320deg 322deg, transparent 322deg 330deg,
-      #ffcc66 330deg 332deg, transparent 332deg 340deg,
-      #ffeeaa 340deg 342deg, transparent 342deg 350deg,
-      #fff 350deg 352deg, transparent 352deg 360deg
-    );
-  /* ② 三重のリングを background に積む */
-  
-    background:
-    
+  --dots: conic-gradient(
+    from 0deg at var(--cx) var(--cy),
+    #fff 0deg 2deg, transparent 2deg 10deg,
+    #ff99cc 10deg 12deg, transparent 12deg 20deg,
+    #99ddff 20deg 22deg, transparent 22deg 30deg,
+    #ffcc66 30deg 32deg, transparent 32deg 40deg,
+    #ffeeaa 40deg 42deg, transparent 42deg 50deg,
+    #fff 50deg 52deg, transparent 52deg 60deg,
+    #ff99cc 60deg 62deg, transparent 62deg 70deg,
+    #99ddff 70deg 72deg, transparent 72deg 80deg,
+    #ffcc66 80deg 82deg, transparent 82deg 90deg,
+    #ffeeaa 90deg 92deg, transparent 92deg 100deg,
+    #fff 100deg 102deg, transparent 102deg 110deg,
+    #ff99cc 110deg 112deg, transparent 112deg 120deg,
+    #99ddff 120deg 122deg, transparent 122deg 130deg,
+    #ffcc66 130deg 132deg, transparent 132deg 140deg,
+    #ffeeaa 140deg 142deg, transparent 142deg 150deg,
+    #fff 150deg 152deg, transparent 152deg 160deg,
+    #ff99cc 160deg 162deg, transparent 162deg 170deg,
+    #99ddff 170deg 172deg, transparent 172deg 180deg,
+    #ffcc66 180deg 182deg, transparent 182deg 190deg,
+    #ffeeaa 190deg 192deg, transparent 192deg 200deg,
+    #fff 200deg 202deg, transparent 202deg 210deg,
+    #ff99cc 210deg 212deg, transparent 212deg 220deg,
+    #99ddff 220deg 222deg, transparent 222deg 230deg,
+    #ffcc66 230deg 232deg, transparent 232deg 240deg,
+    #ffeeaa 240deg 242deg, transparent 242deg 250deg,
+    #fff 250deg 252deg, transparent 252deg 260deg,
+    #ff99cc 260deg 262deg, transparent 262deg 270deg,
+    #99ddff 270deg 272deg, transparent 272deg 280deg,
+    #ffcc66 280deg 282deg, transparent 282deg 290deg,
+    #ffeeaa 290deg 292deg, transparent 292deg 300deg,
+    #fff 300deg 302deg, transparent 302deg 310deg,
+    #ff99cc 310deg 312deg, transparent 312deg 320deg,
+    #99ddff 320deg 322deg, transparent 322deg 330deg,
+    #ffcc66 330deg 332deg, transparent 332deg 340deg,
+    #ffeeaa 340deg 342deg, transparent 342deg 350deg,
+    #fff 350deg 352deg, transparent 352deg 360deg
+  );
+
+  background:
+    /* ① 中心強く光る大輪の芯（少し範囲を広げて印象的に！） */
     radial-gradient(circle at var(--cx) var(--cy),
-  rgba(255,240,150,1) 0 3px,      /* 小さく強い芯 */
-  rgba(255,220,120,0.5) 3px 7px,  /* ふわっと淡い光 */
-  rgba(255,200,100,0.2) 7px 12px, /* さらに淡い外側 */
-  transparent 12px
-),
+      rgba(255,255,255,1) 0 3px,
+      rgba(255,230,130,0.9) 4px 8px,
+      rgba(255,150,150,0.4) 9px 18px,
+      transparent 24px
+    ),
 
- /* ★ これが中心の光（強め・黄色寄り・軽いぼかし） */
-/*  radial-gradient(circle at var(--cx) var(--cy),
-    rgba(255,240,150,1) 0 8px,
-    rgba(255,220,120,0.6) 8px 16px,
-    rgba(255,200,100,0.3) 16px 26px,
-    transparent 26px
-  ),*/
+    /* ★追加：花火が開いた瞬間の、夜空への「大きな照り返し」 */
+    radial-gradient(circle at var(--cx) var(--cy),
+      rgba(255, 100, 180, 0.12) 0px,
+      rgba(100, 150, 255, 0.03) 80px,
+      transparent 150px
+    ),
 
-  /* ★ ここから下は今までの三重リング */
-  var(--dots),
-  var(--dots),
-  var(--dots);
+    /* 三重のリング用のドット（ユーザー様の指定通り） */
+    var(--dots),
+    var(--dots),
+    var(--dots),
 
+    /* ★追加：お祭りの「濃紺の夜空」ベースグラデーション
+       下の方を屋台の明かり（ほんのり赤オレンジ）で照らします */
+    linear-gradient(to bottom,
+      #080a16 0%,
+      #0f1326 60%,
+      #211624 100%
+    );
 
-  /* ③ マスクで「三重のリング」だけ残す */
+  /* ③ マスク：中心の光（半径0〜24px）も通すように一番上に追加！ */
   mask:
+    /* 中心の光用マスク */
+    radial-gradient(circle at var(--cx) var(--cy),
+      #000 0 24px,
+      transparent 25px
+    ),
     /* 外輪 */
     radial-gradient(circle at var(--cx) var(--cy),
       transparent calc(var(--r1) - 4px),
@@ -1072,7 +1085,22 @@
       #000 calc(var(--r3) + 3px),
       transparent calc(var(--r3) + 4px)
     );
+  
+  /* 複数のマスクを「足し算（結合）」して同時に表示させる魔法 */
+  mask-composite: exclude; /* 古いブラウザ用のおまじない */
+  mask-image: 
+    radial-gradient(circle at var(--cx) var(--cy), #000 0 24px, transparent 25px),
+    radial-gradient(circle at var(--cx) var(--cy), transparent calc(var(--r1) - 4px), #000 calc(var(--r1) - 3px), #000 calc(var(--r1) + 3px), transparent calc(var(--r1) + 4px)),
+    radial-gradient(circle at var(--cx) var(--cy), transparent calc(var(--r2) - 4px), #000 calc(var(--r2) - 3px), #000 calc(var(--r2) + 3px), transparent calc(var(--r2) + 4px)),
+    radial-gradient(circle at var(--cx) var(--cy), transparent calc(var(--r3) - 4px), #000 calc(var(--r3) - 3px), #000 calc(var(--r3) + 3px), transparent calc(var(--r3) + 4px));
 }
+
+/* ★追加：花火が小さくまたたくアニメーション */
+@keyframes hanabi-twinkle {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(0.99); }
+}
+
 
 
 
