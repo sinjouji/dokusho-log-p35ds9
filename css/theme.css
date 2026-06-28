@@ -1029,7 +1029,10 @@ linear-gradient(
 
 [data-theme="yuuyakekomichi"] header::before {
   background:
-    /* 1. 雲のハイライト（夕日を強く受けて光る中心部） */
+    /* ==========================================
+       メインの雲（中央〜左寄り）
+       ========================================== */
+    /* 1. 雲のハイライト */
     radial-gradient(
       ellipse 120px 30px at 38% 32%,
       rgba(255, 250, 220, 0.9) 0%,
@@ -1041,14 +1044,14 @@ linear-gradient(
       transparent 80%
     ),
 
-    /* 2. 土台の大きな白雲（少し形をシャープにして立体感アップ） */
+    /* 2. 土台の大きな白雲 */
     radial-gradient(
       ellipse 450px 100px at 40% 30%,
       rgba(255, 245, 230, 0.75) 0%,
       transparent 75%
     ),
 
-    /* 3. 左寄りの朱（夕日の照り返し：範囲を広げて少し鮮やかに） */
+    /* 3. 左寄りの朱 */
     radial-gradient(
       ellipse 160px 50px at 39% 45%,
       rgba(235, 95, 45, 0.35) 0%,
@@ -1060,7 +1063,7 @@ linear-gradient(
       transparent 80%
     ),
 
-    /* 4. 右寄りの紫（雲の影・夕闇への移り変わり：少し横に引き伸ばす） */
+    /* 4. 右寄りの紫 */
     radial-gradient(
       ellipse 160px 35px at 46% 52%,
       rgba(120, 80, 150, 0.25) 0%,
@@ -1070,8 +1073,31 @@ linear-gradient(
       ellipse 100px 25px at 48% 60%,
       rgba(80, 50, 120, 0.15) 0%,
       transparent 80%
+    ),
+
+    /* ==========================================
+       【追加】右下の小さなちぎれ雲（横68% / 縦68%付近）
+       ========================================== */
+    /* 小さな雲のハイライト（光る芯） */
+    radial-gradient(
+      ellipse 40px 10px at 66% 66%,
+      rgba(255, 245, 210, 0.8) 0%,
+      transparent 80%
+    ),
+    /* 小さな雲の土台（白〜薄オレンジ） */
+    radial-gradient(
+      ellipse 120px 30px at 68% 68%,
+      rgba(255, 235, 210, 0.6) 0%,
+      transparent 75%
+    ),
+    /* 小さな雲の影（ほんのり紫） */
+    radial-gradient(
+      ellipse 90px 20px at 70% 74%,
+      rgba(140, 90, 160, 0.2) 0%,
+      transparent 80%
     );
 }
+
 
 
 /*
