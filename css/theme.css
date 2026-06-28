@@ -1216,6 +1216,110 @@ linear-gradient(
 
 
 
+[data-theme="tsukikage"]{
+  --color-header-bg:#0f1310;
+
+  --color-header-watermark-rgb:210, 225, 210;
+  --opacity-header-watermark:0.04;
+
+  --color-main:#4f6b4e;       /* 苔緑 */
+  --color-main-dark:#344534;  /* 深森 */
+
+  --color-border:#a7b39b;     /* 月白 */
+
+  --color-bg:#141915;
+  --color-card:#1b221d;
+
+  --color-border-sub:#556456;
+
+  --color-text:#d9e2d4;       /* 月光 */
+  --color-text-sub:#6f826f;
+
+  --color-opacity:0.85;
+
+  --color-btn-main:#4f6b4e;
+  --color-btn-text-s:#d9e2d4;
+
+  --color-btn-danger:#3d2f2f;
+  --color-btn-text-d:#e4d7d7;
+
+  --color-chip:#8ea889;
+
+  --color-input-common:#253026;
+
+  --color-bookmark:#cfd7b7;
+
+  --color-control-box:#2a352b;
+
+  --color-and:#314634;
+  --color-and-border:#708d73;
+
+  --color-or:#445243;
+  --color-or-border:#8fa08c;
+
+  --color-not:#4b3535;
+  --color-not-border:#9d7b7b;
+
+  --color-search-btn:#627a61;
+
+  --color-year-bar:#3f5b41;
+  --color-year-achieved:#b7c69a;
+
+  --color-chip-read-bg:#7f9b78;
+  --color-chip-read-bg-rgb:127,155,120;
+  --color-chip-read-text:#f6faf3;
+
+  --color-calendar-date:#a7b39b;
+  --color-calendar-tag-dark:var(--color-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text);
+
+  --color-heat-0:#141915;
+  --color-heat-1:#253026;
+  --color-heat-2:#3f5b41;
+  --color-heat-3:#627a61;
+  --color-heat-4:#8ea889;
+  --color-heat-5:#d9e2d4;
+}
+
+
+[data-theme="tsukikage"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.75;
+
+  background:
+    /* 月のぼかし光輪 */
+    radial-gradient(
+      circle at 76% 26%,
+      rgba(255,255,220,.08) 0 34px,
+      rgba(255,255,220,.04) 35px 60px,
+      transparent 65px
+    ),
+
+    /* 満月本体 */
+    radial-gradient(
+      circle at 76% 26%,
+      rgba(245,248,230,.72) 0 24px,
+      rgba(220,230,205,.55) 25px 28px,
+      transparent 29px
+    ),
+
+    /* 森のシルエット */
+    linear-gradient(
+      to top,
+      rgba(40,55,40,.55) 0%,
+      rgba(40,55,40,.25) 18%,
+      transparent 36%
+    );
+}
+
+
+
+
+
 
 
 [data-theme="coffeebunko"]{
