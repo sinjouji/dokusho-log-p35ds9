@@ -1499,22 +1499,56 @@
 --color-heat-5:#5d6b82;
 }
 
+/* 雪見障子 */
 [data-theme="yukimishoji"] header::before{
-  opacity:.18;
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* 背景の雪景色グラデーションを綺麗に見せるため、opacityを1にして
+     各グラデーション側のRGBAで直接透明度をコントロールします */
+  opacity: 1;
 
   background-image:
-linear-gradient(
-  to right,
-  rgba(140,110,85,.22) 4px,
-  transparent 4px
-),
-linear-gradient(
-  to bottom,
-  rgba(140,110,85,.22) 4px,
-  transparent 4px
-);
+    /* ① 格子の縦線（木枠の茶色） */
+    linear-gradient(
+      to right,
+      rgba(140, 110, 85, 0.35) 0px 4px,
+      transparent 4px
+    ),
+    /* ② ★追加：縦線の立体感（木枠の右側の影） */
+    linear-gradient(
+      to right,
+      transparent 4px,
+      rgba(90, 70, 50, 0.15) 4px 5px,
+      transparent 5px
+    ),
 
-  background-size:45px 45px;
+    /* ③ 格子の横線（木枠の茶色） */
+    linear-gradient(
+      to bottom,
+      rgba(140, 110, 85, 0.35) 0px 4px,
+      transparent 4px
+    ),
+    /* ④ ★追加：横線の立体感（木枠の下側の影） */
+    linear-gradient(
+      to bottom,
+      transparent 4px,
+      rgba(90, 70, 50, 0.15) 4px 5px,
+      transparent 5px
+    ),
+
+    /* ⑤ ★追加：雪見障子の向こうに広がる「しんしんとした雪景色」
+       上が冬の静かな曇り空、下に向かって真っ白な雪が積もっている空気感 */
+    linear-gradient(
+      to bottom,
+      rgba(215, 225, 235, 0.25) 0%,  /* ほんのり青みがかった冬の空 */
+      rgba(245, 250, 255, 0.45) 70%, /* 下に向かって雪の白が広がる */
+      rgba(255, 255, 255, 0.7) 100%
+    );
+
+  /* すべての格子パターン（①〜④）を45px四方でリピート。雪景色（⑤）は全体に1枚敷き */
+  background-size: 45px 45px, 45px 45px, 45px 45px, 45px 45px, 100% 100%;
 }
 
 
@@ -1724,25 +1758,48 @@ linear-gradient(
   --color-tag-exclude:#b94a48;
 }
 
-/* 横罫線 */
+/* 横罫線（珈琲文庫） */
 [data-theme="coffeebunko"] header::before{
-  opacity:.22;
+  /* 隠し味のセピア背景を綺麗に見せるため、opacityを引っこ抜いて
+     各グラデーション側のRGBAの%で直接透明度をコントロールするように変更しました */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 
   background-image:
-  linear-gradient(
-  to right,
-  transparent 22px,
-  rgba(184,138,100,.18) 24px,
-  transparent 26px
-),
+    /* ① 縦のマージン線（ノートの左端にある縦線） */
+    linear-gradient(
+      to right,
+      transparent 22px,
+      rgba(184, 138, 100, 0.25) 24px, /* 少しだけハッキリ */
+      transparent 26px
+    ),
+    
+    /* ② 横罫線（メインの線） */
     repeating-linear-gradient(
       to bottom,
-      transparent 0px,
-      transparent 14px,
-      rgba(184,138,100,.32) 15px,
-      rgba(184,138,100,.32) 17px,
-      transparent 18px,
-      transparent 34px
+      transparent 0px 14px,
+      rgba(184, 138, 100, 0.45) 15px 17px, /* 線の不透明度を少しアップ */
+      transparent 18px 34px
+    ),
+
+    /* ③ ★追加：罫線の陰影（インクの染み込み・紙の凹凸感を出すシャドウ）
+       メインの横罫線より「1px下」に、極限まで薄い茶色を滑り込ませます */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px 15px,
+      rgba(184, 138, 100, 0.12) 16px 18px,
+      transparent 19px 34px
+    ),
+
+    /* ④ ★追加：珈琲の香りが漂うような「古紙風セピアグラデーション」 
+       ほんのり暖かみのある、喫茶店の雰囲気を醸し出します */
+    linear-gradient(
+      125deg,
+      rgba(250, 245, 235, 0.4) 0%,   /* 柔らかなミルク色 */
+      rgba(240, 225, 205, 0.3) 50%,  /* ほんのり珈琲セピア */
+      rgba(250, 245, 235, 0.4) 100%
     );
 }
 
@@ -1830,7 +1887,7 @@ linear-gradient(
           完全に背景に溶け込ませて綺麗な三日月にします
        ========================================== */
     radial-gradient(
-      circle at calc(100% - 74px) 30px, /* ずらし具合をわずかに調整して綺麗なシャープさに */
+      circle at calc(100% - 72px) 30px, /* ずらし具合をわずかに調整して綺麗なシャープさに */
       #0d0813 0 16px,
       transparent 18px
     ),
