@@ -2113,13 +2113,13 @@ opacity:.6;
   to right,
   rgba(150,145,140,.85) 0 18px,
   rgba(220,215,205,.85) 18px 22px
-) 0 30% / 100% 3% no-repeat,
+) 0 33% / 100% 3% no-repeat,
 
 repeating-linear-gradient(
   to right,
   rgba(150,145,140,.85) 0 18px,
   rgba(220,215,205,.85) 18px 22px
-) 0 55% / 100% 3% no-repeat,     
+) 0 60% / 100% 3% no-repeat,     
        
     /* 石畳の縦の目地（フチ・隙間） */
     linear-gradient(to right, rgba(110,105,100,0.4) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
