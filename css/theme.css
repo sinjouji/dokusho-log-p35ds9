@@ -2030,7 +2030,7 @@ opacity:.6;
 
   --color-input-common:#f1eee8;
 
-  --color-bookmark:#d9412c;
+  --color-bookmark:#b89a52;
 
   --color-control-box:#ece8df;
 
@@ -2048,8 +2048,8 @@ opacity:.6;
   --color-year-bar:#7f9a74;
   --color-year-achieved:#c9a06b;
 
-  --color-chip-read-bg:#b82f1f;
-  --color-chip-read-bg-rgb:184,47,31;
+  --color-chip-read-bg:#5e7f4f;
+  --color-chip-read-bg-rgb:94,127,79;
   --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#8f8b80;
@@ -2119,7 +2119,7 @@ repeating-linear-gradient(
   to right,
   rgba(150,145,140,.85) 0 18px,
   rgba(220,215,205,.85) 18px 22px
-) 0 60% / 100% 3% no-repeat,     
+) 0 63% / 100% 3% no-repeat,     
        
     /* 石畳の縦の目地（フチ・隙間） */
     linear-gradient(to right, rgba(110,105,100,0.4) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
@@ -2142,16 +2142,27 @@ repeating-linear-gradient(
           フチのカラー指定を消し、淡く重なる優しい砂利に変えました。
        ========================================== */
     /* 玉砂利レイヤーA */
-    radial-gradient(ellipse 7px 4px at 25% 30%, rgba(195,195,190,0.45) 0 70%, transparent) 0 0 / 28px 18px repeat,
-    radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 0 0 / 25px 16px repeat,
+    radial-gradient(ellipse 7px 4px at 25% 30%, rgba(195,195,190,0.45) 0 70%, transparent) 0 0 / 24px 14px repeat,
+    radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 7px 25px / 33px 19px repeat,
 
     /* 玉砂利レイヤーB */
-    radial-gradient(ellipse 9px 5px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 3px / 29px 17px repeat,
-    radial-gradient(ellipse 10px 6px at 80% 20%, rgba(190,190,185,0.4) 0 70%, transparent) 4px 3px / 34px 22px repeat,
+    radial-gradient(ellipse 9px 5px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 3px / 27px 23px repeat,
+    radial-gradient(ellipse 10px 6px at 80% 20%, rgba(190,190,185,0.4) 0 70%, transparent) 9px 15px / 38px 16px repeat,
 
     /* 玉砂利レイヤーC */
-    radial-gradient(ellipse 9px 4px at 50% 50%, rgba(165,165,160,0.35) 0 70%, transparent) 8px 6px / 23px 19px repeat,
-    radial-gradient(ellipse 11px 6.5px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 8px 6px / 30px 24px repeat;
+    radial-gradient(ellipse 9px 4px at 50% 50%, rgba(165,165,160,0.35) 0 70%, transparent) 20px 6px / 21px 27px repeat,
+    radial-gradient(ellipse 11px 6.5px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 13px 7px / 31px 20px repeat,
+    
+    /* 隙間埋め */
+radial-gradient(
+  ellipse 4px 2px at 40% 60%,
+  rgba(210,210,205,.22) 0 70%,
+  transparent
+) 13px 8px / 17px 13px repeat
+    
+    ;
 }
+
+
 
 
