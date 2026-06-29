@@ -2093,6 +2093,17 @@ opacity:.6;
     radial-gradient(ellipse 11px 5px at 93% 88%, rgba(255,255,245,0.7) 0 100%, transparent 100%),
     radial-gradient(ellipse 8px 4px at 95% 62%, rgba(255,250,210,0.55) 0 100%, transparent 100%),
 
+
+   /* ==========================================
+       4. 斜めグラデーション（最背面）
+       ========================================== */
+    linear-gradient(
+      135deg,
+      rgba(50, 75, 55, 0.5) 0%,
+      rgba(85, 95, 90, 0.4) 40%,
+      rgba(255, 252, 230, 0.35) 80%,
+      rgba(255, 255, 255, 0.5) 100%
+    ),
     /* ==========================================
        2. 参道：中央を走る石畳（★透明度マックス！）
           完全に不透明（rgbaの最後を 1.0 ）にしたので、
@@ -2128,18 +2139,7 @@ opacity:.6;
 
     /* 玉砂利レイヤーC */
     radial-gradient(ellipse 5px 3px at 50% 50%, rgba(165,165,160,0.35) 0 70%, transparent) 8px 6px / 23px 19px repeat,
-    radial-gradient(ellipse 4px 2.5px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 8px 6px / 23px 19px repeat,
-
-    /* ==========================================
-       4. 斜めグラデーション（最背面）
-       ========================================== */
-    linear-gradient(
-      135deg,
-      rgba(50, 75, 55, 0.5) 0%,
-      rgba(85, 95, 90, 0.4) 40%,
-      rgba(255, 252, 230, 0.35) 80%,
-      rgba(255, 255, 255, 0.5) 100%
-    );
+    radial-gradient(ellipse 4px 2.5px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 8px 6px / 23px 19px repeat;
 }
 
 
