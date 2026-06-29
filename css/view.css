@@ -175,9 +175,7 @@
 
 /*再読はしおり描画*/
 .bookmark{
-
   position:absolute;
-
   top:-4px;
   right:8px;
 
@@ -185,18 +183,18 @@
   height:28px;
 
   background:var(--color-bookmark);
+
   box-shadow:
     0 0 0 1px var(--color-text-sub),
-    0 0 0 2px var(--color-text);
+    0 0 0 1.5px var(--color-text);
 
   border-radius:0 0 4px 4px;
-
 }
 
 .bookmark::before{
   content:"";
   position:absolute;
-  bottom:-9px;
+  bottom:-8px;
   left:-1px;
 
   border-left:8px solid transparent;
@@ -209,13 +207,12 @@
 .bookmark::after{
   content:"";
   position:absolute;
-  bottom:-8px;
+  bottom:-7px;
   left:0;
 
   border-left:7px solid transparent;
   border-right:7px solid transparent;
   border-top:8px solid var(--color-bookmark);
-
 
   z-index:2;
 }

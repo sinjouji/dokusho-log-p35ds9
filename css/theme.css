@@ -2142,23 +2142,23 @@ repeating-linear-gradient(
           フチのカラー指定を消し、淡く重なる優しい砂利に変えました。
        ========================================== */
     /* 玉砂利レイヤーA */
-    radial-gradient(ellipse 7px 4px at 25% 18%, rgba(195,195,190,0.45) 0 70%, transparent) 0 1px / 30px 18px repeat,
-    radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 7px 25px / 33px 19px repeat,
+    radial-gradient(ellipse 7px 3px at 25% 18%, rgba(195,195,190,0.45) 0 70%, transparent) 0 2px / 30px 14px repeat,
+    radial-gradient(ellipse 5px 5px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 7px 19px / 33px 26px repeat,
 
     /* 玉砂利レイヤーB */
-    radial-gradient(ellipse 9px 5px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 3px / 38px 22px repeat,
-    radial-gradient(ellipse 10px 6px at 80% 20%, rgba(190,190,185,0.4) 0 70%, transparent) 9px 15px / 38px 16px repeat,
+    radial-gradient(ellipse 9px 2.5px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 11px / 38px 17px repeat,
+    radial-gradient(ellipse 10px 7px at 80% 20%, rgba(190,190,185,0.4) 0 70%, transparent) 9px 27px / 38px 29px repeat,
 
     /* 玉砂利レイヤーC */
-    radial-gradient(ellipse 9px 4px at 50% 50%, rgba(165,165,160,0.35) 0 70%, transparent) 20px 6px / 21px 27px repeat,
-    radial-gradient(ellipse 11px 6.5px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 13px 7px / 31px 20px repeat,
+    radial-gradient(ellipse 9px 4.5px at 50% 50%, rgba(165,165,160,0.35) 0 70%, transparent) 20px 5px / 21px 27px repeat,
+    radial-gradient(ellipse 11px 3px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 13px 16px / 31px 20px repeat,
     
     /* 隙間埋め */
 radial-gradient(
-  ellipse 4px 2px at 40% 60%,
+  ellipse 4px 1.5px at 40% 60%,
   rgba(210,210,205,.22) 0 70%,
   transparent
-) 13px 8px / 17px 13px repeat
+) 13px 23px / 17px 13px repeat
     
     ;
 }
