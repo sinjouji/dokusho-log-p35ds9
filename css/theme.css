@@ -303,7 +303,7 @@
   --color-input-common:#f5f4eb;
   --color-search-hover:#e4e5e6;
   --color-chip:#f7f0ea;
-  --color-bookmark:#d94b4b;
+  --color-bookmark:#8d72c9;
   
   /* 検索ページ・検索バー */
   --color-control-box:#fffaf0;
@@ -479,7 +479,7 @@
 
   --color-input-common:#edf8fa;
 
-  --color-bookmark:#f0a55d;
+  --color-bookmark:#6fc7d6;
 
   --color-control-box:#dff0f4;
 
@@ -657,7 +657,7 @@
 
   --color-chip:#f8f3e8;
 
-  --color-bookmark:#d94b4b;   /* スイカ */
+  --color-bookmark:#5db9d8;   /* スイカ */
 
   /* 検索バー */
   --color-control-box:#fffaf0;
@@ -805,7 +805,7 @@
 
   --color-input-common:#f5f0cf;
 
-  --color-bookmark:#d87d1f;   /* 橙花芯 */
+  --color-bookmark:#9c6b34;   /* 橙花芯 */
 
   --color-control-box:#efe6b4;
 
@@ -952,7 +952,7 @@
   
   --color-input-common:#696351;
 
-  --color-bookmark:#f04b4b;   /* 金魚 */
+  --color-bookmark:#e85c3d;   /* 金魚 */
   
   /* 検索バー */
   --color-control-box:#968a71;
@@ -1187,7 +1187,7 @@
 
   --color-input-common:#f5e3cf;
 
-  --color-bookmark:#e04e39;   /* 夕焼け赤 */
+  --color-bookmark:#d97842;   /* 夕焼け赤 */
 
   --color-control-box:#f0dcc5;
 
@@ -1327,7 +1327,7 @@
 
 --color-input-common:#5a4a3d;
 
---color-bookmark:#b85a3d;
+--color-bookmark:#d4b16a;
 
 --color-control-box:#6b5849;
 
@@ -1416,7 +1416,7 @@
 
   --color-input-common:#f3f8fb;
 
-  --color-bookmark:#d9b97a;
+  --color-bookmark:#8fc9d8;
 
   --color-control-box:#edf4f8;
 
@@ -1637,7 +1637,7 @@
 
   --color-input-common:#253026;
 
-  --color-bookmark:#cfd7b7;
+  --color-bookmark:#b8c2cf;
 
   --color-control-box:#2a352b;
 
@@ -1771,7 +1771,7 @@
 
   --color-input-common:#efe6da;
 
-  --color-bookmark:#b85a3d;
+  --color-bookmark:#b89a52;
 
   --color-control-box:#e7dccd;
 
@@ -1890,7 +1890,7 @@ opacity:.6;
 
   --color-input-common:#2b2232;
 
-  --color-bookmark:#b85c7b;
+  --color-bookmark:#c9a54a;
 
   --color-control-box:#2e2435;
 
@@ -2119,7 +2119,7 @@ repeating-linear-gradient(
   to right,
   rgba(150,145,140,.85) 0 18px,
   rgba(220,215,205,.85) 18px 22px
-) 0 63% / 100% 3% no-repeat,     
+) 0 64% / 100% 3% no-repeat,     
        
     /* 石畳の縦の目地（フチ・隙間） */
     linear-gradient(to right, rgba(110,105,100,0.4) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
@@ -2142,7 +2142,7 @@ repeating-linear-gradient(
           フチのカラー指定を消し、淡く重なる優しい砂利に変えました。
        ========================================== */
     /* 玉砂利レイヤーA */
-    radial-gradient(ellipse 7px 4px at 25% 30%, rgba(195,195,190,0.45) 0 70%, transparent) 0 0 / 24px 14px repeat,
+    radial-gradient(ellipse 7px 4px at 25% 30%, rgba(195,195,190,0.45) 0 70%, transparent) 0 1px / 24px 14px repeat,
     radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 7px 25px / 33px 19px repeat,
 
     /* 玉砂利レイヤーB */

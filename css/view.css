@@ -185,6 +185,9 @@
   height:28px;
 
   background:var(--color-bookmark);
+  box-shadow:
+    0 0 0 1px var(--color-text-sub),
+    0 0 0 2px var(--color-text);
 
   border-radius:0 0 4px 4px;
 
