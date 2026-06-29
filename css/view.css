@@ -193,22 +193,34 @@
 
 }
 
-.bookmark::after{
-
+.bookmark::before{
   content:"";
-
   position:absolute;
+  bottom:-9px;
+  left:-1px;
 
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:9px solid var(--color-text-sub);
+
+  z-index:1;
+}
+
+.bookmark::after{
+  content:"";
+  position:absolute;
   bottom:-8px;
   left:0;
 
   border-left:7px solid transparent;
   border-right:7px solid transparent;
   border-top:8px solid var(--color-bookmark);
+
   box-shadow:
     0 0 0 1px var(--color-text-sub),
     0 0 0 2px var(--color-text);
 
+  z-index:2;
 }
 
 
