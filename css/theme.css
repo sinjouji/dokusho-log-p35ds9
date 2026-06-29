@@ -2005,8 +2005,8 @@ opacity:.6;
   --color-header-watermark-rgb:120, 100, 80;
   --opacity-header-watermark:0.04;
 
-  --color-main:#c44f3a;        /* 朱 */
-  --color-main-dark:#93392b;
+  --color-main:#d9412c;        /* 朱 */
+  --color-main-dark:#b82f1f;
 
   --color-border:#8f8b80;      /* 石灰 */
 
@@ -2015,7 +2015,7 @@ opacity:.6;
 
   --color-border-sub:#d8d4cb;
 
-  --color-text:#3a332b;        /* 木影 */
+  --color-text:#26211c;        /* 木影 */
   --color-text-sub:#ffffff;
 
   --color-opacity:0.85;
@@ -2030,7 +2030,7 @@ opacity:.6;
 
   --color-input-common:#f1eee8;
 
-  --color-bookmark:#c44f3a;
+  --color-bookmark:#d9412c;
 
   --color-control-box:#ece8df;
 
@@ -2048,8 +2048,8 @@ opacity:.6;
   --color-year-bar:#7f9a74;
   --color-year-achieved:#c9a06b;
 
-  --color-chip-read-bg:#93392b;
-  --color-chip-read-bg-rgb:147,57,43;
+  --color-chip-read-bg:#b82f1f;
+  --color-chip-read-bg-rgb:184,47,31;
   --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#8f8b80;
@@ -2067,55 +2067,66 @@ opacity:.6;
 
 
 
+/* 神聖な参道と木漏れ日 */
 [data-theme="sando"] header::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.55;
+  /* 色と光をクッキリ見せるため、opacityを1にして内部のRGBAで調整します */
+  opacity:1;
 
   background:
+    /* ==========================================
+       1. 白〜黄色の木漏れ日（最前面：光が差し込む効果）
+          エッジをしっかりボカすことで、下の「緑の空気」を透過させます
+       ========================================== */
+    radial-gradient(circle at 14% 15%, rgba(255,252,240,0.5) 0px, rgba(255,245,200,0.2) 20px, transparent 60px),
+    radial-gradient(circle at 28% 30%, rgba(255,245,210,0.4) 0px, rgba(255,240,180,0.1) 15px, transparent 45px),
+    radial-gradient(circle at 82% 12%, rgba(255,252,240,0.5) 0px, rgba(255,245,200,0.2) 25px, transparent 70px),
+    radial-gradient(circle at 70% 24%, rgba(255,245,210,0.3) 0px, rgba(255,240,180,0.1) 18px, transparent 50px),
 
-    /* ===== 木漏れ日（上部・端寄り） ===== */
-    radial-gradient(circle at 14% 18%, rgba(255,250,235,.65) 0 8px, transparent 9px),
-    radial-gradient(circle at 24% 28%, rgba(255,242,190,.45) 0 6px, transparent 7px),
-    radial-gradient(circle at 82% 14%, rgba(255,250,235,.55) 0 10px, transparent 11px),
-    radial-gradient(circle at 72% 26%, rgba(255,242,190,.38) 0 7px, transparent 8px),
+    /* ==========================================
+       2. 参道：石畳の道（上寄り・右から左へまっすぐ続く）
+          縦線と横線を組み合わせて「フチのある横長長方形」を作ります
+       ========================================== */
+    /* 石畳の「横の境界線」 */
+    linear-gradient(to bottom,
+      rgba(130,125,120,0.4) 2px, 
+      transparent 2px
+    ) 0 15px / 100% 24px repeat-x, /* 縦幅24pxの段を上部（15px〜87pxの間）にリピート */
+    
+    /* 石畳の「縦の目地（フチ）」横長にするために、50pxごとに1本引く */
+    linear-gradient(to right,
+      rgba(130,125,120,0.4) 2px,
+      transparent 2px
+    ) 0 15px / 50px 72px repeat,
 
-    /* ===== 参道（斜め石畳） ===== */
-    repeating-linear-gradient(
-      -28deg,
-      transparent 0 36px,
-      rgba(150,145,140,.22) 37px 43px,
-      transparent 44px 70px
-    ),
+    /* 石畳のベース色（塗りつぶし）*/
+    linear-gradient(to bottom,
+      rgba(175,170,165,0.35) 0%,
+      rgba(160,155,150,0.35) 100%
+    ) 0 15px / 100% 72px no-repeat, /* 縦幅72px（24px×3段分）の「道」を上寄りに作成 */
 
-    /* ===== 玉砂利（右下寄り） ===== */
-    radial-gradient(
-      ellipse 5px 3px at 76% 78%,
-      rgba(170,170,165,.38) 0 100%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 4px 2px at 82% 72%,
-      rgba(145,145,140,.32) 0 100%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 6px 3px at 88% 84%,
-      rgba(190,190,180,.28) 0 100%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 4px 2px at 80% 88%,
-      rgba(120,120,120,.25) 0 100%,
-      transparent 100%
-    ),
+    /* ==========================================
+       3. 周囲に敷き詰める玉砂利（3色のランダムリピート）
+          お互いに割り切れないサイズ（素数）で重ねて無限の敷き詰めを作ります
+       ========================================== */
+    /* 玉砂利①：明るいグレー（小さめ） */
+    radial-gradient(ellipse 4px 2.5px at 30% 40%, rgba(195,195,190,0.3) 0 100%, transparent 100%) 0 0 / 19px 13px repeat,
+    /* 玉砂利②：普通のグレー（中くらい） */
+    radial-gradient(ellipse 5px 3px at 70% 80%, rgba(160,160,155,0.25) 0 100%, transparent 100%) 5px 4px / 23px 17px repeat,
+    /* 玉砂利③：濃いグレー（少し平たい） */
+    radial-gradient(ellipse 6px 2.5px at 50% 20%, rgba(130,130,125,0.25) 0 100%, transparent 100%) 11px 7px / 29px 19px repeat,
 
-    /* ===== 空気の膜 ===== */
-    linear-gradient(
-      rgba(220,220,220,.08),
-      rgba(220,220,220,.08)
+    /* ==========================================
+       4. 空気の膜（最背面：グレー〜深い緑のフィルター）
+          上が少し厳かな深緑、下に向かってしっとりした闇深いグレーへ
+       ========================================== */
+    linear-gradient(to bottom,
+      rgba(35, 55, 40, 0.45) 0%,   /* 鎮守の森の深い緑の空気 */
+      rgba(50, 60, 55, 0.35) 55%,  /* 参道付近の少し開けた空気 */
+      rgba(40, 40, 45, 0.5) 100%   /* 足元の深い静寂グレー */
     );
 }
 
