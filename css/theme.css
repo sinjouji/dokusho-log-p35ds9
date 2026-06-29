@@ -2005,7 +2005,7 @@ opacity:.6;
   --color-header-watermark-rgb:120, 100, 80;
   --opacity-header-watermark:0.04;
 
-  --color-main:#d9412c;        /* 朱 */
+  --color-main:#d9412c;
   --color-main-dark:#b82f1f;
 
   --color-border:#8f8b80;      /* 石灰 */
@@ -2015,7 +2015,7 @@ opacity:.6;
 
   --color-border-sub:#d8d4cb;
 
-  --color-text:#26211c;        /* 木影 */
+  --color-text:#181614;;        /* 木影 */
   --color-text-sub:#ffffff;
 
   --color-opacity:0.85;
@@ -2142,12 +2142,11 @@ repeating-linear-gradient(
           フチのカラー指定を消し、淡く重なる優しい砂利に変えました。
        ========================================== */
     /* 玉砂利レイヤーA */
-radial-gradient(ellipse 7px 4px at 25% 18%, rgba(195,195,190,0.35) 0 70%, transparent) 0 0 / 30px 18px repeat,
-
-radial-gradient(ellipse 10px 6px at 80% 12%, rgba(190,190,185,0.28) 0 70%, transparent) 4px 3px / 38px 22px repeat,
+    radial-gradient(ellipse 7px 4px at 25% 18%, rgba(195,195,190,0.45) 0 70%, transparent) 0 1px / 30px 18px repeat,
+    radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 7px 25px / 33px 19px repeat,
 
     /* 玉砂利レイヤーB */
-    radial-gradient(ellipse 9px 5px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 3px / 27px 23px repeat,
+    radial-gradient(ellipse 9px 5px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 3px / 38px 22px repeat,
     radial-gradient(ellipse 10px 6px at 80% 20%, rgba(190,190,185,0.4) 0 70%, transparent) 9px 15px / 38px 16px repeat,
 
     /* 玉砂利レイヤーC */
