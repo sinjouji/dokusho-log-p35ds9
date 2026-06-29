@@ -1940,7 +1940,7 @@ opacity:.6;
           完全に背景に溶け込ませて綺麗な三日月にします
        ========================================== */
     radial-gradient(
-      circle at calc(100% - 80px) 32px, /* ずらし具合をわずかに調整して綺麗なシャープさに */
+      circle at calc(100% - 82px) 31px, /* ずらし具合をわずかに調整して綺麗なシャープさに */
       #0d0813 0 14px,
       transparent 16px
     ),
@@ -1991,6 +1991,131 @@ opacity:.6;
       #0d0813 0%,   /* ← 1の「削り」と同じ色！ */
       #180f2b 50%,
       #2c144d 100%
+    );
+}
+
+
+
+
+
+
+[data-theme="sando"]{
+  --color-header-bg:#f5f2eb;   /* 白砂 */
+
+  --color-header-watermark-rgb:120, 100, 80;
+  --opacity-header-watermark:0.04;
+
+  --color-main:#c44f3a;        /* 朱 */
+  --color-main-dark:#93392b;
+
+  --color-border:#8f8b80;      /* 石灰 */
+
+  --color-bg:#f8f6f1;
+  --color-card:#ffffff;
+
+  --color-border-sub:#d8d4cb;
+
+  --color-text:#3a332b;        /* 木影 */
+  --color-text-sub:#ffffff;
+
+  --color-opacity:0.85;
+
+  --color-btn-main:#c44f3a;
+  --color-btn-text-s:#ffffff;
+
+  --color-btn-danger:#5f4a44;
+  --color-btn-text-d:#f8f6f1;
+
+  --color-chip:#7f9a74;        /* 苔 */
+
+  --color-input-common:#f1eee8;
+
+  --color-bookmark:#c44f3a;
+
+  --color-control-box:#ece8df;
+
+  --color-and:#dfe8db;
+  --color-and-border:#7f9a74;
+
+  --color-or:#efe5d8;
+  --color-or-border:#c9a06b;
+
+  --color-not:#f0dfdf;
+  --color-not-border:#b07a7a;
+
+  --color-search-btn:#c44f3a;
+
+  --color-year-bar:#7f9a74;
+  --color-year-achieved:#c9a06b;
+
+  --color-chip-read-bg:#93392b;
+  --color-chip-read-bg-rgb:147,57,43;
+  --color-chip-read-text:#ffffff;
+
+  --color-calendar-date:#8f8b80;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  --color-heat-0:#f8f6f1;
+  --color-heat-1:#ece8df;
+  --color-heat-2:#d8d4cb;
+  --color-heat-3:#b7b0a2;
+  --color-heat-4:#7f9a74;
+  --color-heat-5:#c44f3a;
+}
+
+
+
+[data-theme="sando"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.55;
+
+  background:
+
+    /* ===== 木漏れ日（上部・端寄り） ===== */
+    radial-gradient(circle at 14% 18%, rgba(255,250,235,.65) 0 8px, transparent 9px),
+    radial-gradient(circle at 24% 28%, rgba(255,242,190,.45) 0 6px, transparent 7px),
+    radial-gradient(circle at 82% 14%, rgba(255,250,235,.55) 0 10px, transparent 11px),
+    radial-gradient(circle at 72% 26%, rgba(255,242,190,.38) 0 7px, transparent 8px),
+
+    /* ===== 参道（斜め石畳） ===== */
+    repeating-linear-gradient(
+      -28deg,
+      transparent 0 36px,
+      rgba(150,145,140,.22) 37px 43px,
+      transparent 44px 70px
+    ),
+
+    /* ===== 玉砂利（右下寄り） ===== */
+    radial-gradient(
+      ellipse 5px 3px at 76% 78%,
+      rgba(170,170,165,.38) 0 100%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 4px 2px at 82% 72%,
+      rgba(145,145,140,.32) 0 100%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 6px 3px at 88% 84%,
+      rgba(190,190,180,.28) 0 100%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 4px 2px at 80% 88%,
+      rgba(120,120,120,.25) 0 100%,
+      transparent 100%
+    ),
+
+    /* ===== 空気の膜 ===== */
+    linear-gradient(
+      rgba(220,220,220,.08),
+      rgba(220,220,220,.08)
     );
 }
 
