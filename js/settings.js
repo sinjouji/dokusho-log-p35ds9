@@ -58,6 +58,7 @@ setActiveMenu("menu-settings");
     <option value="tsukikage">月影</option>
     <option value="coffeebunko">珈琲文庫</option>
     <option value="yoiyami">宵闇</option>
+    <option value="sando">参道</option>
   </select></span>
     </div>
     
