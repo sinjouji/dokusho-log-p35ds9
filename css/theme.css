@@ -2067,66 +2067,57 @@ opacity:.6;
 
 
 
-/* 神聖な参道と木漏れ日 */
+/* 神聖な参道と木漏れ日（エリア分けリメイク） */
 [data-theme="sando"] header::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  /* 色と光をクッキリ見せるため、opacityを1にして内部のRGBAで調整します */
   opacity:1;
 
   background:
     /* ==========================================
-       1. 白〜黄色の木漏れ日（最前面：光が差し込む効果）
-          エッジをしっかりボカすことで、下の「緑の空気」を透過させます
+       1. 木漏れ日（最前面：全体に被せる）
        ========================================== */
-    radial-gradient(circle at 14% 15%, rgba(255,252,240,0.5) 0px, rgba(255,245,200,0.2) 20px, transparent 60px),
-    radial-gradient(circle at 28% 30%, rgba(255,245,210,0.4) 0px, rgba(255,240,180,0.1) 15px, transparent 45px),
-    radial-gradient(circle at 82% 12%, rgba(255,252,240,0.5) 0px, rgba(255,245,200,0.2) 25px, transparent 70px),
-    radial-gradient(circle at 70% 24%, rgba(255,245,210,0.3) 0px, rgba(255,240,180,0.1) 18px, transparent 50px),
+    radial-gradient(circle at 16% 20%, rgba(255,253,242,0.45) 0 8px, rgba(255,248,210,0.2) 25px, transparent 70px),
+    radial-gradient(circle at 78% 15%, rgba(255,253,242,0.4) 0 12px, rgba(255,245,190,0.15) 30px, transparent 80px),
+    radial-gradient(circle at 65% 32%, rgba(255,248,210,0.25) 0 6px, transparent 40px),
 
     /* ==========================================
-       2. 参道：石畳の道（上寄り・右から左へまっすぐ続く）
-          縦線と横線を組み合わせて「フチのある横長長方形」を作ります
+       2. 参道：中央を走る石畳（横長の石をずらして並べる）
+          中央の高さ（28% 〜 62%）のエリアだけに限定して描きます
        ========================================== */
-    /* 石畳の「横の境界線」 */
-    linear-gradient(to bottom,
-      rgba(130,125,120,0.4) 2px, 
-      transparent 2px
-    ) 0 15px / 100% 24px repeat-x, /* 縦幅24pxの段を上部（15px〜87pxの間）にリピート */
-    
-    /* 石畳の「縦の目地（フチ）」横長にするために、50pxごとに1本引く */
-    linear-gradient(to right,
-      rgba(130,125,120,0.4) 2px,
-      transparent 2px
-    ) 0 15px / 50px 72px repeat,
+    /* 石畳の縦の目地（フチ・隙間）をパーセントで個別に配置して「冷たい鉄板感」を消します */
+    linear-gradient(to right, rgba(110,105,100,0.3) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
+    linear-gradient(to right, rgba(110,105,100,0.3) 2px, transparent 2px) 45% 45% / 2px 30% no-repeat,
+    linear-gradient(to right, rgba(110,105,100,0.3) 2px, transparent 2px) 75% 45% / 2px 30% no-repeat,
 
-    /* 石畳のベース色（塗りつぶし）*/
-    linear-gradient(to bottom,
-      rgba(175,170,165,0.35) 0%,
-      rgba(160,155,150,0.35) 100%
-    ) 0 15px / 100% 72px no-repeat, /* 縦幅72px（24px×3段分）の「道」を上寄りに作成 */
+    /* 石畳の横の輪郭（道の上端と下端のフチ線） */
+    linear-gradient(to bottom, 
+      rgba(110,105,100,0.35) 0 2px, 
+      transparent 2px, 
+      transparent calc(100% - 2px), 
+      rgba(110,105,100,0.35) calc(100% - 2px)
+    ) 0 45% / 100% 34% no-repeat,
+
+    /* 石畳の塗りつぶし（温かみのあるベージュグレー） */
+    linear-gradient(to bottom, rgba(175,168,158,0.45), rgba(160,152,142,0.45)) 0 45% / 100% 34% no-repeat,
 
     /* ==========================================
-       3. 周囲に敷き詰める玉砂利（3色のランダムリピート）
-          お互いに割り切れないサイズ（素数）で重ねて無限の敷き詰めを作ります
+       3. 周囲の玉砂利（上下のエリアに敷き詰める）
        ========================================== */
-    /* 玉砂利①：明るいグレー（小さめ） */
-    radial-gradient(ellipse 4px 2.5px at 30% 40%, rgba(195,195,190,0.3) 0 100%, transparent 100%) 0 0 / 19px 13px repeat,
-    /* 玉砂利②：普通のグレー（中くらい） */
-    radial-gradient(ellipse 5px 3px at 70% 80%, rgba(160,160,155,0.25) 0 100%, transparent 100%) 5px 4px / 23px 17px repeat,
-    /* 玉砂利③：濃いグレー（少し平たい） */
-    radial-gradient(ellipse 6px 2.5px at 50% 20%, rgba(130,130,125,0.25) 0 100%, transparent 100%) 11px 7px / 29px 19px repeat,
+    /* 明るいグレーの砂利 */
+    radial-gradient(ellipse 3px 2px at 20% 30%, rgba(185,185,180,0.3) 100%, transparent) 0 0 / 16px 11px repeat,
+    /* 濃いグレーの砂利 */
+    radial-gradient(ellipse 4px 2.5px at 70% 80%, rgba(145,145,140,0.25) 100%, transparent) 5px 4px / 21px 15px repeat,
 
     /* ==========================================
-       4. 空気の膜（最背面：グレー〜深い緑のフィルター）
-          上が少し厳かな深緑、下に向かってしっとりした闇深いグレーへ
+       4. 空気の膜（最背面：全体に被せるグレー〜緑のフィルター）
        ========================================== */
     linear-gradient(to bottom,
-      rgba(35, 55, 40, 0.45) 0%,   /* 鎮守の森の深い緑の空気 */
-      rgba(50, 60, 55, 0.35) 55%,  /* 参道付近の少し開けた空気 */
-      rgba(40, 40, 45, 0.5) 100%   /* 足元の深い静寂グレー */
+      rgba(40, 58, 44, 0.45) 0%,   /* 上部は鎮守の森の深緑 */
+      rgba(55, 62, 58, 0.35) 50%,  /* 中央は少し開けたグレー */
+      rgba(45, 45, 50, 0.45) 100%  /* 足元は静かなダークグレー */
     );
 }
 
