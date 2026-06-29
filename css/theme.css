@@ -2069,7 +2069,7 @@ opacity:.6;
 
 
 
-/* 神聖な参道と木漏れ日（玉砂利・完全敷き詰め完成版） */
+/* 神聖な参道と木漏れ日（マイルド＆参道クッキリ版） */
 [data-theme="sando"] header::before{
   content:"";
   position:absolute;
@@ -2080,7 +2080,6 @@ opacity:.6;
   background:
     /* ==========================================
        1. 斜めの光の粒（最前面：桜吹雪風の楕円）
-          右下エリアに集中
        ========================================== */
     radial-gradient(ellipse 11px 4px at 14% 20%, rgba(255,255,245,0.65) 0 100%, transparent 100%),
     radial-gradient(ellipse 4px 9px at 25% 28%, rgba(255,250,220,0.55) 0 100%, transparent 100%),
@@ -2095,41 +2094,44 @@ opacity:.6;
     radial-gradient(ellipse 8px 4px at 95% 62%, rgba(255,250,210,0.55) 0 100%, transparent 100%),
 
     /* ==========================================
-       2. 参道：中央を走る石畳
-          玉砂利の上に綺麗に重なります
+       2. 参道：中央を走る石畳（★透明度マックス！）
+          完全に不透明（rgbaの最後を 1.0 ）にしたので、
+          道エリアの玉砂利を完全に覆い隠して消し去ります。
        ========================================== */
-    linear-gradient(to right, rgba(130,125,120,0.35) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
-    linear-gradient(to right, rgba(130,125,120,0.35) 2px, transparent 2px) 45% 45% / 2px 30% no-repeat,
-    linear-gradient(to right, rgba(130,125,120,0.35) 2px, transparent 2px) 75% 45% / 2px 30% no-repeat,
+    /* 石畳の縦の目地（フチ・隙間） */
+    linear-gradient(to right, rgba(110,105,100,0.4) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
+    linear-gradient(to right, rgba(110,105,100,0.4) 2px, transparent 2px) 45% 45% / 2px 30% no-repeat,
+    linear-gradient(to right, rgba(110,105,100,0.4) 2px, transparent 2px) 75% 45% / 2px 30% no-repeat,
 
+    /* 石畳の横の輪郭（道の上端と下端のフチ線） */
     linear-gradient(to bottom, 
-      rgba(130,125,120,0.4) 0 2px, 
+      rgba(110,105,100,0.5) 0 2px, 
       transparent 2px, 
       transparent calc(100% - 2px), 
-      rgba(130,125,120,0.4) calc(100% - 2px)
+      rgba(110,105,100,0.5) calc(100% - 2px)
     ) 0 45% / 100% 34% no-repeat,
 
-    linear-gradient(to bottom, rgba(200,195,185,0.6), rgba(185,180,170,0.6)) 0 45% / 100% 34% no-repeat,
+    /* 石畳の塗りつぶし（透けない御影石グレー） */
+    linear-gradient(to bottom, rgb(205,200,190), rgb(190,185,175)) 0 45% / 100% 34% no-repeat,
 
     /* ==========================================
-       3. 周囲の玉砂利（★最終進化：くっきりフチ付き・無限超密度敷き詰め）
-          割り切れない異なるサイズ（素数）のグリッドでrepeatさせ、
-          隙間なく、かつ完全にランダムに重なっているように見せます。
+       3. 周囲の玉砂利（★ボーダーを無しに！）
+          フチのカラー指定を消し、淡く重なる優しい砂利に変えました。
        ========================================== */
-    /* 玉砂利レイヤーA（明るいグレー / 21px×13pxの網目で敷き詰め） */
-    radial-gradient(ellipse 4px 2.5px at 25% 30%, rgba(195,195,190,0.55) 0 2px, rgba(130,130,125,0.4) 3px 4px, transparent 5px) 0 0 / 21px 13px repeat,
-    radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.55) 0 2.5px, rgba(120,120,115,0.4) 3.5px 4.5px, transparent 5.5px) 0 0 / 21px 13px repeat,
+    /* 玉砂利レイヤーA */
+    radial-gradient(ellipse 4px 2.5px at 25% 30%, rgba(195,195,190,0.45) 0 70%, transparent) 0 0 / 21px 13px repeat,
+    radial-gradient(ellipse 5px 3px at 75% 80%, rgba(185,185,180,0.45) 0 70%, transparent) 0 0 / 21px 13px repeat,
 
-    /* 玉砂利レイヤーB（中間のグレー / 29px×17pxの網目でさらに隙間を埋める） */
-    radial-gradient(ellipse 5px 3px at 30% 70%, rgba(175,175,170,0.5) 0 2.5px, rgba(110,110,105,0.4) 3.5px 4.5px, transparent 5.5px) 4px 3px / 29px 17px repeat,
-    radial-gradient(ellipse 4px 2.5px at 80% 20%, rgba(190,190,185,0.5) 0 2px, rgba(130,130,125,0.4) 3px 4px, transparent 5px) 4px 3px / 29px 17px repeat,
+    /* 玉砂利レイヤーB */
+    radial-gradient(ellipse 5px 3px at 30% 70%, rgba(175,175,170,0.4) 0 70%, transparent) 4px 3px / 29px 17px repeat,
+    radial-gradient(ellipse 4px 2.5px at 80% 20%, rgba(190,190,185,0.4) 0 70%, transparent) 4px 3px / 29px 17px repeat,
 
-    /* 玉砂利レイヤーC（濃いめのグレー / 23px×19pxの網目で最後の隙間を完全に密閉） */
-    radial-gradient(ellipse 5px 3px at 50% 50%, rgba(165,165,160,0.45) 0 2.5px, rgba(100,100,95,0.4) 3.5px 4.5px, transparent 5.5px) 8px 6px / 23px 19px repeat,
-    radial-gradient(ellipse 4px 2.5px at 10% 85%, rgba(180,180,175,0.5) 0 2px, rgba(120,120,115,0.4) 3px 4px, transparent 5px) 8px 6px / 23px 19px repeat,
+    /* 玉砂利レイヤーC */
+    radial-gradient(ellipse 5px 3px at 50% 50%, rgba(165,165,160,0.35) 0 70%, transparent) 8px 6px / 23px 19px repeat,
+    radial-gradient(ellipse 4px 2.5px at 10% 85%, rgba(180,180,175,0.4) 0 70%, transparent) 8px 6px / 23px 19px repeat,
 
     /* ==========================================
-       4. 斜めグラデーション（最背面：左上 緑/灰 〜 右下 白/黄）
+       4. 斜めグラデーション（最背面）
        ========================================== */
     linear-gradient(
       135deg,
