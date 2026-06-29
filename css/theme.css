@@ -2067,7 +2067,7 @@ opacity:.6;
 
 
 
-/* 神聖な参道と木漏れ日（エリア分けリメイク） */
+/* 神聖な参道と木漏れ日（明るさ＆レイヤー順調整版） */
 [data-theme="sando"] header::before{
   content:"";
   position:absolute;
@@ -2077,47 +2077,51 @@ opacity:.6;
 
   background:
     /* ==========================================
-       1. 木漏れ日（最前面：全体に被せる）
+       1. 木漏れ日（最前面：全体をさらにパッと明るく！）
+          不透明度を上げて、差し込む太陽光を強調しました
        ========================================== */
-    radial-gradient(circle at 16% 20%, rgba(255,253,242,0.45) 0 8px, rgba(255,248,210,0.2) 25px, transparent 70px),
-    radial-gradient(circle at 78% 15%, rgba(255,253,242,0.4) 0 12px, rgba(255,245,190,0.15) 30px, transparent 80px),
-    radial-gradient(circle at 65% 32%, rgba(255,248,210,0.25) 0 6px, transparent 40px),
+    radial-gradient(circle at 16% 20%, rgba(255,255,245,0.6) 0 10px, rgba(255,250,220,0.25) 30px, transparent 80px),
+    radial-gradient(circle at 78% 15%, rgba(255,255,245,0.55) 0 14px, rgba(255,250,210,0.2) 35px, transparent 90px),
+    radial-gradient(circle at 65% 32%, rgba(255,250,220,0.35) 0 8px, transparent 50px),
 
     /* ==========================================
-       2. 参道：中央を走る石畳（横長の石をずらして並べる）
-          中央の高さ（28% 〜 62%）のエリアだけに限定して描きます
+       2. 参道：中央を走る石畳（★ここに移動！）
+          玉砂利より「上」に書くことで、道の下に玉砂利を隠します。
+          少し明るい御影石のような白っぽいグレーに変更しました。
        ========================================== */
-    /* 石畳の縦の目地（フチ・隙間）をパーセントで個別に配置して「冷たい鉄板感」を消します */
-    linear-gradient(to right, rgba(110,105,100,0.3) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
-    linear-gradient(to right, rgba(110,105,100,0.3) 2px, transparent 2px) 45% 45% / 2px 30% no-repeat,
-    linear-gradient(to right, rgba(110,105,100,0.3) 2px, transparent 2px) 75% 45% / 2px 30% no-repeat,
+    /* 石畳の縦の目地（フチ・隙間） */
+    linear-gradient(to right, rgba(130,125,120,0.35) 2px, transparent 2px) 15% 45% / 2px 30% no-repeat,
+    linear-gradient(to right, rgba(130,125,120,0.35) 2px, transparent 2px) 45% 45% / 2px 30% no-repeat,
+    linear-gradient(to right, rgba(130,125,120,0.35) 2px, transparent 2px) 75% 45% / 2px 30% no-repeat,
 
     /* 石畳の横の輪郭（道の上端と下端のフチ線） */
     linear-gradient(to bottom, 
-      rgba(110,105,100,0.35) 0 2px, 
+      rgba(130,125,120,0.4) 0 2px, 
       transparent 2px, 
       transparent calc(100% - 2px), 
-      rgba(110,105,100,0.35) calc(100% - 2px)
+      rgba(130,125,120,0.4) calc(100% - 2px)
     ) 0 45% / 100% 34% no-repeat,
 
-    /* 石畳の塗りつぶし（温かみのあるベージュグレー） */
-    linear-gradient(to bottom, rgba(175,168,158,0.45), rgba(160,152,142,0.45)) 0 45% / 100% 34% no-repeat,
+    /* 石畳の塗りつぶし（明るめの風合いあるグレー） */
+    linear-gradient(to bottom, rgba(200,195,185,0.6), rgba(185,180,170,0.6)) 0 45% / 100% 34% no-repeat,
 
     /* ==========================================
-       3. 周囲の玉砂利（上下のエリアに敷き詰める）
+       3. 周囲の玉砂利（★石畳の下に配置！）
+          石畳より「下」にあるので、中央の道エリアには被らなくなります。
        ========================================== */
     /* 明るいグレーの砂利 */
-    radial-gradient(ellipse 3px 2px at 20% 30%, rgba(185,185,180,0.3) 100%, transparent) 0 0 / 16px 11px repeat,
+    radial-gradient(ellipse 3px 2px at 20% 30%, rgba(195,195,190,0.35) 100%, transparent) 0 0 / 16px 11px repeat,
     /* 濃いグレーの砂利 */
-    radial-gradient(ellipse 4px 2.5px at 70% 80%, rgba(145,145,140,0.25) 100%, transparent) 5px 4px / 21px 15px repeat,
+    radial-gradient(ellipse 4px 2.5px at 70% 80%, rgba(155,155,150,0.25) 100%, transparent) 5px 4px / 21px 15px repeat,
 
     /* ==========================================
-       4. 空気の膜（最背面：全体に被せるグレー〜緑のフィルター）
+       4. 空気の膜（最背面：明るい新緑の光を含むフィルター）
+          黒っぽさを減らし、爽やかな初夏の神社のような明るい緑にしました
        ========================================== */
     linear-gradient(to bottom,
-      rgba(40, 58, 44, 0.45) 0%,   /* 上部は鎮守の森の深緑 */
-      rgba(55, 62, 58, 0.35) 50%,  /* 中央は少し開けたグレー */
-      rgba(45, 45, 50, 0.45) 100%  /* 足元は静かなダークグレー */
+      rgba(60, 90, 65, 0.4) 0%,    /* 明るい新緑の深緑 */
+      rgba(90, 100, 95, 0.3) 50%,   /* すっきりとした空気感 */
+      rgba(75, 75, 80, 0.35) 100%   /* 落ち着いたグレー */
     );
 }
 
