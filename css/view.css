@@ -205,6 +205,9 @@
   border-left:7px solid transparent;
   border-right:7px solid transparent;
   border-top:8px solid var(--color-bookmark);
+  box-shadow:
+    0 0 0 1px var(--color-text-sub),
+    0 0 0 2px var(--color-text);
 
 }
 
