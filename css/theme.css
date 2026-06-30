@@ -2128,10 +2128,10 @@ repeating-linear-gradient(
 
     /* 石畳の横の輪郭（道の上端と下端のフチ線） */
     linear-gradient(to bottom, 
-      rgba(130,125,108,0.5) 0 2px, 
+      rgba(210,210,198,0.5) 0 2px, 
       transparent 2px, 
       transparent calc(100% - 2px), 
-      rgba(130,125,108,0.5) calc(100% - 2px)
+      rgba(210,210,198,0.5) calc(100% - 2px)
     ) 0 48% / 100% 28% no-repeat,
 
     /* 石畳の塗りつぶし（透けない御影石グレー） */
@@ -2156,12 +2156,19 @@ radial-gradient(ellipse 9px 4.5px at 50% 50%, rgba(165,165,160,.35) 0 70%, trans
 
 radial-gradient(ellipse 11px 3px at 10% 85%, rgba(180,180,175,.4) 0 70%, transparent) 15px 4px / 30px 19px repeat,
 
-/* 細かい埋め */
+/* 細かい埋め1 */
 radial-gradient(
   ellipse 4px 1.5px at 40% 60%,
   rgba(210,210,205,.22) 0 70%,
   transparent
-) 10px 7px / 18px 12px repeat;
+) 10px 7px / 18px 12px repeat,
+
+/* 細かい埋め */
+radial-gradient(
+  ellipse 4px 2.5px at 40% 60%,
+  rgba(220,220,215,.22) 0 70%,
+  transparent
+) 6px 13px / 18px 8px repeat;
 }
 
 
