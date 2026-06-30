@@ -2138,6 +2138,29 @@ repeating-linear-gradient(
     /* 石畳の塗りつぶし（透けない御影石グレー） */
     linear-gradient(to bottom, rgb(225,220,220), rgb(210,205,195)) 0 48% / 100% 28% no-repeat,
 
+/*玉砂利の中のたまに目立つ石*/
+/* 置き石①（薄グレー横長） */
+radial-gradient(
+  ellipse 18px 10px at 12% 18%,
+  rgba(165,165,160,.55) 0 70%,
+  transparent 100%
+),
+
+/* 置き石②（中グレー丸寄り） */
+radial-gradient(
+  ellipse 14px 12px at 78% 26%,
+  rgba(145,145,140,.5) 0 70%,
+  transparent 100%
+),
+
+/* 置き石③（白っぽい石） */
+radial-gradient(
+  ellipse 20px 8px at 64% 82%,
+  rgba(210,210,205,.45) 0 70%,
+  transparent 100%
+),
+
+
     /* ==========================================
        3. 周囲の玉砂利（★ボーダーを無しに！）
           フチのカラー指定を消し、淡く重なる優しい砂利に変えました。
