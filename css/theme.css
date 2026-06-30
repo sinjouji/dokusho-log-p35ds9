@@ -2152,7 +2152,7 @@ radial-gradient(ellipse 9px 2.5px at 30% 70%, rgba(175,175,170,.4) 0 70%, transp
 radial-gradient(ellipse 10px 7px at 80% 20%, rgba(190,190,185,.4) 0 70%, transparent) 12px 8px / 37px 21px repeat,
 
 /* 玉砂利レイヤーC（埋め） */
-radial-gradient(ellipse 9px 4.5px at 50% 50%, rgba(165,165,160,.35) 0 70%, transparent) 6px 10px / 24px 20px repeat,
+radial-gradient(ellipse 4.5px 9px at 50% 50%, rgba(165,165,160,.35) 0 70%, transparent) 6px 10px / 24px 20px repeat,
 
 radial-gradient(ellipse 11px 3px at 10% 85%, rgba(180,180,175,.4) 0 70%, transparent) 15px 4px / 30px 19px repeat,
 
@@ -2163,9 +2163,9 @@ radial-gradient(
   transparent
 ) 10px 7px / 18px 12px repeat,
 
-/* 細かい埋め */
+/* 細かい埋め2 */
 radial-gradient(
-  ellipse 4px 2.5px at 40% 60%,
+  ellipse 2.5px 4px at 40% 60%,
   rgba(220,220,215,.22) 0 70%,
   transparent
 ) 6px 13px / 18px 8px repeat,
@@ -2188,7 +2188,27 @@ radial-gradient(
   ellipse 4px 1.8px at 80% 70%,
   rgba(205,205,200,.16) 0 70%,
   transparent
-) 8px 9px / 12px 9px repeat;
+) 8px 9px / 12px 9px repeat,
+/* 縦長石 */
+radial-gradient(
+  ellipse 2px 8px at 35% 40%,
+  rgba(190,190,185,.22) 0 70%,
+  transparent
+) 6px 4px / 18px 14px repeat,
+
+/* 細長横石 */
+radial-gradient(
+  ellipse 12px 2px at 60% 20%,
+  rgba(205,205,200,.18) 0 70%,
+  transparent
+) 9px 7px / 21px 13px repeat,
+
+/* 小さい斜め群 */
+radial-gradient(
+  ellipse 5px 2px at 20% 35%,
+  rgba(215,215,210,.16) 0 70%,
+  transparent
+) 4px 11px / 13px 9px repeat;
 }
 
 
