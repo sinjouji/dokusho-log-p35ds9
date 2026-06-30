@@ -2260,6 +2260,77 @@ radial-gradient(
 ) 4px 11px / 13px 9px repeat;
 }
 
+/*==============================
 
+ 時代コンセプトカラー（モダン系）
+ 
+==============================*/
+
+
+[data-theme="bunmeikaika"]{
+  --color-header-bg:#1f3558;   /* 紺青 */
+
+  --color-header-watermark-rgb:230, 195, 120;
+  --opacity-header-watermark:0.06;
+
+  --color-main:#c89b3c;        /* 真鍮金 */
+  --color-main-dark:#9a7428;
+
+  --color-border:#375e97;      /* 青磁寄り青 */
+
+  --color-bg:#f4ecd8;          /* 羊皮紙 */
+  --color-card:#fff8e8;
+
+  --color-border-sub:#d6c6a5;
+
+  --color-text:#2d2418;        /* インク */
+  --color-text-sub:#6a5a42;
+
+  --color-opacity:0.9;
+
+  --color-btn-main:#375e97;
+  --color-btn-text-s:#fffaf0;
+
+  --color-btn-danger:#8c3b2a;
+  --color-btn-text-d:#fff4ee;
+
+  --color-chip:#c89b3c;
+
+  --color-input-common:#ede2c7;
+
+  --color-bookmark:#375e97;
+
+  --color-control-box:#e8dcc0;
+
+  --color-and:#4b6c5d;
+  --color-and-border:#89a796;
+
+  --color-or:#b8872d;
+  --color-or-border:#e0bc72;
+
+  --color-not:#8c3b2a;
+  --color-not-border:#d98975;
+
+  --color-search-btn:#375e97;
+
+  --color-year-bar:#9a7428;
+  --color-year-achieved:#d9b55a;
+
+  --color-chip-read-bg:#5a7ab3;
+  --color-chip-read-bg-rgb:90,122,179;
+  --color-chip-read-text:#fff8ef;
+
+  --color-calendar-date:#7d6748;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+  --color-heat-0:#fff8e8;
+  --color-heat-1:#e6d7b8;
+  --color-heat-2:#d9b55a;
+  --color-heat-3:#c89b3c;
+  --color-heat-4:#5a7ab3;
+  --color-heat-5:#1f3558;
+}
 
 
