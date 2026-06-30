@@ -45,6 +45,7 @@ setActiveMenu("menu-settings");
       applyTheme(this.value)
     "
   >
+    <option>◼️季節</option>
     <option value="harunoniwa">春の庭</option>
     <option value="ajisai">紫陽花</option>
     <option value="yuusuzumi">夕涼み</option>
@@ -52,13 +53,19 @@ setActiveMenu("menu-settings");
     <option value="himawarihatake">ひまわり畑</option>
     <option value="natsumatsuri">夏祭り</option>
     <option value="yuuyakekomichi">夕焼け小径</option>
-    <option value="ekisha">駅舎</option>
+    <option value="coffeebunko">珈琲文庫</option>
     <option value="asatsuyu">朝露</option>
     <option value="yukimishoji">雪見障子</option>
+    <option>◼️コンセプト</option>
+    <option value="ekisha">駅舎</option>
     <option value="tsukikage">月影</option>
-    <option value="coffeebunko">珈琲文庫</option>
     <option value="yoiyami">宵闇</option>
     <option value="sando">参道</option>
+    <option value="bunmeikaika">文明開化</option>
+    <option value="taishomodan">大正モダン</option>
+    <option value="meijisyosai">明治書斎</option>
+    <option value="kappaninsatsu">活版印刷</option>
+    <option value="shouwakissa">昭和喫茶</option>
   </select></span>
     </div>
     
