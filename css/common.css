@@ -688,3 +688,19 @@ color: var(--color-text);
   outline:none;
   box-shadow:0 0 0 3px rgba(230,170,130,.25);
 }
+
+
+/*文字色対策*/
+.title,
+.menu-fixed,
+.daily-tag,
+.series-title,
+.detail-title{
+  color:var(--color-text);
+  text-shadow:
+    -1px -1px 0 var(--color-text-sub),
+     1px -1px 0 var(--color-text-sub),
+    -1px  1px 0 var(--color-text-sub),
+     1px  1px 0 var(--color-text-sub);
+}
+
