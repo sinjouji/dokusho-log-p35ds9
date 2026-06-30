@@ -2160,6 +2160,30 @@ radial-gradient(
   transparent 100%
 ),
 
+/* 横長石（2回くらい） */
+radial-gradient(
+  ellipse 16px 8px at 20% 40%,
+  rgba(170,170,165,.28) 0 70%,
+  transparent
+) 0 0 / 55% 100% repeat-x,
+
+/* 縦長石（2回くらい） */
+radial-gradient(
+  ellipse 8px 15px at 60% 30%,
+  rgba(150,150,145,.22) 0 70%,
+  transparent
+) 0 0 / 100% 60% repeat-y,
+
+/* 長方形石 */
+linear-gradient(
+  rgba(170,170,165,.3),
+  rgba(170,170,165,.3)
+) 18% 22% / 26px 12px no-repeat,
+
+linear-gradient(
+  rgba(190,190,185,.25),
+  rgba(190,190,185,.25)
+) 72% 78% / 18px 9px no-repeat,
 
     /* ==========================================
        3. 周囲の玉砂利（★ボーダーを無しに！）
