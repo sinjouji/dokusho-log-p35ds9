@@ -1303,84 +1303,126 @@
 
 
 
+[data-theme="coffeebunko"]{
+  --color-header-bg:#f7f2ea;
+  --color-header-watermark-rgb:139, 98, 74;
+  --opacity-header-watermark:0.05;
 
-:root[data-theme="ekisha"]{
---color-header-bg:#2b211c;
---color-header-watermark-rgb:210, 180, 140;
+  --color-main:#b88a64;
+  --color-main-dark:#9b7454;
 
---color-main:#8b4a3a;        /* 煉瓦 */
---color-main-dark:#6f382d;
+  --color-border:#b88a64;
 
---color-border:#c08a4d;      /* 真鍮 */
+  --color-bg:#f4eee6;
+  --color-card:#fffaf3;
 
---color-bg:#2a2520;          /* 古木 */
---color-card:#3a3129;
+  --color-border-sub:#a58a74;
+  --color-text:#4a3024;
+  --color-text-sub:#fffaf3;
 
---color-border-sub:#7a5a46;
---color-text:#e6d2b5;
---color-text-sub:#3a2c22;
+  --color-shadow:rgba(0,0,0,.08);
 
---color-btn-main:#8b4a3a;
---color-btn-danger:#4a2a22;
+  --color-opacity:0.8;
 
---color-chip:#c08a4d;
+  --color-btn-main:#8b5e4a;
+  --color-btn-text-s:#4f3729;
+  --color-btn-danger:#f5e7df;
+  --color-btn-text-d:#8b4a3a;
+  --color-btn-border-d:#d9b39a;
 
---color-input-common:#5a4a3d;
+  --color-chip:#d8b89a;
 
---color-bookmark:#d4b16a;
+  --color-input-common:#efe6da;
 
---color-control-box:#6b5849;
+  --color-bookmark:#b89a52;
 
---color-and:#4a5b5a;
---color-and-border:#7f9c96;
+  --color-control-box:#e7dccd;
 
---color-or:#6b5130;
---color-or-border:#d0a35a;
+  --color-and:#dbe8df;
+  --color-and-border:#a8c0b1;
 
---color-not:#5a2f2f;
---color-not-border:#b85a3d;
+  --color-or:#f5ecd9;
+  --color-or-border:#d8b56f;
 
---color-search-btn:#a57b4d;
+  --color-not:#f4dfdb;
+  --color-not-border:#c98b7b;
 
---color-year-bar:#6b7a4d;
---color-year-achieved:#d6a34d;
+  --color-search-btn:#c7a27a;
 
---color-chip-read-bg:#b86b4d;
---color-chip-read-text:#fff1de;
+  --color-year-bar:#8a9a74;
+  --color-year-achieved:#d8b56f;
 
+  --color-chip-read-bg:#b86b4d;
+  --color-chip-read-bg-rgb:184,107,77;
+  --color-chip-read-text:#fffaf3;
 
   --color-calendar-date:#b89b7a;
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:var(--color-text-sub);
 
---color-heat-0:#2a2520;
---color-heat-1:#5a3a2a;
---color-heat-2:#8b4a3a;
---color-heat-3:#b86b4d;
---color-heat-4:#d09a5a;
---color-heat-5:#f0c36d;
+  /* ヒートマップ */
+  --color-heat-0:#f4eee6;
+  --color-heat-1:#d8c2aa;
+  --color-heat-2:#b88a64;
+  --color-heat-3:#a56f4f;
+  --color-heat-4:#8b5e4a;
+  --color-heat-5:#6b4b3a;
+
+  --color-tag-include:#6b8e23;
+  --color-tag-exclude:#b94a48;
 }
 
-[data-theme="ekisha"] header::before{
-  opacity:.18;
+/* 横罫線（珈琲文庫） */
+[data-theme="coffeebunko"] header::before{
+opacity:.6;
+  /* 隠し味のセピア背景を綺麗に見せるため、opacityを引っこ抜いて
+     各グラデーション側のRGBAの%で直接透明度をコントロールするように変更しました */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 
   background-image:
-    repeating-linear-gradient(
+    /* ① 縦のマージン線（ノートの左端にある縦線） */
+    linear-gradient(
       to right,
-      var(--color-chip-read-bg) 0px,
-      var(--color-chip-read-bg) 3px,
-      transparent 3px,
-      transparent 28px
+      transparent 22px,
+      rgba(184, 138, 100, 0.25) 24px, /* 少しだけハッキリ */
+      transparent 26px
     ),
+    
+    /* ② 横罫線（メインの線） */
     repeating-linear-gradient(
       to bottom,
-      transparent 0px,
-      transparent 9px,
-      rgba(255,255,255,.2) 12px,
-      transparent 13px
+      transparent 0px 14px,
+      rgba(184, 138, 100, 0.45) 15px 17px, /* 線の不透明度を少しアップ */
+      transparent 18px 34px
+    ),
+
+    /* ③ ★追加：罫線の陰影（インクの染み込み・紙の凹凸感を出すシャドウ）
+       メインの横罫線より「1px下」に、極限まで薄い茶色を滑り込ませます */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px 15px,
+      rgba(184, 138, 100, 0.12) 16px 18px,
+      transparent 19px 34px
+    ),
+
+    /* ④ ★追加：珈琲の香りが漂うような「古紙風セピアグラデーション」 
+       ほんのり暖かみのある、喫茶店の雰囲気を醸し出します */
+    linear-gradient(
+      125deg,
+      rgba(250, 245, 235, 0.4) 0%,   /* 柔らかなミルク色 */
+      rgba(240, 225, 205, 0.3) 50%,  /* ほんのり珈琲セピア */
+      rgba(250, 245, 235, 0.4) 100%
     );
 }
+
+
+
+
+
 
 
 
@@ -1606,6 +1648,98 @@
 
 
 
+
+
+
+/*==============================
+
+ 時代コンセプトカラー（モダン系）
+ 
+==============================*/
+:root[data-theme="ekisha"]{
+--color-header-bg:#2b211c;
+--color-header-watermark-rgb:210, 180, 140;
+
+--color-main:#8b4a3a;        /* 煉瓦 */
+--color-main-dark:#6f382d;
+
+--color-border:#c08a4d;      /* 真鍮 */
+
+--color-bg:#2a2520;          /* 古木 */
+--color-card:#3a3129;
+
+--color-border-sub:#7a5a46;
+--color-text:#e6d2b5;
+--color-text-sub:#3a2c22;
+
+--color-btn-main:#8b4a3a;
+--color-btn-danger:#4a2a22;
+
+--color-chip:#c08a4d;
+
+--color-input-common:#5a4a3d;
+
+--color-bookmark:#d4b16a;
+
+--color-control-box:#6b5849;
+
+--color-and:#4a5b5a;
+--color-and-border:#7f9c96;
+
+--color-or:#6b5130;
+--color-or-border:#d0a35a;
+
+--color-not:#5a2f2f;
+--color-not-border:#b85a3d;
+
+--color-search-btn:#a57b4d;
+
+--color-year-bar:#6b7a4d;
+--color-year-achieved:#d6a34d;
+
+--color-chip-read-bg:#b86b4d;
+--color-chip-read-text:#fff1de;
+
+
+  --color-calendar-date:#b89b7a;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);
+
+--color-heat-0:#2a2520;
+--color-heat-1:#5a3a2a;
+--color-heat-2:#8b4a3a;
+--color-heat-3:#b86b4d;
+--color-heat-4:#d09a5a;
+--color-heat-5:#f0c36d;
+}
+
+[data-theme="ekisha"] header::before{
+  opacity:.18;
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--color-chip-read-bg) 0px,
+      var(--color-chip-read-bg) 3px,
+      transparent 3px,
+      transparent 28px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 9px,
+      rgba(255,255,255,.2) 12px,
+      transparent 13px
+    );
+}
+
+
+
+
+
+
+
 [data-theme="tsukikage"]{
   --color-header-bg:#0f1310;
 
@@ -1739,122 +1873,6 @@
 
 
 
-
-[data-theme="coffeebunko"]{
-  --color-header-bg:#f7f2ea;
-  --color-header-watermark-rgb:139, 98, 74;
-  --opacity-header-watermark:0.05;
-
-  --color-main:#b88a64;
-  --color-main-dark:#9b7454;
-
-  --color-border:#b88a64;
-
-  --color-bg:#f4eee6;
-  --color-card:#fffaf3;
-
-  --color-border-sub:#a58a74;
-  --color-text:#4a3024;
-  --color-text-sub:#fffaf3;
-
-  --color-shadow:rgba(0,0,0,.08);
-
-  --color-opacity:0.8;
-
-  --color-btn-main:#8b5e4a;
-  --color-btn-text-s:#4f3729;
-  --color-btn-danger:#f5e7df;
-  --color-btn-text-d:#8b4a3a;
-  --color-btn-border-d:#d9b39a;
-
-  --color-chip:#d8b89a;
-
-  --color-input-common:#efe6da;
-
-  --color-bookmark:#b89a52;
-
-  --color-control-box:#e7dccd;
-
-  --color-and:#dbe8df;
-  --color-and-border:#a8c0b1;
-
-  --color-or:#f5ecd9;
-  --color-or-border:#d8b56f;
-
-  --color-not:#f4dfdb;
-  --color-not-border:#c98b7b;
-
-  --color-search-btn:#c7a27a;
-
-  --color-year-bar:#8a9a74;
-  --color-year-achieved:#d8b56f;
-
-  --color-chip-read-bg:#b86b4d;
-  --color-chip-read-bg-rgb:184,107,77;
-  --color-chip-read-text:#fffaf3;
-
-  --color-calendar-date:#b89b7a;
-  --color-calendar-tag-dark:var(--color-text-sub);
-  --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
-
-  /* ヒートマップ */
-  --color-heat-0:#f4eee6;
-  --color-heat-1:#d8c2aa;
-  --color-heat-2:#b88a64;
-  --color-heat-3:#a56f4f;
-  --color-heat-4:#8b5e4a;
-  --color-heat-5:#6b4b3a;
-
-  --color-tag-include:#6b8e23;
-  --color-tag-exclude:#b94a48;
-}
-
-/* 横罫線（珈琲文庫） */
-[data-theme="coffeebunko"] header::before{
-opacity:.6;
-  /* 隠し味のセピア背景を綺麗に見せるため、opacityを引っこ抜いて
-     各グラデーション側のRGBAの%で直接透明度をコントロールするように変更しました */
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  background-image:
-    /* ① 縦のマージン線（ノートの左端にある縦線） */
-    linear-gradient(
-      to right,
-      transparent 22px,
-      rgba(184, 138, 100, 0.25) 24px, /* 少しだけハッキリ */
-      transparent 26px
-    ),
-    
-    /* ② 横罫線（メインの線） */
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px 14px,
-      rgba(184, 138, 100, 0.45) 15px 17px, /* 線の不透明度を少しアップ */
-      transparent 18px 34px
-    ),
-
-    /* ③ ★追加：罫線の陰影（インクの染み込み・紙の凹凸感を出すシャドウ）
-       メインの横罫線より「1px下」に、極限まで薄い茶色を滑り込ませます */
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px 15px,
-      rgba(184, 138, 100, 0.12) 16px 18px,
-      transparent 19px 34px
-    ),
-
-    /* ④ ★追加：珈琲の香りが漂うような「古紙風セピアグラデーション」 
-       ほんのり暖かみのある、喫茶店の雰囲気を醸し出します */
-    linear-gradient(
-      125deg,
-      rgba(250, 245, 235, 0.4) 0%,   /* 柔らかなミルク色 */
-      rgba(240, 225, 205, 0.3) 50%,  /* ほんのり珈琲セピア */
-      rgba(250, 245, 235, 0.4) 100%
-    );
-}
 
 
 
@@ -2260,11 +2278,10 @@ radial-gradient(
 ) 4px 11px / 13px 9px repeat;
 }
 
-/*==============================
 
- 時代コンセプトカラー（モダン系）
- 
-==============================*/
+
+
+
 
 
 [data-theme="bunmeikaika"]{
@@ -2283,8 +2300,8 @@ radial-gradient(
 
   --color-border-sub:#d6c6a5;
 
-  --color-text:#2d2418;        /* インク */
-  --color-text-sub:#6a5a42;
+  --color-text:#f7edd8;      /* 明るい紙色 */
+  --color-text-sub:#2d2418;  /* インク色 */
 
   --color-opacity:0.9;
 
