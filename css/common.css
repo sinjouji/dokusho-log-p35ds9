@@ -690,17 +690,3 @@ color: var(--color-text-sub);
 }
 
 
-/*文字色対策*/
-.title,
-.menu-fixed,
-.daily-tag,
-.series-title,
-.detail-title{
-  color:var(--color-text);
-  text-shadow:
-    -1px -1px 0 var(--color-text-sub),
-     1px -1px 0 var(--color-text-sub),
-    -1px  1px 0 var(--color-text-sub),
-     1px  1px 0 var(--color-text-sub);
-}
-

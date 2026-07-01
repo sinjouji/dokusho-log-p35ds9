@@ -2,76 +2,66 @@
 ルートカラー：まとめて変えるぜ〜〜〜
 2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
-:root{
-  --color-header-bg:#fffffc;
-  --color-header-watermark-rgb: 96,86,79;
-  --opacity-header-watermark:0.05;
+:root{ /*夕涼みベース*/
+  --color-header-bg:#d8eef2;
+  --color-nav-bg:#6b8ea1;
+  --color-bg:#f9ffff;
+  --color-card:#ffffff;
 
-  --color-main:#c7d7d4;       /* メイン青磁 */
-  --color-main-dark:#9bb8b3;  /* active */
-  --color-border:#6f8f89;     /* 濃い線 */
+  --color-main:#6aa7b8;       /* ラムネ瓶 */
+  --color-main-dark:#4f8796;
 
-  --color-bg:#f8f7f3;         /* 紙背景 */
-  --color-card:#fffffc;
+  --color-border:#f4c96d;     /* 風鈴金 */
+  --color-border-sub:#b9d9df;
 
-  --color-border-sub:#8b7e74;     /* 茶系枠線 */
+  --color-text:#3a2f2b;
+  --color-text-sub:#7b6961;
+  --color-text-contrast:#fff8f3;
 
-  /* メインテキストカラー
-   本文・詳細・説明・検索結果・カード内文字
-   読むための色
-  */
-  --color-text:#917347; 
+  --color-btn-main:#f0907d;   /* 水風船赤 */
+  --color-btn-text-s:#4d5f68;
+
+  --color-btn-danger:#f7d7c8;
+  --color-btn-text-d:#6b5048;
+
+  --color-chip:#9ad7e0;
+
+  --color-input-common:#edf8fa;
   
-  /* サブテキストカラー
-   検索バー、プルダウン、固定メニュー、タグ、シリーズ一覧、日付表示
-   操作系の色
-  */
-  --color-text-sub:#fffffc; /* サブ文字色 */
-  
-  /* コントラストテキストカラー
-   ヘッダー、濃いボタン、濃い帯、濃い背景
-   逆色
-  */
-  --color-text-contrast:#fffffc;
- 
-  --color-shadow:rgba(0,0,0,.08);
-  
-  --color-opacity:0.8;
-  
-  --color-read-text:#6f9f5f;
-  --color-unread-text:#aaa;
-  
-  /* モーダルボタン */
-  --color-btn-main:#7A89A8;
-  --color-btn-text-s:#60564f;
-  --color-btn-danger:#fff7f5;
-  --color-btn-text-d:#9a5a4f;
-  --color-btn-border-d:#e0b0a0;
-  
-  --color-input-common:#f5f4eb;
-  
-  --color-search-hover:#e4e5e6;
-  
-  --color-chip:#f7f0ea;
-  
-  --color-bookmark:#d94b4b;
-  
-  /* 検索ページ・検索バー */
-  --color-control-box:#fffaf0;
-  
-  --color-and:#EBF4F4;/*青白磁*/
-  --color-and-border:#CAE5CD;/*薄緑*/
-  
-  --color-or:#FFFDF6;/*乳白色*/
-  --color-or-border:#f7ed92;/*承和*/
-  
-  --color-not:#fae8e5;/*淡紅*/
-  --color-not-border:#F4B2BA;/*薄紅*/
-  
-  --color-search-btn:#d9c5b6;
-  
-  --color-year-bar:#aacf53;
-  --color-year-achieved:#f4c542;
+  --color-bookmark:#6fc7d6;
+
+  --color-control-box:#dff0f4;
+
+  --color-and:#d7f4ef;
+  --color-and-border:#8bc8b8;
+
+  --color-or:#fff2c7;
+  --color-or-border:#e3c772;
+
+  --color-not:#ffdede;
+  --color-not-border:#e39a9a;
+
+  --color-search-btn:#8fc9d6;
+
+  --color-year-bar:#7db9c6;
+  --color-year-achieved:#f4c96d;
+
+  --color-chip-read-bg:#f0907d;
+  --color-chip-read-bg-rgb:240,144,125;
+  --color-chip-read-text:#ffffff;
+
+  --color-calendar-date:#7ba8b5;
+  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:var(--color-text-sub);/*固定色にすること*/
+
+  /* ヒートマップ */
+  --color-heat-0:#f9ffff;
+  --color-heat-1:#d8eef2;
+  --color-heat-2:#9ad7e0;
+  --color-heat-3:#6aa7b8;
+  --color-heat-4:#f0a55d;
+  --color-heat-5:#f0907d;
   
   /* タグ選択状態？未使用かも */
   --color-tag-include:#6b8e23;
@@ -343,7 +333,7 @@
   --color-calendar-date:#d8c79a;
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#ffffff;
   
   --color-chip-read-bg:#9D8CC9;
   --color-chip-read-bg-rgb: 157, 140, 201;
@@ -710,7 +700,7 @@
   --color-calendar-date:#d8c79a;
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#fffef7;
 
   
   --color-heat-0:#f6f1e4;
@@ -860,7 +850,7 @@
   --color-calendar-date:#b8962f;
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#fffce8;
 
   /* ヒートマップ */
   --color-heat-0:#fffbea;
@@ -1248,7 +1238,7 @@
   --color-calendar-date:#d89a5c;
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#fff5ee;
 
   /* ヒートマップ */
   --color-heat-0:#fff4e6;
