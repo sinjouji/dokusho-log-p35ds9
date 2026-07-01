@@ -331,7 +331,7 @@
   --color-year-achieved:#f4c542;
   
   --color-calendar-date:#d8c79a;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:#ffffff;
   
@@ -698,7 +698,7 @@
   --color-chip-read-text:#fffffc;
   
   --color-calendar-date:#d8c79a;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:#fffef7;
 
@@ -848,7 +848,7 @@
   --color-chip-read-text:#fffef5;
 
   --color-calendar-date:#b8962f;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:#fffce8;
 
@@ -1236,7 +1236,7 @@
   --color-chip-read-text:#fffaf2;
 
   --color-calendar-date:#d89a5c;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:#fff5ee;
 
