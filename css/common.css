@@ -89,6 +89,11 @@ header{
   overflow:hidden;
 }
 
+[data-theme="bunmeikaika"] header,
+[data-theme="bunmeikaika"] header *{
+  color:var(--color-text-contrast);
+}
+
 .header-pattern-center{
   position:absolute;
   top:0;
