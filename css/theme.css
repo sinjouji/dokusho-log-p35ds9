@@ -4,6 +4,7 @@
 ==========*/
 :root{ /*夕涼みベース*/
   --color-header-bg:#d8eef2;
+  --color-header-text:var(--color-text-contrast);
   --color-nav-bg:#6b8ea1;
   --color-bg:#f9ffff;
   --color-card:#ffffff;
@@ -73,6 +74,7 @@
 
 :root[data-theme="harunoniwa"]{
 --color-header-bg:#fff9f8;
+--color-header-text:var(--color-chip);
 --color-header-watermark-rgb:167, 138, 127;
 --opacity-header-watermark:0.05;
 
@@ -282,6 +284,7 @@
 
 :root[data-theme="ajisai"]{
   --color-header-bg:#fffffc;
+  --color-header-text:var(--color-text);
   --color-header-watermark-rgb: 96,86,79;
   --opacity-header-watermark:0.05;
 
@@ -467,7 +470,7 @@
 
 [data-theme="yuusuzumi"]{
   --color-header-bg:#d8eef2;
-
+--color-header-text:var(--color-text-contrast);
   --color-main:#6aa7b8;       /* ラムネ瓶 */
   --color-main-dark:#4f8796;
 
@@ -639,6 +642,7 @@
 
 :root[data-theme="marin"]{
   --color-header-bg:#fffdf6;
+  --color-header-text:var(--color-text);
   --color-header-watermark-rgb: 83,117,135;
   --opacity-header-watermark:0.05;
 
@@ -795,6 +799,7 @@
 
 [data-theme="himawarihatake"]{
   --color-header-bg:#f7d94c;
+  --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:78, 117, 45;
   --opacity-header-watermark:0.05;
 
@@ -944,6 +949,7 @@
 
 :root[data-theme="natsumatsuri"]{
   --color-header-bg:#1a1a28;
+  --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:244, 231, 200;
   --opacity-header-watermark:0.05;
 
@@ -1182,6 +1188,7 @@
 
 [data-theme="yuuyakekomichi"]{
   --color-header-bg:#f6c28b;
+  --color-header-text:var(--color-text);
   --color-header-watermark-rgb:163, 74, 45;
   --opacity-header-watermark:0.05;
 
@@ -1331,6 +1338,7 @@
 
 [data-theme="coffeebunko"]{
   --color-header-bg:#f7f2ea;
+  --color-header-text:var(--color-text);
   --color-header-watermark-rgb:139, 98, 74;
   --opacity-header-watermark:0.05;
 
@@ -1459,7 +1467,7 @@ opacity:.6;
 
 [data-theme="asatsuyu"]{
   --color-header-bg:#f5f8fb;
-
+--color-header-text:var(--color-text);
   --color-header-watermark-rgb:180, 195, 210;
   --opacity-header-watermark:0.05;
 
@@ -1571,6 +1579,7 @@ opacity:.6;
 
 :root[data-theme="yukimishoji"]{
 --color-header-bg:#f8fbfd;
+--color-header-text:var(--color-text);
 --color-header-watermark-rgb:110, 120, 140;
 
 --color-main:#a9b8d0;        /* 冬空 */
@@ -1695,6 +1704,7 @@ opacity:.6;
 ==============================*/
 :root[data-theme="ekisha"]{
 --color-header-bg:#2b211c;
+  --color-header-text:var(--color-text-contrast);
 --color-header-watermark-rgb:210, 180, 140;
 
 --color-main:#8b4a3a;        /* 煉瓦 */
@@ -1783,7 +1793,7 @@ opacity:.6;
 
 [data-theme="tsukikage"]{
   --color-header-bg:#0f1310;
-
+  --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:210, 225, 210;
   --opacity-header-watermark:0.04;
 
@@ -1923,7 +1933,7 @@ opacity:.6;
 
 [data-theme="yoiyami"]{
   --color-header-bg:#121015;
-
+  --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:220, 190, 140;
   --opacity-header-watermark:0.05;
 
@@ -2067,7 +2077,7 @@ opacity:.6;
 
 [data-theme="sando"]{
   --color-header-bg:#f5f2eb;   /* 白砂 */
-
+--color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:120, 100, 80;
   --opacity-header-watermark:0.04;
 

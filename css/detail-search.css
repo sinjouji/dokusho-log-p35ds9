@@ -165,6 +165,22 @@ PAGE-SEARCH.CSS
 .not-bar:forcus{
   box-shadow:0 0 0 3px rgba(230,130,150,.25);
 }
+
+.and-input::placeholder{
+  color:var(--color-and-border);
+  opacity:.65;
+}
+
+.or-input::placeholder{
+  color:var(--color-or-border);
+  opacity:.65;
+}
+
+.not-input::placeholder{
+  color:var(--color-not-border);
+  opacity:.65;
+}
+
 .ken-btn{
  background:var(--color-search-btn);
 }
