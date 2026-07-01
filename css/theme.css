@@ -2533,7 +2533,7 @@ radial-gradient(
   --color-year-achieved:#c89b5d;
 
   /* Read chip */
-  --color-chip-read-bg:#6a2f2b;
+  --color-chip-read-bg:#8b463d;
   --color-chip-read-bg-rgb:106,47,43;
   --color-chip-read-text:#fff8ef;
 
@@ -2551,6 +2551,37 @@ radial-gradient(
   --color-heat-4:#7b4f7a;
   --color-heat-5:#6a2f2b;
 }
+
+
+
+[data-theme="taishomodern"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-size:40px 40px;
+
+  background:
+  linear-gradient(
+  to right,
+  transparent 0 48%,
+  rgba(200,155,93,.18) 48% 52%,
+  transparent 52%
+),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 16px,
+      rgba(255,248,239,.22) 16px 20px
+    ),
+
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 16px,
+      rgba(255,248,239,.18) 16px 20px
+    );
+}
+
 
 
 
