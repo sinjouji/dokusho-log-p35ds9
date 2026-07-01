@@ -2514,15 +2514,7 @@ radial-gradient(
 }
 
 
-/* ヘッダー全体の基本設定（モダンポップのベース色） */
-[data-theme="modern-pop"] header {
-  position: relative;
-  background-color: #faf3e3; /* 浪漫クリーム */
-  z-index: 1;
-  overflow: hidden;
-}
-
-/* 擬似要素を使って矢絣模様を配置 */
+/* [1] 矢絣模様を敷く（前回のままでOKです） */
 [data-theme="modern-pop"] header::before {
   content: "";
   position: absolute;
@@ -2530,37 +2522,29 @@ radial-gradient(
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -2; /* さらにもう一個奥に下げる */
   
-  /* 文字の後ろに配置 */
-  z-index: -1; 
-  
-  /* 矢絣の模様（モダンレッド） */
   background-image: 
     linear-gradient(45deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%),
     linear-gradient(135deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%),
     linear-gradient(45deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%),
     linear-gradient(135deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%);
-
-  /* 模様のサイズと位置の調整 */
   background-size: 40px 60px;
   background-position: 0 0, 0 0, 20px 30px, 20px 30px;
-
-  /* 💡 お好み調整：少し模様をなじませたい場合は、下のコメントアウトを解除してください */
-  /* opacity: 0.85; */
 }
 
-/* （参考）ヘッダー内の文字を模様に負けないようにクッキリさせる設定 */
-[data-theme="modern-pop"] header .title,
-[data-theme="modern-pop"] header h1 {
-  position: relative;
-  z-index: 2; /* 矢絣より前面に出す */
-  color: #faf3e3; /* 文字色は浪漫クリーム */
+/* [2] 追加：::after で中央にふんわりボカシを入れる */
+[data-theme="modern-pop"] header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 矢絣の上、文字の下 */
   
-  /* 焦茶色のクッキリした縁取り影をつけて視認性を爆上げする */
-  text-shadow: 
-    2px 2px 0px #2b201a, 
-   -2px -2px 0px #2b201a,
-    2px -2px 0px #2b201a,
-   -2px 2px 0px #2b201a;
+  /* 中央は浪漫クリーム色（不透明度85%）、端にいくほど透明にする */
+  background: radial-gradient(circle, rgba(250, 243, 227, 0.85) 20%, transparent 70%);
+  pointer-events: none;
 }
 
