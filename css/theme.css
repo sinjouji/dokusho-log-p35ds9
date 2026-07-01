@@ -2530,8 +2530,8 @@ radial-gradient(
   color: white;
   min-height: 100vh;
 
-  /* 本体自体の背景は透明にしておく */
-  background: transparent; 
+  /* 本体自体の背景は透明にしておく
+  background: transparent; */
 }
 
 /* 💡 ここに背景と固定の記述を全部まとめちゃう！ */
