@@ -2521,12 +2521,12 @@ radial-gradient(
   --bg-color-01: var(--color-bg);
   --bg-color-02: var(--color-header-bg);
   --bg-size: 2.25em 2.25em;
-  --font-size: 22px;
+/*  --font-size: 22px;*/
   
   margin: 0;
   padding: 20px;
   box-sizing: border-box;
-  font-size: var(--font-size);
+/*  font-size: var(--font-size);*/
   color: white;
   min-height: 100vh;
 
