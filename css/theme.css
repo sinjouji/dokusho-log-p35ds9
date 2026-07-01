@@ -2337,6 +2337,7 @@ radial-gradient(
 
 [data-theme="bunmeikaika"]{
   --color-header-bg:#1f3558;   /* 紺青 */
+  --color-header-text:var(--color-text-contrast);
 
   --color-header-watermark-rgb:230, 195, 120;
   --opacity-header-watermark:0.06;

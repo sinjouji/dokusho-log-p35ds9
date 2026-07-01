@@ -144,7 +144,7 @@ PAGE-SEARCH.CSS
 .and-bar{
   background:var(--color-and);
   border:2px solid var(--color-and-border);
-  color:var(--color-text-contrast);
+  color:var(--color-and-border);
 }
 .and-bar:forcus{
   box-shadow:0 0 0 3px rgba(120,190,150,.25);
@@ -152,7 +152,7 @@ PAGE-SEARCH.CSS
 .or-bar{
   background:var(--color-or);
   border:2px solid var(--color-or-border);
-  color:var(--color-text-contrast);
+  color:var(--color-or-border);
 }
 .or-bar:forcus{
  box-shadow:0 0 0 3px rgba(230,210,90,.30);
@@ -160,7 +160,7 @@ PAGE-SEARCH.CSS
 .not-bar{
   background:var(--color-not);
   border:2px solid var(--color-not-border);
-  color:var(--color-text-contrast);
+  color:var(--color-not-border);
 }
 .not-bar:forcus{
   box-shadow:0 0 0 3px rgba(230,130,150,.25);
