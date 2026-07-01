@@ -3,60 +3,69 @@
 2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
 :root{ /*夕涼みベース*/
+/*Header*/
   --color-header-bg:#d8eef2;
   --color-header-text:var(--color-text-contrast);
+  --color-header-watermark-rgb:216, 238, 242;
+  --opacity-header-watermark:0.05;
+  
+  /*Navigation*/
   --color-nav-bg:#6b8ea1;
-  --color-bg:#f9ffff;
-  --color-card:#ffffff;
 
+/*Main*/
   --color-main:#6aa7b8;       /* ラムネ瓶 */
   --color-main-dark:#4f8796;
 
+/*Background*/
+  --color-bg:#f9ffff;
+  --color-card:#ffffff;
+  --color-control-box:#dff0f4;
+  --color-input-common:#edf8fa;
+
+/*Border*/
   --color-border:#f4c96d;     /* 風鈴金 */
   --color-border-sub:#b9d9df;
 
+/*Text*/
   --color-text:#3a2f2b;
   --color-text-sub:#7b6961;
   --color-text-contrast:#fff8f3;
 
+/*Buttons*/
   --color-btn-main:#f0907d;   /* 水風船赤 */
   --color-btn-text-s:#4d5f68;
-
   --color-btn-danger:#f7d7c8;
   --color-btn-text-d:#6b5048;
 
+/*Chips*/
   --color-chip:#9ad7e0;
-
-  --color-input-common:#edf8fa;
-  
-  --color-bookmark:#6fc7d6;
-
-  --color-control-box:#dff0f4;
-
-  --color-and:#d7f4ef;
-  --color-and-border:#8bc8b8;
-
-  --color-or:#fff2c7;
-  --color-or-border:#e3c772;
-
-  --color-not:#ffdede;
-  --color-not-border:#e39a9a;
-
-  --color-search-btn:#8fc9d6;
-
-  --color-year-bar:#7db9c6;
-  --color-year-achieved:#f4c96d;
-
   --color-chip-read-bg:#f0907d;
   --color-chip-read-bg-rgb:240,144,125;
   --color-chip-read-text:#ffffff;
+  
+  /*Bookmark*/
+  --color-bookmark:#6fc7d6;
 
+/*Search Logic*/
+  --color-and:#d7f4ef;
+  --color-and-border:#8bc8b8;
+  --color-or:#fff2c7;
+  --color-or-border:#e3c772;
+  --color-not:#ffdede;
+  --color-not-border:#e39a9a;
+  --color-search-btn:#8fc9d6;
+
+/*Stat*/
+  --color-year-bar:#7db9c6;
+  --color-year-achieved:#f4c96d;
+
+/*Calendar*/
   --color-calendar-date:#7ba8b5;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:var(--color-text-sub);/*固定色にすること*/
 
-  /* ヒートマップ */
+  /* Heatmap */
   --color-heat-0:#f9ffff;
   --color-heat-1:#d8eef2;
   --color-heat-2:#9ad7e0;
@@ -64,9 +73,13 @@
   --color-heat-4:#f0a55d;
   --color-heat-5:#f0907d;
   
-  /* タグ選択状態？未使用かも */
-  --color-tag-include:#6b8e23;
-  --color-tag-exclude:#b94a48;
+  /*優先度低いやつ（なくても良い）*/
+--color-shadow:rgba(0,0,0,.15);
+--color-opacity:.9;
+--color-btn-text-s:var(--color-text);
+--color-btn-text-d:var(--color-text-contrast);
+--color-tag-include:var(--color-and);
+--color-tag-exclude:var(--color-not);
 }
 
 
@@ -78,23 +91,22 @@
 --color-header-watermark-rgb:167, 138, 127;
 --opacity-header-watermark:0.05;
 
+--color-nav-bg:#7f8f73;
+
 --color-main:#dca8a8;        /* 桜鼠 */
 --color-main-dark:#b98585;
 
---color-border:#8aa36f;      /* 抹茶 */
-
---color-nav-bg:#7f8f73;
-
 --color-bg:#f8f4ea;          /* 和紙 */
 --color-card:#fffdf8;
+--color-control-box:#ddd5c7;
+--color-input-common:#f6f0ea;
 
+--color-border:#8aa36f;      /* 抹茶 */
 --color-border-sub:#b89b8a;
+
 --color-text:#2f3528;
 --color-text-sub:#6e7a5d;
 --color-text-contrast:#f7f8ef;
---color-shadow:rgba(0,0,0,.08);
-
---color-opacity:0.8;
 
 --color-btn-main:#8aa36f;
 --color-btn-text-s:var(--color-text);
@@ -102,29 +114,22 @@
 --color-btn-text-d:var(--color-text);
 
 --color-chip:#f4e2e2;
-
---color-input-common:#f6f0ea;
+--color-chip-read-bg:#b88f8f;
+--color-chip-read-bg-rgb:184, 143, 143;
+--color-chip-read-text:#fffaf4;
 
 --color-bookmark:#d87070;
 
---color-control-box:#ddd5c7;
-
 --color-and:#edf5e8;
 --color-and-border:#8aa36f;
-
 --color-or:#f8f4df;
 --color-or-border:#d6c26a;
-
 --color-not:#f8e8e4;
 --color-not-border:#d88f8f;
-
 --color-search-btn:#b8a89b;
 
 --color-year-bar:#8aa36f;
 --color-year-achieved:#f3c86b;
-
---color-chip-read-bg:#b88f8f;
---color-chip-read-text:#fffaf4;
 
   --color-calendar-date:var(--color-text-sub);
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -137,6 +142,11 @@
 --color-heat-3:#d9d98c;
 --color-heat-4:#a7c87a;
 --color-heat-5:#6d9a57;
+
+/*他には無い*/
+--color-shadow:rgba(0,0,0,.08);
+--color-opacity:0.8;
+
 }
 
 
@@ -350,7 +360,7 @@
 --color-heat-4:#7f88c9;  /* 青紫陽花 */
 --color-heat-5:#5f5b9c;  /* 夜露紫 */
   
-  /* タグ選択状態？未使用かも */
+  /* 他にはない未使用かも */
   --color-tag-include:#6b8e23;
   --color-tag-exclude:#b94a48;
 }
@@ -470,20 +480,22 @@
 
 [data-theme="yuusuzumi"]{
   --color-header-bg:#d8eef2;
+  --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:216, 238, 242;
   --opacity-header-watermark:0.05;
---color-header-text:var(--color-text-contrast);
+  
+  --color-nav-bg:#6b8ea1;
+
   --color-main:#6aa7b8;       /* ラムネ瓶 */
   --color-main-dark:#4f8796;
 
-  --color-border:#f4c96d;     /* 風鈴金 */
-
   --color-bg:#f9ffff;
   --color-card:#ffffff;
+  --color-control-box:#dff0f4;
+  --color-input-common:#edf8fa;
 
+  --color-border:#f4c96d;     /* 風鈴金 */
   --color-border-sub:#b9d9df;
-  
-  --color-nav-bg:#6b8ea1;
 
   --color-text:#3a2f2b;
 --color-text-sub:#7b6961;
@@ -491,35 +503,26 @@
 
   --color-btn-main:#f0907d;   /* 水風船赤 */
   --color-btn-text-s:#4d5f68;
-
   --color-btn-danger:#f7d7c8;
   --color-btn-text-d:#6b5048;
 
   --color-chip:#9ad7e0;
-
-  --color-input-common:#edf8fa;
+  --color-chip-read-bg:#f0907d;
+  --color-chip-read-bg-rgb:240,144,125;
+  --color-chip-read-text:#ffffff;
 
   --color-bookmark:#6fc7d6;
 
-  --color-control-box:#dff0f4;
-
   --color-and:#d7f4ef;
   --color-and-border:#8bc8b8;
-
   --color-or:#fff2c7;
   --color-or-border:#e3c772;
-
   --color-not:#ffdede;
   --color-not-border:#e39a9a;
-
   --color-search-btn:#8fc9d6;
 
   --color-year-bar:#7db9c6;
   --color-year-achieved:#f4c96d;
-
-  --color-chip-read-bg:#f0907d;
-  --color-chip-read-bg-rgb:240,144,125;
-  --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#7ba8b5;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -649,23 +652,23 @@
   --color-header-watermark-rgb: 83,117,135;
   --opacity-header-watermark:0.05;
 
+  --color-nav-bg:#2e6f88;
+
   --color-main:#9ed8df;       /* ラムネ水色 */
   --color-main-dark:#6bbbc7;  /* 深ラムネ */
-  --color-border:#5d8fa0;     /* 海松色寄り */
 
   --color-bg:#f4eddc;         /* 砂浜 */
   --color-card:#fffef9;       /* 白波 */
+  --color-control-box:#fffaf0;
+  --color-input-common:#f6f1e4; /* 古いメニュー紙 */
 
+  --color-border:#5d8fa0;     /* 海松色寄り */
   --color-border-sub:#b59a74; /* 流木色 */
+
   --color-text:#2c353c;
---color-text-sub:#607687;
---color-text-contrast:#fffdf7;     /* 焼けた木の茶 */
-  --color-shadow:rgba(0,0,0,.08);
-
-  --color-opacity:0.8;
+  --color-text-sub:#607687;
+  --color-text-contrast:#fffdf7;     /* 焼けた木の茶 */
   
-  --color-nav-bg:#2e6f88;
-
   --color-read-text:#5fa07d;  /* 蚊遣り豚の緑 */
   --color-unread-text:#aaa;
 
@@ -674,41 +677,29 @@
   --color-btn-text-s:#60564f;
   --color-btn-danger:#fff1ef;
   --color-btn-text-d:#c65b4b; /* スイカ赤 */
-  --color-btn-border-d:#f1b0a3;
-
-  --color-input-common:#f6f1e4; /* 古いメニュー紙 */
-
-  --color-search-hover:#dff1f5;
 
   --color-chip:#f8f3e8;
+  --color-chip-read-bg:#78b7c5;
+  --color-chip-read-bg-rgb:120, 183, 197;
+  --color-chip-read-text:#fffffc;
 
   --color-bookmark:#5db9d8;   /* スイカ */
-
-  /* 検索バー */
-  --color-control-box:#fffaf0;
   
   --color-and:#d9ece8;         /* 薄い青緑ガラス */
   --color-and-border:#6fb7b0; /* 青磁ラムネ */
-
   --color-or:#f7f0da;          /* 古いメニュー札 */
   --color-or-border:#d9bf72;   /* 砂浜金 */
-
   --color-not:#f8e4de;         /* スイカ果肉薄桃 */
   --color-not-border:#d97b6d;  /* スイカ赤皮寄り */
-
   --color-search-btn:#d8c3a4; /* 木の札 */
 
   --color-year-bar:#79b98d;   /* 青竹 */
   --color-year-achieved:#f4c96a; /* 提灯黄 */
-  
-  --color-chip-read-bg:#78b7c5;
-  --color-chip-read-text:#fffffc;
-  
+    
   --color-calendar-date:#d8c79a;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:#fffef7;
-
   
   --color-heat-0:#f6f1e4;
   --color-heat-1:#dff1f5;
@@ -717,7 +708,11 @@
   --color-heat-4:#5bb9c8;
   --color-heat-5:#2e8ea4;
   
-  
+  /*他には無い*/
+  --color-btn-border-d:#f1b0a3;
+  --color-search-hover:#dff1f5;
+  --color-shadow:rgba(0,0,0,.08);
+  --color-opacity:0.8;
   --color-tag-include:#6b8e23;
   --color-tag-exclude:#b94a48;
 }
@@ -805,55 +800,47 @@
   --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:78, 117, 45;
   --opacity-header-watermark:0.05;
+  
+  --color-nav-bg:#6f7d2f;
 
   --color-main:#7aa348;       /* 葉緑 */
   --color-main-dark:#5f7d32;
 
-  --color-border:#d8a925;     /* 向日葵芯 */
-
   --color-bg:#fffbea;         /* 日差し白 */
   --color-card:#fffef5;
+    --color-control-box:#efe6b4;
+  --color-input-common:#f5f0cf;
 
   --color-border-sub:#b8c47a;
+  --color-border:#d8a925;     /* 向日葵芯 */
+  
  --color-text:#3b321d;
 --color-text-sub:#786743;
 --color-text-contrast:#fff8dc;  /* 茎色 */
-  --color-shadow:rgba(0,0,0,.08);
-
-  --color-opacity:0.8;
-  
-  --color-nav-bg:#6f7d2f;
 
   --color-btn-main:#5f8f3f;
   --color-btn-text-s:#4a5f22;
   --color-btn-danger:#f8e0b8;
   --color-btn-text-d:#7a5422;
-
+  
+  
   --color-chip:#f0c542;
-
-  --color-input-common:#f5f0cf;
-
+  --color-chip-read-bg:#d87d1f;
+  --color-chip-read-bg-rgb:216,125,31;
+  --color-chip-read-text:#fffef5;
+  
   --color-bookmark:#9c6b34;   /* 橙花芯 */
-
-  --color-control-box:#efe6b4;
 
   --color-and:#dff2c7;
   --color-and-border:#9dbf64;
-
   --color-or:#fff2b2;
   --color-or-border:#d8b42a;
-
   --color-not:#f8d9a8;
   --color-not-border:#d88a35;
-
   --color-search-btn:#e0b635;
 
   --color-year-bar:#7aa348;
   --color-year-achieved:#f2c63d;
-
-  --color-chip-read-bg:#d87d1f;
-  --color-chip-read-bg-rgb:216,125,31;
-  --color-chip-read-text:#fffef5;
 
   --color-calendar-date:#b8962f;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -868,6 +855,9 @@
   --color-heat-4:#8cab42;
   --color-heat-5:#4f6d24;
 
+
+  --color-shadow:rgba(0,0,0,.08);
+  --color-opacity:0.8;
   --color-tag-include:#6f9a2a;
   --color-tag-exclude:#c87d28;
 }
@@ -956,24 +946,22 @@
   --color-header-watermark-rgb:244, 231, 200;
   --opacity-header-watermark:0.05;
 
+  --color-nav-bg:#2a2f58;
+  
   --color-main:#3a436d;       /* 夜空紺 */
   --color-main-dark:#5a628f;
 
-  --color-border:#b88a44;     /* 金茶 */
-
   --color-bg:#12121b;         /* 夜背景 */
   --color-card:#1e1f2b;       /* 屋台の影 */
+    --color-control-box:#968a71;
+  --color-input-common:#696351;
 
   --color-border-sub:#8f5f3d;
-  
-  --color-nav-bg:#2a2f58;
-  
+    --color-border:#b88a44;     /* 金茶 */
+
 --color-text:#f8f1e8;
 --color-text-sub:#d7c2b0;
 --color-text-contrast:#fff7f0;
-  --color-shadow:rgba(0,0,0,.08);
-  
-  --color-opacity:0.8;
 
   --color-btn-main:#d86c3d;   /* 朱赤 */
   --color-btn-text-s:var(--color-text);
@@ -981,30 +969,22 @@
   --color-btn-text-d:var(--color-text);
 
   --color-chip:#3d3245;
+  --color-chip-read-bg:#d86c3d;
+  --color-chip-read-bg-rgb:216, 108, 61;
+  --color-chip-read-text:#fff7e8;
   
-  --color-input-common:#696351;
-
   --color-bookmark:#e85c3d;   /* 金魚 */
-  
-  /* 検索バー */
-  --color-control-box:#968a71;
   
   --color-and:#2b4f6b;         /* 夜のラムネ瓶 */
   --color-and-border:#5d8fa0; /* 青提灯 */
-
   --color-or:#6a4f1d;          /* 屋台の灯り */
   --color-or-border:#d6b04c;   /* 金灯り */
-
   --color-not:#6b2f2f;         /* 金魚鉢の赤影 */
   --color-not-border:#d86c3d;  /* 朱赤提灯 */
-
   --color-search-btn:#b88a44; /* 屋台木札 */
 
   --color-year-bar:#4f8c74;   /* 青竹 */
   --color-year-achieved:#f0c34d; /* 花火金 */
-  
-  --color-chip-read-bg:#d86c3d;
-  --color-chip-read-text:#fff7e8;
   
   --color-calendar-date:#d8c79a;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1020,6 +1000,8 @@
   --color-heat-5:#f4d06f;
   
   
+    --color-shadow:rgba(0,0,0,.08);  
+  --color-opacity:0.8;
   --color-tag-include:#6b8e23;
   --color-tag-exclude:#b94a48;
 }
@@ -1194,25 +1176,23 @@
   --color-header-text:var(--color-text);
   --color-header-watermark-rgb:163, 74, 45;
   --opacity-header-watermark:0.05;
+  
+    --color-nav-bg:#8b4a32;
 
   --color-main:#d97a3c;       /* 橙陽 */
   --color-main-dark:#b85a2d;
 
-  --color-border:#f0b45c;     /* 金夕陽 */
-
   --color-bg:#fff4e6;         /* 夕空霞 */
   --color-card:#fffaf2;
-
+  --color-control-box:#f0dcc5;
+  --color-input-common:#f5e3cf;
+  
+  --color-border:#f0b45c;     /* 金夕陽 */
   --color-border-sub:#d6a87c;
-  
-  --color-nav-bg:#8b4a32;
-  
+
 --color-text:#3a261f;
 --color-text-sub:#8a6756;
 --color-text-contrast:#fff4eb;
-  --color-shadow:rgba(0,0,0,.08);
-
-  --color-opacity:0.8;
 
   --color-btn-main:#d97a3c;
   --color-btn-text-s:#7a3f26;
@@ -1220,30 +1200,22 @@
   --color-btn-text-d:#7a3f26;
 
   --color-chip:#f2b25f;
-
-  --color-input-common:#f5e3cf;
+    --color-chip-read-bg:#d76a55;
+  --color-chip-read-bg-rgb:215,106,85;
+  --color-chip-read-text:#fffaf2;
 
   --color-bookmark:#d97842;   /* 夕焼け赤 */
 
-  --color-control-box:#f0dcc5;
-
   --color-and:#f6e3c3;
   --color-and-border:#e0b56b;
-
   --color-or:#f8d2a2;
   --color-or-border:#d98b4a;
-
   --color-not:#f4d0c9;
   --color-not-border:#d76a55;
-
   --color-search-btn:#e2a04d;
 
   --color-year-bar:#c98f4d;
   --color-year-achieved:#f2c14e;
-
-  --color-chip-read-bg:#d76a55;
-  --color-chip-read-bg-rgb:215,106,85;
-  --color-chip-read-text:#fffaf2;
 
   --color-calendar-date:#d89a5c;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1258,6 +1230,9 @@
   --color-heat-4:#c85d35;
   --color-heat-5:#8f3f2d;
 
+
+  --color-shadow:rgba(0,0,0,.08);
+  --color-opacity:0.8;
   --color-tag-include:#8a9a4d;
   --color-tag-exclude:#c45a3d;
 }
@@ -1344,58 +1319,46 @@
   --color-header-text:var(--color-text);
   --color-header-watermark-rgb:139, 98, 74;
   --opacity-header-watermark:0.05;
+  
+  --color-nav-bg:#5a3b2b;
 
   --color-main:#b88a64;
   --color-main-dark:#9b7454;
 
-  --color-border:#b88a64;
-
   --color-bg:#f4eee6;
   --color-card:#fffaf3;
+    --color-control-box:#e7dccd;
+  --color-input-common:#efe6da;
 
-  --color-border-sub:#a58a74;
-  
-  --color-nav-bg:#5a3b2b;
-  
+  --color-border:#b88a64;
+    --color-border-sub:#a58a74;
+    
   --color-text:#4b3528;
 --color-text-sub:#7a5e4d;
 --color-text-contrast:#f5eadf;
-
-  --color-shadow:rgba(0,0,0,.08);
-
-  --color-opacity:0.8;
 
   --color-btn-main:#8b5e4a;
   --color-btn-text-s:#4f3729;
   --color-btn-danger:#f5e7df;
   --color-btn-text-d:#8b4a3a;
-  --color-btn-border-d:#d9b39a;
 
   --color-chip:#d8b89a;
-
-  --color-input-common:#efe6da;
+  --color-chip-read-bg:#b86b4d;
+  --color-chip-read-bg-rgb:184,107,77;
+  --color-chip-read-text:#fffaf3;
 
   --color-bookmark:#b89a52;
 
-  --color-control-box:#e7dccd;
-
   --color-and:#dbe8df;
   --color-and-border:#a8c0b1;
-
   --color-or:#f5ecd9;
   --color-or-border:#d8b56f;
-
   --color-not:#f4dfdb;
   --color-not-border:#c98b7b;
-
   --color-search-btn:#c7a27a;
 
   --color-year-bar:#8a9a74;
   --color-year-achieved:#d8b56f;
-
-  --color-chip-read-bg:#b86b4d;
-  --color-chip-read-bg-rgb:184,107,77;
-  --color-chip-read-text:#fffaf3;
 
   --color-calendar-date:#b89b7a;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1410,6 +1373,9 @@
   --color-heat-4:#8b5e4a;
   --color-heat-5:#6b4b3a;
 
+  --color-btn-border-d:#d9b39a;
+  --color-shadow:rgba(0,0,0,.08);
+  --color-opacity:0.8;
   --color-tag-include:#6b8e23;
   --color-tag-exclude:#b94a48;
 }
@@ -1473,56 +1439,46 @@ opacity:.6;
 --color-header-text:var(--color-text);
   --color-header-watermark-rgb:180, 195, 210;
   --opacity-header-watermark:0.05;
+  
+  --color-nav-bg:#617e66;
 
   --color-main:#a8c6d8;       /* 薄氷青 */
   --color-main-dark:#7f9daf;
 
-  --color-border:#d9cda8;     /* 新年の金 */
-
   --color-bg:#ffffff;
   --color-card:#fdfefe;
+  --color-control-box:#edf4f8;
+  --color-input-common:#f3f8fb;
 
-  --color-border-sub:#d7e1e8;
-  
-  --color-nav-bg:#617e66;
+  --color-border:#d9cda8;     /* 新年の金 */
+  --color-border-sub:#d7e1e8;  
 
   --color-text:#2d342c;
 --color-text-sub:#667466;
 --color-text-contrast:#f4faf4;
 
-  --color-opacity:0.85;
-
   --color-btn-main:#c8d9e8;
   --color-btn-text-s:#4d5a66;
-
   --color-btn-danger:#f4e7df;
   --color-btn-text-d:#8a6558;
 
   --color-chip:#dce9f2;
-
-  --color-input-common:#f3f8fb;
+  --color-chip-read-bg:#d9b97a;
+  --color-chip-read-bg-rgb:217,185,122;
+  --color-chip-read-text:#ffffff;
 
   --color-bookmark:#8fc9d8;
 
-  --color-control-box:#edf4f8;
-
   --color-and:#e6f4f8;
   --color-and-border:#a8c6d8;
-
   --color-or:#f8f2e6;
   --color-or-border:#d9cda8;
-
   --color-not:#f6eaea;
   --color-not-border:#d2b2b2;
-
   --color-search-btn:#c8d9e8;
 
   --color-year-bar:#a8c6d8;
   --color-year-achieved:#d9cda8;
-
-  --color-chip-read-bg:#d9b97a;
-  --color-chip-read-bg-rgb:217,185,122;
-  --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#8fa4b5;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1535,6 +1491,9 @@ opacity:.6;
   --color-heat-3:#c8d9e8;
   --color-heat-4:#a8c6d8;
   --color-heat-5:#7f9daf;
+
+  --color-opacity:0.85;
+
 }
 
 
@@ -1586,49 +1545,45 @@ opacity:.6;
 --color-header-watermark-rgb:110, 120, 140;
 --opacity-header-watermark:0.05;
 
+--color-nav-bg:#7c746d;
+
 --color-main:#a9b8d0;        /* 冬空 */
 --color-main-dark:#8393af;
 
---color-border:#5d6b82;      /* 書斎紺 */
-
 --color-bg:#eef3f8;          /* 雪床 */
 --color-card:#ffffff;
+--color-control-box:#d6dee8;
+--color-input-common:#f7fafc;
 
+--color-border:#5d6b82;      /* 書斎紺 */
 --color-border-sub:#9aa8b8;
-
---color-nav-bg:#7c746d;
 
 --color-text:#2e2a28;
 --color-text-sub:#7a746e;
 --color-text-contrast:#fffdfa;
 
 --color-btn-main:#6b7c9d;
+--color-btn-text-s:#4f4338;
 --color-btn-danger:#f5f0f0;
+--color-btn-text-d:#f8f6f1;
 
 --color-chip:#dde5ee;
-
---color-input-common:#f7fafc;
+--color-chip-read-bg:#7f98b8;
+--color-chip-read-bg-rgb:127, 152, 184;
+--color-chip-read-text:#ffffff;
 
 --color-bookmark:#9d6b6b;
 
---color-control-box:#d6dee8;
-
 --color-and:#e8f2f8;
 --color-and-border:#9bb8d0;
-
 --color-or:#f8f8f0;
 --color-or-border:#d6d0a5;
-
 --color-not:#f8eeee;
 --color-not-border:#c99b9b;
-
 --color-search-btn:#b8c4d6;
 
 --color-year-bar:#7fa0b8;
 --color-year-achieved:#d8d2a0;
-
---color-chip-read-bg:#7f98b8;
---color-chip-read-text:#ffffff;
 
   --color-calendar-date:#7f8ca3;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1723,50 +1678,45 @@ background-size:
 --color-header-watermark-rgb:210, 180, 140;
 --opacity-header-watermark:0.05;
 
+--color-nav-bg:#6a4b3f;
+
 --color-main:#8b4a3a;        /* 煉瓦 */
 --color-main-dark:#6f382d;
 
---color-border:#c08a4d;      /* 真鍮 */
-
 --color-bg:#2a2520;          /* 古木 */
 --color-card:#3a3129;
+--color-control-box:#6b5849;
+--color-input-common:#5a4a3d;
 
+--color-border:#c08a4d;      /* 真鍮 */
 --color-border-sub:#7a5a46;
-
---color-nav-bg:#6a4b3f;
 
 --color-text:#f2e7da;
 --color-text-sub:#c7b6a3;
 --color-text-contrast:#fff7ef;
 
 --color-btn-main:#8b4a3a;
+--color-btn-text-s:#3b3126;
 --color-btn-danger:#4a2a22;
+--color-btn-text-d:#fff8ef;
 
 --color-chip:#8c5a42;
-
---color-input-common:#5a4a3d;
+--color-chip-read-bg:#b86b4d;
+--color-chip-read-bg-rgh:184, 107, 77;
+--color-chip-read-text:#fff1de;
 
 --color-bookmark:#d4b16a;
 
---color-control-box:#6b5849;
-
 --color-and:#4a5b5a;
 --color-and-border:#7f9c96;
-
 --color-or:#6b5130;
 --color-or-border:#d0a35a;
-
 --color-not:#5a2f2f;
 --color-not-border:#b85a3d;
-
 --color-search-btn:#a57b4d;
 
 --color-year-bar:#6b7a4d;
 --color-year-achieved:#d6a34d;
-
---color-chip-read-bg:#b86b4d;
---color-chip-read-text:#fff1de;
-
 
   --color-calendar-date:#b89b7a;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1818,56 +1768,46 @@ background-size:
   --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:210, 225, 210;
   --opacity-header-watermark:0.04;
+  
+--color-nav-bg:#243127;
 
   --color-main:#4f6b4e;       /* 苔緑 */
   --color-main-dark:#344534;  /* 深森 */
 
-  --color-border:#a7b39b;     /* 月白 */
-
   --color-bg:#141915;
   --color-card:#1b221d;
+  --color-control-box:#2a352b;
+  --color-input-common:#253026;
 
+  --color-border:#a7b39b;     /* 月白 */
   --color-border-sub:#556456;
-
---color-nav-bg:#243127;
 
  --color-text:#d9e6d5;
 --color-text-sub:#8ca28b;
 --color-text-contrast:#f5fff2;
 
-  --color-opacity:0.85;
-
   --color-btn-main:#4f6b4e;
   --color-btn-text-s:#d9e2d4;
-
   --color-btn-danger:#3d2f2f;
   --color-btn-text-d:#e4d7d7;
 
   --color-chip:#6f886b;
-
-  --color-input-common:#253026;
-
+  --color-chip-read-bg:#7f9b78;
+  --color-chip-read-bg-rgb:127,155,120;
+  --color-chip-read-text:#f6faf3;
+  
   --color-bookmark:#b8c2cf;
-
-  --color-control-box:#2a352b;
 
   --color-and:#314634;
   --color-and-border:#708d73;
-
   --color-or:#445243;
   --color-or-border:#8fa08c;
-
   --color-not:#4b3535;
   --color-not-border:#9d7b7b;
-
   --color-search-btn:#627a61;
 
   --color-year-bar:#3f5b41;
   --color-year-achieved:#b7c69a;
-
-  --color-chip-read-bg:#7f9b78;
-  --color-chip-read-bg-rgb:127,155,120;
-  --color-chip-read-text:#f6faf3;
 
   --color-calendar-date:#a7b39b;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -1880,6 +1820,9 @@ background-size:
   --color-heat-3:#627a61;
   --color-heat-4:#8ea889;
   --color-heat-5:#d9e2d4;
+  
+    --color-opacity:0.85;
+
 }
 
 [data-theme="tsukikage"] header::before{
@@ -1958,57 +1901,46 @@ background-size:
   --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:220, 190, 140;
   --opacity-header-watermark:0.05;
+  
+--color-nav-bg:#2c1b35;
 
   --color-main:#5d3d6b;       /* 深紫 */
   --color-main-dark:#41284c;
 
-  --color-border:#c9a54a;     /* 金 */
-
   --color-bg:#18141d;
   --color-card:#221b28;
+  --color-control-box:#2e2435;
+    --color-input-common:#2b2232;
 
---color-nav-bg:#2c1b35;
-
+  --color-border:#c9a54a;     /* 金 */
   --color-border-sub:#4d3b58;
 
   --color-text:#f2e8df;
 --color-text-sub:#a08d84;
 --color-text-contrast:#fff7f0;
   
-
-  --color-opacity:0.85;
-
-  --color-btn-main:#7a2f4a;   /* ワイン赤 */
+    --color-btn-main:#7a2f4a;   /* ワイン赤 */
   --color-btn-text-s:#f2e7d8;
-
   --color-btn-danger:#34242d;
   --color-btn-text-d:#e8d7df;
 
   --color-chip:#a88432;
-
-  --color-input-common:#2b2232;
+  --color-chip-read-bg:#7a2f4a;
+  --color-chip-read-bg-rgb:122,47,74;
+  --color-chip-read-text:#f8f1e8;
 
   --color-bookmark:#c9a54a;
 
-  --color-control-box:#2e2435;
-
   --color-and:#3a2d43;
   --color-and-border:#8d7a98;
-
   --color-or:#4b3a24;
   --color-or-border:#c9a54a;
-
   --color-not:#4a2730;
   --color-not-border:#b85c7b;
-
   --color-search-btn:#5d3d6b;
 
   --color-year-bar:#41284c;
   --color-year-achieved:#c9a54a;
-
-  --color-chip-read-bg:#7a2f4a;
-  --color-chip-read-bg-rgb:122,47,74;
-  --color-chip-read-text:#f8f1e8;
 
   --color-calendar-date:#bba98e;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -2021,6 +1953,9 @@ background-size:
   --color-heat-3:#5d3d6b;
   --color-heat-4:#7a2f4a;
   --color-heat-5:#c9a54a;
+  
+  
+  --color-opacity:0.85;
 }
 
 
@@ -2102,56 +2037,46 @@ background-size:
 --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:120, 100, 80;
   --opacity-header-watermark:0.04;
+  
+  --color-nav-bg:#6d4738;
 
   --color-main:#d9412c;
   --color-main-dark:#8f2318;
 
-  --color-border:#8f8b80;      /* 石灰 */
-
   --color-bg:#f8f6f1;
   --color-card:#ffffff;
+    --color-control-box:#ece8df;
+  --color-input-common:#f1eee8;
 
-  --color-border-sub:#d8d4cb;
-  
-  --color-nav-bg:#6d4738;
+  --color-border:#8f8b80;      /* 石灰 */
+    --color-border-sub:#d8d4cb;
 
   --color-text:#1f1a16;
 --color-text-sub:#5d5648;
 --color-text-contrast:#f4f0e8;
 
-  --color-opacity:0.85;
-
   --color-btn-main:#c44f3a;
   --color-btn-text-s:#ffffff;
-
   --color-btn-danger:#5f4a44;
   --color-btn-text-d:#f8f6f1;
 
   --color-chip:#a6b792;        /* 苔 */
-
-  --color-input-common:#f1eee8;
+  --color-chip-read-bg:#5e7f4f;
+  --color-chip-read-bg-rgb:94,127,79;
+  --color-chip-read-text:#ffffff;
 
   --color-bookmark:#b89a52;
 
-  --color-control-box:#ece8df;
-
   --color-and:#dfe8db;
   --color-and-border:#7f9a74;
-
   --color-or:#efe5d8;
   --color-or-border:#c9a06b;
-
   --color-not:#f0dfdf;
   --color-not-border:#b07a7a;
-
   --color-search-btn:#c44f3a;
 
   --color-year-bar:#7f9a74;
   --color-year-achieved:#c9a06b;
-
-  --color-chip-read-bg:#5e7f4f;
-  --color-chip-read-bg-rgb:94,127,79;
-  --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#8f8b80;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -2164,6 +2089,9 @@ background-size:
   --color-heat-3:#b7b0a2;
   --color-heat-4:#7f9a74;
   --color-heat-5:#c44f3a;
+
+
+  --color-opacity:0.85;
 }
 
 
@@ -2370,61 +2298,48 @@ radial-gradient(
 [data-theme="bunmeikaika"]{
   --color-header-bg:#1f3558;   /* 紺青 */
   --color-header-text:var(--color-text-contrast);
-
   --color-header-watermark-rgb:230, 195, 120;
   --opacity-header-watermark:0.06;
+
+  --color-nav-bg:#203d63;
 
   --color-main:#c89b3c;        /* 真鍮金 */
   --color-main-dark:#9a7428;
 
-  --color-border:#375e97;      /* 青磁寄り青 */
-
   --color-bg:#f4ecd8;          /* 羊皮紙 */
   --color-card:#fff8e8;
+    --color-control-box:#e8dcc0;
+  --color-input-common:#ede2c7;
 
+  --color-border:#375e97;      /* 青磁寄り青 */
   --color-border-sub:#d6c6a5;
   
-  --color-nav-bg:#203d63;
-
   --color-text:#2d2418;
 --color-text-sub:#6e5b3d;
 --color-text-contrast:#f7edd8;
 
---color-shadow:rgba(45,36,24,0.18);
-
-  --color-opacity:0.9;
-
   --color-btn-main:#375e97;
   --color-btn-text-s:#4e3f36;
-
   --color-btn-danger:#8c3b2a;
   --color-btn-text-d:#fff4ee;
 
   --color-chip:#d9b55a;
-
-  --color-input-common:#ede2c7;
+  --color-chip-read-bg:#5a7ab3;
+  --color-chip-read-bg-rgb:90,122,179;
+  --color-chip-read-text:#fff8ef;
 
   --color-bookmark:#375e97;
 
-  --color-control-box:#e8dcc0;
-
   --color-and:#4b6c5d;
   --color-and-border:#89a796;
-
   --color-or:#b8872d;
   --color-or-border:#e0bc72;
-
   --color-not:#8c3b2a;
   --color-not-border:#d98975;
-
   --color-search-btn:#375e97;
 
   --color-year-bar:#9a7428;
   --color-year-achieved:#d9b55a;
-
-  --color-chip-read-bg:#5a7ab3;
-  --color-chip-read-bg-rgb:90,122,179;
-  --color-chip-read-text:#fff8ef;
 
   --color-calendar-date:#7d6748;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -2437,6 +2352,10 @@ radial-gradient(
   --color-heat-3:#c89b3c;
   --color-heat-4:#5a7ab3;
   --color-heat-5:#1f3558;
+  
+  --color-shadow:rgba(45,36,24,0.18);
+  --color-opacity:0.9;
+
 }
 
 
@@ -2448,63 +2367,48 @@ radial-gradient(
 [data-theme="modern-pop"]{
   --color-header-bg:#a62b32;   /* モダンレッド（臙脂・緋色寄り） */
   --color-header-text:var(--color-text-contrast);
-
   --color-header-watermark-rgb:242, 212, 143;
   --opacity-header-watermark:0.08;
+  
+  --color-nav-bg:#362245;      /* 深いお召し紫 */
 
   --color-main:#e5a93b;        /* カナリア・卵黄色（当時のポップな差色） */
   --color-main-dark:#bd821a;
 
-  --color-border:#4d3161;      /* 葡萄色（大正ロマンの代名詞的な紫） */
-
   --color-bg:#faf3e3;          /* 浪漫クリーム（少し黄みのあるレトロ白） */
   --color-card:#ffffff;
+  --color-control-box:#f3e3be;
+  --color-input-common:#eedeb8;
 
+  --color-border:#4d3161;      /* 葡萄色（大正ロマンの代名詞的な紫） */
   --color-border-sub:#dfd1b3;
   
-  --color-nav-bg:#362245;      /* 深いお召し紫 */
-
   --color-text:#2b201a;        /* 焦茶（黒の代わりにレトロ感を出す） */
   --color-text-sub:#6b5447;
   --color-text-contrast:#fdfcf7;
 
-  --color-shadow:rgba(43,32,26,0.15);
-
-  --color-opacity:0.92;
-
   --color-btn-main:#216153;    /* 常磐緑（当時のモダン建築やタイルの緑） */
   --color-btn-text-s:#60564f;
-
   --color-btn-danger:#a62b32;
   --color-btn-text-d:#fff3f3;
 
   --color-chip:#e5a93b;
-
-  --color-input-common:#eedeb8;
+  --color-chip-read-bg: #80ba9b;   /* 黒文字が映える、少し白みを混ぜたハイカラな緑 */
+  --color-chip-read-bg-rgb: 128, 186, 155;
+  --color-chip-read-text: #fdfcf7;      /* 白（浪漫クリーム）文字が映える */
 
   --color-bookmark:#216153;
 
-  --color-control-box:#f3e3be;
-
   --color-and:#216153;
   --color-and-border:#60968a;
-
   --color-or:#d97a36;          /* 蜜柑色 */
   --color-or-border:#efa36c;
-
   --color-not:#a62b32;
   --color-not-border:#e07b81;
-
   --color-search-btn:#4d3161;
 
   --color-year-bar:#bd821a;
   --color-year-achieved:#e5a93b;
-
-      --color-chip-read-bg: #80ba9b;        /* 黒文字が映える、少し白みを混ぜたハイカラな緑 */
-  --color-chip-read-bg-rgb: 128, 186, 155;
-
-  --color-chip-read-text: #fdfcf7;      /* 白（浪漫クリーム）文字が映える */
-
 
   --color-calendar-date:#544135;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
@@ -2518,6 +2422,10 @@ radial-gradient(
   --color-heat-3: #e5a93b;          /* 3冊：カナリア・卵黄色 */
   --color-heat-4: #60968a;          /* 4冊：少し明るめの常磐緑 */
   --color-heat-5: #362245;          /* 5冊以上：深いお召し紫（文字色：白） */
+  
+    --color-shadow:rgba(43,32,26,0.15);
+  --color-opacity:0.92;
+
 }
 
 
@@ -2561,6 +2469,88 @@ radial-gradient(
   background-size: var(--bg-size);
 }
 
+
+
+
+
+
+[data-theme="taishomodern"]{
+  /* Header */
+  --color-header-bg:#6a2f2b;   /* 海老茶 */
+  --color-header-text:#f7efe2;
+  --color-header-watermark-rgb:220,185,120;
+  --opacity-header-watermark:.08;
+
+  /* Main */
+  --color-main:#a84f3d;        /* 朱茶 */
+  --color-main-dark:#7e372c;
+
+  /* Border */
+  --color-border:#6f7a5d;      /* 深緑灰 */
+  --color-border-sub:#d9ccb8;
+
+  /* Base */
+  --color-bg:#f7efe2;          /* 和紙 */
+  --color-card:#fff9f0;
+  --color-control-box:#efe3cf;
+  --color-input-common:#f3e8d6;
+
+  /* Navigation */
+  --color-nav-bg:#4d5a46;      /* 深緑 */
+
+  /* Text */
+  --color-text:#2c221c;        /* 墨 */
+  --color-text-sub:#6a5749;
+  --color-text-contrast:#fff8ef;
+
+  /* Buttons */
+  --color-btn-main:#6f7a5d;
+  --color-btn-text-s:#2c221c;
+
+  --color-btn-danger:#9c4d40;
+  --color-btn-text-d:#fff8ef;
+
+  /* Chips */
+  --color-chip:#c89b5d;        /* 真鍮金 */
+
+  /* Bookmark */
+  --color-bookmark:#7b4f7a;    /* 紫袴 */
+
+  /* Search logic */
+  --color-and:#d9e4d3;
+  --color-and-border:#6f8a63;
+
+  --color-or:#f0e0bc;
+  --color-or-border:#c89b5d;
+
+  --color-not:#edd3d0;
+  --color-not-border:#b77468;
+
+  --color-search-btn:#6f7a5d;
+
+  /* Stats */
+  --color-year-bar:#7b4f7a;
+  --color-year-achieved:#c89b5d;
+
+  /* Read chip */
+  --color-chip-read-bg:#6a2f2b;
+  --color-chip-read-bg-rgb:106,47,43;
+  --color-chip-read-text:#fff8ef;
+
+  /* Calendar */
+  --color-calendar-date:#7b6654;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#fff8ef;
+
+  /* Heat */
+  --color-heat-0:#fff9f0;
+  --color-heat-1:#efe3cf;
+  --color-heat-2:#d9ccb8;
+  --color-heat-3:#c89b5d;
+  --color-heat-4:#7b4f7a;
+  --color-heat-5:#6a2f2b;
+}
 
 
 
