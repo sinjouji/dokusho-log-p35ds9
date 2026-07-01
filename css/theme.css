@@ -471,6 +471,7 @@
 [data-theme="yuusuzumi"]{
   --color-header-bg:#d8eef2;
   --color-header-watermark-rgb:216, 238, 242;
+  --opacity-header-watermark:0.05;
 --color-header-text:var(--color-text-contrast);
   --color-main:#6aa7b8;       /* ラムネ瓶 */
   --color-main-dark:#4f8796;
@@ -1583,6 +1584,7 @@ opacity:.6;
 --color-header-bg:#f8fbfd;
 --color-header-text:var(--color-text);
 --color-header-watermark-rgb:110, 120, 140;
+--opacity-header-watermark:0.05;
 
 --color-main:#a9b8d0;        /* 冬空 */
 --color-main-dark:#8393af;
@@ -1714,6 +1716,7 @@ opacity:.6;
 --color-header-bg:#2b211c;
   --color-header-text:var(--color-text);
 --color-header-watermark-rgb:210, 180, 140;
+--opacity-header-watermark:0.05;
 
 --color-main:#8b4a3a;        /* 煉瓦 */
 --color-main-dark:#6f382d;
