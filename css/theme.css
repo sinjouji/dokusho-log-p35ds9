@@ -2585,3 +2585,83 @@ radial-gradient(
 
 
 
+[data-theme="showakissa"]{
+  /* Header */
+  --color-header-bg:#5b2d26;   /* 深いマホガニー */
+  --color-header-text:#f8f2e8;
+  --color-header-watermark-rgb:210,170,95;
+  --opacity-header-watermark:.07;
+
+  /* Main */
+  --color-main:#8c3f2f;        /* 赤茶 */
+  --color-main-dark:#642a1f;
+
+  /* Border */
+  --color-border:#b58b55;      /* 真鍮 */
+  --color-border-sub:#d8c4a5;
+
+  /* Base */
+  --color-bg:#f5ecd9;          /* ミルクティー */
+  --color-card:#fff7ea;
+  --color-control-box:#efe2ca;
+  --color-input-common:#f3e6cf;
+
+  /* Navigation */
+  --color-nav-bg:#6b4a35;      /* 木目ブラウン */
+
+  /* Text */
+  --color-text:#2b211b;        /* コーヒー黒 */
+  --color-text-sub:#6a5544;
+  --color-text-contrast:#fffaf2;
+
+  /* Buttons */
+  --color-btn-main:#3f6b52;    /* 喫茶グリーン */
+  --color-btn-text-s:#2b211b;
+
+  --color-btn-danger:#8c3f2f;
+  --color-btn-text-d:#fff8ef;
+
+  /* Chips */
+  --color-chip:#d3b06b;        /* 琥珀金 */
+
+  /* Bookmark */
+  --color-bookmark:#4f7b63;    /* クリームソーダ緑 */
+
+  /* Search logic */
+  --color-and:#dce8dc;
+  --color-and-border:#7b9b7f;
+
+  --color-or:#f2e3bb;
+  --color-or-border:#d3b06b;
+
+  --color-not:#f1d8d2;
+  --color-not-border:#b97b6a;
+
+  --color-search-btn:#3f6b52;
+
+  /* Stats */
+  --color-year-bar:#4f7b63;
+  --color-year-achieved:#d3b06b;
+
+  /* Read chip */
+  --color-chip-read-bg:#7a3d2d;
+  --color-chip-read-bg-rgb:122,61,45;
+  --color-chip-read-text:#fff8ef;
+
+  /* Calendar */
+  --color-calendar-date:#7c654f;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#fff8ef;
+
+  /* Heat */
+  --color-heat-0:#fff7ea;
+  --color-heat-1:#f0e2c9;
+  --color-heat-2:#d8c4a5;
+  --color-heat-3:#d3b06b;
+  --color-heat-4:#4f7b63;
+  --color-heat-5:#8c3f2f;
+}
+
+
+
