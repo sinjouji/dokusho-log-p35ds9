@@ -8,7 +8,7 @@ COMMON.CSS
 
 .btn-main{
   background:var(--color-btn-main);
-  color:var(--color-text-sub);
+  color:var(--color-text-contrast);
 
   border:none;
 }/*保存，追加*/
@@ -33,7 +33,7 @@ COMMON.CSS
 
 .app-name{
   font-size:14px;
-  color:var(--color-text);
+  color:var(--color-text-contrast);
   font-style:italic;
 }
 .app-watermark{
@@ -80,7 +80,7 @@ body{
 
 header{
   background:var(--color-header-bg);
-  color:var(--color-text);
+  color:var(--color-text-contrast);
   padding:15px;
   font-size:20px;
   margin-bottom:10px;
@@ -196,7 +196,7 @@ header::before{
 border:none;
 background:var(--color-main);
 font-size:12px;
-color:var(--color-text);
+color:var(--color-text-contrast);
 opacity:0.85;
 transition:.2s;
 min-width:60px;
@@ -247,7 +247,7 @@ box-shadow:
   right:10px;
   top:50%;
   transform:translateY(-50%);
-  color:var(--color-text);
+  color:var(--color-text-sub);
   pointer-events:none;
   font-size:12px;
 }
@@ -495,7 +495,7 @@ button{
 /*＝＝＝＝＝フィルターちゃん＝＝＝＝＝*/
 .filter-mode button.active {
   background: var(--color-bg);
-  color: var(--color-text-sub);
+  color: var(--color-text-contrast);
 }
 
 /*＝＝＝＝＝絞込みの色分け＝＝＝＝＝*/
@@ -566,7 +566,7 @@ flex:0 0 auto;
 #color-mode::after{
 content:" / ";
 margin:0 4px;
-color: var(--color-text);
+color: var(--color-text-sub);
 }
 
 
@@ -582,7 +582,7 @@ color: var(--color-text);
 
 #type-filter button.active{
   background: var(--color-bg);
-  color: var(--color-text-sub);
+  color: var(--color-text-contrast);
   font-size:13px;
 }
 
@@ -624,7 +624,7 @@ color: var(--color-text);
 
 .filter-actions button.active{
   background:var(--color-border);
-  color:var(--color-text-sub);
+  color:var(--color-text-contrast);
   
   border:none;
 }

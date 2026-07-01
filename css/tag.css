@@ -6,7 +6,7 @@ tag.css
 .tag{
   display:inline-block;   font-size:10px;
   padding:2px 6px;   border-radius:999px;
-  color:var(--color-text-sub);   margin-right:4px;
+  color:var(--color-text-contrast);   margin-right:4px;
 }
 
 
@@ -83,7 +83,7 @@ tag.css
 }
 
 .tag-chip.active{
-  color:var(--color-text-sub);
+  color:var(--color-text-contrast);
   transform:scale(1.05);
 }
 
@@ -118,7 +118,7 @@ tag.css
   padding:3px 7px;
   border-radius:999px;
   background:var(--color-chip);
-  color:var(--color-text);
+  color:var(--color-text-contrast);
 }
 
 
@@ -129,7 +129,7 @@ tag.css
 
 .hidden-tag-chip.active{
   background:var(--color-chip);
-  color:var(--color-text-sub);
+  color:var(--color-text-contrast);
 }
 
 .hidden-tag-edit-card{
@@ -174,7 +174,7 @@ tag.css
   border-radius:999px;
   border:1px solid var(--color-border-sub);
   background:var(--color-chip);
-  color:var(--color-text);
+  color:var(--color-text-contrast);
   opacity:var(--color-opacity);
 }
 
@@ -326,7 +326,7 @@ tag.css
   border-radius:999px;
   border:1px solid var(--color-border);
   background:var(--color-chip);
-  color:var(--color-text);
+  color:var(--color-text-sub);
 }
 
 .selected-hidden-tags{

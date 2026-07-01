@@ -53,7 +53,7 @@ grid-template-columns:1fr 1fr;
   
 .satu{
 background:var(--color-card);
-color:var(--color-text);
+color:var(--color-text-sub);
 font-size:15px;
 font-weight:bold;
 padding:5px 30px;
@@ -290,7 +290,7 @@ text-align:center;
   background:var(--color-chip);
   font-weight:600;
   font-size:9px;
-  color:var(--color-text);
+  color:var(--color-text-contrast);
   opacity:var(--color-opacity);
 }
 

@@ -127,7 +127,7 @@ PAGE-SEARCH.CSS
   border-top:1px dashed var(--color-border-sub);
   font-size:12px;
   line-height:1.6;
-  color:var(--color-text);
+  color:var(--color-text-sub);
 }
 
 .search-min-rows{

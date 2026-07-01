@@ -95,7 +95,7 @@
 
   font-weight:bold;
 
-  color:var(--color-text);
+  color:var(--color-text-sub);
 
 }
 
@@ -221,7 +221,7 @@
 .stats-sub{
   margin-top:2px;
   font-size:11px;
-  color:var(--color-text);
+  color:var(--color-text-sub);
   font-weight:bold;
 }
 

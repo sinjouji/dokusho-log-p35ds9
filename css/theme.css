@@ -15,12 +15,29 @@
   --color-card:#fffffc;
 
   --color-border-sub:#8b7e74;     /* 茶系枠線 */
-  --color-text:#917347;
+
+  /* メインテキストカラー
+   本文・詳細・説明・検索結果・カード内文字
+   読むための色
+  */
+  --color-text:#917347; 
+  
+  /* サブテキストカラー
+   検索バー、プルダウン、固定メニュー、タグ、シリーズ一覧、日付表示
+   操作系の色
+  */
+  --color-text-sub:#fffffc; /* サブ文字色 */
+  
+  /* コントラストテキストカラー
+   ヘッダー、濃いボタン、濃い帯、濃い背景
+   逆色
+  */
+  --color-text-contrast:#fffffc;
+ 
   --color-shadow:rgba(0,0,0,.08);
   
   --color-opacity:0.8;
   
-  --color-text-sub:#fffffc; /* サブ文字色 */
   --color-read-text:#6f9f5f;
   --color-unread-text:#aaa;
   
@@ -78,10 +95,10 @@
 --color-card:#fffdf8;
 
 --color-border-sub:#b89b8a;
---color-text:#7f6a58;
+--color-text:#2f3528;
+--color-text-sub:#6e7a5d;
+--color-text-contrast:#f7f8ef;
 --color-shadow:rgba(0,0,0,.08);
-
---color-text-sub:#fffaf4;
 
 --color-opacity:0.8;
 
@@ -115,10 +132,10 @@
 --color-chip-read-bg:#b88f8f;
 --color-chip-read-text:#fffaf4;
 
-  --color-calendar-date:#a98d7a;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-date:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-text-contrast);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:var(--color-text-contrast);
 
 --color-heat-0:#f8f4ea;
 --color-heat-1:#f8dede;
@@ -284,12 +301,13 @@
   --color-card:#fffffc;
 
   --color-border-sub:#8b7e74;     /* 茶系枠線 */
-  --color-text:#917347;
+  --color-text:#352d45;
+--color-text-sub:#7a6d96;
+--color-text-contrast:#f7f4fb;
   --color-shadow:rgba(0,0,0,.08);
   
   --color-opacity:0.8;
   
-  --color-text-sub:#fffffc; /* サブ文字色 */
   --color-read-text:#6f9f5f;
   --color-unread-text:#aaa;
   
@@ -466,8 +484,9 @@
 
   --color-border-sub:#b9d9df;
 
-  --color-text:#4d5f68;       /* 夕空灰青 */
-  --color-text-sub:#ffffff;
+  --color-text:#3a2f2b;
+--color-text-sub:#7b6961;
+--color-text-contrast:#fff8f3;
 
   --color-btn-main:#f0907d;   /* 水風船赤 */
   --color-btn-text-s:#4d5f68;
@@ -635,12 +654,13 @@
   --color-card:#fffef9;       /* 白波 */
 
   --color-border-sub:#b59a74; /* 流木色 */
-  --color-text:#6b5a43;       /* 焼けた木の茶 */
+  --color-text:#2c353c;
+--color-text-sub:#607687;
+--color-text-contrast:#fffdf7;     /* 焼けた木の茶 */
   --color-shadow:rgba(0,0,0,.08);
 
   --color-opacity:0.8;
 
-  --color-text-sub:#fffffc;
   --color-read-text:#5fa07d;  /* 蚊遣り豚の緑 */
   --color-unread-text:#aaa;
 
@@ -789,10 +809,10 @@
   --color-card:#fffef5;
 
   --color-border-sub:#b8c47a;
-  --color-text:#5a3d1f;       /* 茎色 */
+ --color-text:#3b321d;
+--color-text-sub:#786743;
+--color-text-contrast:#fff8dc;  /* 茎色 */
   --color-shadow:rgba(0,0,0,.08);
-
-  --color-text-sub:#fffef5;
 
   --color-opacity:0.8;
 
@@ -936,10 +956,10 @@
   --color-card:#1e1f2b;       /* 屋台の影 */
 
   --color-border-sub:#8f5f3d;
-  --color-text:#f4e7c8;       /* 提灯紙 */
+--color-text:#2d1f28;
+--color-text-sub:#7f5b6c;
+--color-text-contrast:#fff1e8;
   --color-shadow:rgba(0,0,0,.08);
-
-  --color-text-sub:#1e1f2b;
   
   --color-opacity:0.8;
 
@@ -1171,10 +1191,10 @@
   --color-card:#fffaf2;
 
   --color-border-sub:#d6a87c;
-  --color-text:#7a3f26;       /* 赤土 */
+--color-text:#3a261f;
+--color-text-sub:#8a6756;
+--color-text-contrast:#fff4eb;
   --color-shadow:rgba(0,0,0,.08);
-
-  --color-text-sub:#fffaf2;
 
   --color-opacity:0.8;
 
@@ -1317,8 +1337,9 @@
   --color-card:#fffaf3;
 
   --color-border-sub:#a58a74;
-  --color-text:#4a3024;
-  --color-text-sub:#fffaf3;
+  --color-text:#4b3528;
+--color-text-sub:#7a5e4d;
+--color-text-contrast:#f5eadf;
 
   --color-shadow:rgba(0,0,0,.08);
 
@@ -1443,8 +1464,9 @@ opacity:.6;
 
   --color-border-sub:#d7e1e8;
 
-  --color-text:#4d5a66;       /* 冬朝の影 */
-  --color-text-sub:#ffffff;
+  --color-text:#2d342c;
+--color-text-sub:#667466;
+--color-text-contrast:#f4faf4;
 
   --color-opacity:0.85;
 
@@ -1549,8 +1571,9 @@ opacity:.6;
 --color-card:#ffffff;
 
 --color-border-sub:#9aa8b8;
---color-text:#4a5568;
---color-text-sub:#ffffff;
+--color-text:#2e2a28;
+--color-text-sub:#7a746e;
+--color-text-contrast:#fffdfa;
 
 --color-btn-main:#6b7c9d;
 --color-btn-danger:#f5f0f0;
@@ -1669,8 +1692,9 @@ opacity:.6;
 --color-card:#3a3129;
 
 --color-border-sub:#7a5a46;
---color-text:#e6d2b5;
---color-text-sub:#3a2c22;
+--color-text:#332a24;
+--color-text-sub:#7b675b;
+--color-text-contrast:#f8f1e6;
 
 --color-btn-main:#8b4a3a;
 --color-btn-danger:#4a2a22;
@@ -1756,8 +1780,9 @@ opacity:.6;
 
   --color-border-sub:#556456;
 
-  --color-text:#d9e2d4;       /* 月光 */
-  --color-text-sub:#6f826f;
+ --color-text:#d9e6d5;
+--color-text-sub:#8ca28b;
+--color-text-contrast:#f5fff2;
 
   --color-opacity:0.85;
 
@@ -1893,8 +1918,10 @@ opacity:.6;
 
   --color-border-sub:#4d3b58;
 
-  --color-text:#f2e7d8;       /* 蝋燭色 */
-  --color-text-sub:#8d7a98;   /* 影紫 */
+  --color-text:#f2e8df;
+--color-text-sub:#a08d84;
+--color-text-contrast:#fff7f0;
+  
 
   --color-opacity:0.85;
 
@@ -2033,8 +2060,9 @@ opacity:.6;
 
   --color-border-sub:#d8d4cb;
 
-  --color-text:#181614;;        /* 木影 */
-  --color-text-sub:#ffffff;
+  --color-text:#1f1a16;
+--color-text-sub:#5d5648;
+--color-text-contrast:#f4f0e8;
 
   --color-opacity:0.85;
 
@@ -2300,8 +2328,9 @@ radial-gradient(
 
   --color-border-sub:#d6c6a5;
 
-  --color-text:#f7edd8;      /* 明るい紙色 */
-  --color-text-sub:#2d2418;  /* インク色 */
+  --color-text:#2d2418;
+--color-text-sub:#6e5b3d;
+--color-text-contrast:#f7edd8;
 
   --color-opacity:0.9;
 
