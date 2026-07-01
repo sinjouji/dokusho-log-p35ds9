@@ -118,7 +118,7 @@ tag.css
   padding:3px 7px;
   border-radius:999px;
   background:var(--color-chip);
-  color:var(--color-text-contrast);
+  color:var(--color-text);
 }
 
 
@@ -129,7 +129,7 @@ tag.css
 
 .hidden-tag-chip.active{
   background:var(--color-chip);
-  color:var(--color-text-contrast);
+  color:var(--color-text);
 }
 
 .hidden-tag-edit-card{

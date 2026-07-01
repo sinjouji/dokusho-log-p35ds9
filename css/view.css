@@ -194,12 +194,12 @@
 .bookmark::before{
   content:"";
   position:absolute;
-  bottom:-8px;
-  left:-1px;
+  bottom:-9px;
+  left:-2px;
 
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
-  border-top:9px solid var(--color-text-sub);
+  border-left:9px solid transparent;
+  border-right:9px solid transparent;
+  border-top:10px solid var(--color-text-sub);
 
   z-index:1;
 }

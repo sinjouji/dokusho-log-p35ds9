@@ -192,9 +192,10 @@ border-radius:10px;
 }
 
 /*本詳細モーダル内表示の設定など*/
+/*◯回読了*/
 .book-stat{
-  background:var(--color-main-dark);
-  color:var(--color-text-sub);
+  background:var(--color-main);
+  color:var(--color-text-contrast);
   font-size:12px;
   font-weight:bold;
   border-radius:10px;
@@ -202,6 +203,7 @@ border-radius:10px;
   align-items:center;
 }
 
+/*再読チェック*/
 .reread-check{
   font-size:13px;
   color:var(--color-text);
