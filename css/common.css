@@ -80,7 +80,7 @@ body{
 
 header{
   background:var(--color-header-bg);
-  color:var(--color-text-contrast);
+  color:var(--color-text);
   padding:15px;
   font-size:20px;
   margin-bottom:10px;
