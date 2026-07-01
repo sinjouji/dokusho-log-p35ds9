@@ -2495,8 +2495,9 @@ radial-gradient(
   --color-year-bar:#bd821a;
   --color-year-achieved:#e5a93b;
 
-    --color-chip-read-bg: #1b5e4b;        /* 深みのあるモダンな緑 */
-  --color-chip-read-bg-rgb: 27, 94, 75;
+      --color-chip-read-bg: #80ba9b;        /* 黒文字が映える、少し白みを混ぜたハイカラな緑 */
+  --color-chip-read-bg-rgb: 128, 186, 155;
+
   --color-chip-read-text: #fdfcf7;      /* 白（浪漫クリーム）文字が映える */
 
 
