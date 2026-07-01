@@ -2435,3 +2435,80 @@ radial-gradient(
 }
 
 
+
+
+
+
+
+[data-theme="modern-pop"]{
+  --color-header-bg:#a62b32;   /* モダンレッド（臙脂・緋色寄り） */
+  --color-header-text:var(--color-text-contrast);
+
+  --color-header-watermark-rgb:242, 212, 143;
+  --opacity-header-watermark:0.08;
+
+  --color-main:#e5a93b;        /* カナリア・卵黄色（当時のポップな差色） */
+  --color-main-dark:#bd821a;
+
+  --color-border:#4d3161;      /* 葡萄色（大正ロマンの代名詞的な紫） */
+
+  --color-bg:#faf3e3;          /* 浪漫クリーム（少し黄みのあるレトロ白） */
+  --color-card:#ffffff;
+
+  --color-border-sub:#dfd1b3;
+  
+  --color-nav-bg:#362245;      /* 深いお召し紫 */
+
+  --color-text:#2b201a;        /* 焦茶（黒の代わりにレトロ感を出す） */
+  --color-text-sub:#6b5447;
+  --color-text-contrast:#fdfcf7;
+
+  --color-shadow:rgba(43,32,26,0.15);
+
+  --color-opacity:0.92;
+
+  --color-btn-main:#216153;    /* 常磐緑（当時のモダン建築やタイルの緑） */
+  --color-btn-text-s:#fafffc;
+
+  --color-btn-danger:#a62b32;
+  --color-btn-text-d:#fff3f3;
+
+  --color-chip:#e5a93b;
+
+  --color-input-common:#eedeb8;
+
+  --color-bookmark:#216153;
+
+  --color-control-box:#f3e3be;
+
+  --color-and:#216153;
+  --color-and-border:#60968a;
+
+  --color-or:#d97a36;          /* 蜜柑色 */
+  --color-or-border:#efa36c;
+
+  --color-not:#a62b32;
+  --color-not-border:#e07b81;
+
+  --color-search-btn:#4d3161;
+
+  --color-year-bar:#bd821a;
+  --color-year-achieved:#e5a93b;
+
+  --color-chip-read-bg:#4d3161;
+  --color-chip-read-bg-rgb:77,49,97;
+  --color-chip-read-text:#fdfcf7;
+
+  --color-calendar-date:#544135;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#fdfcf7;
+
+  /* ヒートマップはクリームから紫、そしてアクセントの赤へ */
+  --color-heat-0:#ffffff;
+  --color-heat-1:#eedeb8;
+  --color-heat-2:#e5a93b;
+  --color-heat-3:#4d3161;
+  --color-heat-4:#216153;
+  --color-heat-5:#a62b32;
+}
