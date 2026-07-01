@@ -235,7 +235,7 @@ header::before{
 
   transition:.2s;
 
-  opacity:.85;
+/*  opacity:.85;*/
   transform:scale(.96);
 }
 
@@ -270,7 +270,7 @@ header::before{
 
   box-shadow:0 4px 12px rgba(0,0,0,.12);
 
-  z-index:1000;
+  z-index:1100;
 }
 
 .hidden{

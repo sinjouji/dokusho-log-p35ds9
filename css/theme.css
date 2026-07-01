@@ -51,7 +51,7 @@
   --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#7ba8b5;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
   --color-calendar-dark-text:var(--color-text-sub);/*固定色にすること*/
 
@@ -998,9 +998,9 @@
   --color-chip-read-text:#fff7e8;
   
   --color-calendar-date:#d8c79a;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#fff8ef;
   
   /*ヒートマップ*/
   --color-heat-0:#1a1a28;
@@ -1387,9 +1387,9 @@
   --color-chip-read-text:#fffaf3;
 
   --color-calendar-date:#b89b7a;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#f8efe6;
 
   /* ヒートマップ */
   --color-heat-0:#f4eee6;
@@ -1514,9 +1514,9 @@ opacity:.6;
   --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#8fa4b5;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#f7fff6;
 
   --color-heat-0:#ffffff;
   --color-heat-1:#edf4f8;
@@ -1618,9 +1618,9 @@ opacity:.6;
 --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#7f8ca3;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#ffffff;
 
 --color-heat-0:#eef3f8;
 --color-heat-1:#dde5ee;
@@ -1709,9 +1709,9 @@ opacity:.6;
 
 --color-nav-bg:#6a4b3f;
 
---color-text:#332a24;
---color-text-sub:#7b675b;
---color-text-contrast:#f8f1e6;
+--color-text:#f2e7da;
+--color-text-sub:#c7b6a3;
+--color-text-contrast:#fff7ef;
 
 --color-btn-main:#8b4a3a;
 --color-btn-danger:#4a2a22;
@@ -1979,9 +1979,9 @@ opacity:.6;
   --color-chip-read-text:#f8f1e8;
 
   --color-calendar-date:#bba98e;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#fff5ee;
 
   --color-heat-0:#18141d;
   --color-heat-1:#2e2435;
@@ -2072,7 +2072,7 @@ opacity:.6;
   --opacity-header-watermark:0.04;
 
   --color-main:#d9412c;
-  --color-main-dark:#b82f1f;
+  --color-main-dark:#8f2318;
 
   --color-border:#8f8b80;      /* 石灰 */
 
@@ -2122,9 +2122,9 @@ opacity:.6;
   --color-chip-read-text:#ffffff;
 
   --color-calendar-date:#8f8b80;
-  --color-calendar-tag-dark:var(--color-text-sub);
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#fffaf2;
 
   --color-heat-0:#f8f6f1;
   --color-heat-1:#ece8df;
