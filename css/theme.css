@@ -633,7 +633,14 @@
       rgba(255,255,255,.28) 0 10px,
       rgba(106,167,184,.42) 11px 16px,
       transparent 17px
-    );
+    ),
+    
+    
+   radial-gradient(
+  circle at 85% 20%,
+  rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark)) 0%,
+  transparent 55%
+);
 }
 
 
@@ -1580,7 +1587,7 @@ opacity:.6;
 
 :root[data-theme="yukimishoji"]{
 --color-header-bg:#f8fbfd;
---color-header-text:var(--color-chip);
+--color-header-text:var(--color-text);
 --color-header-watermark-rgb:110, 120, 140;
 
 --color-main:#a9b8d0;        /* 冬空 */
@@ -1689,7 +1696,13 @@ opacity:.6;
     );
 
   /* すべての格子パターン（①〜④）を45px四方でリピート。雪景色（⑤）は全体に1枚敷き */
-  background-size: 45px 45px, 45px 45px, 45px 45px, 45px 45px, 100% 100%;
+  background-size: 45px 45px, 45px 45px, 45px 45px, 45px 45px, 100% 100%,
+  
+  radial-gradient(
+  circle at 85% 20%,
+  rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark)) 0%,
+  transparent 55%
+);
 }
 
 
@@ -1783,7 +1796,13 @@ opacity:.6;
       transparent 9px,
       rgba(255,255,255,.2) 12px,
       transparent 13px
-    );
+    ),
+    
+    radial-gradient(
+  circle at 85% 20%,
+  rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark)) 0%,
+  transparent 55%
+);
 }
 
 
