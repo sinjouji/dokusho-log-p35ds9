@@ -2495,9 +2495,10 @@ radial-gradient(
   --color-year-bar:#bd821a;
   --color-year-achieved:#e5a93b;
 
-  --color-chip-read-bg:#4d3161;
-  --color-chip-read-bg-rgb:77,49,97;
-  --color-chip-read-text:#fdfcf7;
+    --color-chip-read-bg: #1b5e4b;        /* 深みのあるモダンな緑 */
+  --color-chip-read-bg-rgb: 27, 94, 75;
+  --color-chip-read-text: #fdfcf7;      /* 白（浪漫クリーム）文字が映える */
+
 
   --color-calendar-date:#544135;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
