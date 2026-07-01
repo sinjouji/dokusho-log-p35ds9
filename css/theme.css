@@ -1682,23 +1682,28 @@ opacity:.6;
       transparent 5px
     ),
 
-    /* ⑤ ★追加：雪見障子の向こうに広がる「しんしんとした雪景色」
-       上が冬の静かな曇り空、下に向かって真っ白な雪が積もっている空気感 */
-    linear-gradient(
-      to bottom,
-      rgba(215, 225, 235, 0.25) 0%,  /* ほんのり青みがかった冬の空 */
-      rgba(245, 250, 255, 0.45) 70%, /* 下に向かって雪の白が広がる */
-      rgba(255, 255, 255, 0.7) 100%
-    );
+  /* 雪景色 */
+  linear-gradient(
+    to bottom,
+    rgba(215,225,235,.25) 0%,
+    rgba(245,250,255,.45) 70%,
+    rgba(255,255,255,.7) 100%
+  ),
 
-  /* すべての格子パターン（①〜④）を45px四方でリピート。雪景色（⑤）は全体に1枚敷き */
-  background-size: 45px 45px, 45px 45px, 45px 45px, 45px 45px, 100% 100%,
-  
+  /* ウォーターマーク */
   radial-gradient(
-  circle at 85% 20%,
-  rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark)) 0%,
-  transparent 55%
-);
+    circle at 85% 20%,
+    rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark)) 0%,
+    transparent 55%
+  );
+
+background-size:
+  45px 45px,
+  45px 45px,
+  45px 45px,
+  45px 45px,
+  100% 100%,
+  100% 100%;
 }
 
 
