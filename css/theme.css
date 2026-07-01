@@ -1000,7 +1000,7 @@
   --color-calendar-date:#d8c79a;
   --color-calendar-tag-dark:var(--color-calendar-dark-text);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:#fff8ef;
+  --color-calendar-dark-text:#5a2f18;
   
   /*ヒートマップ*/
   --color-heat-0:#1a1a28;
@@ -1716,7 +1716,7 @@ opacity:.6;
 --color-btn-main:#8b4a3a;
 --color-btn-danger:#4a2a22;
 
---color-chip:#c08a4d;
+--color-chip:#8c5a42;
 
 --color-input-common:#5a4a3d;
 
@@ -1745,7 +1745,7 @@ opacity:.6;
   --color-calendar-date:#b89b7a;
   --color-calendar-tag-dark:var(--color-text-sub);
   --color-calendar-light-text:var(--color-text);
-  --color-calendar-dark-text:var(--color-text-sub);
+  --color-calendar-dark-text:#5a3428;
 
 --color-heat-0:#2a2520;
 --color-heat-1:#5a3a2a;
@@ -1811,7 +1811,7 @@ opacity:.6;
   --color-btn-danger:#3d2f2f;
   --color-btn-text-d:#e4d7d7;
 
-  --color-chip:#8ea889;
+  --color-chip:#6f886b;
 
   --color-input-common:#253026;
 
@@ -1952,7 +1952,7 @@ opacity:.6;
   --color-btn-danger:#34242d;
   --color-btn-text-d:#e8d7df;
 
-  --color-chip:#c9a54a;
+  --color-chip:#a88432;
 
   --color-input-common:#2b2232;
 
@@ -2095,7 +2095,7 @@ opacity:.6;
   --color-btn-danger:#5f4a44;
   --color-btn-text-d:#f8f6f1;
 
-  --color-chip:#7f9a74;        /* 苔 */
+  --color-chip:#a6b792;        /* 苔 */
 
   --color-input-common:#f1eee8;
 
