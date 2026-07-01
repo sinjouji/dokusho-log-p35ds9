@@ -2525,24 +2525,37 @@ radial-gradient(
   left: 0;
   width: 100%;
   height: 100%;
+
+  background-color: #eee; /* 背景色 */
+  background-image: 
+    linear-gradient(135deg, #8B2635 25%, transparent 25%),
+    linear-gradient(225deg, #8B2635 25%, transparent 25%),
+    linear-gradient(135deg, transparent 75%, #8B2635 75%),
+    linear-gradient(225deg, transparent 75%, #8B2635 75%),
+    linear-gradient(135deg, #8B2635 25%, #eed8d9 25%),
+    linear-gradient(225deg, #8B2635 25%, #eed8d9 25%);
+  background-position: 0 0, 40px 0, 40px 0, 0 0, 0 0, 40px 0;
+  background-size: 80px 80px;
+  background-repeat: repeat;
+
   
-  /* 💡 赤い帯の上に、直接「浪漫クリーム色（#faf3e3）」のギザギザ模様を描画します */
+  /* 💡 赤い帯の上に、直接「浪漫クリーム色（#faf3e3）」のギザギザ模様を描画します 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='40' viewBox='0 0 30 40'%3E%3Cpath d='M0 0h15v20L0 40h15V20L0 0zm15 20h15v20L15 40V20zm15-20H15v20l15-20z' fill='%23faf3e3'/%3E%3C/svg%3E");
   
-  /* 模様のサイズ（横30px、縦40pxで綺麗にリピート配置されます） */
+  /* 模様のサイズ（横30px、縦40pxで綺麗にリピート配置されます） 
   background-size: 30px 40px;
   background-repeat: repeat;
 
   /* 💡 模様の「濃さ」の調整：
      1 のままだと模様が強すぎて文字（ホーム）が隠れてしまうと思うので、
-     0.15 〜 0.3 あたりの数値にして、うっすら透かすのが綺麗でおすすめです！ */
+     0.15 〜 0.3 あたりの数値にして、うっすら透かすのが綺麗でおすすめです！ 
   opacity: 0.2; 
 
-  /* 念のため文字の後ろ側に回す設定。もし模様が消えたらこれを削除してください */
+  /* 念のため文字の後ろ側に回す設定。もし模様が消えたらこれを削除してください 
   z-index: 0; 
   
-  /* 下にある文字のクリックを邪魔しない設定 */
-  pointer-events: none;
+  /* 下にある文字のクリックを邪魔しない設定 
+  pointer-events: none;*/
 }
 
 
