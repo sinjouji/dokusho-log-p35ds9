@@ -82,7 +82,7 @@
 
 
 :root[data-theme="harunoniwa"]{
---color-header-bg:#fff9f8;
+--color-header-bg:#cfdcb0;
 --color-header-watermark-rgb:167, 138, 127;
 --opacity-header-watermark:0.05;
 
@@ -289,7 +289,7 @@
 
 
 :root[data-theme="ajisai"]{
-  --color-header-bg:#fffffc;
+  --color-header-bg:#c4b8dc;
   --color-header-watermark-rgb: 96,86,79;
   --opacity-header-watermark:0.05;
 

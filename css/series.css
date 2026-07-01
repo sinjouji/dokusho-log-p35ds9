@@ -290,7 +290,7 @@ text-align:center;
   background:var(--color-chip);
   font-weight:600;
   font-size:9px;
-  color:var(--color-text-contrast);
+  color:var(--color-text);
   opacity:var(--color-opacity);
 }
 

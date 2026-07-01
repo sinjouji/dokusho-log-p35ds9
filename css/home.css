@@ -105,6 +105,7 @@ main{
 
 .more-menu button:hover{
   background:var(--color-bg);
+  color:var(--color-text-contrast);
 }
 
 
