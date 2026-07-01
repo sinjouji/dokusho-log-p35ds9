@@ -62,7 +62,7 @@ setActiveMenu("menu-settings");
     <option value="yoiyami">宵闇</option>
     <option value="sando">参道</option>
     <option value="bunmeikaika">文明開化</option>
-    <option value="taishomodan">大正モダン</option>
+    <option value="taishomodern">大正モダン</option>
     <option value="meijisyosai">明治書斎</option>
     <option value="kappaninsatsu">活版印刷</option>
     <option value="shouwakissa">昭和喫茶</option>
