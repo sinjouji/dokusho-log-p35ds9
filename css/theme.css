@@ -2525,6 +2525,7 @@ radial-gradient(
   --font-size: 22px;
   margin: 0;
   padding: 0;
+  background-attachment: fixed;
 
   background-color: var(--bg-color-02);
   background-image: 
