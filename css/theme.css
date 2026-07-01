@@ -2516,7 +2516,6 @@ radial-gradient(
 
 [data-theme="modern-pop"] header {
   position: relative;
-  background-color: #faf3e3; /* 浪漫クリーム（ベースの背景色） */
 }
 
 [data-theme="modern-pop"] header::after {
@@ -2527,30 +2526,20 @@ radial-gradient(
   width: 100%;
   height: 100%;
   
-  /* 4つのパーツを組み合わせて1つの「矢羽」を作ります */
-  background-image:
-    linear-gradient(45deg, #a62b32 25%, transparent 25%),
-    linear-gradient(-45deg, #a62b32 25%, transparent 25%),
-    linear-gradient(135deg, #a62b32 25%, transparent 25%),
-    linear-gradient(-135deg, #a62b32 25%, transparent 25%);
-
-  /* 模様のサイズ（横幅50px、縦幅80pxで大正モダン風の少し縦長な矢絣になります） */
-  background-size: 50px 80px;
-
-  /* パーツの位置を半分ずつずらすことで、互い違いの綺麗な矢絣になります */
-  background-position: 
-    0 0, 
-    0 0, 
-    25px 40px, 
-    25px 40px;
-
-  /* 💡 もし文字の上に模様が被って文字が読みにくくなる場合は、
-     下のopacity（透明度）の数値を 0.2 や 0.3 などに下げてみてください */
-  opacity: 1; 
+  /* 💡 縦幅が狭くても絶対に潰れない、SVGによる超軽量な矢絣パターンを直接埋め込みます */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='40' viewBox='0 0 30 40'%3E%3Cpath d='M0 0h15v20L0 40h15V20L0 0zm15 20h15v20L15 40V20zm15-20H15v20l15-20z' fill='%23faf3e3'/%3E%3C/svg%3E");
   
-  /* 模様の下にある文字やボタンを触れるようにクリックを通す設定 */
-  pointer-events: none; 
+  /* 模様のサイズ（横幅30px、縦幅40pxのコンパクトなサイズ感。お好みで調整OK） */
+  background-size: 30px 40px;
+  background-repeat: repeat;
+
+  /* 💡 文字（ホーム / Reading Log）の下に敷くためのブレンドモード */
+  mix-blend-mode: multiply;
+  opacity: 0.35; /* 0.3〜0.5あたりで、文字が一番見えやすく綺麗に馴染む濃さに調整してください */
+
+  pointer-events: none;
 }
+
 
 
 
