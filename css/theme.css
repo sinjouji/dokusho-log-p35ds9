@@ -2514,7 +2514,12 @@ radial-gradient(
 }
 
 
-/* [1] 矢絣模様を敷く（前回のままでOKです） */
+[data-theme="modern-pop"] header {
+  position: relative;
+  /* 元の文字が隠れないように、少しだけ文字の重なりを調整 */
+  isolation: isolate; 
+}
+
 [data-theme="modern-pop"] header::before {
   content: "";
   position: absolute;
@@ -2522,29 +2527,20 @@ radial-gradient(
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* さらにもう一個奥に下げる */
   
+  /* 元の文字より確実に「後ろ」に回す（z-indexの代わりにmix-blend-mode対策） */
+  z-index: -1; 
+
+  /* 💡 2色を直接指定して、透明度によるバグを強制回避 */
   background-image: 
-    linear-gradient(45deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%),
-    linear-gradient(135deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%),
-    linear-gradient(45deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%),
-    linear-gradient(135deg, #a62b32 25%, transparent 25%, transparent 75%, #a62b32 75%);
+    linear-gradient(45deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%),
+    linear-gradient(135deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%),
+    linear-gradient(45deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%),
+    linear-gradient(135deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%);
+
+  /* 模様のサイズと位置（ここは変わりません） */
   background-size: 40px 60px;
   background-position: 0 0, 0 0, 20px 30px, 20px 30px;
-}
-
-/* 矢絣の上から、全体に半透明の浪漫クリーム色を被せる */
-[data-theme="modern-pop"] header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  
-  background-color: rgba(250, 243, 227, 0.7); /* 数値を上げるとより白っぽくなります */
-  pointer-events: none;
 }
 
 
