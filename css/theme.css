@@ -2516,47 +2516,47 @@ radial-gradient(
 }
 
 
-/* * * CSS file * * */
-
-[data-theme="modern-pop"]{
+[data-theme="modern-pop"] {
+  /* 変数はそのままキープ */
   --bg-color-01: var(--color-bg);
   --bg-color-02: var(--color-header-bg);
   --bg-size: 2.25em 2.25em;
   --font-size: 22px;
+  
   margin: 0;
-  padding: 0;
-  background-attachment: fixed;
-
-  background-color: var(--bg-color-02);
-  background-image: 
-    radial-gradient(100% 100% at 50% 50%,
-      transparent 50%, 
-      var(--bg-color-02) 50%
-    ),
-    radial-gradient(100% 100% at 100% 0%,
-      var(--bg-color-01) 50%, 
-      transparent 50%
-    ),
-    radial-gradient(100% 100% at 0% 100%,
-      var(--bg-color-01) 50%, 
-      transparent 50%
-    ),
-    radial-gradient(100% 100% at 100% 100%,
-      var(--bg-color-01) 50%, 
-      transparent 50%
-    ),
-    radial-gradient(100% 100% at 0% 0%,
-      var(--bg-color-01) 50%, 
-      transparent 50%
-    );
-  background-repeat: repeat;
-  background-size: var(--bg-size);
-  min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
   font-size: var(--font-size);
   color: white;
+  min-height: 100vh;
+
+  /* 本体自体の背景は透明にしておく */
+  background: transparent; 
 }
+
+/* 💡 ここに背景と固定の記述を全部まとめちゃう！ */
+[data-theme="modern-pop"]::before {
+  content: "";
+  position: fixed;   /* 画面全体にピン留めして固定する魔法 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;       /* 文字やヘッダーの邪魔をしないように最背面へ */
+  pointer-events: none;
+
+  /* あなたが作ったお気に入りの七宝つなぎ柄 */
+  background-color: var(--bg-color-02);
+  background-image: 
+    radial-gradient(100% 100% at 50% 50%, transparent 50%, var(--bg-color-02) 50%),
+    radial-gradient(100% 100% at 100% 0%, var(--bg-color-01) 50%, transparent 50%),
+    radial-gradient(100% 100% at 0% 100%, var(--bg-color-01) 50%, transparent 50%),
+    radial-gradient(100% 100% at 100% 100%, var(--bg-color-01) 50%, transparent 50%),
+    radial-gradient(100% 100% at 0% 0%, var(--bg-color-01) 50%, transparent 50%);
+  background-repeat: repeat;
+  background-size: var(--bg-size);
+}
+
 
 
 
