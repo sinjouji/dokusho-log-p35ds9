@@ -634,13 +634,13 @@
       rgba(106,167,184,.42) 11px 16px,
       transparent 17px
     ),
-    
-    
-   radial-gradient(
-  circle at 85% 20%,
-  rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark)) 0%,
-  transparent 55%
-);
+
+    /* watermark */
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(var(--color-header-watermark-rgb), var(--opacity-header-watermark), .12) 0%,
+      transparent 55%
+    );
 }
 
 
