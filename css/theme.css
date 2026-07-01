@@ -82,7 +82,7 @@
 
 
 :root[data-theme="harunoniwa"]{
---color-header-bg:#dfe8c8;/*#fff9f8;*/
+--color-header-bg:#fff9f8;
 --color-header-watermark-rgb:167, 138, 127;
 --opacity-header-watermark:0.05;
 
@@ -91,7 +91,7 @@
 
 --color-border:#8aa36f;      /* 抹茶 */
 
---color-nav-bg:#7c9b6b;
+--color-nav-bg:#7f8f73;
 
 --color-bg:#f8f4ea;          /* 和紙 */
 --color-card:#fffdf8;
@@ -291,7 +291,7 @@
 
 
 :root[data-theme="ajisai"]{
-  --color-header-bg:#d8d0e8;/*#fffffc;*/
+  --color-header-bg:#fffffc;
   --color-header-watermark-rgb: 96,86,79;
   --opacity-header-watermark:0.05;
 
@@ -299,7 +299,7 @@
   --color-main-dark:#9bb8b3;  /* active */
   --color-border:#6f8f89;     /* 濃い線 */
   
-  --color-nav-bg:#6c7298;
+  --color-nav-bg:#7d7891;
 
   --color-bg:#f8f7f3;         /* 紙背景 */
   --color-card:#fffffc;
@@ -487,6 +487,8 @@
   --color-card:#ffffff;
 
   --color-border-sub:#b9d9df;
+  
+  --color-nav-bg:#6b8ea1;
 
   --color-text:#3a2f2b;
 --color-text-sub:#7b6961;
@@ -664,6 +666,8 @@
   --color-shadow:rgba(0,0,0,.08);
 
   --color-opacity:0.8;
+  
+  --color-nav-bg:#2e6f88;
 
   --color-read-text:#5fa07d;  /* 蚊遣り豚の緑 */
   --color-unread-text:#aaa;
@@ -819,6 +823,8 @@
   --color-shadow:rgba(0,0,0,.08);
 
   --color-opacity:0.8;
+  
+  --color-nav-bg:#6f7d2f;
 
   --color-btn-main:#5f8f3f;
   --color-btn-text-s:#4a5f22;
@@ -960,6 +966,9 @@
   --color-card:#1e1f2b;       /* 屋台の影 */
 
   --color-border-sub:#8f5f3d;
+  
+  --color-nav-bg:#2a2f58;
+  
 --color-text:#2d1f28;
 --color-text-sub:#7f5b6c;
 --color-text-contrast:#fff1e8;
@@ -1195,6 +1204,9 @@
   --color-card:#fffaf2;
 
   --color-border-sub:#d6a87c;
+  
+  --color-nav-bg:#8b4a32;
+  
 --color-text:#3a261f;
 --color-text-sub:#8a6756;
 --color-text-contrast:#fff4eb;
@@ -1341,6 +1353,9 @@
   --color-card:#fffaf3;
 
   --color-border-sub:#a58a74;
+  
+  --color-nav-bg:#5a3b2b;
+  
   --color-text:#4b3528;
 --color-text-sub:#7a5e4d;
 --color-text-contrast:#f5eadf;
@@ -1467,6 +1482,8 @@ opacity:.6;
   --color-card:#fdfefe;
 
   --color-border-sub:#d7e1e8;
+  
+  --color-nav-bg:#617e66;
 
   --color-text:#2d342c;
 --color-text-sub:#667466;
@@ -1575,6 +1592,9 @@ opacity:.6;
 --color-card:#ffffff;
 
 --color-border-sub:#9aa8b8;
+
+--color-nav-bg:#7c746d;
+
 --color-text:#2e2a28;
 --color-text-sub:#7a746e;
 --color-text-contrast:#fffdfa;
@@ -1696,6 +1716,9 @@ opacity:.6;
 --color-card:#3a3129;
 
 --color-border-sub:#7a5a46;
+
+--color-nav-bg:#6a4b3f;
+
 --color-text:#332a24;
 --color-text-sub:#7b675b;
 --color-text-contrast:#f8f1e6;
@@ -1783,6 +1806,8 @@ opacity:.6;
   --color-card:#1b221d;
 
   --color-border-sub:#556456;
+
+--color-nav-bg:#243127;
 
  --color-text:#d9e6d5;
 --color-text-sub:#8ca28b;
@@ -1919,6 +1944,8 @@ opacity:.6;
 
   --color-bg:#18141d;
   --color-card:#221b28;
+
+--color-nav-bg:#2c1b35;
 
   --color-border-sub:#4d3b58;
 
@@ -2063,6 +2090,8 @@ opacity:.6;
   --color-card:#ffffff;
 
   --color-border-sub:#d8d4cb;
+  
+  --color-nav-bg:#6d4738;
 
   --color-text:#1f1a16;
 --color-text-sub:#5d5648;
@@ -2331,6 +2360,8 @@ radial-gradient(
   --color-card:#fff8e8;
 
   --color-border-sub:#d6c6a5;
+  
+  --color-nav-bg:#203d63;
 
   --color-text:#2d2418;
 --color-text-sub:#6e5b3d;
