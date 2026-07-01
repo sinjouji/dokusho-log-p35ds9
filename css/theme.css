@@ -2516,11 +2516,10 @@ radial-gradient(
 
 [data-theme="modern-pop"] header {
   position: relative;
-  /* 元の文字が隠れないように、少しだけ文字の重なりを調整 */
-  isolation: isolate; 
+  background-color: #faf3e3; /* 浪漫クリーム（ベースの背景色） */
 }
 
-[data-theme="modern-pop"] header::before {
+[data-theme="modern-pop"] header::after {
   content: "";
   position: absolute;
   top: 0;
@@ -2528,19 +2527,30 @@ radial-gradient(
   width: 100%;
   height: 100%;
   
-  /* 元の文字より確実に「後ろ」に回す（z-indexの代わりにmix-blend-mode対策） */
-  z-index: -1; 
+  /* 4つのパーツを組み合わせて1つの「矢羽」を作ります */
+  background-image:
+    linear-gradient(45deg, #a62b32 25%, transparent 25%),
+    linear-gradient(-45deg, #a62b32 25%, transparent 25%),
+    linear-gradient(135deg, #a62b32 25%, transparent 25%),
+    linear-gradient(-135deg, #a62b32 25%, transparent 25%);
 
-  /* 💡 2色を直接指定して、透明度によるバグを強制回避 */
-  background-image: 
-    linear-gradient(45deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%),
-    linear-gradient(135deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%),
-    linear-gradient(45deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%),
-    linear-gradient(135deg, #a62b32 25%, #faf3e3 25%, #faf3e3 75%, #a62b32 75%);
+  /* 模様のサイズ（横幅50px、縦幅80pxで大正モダン風の少し縦長な矢絣になります） */
+  background-size: 50px 80px;
 
-  /* 模様のサイズと位置（ここは変わりません） */
-  background-size: 40px 60px;
-  background-position: 0 0, 0 0, 20px 30px, 20px 30px;
+  /* パーツの位置を半分ずつずらすことで、互い違いの綺麗な矢絣になります */
+  background-position: 
+    0 0, 
+    0 0, 
+    25px 40px, 
+    25px 40px;
+
+  /* 💡 もし文字の上に模様が被って文字が読みにくくなる場合は、
+     下のopacity（透明度）の数値を 0.2 や 0.3 などに下げてみてください */
+  opacity: 1; 
+  
+  /* 模様の下にある文字やボタンを触れるようにクリックを通す設定 */
+  pointer-events: none; 
 }
+
 
 
