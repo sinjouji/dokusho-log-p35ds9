@@ -2992,9 +2992,9 @@ radial-gradient(
   right:0;
   bottom:0;
   height:42px;
-
-  pointer-events:none;
-  opacity:.28;
+  background:red !important;
+  opacity:1 !important;
+  z-index:5;
 
   background:
     linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 8% 100% / 14px 8px no-repeat,
