@@ -2755,14 +2755,23 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.42;
+  opacity:.32;
 
   background:
-    linear-gradient(to top, rgba(75,52,36,.45) 0 100%) 0%  calc(100% - 6px) / 10px 58px repeat-x,
-    linear-gradient(to top, rgba(115,82,55,.35) 0 100%) 5px calc(100% - 6px) / 8px 42px repeat-x,
-    linear-gradient(to top, rgba(145,110,75,.28) 0 100%) 12px calc(100% - 6px) / 6px 50px repeat-x;
+    linear-gradient(to top, rgba(75,52,36,.45) 0 100%) 2%  calc(100% - 6px) / 10px 54px no-repeat,
+    linear-gradient(to top, rgba(115,82,55,.38) 0 100%) 7%  calc(100% - 6px) / 8px 38px no-repeat,
+    linear-gradient(to top, rgba(145,110,75,.30) 0 100%) 11% calc(100% - 6px) / 12px 62px no-repeat,
+    linear-gradient(to top, rgba(90,65,45,.40) 0 100%) 17% calc(100% - 6px) / 9px 44px no-repeat,
+    linear-gradient(to top, rgba(120,90,60,.34) 0 100%) 22% calc(100% - 6px) / 14px 58px no-repeat,
+    linear-gradient(to top, rgba(80,55,35,.42) 0 100%) 29% calc(100% - 6px) / 7px 34px no-repeat,
+    linear-gradient(to top, rgba(140,110,80,.28) 0 100%) 33% calc(100% - 6px) / 11px 52px no-repeat,
+    linear-gradient(to top, rgba(95,70,45,.38) 0 100%) 39% calc(100% - 6px) / 8px 40px no-repeat,
+    linear-gradient(to top, rgba(130,100,70,.30) 0 100%) 44% calc(100% - 6px) / 13px 60px no-repeat,
+    linear-gradient(to top, rgba(75,55,38,.42) 0 100%) 51% calc(100% - 6px) / 10px 46px no-repeat,
+    linear-gradient(to top, rgba(115,82,55,.34) 0 100%) 57% calc(100% - 6px) / 9px 56px no-repeat,
+    linear-gradient(to top, rgba(145,110,75,.28) 0 100%) 63% calc(100% - 6px) / 12px 42px no-repeat,
+    linear-gradient(to top, rgba(90,65,45,.40) 0 100%) 69% calc(100% - 6px) / 8px 64px no-repeat;
 }
-
 /*
 [data-theme="meijishosai"] header::before{
   content:"";
