@@ -65,6 +65,7 @@ setActiveMenu("menu-settings");
     <option value="taishomodern">大正モダン</option>
     <option value="meijishosai">明治書斎</option>
     <option value="bungakushoujo">文学少女</option>
+    <option value="gekkoushoko">月光書庫</option>
     <option value="kappaninsatsu">活版印刷</option>
     <option value="showakissa">昭和喫茶</option>
     <option value="modern-pop">G：モダンポップ</option>
