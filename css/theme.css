@@ -2593,8 +2593,8 @@ radial-gradient(
   --opacity-header-watermark:.07;
 
   /* Main */
-  --color-main:#8c3f2f;        /* 赤茶 */
-  --color-main-dark:#642a1f;
+  --color-main:#a8543f;
+--color-main-dark:#7c3929;
 
   /* Border */
   --color-border:#b58b55;      /* 真鍮 */
@@ -2676,8 +2676,8 @@ radial-gradient(
   --opacity-header-watermark:.07;
 
   /* Main */
-  --color-main:#7a2f2f;        /* ワインレッド */
-  --color-main-dark:#552020;
+  --color-main:#954040;
+--color-main-dark:#6b2b2b;
 
   /* Border */
   --color-border:#a98a54;      /* 真鍮 */
@@ -2746,3 +2746,85 @@ radial-gradient(
   --color-heat-5:#7a2f2f;
 }
 
+
+
+
+
+
+[data-theme="bungakushoujo"]{
+  /* Header */
+  --color-header-bg:#b8a7c9;   /* 藤色 */
+  --color-header-text:#fffaf5;
+  --color-header-watermark-rgb:255,255,255;
+  --opacity-header-watermark:.08;
+
+  /* Main */
+  --color-main:#c98f9c;        /* くすみ薔薇 */
+  --color-main-dark:#a56d79;
+
+  /* Border */
+  --color-border:#8d98b8;      /* 青インク */
+  --color-border-sub:#d9d3e4;
+
+  /* Base */
+  --color-bg:#f7f2eb;          /* 古紙 */
+  --color-card:#fffaf5;
+  --color-control-box:#efe8df;
+  --color-input-common:#f4ede4;
+
+  /* Navigation */
+  --color-nav-bg:#8d98b8;
+
+  /* Text */
+  --color-text:#3a2f36;        /* インク文字 */
+  --color-text-sub:#7d6d79;
+  --color-text-contrast:#fffaf5;
+
+  /* Buttons */
+  --color-btn-main:#8d98b8;
+  --color-btn-text-s:#fffaf5;
+
+  --color-btn-danger:#c98f9c;
+  --color-btn-text-d:#fffaf5;
+
+  /* Chips */
+  --color-chip:#d8c4d8;        /* 薄藤 */
+
+  /* Bookmark */
+  --color-bookmark:#6e88b8;    /* 青い栞 */
+
+  /* Search */
+  --color-and:#e7efe7;
+  --color-and-border:#9db49d;
+
+  --color-or:#f5ead8;
+  --color-or-border:#d6b38c;
+
+  --color-not:#f2dede;
+  --color-not-border:#c89a9a;
+
+  --color-search-btn:#8d98b8;
+
+  /* Stats */
+  --color-year-bar:#6e88b8;
+  --color-year-achieved:#d8c4d8;
+
+  /* Read chip */
+  --color-chip-read-bg:#c98f9c;
+  --color-chip-read-bg-rgb:201,143,156;
+  --color-chip-read-text:#fffaf5;
+
+  /* Calendar */
+  --color-calendar-date:#8d7d89;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#fffaf5;
+
+  /* Heat */
+  --color-heat-0:#fffaf5;
+  --color-heat-1:#efe8df;
+  --color-heat-2:#d9d3e4;
+  --color-heat-3:#d8c4d8;
+  --color-heat-4:#8d98b8;
+  --color-heat-5:#c98f9c;
+}
