@@ -2615,7 +2615,7 @@ radial-gradient(
   --color-text-contrast:#fffaf2;
 
   /* Buttons */
-  --color-btn-main:#3f6b52;    /* 喫茶グリーン */
+  --color-btn-main:#5f9a7a;    /* 喫茶グリーン */
   --color-btn-text-s:#2b211b;
 
   --color-btn-danger:#8c3f2f;
@@ -2625,7 +2625,7 @@ radial-gradient(
   --color-chip:#d3b06b;        /* 琥珀金 */
 
   /* Bookmark */
-  --color-bookmark:#4f7b63;    /* クリームソーダ緑 */
+  --color-bookmark:#6aa887;    /* クリームソーダ緑 */
 
   /* Search logic */
   --color-and:#dce8dc;
@@ -2637,10 +2637,10 @@ radial-gradient(
   --color-not:#f1d8d2;
   --color-not-border:#b97b6a;
 
-  --color-search-btn:#3f6b52;
+  --color-search-btn:#5f9a7a;
 
   /* Stats */
-  --color-year-bar:#4f7b63;
+  --color-year-bar:#6aa887;
   --color-year-achieved:#d3b06b;
 
   /* Read chip */
@@ -2659,7 +2659,7 @@ radial-gradient(
   --color-heat-1:#f0e2c9;
   --color-heat-2:#d8c4a5;
   --color-heat-3:#d3b06b;
-  --color-heat-4:#4f7b63;
+  --color-heat-4:#6aa887;
   --color-heat-5:#8c3f2f;
 }
 
