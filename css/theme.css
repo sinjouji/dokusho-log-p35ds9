@@ -2990,49 +2990,43 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.18;
-  background-size:22px 12px;
+  opacity:.22;
 
   background:
-    /* column 1 */
     linear-gradient(
       to top,
-      rgba(40,40,40,.28) 0 20%,
-      transparent 20%
-    ) 8% 100% / 22px 100% no-repeat,
+      rgba(60,50,40,.22) 0 18%,
+      transparent 18%
+    ) 8% 100% / 18px 100% no-repeat,
 
-    /* column 2 */
     linear-gradient(
       to top,
-      rgba(40,40,40,.28) 0 45%,
-      transparent 45%
-    ) 18% 100% / 22px 100% no-repeat,
+      rgba(60,50,40,.22) 0 42%,
+      transparent 42%
+    ) 18% 100% / 18px 100% no-repeat,
 
-    /* column 3 */
     linear-gradient(
       to top,
-      rgba(40,40,40,.28) 0 35%,
-      transparent 35%
-    ) 28% 100% / 22px 100% no-repeat,
+      rgba(60,50,40,.22) 0 30%,
+      transparent 30%
+    ) 28% 100% / 18px 100% no-repeat,
 
-    /* column 4 */
     linear-gradient(
       to top,
-      rgba(40,40,40,.28) 0 70%,
-      transparent 70%
-    ) 42% 100% / 22px 100% no-repeat,
+      rgba(60,50,40,.22) 0 62%,
+      transparent 62%
+    ) 42% 100% / 18px 100% no-repeat,
 
-    /* column 5 */
     linear-gradient(
       to top,
-      rgba(40,40,40,.28) 0 55%,
-      transparent 55%
-    ) 55% 100% / 22px 100% no-repeat,
+      rgba(60,50,40,.22) 0 48%,
+      transparent 48%
+    ) 56% 100% / 18px 100% no-repeat,
 
-    /* column 6 */
     linear-gradient(
       to top,
-      rgba(40,40,40,.28) 0 25%,
-      transparent 25%
-    ) 70% 100% / 22px 100% no-repeat;
+      rgba(60,50,40,.22) 0 24%,
+      transparent 24%
+    ) 70% 100% / 18px 100% no-repeat;
 }
+
