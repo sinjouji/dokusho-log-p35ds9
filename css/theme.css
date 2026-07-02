@@ -2665,3 +2665,84 @@ radial-gradient(
 
 
 
+
+
+
+[data-theme="meijishosai"]{
+  /* Header */
+  --color-header-bg:#2f4738;   /* 深緑 */
+  --color-header-text:#f5ecd8;
+  --color-header-watermark-rgb:190,160,95;
+  --opacity-header-watermark:.07;
+
+  /* Main */
+  --color-main:#7a2f2f;        /* ワインレッド */
+  --color-main-dark:#552020;
+
+  /* Border */
+  --color-border:#a98a54;      /* 真鍮 */
+  --color-border-sub:#c9b99a;
+
+  /* Base */
+  --color-bg:#ece2cf;          /* 羊皮紙 */
+  --color-card:#f8f1e4;
+  --color-control-box:#e4d8c2;
+  --color-input-common:#efe5d4;
+
+  /* Navigation */
+  --color-nav-bg:#4d3428;      /* 木棚茶 */
+
+  /* Text */
+  --color-text:#241b15;
+  --color-text-sub:#67564a;
+  --color-text-contrast:#fff8ef;
+
+  /* Buttons */
+  --color-btn-main:#3f5e4a;
+  --color-btn-text-s:#241b15;
+
+  --color-btn-danger:#7a2f2f;
+  --color-btn-text-d:#fff8ef;
+
+  /* Chips */
+  --color-chip:#b89a52;
+
+  /* Bookmark */
+  --color-bookmark:#6e4a8b;    /* 古書の栞紫 */
+
+  /* Search logic */
+  --color-and:#d7e3d7;
+  --color-and-border:#7b947d;
+
+  --color-or:#efe0b8;
+  --color-or-border:#c8a462;
+
+  --color-not:#ecd2cf;
+  --color-not-border:#b06e68;
+
+  --color-search-btn:#3f5e4a;
+
+  /* Stats */
+  --color-year-bar:#6e4a8b;
+  --color-year-achieved:#b89a52;
+
+  /* Read chip */
+  --color-chip-read-bg:#a07c34;
+  --color-chip-read-bg-rgb:160,124,52;
+  --color-chip-read-text:#2d2214;
+
+  /* Calendar */
+  --color-calendar-date:#74624e;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#fff8ef;
+
+  /* Heat */
+  --color-heat-0:#f8f1e4;
+  --color-heat-1:#e4d8c2;
+  --color-heat-2:#c9b99a;
+  --color-heat-3:#b89a52;
+  --color-heat-4:#6e4a8b;
+  --color-heat-5:#7a2f2f;
+}
+
