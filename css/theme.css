@@ -2758,10 +2758,28 @@ radial-gradient(
   opacity:.18;
 
   background:
+    linear-gradient(to top, rgba(90,65,45,.35) 0 100%) 6% 100% / 18px 52px no-repeat,
+    linear-gradient(to top, rgba(125,92,60,.28) 0 100%) 14% 100% / 12px 40px no-repeat,
+    linear-gradient(to top, rgba(80,55,35,.32) 0 100%) 22% 100% / 22px 58px no-repeat,
+    linear-gradient(to top, rgba(140,110,80,.25) 0 100%) 33% 100% / 14px 34px no-repeat,
+    linear-gradient(to top, rgba(95,70,45,.30) 0 100%) 42% 100% / 20px 62px no-repeat,
+    linear-gradient(to top, rgba(130,100,70,.24) 0 100%) 55% 100% / 12px 38px no-repeat,
+    linear-gradient(to top, rgba(75,55,38,.34) 0 100%) 66% 100% / 24px 56px no-repeat;
+}
+
+/*
+[data-theme="meijishosai"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+
+  background:
     radial-gradient(
       circle,
-      rgba(45,35,28,.24) 0 22px,       /* 少し縮小 */
-      rgba(201,164,104,.42) 22px 27px, /* ボーダー細め・濃い */
+      rgba(45,35,28,.24) 0 22px,       /* 少し縮小 
+      rgba(201,164,104,.42) 22px 27px, /* ボーダー細め・濃い 
       transparent 27px
     ) 0 0 / 96px 96px repeat,
 
@@ -2772,7 +2790,7 @@ radial-gradient(
       transparent 27px
     ) 28px 38px / 96px 96px repeat;
 }
-
+*/
 
 
 
