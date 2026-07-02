@@ -213,4 +213,62 @@ function getTagColor(tagId){
 
 
 
+//==============================
+// テーマセレクター
+//==============================
+function injectThemeSwitcher(){
+  const wrapper=document.createElement("div");
+  wrapper.className="theme-switcher";
 
+  wrapper.innerHTML=`
+  
+       <select
+    id="theme-select"
+    class="select-chip"
+    onchange="
+      applyTheme(this.value)
+    "
+  >
+    <option value="" disabled selected>◼️季節イメージ</option>
+     <optgroup label="春・夏">
+      <option value="harunoniwa">春の庭</option>
+      <option value="ajisai">紫陽花</option>
+      <option value="yuusuzumi">夕涼み</option>
+      <option value="marin">海の家</option>
+      <option value="himawarihatake">ひまわり畑</option>
+      <option value="natsumatsuri">夏祭り</option>
+      <option value="yuuyakekomichi">夕焼け小径</option>
+     </optgroup>
+     <optgroup label="秋・冬">
+      <option value="coffeebunko">珈琲文庫</option>
+      <option value="asatsuyu">朝露</option>
+      <option value="yukimishoji">雪見障子</option>
+      <option value="sando">参道</option>
+     </optgroup>
+    <option value="" disabled>◼️印象テーマ</option>
+     <optgroup label="夜">
+      <option value="ekisha">駅舎</option>
+      <option value="tsukikage">月影</option>
+      <option value="yoiyami">宵闇</option>
+     </optgroup>
+     <optgroup label="レトロ">
+      <option value="bunmeikaika">文明開化</option>
+      <option value="taishomodern">大正モダン</option>
+      <option value="meijishosai">明治書斎</option>
+      <option value="bungakushoujo">文学少女</option>
+      <option value="gekkoushoko">月光書庫</option>
+      <option value="kappaninsatsu">活版印刷</option>
+      <option value="showakissa">昭和喫茶</option>
+      <option value="modern-pop">G：モダンポップ</option>
+     </optgroup>
+  </select>
+
+  `;
+
+  const app=document.querySelector(".app-container") || document.body;
+app.prepend(wrapper);
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  injectThemeSwitcher();
+});

@@ -21,13 +21,15 @@ function loadTheme(){
   const saved =
     localStorage.getItem(
       "selectedTheme"
-    ) || "ajisai";
+    ) || "yuusuzumi";
 
   applyTheme(saved);
 
 }
 
-
+document.addEventListener("DOMContentLoaded",()=>{
+  loadTheme();
+});
 
 
 
