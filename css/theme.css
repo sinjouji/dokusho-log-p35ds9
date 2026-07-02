@@ -2754,24 +2754,24 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.28;
+  opacity:.22;
 
   background:
     /* 1段目 */
     radial-gradient(
       circle,
-      rgba(40,40,40,.15) 0 5px,
-      rgba(180,180,180,.35) 5px 7px,
+      rgba(25,25,25,.14) 0 6px,
+      rgba(168,140,95,.34) 6px 9px,
       transparent 7px
-    ) 0 0 / 34px 34px repeat,
+    ) 0 0 / 40px 40px repeat,
 
     /* 2段目（半マスずらし） */
     radial-gradient(
       circle,
-      rgba(40,40,40,.15) 0 5px,
-      rgba(180,180,180,.35) 5px 7px,
+      rgba(25,25,25,.14) 0 6px,
+      rgba(168,140,95,.34) 6px 9px,
       transparent 7px
-    ) 17px 17px / 34px 34px repeat;
+    ) 20px 20px / 40px 40px repeat;
 }
 
 
