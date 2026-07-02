@@ -2755,16 +2755,12 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.28;
+  opacity:.42;
 
   background:
-    linear-gradient(to top, rgba(90,65,45,.35) 0 100%) 6% calc(100% - 8px) / 18px 52px no-repeat,
-    linear-gradient(to top, rgba(125,92,60,.28) 0 100%) 14% calc(100% - 8px) / 12px 40px no-repeat,
-    linear-gradient(to top, rgba(80,55,35,.32) 0 100%) 22% calc(100% - 8px) / 22px 58px no-repeat,
-    linear-gradient(to top, rgba(140,110,80,.25) 0 100%) 33% calc(100% - 8px) / 14px 34px no-repeat,
-    linear-gradient(to top, rgba(95,70,45,.30) 0 100%) 42% calc(100% - 8px) / 20px 62px no-repeat,
-    linear-gradient(to top, rgba(130,100,70,.24) 0 100%) 55% calc(100% - 8px) / 12px 38px no-repeat,
-    linear-gradient(to top, rgba(75,55,38,.34) 0 100%) 66% calc(100% - 8px) / 24px 56px no-repeat;
+    linear-gradient(to top, rgba(75,52,36,.45) 0 100%) 0%  calc(100% - 6px) / 10px 58px repeat-x,
+    linear-gradient(to top, rgba(115,82,55,.35) 0 100%) 5px calc(100% - 6px) / 8px 42px repeat-x,
+    linear-gradient(to top, rgba(145,110,75,.28) 0 100%) 12px calc(100% - 6px) / 6px 50px repeat-x;
 }
 
 /*
