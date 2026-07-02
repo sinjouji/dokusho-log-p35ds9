@@ -14,7 +14,19 @@ function applyTheme(theme){
     theme
   );
 
+  if(typeof renderHome==="function"){
+    renderHome();
+  }
+
+  if(typeof renderStats==="function"){
+    renderStats();
+  }
+
 }
+
+
+
+
 
 function loadTheme(){
 
