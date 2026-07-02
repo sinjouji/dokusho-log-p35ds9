@@ -105,7 +105,7 @@
 
   font-size:11px;
 /*  border:1px solid var(--color-border);*/
-  color:var(--color-text-sub);
+  color:var(--color-text-contrast);
 }
 
 
@@ -182,7 +182,7 @@ border-radius:10px;
   align-items:center;
   
   font-size:10px;
-  color:var(--color-text-sub);
+  color:var(--color-text-contrast);
   padding:1px 4px;
   gap:2px;
   background:var(--color-main);
@@ -419,7 +419,7 @@ border-radius:10px;
   border-radius:999px;
   font-size:11px;
   margin:2px;
-  color:var(--color-text-contrast);
+  color:var(--color-text-sub);
 }
 
 .daily-edit-chip.active{
