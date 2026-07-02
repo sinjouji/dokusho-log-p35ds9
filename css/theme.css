@@ -3012,7 +3012,44 @@ radial-gradient(
 
 
 
-/*  活字ブロックの積み重ねっぽいデザイン*/
+[data-theme="kappaninsatsu"] header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+
+  background:
+    /* ==========================================
+       1. 活字の「金属のツヤと陰影」（1pxのハック）
+          1マスの右側と下側に、鉛の金属光沢（白）と影（黒）を落として
+          文字ブロックがズラリと並んでいる立体感を出します
+       ========================================== */
+    /* ブロックの右エッジ（金属のハイライト） */
+    linear-gradient(to right, transparent 29px, rgba(255, 255, 255, 0.12) 29px 30px) 0 0 / 30px 40px repeat,
+    /* ブロックの下エッジ（鉛の深い影） */
+    linear-gradient(to bottom, transparent 38px, rgba(0, 0, 0, 0.4) 38px 40px) 0 0 / 30px 40px repeat,
+
+    /* ==========================================
+       2. ローラーで塗られた「黒インクのムラ」
+          全面にベタッと塗るのではなく、斜めのグラデーションを重ねて
+          インクが濃い部分と、金属が透けるかすれた部分を作ります
+       ========================================== */
+    linear-gradient(135deg, 
+      rgba(20, 20, 23, 0.85) 0%,   /* インクがしっかり乗った黒 */
+      rgba(35, 35, 40, 0.75) 50%,   /* ほんのり金属が透ける渋いグレー */
+      rgba(15, 15, 18, 0.9) 100%
+    ),
+
+    /* ==========================================
+       3. 鉛活字のベース（鈍く光るダークシルバー）
+       ========================================== */
+    linear-gradient(to bottom, #4a4d53, #33363b);
+}
+
+
+
+/*  活字ブロックの積み重ねっぽいデザイン
 [data-theme="kappaninsatsu"] header{
   overflow:hidden;
 }
@@ -3036,7 +3073,7 @@ radial-gradient(
     linear-gradient(to top,#4b2e24 0 100%) 56% 100% / 18px 20px no-repeat,
     linear-gradient(to top,#4b2e24 0 100%) 70% 100% / 18px 12px no-repeat;
 }
-
+*/
 
 
 
