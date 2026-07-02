@@ -2644,9 +2644,9 @@ radial-gradient(
   --color-year-achieved:#d3b06b;
 
   /* Read chip */
-  --color-chip-read-bg:#7a3d2d;
-  --color-chip-read-bg-rgb:122,61,45;
-  --color-chip-read-text:#fff8ef;
+ --color-chip-read-bg:#d7b84d;
+--color-chip-read-bg-rgb:215,184,77;
+--color-chip-read-text:#4b3712;
 
   /* Calendar */
   --color-calendar-date:#7c654f;
