@@ -794,12 +794,14 @@ color: var(--color-text-sub);
   background:var(--color-bg);
 
   display:flex;
-  justify-content:center;
+  justify-content:flex-end;   /* ←右寄せ */
   align-items:center;
 }
 
 .theme-switcher select{
-  width:min(220px, 80vw);
+  width:auto;
+  min-width:170px;
+  max-width:220px;
   font-size:12px;
 
   background:var(--color-card);
