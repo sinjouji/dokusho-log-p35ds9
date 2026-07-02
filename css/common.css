@@ -36,6 +36,7 @@ COMMON.CSS
   color:var(--color-text-contrast);
   font-style:italic;
 }
+
 .app-watermark{
   font-size:50px;
   color:rgba(
@@ -816,4 +817,11 @@ color: var(--color-text-sub);
   box-shadow:
     0 2px 8px
     var(--color-shadow);
+}
+
+
+header h1,
+.app-watermark{
+  position:relative;
+  z-index:2;
 }
