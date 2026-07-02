@@ -2828,3 +2828,91 @@ radial-gradient(
   --color-heat-4:#8d98b8;
   --color-heat-5:#c98f9c;
 }
+
+
+
+
+
+
+
+[data-theme="gekkoushoko"]{
+  /* Header */
+  --color-header-bg:#28344a;   /* 夜空紺 */
+  --color-header-text:#f6f4ef;
+  --color-header-watermark-rgb:210,220,240;
+  --opacity-header-watermark:.06;
+
+  /* Main */
+  --color-main:#6f88b8;        /* 月光ブルー */
+  --color-main-dark:#536998;
+
+  /* Border */
+  --color-border:#95a4c2;
+  --color-border-sub:#d8dee8;
+
+  /* Base */
+  --color-bg:#f5f7fb;          /* 青白紙 */
+  --color-card:#ffffff;
+  --color-control-box:#edf1f7;
+  --color-input-common:#f2f5fa;
+
+  /* Navigation */
+  --color-nav-bg:#364866;
+
+  /* Text */
+  --color-text:#222833;
+  --color-text-sub:#667085;
+  --color-text-contrast:#f8fafc;
+
+  /* Buttons */
+  --color-btn-main:#6f88b8;
+  --color-btn-danger:#8d5a64;
+
+  /* Chips */
+  --color-chip:#d8e0f0;
+
+  /* Bookmark */
+  --color-bookmark:#aab7d8;
+
+  /* Search */
+  --color-and:#dfe9f5;
+  --color-and-border:#8fa7c7;
+
+  --color-or:#f4eddc;
+  --color-or-border:#d6c097;
+
+  --color-not:#f0dfe2;
+  --color-not-border:#b98e96;
+
+  --color-search-btn:#6f88b8;
+
+  /* Stats */
+  --color-year-bar:#536998;
+  --color-year-achieved:#aab7d8;
+
+  /* Read chip */
+  --color-chip-read-bg:#6f88b8;
+  --color-chip-read-bg-rgb:111,136,184;
+  --color-chip-read-text:#f8fafc;
+
+  /* Calendar */
+  --color-calendar-date:#6b7488;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#f8fafc;
+
+  /* Heat */
+  --color-heat-0:#ffffff;
+  --color-heat-1:#edf1f7;
+  --color-heat-2:#d8dee8;
+  --color-heat-3:#aab7d8;
+  --color-heat-4:#6f88b8;
+  --color-heat-5:#28344a;
+}
+
+
+
+
+
+
+
