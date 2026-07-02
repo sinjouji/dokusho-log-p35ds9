@@ -773,3 +773,44 @@ color: var(--color-text-sub);
 }
 
 
+
+/*
+ テーマ用のプルダウン多くなったから装飾するよ〜〜〜
+*/
+/*==============================
+テーマ切替バー
+==============================*/
+.theme-switcher{
+  position:sticky;
+  top:0;
+  z-index:60;
+
+  width:100%;
+  padding:
+    calc(env(safe-area-inset-top) + 6px)
+    12px
+    6px;
+
+  background:var(--color-bg);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.theme-switcher select{
+  width:min(220px, 80vw);
+  font-size:12px;
+
+  background:var(--color-card);
+  color:var(--color-text);
+
+  border:1px solid var(--color-border-sub);
+  border-radius:999px;
+
+  padding:10px 16px;
+
+  box-shadow:
+    0 2px 8px
+    var(--color-shadow);
+}
