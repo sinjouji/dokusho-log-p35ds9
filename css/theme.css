@@ -2991,41 +2991,18 @@ radial-gradient(
   left:0;
   right:0;
   bottom:0;
-  height:42px;   /* ←ここ重要 */
+  height:42px;
 
   pointer-events:none;
   opacity:.28;
 
   background:
-    linear-gradient(
-      to top,
-      rgba(60,50,40,.28) 0 100%
-    ) 8% 100% / 18px 18% no-repeat,
-
-    linear-gradient(
-      to top,
-      rgba(60,50,40,.28) 0 100%
-    ) 18% 100% / 18px 42% no-repeat,
-
-    linear-gradient(
-      to top,
-      rgba(60,50,40,.28) 0 100%
-    ) 28% 100% / 18px 30% no-repeat,
-
-    linear-gradient(
-      to top,
-      rgba(60,50,40,.28) 0 100%
-    ) 42% 100% / 18px 62% no-repeat,
-
-    linear-gradient(
-      to top,
-      rgba(60,50,40,.28) 0 100%
-    ) 56% 100% / 18px 48% no-repeat,
-
-    linear-gradient(
-      to top,
-      rgba(60,50,40,.28) 0 100%
-    ) 70% 100% / 18px 24% no-repeat;
+    linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 8% 100% / 14px 8px no-repeat,
+    linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 18% 100% / 14px 18px no-repeat,
+    linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 28% 100% / 14px 12px no-repeat,
+    linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 42% 100% / 14px 26px no-repeat,
+    linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 56% 100% / 14px 20px no-repeat,
+    linear-gradient(to top, rgba(60,50,40,.28) 0 100%) 70% 100% / 14px 10px no-repeat;
 }
 
 
