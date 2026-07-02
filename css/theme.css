@@ -2755,22 +2755,22 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.16;
+  opacity:.18;
 
   background:
     radial-gradient(
       circle,
-      rgba(45,35,28,.20) 0 26px,
-      rgba(201,164,104,.30) 26px 34px,
-      transparent 34px
-    ) 0 0 / 92px 92px repeat,
+      rgba(45,35,28,.24) 0 22px,       /* 少し縮小 */
+      rgba(201,164,104,.42) 22px 27px, /* ボーダー細め・濃い */
+      transparent 27px
+    ) 0 0 / 96px 96px repeat,
 
     radial-gradient(
       circle,
-      rgba(45,35,28,.20) 0 26px,
-      rgba(201,164,104,.30) 26px 34px,
-      transparent 34px
-    ) 46px 46px / 92px 92px repeat;
+      rgba(45,35,28,.24) 0 22px,
+      rgba(201,164,104,.42) 22px 27px,
+      transparent 27px
+    ) 48px 48px / 96px 96px repeat;
 }
 
 
