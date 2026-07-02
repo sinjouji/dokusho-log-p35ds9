@@ -2749,30 +2749,30 @@ radial-gradient(
 
 
 
+
 [data-theme="meijishosai"] header::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.18;
+  opacity:.16;
 
   background:
-    /* 1段目 */
     radial-gradient(
       circle,
-      rgba(20,20,20,.16) 0 10px,
-      rgba(168,140,95,.38) 10px 13px,
-      transparent 13px
-    ) 0 0 / 26px 26px repeat,
+      rgba(45,35,28,.20) 0 26px,
+      rgba(201,164,104,.30) 26px 34px,
+      transparent 34px
+    ) 0 0 / 68px 68px repeat,
 
-    /* 2段目（半マスずらし） */
     radial-gradient(
       circle,
-      rgba(20,20,20,.16) 0 10px,
-      rgba(168,140,95,.38) 10px 13px,
-      transparent 13px
-    ) 13px 13px / 26px 26px repeat;
+      rgba(45,35,28,.20) 0 26px,
+      rgba(201,164,104,.30) 26px 34px,
+      transparent 34px
+    ) 34px 34px / 68px 68px repeat;
 }
+
 
 
 
