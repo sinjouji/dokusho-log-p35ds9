@@ -320,7 +320,7 @@
   
   /* モーダルボタン */
   --color-btn-main:#7A89A8;
-  --color-btn-text-s:#60564f;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#fff7f5;
   --color-btn-text-d:#9a5a4f;
   --color-btn-border-d:#e0b0a0;
@@ -502,7 +502,7 @@
 --color-text-contrast:#fff8f3;
 
   --color-btn-main:#f0907d;   /* 水風船赤 */
-  --color-btn-text-s:#4d5f68;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#f7d7c8;
   --color-btn-text-d:#6b5048;
 
@@ -674,7 +674,7 @@
 
   /* ボタン */
   --color-btn-main:#78b7c5;   /* ラムネ瓶 */
-  --color-btn-text-s:#60564f;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#fff1ef;
   --color-btn-text-d:#c65b4b; /* スイカ赤 */
 
@@ -819,7 +819,7 @@
 --color-text-contrast:#fff8dc;  /* 茎色 */
 
   --color-btn-main:#5f8f3f;
-  --color-btn-text-s:#4a5f22;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#f8e0b8;
   --color-btn-text-d:#7a5422;
   
@@ -1195,7 +1195,7 @@
 --color-text-contrast:#fff4eb;
 
   --color-btn-main:#d97a3c;
-  --color-btn-text-s:#7a3f26;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#f4d8cf;
   --color-btn-text-d:#7a3f26;
 
@@ -1338,7 +1338,7 @@
 --color-text-contrast:#f5eadf;
 
   --color-btn-main:#8b5e4a;
-  --color-btn-text-s:#4f3729;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#f5e7df;
   --color-btn-text-d:#8b4a3a;
 
@@ -1458,7 +1458,7 @@ opacity:.6;
 --color-text-contrast:#f4faf4;
 
   --color-btn-main:#c8d9e8;
-  --color-btn-text-s:#4d5a66;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#f4e7df;
   --color-btn-text-d:#8a6558;
 
@@ -1563,7 +1563,7 @@ opacity:.6;
 --color-text-contrast:#fffdfa;
 
 --color-btn-main:#6b7c9d;
---color-btn-text-s:#4f4338;
+--color-btn-text-s:var(--color-text);
 --color-btn-danger:#f5f0f0;
 --color-btn-text-d:#f8f6f1;
 
@@ -1696,7 +1696,7 @@ background-size:
 --color-text-contrast:#fff7ef;
 
 --color-btn-main:#8b4a3a;
---color-btn-text-s:#3b3126;
+--color-btn-text-s:var(--color-text);
 --color-btn-danger:#4a2a22;
 --color-btn-text-d:#fff8ef;
 
@@ -1787,7 +1787,7 @@ background-size:
 --color-text-contrast:#f5fff2;
 
   --color-btn-main:#4f6b4e;
-  --color-btn-text-s:#d9e2d4;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#3d2f2f;
   --color-btn-text-d:#e4d7d7;
 
@@ -1920,7 +1920,7 @@ background-size:
 --color-text-contrast:#fff7f0;
   
     --color-btn-main:#7a2f4a;   /* ワイン赤 */
-  --color-btn-text-s:#f2e7d8;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#34242d;
   --color-btn-text-d:#e8d7df;
 
@@ -2056,7 +2056,7 @@ background-size:
 --color-text-contrast:#f4f0e8;
 
   --color-btn-main:#c44f3a;
-  --color-btn-text-s:#ffffff;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#5f4a44;
   --color-btn-text-d:#f8f6f1;
 
@@ -2319,7 +2319,7 @@ radial-gradient(
 --color-text-contrast:#f7edd8;
 
   --color-btn-main:#375e97;
-  --color-btn-text-s:#4e3f36;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#8c3b2a;
   --color-btn-text-d:#fff4ee;
 
@@ -2388,7 +2388,7 @@ radial-gradient(
   --color-text-contrast:#fdfcf7;
 
   --color-btn-main:#216153;    /* 常磐緑（当時のモダン建築やタイルの緑） */
-  --color-btn-text-s:#60564f;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#a62b32;
   --color-btn-text-d:#fff3f3;
 
@@ -2506,7 +2506,7 @@ radial-gradient(
 
   /* Buttons */
   --color-btn-main:#6f7a5d;
-  --color-btn-text-s:#2c221c;
+  --color-btn-text-s:var(--color-text);
 
   --color-btn-danger:#9c4d40;
   --color-btn-text-d:#fff8ef;
@@ -2617,7 +2617,7 @@ radial-gradient(
 
   /* Buttons */
   --color-btn-main:#5f9a7a;    /* 喫茶グリーン */
-  --color-btn-text-s:#2b211b;
+  --color-btn-text-s:var(--color-text);
 
   --color-btn-danger:#8c3f2f;
   --color-btn-text-d:#fff8ef;
@@ -2700,7 +2700,7 @@ radial-gradient(
 
   /* Buttons */
   --color-btn-main:#3f5e4a;
-  --color-btn-text-s:#241b15;
+  --color-btn-text-s:var(--color-text);
 
   --color-btn-danger:#7a2f2f;
   --color-btn-text-d:#fff8ef;
