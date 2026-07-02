@@ -2749,6 +2749,32 @@ radial-gradient(
 
 
 
+[data-theme="meijishosai"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.28;
+
+  background:
+    /* 1段目 */
+    radial-gradient(
+      circle,
+      rgba(40,40,40,.15) 0 5px,
+      rgba(180,180,180,.35) 5px 7px,
+      transparent 7px
+    ) 0 0 / 34px 34px repeat,
+
+    /* 2段目（半マスずらし） */
+    radial-gradient(
+      circle,
+      rgba(40,40,40,.15) 0 5px,
+      rgba(180,180,180,.35) 5px 7px,
+      transparent 7px
+    ) 17px 17px / 34px 34px repeat;
+}
+
+
 
 
 
@@ -2984,6 +3010,9 @@ radial-gradient(
   --color-heat-5:#2a2a2a;
 }
 
+
+
+/*  活字ブロックの積み重ねっぽいデザイン*/
 [data-theme="kappaninsatsu"] header{
   overflow:hidden;
 }
@@ -3007,6 +3036,7 @@ radial-gradient(
     linear-gradient(to top,#4b2e24 0 100%) 56% 100% / 18px 20px no-repeat,
     linear-gradient(to top,#4b2e24 0 100%) 70% 100% / 18px 12px no-repeat;
 }
+
 
 
 
