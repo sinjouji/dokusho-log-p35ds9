@@ -2914,6 +2914,74 @@ radial-gradient(
 
 
 
+[data-theme="kappaninsatsu"]{
+  --color-header-bg:#2a2a2a;      /* インク黒 */
+  --color-header-text:#f4ead7;
 
+  --color-header-watermark-rgb:180,160,130;
+  --opacity-header-watermark:0.05;
+
+  --color-main:#9e3d2e;           /* 朱印 */
+  --color-main-dark:#6f2a20;
+
+  --color-border:#6b6255;         /* 鉛活字 */
+
+  --color-bg:#efe4cf;             /* 古紙 */
+  --color-card:#f8f0de;
+
+  --color-border-sub:#d4c4a5;
+
+  --color-nav-bg:#3b3128;         /* 木枠 */
+
+  --color-text:#231d18;
+  --color-text-sub:#6a5b4d;
+  --color-text-contrast:#f7f0e2;
+
+  --color-shadow:rgba(40,28,18,.18);
+
+  --color-btn-main:#9e3d2e;
+  --color-btn-text-s:#231d18;
+
+  --color-btn-danger:#4a4a4a;
+  --color-btn-text-d:#f7f0e2;
+
+  --color-chip:#b98b52;           /* 真鍮 */
+
+  --color-input-common:#e8dcc7;
+
+  --color-bookmark:#5d4a36;
+
+  --color-control-box:#e4d8c2;
+
+  --color-and:#d8e1d2;
+  --color-and-border:#7d9274;
+
+  --color-or:#f1dfc4;
+  --color-or-border:#c8a26b;
+
+  --color-not:#ead4d0;
+  --color-not-border:#a56c63;
+
+  --color-search-btn:#5d4a36;
+
+  --color-year-bar:#6f2a20;
+  --color-year-achieved:#b98b52;
+
+  --color-chip-read-bg:#c7a96d;   /* 活字箱ラベル */
+  --color-chip-read-bg-rgb:199,169,109;
+  --color-chip-read-text:#231d18;
+
+  --color-calendar-date:#6a5b4d;
+  --color-calendar-tag-dark:var(--color-calendar-dark-text);
+  --color-calendar-light-text:var(--color-text);
+  --color-calendar-dark-text:#f7f0e2;
+
+  --color-heat-0:#f8f0de;
+  --color-heat-1:#e8dcc7;
+  --color-heat-2:#d2b98d;
+  --color-heat-3:#b98b52;
+  --color-heat-4:#9e3d2e;
+  --color-heat-5:#2a2a2a;
+}
 
 
