@@ -2991,6 +2991,7 @@ radial-gradient(
   inset:0;
   pointer-events:none;
   opacity:.18;
+  background-size:22px 12px;
 
   background:
     /* column 1 */
