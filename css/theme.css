@@ -33,7 +33,7 @@
 
 /*Buttons*/
   --color-btn-main:#f0907d;   /* 水風船赤 */
-  --color-btn-text-s:#4d5f68;
+  --color-btn-text-s:var(--color-text);
   --color-btn-danger:#f7d7c8;
   --color-btn-text-d:#6b5048;
 
@@ -2782,7 +2782,7 @@ radial-gradient(
 
   /* Buttons */
   --color-btn-main:#8d98b8;
-  --color-btn-text-s:#fffaf5;
+  --color-btn-text-s:var(--color-text);
 
   --color-btn-danger:#c98f9c;
   --color-btn-text-d:#fffaf5;
