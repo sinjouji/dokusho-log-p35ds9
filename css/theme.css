@@ -2763,14 +2763,14 @@ radial-gradient(
       rgba(45,35,28,.20) 0 26px,
       rgba(201,164,104,.30) 26px 34px,
       transparent 34px
-    ) 0 0 / 68px 68px repeat,
+    ) 0 0 / 92px 92px repeat,
 
     radial-gradient(
       circle,
       rgba(45,35,28,.20) 0 26px,
       rgba(201,164,104,.30) 26px 34px,
       transparent 34px
-    ) 34px 34px / 68px 68px repeat;
+    ) 46px 46px / 92px 92px repeat;
 }
 
 
