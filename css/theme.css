@@ -2988,45 +2988,45 @@ radial-gradient(
 [data-theme="kappaninsatsu"] header::before{
   content:"";
   position:absolute;
-  inset:0;
+  left:0;
+  right:0;
+  bottom:0;
+  height:42px;   /* ←ここ重要 */
+
   pointer-events:none;
-  opacity:.22;
+  opacity:.28;
 
   background:
     linear-gradient(
       to top,
-      rgba(60,50,40,.22) 0 18%,
-      transparent 18%
-    ) 8% 100% / 18px 100% no-repeat,
+      rgba(60,50,40,.28) 0 100%
+    ) 8% 100% / 18px 18% no-repeat,
 
     linear-gradient(
       to top,
-      rgba(60,50,40,.22) 0 42%,
-      transparent 42%
-    ) 18% 100% / 18px 100% no-repeat,
+      rgba(60,50,40,.28) 0 100%
+    ) 18% 100% / 18px 42% no-repeat,
 
     linear-gradient(
       to top,
-      rgba(60,50,40,.22) 0 30%,
-      transparent 30%
-    ) 28% 100% / 18px 100% no-repeat,
+      rgba(60,50,40,.28) 0 100%
+    ) 28% 100% / 18px 30% no-repeat,
 
     linear-gradient(
       to top,
-      rgba(60,50,40,.22) 0 62%,
-      transparent 62%
-    ) 42% 100% / 18px 100% no-repeat,
+      rgba(60,50,40,.28) 0 100%
+    ) 42% 100% / 18px 62% no-repeat,
 
     linear-gradient(
       to top,
-      rgba(60,50,40,.22) 0 48%,
-      transparent 48%
-    ) 56% 100% / 18px 100% no-repeat,
+      rgba(60,50,40,.28) 0 100%
+    ) 56% 100% / 18px 48% no-repeat,
 
     linear-gradient(
       to top,
-      rgba(60,50,40,.22) 0 24%,
-      transparent 24%
-    ) 70% 100% / 18px 100% no-repeat;
+      rgba(60,50,40,.28) 0 100%
+    ) 70% 100% / 18px 24% no-repeat;
 }
+
+
 
