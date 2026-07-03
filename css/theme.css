@@ -2891,14 +2891,14 @@ radial-gradient(
     radial-gradient(
       circle,
       transparent 0 13px,
-      rgba(194,138,164,.45) 13px 16px,
+      rgba(255,245,248,.55) 13px 16px,
       transparent 16px
     ) 0 0 / 32px 32px repeat,
 
     radial-gradient(
       circle,
       transparent 0 13px,
-      rgba(194,138,164,.45) 13px 16px,
+      rgba(255,245,248,.55) 13px 16px,
       transparent 16px
     ) 16px 16px / 32px 32px repeat;
 }
@@ -3108,7 +3108,9 @@ radial-gradient(
     1px 1px 0 rgba(255,255,255,.04),
     -2px -2px 0 rgba(0,0,0,.18);
 }
-[data-theme="kappaninsatsu"] .page-title{
+[data-theme="kappaninsatsu"] header h1,
+[data-theme="kappaninsatsu"] .page-title,
+[data-theme="kappaninsatsu"] .header-title{
   text-shadow:
     1px 1px 0 rgba(255,255,255,.08),
     -1px -1px 0 rgba(0,0,0,.25);
