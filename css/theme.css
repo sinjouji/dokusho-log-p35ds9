@@ -2369,7 +2369,7 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.38;
+  opacity:.48;
 
   background:
     radial-gradient(
