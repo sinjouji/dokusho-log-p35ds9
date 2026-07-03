@@ -3103,7 +3103,9 @@ radial-gradient(
 [data-theme="kappaninsatsu"] header{
   overflow:hidden;
 }
-[data-theme="kappaninsatsu"] .page-title{
+[data-theme="kappaninsatsu"] header h1,
+[data-theme="kappaninsatsu"] .page-title,
+[data-theme="kappaninsatsu"] .header-title{
   text-shadow:
     0 0 1px rgba(255,255,255,.18),
     2px 2px 3px rgba(0,0,0,.45),
