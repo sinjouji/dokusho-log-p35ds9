@@ -2784,14 +2784,14 @@ radial-gradient(
     linear-gradient(
       rgba(165,145,95,.55),
       rgba(125,105,65,.55)
-    ) 34% 34% / 44px 62px no-repeat,
+    ) 34% 40% / 44px 62px no-repeat,
 
     linear-gradient(
       180deg,
       rgba(230,210,180,.22),
       rgba(165,120,95,.16),
       rgba(110,80,60,.12)
-    ) 34% 34% / 34px 52px no-repeat,
+    ) 34% 40% / 34px 52px no-repeat,
 
     /* 中央の額縁 */
     linear-gradient(
