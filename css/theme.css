@@ -1,5 +1,5 @@
 /*==========
-ルートカラー：まとめて変えるぜ〜〜
+ルートカラー：まとめて変えるぜ〜〜〜
 2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
 :root{ /*夕涼みベース*/
@@ -3225,7 +3225,7 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.55;
+  opacity:.8;
 
   background:
     /* 灯り */
