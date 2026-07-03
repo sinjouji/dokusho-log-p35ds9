@@ -3105,7 +3105,7 @@ radial-gradient(
 }
 [data-theme="kappaninsatsu"] #page-title{
   text-shadow:
-    2px 2px 0 rgba(0,0,0,.42),
+    3px 3px 0 rgba(255,0,0,.6),
     -2px -2px 0 rgba(255,255,255,.08),
     0 3px 4px rgba(0,0,0,.35);
 }
