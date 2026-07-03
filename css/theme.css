@@ -3105,9 +3105,9 @@ radial-gradient(
 }
 [data-theme="kappaninsatsu"] #page-title{
   text-shadow:
-    2px 2px 0 rgba(55,35,20,.55),
-    -2px -2px 0 rgba(255,255,255,.06),
-    0 3px 4px rgba(40,25,15,.35);
+  2px 2px 0 rgba(135,95,55,.65),
+  -2px -2px 0 rgba(255,255,255,.08),
+  0 3px 4px rgba(95,70,45,.35);
 }
 
 [data-theme="kappaninsatsu"] .app-watermark{
@@ -3121,7 +3121,7 @@ radial-gradient(
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.55;
+  opacity:.22;
 
   background:
     repeating-linear-gradient(
