@@ -2364,6 +2364,83 @@ radial-gradient(
   overflow:hidden;
 }
 
+/* 文明開化（工場・汽車のモクモク煙） */
+[data-theme="bunmeikaika"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  /* 煙の濃淡をダイナミックに見せるため、全体のopacityを少し上げ、
+     各グラデーション側のRGBAの%で直接空気感をコントロールします */
+  opacity:.65;
+
+  background:
+    /* ==========================================
+       1. 消え際（右上：最も大きく、最も薄く広がる）
+          上空の風に煽られて、淡い青灰色に溶けていく部分
+       ========================================== */
+    radial-gradient(
+      ellipse 130px 45px at 80% 14%,
+      rgba(210, 220, 225, 0.12) 0%,
+      transparent 85%
+    ),
+    radial-gradient(
+      ellipse 160px 55px at 74% 24%,
+      rgba(195, 205, 215, 0.20) 0%,
+      transparent 80%
+    ),
+
+    /* ==========================================
+       2. 強め滲み・広がり（中央〜右上）
+          モコモコと膨らみながら、周囲の空気に馴染んでいく部分
+       ========================================== */
+    radial-gradient(
+      ellipse 120px 45px at 67% 36%,
+      rgba(150, 155, 160, 0.35) 0%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 140px 50px at 64% 42%,
+      rgba(170, 180, 190, 0.28) 0%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 150px 55px at 58% 52%,
+      rgba(180, 185, 195, 0.25) 0%,
+      transparent 85%
+    ),
+
+    /* ==========================================
+       3. 中煙（中央やや左下）
+          煙突から出て少し経ち、少し青みがかった灰色に変色し始めた塊
+       ========================================== */
+    radial-gradient(
+      ellipse 110px 40px at 53% 60%,
+      rgba(140, 150, 160, 0.45) 0%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 90px 35px at 48% 68%,
+      rgba(120, 125, 130, 0.50) 0%,
+      transparent 75%
+    ),
+
+    /* ==========================================
+       4. 煙の芯（左下：吐き出し口付近）
+          一番石炭の煤（すす）が濃い、密度が高くて黒い中心部分
+       ========================================== */
+    radial-gradient(
+      ellipse 60px 25px at 44% 76%,
+      rgba(80, 85, 90, 0.65) 0%,
+      transparent 70%
+    );
+}
+
+
+
+
+
+/*
 [data-theme="bunmeikaika"] header::before{
   content:"";
   position:absolute;
@@ -2372,24 +2449,24 @@ radial-gradient(
   opacity:.48;
 
   background:
-    /* 芯 */
+    /* 芯 
     radial-gradient(circle at 44% 76%, rgba(90,90,90,.28) 0 10px, transparent 10px),
 
-    /* 中煙 */
+    /* 中煙 
     radial-gradient(circle at 48% 68%, rgba(160,160,160,.20) 0 16px, transparent 16px),
     radial-gradient(circle at 53% 60%, rgba(180,180,180,.18) 0 22px, transparent 22px),
 
-    /* 広がり */
+    /* 広がり 
     radial-gradient(circle at 58% 52%, rgba(210,210,210,.12) 0 28px, transparent 28px),
     radial-gradient(circle at 64% 42%, rgba(190,190,190,.14) 0 24px, transparent 24px),
 
-    /* 強め滲み */
+    /* 強め滲み 
     radial-gradient(circle at 67% 36%, rgba(150,150,150,.18) 0 20px, transparent 20px),
 
-    /* 消え際 */
+    /* 消え際 
     radial-gradient(circle at 74% 24%, rgba(220,220,220,.08) 0 30px, transparent 30px),
     radial-gradient(circle at 80% 14%, rgba(240,240,240,.05) 0 18px, transparent 18px);
-}
+}*/
 
 
 
