@@ -1,5 +1,5 @@
 /*==========
-ルートカラー：まとめて変えるぜ〜〜
+ルートカラー：まとめて変えるぜ〜〜〜
 2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
 :root{ /*夕涼みベース*/
@@ -3220,6 +3220,45 @@ radial-gradient(
 
 
 
+[data-theme="gekkoushoko"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.55;
+
+  background:
+    /* 灯り */
+    radial-gradient(
+      ellipse 42px 26px at 72% 28%,
+      rgba(245,248,255,.28) 0%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 30px 18px at 52% 36%,
+      rgba(220,230,255,.20) 0%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 26px 16px at 30% 24%,
+      rgba(210,220,240,.14) 0%,
+      transparent 75%
+    ),
+
+    /* 本棚 */
+    linear-gradient(rgba(55,65,85,.22),rgba(55,65,85,.22)) 22% 74% / 16px 52px no-repeat,
+    linear-gradient(rgba(35,45,60,.24),rgba(35,45,60,.24)) 28% 70% / 18px 58px no-repeat,
+    linear-gradient(rgba(25,35,45,.20),rgba(25,35,45,.20)) 34% 76% / 14px 48px no-repeat,
+    linear-gradient(rgba(65,55,45,.16),rgba(65,55,45,.16)) 42% 72% / 17px 55px no-repeat,
+
+    linear-gradient(rgba(55,65,85,.20),rgba(55,65,85,.20)) 58% 74% / 15px 50px no-repeat,
+    linear-gradient(rgba(35,45,60,.22),rgba(35,45,60,.22)) 64% 68% / 19px 60px no-repeat,
+    linear-gradient(rgba(25,35,45,.18),rgba(25,35,45,.18)) 71% 76% / 14px 46px no-repeat;
+}
+
+
+
+
 
 
 
@@ -3340,8 +3379,8 @@ radial-gradient(
 }
 [data-theme="kappaninsatsu"] #page-title{
   text-shadow:
-  2px 2px 0 rgba(135,95,55,.65),
-  -2px -2px 0 rgba(255,255,255,.08),
+  3px 3px 0 rgba(135,95,55,.65),
+  -3px -3px 0 rgba(232, 225, 209,.08),
   0 3px 4px rgba(95,70,45,.35);
 }
 
