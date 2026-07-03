@@ -2360,6 +2360,53 @@ radial-gradient(
 
 
 
+[data-theme="bunmeikaika"] header{
+  overflow:hidden;
+}
+
+[data-theme="bunmeikaika"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.38;
+
+  background:
+    radial-gradient(
+      circle at 46% 72%,
+      rgba(180,180,180,.20) 0 16px,
+      transparent 16px
+    ),
+
+    radial-gradient(
+      circle at 52% 60%,
+      rgba(200,200,200,.16) 0 22px,
+      transparent 22px
+    ),
+
+    radial-gradient(
+      circle at 59% 48%,
+      rgba(190,190,190,.14) 0 18px,
+      transparent 18px
+    ),
+
+    radial-gradient(
+      circle at 66% 35%,
+      rgba(210,210,210,.10) 0 26px,
+      transparent 26px
+    ),
+
+    radial-gradient(
+      circle at 73% 22%,
+      rgba(220,220,220,.08) 0 18px,
+      transparent 18px
+    );
+}
+
+
+
+
+
 
 
 
