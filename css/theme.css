@@ -2880,6 +2880,30 @@ radial-gradient(
 }
 
 
+[data-theme="bungakushoujo"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.28;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,248,240,.34) 0 14px,
+      rgba(194,138,164,.48) 14px 17px,
+      transparent 17px
+    ) 0 0 / 34px 34px repeat,
+
+    radial-gradient(
+      circle,
+      rgba(255,248,240,.34) 0 14px,
+      rgba(194,138,164,.48) 14px 17px,
+      transparent 17px
+    ) 17px 17px / 34px 34px repeat;
+}
+
+
 
 
 
@@ -2959,6 +2983,10 @@ radial-gradient(
   --color-heat-4:#6f88b8;
   --color-heat-5:#28344a;
 }
+
+
+
+
 
 
 
