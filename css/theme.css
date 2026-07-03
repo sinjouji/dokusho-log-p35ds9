@@ -2364,7 +2364,7 @@ radial-gradient(
   overflow:hidden;
 }
 
-/* 文明開化（ポツポツ黒煙全撤去・白煙完全一体化版） */
+/* 文明開化（破片完全消滅・極上ブレンド一体化版） */
 [data-theme="bunmeikaika"] header::before{
   content:"";
   position:absolute;
@@ -2374,59 +2374,51 @@ radial-gradient(
 
   background:
     /* ==========================================
-       1. 背面：クッキリ浮き立たせる「白い光（蒸気のメインハイライト）」
-          ★ここが主役！一番手前に見せたい綺麗な白のたなびきです。
+       1. 【大改良】最前面：厳選された3つの「マイルドなハイライト」
+          ★浮き上がっていた小さな破片を、なだらかな「3つの大きな光の山」に絞り込みました。
+          透明度もマイルド（0.3前後）にし、エッジのボカしを広く（25px〜40px）したため、
+          パーツとして浮くことなく、自然なモコモコの立体感だけを残します！
        ========================================== */
-    /* 消え際（上空） */
-    radial-gradient(ellipse 130px 30px at 73% 12%, rgba(245, 250, 255, 0.35) 0%, transparent 85%),
-    radial-gradient(ellipse 120px 30px at 65% 23%, rgba(240, 245, 255, 0.45) 0%, transparent 80%),
-    
-    /* 中煙（中央のZライン） */
-    radial-gradient(ellipse 105px 25px at 48% 36%, rgba(245, 250, 255, 0.55) 0 8px, transparent 35px),
-    radial-gradient(ellipse 100px 24px at 40% 48%, rgba(255, 255, 250, 0.55) 0 8px, transparent 35px),
-    radial-gradient(ellipse 95px 22px at 50% 58%, rgba(255, 255, 250, 0.60) 0 8px, transparent 35px),
-    
-    /* 根本（下部からの立ち上がり） */
-    radial-gradient(ellipse 90px 20px at 41% 70%, rgba(255, 255, 255, 0.65) 0 5px, transparent 30px),
-    radial-gradient(ellipse 85px 18px at 35% 82%, rgba(255, 255, 255, 0.70) 0 5px, transparent 25px),
-    radial-gradient(ellipse 80px 16px at 39% 92%, rgba(255, 255, 255, 0.75) 0 4px, transparent 20px),
+    /* 上空の光の山 */
+    radial-gradient(ellipse 140px 35px at 62% 25%, rgba(245, 250, 255, 0.28) 0%, transparent 80%),
+    /* 中央の光の山 */
+    radial-gradient(ellipse 120px 30px at 43% 49%, rgba(255, 255, 250, 0.32) 0%, transparent 80%),
+    /* 根元の光の山 */
+    radial-gradient(ellipse 100px 25px at 37% 76%, rgba(255, 255, 255, 0.35) 0%, transparent 75%),
 
 
     /* ==========================================
-       ★【改良】2. すべてを繋ぎ止める「超・巨大マイルド白雲」
-          ご希望通り、不透明度を 0.25/0.3 ➔ 0.55/0.6 に大幅増量！
-          バラバラだったパーツの間を濃いめの白モヤで完全に埋め尽くし、
-          一本の繋がった煙のストリームへ合体させます。
+       ★【大改良】2. すべてを完全に同化させる「超・濃厚バック白雲」
+          ご希望通り、後ろ側の巨大白雲をさらにクッキリと濃く（0.55/0.60 ➔ 0.72/0.78）しました！
+          これにより、上のハイライトとの明暗差がほとんどなくなり、
+          バラバラだった破片たちが、完全に一つの大きな白いモヤの塊へ同化します。
        ========================================== */
     /* 上半身を繋ぐ巨大雲（中央〜右上をカバー） */
-    radial-gradient(ellipse 260px 55px at 55% 35%, rgba(255, 255, 255, 0.55) 0%, transparent 80%),
+    radial-gradient(ellipse 260px 60px at 55% 35%, rgba(255, 255, 255, 0.72) 0%, transparent 85%),
     /* 下半身を繋ぐ巨大雲（根元〜中央をカバー） */
-    radial-gradient(ellipse 230px 50px at 40% 70%, rgba(255, 255, 255, 0.60) 0%, transparent 80%),
+    radial-gradient(ellipse 230px 55px at 40% 70%, rgba(255, 255, 255, 0.78) 0%, transparent 85%),
 
 
     /* ==========================================
-       3. 中間層：全体をさらに滑らかにする繋ぎの白雲
+       3. 中間層：隙間を完全に消滅させる繋ぎの白雲
+          （ここも少し濃さを上げて、同化を強力にサポートします）
        ========================================== */
-    radial-gradient(ellipse 110px 30px at 46% 37%, rgba(255, 255, 255, 0.40) 0%, transparent 75%),
-    radial-gradient(ellipse 105px 28px at 38% 49%, rgba(255, 255, 250, 0.40) 0%, transparent 75%),
-    radial-gradient(ellipse 100px 26px at 48% 59%, rgba(255, 255, 250, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 110px 30px at 46% 37%, rgba(255, 255, 255, 0.50) 0%, transparent 75%),
+    radial-gradient(ellipse 105px 28px at 38% 49%, rgba(255, 255, 250, 0.50) 0%, transparent 75%),
+    radial-gradient(ellipse 100px 26px at 48% 59%, rgba(255, 255, 250, 0.55) 0%, transparent 70%),
     
-    radial-gradient(ellipse 95px 24px at 37.5% 71%, rgba(255, 255, 255, 0.50) 0%, transparent 70%),
-    radial-gradient(ellipse 90px 22px at 31.5% 83%, rgba(255, 255, 255, 0.50) 0%, transparent 70%),
-    radial-gradient(ellipse 85px 20px at 36% 93%, rgba(255, 255, 255, 0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 95px 24px at 37.5% 71%, rgba(255, 255, 255, 0.60) 0%, transparent 70%),
+    radial-gradient(ellipse 90px 22px at 31.5% 83%, rgba(255, 255, 255, 0.60) 0%, transparent 70%),
+    radial-gradient(ellipse 85px 20px at 36% 93%, rgba(255, 255, 255, 0.65) 0%, transparent 65%),
 
 
     /* ==========================================
-       ★【改良】4. 最背面：薄く細く下側だけを走る「全体の影」
-          夕焼けの紫レイヤーのように、全体のシルエットの「下端・裏側」に
-          うっすらと配置。独立した点々ではないので、目玉には絶対に見えず、
-          煙の立体感を下から支える渋いコークス影になります。
+       4. 最背面：薄く細く下側だけを走る「全体の影」
        ========================================== */
-    /* 上空のうっすら影 */
     radial-gradient(ellipse 220px 35px at 58% 38%, rgba(40, 45, 50, 0.22) 0%, transparent 85%),
-    /* 根元のうっすら影 */
     radial-gradient(ellipse 180px 30px at 35% 76%, rgba(35, 40, 45, 0.28) 0%, transparent 80%);
 }
+
 
 
 
