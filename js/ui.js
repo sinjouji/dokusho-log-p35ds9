@@ -267,6 +267,19 @@ function injectThemeSwitcher(){
 
   const app=document.querySelector(".app-container") || document.body;
 app.prepend(wrapper);
+
+const savedTheme =
+  localStorage.getItem(
+    "selectedTheme"
+  ) || "yuusuzumi";
+
+const select =
+  wrapper.querySelector(
+    "#theme-select"
+  );
+
+select.value = savedTheme;
+
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
