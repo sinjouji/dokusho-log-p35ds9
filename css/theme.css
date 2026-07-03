@@ -1,5 +1,5 @@
 /*==========
-ルートカラー：まとめて変えるぜ〜〜
+ルートカラー：まとめて変えるぜ〜〜〜
 2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
 :root{ /*夕涼みベース*/
@@ -2784,14 +2784,14 @@ radial-gradient(
     linear-gradient(
       rgba(165,145,95,.55),
       rgba(125,105,65,.55)
-    ) 34% 45% / 40px 50px no-repeat,
+    ) 34% 48% / 40px 50px no-repeat,
 
     linear-gradient(
       180deg,
       rgba(230,210,180,.22),
       rgba(165,120,95,.16),
       rgba(110,80,60,.12)
-    ) 34% 45% / 30px 40px no-repeat,
+    ) 34% 48% / 30px 40px no-repeat,
 
     /* 中央の額縁 */
     linear-gradient(
@@ -2810,14 +2810,14 @@ radial-gradient(
     linear-gradient(
       rgba(165,145,95,.55),
       rgba(125,105,65,.55)
-    ) 66% 36% / 50px 68px no-repeat,
+    ) 66% 36% / 45px 60px no-repeat,
 
     linear-gradient(
       180deg,
       rgba(215,190,160,.20),
       rgba(170,110,85,.14),
       rgba(95,65,55,.10)
-    ) 66% 36% / 40px 58px no-repeat;
+    ) 66% 36% / 35px 50px no-repeat;
 }
 
 
