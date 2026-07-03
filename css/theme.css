@@ -1,5 +1,5 @@
 /*==========
-ルートカラー：まとめて変えるぜ〜〜~
+ルートカラー：まとめて変えるぜ〜〜〜
 2026/06/22時点のカラー：COOLな青磁寄り
 ==========*/
 :root{ /*夕涼みベース*/
@@ -3219,7 +3219,78 @@ radial-gradient(
 }
 
 
+/* 月光書庫（深い藍色に浮かぶ、静かな夜のアンティーク本棚） */
+[data-theme="gekkoushoko"] header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  /* 背景の深みと文字の白を引き立たせるため、全体の透明度を調整 */
+  opacity:.75;
 
+  background:
+    /* ==========================================
+       1. 天空：ほの暗い夜のランプの灯り（月光としおりの光）
+          少しサイズを広げ、本棚の真上からじんわり照らすように配置しました。
+       ========================================== */
+    /* 右のランプ：少し強めの光 */
+    radial-gradient(
+      ellipse 60px 40px at 70% 30%,
+      rgba(235, 245, 255, 0.35) 0%,
+      transparent 80%
+    ),
+    /* 中央のランプ：おだやかな光 */
+    radial-gradient(
+      ellipse 50px 35px at 52% 38%,
+      rgba(255, 250, 220, 0.25) 0%,
+      transparent 80%
+    ),
+    /* 左のランプ：淡い密やかな光 */
+    radial-gradient(
+      ellipse 45px 30px at 28% 28%,
+      rgba(215, 230, 255, 0.20) 0%,
+      transparent 75%
+    ),
+
+
+    /* ==========================================
+       2. 左〜中央の本棚（ランプの光がうっすら当たるエリア）
+          ★改良：単色から「左右のグラデーション」に変え、背表紙の立体感を出しました！
+          色味も紺、くすんだ青、そしてアクセントの黄（マスタード）をランダムに配置。
+       ========================================== */
+    /* 1冊目：深いネイビーの本 */
+    linear-gradient(to right, rgba(25,35,55,0.65), rgba(45,60,90,0.55)) 22% 74% / 15px 52px no-repeat,
+    
+    /* 2冊目：少し背の高い、くすんだマスタードイエローの本（光を拾う） */
+    linear-gradient(to right, rgba(140,110,40,0.55), rgba(185,155,70,0.50)) 27% 70% / 17px 58px no-repeat,
+    
+    /* 3冊目：渋い書庫のクラシックブルーの本 */
+    linear-gradient(to right, rgba(30,45,70,0.60), rgba(50,70,105,0.50)) 32% 75% / 14px 48px no-repeat,
+    
+    /* 4冊目：革装丁のようなダークブラウンの本 */
+    linear-gradient(to right, rgba(55,40,30,0.65), rgba(85,65,50,0.50)) 38% 72% / 16px 54px no-repeat,
+
+
+    /* ==========================================
+       3. 中央〜右の本棚（右のランプに照らされて、少し色鮮やかに見えるエリア）
+       ========================================== */
+    /* 5冊目：夜に溶けるミッドナイトブルーの本 */
+    linear-gradient(to right, rgba(20,30,50,0.70), rgba(40,55,85,0.55)) 58% 74% / 15px 50px no-repeat,
+    
+    /* 6冊目：一番大きな、古い魔導書のような深緑の本 */
+    linear-gradient(to right, rgba(30,45,40,0.65), rgba(50,75,65,0.55)) 63% 68% / 19px 62px no-repeat,
+    
+    /* 7冊目：少し色あせたアンティークイエローの本 */
+    linear-gradient(to right, rgba(130,105,50,0.55), rgba(170,140,75,0.45)) 68% 76% / 13px 46px no-repeat,
+    
+    /* 8冊目：右端の影になる細身のネイビーの本 */
+    linear-gradient(to right, rgba(25,35,50,0.65), rgba(40,55,80,0.50)) 72% 75% / 12px 48px no-repeat;
+}
+
+
+
+
+/*
 [data-theme="gekkoushoko"] header::before{
   content:"";
   position:absolute;
@@ -3228,7 +3299,7 @@ radial-gradient(
   opacity:.8;
 
   background:
-    /* 灯り */
+    /* 灯り 
     radial-gradient(
       ellipse 42px 26px at 72% 28%,
       rgba(245,248,255,.28) 0%,
@@ -3245,7 +3316,7 @@ radial-gradient(
       transparent 75%
     ),
 
-    /* 本棚 */
+    /* 本棚 
     linear-gradient(rgba(55,65,85,.22),rgba(55,65,85,.22)) 22% 74% / 16px 52px no-repeat,
     linear-gradient(rgba(35,45,60,.24),rgba(35,45,60,.24)) 28% 70% / 18px 58px no-repeat,
     linear-gradient(rgba(25,35,45,.20),rgba(25,35,45,.20)) 34% 76% / 14px 48px no-repeat,
@@ -3255,8 +3326,7 @@ radial-gradient(
     linear-gradient(rgba(35,45,60,.22),rgba(35,45,60,.22)) 64% 68% / 19px 60px no-repeat,
     linear-gradient(rgba(25,35,45,.18),rgba(25,35,45,.18)) 71% 76% / 14px 46px no-repeat;
 }
-
-
+*/
 
 
 
