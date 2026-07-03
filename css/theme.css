@@ -2372,35 +2372,23 @@ radial-gradient(
   opacity:.48;
 
   background:
-    radial-gradient(
-      circle at 46% 72%,
-      rgba(180,180,180,.20) 0 16px,
-      transparent 16px
-    ),
+    /* 芯 */
+    radial-gradient(circle at 44% 76%, rgba(90,90,90,.28) 0 10px, transparent 10px),
 
-    radial-gradient(
-      circle at 52% 60%,
-      rgba(200,200,200,.16) 0 22px,
-      transparent 22px
-    ),
+    /* 中煙 */
+    radial-gradient(circle at 48% 68%, rgba(160,160,160,.20) 0 16px, transparent 16px),
+    radial-gradient(circle at 53% 60%, rgba(180,180,180,.18) 0 22px, transparent 22px),
 
-    radial-gradient(
-      circle at 59% 48%,
-      rgba(190,190,190,.14) 0 18px,
-      transparent 18px
-    ),
+    /* 広がり */
+    radial-gradient(circle at 58% 52%, rgba(210,210,210,.12) 0 28px, transparent 28px),
+    radial-gradient(circle at 64% 42%, rgba(190,190,190,.14) 0 24px, transparent 24px),
 
-    radial-gradient(
-      circle at 66% 35%,
-      rgba(210,210,210,.10) 0 26px,
-      transparent 26px
-    ),
+    /* 強め滲み */
+    radial-gradient(circle at 67% 36%, rgba(150,150,150,.18) 0 20px, transparent 20px),
 
-    radial-gradient(
-      circle at 73% 22%,
-      rgba(220,220,220,.08) 0 18px,
-      transparent 18px
-    );
+    /* 消え際 */
+    radial-gradient(circle at 74% 24%, rgba(220,220,220,.08) 0 30px, transparent 30px),
+    radial-gradient(circle at 80% 14%, rgba(240,240,240,.05) 0 18px, transparent 18px);
 }
 
 
