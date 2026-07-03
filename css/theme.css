@@ -2780,40 +2780,45 @@ radial-gradient(
   opacity:.55;
 
   background:
-    /* 左 */
+    /* 左の額縁 */
     linear-gradient(
-      rgba(120,85,55,.30),
-      rgba(120,85,55,.30)
-    ) 30% 34% / 56px 72px no-repeat,
+      rgba(165,145,95,.55),
+      rgba(125,105,65,.55)
+    ) 30% 34% / 58px 82px no-repeat,
 
     linear-gradient(
-      rgba(230,215,190,.18),
-      rgba(230,215,190,.18)
-    ) 31% 36% / 48px 64px no-repeat,
+      180deg,
+      rgba(230,210,180,.22),
+      rgba(165,120,95,.16),
+      rgba(110,80,60,.12)
+    ) 30% 34% / 48px 72px no-repeat,
 
-    /* 中央 */
+    /* 中央の額縁 */
     linear-gradient(
-      rgba(120,85,55,.28),
-      rgba(120,85,55,.28)
-    ) 50% 44% / 56px 72px no-repeat,
-
-    linear-gradient(
-      rgba(120,155,120,.16),
-      rgba(120,155,120,.16)
-    ) 51% 46% / 48px 64px no-repeat,
-
-    /* 右 */
-    linear-gradient(
-      rgba(120,85,55,.30),
-      rgba(120,85,55,.30)
-    ) 70% 32% / 56px 72px no-repeat,
+      rgba(165,145,95,.55),
+      rgba(125,105,65,.55)
+    ) 50% 44% / 58px 82px no-repeat,
 
     linear-gradient(
-      rgba(210,165,120,.18),
-      rgba(210,165,120,.18)
-    ) 71% 34% / 48px 64px no-repeat;
+      180deg,
+      rgba(170,150,120,.18),
+      rgba(95,120,90,.14),
+      rgba(60,70,60,.10)
+    ) 50% 44% / 48px 72px no-repeat,
+
+    /* 右の額縁 */
+    linear-gradient(
+      rgba(165,145,95,.55),
+      rgba(125,105,65,.55)
+    ) 70% 32% / 58px 82px no-repeat,
+
+    linear-gradient(
+      180deg,
+      rgba(215,190,160,.20),
+      rgba(170,110,85,.14),
+      rgba(95,65,55,.10)
+    ) 70% 32% / 48px 72px no-repeat;
 }
-
 
 
 
