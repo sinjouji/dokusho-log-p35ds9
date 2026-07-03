@@ -2811,11 +2811,11 @@ radial-gradient(
       rgba(240, 215, 180, 0.45),
       rgba(180, 130, 95, 0.30),
       rgba(110, 80, 60, 0.20)
-    ) 33% 50% / 36px 48px no-repeat,
+    ) 36% 50% / 36px 48px no-repeat,
     linear-gradient(
       rgba(140, 110, 75, 0.85),
       rgba(90, 65, 40, 0.90)
-    ) 33% 50% / 46px 58px no-repeat,
+    ) 36% 50% / 46px 58px no-repeat,
 
 
     /* ==========================================
@@ -2826,11 +2826,11 @@ radial-gradient(
       rgba(210, 220, 190, 0.40),
       rgba(120, 145, 110, 0.30),
       rgba(70, 85, 65, 0.20)
-    ) 49% 44% / 24px 40px no-repeat,
+    ) 49% 40% / 24px 40px no-repeat,
     linear-gradient(
       rgba(130, 105, 75, 0.85),
       rgba(85, 65, 45, 0.90)
-    ) 49% 44% / 34px 50px no-repeat,
+    ) 49% 40% / 34px 50px no-repeat,
 
 
     /* ==========================================
