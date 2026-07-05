@@ -86,18 +86,33 @@ let selectedBooks = [];
 
 
 //==============================
-//状態保存
+//状態読込
 //==============================
 const saved =
   localStorage.getItem(
     "detailSearchState"
-    
   );
 
 if(saved){
 
   detailSearch =
     JSON.parse(saved);
+
+  // ===== 古い保存データを補完 =====
+  detailSearch.targets ??= {
+    books:true,
+    series:true,
+    characters:true,
+    hasQuotes:false,
+    hasFavoriteQuotes:false
+  };
+
+  detailSearch.types ??= {
+    normal:true,
+    wish:true
+  };
+
+  detailSearch.personTypes ??= [];
 
 }
 
@@ -126,6 +141,22 @@ function loadSavedDetailSearch(index){
     JSON.parse(
       JSON.stringify(saved.state)
     );
+
+  // ★追加（古い保存データの補完）
+  detailSearch.targets ??= {
+    books:true,
+    series:true,
+    characters:true,
+    hasQuotes:false,
+    hasFavoriteQuotes:false
+  };
+
+  detailSearch.types ??= {
+    normal:true,
+    wish:true
+  };
+
+  detailSearch.personTypes ??= [];
 
   saveDetailSearchState();
   renderDetailSearch();
@@ -302,6 +333,14 @@ function renderDetailSearch(){
   };
 }
 
+if(!detailSearch.personTypes){
+  detailSearch.personTypes = [];
+}
+
+if(!detailSearch.fav){
+  detailSearch.fav = "all";
+}
+
 if(!detailSearch.fav){
   detailSearch.fav = "all";
 }
@@ -475,20 +514,32 @@ let characterResults =
     }
 
     // 人物タイプ
-    if(
-      detailSearch.personTypes.length > 0 &&
-      !detailSearch.personTypes.includes(c.personType)
-    ){
-      return false;
-    }
+    const personTypes =
+  detailSearch.personTypes || [];
 
-    const characterText =
-      [
-        c.name || "",
-        getPersonTypeLabel(c.personType) || ""
-      ]
-      .join(" ")
-      .toLowerCase();
+if(
+  personTypes.length > 0 &&
+  !personTypes.includes(c.personType)
+){
+  return false;
+}
+
+    const seriesText =
+  (c.seriesIds || [])
+    .map(id =>
+      seriesMaster.find(
+        s => String(s.id) === String(id)
+      )?.name || ""
+    )
+    .join(" ");
+
+const characterText = [
+  c.name || "",
+  getPersonTypeLabel(c.personType) || "",
+  seriesText
+]
+.join(" ")
+.toLowerCase();
 
     return matchKeywordGroups(characterText);
 
