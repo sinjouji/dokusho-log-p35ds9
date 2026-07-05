@@ -170,15 +170,16 @@ function renderHome(){
 
   el.innerHTML = `
   <div class="daily-log-area">
-
+  
+<div class="detail-row">
 <span class="daily-log-date-chip">
   ${formatToday()}
 </span>
 
-<div class="daily-log-title">
+<span class="daily-log-title">
   今日のログ
+</span>
 </div>
-
   <div class="daily-log-tags">
     ${
       dailyTags.map(tag => `
