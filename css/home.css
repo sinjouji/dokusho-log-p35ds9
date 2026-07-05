@@ -56,9 +56,26 @@ main{
   margin-bottom:12px;
 }
 
+.daily-log-date-chip{
+  display:inline-block;
+
+  margin-bottom:8px;
+
+  padding:4px 10px;
+
+  background:var(--color-chip);
+  color:var(--color-text-contrast);
+
+  border-radius:999px;
+
+  font-size:.12px;
+  font-weight:600;
+  opacity:var(--color-opacity);
+}
+
 .daily-log-title{
   font-size:12px;
-  opacity:.7;
+  opacity:var(--color-opacity);
   margin-bottom:6px;
 }
 
