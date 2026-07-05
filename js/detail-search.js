@@ -49,6 +49,8 @@ let detailSearch = {
     normal:true,
     wish:true
   },
+  
+  personTypes:[],
 
   reread:false,
 
@@ -461,9 +463,10 @@ let seriesResults =
 
 
 //人物
+//人物
 let characterResults =
   characters.filter(c=>{
-  
+
     if(
       detailSearch.noSeriesCharacter &&
       (c.seriesIds || []).length > 0
@@ -471,9 +474,21 @@ let characterResults =
       return false;
     }
 
+    // 人物タイプ
+    if(
+      detailSearch.personTypes.length > 0 &&
+      !detailSearch.personTypes.includes(c.personType)
+    ){
+      return false;
+    }
+
     const characterText =
-      (c.name || "")
-        .toLowerCase();
+      [
+        c.name || "",
+        getPersonTypeLabel(c.personType) || ""
+      ]
+      .join(" ")
+      .toLowerCase();
 
     return matchKeywordGroups(characterText);
 
@@ -784,10 +799,13 @@ function renderDetailSearchConditions(){
 
 </div>
 
-<div class="detail-search-group">
+
+<div class="flex-between">
+
+<div class="detail-search-group search-min-rows">
 
   <div class="detail-search-group-title">
-    タイプ
+    本タイプ
   </div>
 
   <label>
@@ -825,6 +843,139 @@ function renderDetailSearchConditions(){
   </label>
 
 </div>
+
+<div class="detail-search-group search-min-rows">
+<div class="detail-search-group-title">
+    人物タイプ
+  </div>
+  <label>
+
+    <input
+      type="checkbox"
+      ${detailSearch.personTypes.includes("author") ? "checked" : ""}
+      onchange="
+  if(this.checked){
+
+    if(
+      !detailSearch.personTypes.includes('author')
+    ){
+      detailSearch.personTypes.push('author');
+    }
+
+  }else{
+
+    detailSearch.personTypes =
+      detailSearch.personTypes.filter(
+        p => p !== 'author'
+      );
+
+  }
+
+  saveDetailSearchState();
+"
+    >
+
+    📖 著者
+
+  </label>
+  
+  <label>
+
+    <input
+      type="checkbox"
+      ${detailSearch.personTypes.includes("illustrator") ? "checked" : ""}
+      onchange="
+  if(this.checked){
+
+    if(
+      !detailSearch.personTypes.includes('illustrator')
+    ){
+      detailSearch.personTypes.push('illustrator');
+    }
+
+  }else{
+
+    detailSearch.personTypes =
+      detailSearch.personTypes.filter(
+        p => p !== 'illustrator'
+      );
+
+  }
+
+  saveDetailSearchState();
+"
+    >
+
+    🖼️ イラスト
+
+  </label>
+  
+  <label>
+
+    <input
+      type="checkbox"
+      ${detailSearch.personTypes.includes("original") ? "checked" : ""}
+      onchange="
+  if(this.checked){
+
+    if(
+      !detailSearch.personTypes.includes('original')
+    ){
+      detailSearch.personTypes.push('original');
+    }
+
+  }else{
+
+    detailSearch.personTypes =
+      detailSearch.personTypes.filter(
+        p => p !== 'original'
+      );
+
+  }
+
+  saveDetailSearchState();
+"
+    >
+
+    ✒️ 原作者
+
+  </label>
+  
+  <label>
+
+    <input
+      type="checkbox"
+      ${detailSearch.personTypes.includes("character") ? "checked" : ""}
+      onchange="
+  if(this.checked){
+
+    if(
+      !detailSearch.personTypes.includes('character')
+    ){
+      detailSearch.personTypes.push('character');
+    }
+
+  }else{
+
+    detailSearch.personTypes =
+      detailSearch.personTypes.filter(
+        p => p !== 'character'
+      );
+
+  }
+
+  saveDetailSearchState();
+"
+    >
+
+    👤 登場人物
+
+  </label>
+  
+</div>
+
+</div>
+
 
 <div class="flex-between">
 <div class="detail-search-group search-min-rows">
@@ -1554,6 +1705,8 @@ function resetDetailSearch(){
       normal:true,
       wish:true
     },
+    
+    personTypes:[],
 
     reread:false,
 
