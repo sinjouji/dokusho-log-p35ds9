@@ -318,6 +318,12 @@ async function loadData(){
 
       books = data.books || [];
       characters = data.characters || [];
+      
+      // 旧データ救済（personType未登録の場合）
+      characters.forEach(person=>{
+  person.personType ??= "character";
+});
+      
       tagMaster = data.tagMaster || [];
       seriesMaster =
         (data.series || [])
