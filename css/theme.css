@@ -75,7 +75,7 @@
   
   /*優先度低いやつ（なくても良い）*/
 --color-shadow:rgba(0,0,0,.15);
---color-opacity:.9;
+--color-opacity:.8;
 --color-btn-text-s:var(--color-text);
 --color-btn-text-d:var(--color-text-contrast);
 --color-tag-include:var(--color-and);
