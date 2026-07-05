@@ -171,9 +171,13 @@ function renderHome(){
   el.innerHTML = `
   <div class="daily-log-area">
 
-  <div class="daily-log-title">
-    今日のログ
-  </div>
+<span class="daily-log-date-chip">
+  ${formatToday()}
+</span>
+
+<div class="daily-log-title">
+  今日のログ
+</div>
 
   <div class="daily-log-tags">
     ${
@@ -1430,3 +1434,19 @@ function changeViewMode(mode){
 }
 
 
+
+
+//==============================
+// デイリーログの日付曜日切替
+//==============================
+function formatToday(){
+
+  const d = new Date();
+
+  const week = [
+    "日","月","火","水","木","金","土"
+  ];
+
+  return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,"0")}/${String(d.getDate()).padStart(2,"0")}（${week[d.getDay()]}）`;
+
+}
