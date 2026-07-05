@@ -57,7 +57,7 @@ main{
 }
 
 .daily-log-date-chip{
-  display:inline-block;
+  /*display:inline-block;*/
 
   margin-bottom:8px;
 
