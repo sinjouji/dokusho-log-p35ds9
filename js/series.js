@@ -433,7 +433,7 @@ function renderSeriesSearchArea(){
 			➕ シリーズ
 		</button>
 		
-		<input
+		<input class="input-common"
 			id="series-search"
 			placeholder="シリーズ検索..."
 			value="${seriesSearchKeyword || ""}"
