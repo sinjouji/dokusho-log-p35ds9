@@ -24,7 +24,7 @@ function renderQuotes(){
 
       <div class="quote-page-tools">
         <input
-  class="input-common input-small white-input"
+  class="input-common"
   id="quote-search"
   placeholder="引用・メモを検索"
   value="${quotePage.keyword}"
