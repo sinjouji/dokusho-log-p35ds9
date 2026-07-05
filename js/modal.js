@@ -1346,6 +1346,18 @@ function openAddCharacterModal(){
 				<textarea class="textarea-common" id="add-chars-memo"
 				placeholder="メモ"></textarea>
 				
+				<div class="mini-text">種類</div>
+				
+				<select
+				  id="add-person-type"
+				  class="input-common">
+				  
+				  <option value="character">登場人物</option>
+				  <option value="author">著者</option>
+				  <option value="illustrator">イラスト</option>
+				  <option value="original">原作者</option>
+				 
+				</select>
 				
 			<div class="mini-text">関連シリーズを登録</div>
 			
@@ -1382,6 +1394,9 @@ function openAddCharacterModal(){
 	renderCharacterEditSeries(
 	  "add-character-series-list"
 	);
+	
+	document.getElementById("add-person-type").value =
+  "character";
 }
 
 
@@ -1420,6 +1435,19 @@ editingCharacterSeriesIds =
 			<div class="detail-modal-body">
 			<div class="left-yose">メモ</div>
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
+		
+				<div class="mini-text">種類</div>
+				
+				<select
+				  id="character-person-type"
+				  class="input-common">
+				  
+				  <option value="character">登場人物</option>
+				  <option value="author">著者</option>
+				  <option value="illustrator">イラスト</option>
+				  <option value="original">原作者</option>
+				 
+				</select>
 		
 		
       ${relatedSeries.map(s=>`
@@ -1471,6 +1499,9 @@ editingCharacterSeriesIds =
 	renderCharacterEditSeries(
 	  "character-edit-series"
 	);
+	
+	document.getElementById("character-person-type").value =
+  c.personType ?? "character";
 }
 
 
