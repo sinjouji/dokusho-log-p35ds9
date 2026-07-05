@@ -37,12 +37,34 @@ function renderCharacterList(){
 	if(!main) return;
 	main.innerHTML = "";
 	
-	const filtered = 
-		characters.filter(c =>
-			(c.name || "")
-				.toLowerCase()
-				.includes(characterSearchKeyword)
-		);
+const keyword =
+  characterSearchKeyword.toLowerCase();
+
+const filtered =
+  characters.filter(c => {
+
+    const relatedSeries =
+      seriesMaster.filter(s =>
+        (s.characterIds || [])
+          .map(String)
+          .includes(String(c.id))
+      );
+
+    const searchText = [
+
+      c.name || "",
+
+      getPersonTypeLabel(
+        c.personType
+      ) || "",
+
+      ...relatedSeries.map(s => s.name)
+
+    ].join(" ").toLowerCase();
+
+    return searchText.includes(keyword);
+
+  });
 	
 	//ソート
 	const sorted = sortCharacters(filtered);
@@ -107,10 +129,11 @@ function renderCharacterSearchArea(){
 	
 	<input class="input-common"
 		id="chars-search"
-		placeholder="人物検索..."
+		placeholder="人物・種類で検索..."
 		value="${characterSearchKeyword}"
 		oninput="
-		  characterSearchKeyword = this.value;
+		  characterSearchKeyword =
+		    this.value.trim();
 		  renderCharacterList();
 		"
 	>
