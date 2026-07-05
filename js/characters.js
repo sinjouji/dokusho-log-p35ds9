@@ -61,9 +61,15 @@ function renderCharacterList(){
   );
 
 d.innerHTML = `
+<div class="character-list-top">
   <div class="character-list-name">
     ${c.name}
   </div>
+  
+  <div class="character-type-chip">
+    ${getPersonTypeLabel(c.personType)}
+  </div>
+</div>
 
   ${
     relatedSeries.length
