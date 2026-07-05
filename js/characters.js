@@ -250,6 +250,9 @@ async function saveCharacter(id){
     document.getElementById(
       "character-memo"
     ).value;
+    
+  chars.personType =
+  document.getElementById("character-person-type").value;
 
   console.log("after edit", chars);
 
@@ -306,6 +309,9 @@ async function saveNewCharacter(){
       "ch" + Date.now(),
 
     name,
+    
+    personType:
+      document.getElementById("add-person-type").value,
 
     seriesIds:
       editingCharacterSeriesIds.map(String),
@@ -550,3 +556,27 @@ function changeCharactersSortMode(){
   renderCharacterList();
 }
 
+
+
+
+//==============================
+// 人物タイプ切替
+//==============================
+function getPersonTypeLabel(type){
+
+  switch(type){
+
+    case "author":
+      return "著者";
+
+    case "illustrator":
+      return "イラスト";
+
+    case "original":
+      return "原作者";
+
+    default:
+      return "登場人物";
+  }
+
+}
