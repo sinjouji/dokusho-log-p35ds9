@@ -105,7 +105,7 @@ function renderCharacterSearchArea(){
 		＋ 人物
 	</button>
 	
-	<input
+	<input class="input-common"
 		id="chars-search"
 		placeholder="人物検索..."
 		value="${characterSearchKeyword}"
