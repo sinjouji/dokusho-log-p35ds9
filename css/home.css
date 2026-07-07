@@ -63,7 +63,7 @@ main{
 
   padding:4px 10px;
 
-  background:var(--color-chip);
+  background:var(--color-chip-daily);
   color:var(--color-text-contrast);
 
   border-radius:999px;
