@@ -35,6 +35,14 @@ setActiveMenu("menu-settings");
     ${settingSections.home
     ? `
     
+     <!--デイリーログ日付-->
+    <div class="setting-row">
+      <span>今日の日付</span>
+      <button onclick="toggleEnableDate()">
+        ${enableDate ? "表示：ON" : "表示：OFF"}
+      </button>
+    </div>
+    
     <!--背表紙-->
     <div class="setting-row">
       <span>背表紙カラー</span>
@@ -193,6 +201,24 @@ if(themeSelect){
 
 }
 
+
+
+//==============================
+//=今日の日付のオンオフ切替
+//==============================
+function toggleEnableDate(){
+
+  enableDate = !enableDate;
+
+  localStorage.setItem(
+    "enableDate",
+    enableDate
+  );
+
+  renderSettings();
+  renderHome();
+
+}
 
 
 //==============================
