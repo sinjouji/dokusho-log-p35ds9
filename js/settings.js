@@ -146,31 +146,39 @@ setActiveMenu("menu-settings");
     <!--エクスポート-->
     <div class="setting-row">
   <span>JSONエクスポート</span>
-  <button onclick="exportJsonData()">
-    書き出し
-  </button>
-  <div class="setting-note">
+    <div class="setting-note">
   データをJSON形式で保存します。<br>
   バックアップや、別の端末への移行に利用できます。
   </div>
+  <button onclick="exportJsonData()">
+    書き出し
+  </button>
 </div>
 
 <!--インポート：マージ-->
     <div class="setting-row">
   <span>JSONインポート（差分追加）</span>
-  <button onclick="exportJsonData()">
-    ➕ 差分追加
-  </button>
-  <div class="setting-note">
+    <div class="setting-note">
   JSONデータを読み込みます。<br>
   既存データは更新し、新しいデータは追加します。<br>
   <b>既存データは削除されません。</b>
   </div>
+  <button onclick="exportJsonData()">
+    ➕ 差分追加
+  </button>
 </div>
 
     <!--インポート：上書き-->
     <div class="setting-row">
   <span>JSONインポート（上書き）⚠️</span>
+  
+<div class="setting-note">
+現在のデータを、読み込んだJSONデータで置き換えます。<br>
+<b>JSONに含まれないデータは削除されます。</b><br>
+<br>
+実行前に「書き出し」でバックアップするか、<br>
+「差分追加」の利用をおすすめします。
+</div>
 
   <button
   onclick="
@@ -189,14 +197,6 @@ setActiveMenu("menu-settings");
   style="display:none"
   onchange="importJsonData(this)"
 >
-
-<div class="setting-note">
-現在のデータを、読み込んだJSONデータで置き換えます。<br>
-<b>JSONに含まれないデータは削除されます。</b><br>
-<br>
-実行前に「書き出し」でバックアップするか、<br>
-「差分追加」の利用をおすすめします。
-</div>
 </div>
 
 `
