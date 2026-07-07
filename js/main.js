@@ -70,6 +70,15 @@ let yearlyGoal = Number(localStorage.getItem("yearlyGoal")) || 100;
 let enableGoal = localStorage.getItem("enableGoal");
 enableGoal = enableGoal === null ? true : (enableGoal === "true");//年間読破目標設定
 
+// 今日の日付表示
+let enableDate =
+  localStorage.getItem("enableDate");
+
+enableDate =
+  enableDate === null
+    ? true
+    : enableDate === "true";
+
 //統計ページ年
 let statsYear =
   new Date().getFullYear();
