@@ -825,3 +825,24 @@ header h1,
   position:relative;
   z-index:2;
 }
+
+
+/* 補足説明文用 */
+
+.setting-note{
+
+  font-size:12px;
+  color:var(--color-sub);
+  margin:4px 0 12px 1.5em;
+  line-height:1.5;
+
+}
+
+.setting-note::before{
+
+  content:"▶︎ ";
+  color:var(--color-sub);
+
+}
+
+
