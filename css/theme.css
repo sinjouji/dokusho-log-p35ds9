@@ -39,6 +39,7 @@
 
 /*Chips*/
   --color-chip:#9ad7e0;
+  --color-chip-daily:#9ad7e0;
   --color-chip-read-bg:#f0907d;
   --color-chip-read-bg-rgb:240,144,125;
   --color-chip-read-text:#ffffff;
@@ -113,7 +114,8 @@
 --color-btn-danger:#f8e6e6;
 --color-btn-text-d:var(--color-text);
 
---color-chip:#d8a8b8;
+--color-chip:#f4e2e2;
+--color-chip-daily:#d8a8b8;
 --color-chip-read-bg:#b88f8f;
 --color-chip-read-bg-rgb:184, 143, 143;
 --color-chip-read-text:#fffaf4;
@@ -327,7 +329,8 @@
   
   --color-input-common:#f5f4eb;
   --color-search-hover:#e4e5e6;
-  --color-chip:#8b79c7;
+  --color-chip:#f7f0ea;
+  --color-chip-daily:#8b79c7;
   --color-bookmark:#8d72c9;
   
   /* 検索ページ・検索バー */
@@ -507,6 +510,7 @@
   --color-btn-text-d:#6b5048;
 
   --color-chip:#9ad7e0;
+  --color-chip-daily:#9ad7e0;
   --color-chip-read-bg:#f0907d;
   --color-chip-read-bg-rgb:240,144,125;
   --color-chip-read-text:#ffffff;
@@ -678,7 +682,8 @@
   --color-btn-danger:#fff1ef;
   --color-btn-text-d:#c65b4b; /* スイカ赤 */
 
-  --color-chip:#57a9c8;
+  --color-chip:#f8f3e8;
+  --color-chip-daily:#57a9c8;
   --color-chip-read-bg:#78b7c5;
   --color-chip-read-bg-rgb:120, 183, 197;
   --color-chip-read-text:#fffffc;
@@ -825,6 +830,7 @@
   
   
   --color-chip:#f0c542;
+  --color-chip-daily:#f0c542;
   --color-chip-read-bg:#d87d1f;
   --color-chip-read-bg-rgb:216,125,31;
   --color-chip-read-text:#fffef5;
@@ -969,6 +975,7 @@
   --color-btn-text-d:var(--color-text);
 
   --color-chip:#3d3245;
+  --color-chip-daily:#3d3245;
   --color-chip-read-bg:#d86c3d;
   --color-chip-read-bg-rgb:216, 108, 61;
   --color-chip-read-text:#fff7e8;
@@ -1200,6 +1207,7 @@
   --color-btn-text-d:#7a3f26;
 
   --color-chip:#f2b25f;
+  --color-chip-daily:#f2b25f;
     --color-chip-read-bg:#d76a55;
   --color-chip-read-bg-rgb:215,106,85;
   --color-chip-read-text:#fffaf2;
@@ -1343,6 +1351,7 @@
   --color-btn-text-d:#8b4a3a;
 
   --color-chip:#d8b89a;
+  --color-chip-daily:#d8b89a;
   --color-chip-read-bg:#b86b4d;
   --color-chip-read-bg-rgb:184,107,77;
   --color-chip-read-text:#fffaf3;
@@ -1462,7 +1471,8 @@ opacity:.6;
   --color-btn-danger:#f4e7df;
   --color-btn-text-d:#8a6558;
 
-  --color-chip:#6fb98d;
+  --color-chip:#dce9f2;
+  --color-chip-daily:#6fb98d;
   --color-chip-read-bg:#d9b97a;
   --color-chip-read-bg-rgb:217,185,122;
   --color-chip-read-text:#ffffff;
@@ -1567,7 +1577,8 @@ opacity:.6;
 --color-btn-danger:#f5f0f0;
 --color-btn-text-d:#f8f6f1;
 
---color-chip:#b5b5b5;
+--color-chip:#dde5ee;
+--color-chip-daily:#b5b5b5;
 --color-chip-read-bg:#7f98b8;
 --color-chip-read-bg-rgb:127, 152, 184;
 --color-chip-read-text:#ffffff;
@@ -1701,6 +1712,7 @@ background-size:
 --color-btn-text-d:#fff8ef;
 
 --color-chip:#8c5a42;
+--color-chip-daily:#8c5a42;
 --color-chip-read-bg:#b86b4d;
 --color-chip-read-bg-rgh:184, 107, 77;
 --color-chip-read-text:#fff1de;
@@ -1792,6 +1804,7 @@ background-size:
   --color-btn-text-d:#e4d7d7;
 
   --color-chip:#6f886b;
+  --color-chip-daily:#6f886b;
   --color-chip-read-bg:#7f9b78;
   --color-chip-read-bg-rgb:127,155,120;
   --color-chip-read-text:#f6faf3;
@@ -1925,6 +1938,7 @@ background-size:
   --color-btn-text-d:#e8d7df;
 
   --color-chip:#a88432;
+  --color-chip-daily:#a88432;
   --color-chip-read-bg:#7a2f4a;
   --color-chip-read-bg-rgb:122,47,74;
   --color-chip-read-text:#f8f1e8;
@@ -2061,6 +2075,7 @@ background-size:
   --color-btn-text-d:#f8f6f1;
 
   --color-chip:#a6b792;        /* 苔 */
+  --color-chip-daily:#a6b792;
   --color-chip-read-bg:#5e7f4f;
   --color-chip-read-bg-rgb:94,127,79;
   --color-chip-read-text:#ffffff;
@@ -2324,6 +2339,7 @@ radial-gradient(
   --color-btn-text-d:#fff4ee;
 
   --color-chip:#d9b55a;
+  --color-chip-daily:#d9b55a;
   --color-chip-read-bg:#5a7ab3;
   --color-chip-read-bg-rgb:90,122,179;
   --color-chip-read-text:#fff8ef;
@@ -2495,6 +2511,7 @@ radial-gradient(
   --color-btn-text-d:#fff3f3;
 
   --color-chip:#e5a93b;
+  --color-chip-daily:#e5a93b;
   --color-chip-read-bg: #80ba9b;   /* 黒文字が映える、少し白みを混ぜたハイカラな緑 */
   --color-chip-read-bg-rgb: 128, 186, 155;
   --color-chip-read-text: #fdfcf7;      /* 白（浪漫クリーム）文字が映える */
@@ -2615,6 +2632,7 @@ radial-gradient(
 
   /* Chips */
   --color-chip:#c89b5d;        /* 真鍮金 */
+  --color-chip-daily:#c89b5d;
 
   /* Bookmark */
   --color-bookmark:#7b4f7a;    /* 紫袴 */
@@ -2726,6 +2744,7 @@ radial-gradient(
 
   /* Chips */
   --color-chip:#d3b06b;        /* 琥珀金 */
+  --color-chip-daily:#d3b06b;
 
   /* Bookmark */
   --color-bookmark:#6aa887;    /* クリームソーダ緑 */
@@ -2942,6 +2961,7 @@ radial-gradient(
 
   /* Chips */
   --color-chip:#b89a52;
+  --color-chip-daily:#b89a52;
 
   /* Bookmark */
   --color-bookmark:#6e4a8b;    /* 古書の栞紫 */
@@ -3074,6 +3094,7 @@ radial-gradient(
 
   /* Chips */
   --color-chip:#d8c4d8;        /* 薄藤 */
+  --color-chip-daily:#d8c4d8;
 
   /* Bookmark */
   --color-bookmark:#6e88b8;    /* 青い栞 */
@@ -3177,7 +3198,8 @@ radial-gradient(
   --color-btn-danger:#8d5a64;
 
   /* Chips */
-  --color-chip:#5f7392;
+  --color-chip:#d8e0f0;
+  --color-chip-daily:#5f7392;
 
   /* Bookmark */
   --color-bookmark:#aab7d8;
@@ -3366,6 +3388,7 @@ radial-gradient(
   --color-btn-text-d:#f7f0e2;
 
   --color-chip:#b98b52;           /* 真鍮 */
+  --color-chip-daily:#b98b52;
 
   --color-input-common:#e8dcc7;
 
