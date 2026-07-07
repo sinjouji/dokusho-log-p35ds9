@@ -172,9 +172,11 @@ function renderHome(){
   <div class="daily-log-area">
   
 <div class="detail-row">
+${enableDate ? `
 <span class="daily-log-date-chip migi-ake">
   ${formatToday()}
 </span>
+` : ""}
 
 <span class="daily-log-title hidari-ake">
   今日のログ
