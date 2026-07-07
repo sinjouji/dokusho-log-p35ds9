@@ -113,7 +113,7 @@
 --color-btn-danger:#f8e6e6;
 --color-btn-text-d:var(--color-text);
 
---color-chip:#f4e2e2;
+--color-chip:#d8a8b8;
 --color-chip-read-bg:#b88f8f;
 --color-chip-read-bg-rgb:184, 143, 143;
 --color-chip-read-text:#fffaf4;
@@ -327,7 +327,7 @@
   
   --color-input-common:#f5f4eb;
   --color-search-hover:#e4e5e6;
-  --color-chip:#f7f0ea;
+  --color-chip:#8b79c7;
   --color-bookmark:#8d72c9;
   
   /* 検索ページ・検索バー */
@@ -678,7 +678,7 @@
   --color-btn-danger:#fff1ef;
   --color-btn-text-d:#c65b4b; /* スイカ赤 */
 
-  --color-chip:#f8f3e8;
+  --color-chip:#57a9c8;
   --color-chip-read-bg:#78b7c5;
   --color-chip-read-bg-rgb:120, 183, 197;
   --color-chip-read-text:#fffffc;
@@ -1462,7 +1462,7 @@ opacity:.6;
   --color-btn-danger:#f4e7df;
   --color-btn-text-d:#8a6558;
 
-  --color-chip:#dce9f2;
+  --color-chip:#6fb98d;
   --color-chip-read-bg:#d9b97a;
   --color-chip-read-bg-rgb:217,185,122;
   --color-chip-read-text:#ffffff;
@@ -1567,7 +1567,7 @@ opacity:.6;
 --color-btn-danger:#f5f0f0;
 --color-btn-text-d:#f8f6f1;
 
---color-chip:#dde5ee;
+--color-chip:#b5b5b5;
 --color-chip-read-bg:#7f98b8;
 --color-chip-read-bg-rgb:127, 152, 184;
 --color-chip-read-text:#ffffff;
@@ -3177,7 +3177,7 @@ radial-gradient(
   --color-btn-danger:#8d5a64;
 
   /* Chips */
-  --color-chip:#d8e0f0;
+  --color-chip:#5f7392;
 
   /* Bookmark */
   --color-bookmark:#aab7d8;
