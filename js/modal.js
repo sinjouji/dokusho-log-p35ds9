@@ -347,7 +347,7 @@ function openBookDetailModal(book){
       value="${book.subtitle || ""}"
       placeholder="サブタイトル（任意）"
     >
-    <button
+    <button class="plus-btn"
   onclick="
     openAddSeriesModal(
       '${book.id}',
