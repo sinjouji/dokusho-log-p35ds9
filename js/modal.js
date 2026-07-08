@@ -348,7 +348,7 @@ function openBookDetailModal(book){
       placeholder="サブタイトル（任意）"
     >
     <button
-  class="common-btn hidari-ake"
+  class="common-button hidari-ake"
   onclick="
     openAddSeriesModal(
       '${book.id}',
