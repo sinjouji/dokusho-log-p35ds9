@@ -339,9 +339,7 @@ function openBookDetailModal(book){
       </button>
     </div>
     
-    <div class="detail-row">
-    <span class="label-text">
-    サブタイトル：</span>
+    <div class="flex-between">
     <input
       class="input-common yohaku15"
       id="edit-subtitle"
@@ -349,6 +347,17 @@ function openBookDetailModal(book){
       value="${book.subtitle || ""}"
       placeholder="サブタイトル（任意）"
     >
+    <button
+  class="add-btn hidari-ake"
+  onclick="
+    openAddSeriesModal(
+      '${book.id}',
+      '${book.title}'
+    );
+  "
+>
+📚シリーズ化
+</button>
     </div>
     
     <div class="flex-between">
@@ -887,9 +896,21 @@ id="open-book-tags">
 //==============================
 //====シリーズの追加モーダル
 //==============================
-function openAddSeriesModal(){
+function openAddSeriesModal(
+  initialBookId = null,
+  initialTitle = ""
+){
 
 newSeriesBookIds = [];
+
+if(initialBookId){
+
+  newSeriesBookIds = [
+    String(initialBookId)
+  ];
+
+}
+
 newSeriesCharacterIds = [];
 
 	const modal = document.createElement("div");
@@ -913,6 +934,7 @@ const characterCount =
   class="input-common"
   id="add-series-title"
   type="text"
+  value="${initialTitle}"
   placeholder="シリーズタイトル"
   oninput="renderSeriesTitleSuggest()"
 >
@@ -990,7 +1012,14 @@ const characterCount =
 			
 `;
 	document.body.appendChild(modal);
-	//関連対象一時表示エリア、複数は最新3件まで表示とかに制限したい
+	
+renderSeriesEditBooks(
+  "series-new-books"
+);
+
+renderSeriesEditCharacters(
+  "series-new-characters"
+);
 }
 
 
