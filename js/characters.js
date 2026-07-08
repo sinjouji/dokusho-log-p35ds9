@@ -371,17 +371,45 @@ async function saveNewCharacter(){
     }
   });
 
-  await saveData();
+ await saveData();
+
+closeModal(
+  "add-chars-modal"
+);
+
+// シリーズ詳細モーダルを開いていたら更新
+const seriesModal =
+  document.getElementById(
+    "series-detail-modal"
+  );
+
+if(seriesModal){
 
   closeModal(
-    "add-chars-modal"
+    "series-detail-modal"
   );
 
-  renderCharacters();
-
-  showToast(
-    `「${character.name}」を追加しました`
+  const series =
+  seriesMaster.find(
+    s =>
+      (character.seriesIds || [])
+        .map(String)
+        .includes(String(s.id))
   );
+
+  if(series){
+
+    openSeriesDetailModal(series);
+
+  }
+
+}
+
+renderCharacters();
+
+showToast(
+  `「${character.name}」を追加しました`
+);
 }
 
 
