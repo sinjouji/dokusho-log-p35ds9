@@ -1445,20 +1445,24 @@ function openAddCharacterModal(
 	`;
 
 	document.body.appendChild(modal);
-	renderCharacterEditSeries(
-	  "add-character-series-list"
-	);
-	
-	document.getElementById("add-person-type").value =
+
+// 種類の初期値
+document.getElementById("add-person-type").value =
   initialType || "character";
-  
-  if(initialSeriesId){
+
+// 関連シリーズの初期値
+if(initialSeriesId){
 
   editingCharacterSeriesIds = [
     String(initialSeriesId)
   ];
 
 }
+
+// 最後に一覧を描画
+renderCharacterEditSeries(
+  "add-character-series-list"
+);
 
 }
 
