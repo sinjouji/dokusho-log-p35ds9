@@ -427,6 +427,16 @@ button{
   cursor:pointer;
 }
 
+.plus-btn{
+  width:auto;
+  min-width:100px;
+  padding:8px;
+  margin:10px;
+  border:1px solid var(--color-border);
+  border-radius:10px;
+  font-size:14px;
+  margin-bottom:12px;
+}
 
 /* 追加ボタン */
 
@@ -525,6 +535,12 @@ button{
   background:var(--color-input-common);
   font-size:13px;
   color:var(--color-text);
+}
+
+.input-small-plus{
+ width:auto;
+ max-width:250px;
+ min-width:200px;
 }
 
 .input-small{
