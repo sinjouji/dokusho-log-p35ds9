@@ -625,7 +625,9 @@ async function saveSeriesEdit(id){
 //==============================
 //関連本の一覧描画
 //==============================
-function renderSeriesEditBooks(){
+function renderSeriesEditBooks(
+  targetId = "series-edit-books"
+){
 
   const relatedBooks =
     books.filter(b =>
@@ -637,7 +639,7 @@ function renderSeriesEditBooks(){
     );
 
   document.getElementById(
-    "series-edit-books"
+    targetId
   ).innerHTML = `
 
     <div>
