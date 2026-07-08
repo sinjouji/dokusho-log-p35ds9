@@ -1250,12 +1250,30 @@ const relatedCharacters = characters
     seriesSections.chars
       ? `
       <div class="detail-row migi-yose yohaku5">
-        <button class="add-btn migi-ake">
+        <button
+          class="add-btn migi-ake"
+          onclick="
+            openAddCharacterModal(
+              null,
+              'author',
+              '${s.id}'
+            );
+          "
+        >
           ＋📖著者
         </button>
 
-        <button class="add-btn">
-          ＋🖼️イラスト
+        <button
+          class="add-btn"
+          onclick="
+            openAddCharacterModal(
+              null,
+              'illustrator',
+              '${s.id}'
+            );
+          "
+        >
+          ＋🖼️絵
         </button>
       </div>
 
@@ -1352,7 +1370,11 @@ const relatedCharacters = characters
 //==============================
 //新規キャラクター登録
 //==============================
-function openAddCharacterModal(){
+function openAddCharacterModal(
+  character = null,
+  initialType = "character",
+  initialSeriesId = null
+){
 
   editingCharacterSeriesIds = [];
 
@@ -1428,7 +1450,16 @@ function openAddCharacterModal(){
 	);
 	
 	document.getElementById("add-person-type").value =
-  "character";
+  initialType || "character";
+  
+  if(initialSeriesId){
+
+  editingCharacterSeriesIds = [
+    String(initialSeriesId)
+  ];
+
+}
+
 }
 
 
