@@ -339,7 +339,7 @@ function openBookDetailModal(book){
       </button>
     </div>
     
-    <div class="detail-row">
+    <div class="flex-between">
     <input
       class="input-common input-small-plus yohaku15"
       id="edit-subtitle"
