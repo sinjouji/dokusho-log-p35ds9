@@ -1139,16 +1139,34 @@ renderSeriesEditCharacters();
 //==============================
 function openSeriesDetailModal(s){
 
-  const relatedBooks = books.filter(b =>
+  const relatedBooks = books
+  .filter(b =>
     (s.bookIds || [])
       .map(String)
       .includes(String(b.id))
+  )
+  .sort((a,b)=>
+    getVolumeNumber(a) -
+    getVolumeNumber(b)
   );
 
-  const relatedCharacters = characters.filter(c =>
+//人物ミニリストのソート（固定）
+  const personOrder = {
+  author: 1,
+  illustrator: 2,
+  original: 3,
+  character: 4
+};
+
+const relatedCharacters = characters
+  .filter(c =>
     (s.characterIds || [])
       .map(String)
       .includes(String(c.id))
+  )
+  .sort((a, b) =>
+    (personOrder[a.personType] || 999) -
+    (personOrder[b.personType] || 999)
   );
 
   const modal = document.createElement("div");
@@ -1224,15 +1242,29 @@ function openSeriesDetailModal(s){
               );
             "
           >
-            ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
-          </div>
+            
+    ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+  </div>
 
-          ${
-            seriesSections.chars
-              ? `<div id="modal-series-chars"></div>`
-              : ""
-          }
-        </div>
+  ${
+    seriesSections.chars
+      ? `
+      <div class="detail-row migi-yose yohaku5">
+        <button class="add-btn migi-ake">
+          ＋📖著者
+        </button>
+
+        <button class="add-btn">
+          ＋🖼️イラスト
+        </button>
+      </div>
+
+      <div id="modal-series-chars"></div>
+      `
+      : ""
+  }
+
+</div>
 
       </div>
 
