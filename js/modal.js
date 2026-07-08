@@ -341,14 +341,14 @@ function openBookDetailModal(book){
     
     <div class="detail-row">
     <input
-      class="input-common yohaku15"
+      class="input-common input-small-plus yohaku15"
       id="edit-subtitle"
       type="text"
       value="${book.subtitle || ""}"
       placeholder="サブタイトル（任意）"
     >
     <button
-  class="common-button hidari-ake"
+  class="plus-btn hidari-ake"
   onclick="
     openAddSeriesModal(
       '${book.id}',
