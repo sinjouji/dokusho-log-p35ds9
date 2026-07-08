@@ -339,16 +339,15 @@ function openBookDetailModal(book){
       </button>
     </div>
     
-    <div class="flex-between">
+    <div class="flex-between yohaku15">
     <input
-      class="input-common input-small-plus yohaku15"
+      class="input-common input-small-plus migi-ake"
       id="edit-subtitle"
       type="text"
       value="${book.subtitle || ""}"
       placeholder="サブタイトル（任意）"
     >
     <button
-  class="hidari-ake"
   onclick="
     openAddSeriesModal(
       '${book.id}',
