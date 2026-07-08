@@ -341,7 +341,7 @@ function openBookDetailModal(book){
     
     <div class="flex-between yohaku15">
     <input
-      class="input-common input-small-plus migi-ake"
+      class="input-common migi-ake"
       id="edit-subtitle"
       type="text"
       value="${book.subtitle || ""}"
