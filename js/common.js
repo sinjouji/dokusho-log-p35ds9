@@ -46,15 +46,25 @@ function mergeById(currentArray, importedArray){
 
     if(map.has(id)){
 
-      map.set(id, item);
-      updated++;
+  const currentItem = map.get(id);
 
-    }else{
+  if(
+    JSON.stringify(currentItem) !==
+    JSON.stringify(item)
+  ){
 
-      map.set(id, item);
-      added++;
+    map.set(id, item);
+    updated++;
 
-    }
+  }
+  // 同じなら何もしない（スキップ）
+
+}else{
+
+  map.set(id, item);
+  added++;
+
+}
 
   });
 
