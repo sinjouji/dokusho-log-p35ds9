@@ -1379,10 +1379,21 @@ const relatedCharacters = characters
     }else{
       relatedCharacters.forEach(c=>{
         const d = document.createElement("div");
-        d.className = "card mini-s-card";
-        d.textContent = c.name;
-        d.onclick = () => openCharacterModal(c);
-        list2.appendChild(d);
+d.className = "card mini-s-card";
+
+d.innerHTML = `
+  <div class="detail-row flex-between">
+    <span>${c.name}</span>
+
+    <div class="character-type-chip">
+      ${getPersonTypeLabel(c.personType)}
+    </div>
+  </div>
+`;
+
+d.onclick = () => openCharacterModal(c);
+
+list2.appendChild(d);
       });
     }
   }
