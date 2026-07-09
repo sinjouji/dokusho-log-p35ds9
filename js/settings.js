@@ -1,7 +1,7 @@
 //==============================
 //
 // SETTINGS.JS
-// 設定ページ！
+// 設定ページ
 //
 //==============================
 
@@ -864,19 +864,24 @@ JSONデータを差分追加します。<br><br>
 
   onOk: async ()=>{
 
-    let updateCount = 0;
-    let addCount = 0;
-    
-    let result = mergeById(
-  books,
-  data.books
-);
+    let bookUpdated = 0;
+    let bookAdded = 0;
 
-//本カウント
+    let characterUpdated = 0;
+    let characterAdded = 0;
+
+    let seriesUpdated = 0;
+    let seriesAdded = 0;
+
+    let tagUpdated = 0;
+    let tagAdded = 0;
+    
+    let result = mergeById(books, data.books);
+
 books = result.array;
 
-updateCount += result.updated;
-addCount += result.added;
+bookUpdated = result.updated;
+bookAdded = result.added;
 
 //人物カウント
 result = mergeById(
@@ -886,8 +891,8 @@ result = mergeById(
 
 characters = result.array;
 
-updateCount += result.updated;
-addCount += result.added;
+characterUpdated = result.updated;
+characterAdded = result.added;
 
 //シリーズカウント
 result = mergeById(
@@ -897,8 +902,8 @@ result = mergeById(
 
 seriesMaster = result.array;
 
-updateCount += result.updated;
-addCount += result.added;
+seriesUpdated = result.updated;
+seriesAdded = result.added;
 
 //タグカウント
 result = mergeById(
@@ -908,8 +913,8 @@ result = mergeById(
 
 tagMaster = result.array;
 
-updateCount += result.updated;
-addCount += result.added;
+tagUpdated = result.updated;
+tagAdded = result.added;
 
     await saveData();
 
@@ -920,8 +925,21 @@ addCount += result.added;
   message:`
 JSONの読み込みが完了しました。<br><br>
 
-更新：${updateCount}件<br>
-追加：${addCount}件
+📚 本<br>
+  更新：${bookUpdated}件<br>
+  追加：${bookAdded}件<br><br>
+
+👤 人物<br>
+  更新：${characterUpdated}件<br>
+  追加：${characterAdded}件<br><br>
+
+📖 シリーズ<br>
+  更新：${seriesUpdated}件<br>
+  追加：${seriesAdded}件<br><br>
+
+🏷️ タグ<br>
+  更新：${tagUpdated}件<br>
+  追加：${tagAdded}件
 `,
 
   onOk:()=>{
