@@ -163,9 +163,22 @@ setActiveMenu("menu-settings");
   既存データは更新し、新しいデータは追加します。<br>
   <b>既存データは削除されません。</b>
   </div>
-  <button onclick="exportJsonData()">
+  <button
+  onclick="
+    document.getElementById(
+      'merge-json-file'
+    ).click();
+  "
+>
     ➕ 差分追加
   </button>
+<input
+  id="merge-json-file"
+  type="file"
+  accept="application/json"
+  style="display:none"
+  onchange="mergeJsonData(this)"
+>
 </div>
 
     <!--インポート：上書き-->
@@ -720,15 +733,6 @@ function importJsonData(input){
 
   if(!file) return;
 
-  if(
-    !confirm(
-      "現在のデータを上書きします。\n続行しますか？"
-    )
-  ){
-    input.value = "";
-    return;
-  }
-
   const reader =
     new FileReader();
 
@@ -745,32 +749,57 @@ function importJsonData(input){
         !Array.isArray(data.tagMaster) ||
         !Array.isArray(data.seriesMaster)
       ){
-        alert(
-          "JSONの形式が違うため、インポートできません。"
-        );
+        showResultDialog({
+          title:"読み込みエラー",
+          message:"JSONの形式が違うため、インポートできません。"
+        });
         return;
       }
+      
+    showConfirmDialog({
 
-      books = data.books;
-      characters = data.characters;
-      tagMaster = data.tagMaster;
-      seriesMaster = data.seriesMaster;
+  title:"JSONインポート【上書き】",
 
-      await saveData();
+  message:`
+現在のデータを読み込んだJSONで置き換えます。<br><br>
 
-      alert(
-        "インポートが完了しました。"
-      );
+<b>JSONに存在しないデータは削除されます。</b>
+`,
 
-      location.reload();
+  okText:"上書き",
 
+  cancelText:"キャンセル",
+
+  onOk: async ()=>{
+
+    books = data.books;
+    characters = data.characters;
+    tagMaster = data.tagMaster;
+    seriesMaster = data.seriesMaster;
+
+    await saveData();
+
+    showResultDialog({
+
+  title:"インポート完了",
+
+  message:"JSONの読み込みが完了しました。",
+
+  onOk:()=>{
+    input.value = "";
+    location.reload();
+  }
+  });
+  }
+});
     }catch(err){
 
       console.error(err);
 
-      alert(
-        "読み込みに失敗しました。\nJSONファイルを確認してください。"
-      );
+      showResultDialog({
+        title:"読み込みエラー",
+        message:"JSONの形式が違うため、インポートできません。"
+      });
 
     }
 
