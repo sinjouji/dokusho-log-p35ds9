@@ -67,15 +67,17 @@ function openAddBookModal(){
       
       
       <div class="flex-between yohaku15">
+   
+      <div class="detail-row left-yose">
         <div class="label-text">読了日：</div>
 
         <input
   type="date"
   id="add-date"
-  class="input-common input-small left-yose">
+  class="input-common input-small">
 
 <button
-  class="btn-sub left-yose hidari-ake"
+  class="btn-sub hidari-ake"
   onclick="
     document.getElementById(
       'add-date'
@@ -86,7 +88,7 @@ function openAddBookModal(){
 </button>
 
 <button
-  class="btn-sub left-yose hidari-ake"
+  class="btn-sub hidari-ake"
   onclick="
     document.getElementById(
       'add-date'
@@ -95,6 +97,7 @@ function openAddBookModal(){
 >
 クリア
 </button>
+</div>
         
 	  			<button
 				  type="button"
