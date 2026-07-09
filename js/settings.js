@@ -161,7 +161,9 @@ setActiveMenu("menu-settings");
     <div class="setting-note">
   JSONデータを読み込みます。<br>
   既存データは更新し、新しいデータは追加します。<br>
-  <b>既存データは削除されません。</b>
+  <b>既存データは削除されません。<br>
+  ※同じ本のセリフ（引用）は、本データと一緒に更新されます。<br>
+  別端末で追加したセリフは自動で統合されません。</b>
   </div>
   <button
   onclick="
@@ -849,9 +851,11 @@ function mergeJsonData(input){
   title:"JSONインポート【差分追加】",
 
   message:`
-JSONデータを差分追加します。<br><br>
+更新：${updateCount}件<br>
+追加：${addCount}件<br><br>
 
-既存データは更新し、新しいデータは追加されます。<br>
+この内容で差分追加しますか？<br><br>
+
 <b>既存データは削除されません。</b>
 `,
 
@@ -914,7 +918,12 @@ addCount += result.added;
 
   title:"インポート完了",
 
-  message:"JSONの読み込みが完了しました。",
+  message:`
+JSONの読み込みが完了しました。<br><br>
+
+更新：${updateCount}件<br>
+追加：${addCount}件
+`,
 
   onOk:()=>{
     input.value = "";
