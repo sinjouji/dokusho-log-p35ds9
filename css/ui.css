@@ -69,3 +69,18 @@ UIのやつ
   opacity:0.75;
 }
 
+
+
+/*ダイアログ*/
+.confirm-dialog{
+
+  width:min(420px,90vw);
+
+}
+
+.confirm-dialog .detail-modal-body{
+
+  text-align:left;
+  line-height:1.8;
+
+}
