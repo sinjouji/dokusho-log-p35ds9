@@ -69,8 +69,32 @@ function openAddBookModal(){
       <div class="flex-between yohaku15">
         <div class="label-text">読了日：</div>
 
-        <input type="date" id="add-date" class="input-common input-small left-yose">
-        
+        <input
+  type="date"
+  id="add-date"
+  class="input-common input-small left-yose">
+
+<button
+  class="btn-sub left-yose hidari-ake"
+  onclick="
+    document.getElementById(
+      'add-date'
+    ).value=getTodayLocal();
+  "
+>
+今日
+</button>
+
+<button
+  class="btn-sub left-yose hidari-ake"
+  onclick="
+    document.getElementById(
+      'add-date'
+    ).value='';
+  "
+>
+クリア
+</button>
         
 	  			<button
 				  type="button"
@@ -270,6 +294,10 @@ function openAddBookModal(){
   `;
 
   document.body.appendChild(modal);
+  
+  document.getElementById("add-date").value =
+  getTodayLocal();
+  
   renderBookEditSeries(
    "add-book-series-list"
   );
