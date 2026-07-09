@@ -53,6 +53,12 @@ function mergeById(currentArray, importedArray){
     JSON.stringify(item)
   ){
 
+console.log("違い発見", id);
+console.log(currentItem);
+console.log(item);
+console.log(JSON.stringify(currentItem));
+console.log(JSON.stringify(item));
+
     map.set(id, item);
     updated++;
 
@@ -74,7 +80,9 @@ function mergeById(currentArray, importedArray){
 
     updated,
 
-    added
+    added,
+    
+    skipped
 
   };
 
