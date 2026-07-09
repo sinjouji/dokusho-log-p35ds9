@@ -724,7 +724,7 @@ function exportJsonData(){
 
 
 //==============================
-// JSONインポート
+// JSON上書きインポート
 //==============================
 function importJsonData(input){
 
@@ -808,3 +808,135 @@ function importJsonData(input){
   reader.readAsText(file);
 
 }
+
+
+
+//==============================
+// JSONマージインポート
+//==============================
+function mergeJsonData(input){
+
+  const file =
+    input.files?.[0];
+
+  if(!file) return;
+
+  const reader =
+    new FileReader();
+
+  reader.onload = async e => {
+
+    try{
+
+      const data =
+        JSON.parse(e.target.result);
+
+      if(
+        !Array.isArray(data.books) ||
+        !Array.isArray(data.characters) ||
+        !Array.isArray(data.tagMaster) ||
+        !Array.isArray(data.seriesMaster)
+      ){
+        showResultDialog({
+          title:"読み込みエラー",
+          message:"JSONの形式が違うため、インポートできません。"
+        });
+        return;
+      }
+      
+    showConfirmDialog({
+
+  title:"JSONインポート【差分追加】",
+
+  message:`
+JSONデータを差分追加します。<br><br>
+
+既存データは更新し、新しいデータは追加されます。<br>
+<b>既存データは削除されません。</b>
+`,
+
+  okText:"差分追加",
+
+  cancelText:"キャンセル",
+
+  onOk: async ()=>{
+
+    let updateCount = 0;
+    let addCount = 0;
+    
+    let result = mergeById(
+  books,
+  data.books
+);
+
+//本カウント
+books = result.array;
+
+updateCount += result.updated;
+addCount += result.added;
+
+//人物カウント
+result = mergeById(
+  characters,
+  data.characters
+);
+
+characters = result.array;
+
+updateCount += result.updated;
+addCount += result.added;
+
+//シリーズカウント
+result = mergeById(
+  seriesMaster,
+  data.seriesMaster
+);
+
+seriesMaster = result.array;
+
+updateCount += result.updated;
+addCount += result.added;
+
+//タグカウント
+result = mergeById(
+  tagMaster,
+  data.tagMaster
+);
+
+tagMaster = result.array;
+
+updateCount += result.updated;
+addCount += result.added;
+
+    await saveData();
+
+    showResultDialog({
+
+  title:"インポート完了",
+
+  message:"JSONの読み込みが完了しました。",
+
+  onOk:()=>{
+    input.value = "";
+    location.reload();
+  }
+  });
+  }
+});
+    }catch(err){
+
+      console.error(err);
+
+      showResultDialog({
+        title:"読み込みエラー",
+        message:"JSONの形式が違うため、インポートできません。"
+      });
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+}
+
