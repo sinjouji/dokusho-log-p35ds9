@@ -49,15 +49,10 @@ function mergeById(currentArray, importedArray){
   const currentItem = map.get(id);
 
   if(
-    JSON.stringify(currentItem) !==
-    JSON.stringify(item)
-  ){
-
-console.log("違い発見", id);
-console.log(currentItem);
-console.log(item);
-console.log(JSON.stringify(currentItem));
-console.log(JSON.stringify(item));
+  JSON.stringify(normalizeObject(currentItem))
+  !==
+  JSON.stringify(normalizeObject(item))
+){
 
     map.set(id, item);
     updated++;
@@ -86,3 +81,30 @@ console.log(JSON.stringify(item));
 
 }
 
+
+
+//==============================
+// マージ：データ順がアレなやつ対策
+//==============================
+function normalizeObject(obj){
+
+  if(Array.isArray(obj)){
+    return obj.map(normalizeObject);
+  }
+
+  if(obj && typeof obj === "object"){
+
+    return Object.keys(obj)
+      .sort()
+      .reduce((result,key)=>{
+
+        result[key]=normalizeObject(obj[key]);
+        return result;
+
+      },{});
+
+  }
+
+  return obj;
+
+}
