@@ -80,9 +80,7 @@ console.log(JSON.stringify(item));
 
     updated,
 
-    added,
-    
-    skipped
+    added
 
   };
 
