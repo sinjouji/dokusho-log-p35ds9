@@ -155,7 +155,7 @@ setActiveMenu("menu-settings");
   </button>
 </div>
 
-<!--インポート：マージ-->
+<!--インポートマージ-->
     <div class="setting-row">
   <span>JSONインポート（差分追加）</span>
     <div class="setting-note">
