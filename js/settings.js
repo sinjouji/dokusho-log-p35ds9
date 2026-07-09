@@ -851,10 +851,9 @@ function mergeJsonData(input){
   title:"JSONインポート【差分追加】",
 
   message:`
-更新：${updateCount}件<br>
-追加：${addCount}件<br><br>
+JSONデータを差分追加します。<br><br>
 
-この内容で差分追加しますか？<br><br>
+既存データは更新し、新しいデータは追加されます。<br>
 
 <b>既存データは削除されません。</b>
 `,
