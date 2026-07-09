@@ -1277,9 +1277,9 @@ const relatedCharacters = characters
   ${
     seriesSections.chars
       ? `
-      <div class="detail-row right-yose yohaku5">
+      <div class="detail-row yohaku5">
         <button
-          class="add-btn migi-ake"
+          class="add-btn right-yose migi-ake"
           onclick="
             openAddCharacterModal(
               null,
@@ -1292,7 +1292,7 @@ const relatedCharacters = characters
         </button>
 
         <button
-          class="add-btn migi-ake"
+          class="add-btn right-yose migi-ake"
           onclick="
             openAddCharacterModal(
               null,
