@@ -1292,7 +1292,7 @@ const relatedCharacters = characters
         </button>
 
         <button
-          class="add-btn right-yose migi-ake"
+          class="add-btn migi-ake"
           onclick="
             openAddCharacterModal(
               null,
