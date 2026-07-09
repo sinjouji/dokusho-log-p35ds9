@@ -7,7 +7,7 @@
 
 
 //==============================
-// 通知
+// トースト通知
 //==============================
 function showToast(message){
 
@@ -33,6 +33,117 @@ function showToast(message){
 
   },2000);
 }
+
+
+
+//==============================
+// ダイアログ通知（事前確認用）
+//==============================
+function showConfirmDialog({
+  title = "確認",
+  message = "",
+  okText = "OK",
+  cancelText = "キャンセル",
+  onOk = () => {},
+  onCancel = () => {}
+}){
+
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "confirm-dialog";
+
+  modal.innerHTML = `
+    <div class="modal-box confirm-dialog">
+
+      <div class="detail-modal-header">
+        <div class="left-yose">${title}</div>
+      </div>
+
+      <div class="detail-modal-body">
+        ${message}
+      </div>
+
+      <div class="detail-modal-footer">
+        <button class="btn-sub">
+          ${cancelText}
+        </button>
+
+        <button class="btn-main">
+          ${okText}
+        </button>
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const buttons =
+    modal.querySelectorAll("button");
+
+  buttons[0].onclick = ()=>{
+    closeModal("confirm-dialog");
+    onCancel();
+  };
+
+  buttons[1].onclick = ()=>{
+    closeModal("confirm-dialog");
+    onOk();
+  };
+
+}
+
+
+//==============================
+// ダイアログ通知（実行後の結果確認）
+//==============================
+function showResultDialog({
+  title = "完了",
+  message = "",
+  okText = "OK",
+  onOk = () => {}
+}){
+
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "result-dialog";
+
+  modal.innerHTML = `
+    <div class="modal-box confirm-dialog">
+
+      <div class="detail-modal-header">
+        <div class="left-yose">${title}</div>
+      </div>
+
+      <div class="detail-modal-body">
+        ${message}
+      </div>
+
+      <div class="detail-modal-footer">
+        <button class="btn-main">
+          ${okText}
+        </button>
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  modal
+    .querySelector("button")
+    .onclick = ()=>{
+
+      closeModal("result-dialog");
+
+      onOk();
+
+    };
+
+}
+
+
+
 
 
 //==============================
