@@ -331,7 +331,7 @@ function openBookDetailModal(book){
     <div class="detail-modal-header">
     
     <div class="detail-row yohaku10">
-    <input id="detail-title" class="input-title"
+    <input id="detail-title" class="input-title migi-ake"
         value="${book.title || ""}">        
     
       <button class="btn-sub right-yose" onclick="closeModal('open-book-modal')">
@@ -1277,7 +1277,7 @@ const relatedCharacters = characters
   ${
     seriesSections.chars
       ? `
-      <div class="detail-row migi-yose yohaku5">
+      <div class="detail-row right-yose yohaku5">
         <button
           class="add-btn migi-ake"
           onclick="
@@ -1292,7 +1292,7 @@ const relatedCharacters = characters
         </button>
 
         <button
-          class="add-btn"
+          class="add-btn migi-ake"
           onclick="
             openAddCharacterModal(
               null,
