@@ -405,7 +405,7 @@ function openBookDetailModal(book){
 </div>
 
 
-    <div class="book-status-area">
+    <div class="book-status-area yohaku15">
       <div class="flex-between yohaku15">
         状態 ＝ 
         ${
@@ -474,8 +474,6 @@ function openBookDetailModal(book){
     </div>
      </div> 
       
-      
-      <div class="yohaku5 t-white">.</div>
       
       
        <div class="detail-row">
@@ -1277,7 +1275,7 @@ const relatedCharacters = characters
   ${
     seriesSections.chars
       ? `
-      <div class="detail-row yohaku5">
+      <div class="detail-row yohaku10">
         <button
           class="add-btn right-yose migi-ake"
           onclick="
@@ -1288,7 +1286,7 @@ const relatedCharacters = characters
             );
           "
         >
-          ＋📖著者
+        ＋📖著者
         </button>
 
         <button
