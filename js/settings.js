@@ -1,7 +1,7 @@
 //==============================
 //
 // SETTINGS.JS
-// 設定ページ！
+// 設定ページ
 //
 //==============================
 
@@ -147,7 +147,7 @@ setActiveMenu("menu-settings");
     <div class="setting-row">
   <span>JSONエクスポート</span>
     <div class="setting-note">
-  データをJSON形式で保存します。<br>
+  ▶︎ データをJSON形式で保存します。<br>
   バックアップや、別の端末への移行に利用できます。
   </div>
   <button onclick="exportJsonData()">
@@ -159,7 +159,7 @@ setActiveMenu("menu-settings");
     <div class="setting-row">
   <span>JSONインポート（差分追加）</span>
     <div class="setting-note">
-  JSONデータを読み込みます。<br>
+  ▶︎ JSONデータを読み込みます。<br>
   既存データは更新し、新しいデータは追加します。<br>
   <b>既存データは削除されません。<br>
   ※同じ本のセリフ（引用）は、本データと一緒に更新されます。<br>
@@ -188,7 +188,7 @@ setActiveMenu("menu-settings");
   <span>JSONインポート（上書き）⚠️</span>
   
 <div class="setting-note">
-現在のデータを、読み込んだJSONデータで置き換えます。<br>
+▶︎ 現在のデータを、読み込んだJSONデータで置き換えます。<br>
 <b>JSONに含まれないデータは削除されます。</b><br>
 <br>
 実行前に「書き出し」でバックアップするか、<br>
