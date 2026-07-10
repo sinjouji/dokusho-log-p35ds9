@@ -396,3 +396,27 @@ select.value = savedTheme;
 document.addEventListener("DOMContentLoaded",()=>{
   injectThemeSwitcher();
 });
+
+
+
+
+
+//==============================
+// モーダル右上の✖️ボタン
+//==============================
+function renderCloseButton(modalId){
+
+  return `
+    <button
+      class="btn-sub right-yose hidari-ake"
+      onclick="
+        closeModal('${modalId}')
+      "
+    >
+      ✖️
+    </button>
+  `;
+
+}
+
+
