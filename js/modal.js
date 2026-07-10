@@ -46,7 +46,7 @@ function openAddBookModal(){
     
  <div class="flex-between yohaku10">
          <span>本を追加</span>
-         <button class="btn-sub" onclick="closeModal('add-book-modal')">✖️</button></div>
+         ${renderCloseButton("add-book-modal")}</div>
 
       <input class="input-title yohaku10"
        id="add-title"
@@ -365,9 +365,7 @@ function openBookDetailModal(book){
     <input id="detail-title" class="input-title migi-ake"
         value="${book.title || ""}">        
     
-      <button class="btn-sub right-yose" onclick="closeModal('open-book-modal')">
-        ✖️
-      </button>
+      ${renderCloseButton("open-book-modal")}
     </div>
     
     <div class="flex-between yohaku15">
@@ -989,7 +987,7 @@ const characterCount =
 		<div class="detail-modal-head">
 		 <div class="flex-between yohaku10">
 					<span class="left-yose">シリーズを追加</span>
-						<button class="btn-sub right-yose" onclick="closeModal('add-series-modal')">✖️</button></div>
+						${renderCloseButton("add-series-modal")}</div>
 			
 			<input
   class="input-common"
@@ -1125,7 +1123,7 @@ const characterCount =
       <div class="detail-modal-head">
       <div class="flex-between yohaku10">
       <span class="left-yose">シリーズ編集</span>
-      <button onclick="closeModal('edit-series-modal')" class="btn-sub right-yose">✖️</button>
+      ${renderCloseButton("edit-series-modal")}
       </div>
 
       <input
@@ -1276,12 +1274,7 @@ const relatedCharacters = characters
           ✏️ 編集
         </button>
         
-        <button
-          class="btn-sub"
-          onclick="closeModal('series-detail-modal')"
-        >
-          ✖️
-        </button>
+       ${renderCloseButton("series-detail-modal")}
         </div>
           <div class="input-title yohaku15">${s.name}</div>
           
@@ -1488,7 +1481,7 @@ function openAddCharacterModal(
 			<div class="detail-modal-header">
 			 <div class="flex-between yohaku10">
 			<span class="left-yose">人物を追加</span>
-					<button onclick="closeModal('add-chars-modal')" class="btn-sub right-yose">✖️</button></div>
+					${renderCloseButton("add-chars-modal")}</div>
 			
 			<input class="input-title"
 				id="add-chars-name"
@@ -1598,7 +1591,7 @@ editingCharacterSeriesIds =
 		<div class="detail-modal-header flex-between yohaku10">
 			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
-						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
+						${renderCloseButton("open-chars-modal")}</div>
 			
 			
       ${relatedSeries.map(s=>`
@@ -1999,12 +1992,7 @@ function openQuoteViewModal(bookId, quoteId){
           }
         </button>
 
-        <button
-          class="btn-sub"
-          onclick="closeModal('quote-view-modal')"
-        >
-          ✖️
-        </button>
+        ${renderCloseButton("quote-view-modal")}
       </div>
 
       <div
