@@ -420,3 +420,44 @@ function renderCloseButton(modalId){
 }
 
 
+
+//==============================
+// HELP文トグル
+//==============================
+function toggleHelpSection(
+  sectionId,
+  header,
+  key
+){
+
+  togglesSection(
+    sectionId,
+    header
+  );
+
+  helpSections[key] =
+    !helpSections[key];
+
+  if(
+    localStorage.getItem(
+      key + "Seen"
+    ) !== "1"
+  ){
+
+    localStorage.setItem(
+      key + "Seen",
+      "1"
+    );
+
+  }
+
+}
+
+
+
+//==============================
+// HELP文ポップアップ
+//==============================
+
+
+
