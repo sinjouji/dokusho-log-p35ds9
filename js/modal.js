@@ -387,6 +387,13 @@ function openBookDetailModal(book){
 📚シリーズ化
 </button>
     </div>
+    <div class="setting-note">
+    <b>シリーズ化について</b><br>
+    <br>
+    本の<u>タイトルから新しいシリーズを作成</u>できます。<br>
+    作成時に<u>使用した本は、自動でシリーズへ登録</u>されます。<br>
+    既存のシリーズを整理したい場合は、一度保存してから削除してください。
+    </div>
     
     <div class="flex-between">
     <div class="label-text left-yose">
@@ -457,7 +464,7 @@ function openBookDetailModal(book){
       </div>
       
       
-   <div class="flex-between">
+   <div class="detail-row">
     <div class="book-stat yohaku15">
     読了回数 ： 
       ${
@@ -524,6 +531,19 @@ function openBookDetailModal(book){
 </button>
       </div>
     </div>
+    
+    <div class="setting-note">
+    <b>読了日の登録方法</b><br>
+    <br>
+    日付を選択したあと<u>【➕追加】を押すと、読了履歴へ登録</u>されます。<br>
+    
+    最初は今日の日付が自動で入力されていますが、<u>保存を押すだけでは登録されません。</u><br>
+    また、日付を変更しただけでも登録されません。<br>
+    <br>
+    【クリア】を押すと日付が空欄になり、【今日】を押すと今日の日付が入ります。
+    </div>
+    
+    
      </div> 
       
       
