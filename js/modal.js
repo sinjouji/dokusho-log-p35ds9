@@ -13,6 +13,13 @@ let newBookHiddenTagIds = [];
 let editingDailyLogDate = null;
 let editingDailyLogTags = [];
 
+//本詳細の簡易マニュアル用トグル
+const helpSections = {
+  seriesHelp: !localStorage.getItem("seriesHelpSeen"),
+  readDateHelp: !localStorage.getItem("readDateHelpSeen")
+};
+
+
 //==============================
 //====モーダルを閉じる（汎用）
 //==============================
@@ -290,7 +297,7 @@ function openAddBookModal(){
 
  
         <button onclick="saveNewBook()" class="btn-main" style="width:100%">
-          ➕保存
+          ＋保存
         </button>
             </div>
             </div>
@@ -387,12 +394,31 @@ function openBookDetailModal(book){
 📚シリーズ化
 </button>
     </div>
+    <div
+      class=" detail-toggle-head"
+      data-open="▽ シリーズ化について"
+      data-close="▶︎ シリーズ化について"
+      onclick="
+        toggleHelpSection(
+          'series-help',
+          this,
+          'seriesHelp'
+        )
+      "
+    >
+    ▶︎ シリーズ化について</div>
+    <div
+      id="series-help"
+      class="
+        toggle-content
+        ${helpSections.seriesHelp ? "open" : ""}
+      "
+    >
     <div class="setting-note">
-    <b>シリーズ化について</b><br>
-    <br>
     本の<u>タイトルから新しいシリーズを作成</u>できます。<br>
     作成時に<u>使用した本は、自動でシリーズへ登録</u>されます。<br>
     既存のシリーズを整理したい場合は、一度保存してから削除してください。
+    </div>
     </div>
     
     <div class="flex-between">
@@ -504,7 +530,7 @@ function openBookDetailModal(book){
     <div class="left-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small white-input">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
-       ➕追加
+       ＋追加
       </button>
       </div>
       
@@ -531,18 +557,35 @@ function openBookDetailModal(book){
 </button>
       </div>
     </div>
-    
+    <div
+      class=" detail-toggle-head"
+      data-open="▽ 読了日の登録方法"
+      data-close="▶︎ 読了日の登録方法"
+      onclick="
+        toggleHelpSection(
+          'read-date-help',
+          this,
+          'readDateHelp'
+        )
+      "
+    >
+    ▶︎ 読了日の登録方法</div>
+    <div
+      id="read-date-help"
+      class="
+        toggle-content
+        ${helpSections.readDateHelp ? "open" : ""}
+      "
+    >
     <div class="setting-note">
-    <b>読了日の登録方法</b><br>
-    <br>
-    日付を選択したあと<u>【➕追加】を押すと、読了履歴へ登録</u>されます。<br>
+    日付を選択したあと<u>【＋追加】を押すと、読了履歴へ登録</u>されます。<br>
     
     最初は今日の日付が自動で入力されていますが、<u>保存を押すだけでは登録されません。</u><br>
     また、日付を変更しただけでも登録されません。<br>
     <br>
     【クリア】を押すと日付が空欄になり、【今日】を押すと今日の日付が入ります。
     </div>
-    
+    </div>
     
      </div> 
       
@@ -1085,7 +1128,7 @@ const characterCount =
 				
 			<div class="detail-modal-footer">
 			     <hr class="kugiri">
-     			 <button class="btn-main" style="width:100%" onclick="saveNewSeries()">➕追加</button></div>
+     			 <button class="btn-main" style="width:100%" onclick="saveNewSeries()">＋追加</button></div>
 			
 			
 			
@@ -1552,7 +1595,7 @@ function openAddCharacterModal(
 			<div class="detail-modal-footer">
 			     <hr class="kugiri">
 			
-			<button onclick="saveNewCharacter()" class="btn-main">➕追加</button>
+			<button onclick="saveNewCharacter()" class="btn-main">＋追加</button>
 			
 	
 		</div></div>
