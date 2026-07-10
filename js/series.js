@@ -1033,8 +1033,13 @@ async function saveNewSeries(){
       }
     }
   });
-
+  
   await saveData();
+  
+  localStorage.setItem(
+  "seriesHelpSeen",
+  "1"
+);
 
   closeModal(
     "add-series-modal"
