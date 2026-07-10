@@ -495,12 +495,35 @@ function openBookDetailModal(book){
      
     </div>
       
-    <div class="detail-row yohaku15">
+    <div class="flex-between yohaku15">
     <div class="left-yose">
        <input type="date" id="readDate-${book.id}" class="input-common input-small white-input">
       <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
-       ➕読了日
+       ➕追加
       </button>
+      </div>
+      
+      <div class="right-yose">
+      <button
+  class="btn-sub hidari-ake"
+  onclick="
+    document.getElementById(
+      'readDate-${book.id}'
+    ).value = getTodayLocal();
+  "
+>
+  今日
+</button>
+<button
+  class="btn-sub hidari-ake"
+  onclick="
+    document.getElementById(
+      'readDate-${book.id}'
+    ).value = '';
+  "
+>
+  クリア
+</button>
       </div>
     </div>
      </div> 
@@ -908,6 +931,16 @@ id="open-book-tags">
   `;
 
   document.body.appendChild(modal);
+  
+  const readInput =
+  document.getElementById(
+    `readDate-${book.id}`
+  );
+
+if(readInput && !readInput.value){
+  readInput.value = getTodayLocal();
+}
+  
   renderBookEditSeries(
   "book-edit-series"
   );
@@ -1562,20 +1595,32 @@ editingCharacterSeriesIds =
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-		<div class="detail-modal-header flex-between">
+		<div class="detail-modal-header flex-between yohaku10">
 			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
 						<button style="margin-left:auto;" onclick="closeModal('open-chars-modal')" class="btn-sub">✖️</button></div>
 			
-			<div class="detail-modal-body">
+			
+      ${relatedSeries.map(s=>`
+        <button class="detail-series left-yose yohaku15"
+				  onclick="
+				    closeModal('open-chars-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</button>
+      `).join(", ") || ""}
+			
+			<div class="detail-modal-body yohaku15">
 			<div class="left-yose">メモ</div>
 			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
 		
-				<div class="mini-text">種類</div>
+				<div class="left-yose">種類</div>
 				
 				<select
 				  id="character-person-type"
-				  class="input-common">
+				  class="input-common yohaku15">
 				  
 				  <option value="character">登場人物</option>
 				  <option value="author">著者</option>
@@ -1585,16 +1630,6 @@ editingCharacterSeriesIds =
 				</select>
 		
 		
-      ${relatedSeries.map(s=>`
-        <button class="detail-series left-yose"
-				  onclick="
-				    closeModal('open-chars-modal');
-				    openSeriesById('${s.id}');
-				  "
-				>
- 				 ${s.name}
-				</button>
-      `).join(", ") || ""}
     
     
     <div class="left-yose">関連シリーズを追加</div>
