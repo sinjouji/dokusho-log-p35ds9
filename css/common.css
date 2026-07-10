@@ -847,11 +847,11 @@ header h1,
 
 }
 
-.setting-note::before{
+/*.setting-note::before{
 
   content:"▶︎ ";
   color:var(--color-sub);
 
-}
+}*/
 
 
