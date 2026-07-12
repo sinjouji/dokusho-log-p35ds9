@@ -1,5 +1,5 @@
 //==============================
-// SUGGEST
+// SUGGEST 私
 //
 // とりあえず、render + Suggestを
 // まとめてある場所 20260526
@@ -530,6 +530,7 @@ function renderSeriesBookSuggest(){
 //==============================
 function renderSeriesCharacterSuggest(){
 
+console.log("character suggest");
 
   const keyword =
     document.getElementById(
@@ -569,43 +570,43 @@ document.getElementById(
       👤 人物
     </div>
 
-    ${filtered.map(c=>`
-    
-    const relatedSeries =
-  seriesMaster.filter(s =>
+${filtered.map(c=>{
 
-    (s.characterIds || [])
-      .map(String)
-      .includes(String(c.id))
+  const relatedSeries =
+    seriesMaster.filter(s =>
+      (s.characterIds || [])
+        .map(String)
+        .includes(String(c.id))
+    );
 
-  );
-
-      <div
-        class="search-item"
-        onclick="
-          addCharacterToSeries('${c.id}')
-        "
-      >
+  return `
+    <div
+      class="search-item"
+      onclick="
+        addCharacterToSeries('${c.id}')
+      "
+    >
       <div>
         ${c.name}
       </div>
-      
-      ${
-              relatedSeries.length
-                ? `
-                  <div class="suggest-sub">
-                    ${relatedSeries
-                      .map(s => s.name.slice(0, 8))
-                      .join(" / ")
-                    }
-                  </div>
-                `
-                : ""
-            }  
-        
-      </div>
 
-    `).join("")}
+      ${
+        relatedSeries.length
+          ? `
+            <div class="suggest-sub">
+              ${relatedSeries
+                .map(s => s.name.slice(0,8))
+                .join(" / ")
+              }
+            </div>
+          `
+          : ""
+      }
+
+    </div>
+  `;
+
+}).join("")}
   `
   : "";
 
