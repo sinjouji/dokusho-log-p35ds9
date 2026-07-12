@@ -1,6 +1,6 @@
 /*
 
-COMMON.CSS
+COMMON.CSS 私
 
 きょうつうこうもくのCSS置き場
 
@@ -25,8 +25,8 @@ COMMON.CSS
   padding:6px 10px;
   border-radius:12px;
   border:1px solid var(--color-btn-border-d);
-  background;var(--color-btn-danger);
-  color:;var(--color-btn-text-d);
+  background:var(--color-btn-danger);
+  color:var(--color-btn-text-d);
 }/*削除，初期化*/
 
 
@@ -847,11 +847,5 @@ header h1,
 
 }
 
-/*.setting-note::before{
-
-  content:"▶︎ ";
-  color:var(--color-sub);
-
-}*/
 
 
