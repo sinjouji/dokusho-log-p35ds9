@@ -1,3 +1,9 @@
+/*
+ MODAL.CSS
+ watasi
+*/
+
+
 .modal-bg{
   position:fixed;
   inset:0;
@@ -201,6 +207,16 @@ border-radius:10px;
   border-radius:10px;
   padding:1px 10px;
   align-items:center;
+}
+
+/*保護チェック*/
+.protect-check{
+ font-size:13px;
+ color:var(--color-text-contrast);
+ background:var(--color-chip-daily);
+ border-radius:10px;
+ padding:1px 10px;
+ margin:3px;
 }
 
 /*再読チェック*/
