@@ -522,25 +522,15 @@ async function deleteBook(id){
     );
 if(!book) return;
 
-/* 保護機能予定
-if(book.protected){
+// 保護機能予定
+if(book.protect){
 
-  showResultDialog({
-
-    title:"削除できません",
-
-    message:`
-この本は保護されています。<br><br>
-
-保護を解除してから削除してください。
-`
-
-  });
+  showToast(
+    "🔒 この本は保護されています"
+  );
 
   return;
-
 }
-*/
 
 const title = book.title;
 
@@ -590,24 +580,6 @@ showConfirmDialog({
   }
 
 });
-
-
-  books =
-    books.filter(
-      b => String(b.id) !== String(id)
-    );
-
-  seriesMaster.forEach(series=>{
-
-    series.bookIds =
-      (series.bookIds || [])
-        .filter(seriesBookId =>
-
-          String(seriesBookId)
-          !== String(book.id)
-
-        );
-  });
 
   await saveData();
 
