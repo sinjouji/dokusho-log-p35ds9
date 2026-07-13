@@ -1,5 +1,5 @@
 //
-// ベース ＝ app.js
+// ベース ＝ app.js 私用
 //    メイン処理：render / save / 初期化
 //
 // ★ JSON URL
@@ -47,13 +47,22 @@ showTagFilter = showTagFilter === null
   
 //タイプフィルター
 let typeFilter = localStorage.getItem("typeFilter") || "all";
-  
+
+//保護機能のオンオフ切り替え
+let enableProtect = localStorage.getItem("enableProtect");
+ enableProtect =
+  enableProtect === null
+   ? true
+   : enableProtect === "true";
+
+
 //メモ機能のオンオフ切り替え
 let enableMemo = localStorage.getItem("enableMemo");
  enableMemo =
   enableMemo === null
    ? true
    : enableMemo === "true";
+
 
 //テーマカラーの設定
 let themeColor = localStorage.getItem("themeColor") || "var(--color-main)";
@@ -152,7 +161,7 @@ const tagColors = [
 //タグ追加
 let newTagName = "";
 let newTagColor = "#b9b9b9";
-let newBookFav = 0;
+let newBookFav = 2;
 
 //シリーズ関係
 let seriesMaster = [];
@@ -171,7 +180,6 @@ let newSeriesBookIds = [];
 let newSeriesCharacterIds = [];
 
 let newBookTagIds = []; //新規本保存用のタグ一時保存場所
-let newBookSeries = []; //新規本保存用の関連シリーズ一時保存場所
 
 let editingBookSeriesIds = []; //本編集用の関連シリーズ一時保存場所
 
@@ -428,5 +436,4 @@ async function loadData(){
 // 初回ロード
 window.addEventListener("load", ()=>{
   loadData();
-  console.log("ここまで読めてる");
 });
