@@ -108,7 +108,7 @@ setActiveMenu("menu-settings");
     <!--誤削除防止：保護エリア-->
     <div class="setting-row">
       <span>新規データの誤削除防止</span>
-      <button onclick="toggleProtect()">
+      <button onclick="toggleDefaultProtect()">
         ${
           enableProtect
             ? "🔒 保護：ON"
@@ -484,7 +484,7 @@ function getTypeModeLabel(){
 //==============================
 //====保護のオンオフ
 //==============================
-function toggleProtect(){
+function toggleDefaultProtect(){
 
   enableProtect = !enableProtect;
 
