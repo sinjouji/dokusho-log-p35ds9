@@ -1,6 +1,6 @@
 //==============================
 //
-// SETTINGS.JS
+// SETTINGS.JS watashi
 // 設定ページ
 //
 //==============================
@@ -104,6 +104,19 @@ setActiveMenu("menu-settings");
     : "▶︎"}入力設定</div>
       ${settingSections.input
     ? `
+    
+    <!--誤削除防止：保護エリア-->
+    <div class="setting-row">
+      <span>新規データの誤削除防止</span>
+      <button onclick="toggleProtect()">
+        ${
+          enableProtect
+            ? "🔒 保護：ON"
+            : "🔓 保護：OFF"
+          }
+        </button>
+      </div>
+    
     <!--メモエリア-->
     <div class="setting-row">
       <span>メモエリア</span>
@@ -465,6 +478,23 @@ function getTypeModeLabel(){
     return "ウィッシュリスト";
   }
   return "";
+}
+
+
+//==============================
+//====保護のオンオフ
+//==============================
+function toggleProtect(){
+
+  enableProtect = !enableProtect;
+
+  localStorage.setItem(
+    "enableProtect",
+    enableProtect
+  );
+
+  renderSettings();
+  renderHome();
 }
 
 //==============================
