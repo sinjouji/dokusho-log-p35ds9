@@ -372,7 +372,16 @@ const nextVolume =
     ],
     seriesIds:
       editingBookSeriesIds.map(String),
-    type: date ? "normal" : "wish"
+    type: date ? "normal" : "wish",
+    
+    protect: document.getElementById(
+  "new-book-protect"
+).checked,
+
+reread: document.getElementById(
+  "new-book-reread"
+).checked,
+
   };
 
   books.unshift(book);
@@ -759,7 +768,9 @@ async function duplicateBook(id){
       [...(book.tagIds || [])],
 
     seriesIds:
-      [...(book.seriesIds || [])]
+      [...(book.seriesIds || [])],
+      
+    protect: enableProtect
   };
 
   books.unshift(newBook);
