@@ -1,5 +1,5 @@
 /*
-UIのやつ
+UIのやつ watasi
 */
 
 
@@ -16,7 +16,7 @@ UIのやつ
     translateX(-50%)
     translateY(20px);
 
-  background:var(--color-bg);
+  background:var(--color-chip-daily);
   color:var(--color-text-contrast);
 
   padding:12px 18px;
@@ -84,3 +84,26 @@ UIのやつ
   line-height:1.8;
 
 }
+
+/*HELP文ポップアップ*/
+.help-popup{
+display:none;
+position:absolute;
+
+top:40px;
+right:0;
+width:260px;
+
+background:var(--color-card);
+border-radius:12px;
+
+padding:12px;
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+z-index:999;
+}
+
+.help-popup.open{
+display:block;
+}
+
+
