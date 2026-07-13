@@ -1,5 +1,5 @@
 //==============================
-// MODAL
+// MODAL : 自分用
 //
 //  モーダル関係の処理を集めろぉ！！！
 //==============================
@@ -39,7 +39,7 @@ function openAddBookModal(){
 
   editingBookSeriesIds = [];
   newBookTagIds = [];
-  newBookFav = 0;
+  newBookFav = 2;
   newBookHiddenTagIds = [];
 
   const modal = document.createElement("div");
@@ -421,11 +421,11 @@ function openBookDetailModal(book){
     </div>
     </div>
     
-    <div class="flex-between">
+    <div class="flex-between yohaku15">
     <div class="label-text left-yose">
   巻数：
   <input
-    class="input-common volume-input left-yose yohaku15"
+    class="input-common volume-input left-yose"
     id="detail-volume"
     type="number"
     min="0"
@@ -434,9 +434,18 @@ function openBookDetailModal(book){
   >
  </div> 
  
-  
-  <label class="reread-check right-yose yohaku15">
+  <div class="detail-row right-yose">
+  <label class="protect-check right-yose">
+  <input
+    type="checkbox"
+    id="protect-check"
+    ${book.protect === true ? "checked" : ""}
+    onchange="toggleProtect('${book.id}')"
+  >
+  🔒 誤削除防止
+</label>
 
+  <label class="reread-check">
   <input
     type="checkbox"
     id="reread-check"
@@ -446,9 +455,9 @@ function openBookDetailModal(book){
       toggleReread('${book.id}')
     "
   >
-
   再読予定
 </label>
+</div>
 </div>
 </div>
     
