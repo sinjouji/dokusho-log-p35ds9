@@ -122,6 +122,27 @@ function openAddBookModal(){
       
       <div class="fixed-scroll-body">
       
+      <div class="detail-row">
+      
+      <label class="protect-check migi-ake">
+  <input
+    id="new-book-protect"
+    type="checkbox"
+    ${enableProtect ? "checked" : ""}
+  >
+  🔒 誤削除防止
+</label>
+
+<label class="reread-check">
+  <input
+    id="new-book-reread"
+    type="checkbox"
+  >
+  📖 再読予定
+</label>
+      </div>
+      
+      
             ${enableMemo ? `
       <input type="text" class="input-common yohaku15" id="add-memo"
         placeholder="メモ">` : ""}
