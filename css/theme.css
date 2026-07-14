@@ -481,7 +481,7 @@
 
 
 
-[data-theme="yuusuzumi"]{
+:root[data-theme="yuusuzumi"]{
   --color-header-bg:#d8eef2;
   --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:216, 238, 242;
@@ -1178,7 +1178,7 @@
 
 
 
-[data-theme="yuuyakekomichi"]{
+:root[data-theme="yuuyakekomichi"]{
   --color-header-bg:#f6c28b;
   --color-header-text:var(--color-text);
   --color-header-watermark-rgb:163, 74, 45;
@@ -1714,7 +1714,7 @@ background-size:
 --color-chip:#8c5a42;
 --color-chip-daily:#8c5a42;
 --color-chip-read-bg:#b86b4d;
---color-chip-read-bg-rgh:184, 107, 77;
+--color-chip-read-bg-rgb:184, 107, 77;
 --color-chip-read-text:#fff1de;
 
 --color-bookmark:#d4b16a;
@@ -1775,7 +1775,7 @@ background-size:
 
 
 
-[data-theme="tsukikage"]{
+:root[data-theme="tsukikage"]{
   --color-header-bg:#0f1310;
   --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:210, 225, 210;
@@ -1909,7 +1909,7 @@ background-size:
 
 
 
-[data-theme="yoiyami"]{
+:root[data-theme="yoiyami"]{
   --color-header-bg:#121015;
   --color-header-text:var(--color-text-contrast);
   --color-header-watermark-rgb:220, 190, 140;
@@ -2594,7 +2594,7 @@ radial-gradient(
 
 
 
-[data-theme="taishomodern"]{
+:root[data-theme="taishomodern"]{
   /* Header */
   --color-header-bg:#6a2f2b;   /* 海老茶 */
   --color-header-text:#f7efe2;
@@ -2706,7 +2706,7 @@ radial-gradient(
 
 
 
-[data-theme="showakissa"]{
+:root[data-theme="showakissa"]{
   /* Header */
   --color-header-bg:#5b2d26;   /* 深いマホガニー */
   --color-header-text:#f8f2e8;
@@ -2923,7 +2923,7 @@ radial-gradient(
 
 
 
-[data-theme="meijishosai"]{
+:root[data-theme="meijishosai"]{
   /* Header */
   --color-header-bg:#2f4738;   /* 深緑 */
   --color-header-text:#f5ecd8;
@@ -3356,7 +3356,7 @@ radial-gradient(
 
 
 
-[data-theme="kappaninsatsu"]{
+:root[data-theme="kappaninsatsu"]{
   --color-header-bg:#2a2a2a;      /* インク黒 */
   --color-header-text:#f4ead7;
 
