@@ -1,5 +1,5 @@
 //
-// QUOTES.JS
+// QUOTES.JS 私用
 // 引用
 //
 
@@ -412,15 +412,46 @@ function deleteQuoteFromBook(bookId, quoteId){
 
   if(!book || !Array.isArray(book.quotes)) return;
 
-  book.quotes =
-    book.quotes.filter(q =>
-      String(q.id) !== String(quoteId)
-    );
 
-  saveData();
+const title = book.title;
 
-  closeModal("open-book-modal");
-  openBookDetailModal(book);
+// 保護機能(本に合わせる)
+if(book.protect){
+
+  showToast(
+    `🔒 「${title}」は保護されているため、この引用は削除できません`
+  );
+
+  return;
+}
+
+const quote =
+  book.quotes.find(q =>
+    String(q.id) === String(quoteId)
+  );
+
+if(!quote) return;
+
+showConfirmDialog({
+  title: "引用を削除",
+  message: "この引用を削除しますか？",
+  okText: "削除",
+  cancelText: "キャンセル",
+
+  onOk: ()=>{
+    book.quotes =
+      book.quotes.filter(q =>
+        String(q.id) !== String(quoteId)
+      );
+
+    saveData();
+
+    closeModal("open-book-modal");
+    openBookDetailModal(book);
+
+    showToast("引用を削除しました");
+  }
+});
 }
 
 

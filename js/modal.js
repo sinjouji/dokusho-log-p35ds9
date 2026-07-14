@@ -1083,13 +1083,25 @@ const characterCount =
 						${renderCloseButton("add-series-modal")}</div>
 			
 			<input
-  class="input-common"
+  class="input-common yohaku10"
   id="add-series-title"
   type="text"
   value="${initialTitle}"
   placeholder="シリーズタイトル"
   oninput="renderSeriesTitleSuggest()"
 >
+
+<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    id="new-series-protect"
+    type="checkbox"
+    ${enableProtect ? "checked" : ""}
+  >
+  🔒 誤削除防止
+</label>
+</div>
+
 </div>
 
 
@@ -1221,9 +1233,21 @@ const characterCount =
 
       <input
         id="edit-series-name"
-        class="input-title"
-        value="${series.name || ""}"
+        class="input-title yohaku10"
+        value="${series.name || ''}"
       >
+<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    type="checkbox"
+    id="protect-series-check"
+    ${series.protect === true ? "checked" : ""}
+    onchange="toggleSeriesProtect('${series.id}')"
+  >
+  🔒 誤削除防止
+</label>
+</div>
+
       </div>
       
       <div class="fixed-scroll-body">
@@ -1488,18 +1512,19 @@ const relatedCharacters = characters
 
       d.innerHTML = `
         <span class="mini-s-title">
-          ${b.title}
-          ${
-            b.subtitle
-              ? `<span class="book-subtitle">${b.subtitle}</span>`
-              : ""
-          }
-          ${
-            b.volume
-              ? ` ${b.volume}`
-              : ""
-          }
-        </span>
+  ${b.title}
+  ${
+    b.subtitle
+      ? `<span class="book-subtitle">${b.subtitle}</span>`
+      : ""
+  }
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
+  ${b.reread === true ? " 🔁" : ""}
+</span>
 
         <span class="
           mini-read-status
@@ -1580,6 +1605,20 @@ function openAddCharacterModal(
 				id="add-chars-name"
 				type="text"
 				placeholder="人物名">
+				
+				
+				<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    id="new-characters-protect"
+    type="checkbox"
+    ${enableProtect ? "checked" : ""}
+  >
+  🔒 誤削除防止
+</label>
+</div>
+				
+				
 				</div>
 				
 				<div class="detail-modal-body">
@@ -1681,12 +1720,13 @@ editingCharacterSeriesIds =
 	
 	modal.innerHTML = `
 		<div class="modal-box detail-modal">
-		<div class="detail-modal-header flex-between yohaku10">
+		<div class="detail-modal-header">
+		  <div class="flex-between yohaku10">
 			<input id="character-name" class="input-title"
 			value="${c.name || ""}">
-						${renderCloseButton("open-chars-modal")}</div>
+						${renderCloseButton("open-chars-modal")}
 			
-			
+			</div>
       ${relatedSeries.map(s=>`
         <button class="detail-series left-yose yohaku15"
 				  onclick="
@@ -1697,6 +1737,21 @@ editingCharacterSeriesIds =
  				 ${s.name}
 				</button>
       `).join(", ") || ""}
+
+<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    type="checkbox"
+    id="protect-characters-check"
+    ${c.protect === true ? "checked" : ""}
+    onchange="toggleCharactersProtect('${c.id}')"
+  >
+  🔒 誤削除防止
+</label>
+</div>
+
+
+</div>
 			
 			<div class="detail-modal-body yohaku15">
 			<div class="left-yose">メモ</div>

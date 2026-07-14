@@ -1,5 +1,5 @@
 //
-// ベース ＝ app.js 私
+// ベース ＝ app.js 私用
 //    メイン処理：render / save / 初期化
 //
 // ★ JSON URL

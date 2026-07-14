@@ -1,5 +1,5 @@
 //
-// SERIE.JS シリーズ関連の処理
+// SERIE.JS シリーズ関連の処理 私用
 //
 
 //設定Pシリーズ初期表示モード
@@ -99,6 +99,11 @@ main.classList.toggle(
 
 const bookCount =
   relatedBooks.length;
+
+const hasReread =
+  relatedBooks.some(
+    b => b.reread === true
+);
 	
 			
 	if(seriesViewMode === "spine"){
@@ -107,7 +112,7 @@ const bookCount =
 
   d.innerHTML = `
     <div class="series-spine-title">
-      ${s.name}
+      ${s.protect ? "🔒 " : ""}${s.name}${hasReread ? " 🔁" : ""}
     </div>
 
     <div class="series-spine-count">
@@ -121,7 +126,7 @@ const bookCount =
 
   d.innerHTML = `
     <div class="series-compact-title">
-      ${s.name}
+      ${s.protect ? "🔒 " : ""}${s.name}${hasReread ? " 🔁 再読あり" : ""}
     </div>
 
     <div class="series-compact-count">
@@ -135,7 +140,7 @@ const bookCount =
 
   d.innerHTML = `
     <div class="series-list-name">
-      ${s.name}
+      ${s.protect ? "🔒 " : ""}${s.name}
     </div>
 
     <div class="series-list-date">
@@ -145,6 +150,7 @@ const bookCount =
           ? `・最新読了：${latestDate}`
           : ""
       }
+${hasReread ? " 🔁 再読あり" : ""}
     </div>
     
     
@@ -981,7 +987,12 @@ async function saveNewSeries(){
       (newSeriesBookIds || []).map(String),
 
     characterIds:
-      (newSeriesCharacterIds || []).map(String)
+      (newSeriesCharacterIds || []).map(String),
+
+protect: document.getElementById(
+  "new-series-protect"
+).checked
+
   };
 
   seriesMaster.push(series);
@@ -1064,15 +1075,37 @@ async function deleteSeries(id){
 
   if(!series) return;
 
-  if(
-    !confirm(
-      `「${series.name}」を削除しますか？\n本や人物は削除されません。`
-    )
-  ){
-    return;
-  }
+const name = series.name;
 
-  seriesMaster =
+
+// 保護機能予定
+if(series.protect){
+
+  showToast(
+    `🔒 「${name}」は保護されているため削除できません`
+  );
+
+  return;
+}
+
+
+showConfirmDialog({
+
+  title: `「${name}」シリーズを削除`,
+
+  message: `
+「${name}」シリーズを削除しますか？<br><br>
+
+本、人物との関連付けも解除されます。
+`,
+
+  okText: "削除",
+
+  cancelText: "キャンセル",
+
+  onOk: async ()=>{
+
+    seriesMaster =
     seriesMaster.filter(
       s => String(s.id) !== String(id)
     );
@@ -1097,6 +1130,7 @@ async function deleteSeries(id){
 
   });
 
+  
     await saveData();
 
     closeDetailModals();
@@ -1105,8 +1139,13 @@ async function deleteSeries(id){
     renderSeries();
 
     showToast(
-  `「${series.name}」を削除しました`
+  `「${name}」シリーズを削除しました`
 );
+
+  }
+
+});
+  
 }
 
 
@@ -1232,5 +1271,30 @@ function changeSeriesViewMode(mode){
   );
 
   renderSeriesBookList();
+}
+
+
+
+//==============================
+//=シリーズ用保護のチェック切替え
+//==============================
+function toggleSeriesProtect(id){
+
+
+  const series = seriesMaster.find(
+    s => String(s.id) === String(id)
+  );
+
+
+  if(!series) return;
+
+  series.protect =
+    document.getElementById(
+      "protect-series-check"
+    ).checked;
+
+  saveData();
+
+  renderSeries();
 }
 

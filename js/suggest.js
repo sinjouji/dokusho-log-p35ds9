@@ -530,8 +530,6 @@ function renderSeriesBookSuggest(){
 //==============================
 function renderSeriesCharacterSuggest(){
 
-console.log("character suggest");
-
   const keyword =
     document.getElementById(
       "series-related-search"

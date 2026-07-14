@@ -893,12 +893,14 @@ const volume =
 fav.className =
   "spine-fav";
 
-fav.textContent =
-  volume;
+fav.innerHTML =
+  b.protect
+    ? `${volume}<br>🔒`
+    : volume;
   
   
   
-  if(b.reread){
+  if(b.reread === true){
   
     const mark =
       document.createElement("div");
@@ -1185,7 +1187,7 @@ main.classList.add("card-view");
     d.innerHTML = `
 
       <div class="title">
-  ${b.title}
+  ${b.protect ? "🔒" : ""}${b.title}
 
 ${
   b.subtitle
@@ -1301,6 +1303,7 @@ main.classList.add("list-view");
    row.innerHTML = `
    
 <div class="list-title">
+  ${b.protect ? "🔒" : ""}
   ${b.title}
   ${
   b.subtitle

@@ -1,6 +1,6 @@
 //
 // CHARACTERS 人物関連の処理ちゃんだぜええ
-//
+//  私用
 //
 
 
@@ -85,7 +85,7 @@ const filtered =
 d.innerHTML = `
 <div class="character-list-top">
   <div class="character-list-name">
-    ${c.name}
+    ${c.protect ? "🔒" : ""}${c.name}
   </div>
   
   <div class="character-type-chip">
@@ -345,7 +345,12 @@ async function saveNewCharacter(){
     seriesIds:
       editingCharacterSeriesIds.map(String),
 
-    memo
+    memo,
+
+protect: document.getElementById(
+  "new-characters-protect"
+).checked
+
   };
 
   characters.unshift(character);
@@ -426,14 +431,38 @@ async function deleteCharacter(id){
 
   if(!character) return;
 
-  if(
-    !confirm(
-      `「${character.name}」を削除しますか？\nシリーズや本は削除されません。`
-    )
-  ){
-    return;
-  }
 
+  const name = character.name;
+
+
+// 保護機能予定
+if(character.protect){
+
+  showToast(
+    `🔒 「${name}」は保護されているため削除できません`
+  );
+
+  return;
+}
+
+
+showConfirmDialog({
+
+  title: `「${name}」を削除`,
+
+  message: `
+「${name}」を削除しますか？<br><br>
+
+シリーズとの関連付けも解除されます。
+`,
+
+  okText: "削除",
+
+  cancelText: "キャンセル",
+
+  onOk: async ()=>{
+
+  
   characters =
     characters.filter(
       c => String(c.id) !== String(id)
@@ -457,8 +486,13 @@ async function deleteCharacter(id){
   renderCharacters();
 
   showToast(
-    `「${character.name}」を削除しました`
+    `「${name}」を削除しました`
   );
+
+  }
+
+});
+  
 }
 
 
@@ -509,26 +543,47 @@ function removeSeriesFromCharacter(
   suggestId
 ){
 
-  if(!confirm("削除しますか？")){
-    return;
-  }
-
-  editingCharacterSeriesIds =
-    editingCharacterSeriesIds.filter(
-      sId => String(sId) !== String(id)
-    );
-
-  renderCharacterEditSeries(
-    listId
+const series =
+  seriesMaster.find(
+    s => String(s.id) === String(id)
   );
 
-  renderCharacterSeriesSuggest(
-    searchId,
-    suggestId,
-    listId
-  );
+const name = series?.name || "";
+
+  showConfirmDialog({
+
+    title: "関連シリーズを解除",
+
+message: `
+「${name}」との関連付けを解除しますか？
+`,
+
+    okText: "解除",
+
+    cancelText: "キャンセル",
+
+    onOk: ()=>{
+
+      editingCharacterSeriesIds =
+        editingCharacterSeriesIds.filter(
+          sId => String(sId) !== String(id)
+        );
+
+      renderCharacterEditSeries(
+        listId
+      );
+
+      renderCharacterSeriesSuggest(
+        searchId,
+        suggestId,
+        listId
+      );
+
+    }
+
+  });
+
 }
-
 
 
 
@@ -636,4 +691,27 @@ function getPersonTypeLabel(type){
       return "登場人物";
   }
 
+}
+
+
+//==============================
+//=人物用保護のチェック切替え
+//==============================
+function toggleCharactersProtect(id){
+
+  const character =
+    characters.find(
+      c => String(c.id) === String(id)
+    );
+
+  if(!character) return;
+
+  character.protect =
+    document.getElementById(
+      "protect-characters-check"
+    ).checked;
+
+  saveData();
+
+  renderCharacters();
 }

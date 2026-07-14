@@ -413,7 +413,7 @@ function renderCloseButton(modalId){
         closeModal('${modalId}')
       "
     >
-      ✖️
+      ×
     </button>
   `;
 
