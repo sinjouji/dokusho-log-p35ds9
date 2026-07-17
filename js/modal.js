@@ -1,461 +1,2195 @@
-/*
- MODAL.CSS
- watasi
-*/
+//==============================
+// MODAL : 自分用
+//
+//  モーダル関係の処理を集めろぉ！！！
+//==============================
 
 
-.modal-bg{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.45);
+//非表示タグの削除用変数
+let pendingHiddenTagRemove = null;
+let newBookHiddenTagIds = [];
 
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  overflow-y:auto;
-  padding:20px 0;
+//デイリータグ編集用
+let editingDailyLogDate = null;
+let editingDailyLogTags = [];
 
-  z-index:9999;
+//本詳細の簡易マニュアル用トグル
+const helpSections = {
+  seriesHelp: !localStorage.getItem("seriesHelpSeen"),
+  readDateHelp: !localStorage.getItem("readDateHelpSeen")
+};
+
+
+//==============================
+//====モーダルを閉じる（汎用）
+//==============================
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    ?.remove();
 }
 
-.modal-box{
-  width:90%;
-  max-width:400px;
 
-  background:var(--color-card);
-  border-radius:10px;
 
-  padding:16px;
+//==============================
+//⬛︎本の追加モーダル==========
+//==============================
+function openAddBookModal(){
 
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+  editingBookSeriesIds = [];
+  newBookTagIds = [];
+  newBookFav = 2;
+  newBookHiddenTagIds = [];
+
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "add-book-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box fixed-scroll-modal book-detail-modal">
+    
+    <div class="detail-modal-header">
+    
+ <div class="flex-between yohaku10">
+         <span>本を追加</span>
+         ${renderCloseButton("add-book-modal")}</div>
+
+      <input class="input-title yohaku10"
+       id="add-title"
+        type="text"
+        placeholder="タイトル"
+        oninput="renderTitleSuggest()"
+        >
+      <div id="title-suggest"></div>
+      
+      <div class="detail-row yohaku10">
+      	<div class="label-text">サブタイトル：</div>
+      <input class="input-title"
+        id="add-subtitle"
+        type="text"
+        placeholder="サブタイトル（任意）"
+      >
+      </div>
+      
+      
+      <div class="flex-between yohaku15">
+   
+      <div class="detail-row left-yose">
+        <div class="label-text">読了日：</div>
+
+        <input
+  type="date"
+  id="add-date"
+  class="input-common input-small">
+
+<button
+  class="btn-sub hidari-ake"
+  onclick="
+    document.getElementById(
+      'add-date'
+    ).value=getTodayLocal();
+  "
+>
+今日
+</button>
+
+<button
+  class="btn-sub hidari-ake"
+  onclick="
+    document.getElementById(
+      'add-date'
+    ).value='';
+  "
+>
+クリア
+</button>
+</div>
+        
+	  			<button
+				  type="button"
+				  id="new-book-fav-btn"
+				  class="fav-cycle-btn"
+			  		onclick="cycleNewBookFav()"
+				>
+				  評価：0
+				</button>
+
+        
+      </div>
+      </div>
+      
+      
+      <div class="fixed-scroll-body">
+      
+      <div class="detail-row">
+      
+      <label class="protect-check migi-ake">
+  <input
+    id="new-book-protect"
+    type="checkbox"
+    ${enableProtect ? "checked" : ""}
+  >
+  🔒 誤削除防止
+</label>
+
+<label class="reread-check">
+  <input
+    id="new-book-reread"
+    type="checkbox"
+  >
+  📖 再読予定
+</label>
+      </div>
+      
+      
+            ${enableMemo ? `
+      <input type="text" class="input-common yohaku15" id="add-memo"
+        placeholder="メモ">` : ""}
+
+      
+    <div
+      class="detail-toggle-head t-labels"
+      data-open="▽関連シリーズ"
+      data-close="▶︎関連シリーズ"
+      onclick="
+        togglesSection(
+        'add-book-series',
+        this
+      )
+    "
+  >▶︎関連シリーズ</div>
+
+     <div
+       class="toggle-content"
+       id="add-book-series"
+     >
+        <input
+          class="input-common"
+          id="add-book-related-search"
+          type="text"
+          placeholder="関連シリーズを追加"
+          
+          oninput="
+            renderBookSeriesSuggest(
+              'add-book-related-search',
+              'add-book-series-suggest',
+              'add-book-series-list'
+            );
+          "
+        >
+      
+       <div class="suggest-box">
+        <div id="add-book-series-suggest"></div>
+       </div><br>
+     
+     <div class="detail-series-area">
+      <div class="detail-label">
+     関連：
+      </div>
+      	 <div
+      	  id="add-book-series-list"
+      	  class="series-edit-list"></div>
+      </div>      
+     </div>
   
-}
-
-.modal input:focus,
-.modal select:focus,
-.modal textarea:focus{
-  outline:none;
-  box-shadow:0 0 0 3px rgba(156,201,255,.2);
-
-  width:100%;
-  box-sizing:border-box;
-
-  padding:12px;
-  border-radius:10px;
-
-  border:1px solid var(--color-border-sub);
-  background:var(--color-input-common);
-
-  font-size:14px;
-}
-
-.modal-box textarea{
-  min-height:100px;
-  resize:vertical;
-  font-size:14px;
-  padding:5px 0;
-}
-
-.modal-actions{
-  margin-top:20px;
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-
-
-/* 詳細表示モーダル */
-.detail-modal{
-  max-width: 400px;
   
-  max-height:88vh;
-  overflow-y:auto;
-}
-
-
-
-.field-label{
-  font-size:13px;
-  color:var(--color-text-sub);
-  opacity:var(--color-opacity);
-  margin:10px 0 6px;
-}
-
-
-
-/* 評価切替えボタン */
-.fav-cycle-btn{
-  font-size:14px;
-  padding:2px 8px;
-  border:none;
-  border-radius:999px;
-  background:var(--color-main);
-}
-
-/* タグ風読了日表示 */
-.date-tag{
-  display:flex;
-  align-items:center;
-  gap:2px;
-  text-align:center;
-
-  padding:1px 6px;
-  margin:3px;
-
-  background:var(--color-main);
-  border-radius:999px;
-
-  font-size:11px;
-/*  border:1px solid var(--color-border);*/
-  color:var(--color-text-contrast);
-}
-
-
-
-.close-btn{
-  border:1px solid var(--color-text);
-  background:var(--color-card);
-  font-size:20px;
-  cursor:pointer;
-  padding:5px;
-
-/*  position:absolute;
-  top:16px;
-  right:20px;*/
-}
-
-
-/* 詳細表示モーダル */
-
-.detail-series{
-font-size:10px;
-color:var(--color-border);
-border:1px solid var(--color-border);
-background:var(--color-card);
-padding:3px 8px;
-border-radius:10px;
-  max-width:100%;
-  white-space:normal;
-  overflow-wrap:anywhere;
-  word-break:break-word;
-}
-
-.detail-tags{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-
-/*  margin-top:5px;*/
-}
-
-.detail-memo{
-  margin-top:10px;
-
-  padding:16px;
-
-  background:var(--color-card);
-  border-radius:10px;
-
-  white-space:pre-wrap;
-}
-
-
-/*読了履歴*/
-.date-history-grid{
-  grid-template-columns:
-    1fr 1fr 1fr;
-
-  gap:2px;
-
-  margin-top:1px;
-/*一定以上の量だとスクロールエリアになる*/
-  max-height:120px;
-  overflow-y:auto;
-
-}
-
-.date-history-grid.open{
-  display:grid;
-}
-
-.mini-date-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   
-  font-size:10px;
-  color:var(--color-text-contrast);
-  padding:1px 4px;
-  gap:2px;
-  background:var(--color-main);
-  border:1px solid var(--color-border);
+  
+      <div
+      class="detail-toggle-head t-labels"
+      data-open="▽タグ非表示"
+      data-close="▶︎タグ表示"
+      onclick="
+        togglesSection(
+        'add-book-tags',
+        this
+      )
+    "
+  >
+  ▶︎タグ表示</div>
+  
+  
+      	<div class="toggle-content"
+      	  id="add-book-tags">
+			
+				${tagMaster
+					.filter(tag => !tag.isHidden)
+					.map(tag=>{
 
-  border-radius:10px;
-}
+				const isActive =
+					newBookTagIds.includes(tag.id);
 
-/*本詳細モーダル内表示の設定など*/
-/*◯回読了*/
-.book-stat{
-  background:var(--color-main);
-  color:var(--color-text-contrast);
-  font-size:12px;
-  font-weight:bold;
-  border-radius:10px;
-  padding:1px 10px;
-  align-items:center;
-}
+				return `
+				<span
+					class="
+						tag-chip detail-tag-chip
+						${isActive ? "active" : ""}
+					"
+					
+					data-tag-id="${tag.id}"
+					
+ 					onclick="
+ 						toggleNewBookTag(
+ 							'${tag.id}',
+ 							 this,
+ 							 '${tag.color}'
+ 							)
+ 						"
+ 						
+					style="
+						background:
+							${isActive ? tag.color : 'var(--color-card)'};
+						color:
+							${isActive ? 'var(--color-card)' : tag.color};
+						border:
+							1px solid ${tag.color};
+					"
+				>
+				${tag.name}
+			</span>
+			
+		`;
 
-/*保護チェック*/
-.protect-check{
- font-size:13px;
- color:var(--color-text-contrast);
- background:var(--color-chip-daily);
- border-radius:10px;
- padding:1px 10px;
- margin:3px;
-}
+	}).join("")}	
+			</div>
+			
 
-/*再読チェック*/
-.reread-check{
-  font-size:13px;
-  color:var(--color-text);
-  border:1px solid var(--color-border);
-  border-radius:10px;
-  padding:1px 10px;
-  margin:3px;
-}
+	
+	<div
+  class="detail-toggle-head t-labels"
+  data-open="▽ 管理タグ（${newBookHiddenTagIds.length}）"
+  data-close="▶︎ 管理タグ（${newBookHiddenTagIds.length}）"
+  onclick="
+    togglesSection(
+      'add-book-hidden-tags',
+      this
+    )
+  "
+>
+  ▶︎ 管理タグ（${newBookHiddenTagIds.length}）
+</div>
 
-.inate{
-  border:1px solid var(--color-border);
-  padding:3px 1px;
-  font-size:12px;
-}
+<div
+  class="
+    toggle-content
+    ${addBookTagSections.hiddenTags ? "open" : ""}
+  "
+  id="add-book-hidden-tags"
+>
 
+  
 
-/*トグルラベル*/
-.t-labels{
-  font-size:13px;
-  font-weight:bold;
-  text-align:center;
-  padding:6px 8px;
-  margin:4px 0;
-  border-radius:999px;
-  background:var(--color-main);
-}
+	<div class="hidden-tag-input-area">
 
+  <input
+    class="input-common"
+    id="add-book-hidden-tag-input"
+    type="text"
+    placeholder="管理タグを追加"
+    oninput="
+      renderAddBookHiddenTagSuggest()
+    "
+    onkeydown="
+      if(event.key === 'Enter'){
+        addHiddenTagToNewBook(this.value);
+      }
+    "
+  >
 
-.volume-input{
-  max-width:50px;
-}
+  <div class="suggest-box">
+    <div id="add-book-hidden-tag-suggest"></div>
+  </div>
+  
+<div class="hidden-tag-area">
+<div
+    id="add-book-hidden-tag-list"
+    class="hidden-tag-list selected-hidden-tags"
+  ></div>
+  </div>
+</div>
+      
+      
+   <!-- 今の新規本用 管理タグ入力・選択済み・サジェスト -->
 
-.detail-series-area{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-  max-width:100%;
-}
+</div>   
+</div>
+      
+      <div class="detail-modal-footer">
+      <hr class="kugiri">
 
-#open-book-hidden-tags{
-  flex-direction:column;
-}
+ 
+        <button onclick="saveNewBook()" class="btn-main" style="width:100%">
+          ＋保存
+        </button>
+            </div>
+            </div>
+  `;
 
-.hidden-tag-input-area{
-  margin-bottom:4px;
-}
-#add-book-hidden-tags{
-  flex-direction:column;
-}
-
-/*本用モーダルちゃん高さ制限*/
-.modal-box.detail-modal{
-  height:60vh;
-  max-height:70vh;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-
-.detail-modal-header{
-  flex:0 0 auto;
-}
-
-.detail-modal-body{
-  flex:1 1 auto;
-  min-height:0;
-  overflow-y:auto;
-  padding:6px 2px;
-}
-
-.detail-modal-footer{
-  flex:0 0 auto;
-}
-
-.detail-inner-scroll{
-  max-height:120px;
-  overflow-y:auto;
-}
-
-.detail-toggle-head{
-  margin:15px 5px;
-}
-
-.t-white{
-  color:var(--color-text-contrast);
-}
-
-#open-book-read-history{
-  max-height:140px;
-  overflow-y:auto;
-}
-
-.book-status-area{
-  background:var(--color-bg);
-  border-radius:12px;
-  padding:6px 10px;
-  max-width:80%;
-  margin:auto;
-}
-
-.modal-box{
-  max-width:65vw;
-  max-height:80vh;
-}
-
-.fixed-scroll-modal{
-  height:88vh;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-
-.fixed-scroll-body{
-  flex:1;
-  min-height:0;
-  overflow-y:auto;
-}
-
-/*引用モーダル用*/
-.quote-view-modal{
-  max-height:55vh;
-  max-width:50vw;
-
-  background:var(--color-card);
-  border-radius:10px;
-
-  padding:16px;
+  document.body.appendChild(modal);
+  
+  document.getElementById("add-date").value =
+  getTodayLocal();
+  
+  renderBookEditSeries(
+   "add-book-series-list"
+  );
 }
 
 
 
+//==============================
+//====本詳細モーダル========
+//==============================
+function openBookDetailModal(book){
 
-.quote-view-text{
-  padding:16px;
-  line-height:1.9;
-  font-size:16px;
+  currentDetailFav = book.fav || 0;
+  
+  if(!Array.isArray(book.quotes)){
+  book.quotes = [];
+}
+  
+  const relatedSeries =
+  seriesMaster.filter(s=>{
 
-  max-height:60vh;
+    return (
+      Array.isArray(book.seriesIds)
+      &&
+      book.seriesIds
+        .map(String)
+        .includes(String(s.id))
+    );
+  });
+  
+  const sortedDates =
+    [...(
+      book.readDates ||
+      book.dates ||
+      []
+    )
+    ].sort((a,b)=>b.localeCompare(a));
+  
+  const latestDate =
+    sortedDates[0];
+    
+      editingBookSeriesIds =
+    [...(book.seriesIds || [])]
+      .map(String);
+      
+    const hiddenTagIds =
+  (book.tagIds || [])
+    .filter(tagId =>
+      isHiddenTag(tagId)
+    );
+  
+  const modal = document.createElement("div");
+  modal.className = "modal-bg";
+  modal.id = "open-book-modal";
+	
+  modal.innerHTML = `
+    <div class="modal-box fixed-scroll-modal book-detail-modal">
+    
+    <div class="detail-modal-header">
+    
+    <div class="detail-row yohaku10">
+    <input id="detail-title" class="input-title migi-ake"
+        value="${book.title || ""}">        
+    
+      ${renderCloseButton("open-book-modal")}
+    </div>
+    
+    <div class="flex-between yohaku15">
+    <input
+      class="input-common migi-ake"
+      id="edit-subtitle"
+      type="text"
+      value="${book.subtitle || ""}"
+      placeholder="サブタイトル（任意）"
+    >
+    <button class="plus-btn"
+  onclick="
+    openAddSeriesModal(
+      '${book.id}',
+      '${book.title}'
+    );
+  "
+>
+📚シリーズ化
+</button>
+    </div>
+    <div
+      class=" detail-toggle-head"
+      data-open="▽ シリーズ化について"
+      data-close="▶︎ シリーズ化について"
+      onclick="
+        toggleHelpSection(
+          'series-help',
+          this,
+          'seriesHelp'
+        )
+      "
+    >
+    ▶︎ シリーズ化について</div>
+    <div
+      id="series-help"
+      class="
+        toggle-content
+        ${helpSections.seriesHelp ? "open" : ""}
+      "
+    >
+    <div class="setting-note">
+    本の<u>タイトルから新しいシリーズを作成</u>できます。<br>
+    作成時に<u>使用した本は、自動でシリーズへ登録</u>されます。<br>
+    既存のシリーズを整理したい場合は、一度保存してから削除してください。
+    </div>
+    </div>
+    
+    <div class="flex-between yohaku15">
+    <div class="label-text left-yose">
+  巻数：
+  <input
+    class="input-common volume-input left-yose"
+    id="detail-volume"
+    type="number"
+    min="0"
+    value="${book.volume || ""}"
+    placeholder="巻数"
+  >
+ </div> 
+ 
+  <div class="detail-row right-yose">
+  <label class="protect-check right-yose">
+  <input
+    type="checkbox"
+    id="protect-check"
+    ${book.protect === true ? "checked" : ""}
+    onchange="toggleProtect('${book.id}')"
+  >
+  🔒 誤削除防止
+</label>
 
-  align-self:stretch;
-  box-sizing:border-box;
-  background:var(--color-bg);
-  border-radius:10px;
-  overflow:auto;
+  <label class="reread-check">
+  <input
+    type="checkbox"
+    id="reread-check"
+    ${book.reread ? "checked" : ""}
+
+    onchange="
+      toggleReread('${book.id}')
+    "
+  >
+  再読予定
+</label>
+</div>
+</div>
+</div>
+    
+     <div class="fixed-scroll-body">
+      <div class="detail-series-area">
+  ${relatedSeries.map(s=>`
+    <button class="detail-series yohaku15"
+      onclick="
+        closeModal('open-book-modal');
+        openSeriesById('${s.id}');
+      "
+    >
+      シリーズ：${s.name}
+    </button>
+  `).join("")}
+</div>
+
+
+    <div class="book-status-area yohaku15">
+      <div class="flex-between yohaku15">
+        状態 ＝ 
+        ${
+          book.type === "wish"
+          ? "❤️ウィッシュ"
+          : "📚本棚"
+        }
+  
+     <div class="detail-fav-wrap">
+
+       <button
+         class="fav-cycle-btn"
+         onclick="cycleFav('${book.id}')">評価：
+           ${
+              ["0","★","★★","★★★","👑"][book.fav || 0]
+            }
+       </button>
+
+        </div>
+      </div>
+      
+      
+   <div class="detail-row">
+    <div class="book-stat yohaku15">
+    読了回数 ： 
+      ${
+        (
+          book.readDates ||
+          book.dates ||
+          []
+        ).length
+      }回読了</div>
+      </div>
+ 
+      
+ 
+     <div class="detail-row yohaku10">
+     <div class="left-yose">
+  読了日：
+
+  ${
+    latestDate
+    ? `
+      <div class="date-tag left-yose">
+        ${latestDate}
+        <button
+              class="mini-delete-btn"
+              onclick="removeReadDate('${book.id}','${latestDate}')"
+            >
+              ✕
+            </button>
+      </div>`
+    : "未読"
+  }
+  </div>
+     
+    </div>
+      
+    <div class="flex-between yohaku15">
+    <div class="left-yose">
+       <input type="date" id="readDate-${book.id}" class="input-common input-small white-input">
+      <button onclick="addReadDate('${book.id}')" style="margin-left:5px;">
+       ＋追加
+      </button>
+      </div>
+      
+      <div class="right-yose">
+      <button
+  class="btn-sub hidari-ake"
+  onclick="
+    document.getElementById(
+      'readDate-${book.id}'
+    ).value = getTodayLocal();
+  "
+>
+  今日
+</button>
+<button
+  class="btn-sub hidari-ake"
+  onclick="
+    document.getElementById(
+      'readDate-${book.id}'
+    ).value = '';
+  "
+>
+  クリア
+</button>
+      </div>
+    </div>
+    <div
+      class=" detail-toggle-head"
+      data-open="▽ 読了日の登録方法"
+      data-close="▶︎ 読了日の登録方法"
+      onclick="
+        toggleHelpSection(
+          'read-date-help',
+          this,
+          'readDateHelp'
+        )
+      "
+    >
+    ▶︎ 読了日の登録方法</div>
+    <div
+      id="read-date-help"
+      class="
+        toggle-content
+        ${helpSections.readDateHelp ? "open" : ""}
+      "
+    >
+    <div class="setting-note">
+    日付を選択したあと<u>【＋追加】を押すと、読了履歴へ登録</u>されます。<br>
+    
+    最初は今日の日付が自動で入力されていますが、<u>保存を押すだけでは登録されません。</u><br>
+    また、日付を変更しただけでも登録されません。<br>
+    <br>
+    【クリア】を押すと日付が空欄になり、【今日】を押すと今日の日付が入ります。
+    </div>
+    </div>
+    
+     </div> 
+      
+      
+      
+       <div class="detail-row">
+      ${enableMemo ? `
+      <input
+        class="input-common yohaku15"
+        type="text"
+        id="editMemo"
+        
+        placeholder="メモ"
+        
+        value="${book.memo || ""}"
+      >
+      ` : ""}</div>
+      
+      <div class="yohaku10"> </div>
+      
+    <div
+  class="detail-toggle-head t-labels"
+  data-open="▽ 読了履歴"
+  data-close="▶︎ 読了履歴"
+  onclick="
+    togglesSection(
+      'open-book-read-history',
+      this
+    )
+  "
+>
+  ${
+    detailSections.readHistory
+      ? "▽"
+      : "▶︎"
+  }
+  読了履歴
+</div>
+
+<div
+  class="
+    toggle-content detail-inner-scroll
+    ${detailSections.readHistory ? "open" : ""}
+  "
+  id="open-book-read-history"
+>
+  <div class="date-history-grid">
+    ${sortedDates.slice(1).map(date=>`
+      <div class="mini-date-row">
+        ${date}
+        <button
+          class="mini-delete-btn"
+          onclick="removeReadDate('${book.id}','${date}')"
+        >
+          ✕
+        </button>
+      </div>
+    `).join("")}
+  </div>
+</div>
+      
+      
+      
+      
+      
+      
+      <div
+        class="detail-toggle-head t-labels"
+        data-open="▽関連シリーズ"
+        data-close="▶︎関連シリーズ"
+        onclick="
+          togglesSection(
+          'open-book-series',
+          this
+          )
+        "
+      >
+      ▶︎関連用シリーズ</div>
+   
+   
+   <div class="
+  toggle-content
+  ${detailSections.series ? "open" : ""}
+"
+id="open-book-series">
+  
+        <input class="input-common"
+        id="book-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderBookSeriesSuggest(
+            'book-related-search',
+            'book-series-suggest',
+            'book-edit-series'
+          );
+        "
+      >
+    <div class="suggest-box">
+      <div id="book-series-suggest"></div>
+    </div>
+    
+    <div class="detail-series-area">
+     <div class="detail-label">
+    関連：
+     </div>
+
+    <div id="book-edit-series" class="series-edit-list"></div>
+    </div>
+   
+   </div>
+      
+      
+      
+		
+			<div
+  class="detail-toggle-head t-labels"
+  data-open="▽タグ非表示"
+  data-close="▶︎タグ表示"
+  onclick="
+    togglesSection(
+      'open-book-tags',
+      this
+    )
+  "
+>
+  ${detailSections.tags ? "▽タグ非表示" : "▶︎タグ表示"}
+</div>
+      
+      <div class="
+  toggle-content
+  ${detailSections.tags ? "open" : ""}
+"
+id="open-book-tags">
+
+  ${
+    tagMaster
+      .filter(tag => !tag.isHidden)
+      .map(tag=>{
+
+        const isActive =
+          (book.tagIds || [])
+            .map(String)
+            .includes(String(tag.id));
+            
+
+        return `
+          <span
+            class="tag-chip detail-tag-chip"
+            onclick="toggleBookTag(
+              '${book.id}',
+              '${tag.id}'
+            )"
+            style="
+              background:
+                ${isActive ? tag.color : 'var(--color-card)'};
+
+              color:
+                ${isActive ? 'var(--color-card)' : tag.color};
+
+              border:
+                1px solid ${tag.color};
+            "
+          >
+            ${tag.name}
+          </span>
+        `;
+      })
+      .join("")
+  }
+  
+</div>
+      
+      
+      <div
+  class="detail-toggle-head t-labels"
+  data-open="▽ 管理タグ（${hiddenTagIds.length}）"
+  data-close="▶︎ 管理タグ（${hiddenTagIds.length}）"
+  onclick="
+    togglesSection(
+      'open-book-hidden-tags',
+      this
+    )
+  "
+>
+  ▶︎ 管理タグ（${hiddenTagIds.length}）
+</div>
+
+<div
+  class="
+    toggle-content
+    ${detailSections.hiddenTags ? "open" : ""}
+  "
+  id="open-book-hidden-tags"
+>
+
+  <div class="hidden-tag-input-area">
+    <input
+      class="input-common"
+      id="hidden-tag-input-${book.id}"
+      type="text"
+      placeholder="管理タグを追加"
+      oninput="renderHiddenTagSuggest('${book.id}')"
+      onkeydown="
+        if(event.key==='Enter'){
+          addHiddenTag('${book.id}', this.value);
+        }
+      "
+    >
+  </div>
+
+  <div
+    id="hidden-tag-suggest-${book.id}"
+    class="hidden-tag-suggest"
+  ></div>
+
+  ${
+    hiddenTagIds.length
+      ? `
+        <div class="hidden-tag-area">
+          <div class="hidden-tag-list selected-hidden-tags">
+            
+            ${
+              hiddenTagIds.map(tagId=>{
+
+                const tag =
+                  tagMaster.find(t =>
+                    String(t.id) === String(tagId)
+                  );
+
+                if(!tag) return "";
+
+                const isRemoveReady =
+                  pendingHiddenTagRemove ===
+                  `${book.id}-${tag.id}`;
+
+                return `
+                  <span
+                    class="
+                      hidden-tag-chip
+                      ${isRemoveReady ? "remove-ready" : ""}
+                    "
+                    onclick="
+                      confirmRemoveHiddenTag(
+                        '${book.id}',
+                        '${tag.id}'
+                      )
+                    "
+                  >
+                    ${
+                      isRemoveReady
+                        ? `削除？ ${tag.name}`
+                        : tag.name
+                    }
+                  </span>
+                `;
+              }).join("")
+            }
+          </div>
+
+        </div>
+      `
+      : ""
+  }
+
+</div>
+
+
+<div
+  class="detail-toggle-head t-labels"
+  data-open="▽ 引用メモ（${book.quotes.length}）"
+  data-close="▶︎ 引用メモ（${book.quotes.length}）"
+  onclick="
+    togglesSection(
+      'open-book-quotes',
+      this
+    )
+  "
+>
+  ▶︎ 引用メモ（${book.quotes.length}）
+</div>
+
+<div
+  class="
+    toggle-content
+    ${detailSections.quotes ? "open" : ""}
+  "
+  id="open-book-quotes"
+>
+
+  <div class="quote-add-box">
+
+  <textarea
+    id="quote-text-${book.id}"
+    class="input-common quote-textarea yohaku10"
+    placeholder="引用文"
+  ></textarea>
+
+  <input
+    id="quote-memo-${book.id}"
+    class="input-common yohaku10"
+    placeholder="メモ（章・書写用など）"
+  >
+
+  <button
+    class="btn-sub yohaku15"
+    onclick="addQuoteToBook('${book.id}')"
+  >
+    ＋引用を追加
+  </button>
+
+</div>
+
+<div class="quote-list">
+  ${
+    book.quotes.length
+      ? book.quotes.map(q=>`
+        <div class="quote-card yohaku10">
+          <div class="quote-head">
+
+  <button
+    class="quote-fav-btn"
+    onclick="
+      toggleQuoteFavorite(
+        '${book.id}',
+        '${q.id}'
+      )
+    "
+  >
+    ${q.favorite ? "⭐" : "☆"}
+  </button>
+<button
+  class="quote-delete-btn"
+  onclick="
+    deleteQuoteFromBook(
+      '${book.id}',
+      '${q.id}'
+    )
+  "
+>
+  🗑
+</button>
+
+<button
+  class="quote-edit-btn"
+  onclick="
+    event.stopPropagation();
+    openQuoteEditModal(
+      '${book.id}',
+      '${q.id}'
+    );
+  "
+>
+  ✏️
+</button>
+
+</div>
+
+
+
+  <div class="quote-text">
+    ${q.text}
+  </div>
+
+
+
+          ${
+            q.memo
+              ? `<div class="quote-memo">${q.memo}</div>`
+              : ""
+          }
+        </div>
+      `).join("")
+      : `<div class="empty-note">引用はまだありません</div>`
+  }
+</div>
+
+</div>
+</div>
+
+<div class="detail-modal-footer">
+      <hr class="kugiri">
+
+
+		<div class="actions-row">
+      
+      <button class="danger-btn btn-danger"
+        onclick="deleteBook('${book.id}')">
+        🗑 削除
+      </button>
+      
+      <button onclick="duplicateBook('${book.id}')">
+  📄 複製
+</button>
+      
+      <button class="btn-main" onclick="saveDetail('${book.id}')">
+        🪎 保存
+      </button>
+      
+    </div>
+      
+    </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  
+  const readInput =
+  document.getElementById(
+    `readDate-${book.id}`
+  );
+
+if(readInput && !readInput.value){
+  readInput.value = getTodayLocal();
+}
+  
+  renderBookEditSeries(
+  "book-edit-series"
+  );
 }
 
-.quote-view-text.vertical{
-  display:block;
-  padding-top:0;
-  padding-right:16px;
-  padding-bottom:16px;
-  padding-left:0px;
-  line-height:1.8;
-  letter-spacing:0;
-  writing-mode:vertical-rl;
-  white-space:pre-line;
-  text-orientation:mixed;
 
-  height:55vh;
-  width:100%;
 
-  text-align:start;
-  align-content:start;
+
+//==============================
+//シリーズ
+//==============================
+
+
+//==============================
+//====シリーズの追加モーダル
+//==============================
+function openAddSeriesModal(
+  initialBookId = null,
+  initialTitle = ""
+){
+
+newSeriesBookIds = [];
+
+if(initialBookId){
+
+  newSeriesBookIds = [
+    String(initialBookId)
+  ];
+
+}
+
+newSeriesCharacterIds = [];
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "add-series-modal";
+	
+	const bookCount =
+  newSeriesBookIds.length;
+
+const characterCount =
+  newSeriesCharacterIds.length;
+	
+	modal.innerHTML = `
+		<div class="modal-box fixed-scroll-modal book-detail-modal">
+		<div class="detail-modal-head">
+		 <div class="flex-between yohaku10">
+					<span class="left-yose">シリーズを追加</span>
+						${renderCloseButton("add-series-modal")}</div>
+			
+			<input
+  class="input-common yohaku10"
+  id="add-series-title"
+  type="text"
+  value="${initialTitle}"
+  placeholder="シリーズタイトル"
+  oninput="renderSeriesTitleSuggest()"
+>
+
+<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    id="new-series-protect"
+    type="checkbox"
+    ${enableProtect ? "checked" : ""}
+  >
+  🔒 誤削除防止
+</label>
+</div>
+
+</div>
+
+
+<div class="fixed-scroll-body">
+
+<div id="series-title-suggest"></div>
+			
+			
+			
+			
+				<div class="left-yose">関連登録</div>
+				<input class="input-common input-small"
+				 id="series-for-one"
+					type="text"
+					placeholder="作品／人物を追加"
+					oninput="renderSeriesNewBookSuggest();
+						renderSeriesNewCharacterSuggest();">
+				
+				
+				
+				<div class="suggest-box">
+					<div id="series-book-suggest"></div>
+					<div id="series-character-suggest"></div>
+				</div>
+				
+				
+				
+				
+      <div
+      class="toggle-head t-labels"
+      data-open="▽関連作品(${bookCount})"
+      data-close="▶︎関連作品(${bookCount})"
+      onclick="
+        togglesSection(
+        'series-new-books',
+        this
+      )
+    "
+  >▶︎関連作品(${bookCount})</div>
+      
+     <div id="series-new-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+      
+      
+      <div
+      class="toggle-head t-labels"
+      data-open="▽関連人物(${characterCount})"
+      data-close="▶︎関連人物(${characterCount})"
+      onclick="
+        togglesSection(
+        'series-new-characters',
+        this
+      )
+    "
+  >▶︎関連人物(${characterCount})</div>
+
+     <div id="series-new-characters"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+       </div>
+				
+			<div class="detail-modal-footer">
+			     <hr class="kugiri">
+     			 <button class="btn-main" style="width:100%" onclick="saveNewSeries()">＋追加</button></div>
+			
+			
+			
+`;
+	document.body.appendChild(modal);
+	
+renderSeriesEditBooks(
+  "series-new-books"
+);
+
+renderSeriesEditCharacters(
+  "series-new-characters"
+);
 }
 
 
-.quote-view-text.horizontal{
-  writing-mode:horizontal-tb;
-  white-space:pre-line;
+//==============================
+//シリーズ編集モーダル
+//==============================
+function openSeriesEditModal(id){
+
+  const modal = document.createElement("div");
+
+  const series =
+    seriesMaster.find(
+      s => String(s.id) === String(id)
+    );
+
+  if(!series) return;
+
+  closeModal("series-detail-modal"); // ←追加
+
+  editingSeriesBookIds =
+  [...new Set(
+    (series.bookIds || []).map(String)
+  )];
+
+editingSeriesCharacterIds =
+  [...new Set(
+    (series.characterIds || []).map(String)
+  )];
+    
+    
+  const bookCount =
+  editingSeriesBookIds.length;
+
+const characterCount =
+  editingSeriesCharacterIds.length;
+
+  modal.className = "modal-bg";
+  modal.id = "edit-series-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box fixed-scroll-modal book-detail-modal">
+      <div class="detail-modal-head">
+      <div class="flex-between yohaku10">
+      <span class="left-yose">シリーズ編集</span>
+      ${renderCloseButton("edit-series-modal")}
+      </div>
+
+      <input
+        id="edit-series-name"
+        class="input-title yohaku10"
+        value="${series.name || ''}"
+      >
+<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    type="checkbox"
+    id="protect-series-check"
+    ${series.protect === true ? "checked" : ""}
+    onchange="toggleSeriesProtect('${series.id}')"
+  >
+  🔒 誤削除防止
+</label>
+</div>
+
+      </div>
+      
+      <div class="fixed-scroll-body">
+     <div class="left-yose">関連登録</div>
+      <input class="input-common"
+        id="series-related-search"
+        type="text"
+        placeholder="作品／人物を追加"
+        oninput="
+          renderSeriesBookSuggest();
+          renderSeriesCharacterSuggest();
+        "
+      >
+<div class="suggest-box">
+
+  <div id="series-book-suggest"></div>
+
+  <div id="series-character-suggest"></div>
+
+</div>
+      
+      
+      
+       <div
+      class="toggle-head t-labels"
+      data-open="▽関連作品(${bookCount})"
+      data-close="▶︎関連作品(${bookCount})"
+      onclick="
+        togglesSection(
+        'series-edit-books',
+        this
+      )
+    "
+  >
+  ▶︎関連作品(${bookCount})</div>
+      
+      <div id="series-edit-books"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+      
+       <div
+      class="toggle-head t-labels"
+      data-open="▽関連人物(${characterCount})"
+      data-close="▶︎関連人物(${characterCount})"
+      onclick="
+        togglesSection(
+        'series-edit-characters',
+        this
+      )
+    "
+  >▶︎関連人物(${characterCount})</div>
+      
+      
+     <div id="series-edit-characters"
+       class="
+         toggle-content
+         series-edit-list
+       "></div>
+       </div>
+       
+     <div class="detail-modal-footer">
+     <hr class="kugiri">
+
+    <div class="actions-row">
+    
+    
+      <button class="btn-danger" onclick="deleteSeries('${series.id}')">
+       🗑️ 削除
+      </button>
+    
+      <button class="btn-main"
+        onclick="saveSeriesEdit('${series.id}')"
+      >
+        🪎 保存
+      </button>
+
+     </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  renderSeriesEditBooks();
+
+renderSeriesEditCharacters();
+
 }
 
-.quote-view-memo{
-  white-space:pre-wrap;
-  margin-top:10px;
-  font-size:12px;
-  opacity:.75;
+
+//==============================
+// シリーズ詳細 2026/06/15移植開始
+//==============================
+function openSeriesDetailModal(s){
+
+  const relatedBooks = books
+  .filter(b =>
+    (s.bookIds || [])
+      .map(String)
+      .includes(String(b.id))
+  )
+  .sort((a,b)=>
+    getVolumeNumber(a) -
+    getVolumeNumber(b)
+  );
+
+//人物ミニリストのソート（固定）
+  const personOrder = {
+  author: 1,
+  illustrator: 2,
+  original: 3,
+  character: 4
+};
+
+const relatedCharacters = characters
+  .filter(c =>
+    (s.characterIds || [])
+      .map(String)
+      .includes(String(c.id))
+  )
+  .sort((a, b) =>
+    (personOrder[a.personType] || 999) -
+    (personOrder[b.personType] || 999)
+  );
+
+  const modal = document.createElement("div");
+
+  modal.className = "modal-bg";
+  modal.id = "series-detail-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box fixed-scroll-modal series-detail-modal">
+
+      <div class="modal-header">
+        <div class="flex-between yohaku10">
+        <button
+          class="btn-sub"
+          onclick="openSeriesEditModal('${s.id}')"
+        >
+          ✏️ 編集
+        </button>
+        
+       ${renderCloseButton("series-detail-modal")}
+        </div>
+          <div class="input-title yohaku15">${s.name}</div>
+          
+        </div>
+      
+
+      <div class="fixed-scroll-body">
+
+        <div class="series-section yohaku10">
+          <div
+            class="series-section-title"
+            onclick="
+              seriesSections.books =
+                !seriesSections.books;
+
+              closeModal('series-detail-modal');
+
+              openSeriesDetailModal(
+                seriesMaster.find(x =>
+                  String(x.id) === String('${s.id}')
+                )
+              );
+            "
+          >
+            ${seriesSections.books ? "▽" : "▶︎"} 関連作品
+          </div>
+
+          ${
+            seriesSections.books
+              ? `<div id="modal-series-books"></div>`
+              : ""
+          }
+        </div>
+
+        <div class="series-section">
+          <div
+            class="series-section-title"
+            onclick="
+              seriesSections.chars =
+                !seriesSections.chars;
+
+              closeModal('series-detail-modal');
+
+              openSeriesDetailModal(
+                seriesMaster.find(x =>
+                  String(x.id) === String('${s.id}')
+                )
+              );
+            "
+          >
+            
+    ${seriesSections.chars ? "▽" : "▶︎"} 関連人物
+  </div>
+
+  ${
+    seriesSections.chars
+      ? `
+      <div class="detail-row yohaku10">
+        <button
+          class="add-btn right-yose migi-ake"
+          onclick="
+            openAddCharacterModal(
+              null,
+              'author',
+              '${s.id}'
+            );
+          "
+        >
+        ＋📖著者
+        </button>
+
+        <button
+          class="add-btn migi-ake"
+          onclick="
+            openAddCharacterModal(
+              null,
+              'illustrator',
+              '${s.id}'
+            );
+          "
+        >
+          ＋🖼️絵
+        </button>
+      </div>
+
+      <div id="modal-series-chars"></div>
+      `
+      : ""
+  }
+
+</div>
+
+      </div>
+
+      <div class="modal-footer">
+      <hr class="kugiri yohaku15">
+      <div class="satu yohaku10">登録：${relatedBooks.length}冊</div>
+      
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const list =
+    document.getElementById("modal-series-books");
+
+  if(list){
+    relatedBooks.forEach(b=>{
+
+      const d = document.createElement("div");
+
+      const latestDate =
+        getLatestReadDate(b);
+
+      d.className = "card mini-s-card";
+
+      d.innerHTML = `
+        <span class="mini-s-title">
+  ${b.title}
+  ${
+    b.subtitle
+      ? `<span class="book-subtitle">${b.subtitle}</span>`
+      : ""
+  }
+  ${
+    b.volume
+      ? ` ${b.volume}`
+      : ""
+  }
+  ${b.reread === true ? " 🔁" : ""}
+</span>
+
+        <span class="
+          mini-read-status
+          ${latestDate ? "read" : "unread"}
+        ">
+          ${
+            latestDate
+              ? `既読：${latestDate}`
+              : "未読"
+          }
+        </span>
+      `;
+
+      d.onclick = () => openBookDetailModal(b);
+
+      list.appendChild(d);
+    });
+  }
+
+  const list2 =
+    document.getElementById("modal-series-chars");
+
+  if(list2){
+    if(!relatedCharacters.length){
+      list2.innerHTML =
+        `<div style="color:gray;">（人物なし）</div>`;
+    }else{
+      relatedCharacters.forEach(c=>{
+        const d = document.createElement("div");
+d.className = "card mini-s-card";
+
+d.innerHTML = `
+  <div class="detail-row flex-between">
+    <span>${c.name}</span>
+
+    <div class="character-type-chip">
+      ${getPersonTypeLabel(c.personType)}
+    </div>
+  </div>
+`;
+
+d.onclick = () => openCharacterModal(c);
+
+list2.appendChild(d);
+      });
+    }
+  }
+}
+
+//==============================
+//キャラクター
+//==============================
+
+
+//==============================
+//新規キャラクター登録
+//==============================
+function openAddCharacterModal(
+  character = null,
+  initialType = "character",
+  initialSeriesId = null
+){
+
+  editingCharacterSeriesIds = [];
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "add-chars-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box detail-modal">
+			<div class="detail-modal-header">
+			 <div class="flex-between yohaku10">
+			<span class="left-yose">人物を追加</span>
+					${renderCloseButton("add-chars-modal")}</div>
+			
+			<input class="input-title"
+				id="add-chars-name"
+				type="text"
+				placeholder="人物名">
+				
+				
+				<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    id="new-characters-protect"
+    type="checkbox"
+    ${enableProtect ? "checked" : ""}
+  >
+  🔒 誤削除防止
+</label>
+</div>
+				
+				
+				</div>
+				
+				<div class="detail-modal-body">
+				<div class="mini-text">メモ</div>
+				<textarea class="textarea-common" id="add-chars-memo"
+				placeholder="メモ"></textarea>
+				
+				<div class="mini-text">種類</div>
+				
+				<select
+				  id="add-person-type"
+				  class="input-common">
+				  
+				  <option value="character">登場人物</option>
+				  <option value="author">著者</option>
+				  <option value="illustrator">イラスト</option>
+				  <option value="original">原作者</option>
+				 
+				</select>
+				
+			<div class="mini-text">関連シリーズを登録</div>
+			
+		
+			<input class="input-common"
+				id="add-character-related-search"
+				type="text"
+				placeholder="関連シリーズ名"
+				oninput="
+				  renderCharacterSeriesSuggest(
+				    'add-character-related-search',
+						'add-character-series-suggest',
+						'add-character-series-list'
+				  );">
+				<div class="suggest-box">
+				<div id="add-character-series-suggest"></div>
+				</div>
+				
+				<div class="left-yose mini-text">
+				関連シリーズ</div>
+			<div id="add-character-series-list" class="series-edit-list detail-row"></div>
+			</div>
+			
+			<div class="detail-modal-footer">
+			     <hr class="kugiri">
+			
+			<button onclick="saveNewCharacter()" class="btn-main">＋追加</button>
+			
+	
+		</div></div>
+	`;
+
+	document.body.appendChild(modal);
+
+// 種類の初期値
+document.getElementById("add-person-type").value =
+  initialType || "character";
+
+// 関連シリーズの初期値
+if(initialSeriesId){
+
+  editingCharacterSeriesIds = [
+    String(initialSeriesId)
+  ];
+
+}
+
+// 最後に一覧を描画
+renderCharacterEditSeries(
+  "add-character-series-list"
+);
+
 }
 
 
-/*デイリーモーダル*/
-.day-book-title{
-  font-size:14px;
-  font-weight:bold;
-  line-height:1.4;
+
+//==============================
+//====キャラクター詳細モーダル====
+//==============================
+function openCharacterModal(c){
+
+editingCharacterSeriesIds =
+  (c.seriesIds || []).map(String);
+
+    const relatedSeries =
+  seriesMaster.filter(s =>
+
+    Array.isArray(c.seriesIds)
+    &&
+    c.seriesIds
+      .map(String)
+      .includes(String(s.id))
+
+  );
+  
+
+	const modal = document.createElement("div");
+	modal.className = "modal-bg";
+	modal.id = "open-chars-modal";
+	
+	modal.innerHTML = `
+		<div class="modal-box detail-modal">
+		<div class="detail-modal-header">
+		  <div class="flex-between yohaku10">
+			<input id="character-name" class="input-title"
+			value="${c.name || ""}">
+						${renderCloseButton("open-chars-modal")}
+			
+			</div>
+      ${relatedSeries.map(s=>`
+        <button class="detail-series left-yose yohaku15"
+				  onclick="
+				    closeModal('open-chars-modal');
+				    openSeriesById('${s.id}');
+				  "
+				>
+ 				 ${s.name}
+				</button>
+      `).join(", ") || ""}
+
+<div class="detail-row yohaku15">
+<label class="protect-check right-yose">
+  <input
+    type="checkbox"
+    id="protect-characters-check"
+    ${c.protect === true ? "checked" : ""}
+    onchange="toggleCharactersProtect('${c.id}')"
+  >
+  🔒 誤削除防止
+</label>
+</div>
+
+
+</div>
+			
+			<div class="detail-modal-body yohaku15">
+			<div class="left-yose">メモ</div>
+			<textarea class="textarea-common" id="character-memo">${c.memo || ""}</textarea>
+		
+				<div class="left-yose">種類</div>
+				
+				<select
+				  id="character-person-type"
+				  class="input-common yohaku15">
+				  
+				  <option value="character">登場人物</option>
+				  <option value="author">著者</option>
+				  <option value="illustrator">イラスト</option>
+				  <option value="original">原作者</option>
+				 
+				</select>
+		
+		
+    
+    
+    <div class="left-yose">関連シリーズを追加</div>
+   <input class="input-common"
+        id="character-related-search"
+        type="text"
+        placeholder="関連シリーズを追加"
+        oninput="
+          renderCharacterSeriesSuggest(
+            'character-related-search',
+            'character-series-suggest',
+            'character-edit-series'
+          );
+        "
+      >
+    <div class="suggest-box">
+      <div id="character-series-suggest"></div>
+    </div>
+    <div class="left-yose mini-text">関連シリーズ</div>
+    
+    <div id="character-edit-series" class="series-edit-list detail-row"></div>
+    </div>
+    
+    <div class="detail-modal-footer">
+         <hr class="kugiri">
+		
+		<div class="actions-row">
+			<button onclick="deleteCharacter('${c.id}')" class="btn-danger">
+  🗑️ 削除
+</button>
+			<button onclick="saveCharacter('${c.id}')" class="btn-main">🪎 保存</button>
+		</div>
+
+		</div>
+	`;
+	document.body.appendChild(modal);
+	renderCharacterEditSeries(
+	  "character-edit-series"
+	);
+	
+	document.getElementById("character-person-type").value =
+  c.personType ?? "character";
 }
 
-.day-log-section{
-  margin-bottom:14px;
-  padding-bottom:10px;
-  border-bottom:1px solid var(--color-border);
+
+
+
+
+//==============================
+//統計
+//==============================
+
+
+//==============================
+//カレンダーの日モーダル設定====
+//==============================
+function openDayModal(dateStr, list, logs = []){
+  const m = document.createElement("div");
+  m.className = "day-modal-overlay";
+  m.style.position = "fixed";
+  m.style.top = 0;
+  m.style.left = 0;
+  m.style.right = 0;
+  m.style.bottom = 0;
+  m.style.background = "rgba(0,0,0,0.5)";
+  m.style.display = "flex";
+  m.style.alignItems = "center";
+  m.style.justifyContent = "center";
+  m.style.color = "var(--color-text)";
+
+const box = document.createElement("div");
+
+box.style.background = "var(--color-card)";
+box.style.padding = "20px";
+box.style.maxHeight = "80%";
+box.style.overflow = "auto";
+box.style.borderRadius = "12px";
+box.style.minWidth = "200px";
+
+
+// タイトル
+const header =
+  document.createElement("div");
+
+header.className =
+  "day-modal-header";
+
+
+const title =
+  document.createElement("h3");
+
+title.textContent = dateStr;
+
+
+if(editingDailyLogDate !== dateStr){
+
+  const editBtn =
+    document.createElement("button");
+
+  editBtn.className =
+    "btn-sub";
+
+  editBtn.textContent =
+    "編集";
+
+  editBtn.onclick = ()=>{
+
+    startDailyLogEdit(
+      dateStr,
+      list,
+      logs
+    );
+
+  };
+
+
+header.appendChild(title);
+  header.appendChild(editBtn);
+
 }
 
-.day-log-section h4{
-  margin:0 0 6px;
-  font-size:13px;
+
+box.appendChild(header);
+
+// デイリーログ表示
+if(logs.length){
+
+  const logBox =
+    document.createElement("div");
+
+  logBox.className =
+    "day-log-section";
+
+  logBox.innerHTML = `
+    <div class="flex-between">
+      <h4>デイリーログ</h4>
+    </div>
+
+    <div class="day-log-chip-row">
+      ${
+        logs.map(id=>{
+
+          const tag =
+            tagMaster.find(t =>
+              String(t.id) === String(id)
+            );
+
+          return tag
+            ? `
+              <span
+                class="day-log-chip"
+                style="background:${tag.color}"
+              >
+                ${tag.name}
+              </span>
+            `
+            : "";
+
+        }).join("")
+      }
+    </div>
+  `;
+
+  box.appendChild(logBox);
+
 }
 
-.day-log-section div{
-  font-size:12px;
-  opacity:.85;
+if(
+  editingDailyLogDate === dateStr
+){
+
+  const editBox =
+    document.createElement("div");
+
+  editBox.className =
+    "daily-log-edit-card";
+
+  editBox.innerHTML = `
+    <h4>デイリーログ編集</h4>
+
+    ${
+      tagMaster
+        .filter(tag => tag.isDailyLog)
+        .map(tag=>`
+
+          <button
+            class="
+              tag-chip
+              daily-edit-chip
+              ${
+                editingDailyLogTags.includes(tag.id)
+                  ? "active"
+                  : ""
+              }
+            "
+            onclick="
+              toggleEditDailyTag(
+                '${tag.id}'
+              )
+            "
+          >
+            ${tag.name}
+          </button>
+
+        `).join("")
+    }
+
+    <div class="tag-page-actions">
+
+      <button
+        class="btn-main"
+        onclick="saveDailyLogEdit()"
+      >
+        保存
+      </button>
+
+      <button
+        class="btn-sub">
+        キャンセル
+      </button>
+
+    </div>
+  `;
+
+  box.appendChild(editBox);
+
+
+const cancelBtn =
+  editBox.querySelector(".btn-sub");
+
+cancelBtn.onclick = ()=>{
+
+  editingDailyLogDate = null;
+  editingDailyLogTags = [];
+
+  document
+    .querySelector(".day-modal-overlay")
+    ?.remove();
+
+  openDayModal(
+    dateStr,
+    list,
+    logs
+  );
+
+};
+
+
 }
 
-.day-empty{
-  font-size:12px;
-  opacity:.7;
-  margin-top:10px;
+// 読了本なしメッセージ
+if(
+  list.length === 0 &&
+  logs.length === 0
+){
+
+  const empty =
+  document.createElement("div");
+
+empty.textContent =
+  "この日の読了作品・ログはありません";
+
+empty.className =
+  "day-empty-message";
+
+box.appendChild(empty);
+
+  box.appendChild(empty);
+
 }
 
 
-.day-log-chip{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:999px;
-  font-size:11px;
-  margin:2px;
-  color:var(--color-chip-read-text);
+// 本一覧
+list.forEach(b=>{
+
+  const d =
+    document.createElement("div");
+
+  d.style.padding = "6px 0";
+  d.style.borderBottom = "1px solid var(--color-border-sub)";
+
+  d.innerHTML = `
+  <div class="day-book-title">
+    ${b.title}
+    ${
+      b.volume
+        ? ` ${b.volume}巻`
+        : ""
+    }
+  </div>
+`;
+
+  d.onclick = ()=>{
+    m.remove();
+    openBookDetailModal(b);
+  };
+
+  box.appendChild(d);
+
+});
+
+  m.appendChild(box);
+  m.onclick = ()=> m.remove();
+  box.onclick = (e)=>{
+    e.stopPropagation();
+  };
+
+  document.body.appendChild(m);
 }
 
-.daily-edit-chip.active{
-  background:var(--color-main-dark);
-  color:var(--color-text-contrast);
+
+//==============================
+// 引用メモ表示専用モーダル
+//==============================
+
+function openQuoteViewModal(bookId, quoteId){
+
+  const book =
+    books.find(b =>
+      String(b.id) === String(bookId)
+    );
+
+  if(!book || !Array.isArray(book.quotes)) return;
+
+  const quote =
+    book.quotes.find(q =>
+      String(q.id) === String(quoteId)
+    );
+
+  if(!quote) return;
+
+  const modal =
+    document.createElement("div");
+
+  modal.className = "modal-bg";
+  modal.id = "quote-view-modal";
+
+  modal.innerHTML = `
+    <div class="modal-box quote-view-modal">
+
+      <div class="modal-header flex-between">
+        <button
+          class="btn-sub"
+          onclick="
+            quoteViewMode =
+              quoteViewMode === 'vertical'
+                ? 'horizontal'
+                : 'vertical';
+                
+            localStorage.setItem(
+              'quoteViewMode',
+              quoteViewMode
+            );
+
+            closeModal('quote-view-modal');
+
+            openQuoteViewModal(
+              '${bookId}',
+              '${quoteId}'
+            );
+          "
+        >
+          ${
+            quoteViewMode === "vertical"
+              ? "横書き"
+              : "縦書き"
+          }
+        </button>
+
+        ${renderCloseButton("quote-view-modal")}
+      </div>
+
+      <div
+        class="
+          quote-view-text
+          ${
+            quoteViewMode === "vertical"
+              ? "vertical"
+              : "horizontal"
+          }
+        "
+      >
+        ${quote.text || ""}
+      </div>
+
+      ${
+        quote.memo
+          ? `
+            <div class="quote-view-memo">
+              ${quote.memo}
+            </div>
+          `
+          : ""
+      }
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
 }
 
 
-.day-modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
+//==============================
+// モーダルリレー対策：モーダル閉じるやつ
+//==============================
+function closeDetailModals(){
+
+  [
+    "open-book-modal",
+    "series-detail-modal",
+    "edit-series-modal",
+    "series-edit-modal",
+    "character-modal",
+    "quote-view-modal",
+    "quote-edit-modal"
+  ].forEach(id=>{
+    closeModal(id);
+  });
+
 }
-
-.day-empty-message{
-  opacity:0.7;
-  text-align:center;
-  padding:20px 0;
-  font-size:13px;
-}
-
-
