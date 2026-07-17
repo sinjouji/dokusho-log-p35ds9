@@ -111,6 +111,7 @@ tag.css watasi
   flex-wrap:wrap;
   gap:8px;
   margin-top:8px;
+  width:auto;
 }
 
 .hidden-tag-chip{
@@ -155,6 +156,7 @@ tag.css watasi
 
 .hidden-tag-input-area{
   margin-top:6px;
+  margin-bottom:4px;
 }
 
 .hidden-tag-input-area input{
@@ -174,7 +176,7 @@ tag.css watasi
   border-radius:999px;
   border:1px solid var(--color-border-sub);
   background:var(--color-chip);
-  color:var(--color-text-contrast);
+  color:var(--color-text);
   opacity:var(--color-opacity);
 }
 
