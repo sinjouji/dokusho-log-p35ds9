@@ -166,12 +166,13 @@ border-radius:10px;
 
 /*読了履歴*/
 .date-history-grid{
+  display:grid;
   grid-template-columns:
     1fr 1fr 1fr;
 
   gap:2px;
-
-  margin-top:1px;
+  margin-right:3px;
+  margin-top:2px;
 /*一定以上の量だとスクロールエリアになる*/
   max-height:120px;
   overflow-y:auto;
