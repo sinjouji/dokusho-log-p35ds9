@@ -1218,7 +1218,10 @@ ${
         <div class="book-read-count">
           ${b.readDates?.length || 0}回
         </div>
-
+       
+       <div class="fav">
+         ${b.reread ? "🔁 再読" : ""}
+       </div>
       </div>
 
       ${
@@ -1327,6 +1330,9 @@ main.classList.add("list-view");
       ${latestDate}
     </span>
 
+    <span class="list-date">
+      ${b.reread ? " 🔁" : ""}
+    </span>
   </div>
 
   <div class="list-count-watermark">
