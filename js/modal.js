@@ -1,7 +1,7 @@
 //==============================
 // MODAL : 自分用
 //
-//  モーダル関係の処理を集めろぉ！！！
+//  モーダル関係の処理を集めろぉ！！
 //==============================
 
 
@@ -239,9 +239,9 @@ function openAddBookModal(){
  						
 					style="
 						background:
-							${isActive ? tag.color : 'var(--color-card)'};
+							${isActive ? tag.color : 'var(--color-text)'};
 						color:
-							${isActive ? 'var(--color-card)' : tag.color};
+							${isActive ? '#fff' : '#000'};
 						border:
 							1px solid ${tag.color};
 					"
@@ -773,10 +773,10 @@ id="open-book-tags">
             )"
             style="
               background:
-                ${isActive ? tag.color : 'var(--color-card)'};
+                ${isActive ? tag.color : 'var(--color-text)'};
 
               color:
-                ${isActive ? 'var(--color-card)' : tag.color};
+                ${isActive ? '#fff' : '#000'};
 
               border:
                 1px solid ${tag.color};
@@ -1666,7 +1666,7 @@ function openAddCharacterModal(
 			<div class="detail-modal-footer">
 			     <hr class="kugiri">
 			
-			<button onclick="saveNewCharacter()" class="btn-main">＋追加</button>
+			<button onclick="saveNewCharacter()" class="btn-main right-yose">＋追加</button>
 			
 	
 		</div></div>
@@ -1729,8 +1729,10 @@ editingCharacterSeriesIds =
 						${renderCloseButton("open-chars-modal")}
 			
 			</div>
+			
+			<div class="detail-row yohaku15">
       ${relatedSeries.map(s=>`
-        <button class="detail-series left-yose yohaku15"
+        <button class="detail-series left-yose"
 				  onclick="
 				    closeModal('open-chars-modal');
 				    openSeriesById('${s.id}');
@@ -1738,7 +1740,7 @@ editingCharacterSeriesIds =
 				>
  				 ${s.name}
 				</button>
-      `).join(", ") || ""}
+      `).join(", ") || ""}</div>
 
 <div class="detail-row yohaku15">
 <label class="protect-check right-yose">

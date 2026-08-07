@@ -49,24 +49,32 @@ let detailSearch = {
     normal:true,
     wish:true
   },
-  
+
   personTypes:[],
 
   reread:false,
+
+  protect:"all",          // ←追加
 
   noSeriesBook:false,
 
   noSeriesCharacter:false,
 
+  noBookSeries:false,     // ←追加（本未登録シリーズ）
+
   noTags:false,
 
+  noHiddenTags:false,     // ←追加（管理タグ未設定）
+
   noVolume:false,
-  
+
   fav:"all",
-  
+
   sort:"date"
 
 };
+
+
 //検索条件保存枠
 let savedDetailSearches =
   JSON.parse(
@@ -328,6 +336,22 @@ if(state.fav && state.fav !== "all"){
   if(state.noSeriesCharacter) list.push("シリーズ未設定人物");
   if(state.noTags) list.push("タグ未設定本");
   if(state.noVolume) list.push("巻数未設定本");
+  
+  if(state.noBookSeries){
+  list.push("本未登録シリーズ");
+}
+if(state.noHiddenTags){
+  list.push("管理タグ未設定本");
+}
+
+if(state.protect==="on"){
+    list.push("🔒 保護あり");
+}
+
+if(state.protect==="off"){
+    list.push("🔓 保護なし");
+}
+
 
   const tagTexts =
     Object.keys(state.tagStates || {}).map(tagId=>{
@@ -520,6 +544,48 @@ return matchKeywordGroups(bookText);
   );
 }
 
+if(detailSearch.sort === "date"){
+
+  bookResults.sort((a,b)=>{
+
+    const aDate =
+      a.readDates?.length
+        ? a.readDates[a.readDates.length - 1]
+        : "";
+
+    const bDate =
+      b.readDates?.length
+        ? b.readDates[b.readDates.length - 1]
+        : "";
+
+    // 両方読了日あり
+    if(aDate && bDate){
+      return bDate.localeCompare(aDate);
+    }
+
+    // aだけ読了日なし → 下へ
+    if(!aDate && bDate){
+      return 1;
+    }
+
+    // bだけ読了日なし → 下へ
+    if(aDate && !bDate){
+      return -1;
+    }
+
+    // 両方未読 → 登録順（新しい順）
+    return Number(b.id) - Number(a.id);
+  });
+}
+
+if(detailSearch.sort === "register"){
+
+  bookResults.sort(
+    (a,b)=>
+      Number(b.id) - Number(a.id)
+  );
+
+}
 
 
 //シリーズ
@@ -535,7 +601,6 @@ let seriesResults =
   });
 
 
-//人物
 //人物
 let characterResults =
   characters.filter(c=>{
@@ -592,6 +657,73 @@ if(!detailSearch.targets.characters){
   characterResults = [];
 }
 
+
+//保護状態
+if(detailSearch.protect === "on"){
+  bookResults = bookResults.filter(
+    b => b.protect === true
+  );
+  seriesResults = seriesResults.filter(
+    s => s.protect === true
+  );
+  characterResults = characterResults.filter(
+    c => c.protect === true
+  );
+}
+
+if(detailSearch.protect === "off"){
+  bookResults = bookResults.filter(
+    b => !b.protect
+  );
+  seriesResults = seriesResults.filter(
+    s => !s.protect
+  );
+  characterResults = characterResults.filter(
+    c => !c.protect
+  );
+}
+
+//本未登録のシリーズ
+if(detailSearch.noBookSeries){
+
+  seriesResults =
+    seriesResults.filter(series => {
+
+      const ids =
+        [...new Set(series.bookIds || [])];
+
+      return ids.length === 0;
+
+    });
+
+}
+
+//管理タグ未登録の本
+if(detailSearch.noHiddenTags){
+
+  bookResults =
+    bookResults.filter(book => {
+
+      const hasHiddenTag =
+        (book.tagIds || [])
+          .some(tagId => {
+
+            const tag =
+              tagMaster.find(t =>
+                String(t.id) === String(tagId)
+              );
+
+            return tag?.isHidden;
+
+          });
+
+      return !hasHiddenTag;
+
+    });
+
+}
+
+
   safeRender({
     mountId:"page-detail-search",
 
@@ -620,7 +752,7 @@ if(!detailSearch.targets.characters){
           : ""
       }
     >
-      読了日順
+      読了日順（新〜）
     </option>
 
     <option
@@ -631,7 +763,18 @@ if(!detailSearch.targets.characters){
           : ""
       }
     >
-      タイトル順
+      タイトル順（あ〜）
+    </option>
+
+<option
+      value="register"
+      ${
+        detailSearch.sort === "register"
+          ? "selected"
+          : ""
+      }
+    >
+      登録順（新〜）
     </option>
 
   </select>
@@ -834,7 +977,8 @@ function renderDetailSearchConditions(){
 </div>
 
 
-      <div class="detail-search-group">
+<div class="flex-between">
+<div class="detail-search-group search-min-rows">
 
   <div class="detail-search-group-title">
     検索対象
@@ -881,7 +1025,55 @@ function renderDetailSearchConditions(){
     >
     👤 人物
   </label>
+  </div>
 
+<div class="detail-search-group search-min-rows">
+  <div class="detail-search-group-title">
+    保護状態
+  </div>
+
+  <label>
+    <input
+      type="radio"
+      name="protect-filter"
+      value="all"
+      ${detailSearch.protect === "all" ? "checked" : ""}
+      onchange="
+        detailSearch.protect = 'all';
+        renderDetailSearch();
+      "
+    >
+    すべて
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="protect-filter"
+      value="on"
+      ${detailSearch.protect === "on" ? "checked" : ""}
+      onchange="
+        detailSearch.protect = 'on';
+        renderDetailSearch();
+      "
+    >
+    🔒保護あり
+  </label>
+
+  <label>
+    <input
+      type="radio"
+      name="protect-filter"
+      value="off"
+      ${detailSearch.protect === "off" ? "checked" : ""}
+      onchange="
+        detailSearch.protect = 'off';
+        renderDetailSearch();
+      "
+    >
+    🔓保護なし
+  </label>
+</div>
 </div>
 
 
@@ -1134,6 +1326,8 @@ function renderDetailSearchConditions(){
 
 <div class="detail-search-group">
 
+
+
   <div class="detail-search-group-title">
     データ整備
   </div>
@@ -1229,7 +1423,40 @@ function renderDetailSearchConditions(){
     >
     #️⃣巻数未設定📘<b>本</b>
   </label>
+
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.noBookSeries ? "checked" : ""}
+      onchange="
+        detailSearch.noBookSeries =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    📘本未登録📚<b>シリーズ</b>
+  </label>
+  
+<label>
+    <input
+      type="checkbox"
+      ${detailSearch.noHiddenTags ? "checked" : ""}
+      onchange="
+        detailSearch.noHiddenTags =
+          this.checked;
+
+        saveDetailSearchState();
+      "
+    >
+    🏷️管理タグ未設定📘<b>本</b>
+  </label>
+
   </div>
+  
+  
+  
+  
   
   
   <div class="detail-search-group">
@@ -1418,7 +1645,6 @@ ${
       );
     "
   >
-  選択
 </label>
               </div>
             `).join("")
