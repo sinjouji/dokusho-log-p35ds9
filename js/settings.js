@@ -5,8 +5,18 @@
 //
 //==============================
 
+//====テキストインポート設定
+let textImport = {
+  duplicateMode: "new",
+  previewBooks: [],
+  inputText: "",
+  ...JSON.parse(
+    localStorage.getItem("textImport") || "{}"
+  )
+};
 
-
+textImport.previewBooks = [];
+textImport.inputText = "";
 
 
 //==============================
@@ -91,7 +101,6 @@ setActiveMenu("menu-settings");
 
 </div>
     
-    
 `
 : ""}
   </div>
@@ -147,93 +156,11 @@ setActiveMenu("menu-settings");
 : ""}
   </div>
 
-
-  <div class="setting-card">
-    <div class="setting-card-title"onclick="toggleSettingSection('datas')">
-    ${settingSections.datas
-    ? "▽"
-    : "▶︎"}データ</div>
-    
-      ${settingSections.datas
-    ? `
-    <!--エクスポート-->
-    <div class="setting-row">
-  <span>JSONエクスポート</span>
-    <div class="setting-note">
-  ▶︎ データをJSON形式で保存します。<br>
-  バックアップや、別の端末への移行に利用できます。
-  </div>
-  <button onclick="exportJsonData()">
-    書き出し
-  </button>
-</div>
-
-<!--インポートマージ-->
-    <div class="setting-row">
-  <span>JSONインポート（差分追加）</span>
-    <div class="setting-note">
-  ▶︎ JSONデータを読み込みます。<br>
-  既存データは更新し、新しいデータは追加します。<br>
-  <b>既存データは削除されません。<br>
-  ※同じ本のセリフ（引用）は、本データと一緒に更新されます。<br>
-  別端末で追加したセリフは自動で統合されません。</b>
-  </div>
-  <button
-  onclick="
-    document.getElementById(
-      'merge-json-file'
-    ).click();
-  "
->
-    ➕ 差分追加
-  </button>
-<input
-  id="merge-json-file"
-  type="file"
-  accept="application/json"
-  style="display:none"
-  onchange="mergeJsonData(this)"
->
-</div>
-
-    <!--インポート：上書き-->
-    <div class="setting-row">
-  <span>JSONインポート（上書き）⚠️</span>
+  ${renderJsonImportArea()}
   
-<div class="setting-note">
-▶︎ 現在のデータを、読み込んだJSONデータで置き換えます。<br>
-<b>JSONに含まれないデータは削除されます。</b><br>
-<br>
-実行前に「書き出し」でバックアップするか、<br>
-「差分追加」の利用をおすすめします。
-</div>
-
-  <button
-  onclick="
-    document.getElementById(
-      'import-json-file'
-    ).click();
-  "
->
-  ⚠️ 上書き
-</button>
-
-<input
-  id="import-json-file"
-  type="file"
-  accept="application/json"
-  style="display:none"
-  onchange="importJsonData(this)"
->
-</div>
-
-`
-: ""}
-  </div>
-
-
+  ${renderTextImportArea()}
+  
   `;  
-
 
 
 
@@ -250,9 +177,8 @@ if(themeSelect){
     ) || "yuusuzumi";
 
 }
-
-
 }
+
 
 
 
@@ -995,4 +921,548 @@ JSONの読み込みが完了しました。<br><br>
   reader.readAsText(file);
 
 }
+
+
+//==============================
+// JSONインポート設定
+//==============================
+function renderJsonImportArea(){
+
+  return`
+    <div class="setting-card">
+    <div class="setting-card-title"onclick="toggleSettingSection('datas')">
+    ${settingSections.datas
+    ? "▽"
+    : "▶︎"}データ</div>
+    
+      ${settingSections.datas
+    ? `
+    <!--エクスポート-->
+    <div class="setting-row">
+  <span>JSONエクスポート</span>
+    <div class="setting-note">
+  ▶︎ データをJSON形式で保存します。<br>
+  バックアップや、別の端末への移行に利用できます。
+  </div>
+  <button onclick="exportJsonData()">
+    書き出し
+  </button>
+</div>
+
+<!--インポートマージ-->
+    <div class="setting-row">
+  <span>JSONインポート（差分追加）</span>
+    <div class="setting-note">
+  ▶︎ JSONデータを読み込みます。<br>
+  既存データは更新し、新しいデータは追加します。<br>
+  <b>既存データは削除されません。<br>
+  ※同じ本のセリフ（引用）は、本データと一緒に更新されます。<br>
+  別端末で追加したセリフは自動で統合されません。</b>
+  </div>
+  <button
+  onclick="
+    document.getElementById(
+      'merge-json-file'
+    ).click();
+  "
+>
+    ➕ 差分追加
+  </button>
+<input
+  id="merge-json-file"
+  type="file"
+  accept="application/json"
+  style="display:none"
+  onchange="mergeJsonData(this)"
+>
+</div>
+
+    <!--インポート：上書き-->
+    <div class="setting-row">
+  <span>JSONインポート（上書き）⚠️</span>
+  
+<div class="setting-note">
+▶︎ 現在のデータを、読み込んだJSONデータで置き換えます。<br>
+<b>JSONに含まれないデータは削除されます。</b><br>
+<br>
+実行前に「書き出し」でバックアップするか、<br>
+「差分追加」の利用をおすすめします。
+</div>
+
+  <button
+  onclick="
+    document.getElementById(
+      'import-json-file'
+    ).click();
+  "
+>
+  ⚠️ 上書き
+</button>
+
+<input
+  id="import-json-file"
+  type="file"
+  accept="application/json"
+  style="display:none"
+  onchange="importJsonData(this)"
+>
+</div>
+`
+: ""}
+  </div>
+  `;
+
+}
+
+
+
+
+
+//==============================
+// テキストインポート設定
+//==============================
+function renderTextImportArea(){
+
+  return `
+    <div class="setting-card">
+
+      <div
+        class="setting-card-title"
+        onclick="toggleSettingSection('textImport')"
+      >
+        ${
+          settingSections.textImport
+            ? "▽"
+            : "▶︎"
+        }
+        📥 テキストインポート
+      </div>
+
+      ${
+        settingSections.textImport
+          ? `
+
+
+            <!--本の追加方法-->
+            <div class="setting-row">
+  <span>同タイトルの扱い</span>
+
+  <div>
+    <label>
+      <input
+        type="radio"
+        name="text-import-duplicate-mode"
+        value="new"
+        ${
+          textImport.duplicateMode === "new"
+            ? "checked"
+            : ""
+        }
+        onchange="
+          textImport.duplicateMode = this.value;
+          saveSettings();
+        "
+      >
+      新規追加
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="text-import-duplicate-mode"
+        value="continue"
+        ${
+          textImport.duplicateMode === "continue"
+            ? "checked"
+            : ""
+        }
+        onchange="
+          textImport.duplicateMode = this.value;
+          saveSettings();
+        "
+      >
+      続刊追加
+    </label>
+  </div>
+</div>
+            
+
+            <!-- 本用 -->
+            
+            <div class="text-import-books">
+              <span>本</span>              
+              <textarea
+                class="textarea-common text-import-textarea"
+              placeholder="本のタイトル/サブタイトル/巻数（1行1冊）"
+              >${textImport.inputText || ""}</textarea>
+              <button
+  onclick="previewTextImport()"
+>
+  📋 読み込み内容を確認
+</button>
+            </div>
+            
+   ${renderImportPreviewArea()}
+            
+          `
+          : ""
+      }
+
+    </div>
+  `;
+
+}
+
+
+//=============================
+// 確認結果表示エリア
+//=============================
+function renderImportPreviewArea(){
+
+  return`
+
+${
+  textImport.previewBooks.length > 0
+    ? `
+      <div class="text-import-preview">
+
+        <div class="setting-row">
+          <span>
+            📚 追加予定（${textImport.previewBooks.length}冊）
+          </span>
+        </div>
+
+        <div class="text-import-preview-list">
+          ${
+            textImport.previewBooks
+              .map(book => `
+                <div class="text-import-preview-item">
+                  📖 ${book.title}${
+  book.subtitle
+    ? ` / ${book.subtitle}`
+    : ""
+}${
+  book.volume
+    ? ` / ${book.volume}巻`
+    : ""
+}
+                </div>
+              `)
+              .join("")
+          }
+        </div>
+
+        <button
+          class="btn-main"
+          onclick="executeTextImport()"
+        >
+          この内容で追加
+        </button>
+
+      </div>
+    `
+    : ""
+}
+  
+  `;
+
+}
+
+
+
+//==============================
+// テキストインポート保存
+//==============================
+function saveSettings(){
+
+  localStorage.setItem(
+    "textImport",
+    JSON.stringify(textImport)
+  );
+
+}
+
+
+
+//==============================
+// テキストインポートプレビュー
+//==============================
+function previewTextImport(){
+
+  const textarea =
+    document.querySelector(
+      ".text-import-textarea"
+    );
+
+  if(!textarea){
+    return;
+  }
+
+textImport.inputText =
+  textarea.value;
+
+
+  const lines =
+    textarea.value
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(Boolean);
+
+  if(lines.length === 0){
+
+    alert(
+      "本のタイトルを入力してください"
+    );
+
+    return;
+  }
+
+  const results =
+  analyzeTextImportTitles(lines);
+
+const candidates =
+  buildTextImportCandidates(results);
+
+textImport.previewBooks =
+  candidates.map(
+    (candidate, index) =>
+      createTextImportBook(
+        candidate,
+        index
+      )
+  );
+
+renderSettings();
+
+}
+
+
+
+//==============================
+// テキストインポート判定
+//==============================
+function analyzeTextImportTitles(lines){
+  return lines.map(line => {
+    // `/` で分割
+    const parts =
+      line
+        .split("/")
+        .map(part => part.trim());
+    let title = "";
+    let subtitle = "";
+    let volume = null;
+    // タイトルのみ
+    if(parts.length === 1){
+      title = parts[0];
+    }
+    // タイトル / サブタイトル
+    else if(parts.length === 2){
+      title = parts[0];
+      subtitle = parts[1];
+    }
+    // タイトル / サブタイトル / 巻数
+    else {
+      title = parts[0];
+      subtitle = parts[1];
+      const parsedVolume =
+        Number(parts[2]);
+      if(
+        parts[2] !== ""
+        && Number.isFinite(parsedVolume)
+      ){
+        volume = parsedVolume;
+      }
+    }
+    // タイトルが空の場合は除外
+    if(!title){
+      return null;
+    }
+    // 既存本をタイトルだけで検索
+    const sameTitleBooks =
+      books.filter(book =>
+        (book.title || "").trim()
+          === title
+      );
+    return {
+      title,
+      subtitle,
+      volume,
+      exists:
+        sameTitleBooks.length > 0,
+      sameTitleBooks
+    };
+  }).filter(Boolean);
+}
+
+//==============================
+// 続刊用の巻数取得
+//==============================
+function getNextVolumeForTextImport(sameTitleBooks){
+
+  const volumes =
+    sameTitleBooks
+      .map(book =>
+        Number(
+          String(book.volume || "")
+            .replace(/[^\d]/g, "")
+        )
+      )
+      .filter(n =>
+        Number.isFinite(n) &&
+        n > 0
+      );
+
+  if(volumes.length === 0){
+    return 1;
+  }
+
+  return Math.max(...volumes) + 1;
+}
+
+
+//==============================
+// テキストインポート追加候補
+//==============================
+function buildTextImportCandidates(results){
+  return results.map(result => {
+    let volume;
+    // 入力で巻数が指定されている場合
+    // → 新規／続刊設定よりも指定巻数を優先
+    if(
+      result.volume !== null &&
+      result.volume !== undefined &&
+      result.volume !== ""
+    ){
+      volume =
+        Number(result.volume);
+    }else{
+      // 巻数指定がない場合
+      // → 従来の新規／続刊ルールを使用
+      volume = 1;
+      if(
+        textImport.duplicateMode === "continue" &&
+        result.exists
+      ){
+        volume =
+          getNextVolumeForTextImport(
+            result.sameTitleBooks
+          );
+      }
+    }
+    return {
+      title:
+        result.title,
+      subtitle:
+        result.subtitle || "",
+      volume
+    };
+  });
+}
+
+
+
+//==============================
+// テキストインポート→本オブジェクト
+//==============================
+function createTextImportBook(
+  candidate,
+  index
+){
+  const sameTitleBooks =
+    books.filter(book =>
+      (book.title || "").trim()
+        === candidate.title
+    );
+  let volume;
+  // 入力側で巻数が指定されている場合は、
+  // 新規追加／続刊追加の設定よりも指定巻数を優先
+  if(
+    candidate.volume !== null
+    && candidate.volume !== undefined
+    && candidate.volume !== ""
+  ){
+    volume =
+      Number(candidate.volume);
+  }else{
+    // 巻数指定がない場合は従来通り自動決定
+    if(
+      textImport.duplicateMode === "continue"
+      && sameTitleBooks.length > 0
+    ){
+      const maxVolume =
+        Math.max(
+          0,
+          ...sameTitleBooks.map(book =>
+            Number(book.volume || 0)
+          )
+        );
+      volume = maxVolume + 1;
+    }else{
+      volume = 1;
+    }
+  }
+  return {
+    id:
+      Date.now().toString()
+      + "_" + index,
+    title:
+      candidate.title,
+    subtitle:
+      candidate.subtitle || "",
+    volume,
+    memo: "",
+    fav: 2,
+    readDates: [],
+    tagIds: [],
+    seriesIds: [],
+    type: "wish",
+    protect: enableProtect,
+    reread: false
+  };
+  
+  console.log(textImport.previewBooks);
+}
+
+
+//==============================
+// テキストインポートからの追加実行
+//==============================
+async function executeTextImport(){
+
+  if(
+    !textImport.previewBooks ||
+    textImport.previewBooks.length === 0
+  ){
+    alert("追加する本がありません");
+    return;
+  }
+
+  const booksToAdd =
+    textImport.previewBooks;
+
+  console.log(
+    "テキストインポート実行：",
+    booksToAdd
+  );
+
+  // ここで books への追加処理を行う
+  books.push(
+    ...booksToAdd
+  );
+
+  await saveData();
+
+  showToast(
+    `${booksToAdd.length}冊を追加しました`
+  );
+
+  // インポート内容をリセット
+  textImport.previewBooks = [];
+  textImport.inputText = "";
+
+  renderSettings();
+
+}
+
+
 

@@ -1,6 +1,6 @@
 // 私用
 //
-// PAGE-SEARCH.JS
+// PAGE-SEARC.JS
 // 詳細検索ページ用JS
 //
 //
@@ -377,41 +377,45 @@ if(state.protect==="off"){
 
 
 //==============================
-//★描画
+// 詳細検索：初期値補完
 //==============================
-function renderDetailSearch(){
+function ensureDetailSearchDefaults(){
 
-  setActiveMenu("menu-detail-search");
-    
   if(!detailSearch.types){
 
-  detailSearch.types = {
-    normal:true,
-    wish:true
-  };
+    detailSearch.types = {
+      normal:true,
+      wish:true
+    };
+
+  }
+
+  if(!detailSearch.personTypes){
+    detailSearch.personTypes = [];
+  }
+
+  if(!detailSearch.fav){
+    detailSearch.fav = "all";
+  }
+  
+  //再読の初期設定
+  if(!detailSearch.rereadMode){
+    detailSearch.rereadMode = "all";
+  }
+
 }
 
-if(!detailSearch.personTypes){
-  detailSearch.personTypes = [];
-}
 
-if(!detailSearch.fav){
-  detailSearch.fav = "all";
-}
+//==============================
+// 詳細検索：検索結果生成
+//==============================
+function getDetailSearchResults(){
 
-if(!detailSearch.fav){
-  detailSearch.fav = "all";
-}
-
-//キーワード検索の部分
-   
 //本
 let bookResults =
   books.filter(b=>{
-  
 
     // タイプ
-
     if(
       !detailSearch.types.normal &&
       b.type !== "wish"
@@ -428,13 +432,20 @@ let bookResults =
 
     // 再読予定
 
-    if(
-      detailSearch.reread &&
-      !b.reread
-    ){
-      return false;
-    }
-    
+if(
+  detailSearch.rereadMode === "reread" &&
+  !b.reread
+){
+  return false;
+}
+
+if(
+  detailSearch.rereadMode === "non-reread" &&
+  b.reread
+){
+  return false;
+}
+
     //シリーズ未設定
     if(
   detailSearch.noSeriesBook &&
@@ -723,7 +734,45 @@ if(detailSearch.noHiddenTags){
 
 }
 
+return {
+  bookResults,
+  seriesResults,
+  characterResults
+};
 
+}
+
+
+
+//==============================
+//★描画
+//==============================
+function renderDetailSearch(){
+
+  setActiveMenu("menu-detail-search");
+
+  const conditionBody =
+    document.getElementById(
+      "detail-search-condition-body"
+    );
+
+  const scrollTop =
+    conditionBody
+      ? conditionBody.scrollTop
+      : 0;
+
+  ensureDetailSearchDefaults();
+
+
+//検索条件の処理部分
+const {
+  bookResults,
+  seriesResults,
+  characterResults
+} = getDetailSearchResults();
+
+
+//HTML描画部分
   safeRender({
     mountId:"page-detail-search",
 
@@ -861,62 +910,32 @@ ${renderSavedDetailSearchCards()}
   ${renderDetailSearchConditions()}
 
 
-
 ${renderDetailSearchResults(
     bookResults,
     seriesResults,
     characterResults
   )}
 
-<div class="bulk-tag-area">
+${renderBulkTagArea()}
 
-  <h4>
-    🏷️ 一括タグ追加
-  </h4>
+${renderBulkProtectArea()}
 
-  <input
-  id="bulk-tag-name"
-  class="input-common yohaku15"
-  placeholder="タグ名"
-  oninput="renderBulkTagSuggest()"
->
-
-<div
-  id="bulk-tag-suggest"
-  class="suggest-box bulk-tag-suggest yohaku15"
-  style="display:none;"
-></div>
-
-  <label>
-    <input
-      type="radio"
-      name="bulk-tag-type"
-      value="display"
-      checked
-    >
-    表示タグ
-  </label>
-
-  <label>
-    <input
-      type="radio"
-      name="bulk-tag-type"
-      value="hidden"
-    >
-    管理タグ
-  </label>
-
-  <button
-    onclick="addBulkTag()"
-  >
-    選択した本へ追加
-  </button>
-
-</div>
-
-
+${renderBulkRereadArea()}
     `
   });
+
+setTimeout(()=>{
+
+  const newBody =
+    document.getElementById(
+      "detail-search-condition-body"
+    );
+
+  if(newBody){
+    newBody.scrollTop = scrollTop;
+  }
+
+}, 0);
 
 }
 
@@ -993,6 +1012,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     📘 本
@@ -1007,6 +1027,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     📖 シリーズ
@@ -1021,6 +1042,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     👤 人物
@@ -1095,6 +1117,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
 
@@ -1112,6 +1135,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
 
@@ -1149,6 +1173,7 @@ function renderDetailSearchConditions(){
   }
 
   saveDetailSearchState();
+  renderDetailSearch();
 "
     >
 
@@ -1180,6 +1205,7 @@ function renderDetailSearchConditions(){
   }
 
   saveDetailSearchState();
+  renderDetailSearch();
 "
     >
 
@@ -1211,6 +1237,7 @@ function renderDetailSearchConditions(){
   }
 
   saveDetailSearchState();
+  renderDetailSearch();
 "
     >
 
@@ -1242,6 +1269,7 @@ function renderDetailSearchConditions(){
   }
 
   saveDetailSearchState();
+  renderDetailSearch();
 "
     >
 
@@ -1308,17 +1336,63 @@ function renderDetailSearchConditions(){
 <label>
 
   <input
-    type="checkbox"
-    ${detailSearch.reread ? "checked" : ""}
+    type="radio"
+    name="detail-search-reread"
+    value="all"
+    ${detailSearch.rereadMode === "all"
+        ? "checked"
+        : ""
+     }
     onchange="
-      detailSearch.reread =
-        this.checked;
+      detailSearch.rereadMode =
+        this.value;
 
       saveDetailSearchState();
+      renderDetailSearch();
+    "
+  >
+  全て
+  </label>
+
+
+<input
+    type="radio"
+    name="detail-search-reread"
+    value="reread"
+    ${detailSearch.rereadMode === "reread"
+        ? "checked"
+        : ""
+     }
+    onchange="
+      detailSearch.rereadMode =
+        this.value;
+
+      saveDetailSearchState();
+      renderDetailSearch();
+    "
+  >
+  🔖 再読予定
+
+</label>
+
+<input
+    type="radio"
+    name="detail-search-reread"
+    value="non-reread"
+    ${detailSearch.rereadMode === "non-reread"
+        ? "checked"
+        : ""
+     }
+    onchange="
+      detailSearch.rereadMode =
+        this.value;
+
+      saveDetailSearchState();
+      renderDetailSearch();
     "
   >
 
-  🔖 再読予定
+  再読なし
 
 </label>
 </div>
@@ -1345,6 +1419,7 @@ function renderDetailSearchConditions(){
     this.checked;
 
   saveDetailSearchState();
+  renderDetailSearch();
 "
   >
   引用あり
@@ -1363,6 +1438,7 @@ function renderDetailSearchConditions(){
     this.checked;
 
   saveDetailSearchState();
+  renderDetailSearch();
 "
   >
   ⭐お気に入り引用あり
@@ -1377,6 +1453,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     📖シリーズ未設定の📘<b>本</b>
@@ -1391,6 +1468,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     📖シリーズ未設定の👤<b>人物</b>
@@ -1405,6 +1483,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     🏷️タグ未設定の📘<b>本</b>
@@ -1419,6 +1498,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     #️⃣巻数未設定📘<b>本</b>
@@ -1433,6 +1513,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     📘本未登録📚<b>シリーズ</b>
@@ -1447,6 +1528,7 @@ function renderDetailSearchConditions(){
           this.checked;
 
         saveDetailSearchState();
+        renderDetailSearch();
       "
     >
     🏷️管理タグ未設定📘<b>本</b>
@@ -1603,49 +1685,75 @@ ${
         ${
           bookResults.length
             ? bookResults.map(b=>`
-              <div
-                class="detail-result-item"
-                onclick="openBookDetailModalById('${b.id}')"
-              >
-                ${b.title}
-${
-  b.subtitle
-    ? ` <span class="book-subtitle">${b.subtitle}</span>`
-    : ""
-}
-${
-  b.volume
-    ? ` ${b.volume}`
-    : ""
-}
-${
-  (b.quotes || []).length
-    ? `<span class="mini-info">📝引用${b.quotes.length}</span>`
-    : ""
-}
+             
+             <div
+  class="detail-result-item flex-between"
+  onclick="openBookDetailModalById('${b.id}')"
+>
 
-${
-  (b.quotes || []).some(q => q.favorite)
-    ? `<span class="mini-info">⭐引用</span>`
-    : ""
-}
+  <div class="detail-result-book-info">
 
- <label class="book-select-row">
-  <input
-    type="checkbox"
-    onclick="event.stopPropagation()"
     ${
-      selectedBooks.includes(String(b.id))
-        ? "checked"
+      b.protect
+        ? `<span class="mini-info">🔒</span>`
         : ""
     }
-    onchange="
-      toggleBookSelect(
-        '${b.id}'
-      );
-    "
+
+    ${b.title}
+
+    ${
+      b.subtitle
+        ? ` <span class="book-subtitle">${b.subtitle}</span>`
+        : ""
+    }
+
+    ${
+      b.volume
+        ? ` ${b.volume}`
+        : ""
+    }
+
+    ${
+      b.reread
+        ? `<span class="mini-info">🔁</span>`
+        : ""
+    }
+
+    ${
+      (b.quotes || []).length
+        ? `<span class="mini-info">(引用：${b.quotes.length} 件)</span>`
+        : ""
+    }
+
+    ${
+      (b.quotes || []).some(q => q.favorite)
+        ? `<span class="mini-info">⭐</span>`
+        : ""
+    }
+
+  </div>
+
+  <label
+    class="book-select-row"
+    onclick="event.stopPropagation()"
   >
-</label>
+    <input
+      type="checkbox"
+      onclick="event.stopPropagation()"
+      ${
+        selectedBooks.includes(String(b.id))
+          ? "checked"
+          : ""
+      }
+      onchange="
+        toggleBookSelect(
+          '${b.id}'
+        );
+      "
+    >
+  </label>
+
+
               </div>
             `).join("")
             : "検索結果なし"
@@ -1821,48 +1929,33 @@ function runDetailSearch(){
 //==============================
 function cycleDetailSearchTagState(tagId){
 
-  const body =
-    document.getElementById(
-      "detail-search-condition-body"
-    );
-
-  const scrollTop =
-    body ? body.scrollTop : 0;
-
   const strId = String(tagId);
 
   const current =
     detailSearch.tagStates[strId];
 
   if(!current){
+
     detailSearch.tagStates[strId] = "AND";
 
   }else if(current === "AND"){
+
     detailSearch.tagStates[strId] = "OR";
 
   }else if(current === "OR"){
+
     detailSearch.tagStates[strId] = "NOT";
 
   }else{
+
     delete detailSearch.tagStates[strId];
+
   }
 
   saveDetailSearchState();
 
   renderDetailSearch();
 
-  setTimeout(()=>{
-
-    const newBody =
-      document.getElementById(
-        "detail-search-condition-body"
-      );
-
-    if(newBody){
-      newBody.scrollTop = scrollTop;
-    }
-
-  }, 0);
 }
 
 
@@ -2314,3 +2407,312 @@ function renderBulkTagSuggest(){
   // 3. 重複除外
   // 4. 多い順
 }*/
+
+
+
+//==============================
+//一括タグ追加エリアの描画
+//==============================
+function renderBulkTagArea(){
+
+  return `
+    <div class="bulk-tag-area">
+
+      <h4>
+        🏷️ 一括タグ追加
+      </h4>
+
+      <input
+        id="bulk-tag-name"
+        class="input-common yohaku15"
+        placeholder="タグ名"
+        oninput="renderBulkTagSuggest()"
+      >
+
+      <div
+        id="bulk-tag-suggest"
+        class="suggest-box bulk-tag-suggest yohaku15"
+        style="display:none;"
+      ></div>
+
+      <label>
+        <input
+          type="radio"
+          name="bulk-tag-type"
+          value="display"
+          checked
+        >
+        表示タグ
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="bulk-tag-type"
+          value="hidden"
+        >
+        管理タグ
+      </label>
+
+      <button
+        onclick="addBulkTag()"
+      >
+        選択した本へ追加
+      </button>
+
+    </div>
+  `;
+
+}
+
+
+
+//==============================
+//一括保護エリアの描画
+//==============================
+function renderBulkProtectArea(){
+
+  return `
+    <div class="bulk-protect-area">
+
+      <h4>
+        🔒 一括保護
+      </h4>
+
+      <button
+        onclick="bulkProtectBooks()"
+      >
+        選択した本を保護
+      </button>
+
+      <button
+        onclick="bulkUnprotectBooks()"
+      >
+        選択した本の保護を解除
+      </button>
+
+    </div>
+  `;
+
+}
+
+
+//==============================
+//一括再読追加エリアの描画
+//==============================
+function renderBulkRereadArea(){
+
+  return `
+    <div class="bulk-reread-area">
+
+      <h4>
+        🔁 一括再読
+      </h4>
+
+      <button
+        onclick="bulkRereadBooks()"
+      >
+        選択した本を再読にする
+      </button>
+
+      <button
+        onclick="bulkUnrereadBooks()"
+      >
+        選択した本の再読を解除
+      </button>
+
+    </div>
+  `;
+
+}
+
+//==============================
+//一括保護
+//==============================
+function bulkProtectBooks(){
+
+  if(selectedBooks.length === 0){
+
+    alert(
+      "本を選択してください"
+    );
+
+    return;
+  }
+
+  const ok =
+    confirm(
+      `${selectedBooks.length}冊を保護しますか？`
+    );
+
+  if(!ok) return;
+
+  books.forEach(book=>{
+
+    if(
+      !selectedBooks.includes(
+        String(book.id)
+      )
+    ){
+      return;
+    }
+
+    book.protect = true;
+
+  });
+
+  saveData();
+
+  showToast(
+    `${selectedBooks.length}冊を保護しました`
+  );
+  
+  selectedBooks = [];
+
+  renderDetailSearch();
+
+}
+
+
+
+//==============================
+//一括保護解除
+//==============================
+
+function bulkUnprotectBooks(){
+
+  if(selectedBooks.length === 0){
+
+    alert(
+      "本を選択してください"
+    );
+
+    return;
+  }
+
+  const ok =
+    confirm(
+      `${selectedBooks.length}冊の保護を解除しますか？`
+    );
+
+  if(!ok) return;
+
+  books.forEach(book=>{
+
+    if(
+      !selectedBooks.includes(
+        String(book.id)
+      )
+    ){
+      return;
+    }
+
+    book.protect = false;
+
+  });
+
+  saveData();
+
+  showToast(
+    `${selectedBooks.length}冊の保護を解除しました`
+  );
+  
+  selectedBooks = [];
+
+  renderDetailSearch();
+
+}
+
+
+
+//==============================
+//一括再読
+//==============================
+// 選択された本を再読予定にする
+function bulkRereadBooks(){
+
+  if(selectedBooks.length === 0){
+    alert("本を選択してください");
+    return;
+  }
+
+  const ok =
+    confirm(
+      `選択した${selectedBooks.length}冊を再読予定にしますか？`
+    );
+
+  if(!ok) return;
+
+  books.forEach(book => {
+
+    if(
+      selectedBooks.includes(
+        String(book.id)
+      )
+    ){
+      book.reread = true;
+    }
+
+  });
+
+  saveData();
+
+  showToast(
+    `${selectedBooks.length}冊を再読予定にしました`
+  );
+
+  selectedBooks = [];
+
+  renderDetailSearch();
+
+}
+
+
+
+//==============================
+//一括再読解除
+//==============================
+
+function bulkUnrereadBooks(){
+
+  if(selectedBooks.length === 0){
+
+    alert(
+      "本を選択してください"
+    );
+
+    return;
+  }
+
+  const ok =
+    confirm(
+      `${selectedBooks.length}冊の再読を解除しますか？`
+    );
+
+  if(!ok) return;
+
+  books.forEach(book=>{
+
+    if(
+      !selectedBooks.includes(
+        String(book.id)
+      )
+    ){
+      return;
+    }
+
+    book.reread = false;
+
+  });
+
+  saveData();
+
+  showToast(
+    `${selectedBooks.length}冊の再読を解除しました`
+  );
+  
+  selectedBooks = [];
+
+  renderDetailSearch();
+
+}

@@ -123,7 +123,9 @@ let settingSections = JSON.parse(
     stats: true,
     tags: true,
     datas: true,
+    textImport: true,
     };
+    
 
 //====設定用のカラーモード設定
 let shelfColorMode =
