@@ -73,3 +73,16 @@ SETTINGS.CSS watasi
   left:20px;
 }
 
+
+.text-import-books{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.text-import-textarea{
+  width:100%;
+  min-height:180px;
+  box-sizing:border-box;
+  resize:vertical;
+}
