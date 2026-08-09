@@ -459,4 +459,9 @@ border-radius:10px;
   font-size:13px;
 }
 
+.similar-book-notice{
+  font-weight:bold;
+  color:var(--color-chip);
+}
+
 
