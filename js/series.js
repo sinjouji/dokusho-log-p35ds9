@@ -1053,14 +1053,16 @@ protect: document.getElementById(
 );
 
   closeModal(
-    "add-series-modal"
-  );
-
-  renderSeries();
-
-  showToast(
-    `「${series.name}」を追加しました`
-  );
+  "add-series-modal"
+);
+// 本詳細モーダルも閉じる
+closeModal(
+  "open-book-modal"
+);
+renderSeries();
+showToast(
+  `「${series.name}」を追加しました`
+);
 }
 
 //==============================
@@ -1297,4 +1299,31 @@ function toggleSeriesProtect(id){
 
   renderSeries();
 }
+
+
+
+//==============================
+// シリーズ関連：類似本判定
+//==============================
+
+function isSimilarSeriesBook(
+  seriesTitle,
+  bookTitle
+){
+  const a =
+    (seriesTitle || "")
+      .trim()
+      .toLowerCase();
+  const b =
+    (bookTitle || "")
+      .trim()
+      .toLowerCase();
+  if(!a || !b){
+    return false;
+  }
+  // 本のタイトルにシリーズ名が
+  // そのまま含まれている場合のみ対象
+  return b.includes(a);
+}
+
 

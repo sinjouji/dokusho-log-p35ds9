@@ -18,6 +18,18 @@ let textImport = {
 textImport.previewBooks = [];
 textImport.inputText = "";
 
+//類似本の未登録告知用
+let enableSimilarBookNotice =
+  localStorage.getItem(
+    "enableSimilarBookNotice"
+  );
+
+enableSimilarBookNotice =
+  enableSimilarBookNotice === null
+    ? true
+    : enableSimilarBookNotice === "true";
+
+
 
 //==============================
 //🔧====設定ページ====
@@ -34,6 +46,43 @@ setActiveMenu("menu-settings");
   el.innerHTML = `
     <button onclick="go('home')" class="common-button">← 戻る</button>
     <h2>設定</h2>
+
+
+  ${renderHomeSettingArea()}
+  
+  ${renderInputSettingArea()}
+
+  ${renderJsonImportArea()}
+  
+  ${renderTextImportArea()}
+  
+  `;  
+
+
+
+const themeSelect =
+  document.getElementById(
+    "theme-select"
+  );
+
+if(themeSelect){
+
+  themeSelect.value =
+    localStorage.getItem(
+      "selectedTheme"
+    ) || "yuusuzumi";
+
+}
+}
+
+
+
+//=============================
+// 表示設定エリア描画
+//=============================
+function renderHomeSettingArea(){
+
+  return`
 
   <div class="setting-card">
     <div class="setting-card-title" onclick="toggleSettingSection('home')">
@@ -53,6 +102,15 @@ setActiveMenu("menu-settings");
       </button>
     </div>
     
+     <!--シリーズ詳細で類似本告知-->
+    <div class="setting-row">
+      <span>シリーズ名と類似の未登録本を告知</span>
+      <button onclick="toggleSimilarBookNotice()">
+        ${enableSimilarBookNotice ? "表示：ON" : "表示：OFF"}
+      </button>
+    </div>
+
+
     <!--背表紙-->
     <div class="setting-row">
       <span>背表紙カラー</span>
@@ -104,9 +162,19 @@ setActiveMenu("menu-settings");
 `
 : ""}
   </div>
-  
-  
-  <div class="setting-card">
+
+`;
+}
+
+
+//=============================
+// 入力設定エリア描画
+//=============================
+function renderInputSettingArea(){
+
+  return`
+
+ <div class="setting-card">
     <div class="setting-card-title"onclick="toggleSettingSection('input')">
     ${settingSections.input
     ? "▽"
@@ -151,35 +219,13 @@ setActiveMenu("menu-settings");
           min="1"
           onchange="changeGoal(this.value)">
        </div>
-    </div>  
+    </div>
 `
 : ""}
   </div>
 
-  ${renderJsonImportArea()}
-  
-  ${renderTextImportArea()}
-  
-  `;  
-
-
-
-const themeSelect =
-  document.getElementById(
-    "theme-select"
-  );
-
-if(themeSelect){
-
-  themeSelect.value =
-    localStorage.getItem(
-      "selectedTheme"
-    ) || "yuusuzumi";
-
+`;
 }
-}
-
-
 
 
 //==============================
@@ -1465,4 +1511,18 @@ async function executeTextImport(){
 }
 
 
+
+//類似本告知のオンオフ切り替え
+function toggleSimilarBookNotice(){
+
+  enableSimilarBookNotice =
+    !enableSimilarBookNotice;
+
+  localStorage.setItem(
+    "enableSimilarBookNotice",
+    enableSimilarBookNotice
+  );
+
+  renderSettings();
+}
 

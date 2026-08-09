@@ -316,9 +316,12 @@ function renderSeriesNewBookSuggest(){
           >
             <div>
   ${b.title}
+  ${b.subtitle
+  ? ` / ${b.subtitle}`
+  : ""}
   ${
     b.volume
-      ? ` ${b.volume}`
+      ? ` (${b.volume}巻)`
       : ""
   }
 </div>
@@ -436,19 +439,26 @@ function renderSeriesNewCharacterSuggest(){
 //==============================
 //関連本の検索
 //==============================
-function renderSeriesBookSuggest(){
+function renderSeriesBookSuggest(initialKeyword = ""){
 
-  const keyword =
+  const input =
     document.getElementById(
       "series-related-search"
-    ).value.toLowerCase();
+    );
 
-  const filtered = books.filter(b=>{
+  const keyword =
+  (
+    input.value.trim()
+      || initialKeyword
+  ).toLowerCase();
 
-    const match =
-      (b.title || "")
-        .toLowerCase()
-        .includes(keyword);
+
+const filtered = books.filter(b=>{
+
+  const match =
+    (b.title || "")
+      .toLowerCase()
+      .includes(keyword);
 
     const notAdded =
       !editingSeriesBookIds.includes(
@@ -496,9 +506,12 @@ function renderSeriesBookSuggest(){
           >
             <div>
   ${b.title}
+  ${b.subtitle
+  ? ` / ${b.subtitle}`
+  : ""}
   ${
     b.volume
-      ? ` ${b.volume}`
+      ? ` (${b.volume}巻)`
       : ""
   }
 </div>

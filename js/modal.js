@@ -241,7 +241,7 @@ function openAddBookModal(){
 						background:
 							${isActive ? tag.color : 'var(--color-text)'};
 						color:
-							${isActive ? '#fff' : '#000'};
+							${isActive ? 'var(--color-card)' : 'var(--color-text)'};
 						border:
 							1px solid ${tag.color};
 					"
@@ -773,10 +773,10 @@ id="open-book-tags">
             )"
             style="
               background:
-                ${isActive ? tag.color : 'var(--color-text)'};
+                ${isActive ? tag.color : 'var(--color-card)'};
 
               color:
-                ${isActive ? '#fff' : '#000'};
+                ${isActive ? 'var(--color-card)' : 'var(--color-text)'};
 
               border:
                 1px solid ${tag.color};
@@ -1103,7 +1103,6 @@ const characterCount =
   🔒 誤削除防止
 </label>
 </div>
-
 </div>
 
 
@@ -1187,7 +1186,7 @@ renderSeriesEditCharacters(
   "series-new-characters"
 );
 }
-
+ 
 
 //==============================
 //シリーズ編集モーダル
@@ -1204,6 +1203,9 @@ function openSeriesEditModal(id){
   if(!series) return;
 
   closeModal("series-detail-modal"); // ←追加
+  
+  const seriesTitle =
+  (series.name || "").trim();
 
   editingSeriesBookIds =
   [...new Set(
@@ -1334,9 +1336,11 @@ const characterCount =
   `;
 
   document.body.appendChild(modal);
-  renderSeriesEditBooks();
-
+renderSeriesEditBooks();
 renderSeriesEditCharacters();
+// 初期表示ではシリーズタイトルを検索語として使用
+renderSeriesBookSuggest(seriesTitle);
+renderSeriesCharacterSuggest(seriesTitle);
 
 }
 
@@ -1356,6 +1360,32 @@ function openSeriesDetailModal(s){
     getVolumeNumber(a) -
     getVolumeNumber(b)
   );
+  
+  const registeredBookIds =
+  new Set(
+    (s.bookIds || []).map(String)
+  );
+
+const similarUnregisteredBooks =
+  enableSimilarBookNotice
+    ? books.filter(b => {
+
+        if(
+          registeredBookIds.has(
+            String(b.id)
+          )
+        ){
+          return false;
+        }
+
+        return isSimilarSeriesBook(
+          s.name,
+          b.title
+        );
+
+      })
+    : [];
+  
 
 //人物ミニリストのソート（固定）
   const personOrder = {
@@ -1387,11 +1417,19 @@ const relatedCharacters = characters
       <div class="modal-header">
         <div class="flex-between yohaku10">
         <button
-          class="btn-sub"
-          onclick="openSeriesEditModal('${s.id}')"
-        >
-          ✏️ 編集
-        </button>
+  class="btn-sub ${
+    similarUnregisteredBooks.length
+      ? "similar-book-notice"
+      : ""
+  }"
+  onclick="openSeriesEditModal('${s.id}')"
+>
+  ✏️ ${
+    similarUnregisteredBooks.length
+      ? "編集（類似本あり）"
+      : "編集"
+  }
+</button>
         
        ${renderCloseButton("series-detail-modal")}
         </div>
