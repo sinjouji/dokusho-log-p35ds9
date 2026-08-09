@@ -459,7 +459,7 @@ border-radius:10px;
   font-size:13px;
 }
 
-.similar-book-notice{
+.similar-book-notice.active{
   font-weight:bold;
   color:var(--color-chip);
 }
