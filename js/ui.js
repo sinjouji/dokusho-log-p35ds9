@@ -159,6 +159,16 @@ function scrollToTop(){
 
 
 //==============================
+//右下の「↓」ちゃん
+//==============================
+function scrollToBottom(){
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: "smooth"
+  });
+}
+
+//==============================
 //安全共通renderテンプレ
 //==============================
 function safeRender({
@@ -331,47 +341,59 @@ function injectThemeSwitcher(){
   const wrapper=document.createElement("div");
   wrapper.className="theme-switcher";
 
+// 同期スイッチ描画
+const syncButton =
+  isSyncMode()
+    ? `
+      <button
+  id="sync-toggle"
+  class="sync-toggle ${
+    isSyncEnabled()
+      ? "sync-on"
+      : "sync-off"
+  }"
+  onclick="toggleSyncSwitch()"
+>
+  ${
+    isSyncEnabled()
+      ? "☁️ 同期ON"
+      : "☁️ 同期OFF"
+  }
+</button>
+    `
+    : "";
+
   wrapper.innerHTML=`
+  
+  ${syncButton}
   
        <select
     id="theme-select"
-    class="select-chip"
+    class="select-chip hidari-ake"
     onchange="
       applyTheme(this.value)
     "
   >
-    <option value="" disabled selected>◼️季節イメージ</option>
-     <optgroup label="春・夏">
-      <option value="harunoniwa">春の庭</option>
-      <option value="ajisai">紫陽花</option>
-      <option value="yuusuzumi">夕涼み</option>
-      <option value="marin">海の家</option>
-      <option value="himawarihatake">ひまわり畑</option>
-      <option value="natsumatsuri">夏祭り</option>
-      <option value="yuuyakekomichi">夕焼け小径</option>
+    <option value="" disabled selected>◼️テーマを選択</option>
+     <optgroup label="第1弾テーマ">
+      <option value="harunoniwa">◻️春の庭</option>
+      <option value="yuusuzumi">◻️夕涼み</option>
+      <option value="yuuyakekomichi">◻️夕焼け小径</option>
+      <option value="ekisha">◼️駅舎</option>
+      <option value="tsukikage">◼️月影</option>
+      <option value="taishomodern">◻️大正モダン</option>
      </optgroup>
-     <optgroup label="秋・冬">
-      <option value="coffeebunko">珈琲文庫</option>
-      <option value="asatsuyu">朝露</option>
-      <option value="yukimishoji">雪見障子</option>
-      <option value="sando">参道</option>
+     
+     <optgroup label="第2弾テーマ">
+      <option value="bungakushoujo">◻️文学少女</option>
+      <option value="bunmeikaika">◻️文明開化</option>
+      <option value="meijishosai">◻️明治書斎</option>
+      <option value="asatsuyu">◻️朝露</option>
+      <option value="yoiyami">◼️宵闇</option>
+      <option value="natsumatsuri">◼️夏祭り</option>
+      <option value="marin">◻️海の家</option>
      </optgroup>
-    <option value="" disabled>◼️印象テーマ</option>
-     <optgroup label="夜">
-      <option value="ekisha">駅舎</option>
-      <option value="tsukikage">月影</option>
-      <option value="yoiyami">宵闇</option>
-     </optgroup>
-     <optgroup label="レトロ">
-      <option value="bunmeikaika">文明開化</option>
-      <option value="taishomodern">大正モダン</option>
-      <option value="meijishosai">明治書斎</option>
-      <option value="bungakushoujo">文学少女</option>
-      <option value="gekkoushoko">月光書庫</option>
-      <option value="kappaninsatsu">活版印刷</option>
-      <option value="showakissa">昭和喫茶</option>
-      <option value="modern-pop">G：モダンポップ</option>
-     </optgroup>
+
   </select>
 
   `;
@@ -398,6 +420,55 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 
+
+//===============================
+// 同期スイッチ切り替え
+//===============================
+function toggleSyncSwitch(){
+
+  const next =
+    !isSyncEnabled();
+
+  setSyncEnabled(next);
+
+  updateSyncSwitch();
+
+}
+
+
+//===============================
+// 同期スイッチ表示更新
+//===============================
+function updateSyncSwitch(){
+
+  const button =
+    document.getElementById(
+      "sync-toggle"
+    );
+
+  if(!button){
+    return;
+  }
+
+  const enabled =
+    isSyncEnabled();
+
+  button.textContent =
+    enabled
+      ? "☁️ 同期ON"
+      : "☁️ 同期OFF";
+
+  button.classList.toggle(
+    "sync-on",
+    enabled
+  );
+
+  button.classList.toggle(
+    "sync-off",
+    !enabled
+  );
+
+}
 
 
 

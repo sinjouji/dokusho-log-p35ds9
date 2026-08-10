@@ -290,19 +290,21 @@ async function saveData(){
 
   // ローカル保存
   localStorage.setItem(
-    "bookAppData",
+    "dokushoLogData",
     JSON.stringify(data)
   );
 
-  // Firestore保存
-  await window.setDoc(
-    window.doc(window.db, "app", "data"),
-    data
-  );
+  // 同期版の場合だけFirestoreへ保存
+  if(
+  isSyncMode() &&
+  isSyncEnabled()
+){
 
-  console.log("Firestore保存完了");
+  await syncToFirestore(data);
+
 }
 
+}
 
 
 
@@ -353,14 +355,14 @@ async function loadData(){
 
 
       // ローカルにも保存（バックアップ）
-      localStorage.setItem("bookAppData",JSON.stringify(data));
+      localStorage.setItem("dokushoLogData",JSON.stringify(data));
 
       console.log("Firestoreから読み込み");
 
     } else {
 
       // Firestore空ならローカル
-      const saved = localStorage.getItem("bookAppData");
+      const saved = localStorage.getItem("dokushoLogData");
 
       if(saved){
         const data = JSON.parse(saved);
