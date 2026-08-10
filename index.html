@@ -17,6 +17,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
 <title>読書ログ</title>
 <link rel="icon" href="icon-192b.png" type="image/png">
 <link rel="apple-touch-icon" href="icon-192d.png">
@@ -61,6 +62,7 @@
 <button id="scroll-top-btn" onclick="scrollToTop()">
   ↑
 </button>
+<button id="scroll-bottom-btn" onclick="scrollToBottom()">↓</button>
 
 <div id="page-home" class="page"></div>
 <div id="page-series" class="page hidden"></div>
@@ -135,6 +137,7 @@ window.saveData = async function(){
   }
 };
 </script>
+<script src="js/sync.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/common.js"></script>
 <script src="js/suggest.js"></script>
