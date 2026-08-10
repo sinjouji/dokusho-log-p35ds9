@@ -848,4 +848,24 @@ header h1,
 }
 
 
+/*同期版切替ボタン*/
+.sync-toggle{
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sync-toggle.sync-on{
+  background: var(--color-main);
+  color:var(--color-text-contrast);
+}
+
+.sync-toggle.sync-off{
+  background: var(--color-bg);
+  color: var(--color-text);
+  border:1px dashed var(--color-main);
+  transform: scale(.97);
+}
 
