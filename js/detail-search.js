@@ -2208,11 +2208,16 @@ function matchKeywordGroups(searchText){
 //==============================
 function toggleBookSelect(bookId){
 
+  // 現在のリスト内部スクロール位置を保存
+  const list =
+    document.querySelector(".detail-result-list");
+
+  const scrollTop =
+    list ? list.scrollTop : 0;
+
   const id = String(bookId);
 
-  if(
-    selectedBooks.includes(id)
-  ){
+  if(selectedBooks.includes(id)){
     selectedBooks =
       selectedBooks.filter(
         x => x !== id
@@ -2223,6 +2228,20 @@ function toggleBookSelect(bookId){
 
   renderDetailSearch();
 
+  // 再描画後にスクロール位置を復元
+  requestAnimationFrame(() => {
+
+    const newList =
+      document.querySelector(
+        ".detail-result-list"
+      );
+
+    if(newList){
+      newList.scrollTop =
+        scrollTop;
+    }
+
+  });
 }
 
 
