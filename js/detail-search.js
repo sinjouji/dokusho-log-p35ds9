@@ -1488,6 +1488,21 @@ function renderDetailSearchConditions(){
     >
     🏷️タグ未設定の📘<b>本</b>
   </label>
+  
+  <label>
+    <input
+      type="checkbox"
+      ${detailSearch.noHiddenTags ? "checked" : ""}
+      onchange="
+        detailSearch.noHiddenTags =
+          this.checked;
+
+        saveDetailSearchState();
+        renderDetailSearch();
+      "
+    >
+    🏷️管理タグ未設定📘<b>本</b>
+  </label>
 
   <label>
     <input
@@ -1517,21 +1532,6 @@ function renderDetailSearchConditions(){
       "
     >
     📘本未登録📚<b>シリーズ</b>
-  </label>
-  
-<label>
-    <input
-      type="checkbox"
-      ${detailSearch.noHiddenTags ? "checked" : ""}
-      onchange="
-        detailSearch.noHiddenTags =
-          this.checked;
-
-        saveDetailSearchState();
-        renderDetailSearch();
-      "
-    >
-    🏷️管理タグ未設定📘<b>本</b>
   </label>
 
   </div>
@@ -1687,7 +1687,11 @@ ${
             ? bookResults.map(b=>`
              
              <div
-  class="detail-result-item flex-between"
+  class="detail-result-item flex-between ${
+    selectedBooks.includes(String(b.id))
+      ? "selected"
+      : ""
+  }"
   onclick="openBookDetailModalById('${b.id}')"
 >
 
@@ -1736,7 +1740,7 @@ ${
   <label
     class="book-select-row"
     onclick="event.stopPropagation()"
-  >
+  >選択
     <input
       type="checkbox"
       onclick="event.stopPropagation()"
@@ -2216,6 +2220,8 @@ function toggleBookSelect(bookId){
   }else{
     selectedBooks.push(id);
   }
+
+  renderDetailSearch();
 
 }
 
