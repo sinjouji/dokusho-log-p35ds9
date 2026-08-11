@@ -84,7 +84,27 @@ async function syncToFirestore(data){
 }
 
 
+//==============================
+// Firestoreからデータを読み込む
+//==============================
 
+async function loadDataFromFirestore(){
+
+  const snap =
+    await window.getDoc(
+      window.doc(
+        window.db,
+        "app",
+        "data"
+      )
+    );
+
+  if(!snap.exists()){
+    return null;
+  }
+
+  return snap.data();
+}
 
 
 

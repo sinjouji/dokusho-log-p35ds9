@@ -320,49 +320,60 @@ async function loadData(){
     loadTheme();
     themeLoaded = true;
   }
-
-  if(!window.db || !window.doc || !window.getDoc){
-    console.log("⏳ Firebase待機中...");
-    setTimeout(loadData, 100);
-    return;
-  }
+  
+  if(!window.firebaseReady){
+  console.log("⏳ Firebase待機中...");
+  setTimeout(loadData, 100);
+  return;
+}
 
   try{
-    // Firestoreから取得
-    const snap = await window.getDoc(
-      window.doc(window.db, "app", "data")
+
+  const data =
+    await loadDataFromFirestore();
+
+  if(data){
+
+    books =
+      data.books || [];
+
+    characters =
+      data.characters || [];
+
+    // 旧データ救済
+    characters.forEach(person=>{
+      person.personType ??= "character";
+    });
+
+    tagMaster =
+      data.tagMaster || [];
+
+    seriesMaster =
+      (data.series || [])
+        .concat(
+          data.seriesMaster || []
+        );
+
+    dailyLogs =
+      data.dailyLogs || {};
+
+    // ローカルにも保存（バックアップ）
+    localStorage.setItem(
+      "dokushoLogData",
+      JSON.stringify(data)
     );
-    
-    
-    if(snap.exists()){
-      const data = snap.data();
 
-      books = data.books || [];
-      characters = data.characters || [];
-      
-      // 旧データ救済（personType未登録の場合）
-      characters.forEach(person=>{
-  person.personType ??= "character";
-});
-      
-      tagMaster = data.tagMaster || [];
-      seriesMaster =
-        (data.series || [])
-          .concat(
-            data.seriesMaster || []
-          );
-      dailyLogs = data.dailyLogs || {};
+    console.log(
+      "Firestoreから読み込み"
+    );
 
+  }else{
 
-      // ローカルにも保存（バックアップ）
-      localStorage.setItem("dokushoLogData",JSON.stringify(data));
-
-      console.log("Firestoreから読み込み");
-
-    } else {
-
-      // Firestore空ならローカル
-      const saved = localStorage.getItem("dokushoLogData");
+    // Firestore空ならローカル
+    const saved =
+      localStorage.getItem(
+        "dokushoLogData"
+      );
 
       if(saved){
         const data = JSON.parse(saved);
@@ -435,7 +446,9 @@ async function loadData(){
 
   const l = document.getElementById('loading');
   if(l) l.classList.add('hidden');
-}//async function loadData()おわり
+}
+
+//async function loadData()おわり
 
 // 初回ロード
 window.addEventListener("load", ()=>{
