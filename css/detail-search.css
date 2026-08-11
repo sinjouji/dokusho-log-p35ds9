@@ -92,6 +92,14 @@ DETAIL-SEARCH.CSS watasi
   cursor:pointer;
 }
 
+.detail-result-item.selected{
+  background: color-mix(
+    in srgb,
+    var(--color-chip-read-bg) 50%,
+    transparent
+  );
+}
+
 .detail-result-list{
   max-height:35vh;
   overflow-y:auto;
