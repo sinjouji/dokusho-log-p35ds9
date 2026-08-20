@@ -87,8 +87,18 @@ async function syncToFirestore(data){
 //==============================
 // Firestoreからデータを読み込む
 //==============================
-
 async function loadDataFromFirestore(){
+
+  if(!window.firebaseReady){
+
+    console.log("⏳ Firebase待機中...");
+
+    await new Promise(resolve =>
+      setTimeout(resolve, 100)
+    );
+
+    return loadDataFromFirestore();
+  }
 
   const snap =
     await window.getDoc(
@@ -103,7 +113,58 @@ async function loadDataFromFirestore(){
     return null;
   }
 
-  return snap.data();
+  const data = snap.data();
+
+  // ローカルにもバックアップ
+  localStorage.setItem(
+    "dokushoLogData",
+    JSON.stringify(data)
+  );
+
+  return data;
+}
+
+
+
+
+//==============================
+//====🔑データの保存処理：超重要！！
+//==============================
+async function saveData(){
+
+  const data = {
+    books,
+    characters,
+    tagMaster,
+    seriesMaster,
+    dailyLogs
+  };
+
+  // ローカル保存
+  localStorage.setItem(
+    "dokushoLogData",
+    JSON.stringify(data)
+  );
+
+  // 同期版の場合だけFirestoreへ保存
+  if(
+  isSyncMode() &&
+  isSyncEnabled()
+){
+
+  await syncToFirestore(data);
+
+}
+
+}
+
+
+
+
+async function getSyncData(){
+
+  return await loadDataFromFirestore();
+
 }
 
 
