@@ -2,8 +2,6 @@
 // ベース ＝ app.js 私用
 //    メイン処理：render / save / 初期化
 //
-// ★ JSON URL
-const DATA_URL = "https://raw.githubusercontent.com/sinjouji/my-b0o0oksd6t6/main/data.json";
 
 //🟦①====状態（let）====
 //初期設定
@@ -275,37 +273,25 @@ function go(page){
   );
 }
 
+
+
 //==============================
-//====🔑データの保存処理：超重要！！
+// ローカルからデータを読み込む
 //==============================
-async function saveData(){
 
-  const data = {
-    books,
-    characters,
-    tagMaster,
-    seriesMaster,
-    dailyLogs
-  };
+function loadDataFromLocal(){
 
-  // ローカル保存
-  localStorage.setItem(
-    "dokushoLogData",
-    JSON.stringify(data)
-  );
+  const saved =
+    localStorage.getItem(
+      "dokushoLogData"
+    );
 
-  // 同期版の場合だけFirestoreへ保存
-  if(
-  isSyncMode() &&
-  isSyncEnabled()
-){
+  if(!saved){
+    return null;
+  }
 
-  await syncToFirestore(data);
-
+  return JSON.parse(saved);
 }
-
-}
-
 
 
 
@@ -321,17 +307,12 @@ async function loadData(){
     themeLoaded = true;
   }
   
-  if(!window.firebaseReady){
-  console.log("⏳ Firebase待機中...");
-  setTimeout(loadData, 100);
-  return;
-}
 
   try{
 
   const data =
-    await loadDataFromFirestore();
-
+  await getSyncData();
+  
   if(data){
 
     books =
@@ -357,52 +338,44 @@ async function loadData(){
     dailyLogs =
       data.dailyLogs || {};
 
-    // ローカルにも保存（バックアップ）
-    localStorage.setItem(
-      "dokushoLogData",
-      JSON.stringify(data)
-    );
-
     console.log(
-      "Firestoreから読み込み"
+      "データ読み込み完了"
     );
 
   }else{
 
-    // Firestore空ならローカル
-    const saved =
-      localStorage.getItem(
-        "dokushoLogData"
-      );
+  const data =
+    loadDataFromLocal();
 
-      if(saved){
-        const data = JSON.parse(saved);
+  if(data){
 
-        books = data.books || [];
-        characters = data.characters || [];
-        tagMaster = data.tagMaster || [];
-        seriesMaster = data.seriesMaster || [];
-        dailyLogs = data.dailyLogs || {};
+    books =
+      data.books || [];
 
-        console.log("◆ローカルから読み込み");
+    characters =
+      data.characters || [];
 
-      } else {
+    tagMaster =
+      data.tagMaster || [];
 
-        // 🔸 初回だけGitHub
-        const res = await fetch(DATA_URL + "?t=" + Date.now());
-        const data = await res.json();
+    seriesMaster =
+      data.seriesMaster || [];
 
-        books = data.books || [];
-        characters = data.characters || [];
-        tagMaster = data.tagMaster || [];
-        seriesMaster = data.seriesMaster || [];
-        dailyLogs = data.dailyLogs || {};
+    dailyLogs =
+      data.dailyLogs || {};
 
-        await saveData();
+    console.log(
+      "◆ローカルから読み込み"
+    );
 
-        console.log("🌐 初期データ取得");
-      }
-    }
+  }else{
+
+    console.log(
+      "⚠️ 保存データがありません"
+    );
+
+  }
+}
     
     viewMode =
       localStorage.getItem("viewMode")
@@ -449,6 +422,11 @@ async function loadData(){
 }
 
 //async function loadData()おわり
+
+
+
+
+
 
 // 初回ロード
 window.addEventListener("load", ()=>{
