@@ -860,7 +860,7 @@ function createBookSpine(b, mode="main"){
 
 const base = 20;
 const extra =
-  Math.min(spineTitleText.length * 2, 55);
+  Math.min(spineTitleText.length * 2, 80);
   
   d.className = "spine";
   d.style.width = (base + extra + 4) + "px";
