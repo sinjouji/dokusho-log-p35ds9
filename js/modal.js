@@ -408,11 +408,10 @@ function openBookDetailModal(book){
     >
     <button class="plus-btn"
   onclick="
-    openAddSeriesModal(
-      '${book.id}',
-      '${book.title}'
-    );
-  "
+  openAddSeriesModal(
+    '${book.id}'
+  );
+"
 >
 📚シリーズ化
 </button>
@@ -1051,21 +1050,31 @@ if(readInput && !readInput.value){
 //====シリーズの追加モーダル
 //==============================
 function openAddSeriesModal(
-  initialBookId = null,
-  initialTitle = ""
+  initialBookId = null
 ){
 
-newSeriesBookIds = [];
+  newSeriesBookIds = [];
 
-if(initialBookId){
+  let initialTitle = "";
 
-  newSeriesBookIds = [
-    String(initialBookId)
-  ];
+  if(initialBookId){
 
-}
+    const book =
+      books.find(
+        b => String(b.id) === String(initialBookId)
+      );
 
-newSeriesCharacterIds = [];
+    if(book){
+      initialTitle = book.title || "";
+    }
+
+    newSeriesBookIds = [
+      String(initialBookId)
+    ];
+
+  }
+
+  newSeriesCharacterIds = [];
 
 	const modal = document.createElement("div");
 	modal.className = "modal-bg";
