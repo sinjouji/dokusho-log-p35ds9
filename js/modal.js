@@ -239,7 +239,7 @@ function openAddBookModal(){
  						
 					style="
 						background:
-							${isActive ? tag.color : 'var(--color-text)'};
+							${isActive ? tag.color : 'var(--color-card)'};
 						color:
 							${isActive ? 'var(--color-card)' : 'var(--color-text)'};
 						border:
