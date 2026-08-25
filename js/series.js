@@ -684,18 +684,26 @@ function renderSeriesEditBooks(
 //==============================
 //関連キャラの一覧描画
 //==============================
-function renderSeriesEditCharacters(){
+function renderSeriesEditCharacters(
+  targetId = "series-edit-characters"
+){
 
   const relatedCharacters =
     characters.filter(c =>
-
       editingSeriesCharacterIds.includes(c.id)
-
     );
 
-  document.getElementById(
-    "series-edit-characters"
-  ).innerHTML = `
+  const target =
+    document.getElementById(targetId);
+
+  if(!target){
+    console.warn(
+      `⚠️ ${targetId} が見つかりません`
+    );
+    return;
+  }
+
+  target.innerHTML = `
 
     <div>
 
@@ -723,8 +731,6 @@ function renderSeriesEditCharacters(){
     </div>
   `;
 }
-
-
 
 
 
