@@ -949,33 +949,101 @@ function cycleFav(id){
 //==============================
 function toggleBookTag(bookId, tagId){
 
-	const book =
-		books.find(b=>String(b.id)===String(bookId));
+  const book =
+    books.find(
+      b => String(b.id) === String(bookId)
+    );
 
-	if(!book) return;
+  if(!book) return;
 
-	if(!Array.isArray(book.tagIds)){
+  if(!Array.isArray(book.tagIds)){
+    book.tagIds = [];
+  }
 
-		book.tagIds = [];
+  const id = String(tagId);
 
-	}
+  const hasTag =
+    book.tagIds
+      .map(String)
+      .includes(id);
 
-	if(book.tagIds.includes(tagId)){
+  if(hasTag){
 
-		book.tagIds =
-			book.tagIds.filter(id=>id!==tagId);
+    book.tagIds =
+      book.tagIds.filter(
+        x => String(x) !== id
+      );
 
-	}else{
+  }else{
 
-		book.tagIds.push(tagId);
+    book.tagIds.push(id);
 
-	}
-	
-	closeModal("open-book-modal");
-	openBookDetailModal(book);
+  }
 
+  renderBookDetailTags(book);
 }
 
+//==========
+//タグ切り替え軽くするためのやつ
+//==========
+function renderBookDetailTags(book){
+
+  const target =
+    document.getElementById(
+      "open-book-tags"
+    );
+
+  if(!target) return;
+
+  target.innerHTML = `
+    ${
+      tagMaster
+        .filter(tag => !tag.isHidden)
+        .map(tag=>{
+
+          const isActive =
+            (book.tagIds || [])
+              .map(String)
+              .includes(
+                String(tag.id)
+              );
+
+          return `
+            <span
+              class="tag-chip detail-tag-chip"
+              onclick="
+                toggleBookTag(
+                  '${book.id}',
+                  '${tag.id}'
+                )
+              "
+              style="
+                background:
+                  ${
+                    isActive
+                      ? tag.color
+                      : 'var(--color-card)'
+                  };
+
+                color:
+                  ${
+                    isActive
+                      ? 'var(--color-card)'
+                      : 'var(--color-text)'
+                  };
+
+                border:
+                  1px solid ${tag.color};
+              "
+            >
+              ${tag.name}
+            </span>
+          `;
+        })
+        .join("")
+    }
+  `;
+}
 
 //==============================
 //本のソートここから
