@@ -57,6 +57,7 @@ async function addReadDate(id){
   // 本棚へ移動
   book.type = "normal";
 
+markDataChanged("books");
   await saveData();
   
   localStorage.setItem(
@@ -103,6 +104,7 @@ function toggleReread(id){
       "reread-check"
     ).checked;
 
+markDataChanged("books");
   saveData();
 
   renderHome();
@@ -126,6 +128,7 @@ function toggleProtect(id){
       "protect-check"
     ).checked;
 
+markDataChanged("books");
   saveData();
 
   renderHome();
@@ -163,6 +166,7 @@ async function removeReadDate(bookId,date){
       book.type = "wish";
     }
 
+markDataChanged("books");
     await saveData();
 
     closeModal("open-book-modal");
@@ -409,7 +413,7 @@ reread: document.getElementById(
   }
 });
   
-
+markDataChanged("books");
   await saveData();
   
   const placeName =
@@ -508,6 +512,7 @@ seriesMaster.forEach(series=>{
 
   book.fav = currentDetailFav;
 
+markDataChanged("books");
   await saveData();
 
 showToast("保存しました！");
@@ -576,6 +581,7 @@ showConfirmDialog({
           );
     });
 
+markDataChanged("books");
     await saveData();
 
     closeModal("open-book-modal");
@@ -796,6 +802,7 @@ async function duplicateBook(id){
     }
   });
 
+markDataChanged("books");
   await saveData();
 
   closeModal("open-book-modal");
@@ -933,6 +940,7 @@ function cycleFav(id){
 
   book.fav = (book.fav + 1) % 5;
 
+markDataChanged("books");
   saveData();
 
   closeModal("open-book-modal");
@@ -1573,6 +1581,7 @@ async function toggleDailyLog(tagId){
 
 
   renderHome();
+markDataChanged("dailyLogs");
   await saveData();
 
 }

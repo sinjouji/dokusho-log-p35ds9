@@ -2311,6 +2311,7 @@ if(!tag) return;
 
   });
 
+markDataChanged("books");
   saveData();
 
 showToast(
@@ -2586,6 +2587,7 @@ function bulkProtectBooks(){
 
   });
 
+markDataChanged("books");
   saveData();
 
   showToast(
@@ -2636,6 +2638,7 @@ function bulkUnprotectBooks(){
 
   });
 
+markDataChanged("books");
   saveData();
 
   showToast(
@@ -2680,6 +2683,7 @@ function bulkRereadBooks(){
 
   });
 
+markDataChanged("books");
   saveData();
 
   showToast(
@@ -2730,6 +2734,7 @@ function bulkUnrereadBooks(){
 
   });
 
+markDataChanged("books");
   saveData();
 
   showToast(

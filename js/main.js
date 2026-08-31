@@ -317,6 +317,8 @@ async function loadData(){
 
     books =
       data.books || [];
+      
+      rebuildBookMap();
 
     characters =
       data.characters || [];

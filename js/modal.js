@@ -112,7 +112,7 @@ function openAddBookModal(){
 				  class="fav-cycle-btn"
 			  		onclick="cycleNewBookFav()"
 				>
-				  評価：0
+				  評価：★★
 				</button>
 
         
@@ -513,7 +513,7 @@ function openBookDetailModal(book){
          class="fav-cycle-btn"
          onclick="cycleFav('${book.id}')">評価：
            ${
-              ["0","★","★★","★★★","👑"][book.fav || 0]
+              ["0","★","★★","★★★","👑"][book.fav || "★★"]
             }
        </button>
 
@@ -1047,7 +1047,7 @@ if(readInput && !readInput.value){
 
 
 //==============================
-//====シリーズの追加モーダル
+//====シリーズ追加モーダル
 //==============================
 function openAddSeriesModal(
   initialBookId = null

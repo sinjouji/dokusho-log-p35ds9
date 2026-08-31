@@ -2,10 +2,28 @@
 // SERIE.JS シリーズ関連の処理 私用
 //
 
+
 //設定Pシリーズ初期表示モード
 let seriesViewMode =
   localStorage.getItem("seriesViewMode")
   || "card";  
+  
+  
+  
+  //検索改善用
+  let bookMap = new Map();
+
+function rebuildBookMap(){
+
+  bookMap = new Map(
+    books.map(book => [
+      String(book.id),
+      book
+    ])
+  );
+
+}
+  
   
 
 //==============================
@@ -90,12 +108,10 @@ main.classList.toggle(
   const progress =
   getSeriesProgress(s);
   
-    const relatedBooks =
-  books.filter(b =>
-    (s.bookIds || [])
-      .map(String)
-      .includes(String(b.id))
-  );
+const relatedBooks =
+  (s.bookIds || [])
+    .map(id => bookMap.get(String(id)))
+    .filter(Boolean);
 
 const bookCount =
   relatedBooks.length;
@@ -616,7 +632,8 @@ async function saveSeriesEdit(id){
     }
   });
 
-  await saveData();
+markDataChanged("series");
+await saveData();
 
   closeModal("edit-series-modal");
 
@@ -1051,7 +1068,9 @@ protect: document.getElementById(
     }
   });
   
-  await saveData();
+  
+markDataChanged("series");
+await saveData();
   
   localStorage.setItem(
   "seriesHelpSeen",
@@ -1138,8 +1157,8 @@ showConfirmDialog({
 
   });
 
-  
-    await saveData();
+  markDataChanged("series");
+await saveData();
 
     closeDetailModals();
 
@@ -1168,20 +1187,18 @@ showConfirmDialog({
 function getSeriesLatestReadDate(series){
 
   const relatedBooks =
-    books.filter(b =>
-
-      (series.bookIds || [])
-        .map(String)
-        .includes(String(b.id))
-
-    );
+    (series.bookIds || [])
+      .map(id =>
+        bookMap.get(String(id))
+      )
+      .filter(Boolean);
 
   const dates = [];
 
-  relatedBooks.forEach(b=>{
+  relatedBooks.forEach(b => {
 
     (b.readDates || b.dates || [])
-      .forEach(date=>{
+      .forEach(date => {
 
         dates.push(date);
 
@@ -1192,6 +1209,7 @@ function getSeriesLatestReadDate(series){
   return dates.length
     ? dates.sort().slice(-1)[0]
     : "";
+
 }
 
 
@@ -1201,21 +1219,17 @@ function getSeriesLatestReadDate(series){
 function getSeriesProgress(series){
 
   const relatedBooks =
-    books.filter(b=>
-
-      (series.bookIds || [])
-        .map(String)
-        .includes(String(b.id))
-
-    );
+    (series.bookIds || [])
+      .map(id =>
+        bookMap.get(String(id))
+      )
+      .filter(Boolean);
 
   const sorted =
     [...relatedBooks]
       .sort((a,b)=>
-
         (a.volume || 0) -
         (b.volume || 0)
-
       );
 
   return sorted
@@ -1301,7 +1315,8 @@ function toggleSeriesProtect(id){
       "protect-series-check"
     ).checked;
 
-  saveData();
+markDataChanged("series");
+saveData();
 
   renderSeries();
 }

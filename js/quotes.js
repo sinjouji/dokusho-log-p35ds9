@@ -348,7 +348,8 @@ function addQuoteToBook(bookId){
     createdAt:new Date().toISOString()
   });
 
-  saveData();
+markDataChanged("books");
+saveData();
 
   closeModal("open-book-modal");
   openBookDetailModal(book);
@@ -381,7 +382,8 @@ function toggleQuoteFavorite(bookId, quoteId){
 
   quote.favorite = !quote.favorite;
 
-  saveData();
+markDataChanged("books");
+saveData();
 
   closeModal("open-book-modal");
   openBookDetailModal(book);
@@ -444,7 +446,8 @@ showConfirmDialog({
         String(q.id) !== String(quoteId)
       );
 
-    saveData();
+markDataChanged("books");
+saveData();
 
     closeModal("open-book-modal");
     openBookDetailModal(book);
@@ -522,7 +525,7 @@ function openQuoteEditModal(bookId, quoteId){
 
       <div class="modal-footer">
         <button
-          class="btn-main"
+          class="btn-main right-yose"
           onclick="
             saveQuoteEdit(
               '${bookId}',
@@ -578,7 +581,8 @@ function saveQuoteEdit(bookId, quoteId){
       .getElementById("edit-quote-favorite")
       ?.checked || false;
 
-  saveData();
+markDataChanged("books");
+saveData();
 
   closeModal("quote-edit-modal");
 

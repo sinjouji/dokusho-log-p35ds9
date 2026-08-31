@@ -285,7 +285,8 @@ async function saveCharacter(id){
 
   console.log("after edit", chars);
 
-  await saveData();
+  markDataChanged("characters");
+await saveData();
 
   showToast("保存しました！");
 
@@ -376,7 +377,8 @@ protect: document.getElementById(
     }
   });
 
- await saveData();
+markDataChanged("characters");
+await saveData();
 
 closeModal(
   "add-chars-modal"
@@ -479,7 +481,8 @@ showConfirmDialog({
 
   });
 
-  await saveData();
+markDataChanged("characters");
+await saveData();
 
   closeModal("open-chars-modal");
 
@@ -711,7 +714,8 @@ function toggleCharactersProtect(id){
       "protect-characters-check"
     ).checked;
 
-  saveData();
+markDataChanged("characters");
+saveData();
 
   renderCharacters();
 }

@@ -696,7 +696,8 @@ async function saveDailyLogEdit(){
     delete dailyLogs[editingDailyLogDate];
   }
 
-  await saveData();
+markDataChanged("dailyLogs");
+await saveData();
 
 editingDailyLogDate = null;
 editingDailyLogTags = [];

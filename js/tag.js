@@ -898,7 +898,8 @@ if(visibleCheck && visibleCheck.checked){
   tag.isHidden = false;
 }
 
-  await saveData();
+markDataChanged("tagMaster");
+await saveData();
 
   editingHiddenTagId = null;
   deletingHiddenTagId = null;
@@ -1103,7 +1104,8 @@ async function saveTagPageEdit(id){
   tag.color =
     editingTagPageColor || tag.color;
 
-  await saveData();
+markDataChanged("tagMaster");
+await saveData();
 
   editingTagPageId = null;
 
@@ -1154,7 +1156,8 @@ async function saveNewTag(){
 
   });
 
-  await saveData();
+markDataChanged("tagMaster");
+await saveData();
 
   closeModal(
     "add-tag-modal"
@@ -1199,7 +1202,8 @@ async function deleteTag(id){
   editingTagPageId = null;
   deletingTagId = null;
 
-  await saveData();
+markDataChanged("tagMaster");
+await saveData();
 
   renderTags();
   renderHome();

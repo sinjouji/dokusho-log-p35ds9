@@ -94,6 +94,23 @@ function renderHomeSettingArea(){
     ${settingSections.home
     ? `
     
+        <!--データ移行用（テスト）一度のみ-->
+<div class="setting-row">
+  <span>🔧 Firestoreデータ移行</span>
+
+  <button
+    onclick="
+      if(confirm('Firestoreの旧データを新しい保存先へコピーします。\\n\\n実行していいですか？')){
+        migrateFirestoreData();
+      }
+    "
+  >
+    １回しか使わないよ！！！
+  </button>
+</div>
+    
+    
+    
      <!--デイリーログ日付-->
     <div class="setting-row">
       <span>今日の日付</span>
@@ -699,7 +716,8 @@ function exportJsonData(){
     books,
     characters,
     tagMaster,
-    seriesMaster
+    seriesMaster,
+    dailyLogs
   };
 
   const blob =
@@ -780,8 +798,15 @@ function importJsonData(input){
     characters = data.characters;
     tagMaster = data.tagMaster;
     seriesMaster = data.seriesMaster;
+    dailyLogs = data.dailyLogs || {};
 
-    await saveData();
+markDataChanged("books");
+markDataChanged("characters");
+markDataChanged("tagMaster");
+markDataChanged("series");
+markDataChanged("dailyLogs");
+
+await saveData();
 
     showResultDialog({
 
@@ -918,7 +943,23 @@ tagMaster = result.array;
 tagUpdated = result.updated;
 tagAdded = result.added;
 
-    await saveData();
+//デイリーログ
+if(data.dailyLogs){
+
+  dailyLogs = {
+    ...dailyLogs,
+    ...data.dailyLogs
+  };
+
+}
+
+markDataChanged("books");
+markDataChanged("characters");
+markDataChanged("tagMaster");
+markDataChanged("series");
+markDataChanged("dailyLogs");
+
+await saveData();
 
     showResultDialog({
 
@@ -1496,6 +1537,7 @@ async function executeTextImport(){
     ...booksToAdd
   );
 
+markDataChanged("books");
   await saveData();
 
   showToast(
