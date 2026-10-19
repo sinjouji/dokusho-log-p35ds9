@@ -1,5 +1,9 @@
 //
-// BOOKS.JS 私の方
+// BOOKS.JS 私の方 共通化チェックOK
+// 
+// sync版の物をつかう：タグ切替処理、背表紙の幅
+// syncのみ：フラグ
+// ※タグ切替のみ、保存処理との関係を要確認
 //
 // 本一覧とか、本に関する処理ちゃんたち
 //
@@ -753,9 +757,6 @@ async function duplicateBook(id){
 
     id: Date.now().toString(),
 
-    title:
-      incrementVolumeTitle(book.title || ""),
-    
     subtitle: book.subtitle || "",
       
     volume:
@@ -826,14 +827,14 @@ showToast(
 //==============================
 //本の複製時巻数＋1
 //==============================
-function incrementVolumeTitle(title){
+/*function incrementVolumeTitle(title){
 
   return title.replace(
     /(\d+)(?!.*\d)/,
     n => String(Number(n) + 1)
   );
 }
-
+*/
 
 //==============================
 //本詳細を開くやつ
@@ -1294,6 +1295,10 @@ ${
         <div class="book-read-count">
           ${b.readDates?.length || 0}回
         </div>
+        
+        <div class="fav">
+         ${b.reread ? "🔁 再読" : ""}
+        </div>
 
       </div>
 
@@ -1402,7 +1407,10 @@ main.classList.add("list-view");
     <span class="list-date">
       ${latestDate}
     </span>
-
+    
+    <span class="list-date">
+     ${b.reread ? " 🔁" : ""}
+    </span>
   </div>
 
   <div class="list-count-watermark">

@@ -1,6 +1,13 @@
 //
-// ベース ＝ app.js 私用
+// ベース ＝ app.js 私用 共通化チェックOK
 //    メイン処理：render / save / 初期化
+//
+// 共通化：go(page),saveData()のローカル保存部分、newBookFavの初期値を2にする
+// syncのみ：loadDataFromLocal,getSyncData,読み込み失敗時のtry/catch,
+//※確認後に整理するやつ：rebuildBookMap、最後に開いていたシリーズ詳細画面を復元する処理
+//
+// 2026/10/19：起動時の表示ページを本一覧に統一
+//
 //
 
 //🟦①====状態（let）====
@@ -294,11 +301,33 @@ function loadDataFromLocal(){
 }
 
 
-
-//==============================
-//⑥ロード
-//==============================
+//=============================
+// 新：ロード 置き換え予定
+//=============================
+// ==============================
+// データ読み込み・初期化
+// ==============================
 let themeLoaded = false;
+
+function applyLoadedData(data){
+  books = data.books || [];
+
+  rebuildBookMap();
+
+  characters = data.characters || [];
+
+  // 旧データ救済
+  characters.forEach(person => {
+    person.personType ??= "character";
+  });
+
+  tagMaster = data.tagMaster || [];
+
+  seriesMaster = (data.series || [])
+    .concat(data.seriesMaster || []);
+
+  dailyLogs = data.dailyLogs || {};
+}
 
 async function loadData(){
 
@@ -306,131 +335,90 @@ async function loadData(){
     loadTheme();
     themeLoaded = true;
   }
-  
+
+  // =========================
+  // ① まずローカルデータを表示
+  // =========================
+  let localData = null;
 
   try{
-
-  const data =
-  await getSyncData();
-  
-  if(data){
-
-    books =
-      data.books || [];
-      
-      rebuildBookMap();
-
-    characters =
-      data.characters || [];
-
-    // 旧データ救済
-    characters.forEach(person=>{
-      person.personType ??= "character";
-    });
-
-    tagMaster =
-      data.tagMaster || [];
-
-    seriesMaster =
-      (data.series || [])
-        .concat(
-          data.seriesMaster || []
-        );
-
-    dailyLogs =
-      data.dailyLogs || {};
-
-    console.log(
-      "データ読み込み完了"
-    );
-
-  }else{
-
-  const data =
-    loadDataFromLocal();
-
-  if(data){
-
-    books =
-      data.books || [];
-
-    characters =
-      data.characters || [];
-
-    tagMaster =
-      data.tagMaster || [];
-
-    seriesMaster =
-      data.seriesMaster || [];
-
-    dailyLogs =
-      data.dailyLogs || {};
-
-    console.log(
-      "◆ローカルから読み込み"
-    );
-
-  }else{
-
-    console.log(
-      "⚠️ 保存データがありません"
-    );
-
+    localData = loadDataFromLocal();
+  }catch(e){
+    console.error("ローカルデータ読み込み失敗", e);
   }
-}
-    
-    viewMode =
-      localStorage.getItem("viewMode")
-      || "card";
 
-      const lastPage =
-        localStorage.getItem("lastPage")
-        || "home";
+  if(localData){
+    applyLoadedData(localData);
+    console.log("◆ローカルから読み込み");
+  }else{
+    console.log("⚠️ ローカルデータがありません");
+  }
 
-    // UI初期化
+  viewMode =
+    localStorage.getItem("viewMode") || "card";
+
+  renderTagFilter();
+  go("home");
+
+  // ローカル表示ができたので、読み込み画面を閉じる
+  const loading = document.getElementById("loading");
+
+  if(loading){
+    loading.classList.add("hidden");
+  }
+
+  // =========================
+  // ② Firestoreをバックグラウンドで取得
+  // =========================
+
+  // 読み込み開始時点で未同期の変更があれば、
+  // 今回の取得結果ではローカルを更新しない
+  const hadPendingChanges = hasPendingSyncChanges();
+
+  try{
+    const remoteData = await getSyncData(false);
+
+    // 取得中に編集された場合も、上書きしない
+    if(
+      hadPendingChanges ||
+      hasPendingSyncChanges()
+    ){
+      console.log(
+        "⚠️ 未同期の変更があるため、Firestoreの取得結果は反映しません"
+      );
+      return;
+    }
+
+    // Firestoreの取得結果を反映
+    applyLoadedData(remoteData);
+
+    // 反映が安全と判断できた場合だけローカル保存
+    localStorage.setItem(
+      "dokushoLogData",
+      JSON.stringify(remoteData)
+    );
+
+    console.log("Firestore読み込み完了");
+
+    // 現在のページを再描画
     renderTagFilter();
-    if(lastPage === "detail"){
-
-  const savedSeriesId =
-    localStorage.getItem("currentSeriesId");
-
-  const series =
-    seriesMaster.find(s =>
-      String(s.id) === String(savedSeriesId)
-    );
-
-  if(series){
-    openSeries(series);
-  }else{
-    go("series");
-  }
-
-}else{
-
-  go(lastPage);
-
-}
-
+    go(currentPage || "home");
 
   }catch(e){
-    console.error(e);
-    alert("読み込み失敗: " + e.message);
+    console.error("Firestore読み込み失敗", e);
+
+    // ローカル表示は維持する
+    console.log(
+      "ローカルデータで表示を継続します"
+    );
   }
-
-
-
-  const l = document.getElementById('loading');
-  if(l) l.classList.add('hidden');
 }
 
-//async function loadData()おわり
-
-
-
-
-
-
 // 初回ロード
-window.addEventListener("load", ()=>{
+window.addEventListener("load", () => {
   loadData();
 });
+
+
+
+
