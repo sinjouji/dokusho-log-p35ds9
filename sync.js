@@ -1,6 +1,10 @@
 //===============================
 //
-// 私用 SYNC.JS
+// 私用 SYNC.JS 共通化チェックOK
+//
+// 要確認：saveData()がこことmain.jsにある？、setSyncEnabled()の挙動、rebuildBookMap()の呼び出し挙動
+//
+//
 // 同期処理や共通化したくない部分の置き場
 //
 //===============================
@@ -74,7 +78,10 @@ if(!newData && oldData){
 // Firestore変更管理
 // ==============================
 
-let pendingSync = {
+
+const PENDING_SYNC_KEY = "dokushoLogPendingSync";
+
+const PENDING_SYNC_DEFAULT = {
   books: false,
   series: false,
   characters: false,
@@ -82,40 +89,71 @@ let pendingSync = {
   dailyLogs: false
 };
 
+function loadPendingSync(){
+  try{
+    const saved = localStorage.getItem(PENDING_SYNC_KEY);
+
+    if(!saved){
+      return { ...PENDING_SYNC_DEFAULT };
+    }
+
+    return {
+      ...PENDING_SYNC_DEFAULT,
+      ...JSON.parse(saved)
+    };
+
+  }catch(e){
+    console.error("未同期状態の読み込み失敗", e);
+    return { ...PENDING_SYNC_DEFAULT };
+  }
+}
+
+let pendingSync = loadPendingSync();
+
+function savePendingSync(){
+  localStorage.setItem(
+    PENDING_SYNC_KEY,
+    JSON.stringify(pendingSync)
+  );
+}
+
+
 //==============================
 // Firestore保存成功後の変更マーク解除
 //==============================
+
 function clearDataChanged(type){
-
   if(
     Object.prototype.hasOwnProperty.call(
       pendingSync,
       type
     )
   ){
-
     pendingSync[type] = false;
-
+    savePendingSync();
   }
-
 }
 
-
-//変更の有無の判定用関数
 function markDataChanged(type){
-
   if(
     Object.prototype.hasOwnProperty.call(
       pendingSync,
       type
     )
   ){
-
     pendingSync[type] = true;
-
+    savePendingSync();
   }
-
 }
+
+//===============================
+// Firestore読込前の安全確認用
+//===============================
+// 未同期の変更が残っているか確認
+function hasPendingSyncChanges(){
+  return Object.values(pendingSync).some(Boolean);
+}
+
 
 //===============================
 // savedata 同期
@@ -244,7 +282,7 @@ console.log("Firestore dailyLogs 保存完了");
 //==============================
 // Firestoreからデータを読み込む
 //==============================
-async function loadDataFromFirestore(){
+async function loadDataFromFirestore({ saveLocal = true } = {}){
 
   if(!window.firebaseReady){
 
@@ -341,18 +379,21 @@ async function loadDataFromFirestore(){
   };
 
 
+  
   // =========================
-  // ローカルにもバックアップ
+  // 必要な場合だけローカルにも保存
   // =========================
 
-  localStorage.setItem(
-    "dokushoLogData",
-    JSON.stringify(data)
-  );
-
+  if(saveLocal){
+    localStorage.setItem(
+      "dokushoLogData",
+      JSON.stringify(data)
+    );
+  }
 
   return data;
 }
+
 
 
 
@@ -390,9 +431,11 @@ async function saveData(){
 
 
 
-async function getSyncData(){
+async function getSyncData(saveLocal = true){
 
-  return await loadDataFromFirestore();
+  return await loadDataFromFirestore({
+    saveLocal
+  });
 
 }
 
