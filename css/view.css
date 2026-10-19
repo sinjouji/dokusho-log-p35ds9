@@ -194,7 +194,7 @@
 .bookmark::before{
   content:"";
   position:absolute;
-  bottom:-9px;
+  bottom:-8px;
   left:-2px;
 
   border-left:9px solid transparent;
@@ -207,7 +207,7 @@
 .bookmark::after{
   content:"";
   position:absolute;
-  bottom:-7px;
+  bottom:-6px;/*-7px*/
   left:0;
 
   border-left:7px solid transparent;
