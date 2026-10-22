@@ -2,7 +2,7 @@
 //
 // 私用 SYNC.JS 共通化チェックOK
 //
-// 要確認：saveData()がこことmain.jsにある？、setSyncEnabled()の挙動、rebuildBookMap()の呼び出し挙動
+// 要確認：setSyncEnabled()の挙動、rebuildBookMap()の呼び出し挙動
 //
 //
 // 同期処理や共通化したくない部分の置き場
@@ -23,7 +23,12 @@ function isSyncEnabled(){
   return enableSync === true;
 }
 
-function setSyncEnabled(enabled){
+
+
+async function setSyncEnabled(enabled){
+
+  // 切り替え前の状態を保存
+  const wasEnabled = enableSync;
 
   enableSync = enabled;
 
@@ -32,9 +37,9 @@ function setSyncEnabled(enabled){
     String(enabled)
   );
 
-  // OFF → ON に切り替えた場合
-  // 現在のデータをすぐFirestoreへ同期
-  if(enabled){
+  // OFF → ON に切り替えた場合だけ、
+  // ローカルデータを優先して全データを同期する
+  if(!wasEnabled && enabled){
 
     const data = {
       books,
@@ -44,11 +49,47 @@ function setSyncEnabled(enabled){
       dailyLogs
     };
 
-    syncToFirestore(data);
+    // 5種類すべてを未同期扱いにする
+    pendingSync.books = true;
+    pendingSync.series = true;
+    pendingSync.characters = true;
+    pendingSync.tagMaster = true;
+    pendingSync.dailyLogs = true;
+
+    savePendingSync();
+
+    // 保存開始を表示
+    updateDataSyncStatus(null, "saving");
+
+    try{
+      await syncToFirestore(data);
+
+      console.log(
+        "ローカルデータのFirestoreへの同期処理が完了しました"
+      );
+
+      // 未同期データが残っていない場合だけ完了表示
+      if(hasPendingSyncChanges()){
+        updateDataSyncStatus(null, "unsynced");
+      }else{
+        updateDataSyncStatus(null, "synced");
+      }
+
+    }catch(e){
+      console.error(
+        "Firestoreへの全データ同期に失敗しました",
+        e
+      );
+
+      // 保存に失敗した場合は未同期として表示
+      updateDataSyncStatus(null, "unsynced");
+    }
 
   }
 
 }
+
+
 
 
 
@@ -292,7 +333,7 @@ async function loadDataFromFirestore({ saveLocal = true } = {}){
       setTimeout(resolve, 100)
     );
 
-    return loadDataFromFirestore();
+    return loadDataFromFirestore({ saveLocal });
   }
 
   // =========================
@@ -396,10 +437,32 @@ async function loadDataFromFirestore({ saveLocal = true } = {}){
 
 
 
+/*=======================
+ 同期版：ローカルからデータ呼び出し
+ ※高速起動用キャッシュ
+=======================*/
+function loadDataFromLocal(){
+
+  const saved = localStorage.getItem(
+    "dokushoLogData"
+  );
+
+  if(!saved){
+    return null;
+  }
+
+  return JSON.parse(saved);
+
+}
+
+
+
+
 
 //==============================
 //====🔑データの保存処理：超重要！！
 //==============================
+
 async function saveData(){
 
   const data = {
@@ -418,15 +481,43 @@ async function saveData(){
 
   // 同期版の場合だけFirestoreへ保存
   if(
-  isSyncMode() &&
-  isSyncEnabled()
-){
+    isSyncMode() &&
+    isSyncEnabled()
+  ){
 
-  await syncToFirestore(data);
+    // 保存開始を表示
+    updateDataSyncStatus(null, "saving");
+
+    try{
+
+      await syncToFirestore(data);
+
+      // 未同期の変更が残っていないか確認
+      if(hasPendingSyncChanges()){
+        updateDataSyncStatus(null, "unsynced");
+      }else{
+        updateDataSyncStatus(null, "synced");
+      }
+
+    }catch(e){
+
+      console.error(
+        "Firestoreへの保存に失敗しました",
+        e
+      );
+
+      // 保存失敗時は未同期として表示
+      updateDataSyncStatus(null, "unsynced");
+
+      // 呼び出し元でも失敗を検知できるようにする
+      throw e;
+
+    }
+
+  }
 
 }
 
-}
 
 
 
@@ -596,4 +687,10 @@ console.log(
 
 }
 
+
+
+
+// =========================
+// 
+// =========================
 

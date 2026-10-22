@@ -63,4 +63,17 @@
   measurementId: "G-ES0WYH0VXY"
   
   
+  
+  
+HTML側避け
+<script>
+console.log("HTML本体は実行されてる");
+</script>
+
+<script
+  type="module"
+  src="./firebase-config.js"
+></script>
+
+  
   */
