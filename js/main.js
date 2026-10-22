@@ -1,8 +1,8 @@
 //
-// ベース ＝ app.js 私用 共通化チェックOK
+// ベース ＝ app.js 私用 ★共通化済
 //    メイン処理：render / save / 初期化
 //
-// 共通化：go(page),saveData()のローカル保存部分、newBookFavの初期値を2にする
+// 共通化：go(page)
 // syncのみ：loadDataFromLocal,getSyncData,読み込み失敗時のtry/catch,
 //※確認後に整理するやつ：rebuildBookMap、最後に開いていたシリーズ詳細画面を復元する処理
 //
@@ -282,28 +282,8 @@ function go(page){
 
 
 
-//==============================
-// ローカルからデータを読み込む
-//==============================
-
-function loadDataFromLocal(){
-
-  const saved =
-    localStorage.getItem(
-      "dokushoLogData"
-    );
-
-  if(!saved){
-    return null;
-  }
-
-  return JSON.parse(saved);
-}
 
 
-//=============================
-// 新：ロード 置き換え予定
-//=============================
 // ==============================
 // データ読み込み・初期化
 // ==============================
@@ -354,11 +334,41 @@ async function loadData(){
     console.log("⚠️ ローカルデータがありません");
   }
 
+  updateDataSyncStatus(null, "local");
+
   viewMode =
     localStorage.getItem("viewMode") || "card";
 
-  renderTagFilter();
-  go("home");
+    renderTagFilter();
+
+  // リロード時は直前のページを復元し、
+  // 新しく起動したときはホームを表示する
+  const navigationEntry =
+    performance.getEntriesByType("navigation")[0];
+
+  const isReload =
+    navigationEntry?.type === "reload";
+
+  const savedPage =
+    localStorage.getItem("lastPage") || "home";
+
+  const validPages = [
+    "home",
+    "series",
+    "characters",
+    "quotes",
+    "stats",
+    "detail-search",
+    "tags",
+    "settings"
+  ];
+
+  const startupPage =
+    isReload && validPages.includes(savedPage)
+      ? savedPage
+      : "home";
+
+  go(startupPage);
 
   // ローカル表示ができたので、読み込み画面を閉じる
   const loading = document.getElementById("loading");
@@ -367,13 +377,17 @@ async function loadData(){
     loading.classList.add("hidden");
   }
 
-  // =========================
-  // ② Firestoreをバックグラウンドで取得
-  // =========================
+// =========================
+// ② Firestoreをバックグラウンドで取得
+// =========================
+
+if(isSyncMode()){
 
   // 読み込み開始時点で未同期の変更があれば、
   // 今回の取得結果ではローカルを更新しない
-  const hadPendingChanges = hasPendingSyncChanges();
+    const hadPendingChanges = hasPendingSyncChanges();
+
+  updateDataSyncStatus(null, "checking");
 
   try{
     const remoteData = await getSyncData(false);
@@ -386,6 +400,7 @@ async function loadData(){
       console.log(
         "⚠️ 未同期の変更があるため、Firestoreの取得結果は反映しません"
       );
+            updateDataSyncStatus(null, "unsynced");
       return;
     }
 
@@ -399,6 +414,7 @@ async function loadData(){
     );
 
     console.log("Firestore読み込み完了");
+    updateDataSyncStatus(null, "synced");
 
     // 現在のページを再描画
     renderTagFilter();
@@ -411,7 +427,11 @@ async function loadData(){
     console.log(
       "ローカルデータで表示を継続します"
     );
+        updateDataSyncStatus(null, "error");
   }
+  
+  }
+  
 }
 
 // 初回ロード

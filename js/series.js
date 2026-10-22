@@ -1,5 +1,10 @@
 //
-// SERIE.JS シリーズ関連の処理 私用
+// SERIE.JS シリーズ関連の処理 私用 ★共通化済
+//
+// sync：フラグ
+//
+// 共通化候補：renderSeriesEditCharacters()
+// SAにも導入検討：bookMap
 //
 
 

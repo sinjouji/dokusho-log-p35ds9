@@ -1,6 +1,11 @@
 //==============================
 //
-// SETTINGS.JS watashi
+// SETTINGS.JS watashi ★共通化済み
+//
+// 共通化する：JSONバックアップのデイリーログ、上書きインポート、差分追加
+// syncのみ：Firestoreデータ移行ボタン、markDataChanged()
+//
+//
 // 設定ページ
 //
 //==============================
@@ -94,7 +99,11 @@ function renderHomeSettingArea(){
     ${settingSections.home
     ? `
     
-        <!--データ移行用（テスト）一度のみ-->
+       
+/* Firestoreデータ移行用（将来の構成変更に備えて保管）
+   現在は誤操作防止のためボタン機能を停止
+ 
+   <!--データ移行用（テスト）一度のみ-->
 <div class="setting-row">
   <span>🔧 Firestoreデータ移行</span>
 
@@ -107,7 +116,22 @@ function renderHomeSettingArea(){
   >
     １回しか使わないよ！！！
   </button>
-</div>
+</div> 
+
+    */
+
+if (isSyncMode()) {
+  html += `
+    <div class="setting-row">
+      <span>🔧 Firestoreデータ移行（一時停止中）</span>
+
+      <button disabled>
+        現在は使用できません
+      </button>
+    </div>
+  `;
+}
+
     
     
     

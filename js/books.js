@@ -1,5 +1,5 @@
 //
-// BOOKS.JS 私の方 共通化チェックOK
+// BOOKS.JS 私の方 ★共通化済み
 // 
 // sync版の物をつかう：タグ切替処理、背表紙の幅
 // syncのみ：フラグ
@@ -394,6 +394,7 @@ reread: document.getElementById(
 
   books.unshift(book);
   
+  rebuildBookMap();
   
   seriesMaster.forEach(series=>{
 
@@ -572,6 +573,8 @@ showConfirmDialog({
       books.filter(
         b => String(b.id) !== String(id)
       );
+      
+      rebuildBookMap();
 
     seriesMaster.forEach(series=>{
 

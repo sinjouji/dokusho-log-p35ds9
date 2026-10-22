@@ -1,5 +1,8 @@
 //==============================
-// UI
+// UI ★共通化済み
+// 残す：scrollBottom()/第2弾テーマ/hidari-akeクラスの追加
+// sync：同期on・offボタン/toggleSyncSwitch()/updateSyncSwitch()
+// 確認：初期テーマの設定
 //
 // ユーザーのインターフェースやで
 //==============================
@@ -347,7 +350,7 @@ const syncButton =
     ? `
       <button
   id="sync-toggle"
-  class="sync-toggle ${
+  class="hidari-ake sync-toggle ${
     isSyncEnabled()
       ? "sync-on"
       : "sync-off"
@@ -363,10 +366,36 @@ const syncButton =
     `
     : "";
 
-  wrapper.innerHTML=`
-  
+    wrapper.innerHTML=`
+
+  ${isSyncMode() ? `
+    
+<div
+  id="data-sync-status"
+  class="data-sync-status left-yose"
+  data-status="local"
+  role="status"
+  aria-live="polite"
+>
+  <svg
+    class="data-sync-status-bg"
+    viewBox="0 0 300 44"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path d="M 2 22 C 16 5, 27 2, 48 2 L 252 2 C 273 2, 284 5, 298 22 C 284 39, 273 42, 252 42 L 48 42 C 27 42, 16 39, 2 22 Z"/>
+  </svg>
+  <span class="data-sync-status-text">
+    ☁️ データ状態を確認中…
+  </span>
+</div>
+
+  ` : ""}
+
+
   ${syncButton}
-  
+
+
        <select
     id="theme-select"
     class="select-chip hidari-ake"
@@ -418,6 +447,47 @@ select.value = savedTheme;
 document.addEventListener("DOMContentLoaded",()=>{
   injectThemeSwitcher();
 });
+
+
+//=====
+// 同期状態表示
+//=====
+
+
+function updateDataSyncStatus(message, status = "local"){
+
+  if(!isSyncMode()) return;
+
+  const statusElement =
+    document.getElementById("data-sync-status");
+
+  if(!statusElement) return;
+
+  const statusInfo = {
+    local: "📱 ローカルデータ",
+    checking: "🔄 Firestore確認中",
+    saving: "☁️ Firestore保存中",
+    synced: "🌿 同期処理完了",
+    unsynced: "🍂 未同期の変更あり",
+    error: "⚠️ 通信エラー"
+  };
+
+  const textElement =
+    statusElement.querySelector(
+      ".data-sync-status-text"
+    );
+
+  if(!textElement) return;
+
+  textElement.textContent =
+    message || statusInfo[status] || statusInfo.local;
+
+  statusElement.dataset.status = status;
+}
+
+
+
+
 
 
 

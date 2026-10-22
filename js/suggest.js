@@ -1,5 +1,8 @@
 //==============================
-// SUGGEST 私
+// SUGGEST 私 ★共通化済み
+//
+// 確認：renderSeriesNewBookSuggest()/renderSeriesBookSuggest()
+// ↑おそらく共通化OK
 //
 // とりあえず、render + Suggestを
 // まとめてある場所 20260526
