@@ -122,3 +122,109 @@ display:block;
 }
 
 
+
+.leaf-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 14px;
+  background: #e7eedc;
+  color: #3f5b45;
+  clip-path: polygon(
+  0 50%,
+  8% 15%,
+  20% 0,
+  80% 0,
+  92% 15%,
+  100% 50%,
+  92% 85%,
+  80% 100%,
+  20% 100%,
+  8% 85%
+);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+
+
+
+
+/* =========================
+   データ状態チップ：滑らかな葉っぱ型
+   ========================= */
+
+.data-sync-status {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  max-width: 100%;
+  min-height: 36px;
+  box-sizing: border-box;
+  padding: 7px 22px;
+
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* SVGの葉っぱ背景 */
+.data-sync-status-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.data-sync-status-bg path {
+  fill: var(--status-bg);
+}
+
+/* 文字を背景より手前に表示 */
+.data-sync-status-text {
+  position: relative;
+  z-index: 1;
+  color: var(--status-text);
+}
+
+/* ローカルデータ */
+.data-sync-status[data-status="local"] {
+  --status-bg: #eee8dc;
+  --status-text: #695b43;
+}
+
+/* Firestore確認中 */
+.data-sync-status[data-status="checking"] {
+  --status-bg: #dcebf0;
+  --status-text: #365c69;
+}
+
+/* Firestoreへ保存中 */
+.data-sync-status[data-status="saving"] {
+  --status-bg: #d8ebe5;
+  --status-text: #315f50;
+}
+
+/* 取得・同期処理完了 */
+.data-sync-status[data-status="synced"] {
+  --status-bg: #e7eedc;
+  --status-text: #3f5b45;
+}
+
+/* 未同期の変更あり */
+.data-sync-status[data-status="unsynced"] {
+  --status-bg: #f7edce;
+  --status-text: #795c1d;
+}
+
+/* 通信エラー */
+.data-sync-status[data-status="error"] {
+  --status-bg: #f3dfdc;
+  --status-text: #8a4942;
+}
+
