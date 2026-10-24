@@ -100,21 +100,13 @@ function renderHomeSettingArea(){
     ${settingSections.home
     ? `
     
-
-if (isSyncMode()) {
-  html += `
-    <div class="setting-row">
-      <span>🔧 Firestoreデータ移行（一時停止中）</span>
-
-      <button disabled>
-        現在は使用できません
-      </button>
-    </div>
-  `;
+${
+  isSyncMode()
+    ? `
+      DIL0
+    `
+    : ""
 }
-
-    
-    
     
      <!--デイリーログ日付-->
     <div class="setting-row">
@@ -192,6 +184,21 @@ if (isSyncMode()) {
        
 /* Firestoreデータ移行用（将来の構成変更に備えて保管）
    現在は誤操作防止のためボタン機能を停止
+   
+   
+if (isSyncMode()) {
+  html += `
+    <div class="setting-row">
+      <span>🔧 Firestoreデータ移行（一時停止中）</span>
+
+      <button disabled>
+        現在は使用できません
+      </button>
+    </div>
+  `;
+}
+
+   
  
    <!--データ移行用（テスト）一度のみ-->
 <div class="setting-row">
