@@ -34,6 +34,7 @@ enableSimilarBookNotice =
     ? true
     : enableSimilarBookNotice === "true";
 
+console.log("設定確認:", enableSimilarBookNotice);
 
 
 //==============================
@@ -99,26 +100,6 @@ function renderHomeSettingArea(){
     ${settingSections.home
     ? `
     
-       
-/* Firestoreデータ移行用（将来の構成変更に備えて保管）
-   現在は誤操作防止のためボタン機能を停止
- 
-   <!--データ移行用（テスト）一度のみ-->
-<div class="setting-row">
-  <span>🔧 Firestoreデータ移行</span>
-
-  <button
-    onclick="
-      if(confirm('Firestoreの旧データを新しい保存先へコピーします。\\n\\n実行していいですか？')){
-        migrateFirestoreData();
-      }
-    "
-  >
-    １回しか使わないよ！！！
-  </button>
-</div> 
-
-    */
 
 if (isSyncMode()) {
   html += `
@@ -206,6 +187,29 @@ if (isSyncMode()) {
 
 `;
 }
+
+
+       
+/* Firestoreデータ移行用（将来の構成変更に備えて保管）
+   現在は誤操作防止のためボタン機能を停止
+ 
+   <!--データ移行用（テスト）一度のみ-->
+<div class="setting-row">
+  <span>🔧 Firestoreデータ移行</span>
+
+  <button
+    onclick="
+      if(confirm('Firestoreの旧データを新しい保存先へコピーします。\\n\\n実行していいですか？')){
+        migrateFirestoreData();
+      }
+    "
+  >
+    １回しか使わないよ！！！
+  </button>
+</div> 
+
+    */
+
 
 
 //=============================
