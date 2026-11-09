@@ -34,7 +34,7 @@ let viewMode = "card";
 //if(!["card","shelf"].includes(viewMode)){viewMode = "card";}
 
 let sortMode = "read-desc";
-let seriesSortMode = "stitle-asc";
+let seriesSortMode = "sread-desc";
 let charsSortMode = "cname-asc";
 
 let searchKeyword = "";
