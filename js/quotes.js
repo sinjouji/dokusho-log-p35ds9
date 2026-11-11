@@ -354,17 +354,38 @@ function addQuoteToBook(bookId){
 markDataChanged("books");
 saveData();
 
-  closeModal("open-book-modal");
+  // 現在のスクロール位置を保存
+  const scrollBody =
+    document.querySelector(
+      "#open-book-modal .fixed-scroll-body"
+    );
+
+  const savedScrollTop =
+    scrollBody?.scrollTop || 0;
+
+    closeModal("open-book-modal");
   openBookDetailModal(book);
-}
+
+  // スクロール位置を復元
+  const newScrollBody =
+    document.querySelector(
+      "#open-book-modal .fixed-scroll-body"
+    );
+
+  if(newScrollBody){
+    newScrollBody.scrollTop = savedScrollTop;
+  }
+  }
 
 //==============================
 // 引用メモお気に入り切替え
 //==============================
 function toggleQuoteFavorite(bookId, quoteId){
 
-  const body =
-    document.querySelector(".detail-modal-body");
+    const body =
+    document.querySelector(
+      "#open-book-modal .fixed-scroll-body"
+    );
 
   const scrollTop =
     body ? body.scrollTop : 0;
@@ -391,10 +412,12 @@ saveData();
   closeModal("open-book-modal");
   openBookDetailModal(book);
 
-  setTimeout(()=>{
+    setTimeout(()=>{
 
     const newBody =
-      document.querySelector(".detail-modal-body");
+      document.querySelector(
+        "#open-book-modal .fixed-scroll-body"
+      );
 
     if(newBody){
       newBody.scrollTop = scrollTop;
@@ -402,6 +425,7 @@ saveData();
 
   }, 0);
 }
+
 
 
 
@@ -417,47 +441,68 @@ function deleteQuoteFromBook(bookId, quoteId){
 
   if(!book || !Array.isArray(book.quotes)) return;
 
+  const title = book.title;
 
-const title = book.title;
+  // 保護機能(本に合わせる)
+  if(book.protect){
 
-// 保護機能(本に合わせる)
-if(book.protect){
+    showToast(
+      `🔒 「${title}」は保護されているため、この引用は削除できません`
+    );
 
-  showToast(
-    `🔒 「${title}」は保護されているため、この引用は削除できません`
-  );
-
-  return;
-}
-
-const quote =
-  book.quotes.find(q =>
-    String(q.id) === String(quoteId)
-  );
-
-if(!quote) return;
-
-showConfirmDialog({
-  title: "引用を削除",
-  message: "この引用を削除しますか？",
-  okText: "削除",
-  cancelText: "キャンセル",
-
-  onOk: ()=>{
-    book.quotes =
-      book.quotes.filter(q =>
-        String(q.id) !== String(quoteId)
-      );
-
-markDataChanged("books");
-saveData();
-
-    closeModal("open-book-modal");
-    openBookDetailModal(book);
-
-    showToast("引用を削除しました");
+    return;
   }
-});
+
+  const quote =
+    book.quotes.find(q =>
+      String(q.id) === String(quoteId)
+    );
+
+  if(!quote) return;
+
+  showConfirmDialog({
+    title: "引用を削除",
+    message: "この引用を削除しますか？",
+    okText: "削除",
+    cancelText: "キャンセル",
+
+    onOk: ()=>{
+
+      // 現在のスクロール位置を保存
+      const body =
+        document.querySelector(
+          "#open-book-modal .fixed-scroll-body"
+        );
+
+      const scrollTop =
+        body ? body.scrollTop : 0;
+
+      book.quotes =
+        book.quotes.filter(q =>
+          String(q.id) !== String(quoteId)
+        );
+
+      markDataChanged("books");
+      saveData();
+
+      closeModal("open-book-modal");
+      openBookDetailModal(book);
+
+      // スクロール位置を復元
+      setTimeout(()=>{
+        const newBody =
+          document.querySelector(
+            "#open-book-modal .fixed-scroll-body"
+          );
+
+        if(newBody){
+          newBody.scrollTop = scrollTop;
+        }
+      }, 0);
+
+      showToast("引用を削除しました");
+    }
+  });
 }
 
 
@@ -587,13 +632,32 @@ function saveQuoteEdit(bookId, quoteId){
 markDataChanged("books");
 saveData();
 
+  const body =
+    document.querySelector(
+      "#open-book-modal .fixed-scroll-body"
+    );
+
+  const scrollTop =
+    body ? body.scrollTop : 0;
+
   closeModal("quote-edit-modal");
 
   if(currentPage === "quotes"){
     renderQuotes();
-  }else{
+    }else{
     closeModal("open-book-modal");
     openBookDetailModal(book);
+
+    setTimeout(()=>{
+      const newBody =
+        document.querySelector(
+          "#open-book-modal .fixed-scroll-body"
+        );
+
+      if(newBody){
+        newBody.scrollTop = scrollTop;
+      }
+    }, 0);
   }
 }
 

@@ -131,29 +131,60 @@ const hasReread =
 
   d.className = "series-spine-card";
 
-  d.innerHTML = `
-    <div class="series-spine-title">
-      ${s.protect ? "🔒 " : ""}${s.name}${hasReread ? " 🔁" : ""}
-    </div>
+d.innerHTML = `
+  <div class="series-spine-title">
+    ${s.name}
+  </div>
 
-    <div class="series-spine-count">
-      ${bookCount}冊
-    </div>
-  `;
+  <div class="series-spine-count">
+    ${bookCount}冊
+  </div>
+
+  <div class="series-spine-icons">
+    ${
+      s.protect
+        ? `<span class="book-status-icon protect-icon">
+             ${getProtectIcon()}
+           </span>`
+        : ""
+    }
+    ${
+      hasReread
+        ? `<span class="book-status-icon reread-icon">
+             ${getRereadIcon()}
+           </span>`
+        : ""
+    }
+  </div>
+`;
+
 
 }else if(seriesViewMode === "compact"){
 
   d.className = "series-compact-card";
 
   d.innerHTML = `
-    <div class="series-compact-title">
-      ${s.protect ? "🔒 " : ""}${s.name}${hasReread ? " 🔁 再読あり" : ""}
-    </div>
+  <div class="series-compact-title">
+    ${
+      s.protect
+        ? `<span class="book-status-icon protect-icon">
+             ${getProtectIcon()}
+           </span> `
+        : ""
+    }${s.name}
+    ${
+      hasReread
+        ? `<span class="book-status-icon reread-icon">
+             ${getRereadIcon()}
+           </span> 再読あり`
+        : ""
+    }
+  </div>
 
-    <div class="series-compact-count">
-      ${bookCount}冊
-    </div>
-  `;
+  <div class="series-compact-count">
+    ${bookCount}冊
+  </div>
+`;
 
 }else{
 
@@ -161,7 +192,13 @@ const hasReread =
 
   d.innerHTML = `
     <div class="series-list-name">
-      ${s.protect ? "🔒 " : ""}${s.name}
+      ${
+        s.protect
+          ? `<span class="book-status-icon protect-icon">
+               ${getProtectIcon()}
+             </span> `
+          : ""
+      }${s.name}
     </div>
 
     <div class="series-list-date">
@@ -171,11 +208,14 @@ const hasReread =
           ? `・最新読了：${latestDate}`
           : ""
       }
-${hasReread ? " 🔁 再読あり" : ""}
+      ${
+        hasReread
+          ? ` <span class="book-status-icon reread-icon">
+                 ${getRereadIcon()}
+               </span> 再読あり`
+          : ""
+      }
     </div>
-    
-    
-    
 
     <div class="series-progress">
       ${progress}

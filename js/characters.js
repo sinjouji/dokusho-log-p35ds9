@@ -86,8 +86,13 @@ const filtered =
 d.innerHTML = `
 <div class="character-list-top">
   <div class="character-list-name">
-    ${c.protect ? "🔒" : ""}${c.name}
-  </div>
+  ${c.protect
+    ? `<span class="book-status-icon protect-icon">
+         ${getProtectIcon()}
+       </span> `
+    : ""
+  }${c.name}
+</div>
   
   <div class="character-type-chip">
     ${getPersonTypeLabel(c.personType)}

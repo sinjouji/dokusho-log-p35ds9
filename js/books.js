@@ -98,20 +98,22 @@ function toggleReread(id){
 
   const book =
     books.find(
-      b=>String(b.id)===String(id)
+      b => String(b.id) === String(id)
     );
 
   if(!book) return;
 
-  book.reread =
-    document.getElementById(
-      "reread-check"
-    ).checked;
+  book.reread = !book.reread;
 
-markDataChanged("books");
+  markDataChanged("books");
   saveData();
 
-  renderHome();
+updateDetailStatusButtons(book);
+
+updateSeriesMiniBookStatus(book);
+
+renderHome();
+renderSeriesBookList();
 }
 
 
@@ -127,16 +129,16 @@ function toggleProtect(id){
 
   if(!book) return;
 
-  book.protect =
-    document.getElementById(
-      "protect-check"
-    ).checked;
+  book.protect = !book.protect;
 
-markDataChanged("books");
+  markDataChanged("books");
   saveData();
 
-  renderHome();
-}
+updateDetailStatusButtons(book);
+
+updateSeriesMiniBookStatus(book);
+
+renderHome();}
 
 //==============================
 //====モーダル版日付削除処理
@@ -382,13 +384,13 @@ const nextVolume =
       editingBookSeriesIds.map(String),
     type: date ? "normal" : "wish",
     
-    protect: document.getElementById(
+protect: document.getElementById(
   "new-book-protect"
-).checked,
+).classList.contains("active"),
 
 reread: document.getElementById(
   "new-book-reread"
-).checked,
+).classList.contains("active"),
 
   };
 
@@ -591,13 +593,26 @@ showConfirmDialog({
 markDataChanged("books");
     await saveData();
 
-    closeModal("open-book-modal");
+closeModal("open-book-modal");
 
-    renderHome();
+renderHome();
 
-    showToast(
-      `「${title}」を削除しました`
-    );
+// 開いているシリーズ詳細のミニカードを更新
+(book.seriesIds || []).forEach(seriesId => {
+
+  const series = seriesMaster.find(
+    s => String(s.id) === String(seriesId)
+  );
+
+  if(series){
+    renderSeriesMiniBooks(series);
+  }
+
+});
+
+showToast(
+  `「${title}」を削除しました`
+);
 
   }
 
@@ -811,7 +826,18 @@ markDataChanged("books");
 
   closeModal("open-book-modal");
 
-  renderHome();
+renderHome();
+
+// 開いているシリーズ詳細のミニカードを更新
+(newBook.seriesIds || []).forEach(seriesId => {
+  const series = seriesMaster.find(
+    s => String(s.id) === String(seriesId)
+  );
+
+  if(series){
+    renderSeriesMiniBooks(series);
+  }
+});
 
 if(openAfterDuplicate){
   openBookDetailModal(newBook);
@@ -906,9 +932,11 @@ fav.className =
 
 fav.innerHTML =
   b.protect
-    ? `${volume}<br>🔒`
+    ? `${volume}<br>
+       <span class="book-status-icon protect-icon">
+         ${getProtectIcon()}
+       </span>`
     : volume;
-  
   
   
   if(b.reread === true){
@@ -942,18 +970,23 @@ function cycleFav(id){
 
   if(!book) return;
 
-  book.fav = (book.fav + 1) % 5;
+  book.fav = ((Number(book.fav) || 0) + 1) % 5;
 
-markDataChanged("books");
+  markDataChanged("books");
   saveData();
 
-  closeModal("open-book-modal");
+  // お気に入りボタンだけ更新
+  const btn =
+    document.querySelector(
+      "#open-book-modal .fav-cycle-btn"
+    );
 
-  openBookDetailModal(book);
+  if(btn){
+    btn.innerHTML = getFavIcon(book.fav);
+  }
 
   renderHome();
 }
-
 
 
 //==============================
@@ -1267,7 +1300,12 @@ main.classList.add("card-view");
     d.innerHTML = `
 
       <div class="title">
-  ${b.protect ? "🔒" : ""}${b.title}
+  ${b.protect
+    ? `<span class="book-status-icon protect-icon">
+         ${getProtectIcon()}
+       </span>`
+    : ""
+  }${b.title}
 
 ${
   b.subtitle
@@ -1291,17 +1329,21 @@ ${
           ${getLatestReadDate(b) || "未読"}
         </div>
 
-        <div class="fav">
-          ${getFavLabel(b.fav)}
-        </div>
-
+<div class="fav">
+  ${getFavIcon(b.fav)}
+</div>
         <div class="book-read-count">
           ${b.readDates?.length || 0}回
         </div>
         
-        <div class="fav">
-         ${b.reread ? "🔁 再読" : ""}
-        </div>
+<div class="fav">
+  ${b.reread
+    ? `<span class="book-status-icon reread-icon">
+         ${getRereadIcon()}
+       </span> 再読`
+    : ""
+  }
+</div>
 
       </div>
 
@@ -1387,8 +1429,12 @@ main.classList.add("list-view");
    row.innerHTML = `
    
 <div class="list-title">
-  ${b.protect ? "🔒" : ""}
-  ${b.title}
+  ${b.protect
+    ? `<span class="book-status-icon protect-icon">
+         ${getProtectIcon()}
+       </span> `
+    : ""
+  }${b.title}
   ${
   b.subtitle
     ? `
@@ -1411,9 +1457,14 @@ main.classList.add("list-view");
       ${latestDate}
     </span>
     
-    <span class="list-date">
-     ${b.reread ? " 🔁" : ""}
-    </span>
+<span class="list-date">
+  ${b.reread
+    ? `<span class="book-status-icon reread-icon">
+         ${getRereadIcon()}
+       </span>`
+    : ""
+  }
+</span>
   </div>
 
   <div class="list-count-watermark">
@@ -1512,10 +1563,8 @@ function cycleNewBookFav(){
 
   document.getElementById(
     "new-book-fav-btn"
-  ).textContent =
-    "評価：" +
-    ["0","★","★★","★★★","👑"]
-      [newBookFav];
+  ).innerHTML =
+    getFavIcon(newBookFav);
 }
 
 
@@ -1613,6 +1662,29 @@ function formatToday(){
 
 }
 
+
+/*==========
+保護、再読ボタンの切替
+==========*/
+function updateDetailStatusButtons(book){
+
+  const modal = document.getElementById("open-book-modal");
+  if(!modal) return;
+
+  const protectBtn =
+    modal.querySelector(".detail-status-btn.protect-btn");
+
+  const rereadBtn =
+    modal.querySelector(".detail-status-btn.reread-btn");
+
+  if(protectBtn){
+    protectBtn.classList.toggle("active", !!book.protect);
+  }
+
+  if(rereadBtn){
+    rereadBtn.classList.toggle("active", !!book.reread);
+  }
+}
 
 
 

@@ -1097,7 +1097,7 @@ function renderDetailSearchConditions(){
         renderDetailSearch();
       "
     >
-    🔓保護なし
+    保護なし
   </label>
 </div>
 </div>
@@ -1702,10 +1702,12 @@ ${
   <div class="detail-result-book-info">
 
     ${
-      b.protect
-        ? `<span class="mini-info">🔒</span>`
-        : ""
-    }
+  b.protect
+    ? `<span class="book-status-icon protect-icon">
+         ${getProtectIcon()}
+       </span>`
+    : ""
+}
 
     ${b.title}
 
@@ -1722,10 +1724,12 @@ ${
     }
 
     ${
-      b.reread
-        ? `<span class="mini-info">🔁</span>`
-        : ""
-    }
+  b.reread
+    ? `<span class="book-status-icon reread-icon">
+         ${getRereadIcon()}
+       </span>`
+    : ""
+}
 
     ${
       (b.quotes || []).length
