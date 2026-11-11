@@ -302,3 +302,40 @@
   align-items:flex-end;
 }
 
+
+/* 一覧表示用ステータスアイコン */
+.book-status-icon {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.book-status-icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* 保護：黄色 */
+.book-status-icon.protect-icon {
+  color: #e8bd48;
+}
+
+.book-status-icon.protect-icon .protect-lock-body {
+  fill: currentColor;
+}
+
+/* 再読：テーマカラー */
+.book-status-icon.reread-icon {
+  color: var(--color-bookmark);
+}
+
+.book-status-icon.reread-icon svg {
+  fill: currentColor;
+}
+
+
+  .spine-fav .book-status-icon svg {
+  width: 14px;
+  height: 14px;
+}
